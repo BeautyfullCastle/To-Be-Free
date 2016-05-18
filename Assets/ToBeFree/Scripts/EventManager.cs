@@ -12,15 +12,24 @@ namespace ToBeFree {
             everyEvents = new List<Event>();
         }
 
-        public Event Find(string actionType, Stat stat, City city) {
+        public Event Find(string actionType, City city) {
             // should check here again.
             List<Event> findedEvents = SelectEventsByAction(actionType);
+            
             // <eRegion, List<Event>>
             Dictionary<int, List<Event>> eventListPerRegionDic = InitEventListPerRegionDic(findedEvents, city);
             List<Event> regionEvents = SelectRandomEventsByProb(eventListPerRegionDic, actionType, "Region");
 
-            Dictionary<int, List<Event>> eventListPerStatDic = InitEventListPerStatDic(regionEvents);
-            List<Event> statEvents = SelectRandomEventsByProb(eventListPerStatDic, actionType, "Stat");
+            List<Event> statEvents = null;
+            if (actionType == "Global" || actionType == "Quest")
+            {
+                statEvents = regionEvents;
+            }
+            else
+            {
+                Dictionary<int, List<Event>> eventListPerStatDic = InitEventListPerStatDic(regionEvents);
+                statEvents = SelectRandomEventsByProb(eventListPerStatDic, actionType, "Stat");
+            }
             
             System.Random r = new System.Random();
             int randVal = r.Next(0, statEvents.Count-1);
@@ -31,31 +40,40 @@ namespace ToBeFree {
         public bool ActivateEvent(Event currEvent, Character character) {
             Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.Stat + " is activated.");
 
-            int diceNum = 0;
-            diceNum = character.GetDiceNum(currEvent.Result.TestStat);
-            
-            int minSuccessNum = 4;
-            int successDiceNum = 0;
-            System.Random r = new System.Random();
-            for (int i=0; i<diceNum; ++i)
-            {
-                if(r.Next(1, 6) >= minSuccessNum)
-                {
-                    successDiceNum++;
-                }
-            }
             ResultEffect[] resultEffects = null;
-            if (successDiceNum > 0)
+            if (currEvent.ActionType == "Global")
             {
-                Debug.Log("Event succeeded. " + successDiceNum);
                 resultEffects = currEvent.Result.Success.Effects;
-                
             }
             else
             {
-                Debug.Log("Event failed. " + successDiceNum);
-                resultEffects = currEvent.Result.Failure.Effects;
+                int diceNum = 0;
+                diceNum = character.GetDiceNum(currEvent.Result.TestStat);
+
+                int minSuccessNum = 4;
+                int successDiceNum = 0;
+                System.Random r = new System.Random();
+                for (int i = 0; i < diceNum; ++i)
+                {
+                    if (r.Next(1, 6) >= minSuccessNum)
+                    {
+                        successDiceNum++;
+                    }
+                }
+
+                if (successDiceNum > 0)
+                {
+                    Debug.Log("Event succeeded. " + successDiceNum);
+                    resultEffects = currEvent.Result.Success.Effects;
+
+                }
+                else
+                {
+                    Debug.Log("Event failed. " + successDiceNum);
+                    resultEffects = currEvent.Result.Failure.Effects;
+                }
             }
+
             if(resultEffects == null)
             {
                 Debug.LogError("resultEffects null");
@@ -70,10 +88,12 @@ namespace ToBeFree {
             return true;
         }
 
-        public void DoCommand(string actionType, Character character)
+        public Event DoCommand(string actionType, Character character)
         {
-            Event selectedEvent = Find(actionType, character.Stat, character.CurCity);
+            Event selectedEvent = Find(actionType, character.CurCity);
             ActivateEvent(selectedEvent, character);
+
+            return selectedEvent;
         }
 
         private List<Event> SelectEventsByAction(string actionType) {
@@ -84,6 +104,11 @@ namespace ToBeFree {
                     continue;
                 }
                 findedEvents.Add(elem);
+            }
+            if (findedEvents.Count == 0)
+            {
+                Debug.LogError("Events for " + actionType + " are not exist.");
+                return null;
             }
             return findedEvents;
         }

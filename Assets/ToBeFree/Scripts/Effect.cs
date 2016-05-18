@@ -38,9 +38,7 @@ namespace ToBeFree
         private int index;
         private eType bigType;
         private string cureType;
-
-        public string CureType { get; set; }
-
+        
         public Effect(eType bigType, string cureType)
         {
             this.bigType = bigType;
@@ -80,6 +78,16 @@ namespace ToBeFree
                     break;
             }
             return false;
+        }
+
+        public string CureType { get { return cureType; } }
+
+        public eType BigType
+        {
+            get
+            {
+                return bigType;
+            }
         }
     }
 }

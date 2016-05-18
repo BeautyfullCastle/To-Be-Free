@@ -87,9 +87,26 @@ namespace ToBeFree
         public bool MoveTo(City city)
         {
             EventManager.Instance.DoCommand("Move", this);
+
             this.curCity = city;
 
             return true;
+        }
+
+        public void Work()
+        {
+            Event selectedEvent = EventManager.Instance.DoCommand("Work", this);
+            // if effect is money and event is succeeded,
+            ResultEffect[] successResulteffects = selectedEvent.Result.Success.Effects;
+
+            for (int i = 0; i < successResulteffects.Length; ++i)
+            {
+                if (successResulteffects[i].Effect.BigType == eType.MONEY)
+                {
+                    this.curMoney += curCity.CalcRandWorkingMoney();
+                    break;
+                }
+            }
         }
 
         public void PrintMovableCity()

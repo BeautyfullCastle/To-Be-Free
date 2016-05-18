@@ -52,6 +52,12 @@ namespace ToBeFree
             }
         }
 
+        public int CalcRandWorkingMoney()
+        {
+            System.Random r = new System.Random();
+            return r.Next(this.workingMoneyMin, this.workingMoneyMax);
+        }
+
         private void Print()
         {
             Debug.Log(this.name + ", " + this.size + ", " + this.area);

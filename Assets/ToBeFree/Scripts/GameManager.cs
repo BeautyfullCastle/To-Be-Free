@@ -36,19 +36,26 @@ namespace ToBeFree
 
             ResultEffect[] successResultEffects = new ResultEffect[1] { new ResultEffect(0, effect, 1) };
             ResultEffect[] failureResultEffects = new ResultEffect[1] { new ResultEffect(0, effect, -1) };
+
             ResultScriptAndEffects success = new ResultScriptAndEffects("success", successResultEffects);
             ResultScriptAndEffects failure = new ResultScriptAndEffects("failure", failureResultEffects);
+
             Result result_strength = new Result("STR", success, failure);
             Result result_agility = new Result("AGI", success, failure);
             Result result_observation = new Result("OBS", success, failure);
+            Result result_global = new Result("OBS", failure, failure);
+
             Event event_move = new Event("Move", "A", "AGI", "move strength test, A city", result_agility, false, null);
             Event event_Inspection = new Event("Inspection", "A", "OBS", "Inspection agility test, A city", result_observation, false, null);
             Event event_work_A = new Event("Work", "A", "STR", "police agility test, A city", result_strength, false, null);
             Event event_work_B = new Event("Work", "B", "STR", "police agility test, A city", result_strength, false, null);
+            Event event_global = new Event("Global", "ALL", "ALL", "global event", result_global, false, null);
+
             EventManager.Instance.EveryEvents.Add(event_move);
             EventManager.Instance.EveryEvents.Add(event_Inspection);
             EventManager.Instance.EveryEvents.Add(event_work_A);
             EventManager.Instance.EveryEvents.Add(event_work_B);
+            EventManager.Instance.EveryEvents.Add(event_global);
 
             List<int> regionProbDataList = new List<int> ();
 			regionProbDataList.Add (10);
@@ -61,9 +68,10 @@ namespace ToBeFree
 			Probability regionProbforInspection = new Probability("Inspection", regionProbDataList);
 			Probability regionProbforTaken = new Probability("Taken", regionProbDataList);
 			Probability regionProbforEscape = new Probability ("Escape", regionProbDataList);
-			Probability[] regionProbs = new Probability[7] { 
+            Probability regionProbforGlobal = new Probability("Global", regionProbDataList);
+            Probability[] regionProbs = new Probability[8] { 
 				regionProbforWork, regionProbforMove, regionProbforInfo, regionProbforBroker, 
-				regionProbforInspection, regionProbforTaken, regionProbforEscape };
+				regionProbforInspection, regionProbforTaken, regionProbforEscape, regionProbforGlobal };
 
 			List<int> statProbDataList = new List<int> ();
 			statProbDataList.Add (50);
@@ -78,15 +86,18 @@ namespace ToBeFree
 			Probability statProbforBroker = new Probability ("Broker", statProbDataList);
 			Probability statProbforInspection = new Probability ("Inspection", statProbDataList);
 			Probability statProbforTaken = new Probability ("Taken", statProbDataList);
-			Probability statProbforEscape = new Probability ("Escape", statProbDataList);
-			Probability[] statProbs = new Probability[7] {
+            Probability statProbforEscape = new Probability("Escape", statProbDataList);
+            Probability statProbforGlobal = new Probability ("Global", statProbDataList);
+			Probability[] statProbs = new Probability[8] {
                 statProbforMove,
                 statProbforWork,
 				statProbforInfo,
 				statProbforBroker, 
 				statProbforInspection, 
 				statProbforTaken, 
-				statProbforEscape };
+				statProbforEscape,
+                statProbforGlobal
+            };
 
 			ProbabilityManager.Instance.Init(regionProbs, statProbs);
 
@@ -103,9 +114,11 @@ namespace ToBeFree
             // init CityGraph and put polices in big cities.
             CityGraph.Instance.Init();
 
-            // check current global event and quest's end time and apply the result
+            // check current quest's end time and apply the result
 
             // activate global event
+            Event globalEvent = EventManager.Instance.Find("Global", character.CurCity);
+            EventManager.Instance.ActivateEvent(globalEvent, character);
 
             // put pieces in one of random cities (police, broker, information, quest)
             CityGraph.Instance.PutRandomPolicesPerWeek(character.CurCity);
@@ -138,8 +151,10 @@ namespace ToBeFree
             }
             else if(command == "Work")
             {
-                EventManager.Instance.DoCommand("Work", character);
+                character.Work();
             }
+
+
 		}
 	}
 }

@@ -35,19 +35,6 @@ namespace ToBeFree {
             }
             return prob;
         }
-       
-        public void ResetProbValues(Probability prob, string probType, List<string> probDataTypeLIst) {
-            if(prob == null) {
-                Debug.LogError("regionProb is null.");
-                return;
-            }
-
-            //foreach (string probDataType in probDataTypeLIst)
-            //{
-            //    prob.ResetProbValues(probDataType, probType);
-            //}
-        }
-
 
         public string ConvertToString(eStat estat)
         {
