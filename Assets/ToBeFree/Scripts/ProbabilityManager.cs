@@ -31,6 +31,7 @@ namespace ToBeFree {
                     continue;
                 }
                 prob = probs[i];
+                break;
             }
             return prob;
         }

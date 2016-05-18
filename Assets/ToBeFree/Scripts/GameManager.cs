@@ -43,10 +43,12 @@ namespace ToBeFree
             Result result_observation = new Result("OBS", success, failure);
             Event event_move = new Event("Move", "A", "AGI", "move strength test, A city", result_agility, false, null);
             Event event_Inspection = new Event("Inspection", "A", "OBS", "Inspection agility test, A city", result_observation, false, null);
-            Event event_work = new Event("Work", "A", "STR", "police agility test, A city", result_strength, false, null);
+            Event event_work_A = new Event("Work", "A", "STR", "police agility test, A city", result_strength, false, null);
+            Event event_work_B = new Event("Work", "B", "STR", "police agility test, A city", result_strength, false, null);
             EventManager.Instance.EveryEvents.Add(event_move);
             EventManager.Instance.EveryEvents.Add(event_Inspection);
-            EventManager.Instance.EveryEvents.Add(event_work);
+            EventManager.Instance.EveryEvents.Add(event_work_A);
+            EventManager.Instance.EveryEvents.Add(event_work_B);
 
             List<int> regionProbDataList = new List<int> ();
 			regionProbDataList.Add (10);
@@ -131,8 +133,12 @@ namespace ToBeFree
             // activate selected event
             if (command == "Move")
             {
-                character.PrintMovableCity();
+                //character.PrintMovableCity();
                 character.MoveTo(cityB);
+            }
+            else if(command == "Work")
+            {
+                EventManager.Instance.DoCommand("Work", character);
             }
 		}
 	}

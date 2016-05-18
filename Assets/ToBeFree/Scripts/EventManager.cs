@@ -91,7 +91,7 @@ namespace ToBeFree {
         private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, string actionType, string probType)
         {
 
-            Probability prob = ProbabilityManager.Instance.FindProbByAction(actionType, probType);
+            Probability prob = ProbabilityManager.Instance.FindProbByAction(actionType, probType).DeepCopy();
             prob.ResetProbValues(eventListDic);
             return new List<Event>(SelectRandomEvents(prob, eventListDic));
         }

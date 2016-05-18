@@ -18,7 +18,23 @@ namespace ToBeFree {
             this.actionType = actionType;
             this.dataList = dataList;
         }
-        
+
+        public Probability(Probability prob) : this(prob.actionType, prob.dataList)
+        { }
+
+        public Probability ShallowCopy()
+        {
+            return (Probability)this.MemberwiseClone();
+        }
+
+        public Probability DeepCopy()
+        {
+            Probability prob = (Probability)this.MemberwiseClone();
+            prob.actionType = string.Copy(this.actionType);
+            prob.dataList = new List<int>(dataList);
+            return prob;
+        }
+
         private void CalculateTotalProb(int[] values) {
             int totalProb = 0;
             for(int i=0; i<values.Length; ++i) {
