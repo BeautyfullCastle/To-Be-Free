@@ -120,10 +120,17 @@ namespace ToBeFree
             Event globalEvent = EventManager.Instance.Find("Global", character.CurCity);
             EventManager.Instance.ActivateEvent(globalEvent, character);
 
-            // put pieces in one of random cities (police, broker, information, quest)
-            CityGraph.Instance.PutRandomPolicesPerWeek(character.CurCity);
-            
-            
+            // put pieces in one of random cities (police, information, quest)
+            int distance = 2;
+            // 2 polices
+            CityGraph.Instance.PutRandomPiece(new Police() as Piece, character.CurCity);
+            CityGraph.Instance.PutRandomPieceByDistance(new Police() as Piece, character.CurCity,  distance);
+            // 2 informations
+            CityGraph.Instance.PutRandomPiece(new Information() as Piece, character.CurCity);
+            CityGraph.Instance.PutRandomPieceByDistance(new Information() as Piece, character.CurCity, distance);
+            // 1 quest
+            CityGraph.Instance.PutRandomPieceByDistance(new Quest(2) as Piece, character.CurCity, distance);
+
             // await for the event command
             string command = null;
 
@@ -154,7 +161,8 @@ namespace ToBeFree
                 character.Work();
             }
 
-
-		}
+            TimeTable.Instance.DayIsGone();
+            TimeTable.Instance.DayIsGone();
+        }
 	}
 }

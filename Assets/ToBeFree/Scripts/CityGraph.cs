@@ -51,19 +51,21 @@ namespace ToBeFree
             return cityListBySize;
         }
 
-        public void PutRandomPolicesPerWeek(City curCity)
+        public void PutRandomPiece(Piece piece, City curCity)
         {
             System.Random r = new System.Random();
-
-            // put a police in random cities by distance.
-            List<City> cityList = CityGraph.Instance.FindCitiesByDistance(curCity, 2);
-            int randCityIndex = r.Next(0, cityList.Count);
-            cityList[randCityIndex].PieceList.Add(new Police() as Piece);
-
             // put a police in random cities.
-            randCityIndex = r.Next(0, list.Count);
-            list[randCityIndex].PieceList.Add(new Police() as Piece);
+            int randCityIndex = r.Next(0, list.Count);
+            list[randCityIndex].PieceList.Add(piece);
+        }
 
+        public void PutRandomPieceByDistance(Piece piece, City curCity, int distance)
+        {
+            System.Random r = new System.Random();
+            // put a police in random cities by distance.
+            List<City> cityList = CityGraph.Instance.FindCitiesByDistance(curCity, distance);
+            int randCityIndex = r.Next(0, cityList.Count);
+            cityList[randCityIndex].PieceList.Add(piece);
         }
 
         private List<City> FindCitiesByDistance(City curCity, int distance)

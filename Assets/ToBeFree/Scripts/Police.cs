@@ -5,7 +5,6 @@ using System.Text;
 
 namespace ToBeFree
 {
-    public class Police : Piece
-    {
-    }
+
+
 }
