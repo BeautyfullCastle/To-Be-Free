@@ -55,7 +55,7 @@ namespace ToBeFree
         }
     }
 
-    public struct ResultScriptAndEffects
+    public class ResultScriptAndEffects
     {
         private string script;
         private ResultEffect[] effects;
@@ -85,7 +85,7 @@ namespace ToBeFree
                 effects = value;
             }
         }
-
+        
         public ResultScriptAndEffects(string script, ResultEffect[] effects)
         {
             this.script = script;

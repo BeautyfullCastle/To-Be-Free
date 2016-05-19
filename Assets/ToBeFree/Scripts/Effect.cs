@@ -35,17 +35,16 @@ namespace ToBeFree
 
     public class Effect
     {
-        private int index;
-        private eType bigType;
-        private string cureType;
+        private string bigType;
+        private string detailType;
         
-        public Effect(eType bigType, string cureType)
+        public Effect(string bigType, string detailType)
         {
             this.bigType = bigType;
-            this.cureType = cureType;
+            this.detailType = detailType;
         }
 
-        public Effect(Effect effect) : this(effect.bigType, effect.cureType)
+        public Effect(Effect effect) : this(effect.bigType, effect.detailType)
         {
 
         }
@@ -54,22 +53,22 @@ namespace ToBeFree
         {
             switch (bigType)
             {
-                case eType.FOOD:
+                case "FOOD":
                     character.FOOD += amount;
                     break;
-                case eType.INVEN:
+                case "INVEN":
                     for (int i = 0; i < amount; ++i)
                     {
-                        character.AddItem(null);
+                        character.Inven.AddItem(null);
                     }
                     break;
-                case eType.CURE:
-                    if (cureType == eCureType.BOTH.ToString() || cureType == eCureType.HP.ToString())
+                case "CURE":
+                    if (detailType == eCureType.BOTH.ToString() || detailType == eCureType.HP.ToString())
                     {
                         Debug.Log("HP = " + character.HP + " + " + amount);
                         character.HP += amount;
                     }
-                    if (cureType == eCureType.BOTH.ToString() || cureType == eCureType.MENTAL.ToString())
+                    if (detailType == eCureType.BOTH.ToString() || detailType == eCureType.MENTAL.ToString())
                     {
                         character.MENTAL += amount;
                     }
@@ -80,13 +79,26 @@ namespace ToBeFree
             return false;
         }
 
-        public string CureType { get { return cureType; } }
+        public string DetailType { get { return detailType; } }
 
-        public eType BigType
+        public string BigType
         {
             get
             {
                 return bigType;
+            }
+        }
+
+        public string DetailType1
+        {
+            get
+            {
+                return detailType;
+            }
+
+            set
+            {
+                detailType = value;
             }
         }
     }

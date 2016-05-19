@@ -12,7 +12,15 @@ namespace ToBeFree {
             everyEvents = new List<Event>();
         }
 
-        public Event Find(string actionType, City city) {
+        public Event DoCommand(string actionType, Character character)
+        {
+            Event selectedEvent = Find(actionType, character.CurCity);
+            ActivateEvent(selectedEvent, character);
+
+            return selectedEvent;
+        }
+
+        private Event Find(string actionType, City city) {
             // should check here again.
             List<Event> findedEvents = SelectEventsByAction(actionType);
             
@@ -37,15 +45,31 @@ namespace ToBeFree {
             return statEvents[randVal];
         }
         
-        public bool ActivateEvent(Event currEvent, Character character) {
+        private void ActivateEvent(Event currEvent, Character character) {
             Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.Stat + " is activated.");
-
+            
+            Result result = currEvent.Result;
             ResultEffect[] resultEffects = null;
+
             if (currEvent.ActionType == "Global")
             {
                 resultEffects = currEvent.Result.Success.Effects;
             }
-            else
+            if (currEvent.ActionType == "Quest" && currEvent.BSelect)
+            {
+                if(currEvent.SelectList[0].CheckCondition(character))
+                {
+                    result = currEvent.SelectList[0].Result;
+                    resultEffects = currEvent.SelectList[0].Result.Success.Effects;
+                }
+                else
+                {
+                    Debug.Log("Quest's Checkcondition is failed.");
+                    return;
+                }
+            }
+            
+            if(!string.IsNullOrEmpty(result.TestStat))
             {
                 int diceNum = 0;
                 diceNum = character.GetDiceNum(currEvent.Result.TestStat);
@@ -63,13 +87,13 @@ namespace ToBeFree {
 
                 if (successDiceNum > 0)
                 {
-                    Debug.Log("Event succeeded. " + successDiceNum);
+                    Debug.Log("Event stat dice test succeeded. " + successDiceNum);
                     resultEffects = currEvent.Result.Success.Effects;
 
                 }
                 else
                 {
-                    Debug.Log("Event failed. " + successDiceNum);
+                    Debug.Log("Event stat dice test failed. " + successDiceNum);
                     resultEffects = currEvent.Result.Failure.Effects;
                 }
             }
@@ -77,23 +101,13 @@ namespace ToBeFree {
             if(resultEffects == null)
             {
                 Debug.LogError("resultEffects null");
-                return false;
+                return;
             }
 
             for (int i = 0; i < resultEffects.Length; ++i)
             {
                 resultEffects[i].Effect.Activate(character, resultEffects[i].Value); // working well. fold and add to fail result.
             }
-
-            return true;
-        }
-
-        public Event DoCommand(string actionType, Character character)
-        {
-            Event selectedEvent = Find(actionType, character.CurCity);
-            ActivateEvent(selectedEvent, character);
-
-            return selectedEvent;
         }
 
         private List<Event> SelectEventsByAction(string actionType) {

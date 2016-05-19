@@ -14,13 +14,14 @@ namespace ToBeFree
         int curInfoNum;
         int curHP;
         int curMental;
+        
+        private Inventory inven;
 
-        List<Item> itemList;
-        // skill
+        // Todo : skill
 
         public Character(string name, Stat stat, City curCity,
                         int curMoney, int curFoodNum, int curInfoNum,
-                        int curHP, int curMental, List<Item> itemList)
+                        int curHP, int curMental, Inventory inven)
         {
             this.name = name;
             this.stat = stat;
@@ -30,33 +31,14 @@ namespace ToBeFree
             this.curInfoNum = curInfoNum;
             this.curHP = curHP;
             this.curMental = curMental;
-            this.itemList = itemList;
+            this.inven = inven;
         }
 
         void Start()
         {
             //int temp = stat.Strength;
         }
-
-        public bool UseItem(Character character, int index, Effect effect)
-        {
-            if (itemList.Count <= index)
-                return false;
-            if (itemList[index] == null)
-                return false;
-
-            itemList[index].Use(character);//, effect);
-            itemList.RemoveAt(index);
-
-            return true;
-        }
-
-        public bool AddItem(Item item)
-        {
-            itemList.Add(new Item(item));
-            return true;
-        }
-
+        
         public int GetDiceNum(string stat)
         {
             switch (stat)
@@ -87,8 +69,8 @@ namespace ToBeFree
         public bool MoveTo(City city)
         {
             EventManager.Instance.DoCommand("Move", this);
-
             this.curCity = city;
+            Debug.Log("character is moved to " + this.curCity.Name);
 
             return true;
         }
@@ -101,12 +83,13 @@ namespace ToBeFree
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {
-                if (successResulteffects[i].Effect.BigType == eType.MONEY)
+                if (successResulteffects[i].Effect.BigType == "MONEY")
                 {
                     this.curMoney += curCity.CalcRandWorkingMoney();
                     break;
                 }
             }
+            Debug.Log("character work.");
         }
 
         public void PrintMovableCity()
@@ -185,6 +168,14 @@ namespace ToBeFree
             set
             {
                 curCity = value;
+            }
+        }
+
+        public Inventory Inven
+        {
+            get
+            {
+                return inven;
             }
         }
     }

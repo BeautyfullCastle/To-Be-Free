@@ -10,14 +10,14 @@ namespace ToBeFree
         private string script;
         private Result result;
         private bool bSelect;
-        private int[] selectIndexList;
+        private Select[] selectList;
 
         public Event()
         {
-            selectIndexList = new int[3];
+            selectList = new Select[3];
         }
 
-        public Event(string actionType, string region, string stat, string script, Result result, bool bSelect, int[] selectIndexList)
+        public Event(string actionType, string region, string stat, string script, Result result, bool bSelect, Select[] selectList)
          : this()
         {
             this.actionType = actionType;
@@ -26,7 +26,7 @@ namespace ToBeFree
             this.script = script;
             this.result = result;
             this.bSelect = bSelect;
-            this.selectIndexList = selectIndexList;
+            this.selectList = selectList;
         }
         
         public string ActionType { get { return actionType; } }
@@ -45,6 +45,19 @@ namespace ToBeFree
             set
             {
                 result = value;
+            }
+        }
+
+        public Select[] SelectList
+        {
+            get
+            {
+                return selectList;
+            }
+
+            set
+            {
+                selectList = value;
             }
         }
     }

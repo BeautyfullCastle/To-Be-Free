@@ -22,6 +22,11 @@ namespace ToBeFree
             return city;
         }
 
+        public City Find(string name)
+        {
+            return list.Find(x => (x.Name == name));
+        }
+
         public void Link(City cityA, City cityB)
         {
             cityA.Link(cityB);
@@ -47,7 +52,6 @@ namespace ToBeFree
                     cityListBySize.Add(city);
                 }
             }
-
             return cityListBySize;
         }
 
@@ -66,6 +70,7 @@ namespace ToBeFree
             List<City> cityList = CityGraph.Instance.FindCitiesByDistance(curCity, distance);
             int randCityIndex = r.Next(0, cityList.Count);
             cityList[randCityIndex].PieceList.Add(piece);
+            Debug.Log(piece.GetType() + " is added to city " + cityList[randCityIndex].Name);
         }
 
         private List<City> FindCitiesByDistance(City curCity, int distance)

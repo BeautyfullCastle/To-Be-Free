@@ -6,14 +6,82 @@ namespace ToBeFree
 {
 	public class GameManager : MonoSingleton<GameManager> {
 
-		protected GameManager() {} // can't use the constructor
+        private Character character;
+        private string command;
 
+        protected GameManager() {} // can't use the constructor
+
+        void Update()
+        {
+            // await for the event command
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                command = "Work";
+                Debug.Log("Command Work input");
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                command = "Move";
+                Debug.Log("Command Move input");
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                command = "Quest";
+                Debug.Log("Command Quest input");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                
+                // if selected event is not move,
+                // check polices in current city and activate police events.
+                if (command != "Move")
+                {
+                    foreach (Piece piece in character.CurCity.PieceList)
+                    {
+                        if (piece is Police)
+                        {
+                            Police police = piece as Police;
+                            character.Inspect();
+                        }
+                    }
+                }
+
+                // activate selected event
+                if (command == "Work")
+                {
+                    character.Work();
+                }
+                if (command == "Move")
+                {
+                    //character.PrintMovableCity();
+                    character.MoveTo(CityGraph.Instance.Find("B"));
+                }
+                if (command == "Quest")
+                {
+                    foreach (Piece piece in character.CurCity.PieceList)
+                    {
+                        if (piece is Quest)
+                        {
+                            Quest quest = piece as Quest;
+                            EventManager.Instance.DoCommand("Quest", character);
+                        }
+                    }
+
+                    // have to erase item or inform if quest succeeded.
+
+                }
+
+
+                TimeTable.Instance.DayIsGone();
+            }
+        }
 		void Start() {
 
-            Effect effect = new Effect(eType.CURE, "HP");
-            Item item = new Item("cure", effect,
+            Effect effect = new Effect("CURE", "HP");
+            Item item = new Item("cure hp 1", effect,
                 eStartTime.NOW, eDuration.ONCE,
-                1, 1, 10);
+                1, 10);
 
             City cityA = new City("A", "Big", "North", new List<Item>() { item } );
 			City cityB = new City("B", "Midium", "South", new List<Item>() { item });
@@ -43,19 +111,24 @@ namespace ToBeFree
             Result result_strength = new Result("STR", success, failure);
             Result result_agility = new Result("AGI", success, failure);
             Result result_observation = new Result("OBS", success, failure);
-            Result result_global = new Result("OBS", failure, failure);
+            Result result_global = new Result(string.Empty, failure, null);
+            Result result_quest = new Result(string.Empty, success, null);
+
+            Select select_quest = new Select("CURE", "HP", ">=", 1, "select cure hp > 1", result_quest);
 
             Event event_move = new Event("Move", "A", "AGI", "move strength test, A city", result_agility, false, null);
             Event event_Inspection = new Event("Inspection", "A", "OBS", "Inspection agility test, A city", result_observation, false, null);
             Event event_work_A = new Event("Work", "A", "STR", "police agility test, A city", result_strength, false, null);
             Event event_work_B = new Event("Work", "B", "STR", "police agility test, A city", result_strength, false, null);
-            Event event_global = new Event("Global", "ALL", "ALL", "global event", result_global, false, null);
+            Event event_global = new Event("Global", "ALL", string.Empty, "global event", result_global, false, null);
+            Event event_quest = new Event("Quest", "ALL", string.Empty, "quest", result_quest, true, new Select[1] { select_quest });
 
             EventManager.Instance.EveryEvents.Add(event_move);
             EventManager.Instance.EveryEvents.Add(event_Inspection);
             EventManager.Instance.EveryEvents.Add(event_work_A);
             EventManager.Instance.EveryEvents.Add(event_work_B);
             EventManager.Instance.EveryEvents.Add(event_global);
+            EventManager.Instance.EveryEvents.Add(event_quest);
 
             List<int> regionProbDataList = new List<int> ();
 			regionProbDataList.Add (10);
@@ -69,9 +142,10 @@ namespace ToBeFree
 			Probability regionProbforTaken = new Probability("Taken", regionProbDataList);
 			Probability regionProbforEscape = new Probability ("Escape", regionProbDataList);
             Probability regionProbforGlobal = new Probability("Global", regionProbDataList);
-            Probability[] regionProbs = new Probability[8] { 
+            Probability regionProbforQuest = new Probability("Quest", regionProbDataList);
+            Probability[] regionProbs = new Probability[9] { 
 				regionProbforWork, regionProbforMove, regionProbforInfo, regionProbforBroker, 
-				regionProbforInspection, regionProbforTaken, regionProbforEscape, regionProbforGlobal };
+				regionProbforInspection, regionProbforTaken, regionProbforEscape, regionProbforGlobal, regionProbforQuest };
 
 			List<int> statProbDataList = new List<int> ();
 			statProbDataList.Add (50);
@@ -88,26 +162,22 @@ namespace ToBeFree
 			Probability statProbforTaken = new Probability ("Taken", statProbDataList);
             Probability statProbforEscape = new Probability("Escape", statProbDataList);
             Probability statProbforGlobal = new Probability ("Global", statProbDataList);
-			Probability[] statProbs = new Probability[8] {
-                statProbforMove,
-                statProbforWork,
-				statProbforInfo,
-				statProbforBroker, 
-				statProbforInspection, 
-				statProbforTaken, 
-				statProbforEscape,
-                statProbforGlobal
+            Probability statProbforQuest = new Probability("Quest", regionProbDataList);
+            Probability[] statProbs = new Probability[9] {
+                statProbforMove, statProbforWork, statProbforInfo, statProbforBroker, statProbforInspection, 
+				statProbforTaken, statProbforEscape, statProbforGlobal, statProbforQuest
             };
 
 			ProbabilityManager.Instance.Init(regionProbs, statProbs);
 
-            Character character = new Character("Chris", new Stat(),
-                                    cityA, 5, 3, 0, 5, 5, new List<Item>());
+            Inventory inven = new Inventory();
+            character = new Character("Chris", new Stat(),
+                                    cityA, 5, 3, 0, 5, 5, inven);
 
             // set character's start items.
-            character.AddItem(item);
+            character.Inven.AddItem(item);
             // item use test
-            character.UseItem(character, 0, effect);
+            //character.Inven.UseItem(character, 0, effect);
 
             // init time calendar.
 
@@ -117,11 +187,10 @@ namespace ToBeFree
             // check current quest's end time and apply the result
 
             // activate global event
-            Event globalEvent = EventManager.Instance.Find("Global", character.CurCity);
-            EventManager.Instance.ActivateEvent(globalEvent, character);
+            Event globalEvent = EventManager.Instance.DoCommand("Global", character);
 
             // put pieces in one of random cities (police, information, quest)
-            int distance = 2;
+            int distance = 0;
             // 2 polices
             CityGraph.Instance.PutRandomPiece(new Police() as Piece, character.CurCity);
             CityGraph.Instance.PutRandomPieceByDistance(new Police() as Piece, character.CurCity,  distance);
@@ -129,40 +198,9 @@ namespace ToBeFree
             CityGraph.Instance.PutRandomPiece(new Information() as Piece, character.CurCity);
             CityGraph.Instance.PutRandomPieceByDistance(new Information() as Piece, character.CurCity, distance);
             // 1 quest
-            CityGraph.Instance.PutRandomPieceByDistance(new Quest(2) as Piece, character.CurCity, distance);
+            CityGraph.Instance.PutRandomPieceByDistance(new Quest(1) as Piece, character.CurCity, distance);
 
-            // await for the event command
-            string command = null;
-
-            command = "Work";
-
-            // if selected event is not move,
-            // check polices in current city and activate police events.
-            if(command != "Move")
-            {
-                foreach(Piece piece in character.CurCity.PieceList)
-                {
-                    if(piece is Police)
-                    {
-                        Police police = piece as Police;
-                        character.Inspect();
-                    }
-                }
-            }
-
-            // activate selected event
-            if (command == "Move")
-            {
-                //character.PrintMovableCity();
-                character.MoveTo(cityB);
-            }
-            else if(command == "Work")
-            {
-                character.Work();
-            }
-
-            TimeTable.Instance.DayIsGone();
-            TimeTable.Instance.DayIsGone();
+            
         }
 	}
 }
