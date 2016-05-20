@@ -64,7 +64,7 @@ namespace ToBeFree
                         if (piece is Quest)
                         {
                             Quest quest = piece as Quest;
-                            EventManager.Instance.DoCommand("Quest", character);
+                            EventManager.Instance.ActivateEvent(quest.CurEvent, character);
                         }
                     }
 
@@ -112,7 +112,7 @@ namespace ToBeFree
             Result result_agility = new Result("AGI", success, failure);
             Result result_observation = new Result("OBS", success, failure);
             Result result_global = new Result(string.Empty, failure, null);
-            Result result_quest = new Result(string.Empty, success, null);
+            Result result_quest = new Result(string.Empty, success, failure);
 
             Select select_quest = new Select("CURE", "HP", ">=", 1, "select cure hp > 1", result_quest);
 
@@ -122,6 +122,7 @@ namespace ToBeFree
             Event event_work_B = new Event("Work", "B", "STR", "police agility test, A city", result_strength, false, null);
             Event event_global = new Event("Global", "ALL", string.Empty, "global event", result_global, false, null);
             Event event_quest = new Event("Quest", "ALL", string.Empty, "quest", result_quest, true, new Select[1] { select_quest });
+            Event event_globalquest = new Event("Quest", "ALL", string.Empty, "quest", result_quest, false, null);
 
             EventManager.Instance.EveryEvents.Add(event_move);
             EventManager.Instance.EveryEvents.Add(event_Inspection);
@@ -129,6 +130,7 @@ namespace ToBeFree
             EventManager.Instance.EveryEvents.Add(event_work_B);
             EventManager.Instance.EveryEvents.Add(event_global);
             EventManager.Instance.EveryEvents.Add(event_quest);
+            EventManager.Instance.EveryEvents.Add(event_globalquest);
 
             List<int> regionProbDataList = new List<int> ();
 			regionProbDataList.Add (10);
@@ -198,9 +200,13 @@ namespace ToBeFree
             CityGraph.Instance.PutRandomPiece(new Information() as Piece, character.CurCity);
             CityGraph.Instance.PutRandomPieceByDistance(new Information() as Piece, character.CurCity, distance);
             // 1 quest
-            CityGraph.Instance.PutRandomPieceByDistance(new Quest(1) as Piece, character.CurCity, distance);
+            Event selectedEvent = EventManager.Instance.Find("Quest", character.CurCity);
+            Quest quest = new Quest(selectedEvent, character);
 
-            
+            if (selectedEvent.ActionType == "Quest")
+            {
+                quest.City = CityGraph.Instance.PutRandomPieceByDistance(quest, character.CurCity, distance);
+            }
         }
 	}
 }

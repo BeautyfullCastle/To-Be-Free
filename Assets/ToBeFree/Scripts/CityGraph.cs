@@ -63,14 +63,16 @@ namespace ToBeFree
             list[randCityIndex].PieceList.Add(piece);
         }
 
-        public void PutRandomPieceByDistance(Piece piece, City curCity, int distance)
+        public City PutRandomPieceByDistance(Piece piece, City curCity, int distance)
         {
             System.Random r = new System.Random();
             // put a police in random cities by distance.
             List<City> cityList = CityGraph.Instance.FindCitiesByDistance(curCity, distance);
             int randCityIndex = r.Next(0, cityList.Count);
+            
             cityList[randCityIndex].PieceList.Add(piece);
             Debug.Log(piece.GetType() + " is added to city " + cityList[randCityIndex].Name);
+            return cityList[randCityIndex];
         }
 
         private List<City> FindCitiesByDistance(City curCity, int distance)

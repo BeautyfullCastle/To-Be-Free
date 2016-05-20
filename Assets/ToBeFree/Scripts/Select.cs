@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -29,11 +30,21 @@ namespace ToBeFree
                 if(detailType == "HP")
                 {
                     Item item = character.Inven.FindItemByType(bigType, detailType);
+                    if(item == null)
+                    {
+                        Debug.Log(bigType + " or " + detailType + " is not exist.");
+                        return false;
+                    }
                     string itemType = item.Effect.BigType;
                     int itemAmount = item.Amount;
                     if (itemType == bigType && item.Effect.DetailType == detailType)
                     {
-                        return Compare(itemAmount, amount, comparisonOperator);
+                        bool isExist = Compare(itemAmount, amount, comparisonOperator);
+                        if(isExist)
+                        {
+                            character.Inven.DeleteItem(item);
+                        }
+                        return isExist;
                     }
                 }
             }

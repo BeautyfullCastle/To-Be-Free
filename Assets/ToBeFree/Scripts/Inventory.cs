@@ -42,6 +42,11 @@ namespace ToBeFree
             return true;
         }
 
+        public void DeleteItem(Item item)
+        {
+            itemList.Remove(item);
+        }
+
         public Item FindItemByType(string bigType, string detailType)
         {
             for(int i=0; i<itemList.Count; ++i)
@@ -64,5 +69,7 @@ namespace ToBeFree
             Debug.Log("There's no " + bigType + " " + detailType + " item in inventory");
             return null;            
         }
+
+        
     }
 }

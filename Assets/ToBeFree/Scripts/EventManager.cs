@@ -20,7 +20,7 @@ namespace ToBeFree {
             return selectedEvent;
         }
 
-        private Event Find(string actionType, City city) {
+        public Event Find(string actionType, City city) {
             // should check here again.
             List<Event> findedEvents = SelectEventsByAction(actionType);
             
@@ -29,7 +29,7 @@ namespace ToBeFree {
             List<Event> regionEvents = SelectRandomEventsByProb(eventListPerRegionDic, actionType, "Region");
 
             List<Event> statEvents = null;
-            if (actionType == "Global" || actionType == "Quest")
+            if (actionType == "Global" || actionType== "Quest")
             {
                 statEvents = regionEvents;
             }
@@ -45,7 +45,7 @@ namespace ToBeFree {
             return statEvents[randVal];
         }
         
-        private void ActivateEvent(Event currEvent, Character character) {
+        public void ActivateEvent(Event currEvent, Character character) {
             Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.Stat + " is activated.");
             
             Result result = currEvent.Result;
@@ -98,7 +98,12 @@ namespace ToBeFree {
                 }
             }
 
-            if(resultEffects == null)
+            ActivateResultEffects(resultEffects, character);
+        }
+
+        public void ActivateResultEffects(ResultEffect[] resultEffects, Character character)
+        {
+            if (resultEffects == null)
             {
                 Debug.LogError("resultEffects null");
                 return;
@@ -106,7 +111,7 @@ namespace ToBeFree {
 
             for (int i = 0; i < resultEffects.Length; ++i)
             {
-                resultEffects[i].Effect.Activate(character, resultEffects[i].Value); // working well. fold and add to fail result.
+                resultEffects[i].Effect.Activate(character, resultEffects[i].Value);
             }
         }
 
@@ -114,7 +119,7 @@ namespace ToBeFree {
             List<Event> findedEvents = new List<Event>();        
             foreach (Event elem in everyEvents)
             {
-                if(elem.ActionType != actionType) {
+                if(!elem.ActionType.Contains(actionType)) {
                     continue;
                 }
                 findedEvents.Add(elem);
@@ -129,7 +134,6 @@ namespace ToBeFree {
         
         private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, string actionType, string probType)
         {
-
             Probability prob = ProbabilityManager.Instance.FindProbByAction(actionType, probType).DeepCopy();
             prob.ResetProbValues(eventListDic);
             return new List<Event>(SelectRandomEvents(prob, eventListDic));

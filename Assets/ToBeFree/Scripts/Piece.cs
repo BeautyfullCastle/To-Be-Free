@@ -17,17 +17,28 @@ namespace ToBeFree
     public class Quest : Piece
     {
         private int duration;
+        private int leftDays;
+        private Event curEvent;
+        private Character character;
+        private City city;
 
-        public Quest(int duration)
+        public Quest()
         {
-            this.duration = duration;
+            this.duration = 14;
+            this.leftDays = this.duration;
             TimeTable.Instance.NotifyEveryday += CheckTimeToDisapper;
+        }
+
+        public Quest(Event curEvent, Character character) : this()
+        {
+            this.curEvent = curEvent;
+            this.character = character;
         }
 
         public void CheckTimeToDisapper()
         {
-            duration--;
-            if(duration == 0)
+            this.leftDays--;
+            if(this.leftDays == 0)
             {
                 Disapper();
             }
@@ -35,7 +46,35 @@ namespace ToBeFree
 
         private void Disapper()
         {
-            Debug.Log("You Die Sensei");
+            Debug.Log("Quest Disappered.");
+            EventManager.Instance.ActivateResultEffects(this.curEvent.Result.Failure.Effects, this.character);
+            city.PieceList.Remove( (Piece)this );
+        }
+
+        public Event CurEvent
+        {
+            get
+            {
+                return curEvent;
+            }
+
+            set
+            {
+                curEvent = value;
+            }
+        }
+
+        public City City
+        {
+            get
+            {
+                return city;
+            }
+
+            set
+            {
+                city = value;
+            }
         }
     }
 

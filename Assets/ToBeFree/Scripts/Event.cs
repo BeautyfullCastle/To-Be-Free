@@ -28,6 +28,18 @@ namespace ToBeFree
             this.bSelect = bSelect;
             this.selectList = selectList;
         }
+
+        public Event(Event event_)
+        {
+            this.actionType = string.Copy(event_.actionType);
+            this.region = string.Copy(event_.region);
+            this.stat = string.Copy(event_.stat);
+            this.script = string.Copy(event_.script);
+            this.result = new Result(event_.result.TestStat, event_.result.Success, event_.result.Failure);
+            this.bSelect = event_.bSelect;
+            this.selectList = (Select[])event_.selectList.Clone();
+
+        }
         
         public string ActionType { get { return actionType; } }
         public string Region { get { return region; } }
