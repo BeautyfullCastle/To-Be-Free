@@ -7,69 +7,108 @@ namespace ToBeFree
 {
     public class Inventory
     {
-        private List<Item> itemList;
-
-        public Inventory()
-        {
-            itemList = new List<Item>();
-        }
+        private readonly int maxSlots;
+        public List<InventoryRecord> InventoryRecords = new List<InventoryRecord>();
         
-        public Inventory(List<Item> itemList)
+        public Inventory(int maxSlots)
         {
-            this.itemList = itemList;
-        }
-        
-        public Inventory(Inventory inven) : this(inven.itemList)
-        {
+            this.maxSlots = maxSlots;
         }
 
-        public bool UseItem(Character character, int index, Effect effect)
+        public void UseItem(Item item, Character character)
         {
-            if (itemList.Count <= index)
-                return false;
-            if (itemList[index] == null)
-                return false;
+            InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.InventoryItem.Name == item.Name));
 
-            itemList[index].Use(character);//, effect);
-            itemList.RemoveAt(index);
+            if (inventoryRecord == null)
+            {
+                throw new Exception("There's no item like this in the inventory : " + item.Name);
+            }
+            inventoryRecord.InventoryItem.Use(character);
 
-            return true;
+            DeleteItem(item);
         }
 
-        public bool AddItem(Item item)
+        public void AddItem(Item item)
         {
-            itemList.Add(item.DeepCopy());
-            return true;
+            InventoryRecord inventoryRecord =
+                   InventoryRecords.Find(x => (x.InventoryItem.Name == item.Name));
+
+            if (inventoryRecord != null)
+            {
+                inventoryRecord.AddToQuantity(1);
+            }
+            else if(inventoryRecord == null)
+            {
+                if (InventoryRecords.Count > maxSlots)
+                {
+                    throw new Exception("There is no more space in the inventory.");
+                }
+                InventoryRecords.Add(new InventoryRecord(item, 1));
+            }
         }
 
         public void DeleteItem(Item item)
         {
-            itemList.Remove(item);
+            InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.InventoryItem.Name == item.Name));
+
+            if(inventoryRecord == null)
+            {
+                throw new Exception("There's no item like this in the inventory : " + item.Name);
+            }
+            inventoryRecord.DeleteToQuantity(1);
         }
 
         public Item FindItemByType(string bigType, string detailType)
         {
-            for(int i=0; i<itemList.Count; ++i)
+            InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.InventoryItem.Effect.BigType == bigType);
+            if (inventoryRecord == null)
             {
-                if (itemList[i].Effect.BigType == bigType)
-                {
-                    if (string.IsNullOrEmpty(detailType)) {
-                        return itemList[i];
-                    }
-                    else
-                    {
-                        if(itemList[i].Effect.DetailType == detailType)
-                        {
-                            return itemList[i];
-                        }
-                    }
-                }
+                Debug.Log("There's no " + bigType + " item in inventory");
+                return null;
             }
-
-            Debug.Log("There's no " + bigType + " " + detailType + " item in inventory");
-            return null;            
+            else
+            {
+                Item item = inventoryRecord.InventoryItem;
+                if (string.IsNullOrEmpty(item.Effect.DetailType) || item.Effect.DetailType == detailType)
+                {
+                    return item;
+                }
+                Debug.Log("There's no " + bigType + " " + detailType + " item in inventory");
+                return null;
+            }
         }
 
-        
+
+        public class InventoryRecord
+        {
+            public Item InventoryItem { get; private set; }
+            public int Quantity { get; private set; }
+
+            public InventoryRecord(Item item, int quantity)
+            {
+                InventoryItem = item;
+                Quantity = quantity;
+            }
+
+            public void AddToQuantity(int amountToAdd)
+            {
+                if(Quantity + amountToAdd > InventoryItem.MaximumStackableQuantity)
+                {
+                    Debug.LogError(InventoryItem.Name + "'s quantity is full : " + Quantity);
+                    return;
+                }
+                Quantity += amountToAdd;
+            }
+
+            public void DeleteToQuantity(int amount)
+            {
+                if(Quantity - amount < 0)
+                {
+                    Debug.LogError(InventoryItem.Name + "'s quantity is lower than the amount you want. ");
+                    return;
+                }
+                Quantity -= amount;
+            }
+        }
     }
 }

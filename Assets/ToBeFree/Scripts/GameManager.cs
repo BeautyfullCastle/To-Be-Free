@@ -59,17 +59,23 @@ namespace ToBeFree
                 }
                 if (command == "Quest")
                 {
-                    foreach (Piece piece in character.CurCity.PieceList)
+                    List<Piece> quests = character.CurCity.PieceList.FindAll(x => x is Quest);
+                    if(quests.Count >= 2)
                     {
-                        if (piece is Quest)
+                        // have to handle this.
+                    }
+                    else if(quests == null || quests.Count == 0)
+                    {
+                        Debug.LogError("No Quest in this city.");
+                    }
+                    else
+                    {
+                        Quest quest = quests[0] as Quest;
+                        if(EventManager.Instance.ActivateEvent(quest.CurEvent, character))
                         {
-                            Quest quest = piece as Quest;
-                            EventManager.Instance.ActivateEvent(quest.CurEvent, character);
+                            character.CurCity.PieceList.Remove(quests[0]);
                         }
                     }
-
-                    // have to erase item or inform if quest succeeded.
-
                 }
 
 
@@ -81,7 +87,7 @@ namespace ToBeFree
             Effect effect = new Effect("CURE", "HP");
             Item item = new Item("cure hp 1", effect,
                 eStartTime.NOW, eDuration.ONCE,
-                1, 10);
+                1, 10, 10);
 
             City cityA = new City("A", "Big", "North", new List<Item>() { item } );
 			City cityB = new City("B", "Midium", "South", new List<Item>() { item });
@@ -172,7 +178,7 @@ namespace ToBeFree
 
 			ProbabilityManager.Instance.Init(regionProbs, statProbs);
 
-            Inventory inven = new Inventory();
+            Inventory inven = new Inventory(3);
             character = new Character("Chris", new Stat(),
                                     cityA, 5, 3, 0, 5, 5, inven);
 

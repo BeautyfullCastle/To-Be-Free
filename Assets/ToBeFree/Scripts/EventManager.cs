@@ -45,7 +45,7 @@ namespace ToBeFree {
             return statEvents[randVal];
         }
         
-        public void ActivateEvent(Event currEvent, Character character) {
+        public bool ActivateEvent(Event currEvent, Character character) {
             Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.Stat + " is activated.");
             
             Result result = currEvent.Result;
@@ -64,8 +64,8 @@ namespace ToBeFree {
                 }
                 else
                 {
-                    Debug.Log("Quest's Checkcondition is failed.");
-                    return;
+                    Debug.LogError("Quest's Checkcondition is failed.");
+                    return false;
                 }
             }
             
@@ -89,16 +89,18 @@ namespace ToBeFree {
                 {
                     Debug.Log("Event stat dice test succeeded. " + successDiceNum);
                     resultEffects = currEvent.Result.Success.Effects;
-
                 }
                 else
                 {
                     Debug.Log("Event stat dice test failed. " + successDiceNum);
                     resultEffects = currEvent.Result.Failure.Effects;
+                    ActivateResultEffects(resultEffects, character);
+                    return false;
                 }
             }
 
             ActivateResultEffects(resultEffects, character);
+            return true;
         }
 
         public void ActivateResultEffects(ResultEffect[] resultEffects, Character character)
