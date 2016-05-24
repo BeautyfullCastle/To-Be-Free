@@ -7,7 +7,7 @@ namespace ToBeFree
 {
     public class Inventory
     {
-        private readonly int maxSlots;
+        private int maxSlots;
         public List<InventoryRecord> InventoryRecords = new List<InventoryRecord>();
         
         public Inventory(int maxSlots)
@@ -76,6 +76,11 @@ namespace ToBeFree
                 Debug.Log("There's no " + bigType + " " + detailType + " item in inventory");
                 return null;
             }
+        }
+
+        public void AddSlot()
+        {
+            this.maxSlots++;
         }
 
 

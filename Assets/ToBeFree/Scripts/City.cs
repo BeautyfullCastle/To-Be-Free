@@ -13,6 +13,7 @@ namespace ToBeFree
         private List<Item> itemList;
         private int workingMoneyMin;
         private int workingMoneyMax;
+        private int distanceFromCharacter;
 
         private List<Piece> pieceList;
 
@@ -106,6 +107,18 @@ namespace ToBeFree
             set
             {
                 neighborList = value;
+            }
+        }
+
+        public int Distance
+        {
+            get
+            {
+                return distanceFromCharacter;
+            }
+            set
+            {
+                distanceFromCharacter = value;
             }
         }
     }

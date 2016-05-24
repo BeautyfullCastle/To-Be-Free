@@ -6,7 +6,22 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-    public class Piece { }
+    public class Piece
+    {
+        protected City city;
+
+        public City City
+        {
+            get
+            {
+                return city;
+            }
+            set
+            {
+                city = value;
+            }
+        }
+    }
 
     public class Police : Piece { }
 
@@ -20,7 +35,7 @@ namespace ToBeFree
         private int leftDays;
         private Event curEvent;
         private Character character;
-        private City city;
+        
 
         public Quest()
         {
@@ -57,25 +72,13 @@ namespace ToBeFree
             {
                 return curEvent;
             }
-
             set
             {
                 curEvent = value;
             }
         }
 
-        public City City
-        {
-            get
-            {
-                return city;
-            }
-
-            set
-            {
-                city = value;
-            }
-        }
+        
     }
 
 }

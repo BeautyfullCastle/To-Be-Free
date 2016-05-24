@@ -79,6 +79,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\Inventory.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Item.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Piece.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\PieceManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Police.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Probability.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\ProbabilityManager.cs" />

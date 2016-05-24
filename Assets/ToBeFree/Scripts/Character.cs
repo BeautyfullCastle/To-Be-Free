@@ -70,6 +70,7 @@ namespace ToBeFree
         {
             EventManager.Instance.DoCommand("Move", this);
             this.curCity = city;
+            CityGraph.Instance.CalculateDistance(this.curCity);
             Debug.Log("character is moved to " + this.curCity.Name);
 
             return true;

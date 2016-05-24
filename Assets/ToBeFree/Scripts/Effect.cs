@@ -37,7 +37,8 @@ namespace ToBeFree
     {
         private string bigType;
         private string detailType;
-        
+        private string middleType;
+
         public Effect(string bigType, string detailType)
         {
             this.bigType = bigType;
@@ -59,7 +60,7 @@ namespace ToBeFree
                 case "INVEN":
                     for (int i = 0; i < amount; ++i)
                     {
-                        character.Inven.AddItem(null);
+                        character.Inven.AddSlot();
                     }
                     break;
                 case "CURE":
@@ -70,9 +71,132 @@ namespace ToBeFree
                     }
                     if (detailType == eCureType.BOTH.ToString() || detailType == eCureType.MENTAL.ToString())
                     {
+                        Debug.Log("MENTAL = " + character.MENTAL + " + " + amount);
                         character.MENTAL += amount;
                     }
                     break;
+                case "STAT":
+                    if(detailType == "STR")
+                    {
+                        character.Stat.Strength++;
+                    }
+                    //...
+                    break;
+                case "INFORM":
+                case "POLICE":
+                    if (middleType == "MOVE")
+                    {
+                        if (detailType == "RAND TO RAND")
+                        {
+                            Piece piece = PieceManager.Instance.GetRand(bigType);
+                            PieceManager.Instance.Delete(piece, bigType);
+                            piece.City.PieceList.Remove(piece);
+                            CityGraph.Instance.PutRandomPiece(piece, character.CurCity);
+                        }
+                        if (detailType == "RAND TO CLOSE")
+                        {
+                            Piece piece = PieceManager.Instance.GetRand(bigType);
+                            PieceManager.Instance.Delete(piece, bigType);
+                            piece.City.PieceList.Remove(piece);
+                            CityGraph.Instance.PutRandomPieceByDistance(piece, character.CurCity, 0);
+                        }
+                        if (detailType == "FAR TO CLOSE")
+                        {
+                            Piece piece = PieceManager.Instance.GetLast(bigType);
+                            PieceManager.Instance.Delete(piece, bigType);
+                            piece.City.PieceList.Remove(piece);
+                            CityGraph.Instance.PutRandomPieceByDistance(piece, character.CurCity, 0);
+                        }
+                        if (detailType == "CLOSE TO FAR")
+                        {
+                            Piece piece = PieceManager.Instance.GetFirst(bigType);
+                            PieceManager.Instance.Delete(piece, bigType);
+                            piece.City.PieceList.Remove(piece);
+
+                            System.Random r = new System.Random();
+                            int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
+                            CityGraph.Instance.PutRandomPieceByDistance(piece, character.CurCity, randDistance);
+                        }
+                    }
+                    if(middleType == "DEL")
+                    {
+                        if(detailType == "RAND")
+                        {
+                            
+                        }
+                        if(detailType == "FAR")
+                        {
+
+                        }
+                        if(detailType == "CLOSE") {
+
+                        }
+                    }
+                    if(middleType == "ADD")
+                    {
+                        if(detailType == "RAND")
+                        {
+
+                        }
+                        if(detailType == "CLOSE")
+                        {
+
+                        }
+                    }
+                    // for infrom only
+                    if(middleType == "CHARACTER")
+                    {
+                        if(detailType == "ADD")
+                        {
+
+                        }
+                        if(detailType == "DEL")
+                        {
+
+                        }
+                    }
+                    break;
+                case "ITEM":
+                    if(middleType == "ADD")
+                    {
+                        if (detailType == "ALL")
+                        {
+                            // Item item = inventorymanager.getrand(detailType);
+                            // character.Inven.AddItem(item);
+                        }
+                        if (detailType == "TAG")
+                        {
+                        }
+                        if (detailType == "INDEX") {
+                            // Item item = invenManager.get(amount);
+                        }
+                        if (detailType == "ALL SELECT") { }
+                        if (detailType == "TAG SELECT") { }
+                    }
+                    if(middleType == "DEL")
+                    {
+
+                    }
+                    break;
+                case "MONEY":
+                    if (middleType == "SPECIFIC")
+                    {
+                    }
+                    if (middleType == "RAND ?")
+                    {
+                    }
+                    break;
+                case "PLAYER":
+                    if(middleType == "MOVE")
+                    {
+
+                    }
+                    break;
+                case "ACTION POWER":
+
+                    break;
+                       
+
                 default:
                     break;
             }

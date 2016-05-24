@@ -27,6 +27,13 @@ namespace ToBeFree
             return list.Find(x => (x.Name == name));
         }
 
+        public City FindRand()
+        {
+            System.Random r = new System.Random();
+            int randIndex = r.Next(0, list.Count);
+            return list[randIndex];
+        }
+
         public void Link(City cityA, City cityB)
         {
             cityA.Link(cityB);
@@ -100,6 +107,26 @@ namespace ToBeFree
                     cities.Add(neighbor);
                     PutCityInNeighbors(neighbor, cities, distance-1);
                 }
+            }
+        }
+
+        public void CalculateDistance(City curCity)
+        {
+            curCity.Distance = 0;
+            CalcDist(curCity, 0);
+        }
+
+        private void CalcDist(City city, int dist)
+        {
+            if(city == null || dist >= city.Distance)
+            {
+                return;
+            }
+
+            foreach (City neighbor in city.NeighborList)
+            {
+                neighbor.Distance = city.Distance + 1;
+                CalcDist(neighbor, neighbor.Distance);
             }
         }
     }

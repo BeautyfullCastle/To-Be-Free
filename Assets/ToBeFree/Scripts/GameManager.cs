@@ -192,6 +192,13 @@ namespace ToBeFree
             // init CityGraph and put polices in big cities.
             CityGraph.Instance.Init();
 
+            TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
+
+            
+        }
+
+        private void Instance_NotifyEveryWeek()
+        {
             // check current quest's end time and apply the result
 
             // activate global event
@@ -201,7 +208,7 @@ namespace ToBeFree
             int distance = 0;
             // 2 polices
             CityGraph.Instance.PutRandomPiece(new Police() as Piece, character.CurCity);
-            CityGraph.Instance.PutRandomPieceByDistance(new Police() as Piece, character.CurCity,  distance);
+            CityGraph.Instance.PutRandomPieceByDistance(new Police() as Piece, character.CurCity, distance);
             // 2 informations
             CityGraph.Instance.PutRandomPiece(new Information() as Piece, character.CurCity);
             CityGraph.Instance.PutRandomPieceByDistance(new Information() as Piece, character.CurCity, distance);
@@ -214,5 +221,5 @@ namespace ToBeFree
                 quest.City = CityGraph.Instance.PutRandomPieceByDistance(quest, character.CurCity, distance);
             }
         }
-	}
+    }
 }

@@ -41,10 +41,23 @@ namespace ToBeFree
             this.totalFoodNum = stat.totalFoodNum;
         }
 
-        public int Strength { get { return strength; } }
+        
         public int TotalHP { get { return totalHP; } }
         public int TotalMental { get { return totalMental; } }
         public int TotalFoodNum { get { return totalFoodNum; } }
+
+
+        public int Strength
+        {
+            get
+            {
+                return strength;
+            }
+            set
+            {
+                strength += value;
+            }
+        }
 
         public int Agility
         {
