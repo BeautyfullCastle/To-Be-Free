@@ -39,7 +39,7 @@ namespace ToBeFree
             }
             else if(inventoryRecord == null)
             {
-                if (InventoryRecords.Count > maxSlots)
+                if (InventoryRecords.Count >= maxSlots)
                 {
                     throw new Exception("There is no more space in the inventory.");
                 }
@@ -55,8 +55,23 @@ namespace ToBeFree
             {
                 throw new Exception("There's no item like this in the inventory : " + item.Name);
             }
-            inventoryRecord.DeleteToQuantity(1);
+            int remainQuantity = inventoryRecord.DeleteToQuantity(1);
+            if(remainQuantity <= 0)
+            {
+                InventoryRecords.Remove(inventoryRecord);
+            }
         }
+
+        public Item GetRand()
+        {
+            System.Random r = new System.Random();
+            int index = r.Next(0, InventoryRecords.Count - 1);
+            return InventoryRecords[index].InventoryItem;
+        }
+
+        // TO DO : have to implement
+        public Item GetTagRand(int iTag) { return null; }
+        
 
         public Item FindItemByType(string bigType, string detailType)
         {
@@ -105,14 +120,15 @@ namespace ToBeFree
                 Quantity += amountToAdd;
             }
 
-            public void DeleteToQuantity(int amount)
+            public int DeleteToQuantity(int amount)
             {
                 if(Quantity - amount < 0)
                 {
                     Debug.LogError(InventoryItem.Name + "'s quantity is lower than the amount you want. ");
-                    return;
+                    return Quantity;
                 }
                 Quantity -= amount;
+                return Quantity;
             }
         }
     }

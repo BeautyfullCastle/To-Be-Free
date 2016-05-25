@@ -37,11 +37,10 @@ namespace ToBeFree
                 // check polices in current city and activate police events.
                 if (command != "Move")
                 {
-                    foreach (Piece piece in character.CurCity.PieceList)
+                    foreach(Police police in PieceManager.Instance.PoliceList)
                     {
-                        if (piece is Police)
+                        if(police.City == character.CurCity)
                         {
-                            Police police = piece as Police;
                             character.Inspect();
                         }
                     }
@@ -59,7 +58,7 @@ namespace ToBeFree
                 }
                 if (command == "Quest")
                 {
-                    List<Piece> quests = character.CurCity.PieceList.FindAll(x => x is Quest);
+                    List<Quest> quests = PieceManager.Instance.QuestList.FindAll(x => x.City == character.CurCity);
                     if(quests.Count >= 2)
                     {
                         // have to handle this.
@@ -70,10 +69,10 @@ namespace ToBeFree
                     }
                     else
                     {
-                        Quest quest = quests[0] as Quest;
+                        Quest quest = quests[0];
                         if(EventManager.Instance.ActivateEvent(quest.CurEvent, character))
                         {
-                            character.CurCity.PieceList.Remove(quests[0]);
+                            PieceManager.Instance.QuestList.Remove(quest);
                         }
                     }
                 }
@@ -89,11 +88,11 @@ namespace ToBeFree
                 eStartTime.NOW, eDuration.ONCE,
                 1, 10, 10);
 
-            City cityA = new City("A", "Big", "North", new List<Item>() { item } );
-			City cityB = new City("B", "Midium", "South", new List<Item>() { item });
-			City cityC = new City("C", "Small", "East", new List<Item>() { item });
-            City cityC2 = new City("C2", "Big", "East", new List<Item>() { item });
-            City cityD = new City("D", "Midium", "East", new List<Item>() { item });
+            City cityA = new City("A", "Big", "North", new List<Item>() { item }, 5, 7);
+			City cityB = new City("B", "Midium", "South", new List<Item>() { item }, 3, 5);
+			City cityC = new City("C", "Small", "East", new List<Item>() { item }, 1, 3);
+            City cityC2 = new City("C2", "Big", "East", new List<Item>() { item }, 5, 7);
+            City cityD = new City("D", "Midium", "East", new List<Item>() { item }, 3, 5);
 
             CityGraph.Instance.Add(cityA);
 			CityGraph.Instance.Add(cityB);
@@ -190,7 +189,7 @@ namespace ToBeFree
             // init time calendar.
 
             // init CityGraph and put polices in big cities.
-            CityGraph.Instance.Init();
+            PieceManager.Instance.Init();
 
             TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
 
@@ -207,19 +206,14 @@ namespace ToBeFree
             // put pieces in one of random cities (police, information, quest)
             int distance = 0;
             // 2 polices
-            CityGraph.Instance.PutRandomPiece(new Police() as Piece, character.CurCity);
-            CityGraph.Instance.PutRandomPieceByDistance(new Police() as Piece, character.CurCity, distance);
+            PieceManager.Instance.Add(CityGraph.Instance.FindRand(), "POLICE");
+            PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), "POLICE");
             // 2 informations
-            CityGraph.Instance.PutRandomPiece(new Information() as Piece, character.CurCity);
-            CityGraph.Instance.PutRandomPieceByDistance(new Information() as Piece, character.CurCity, distance);
+            PieceManager.Instance.Add(CityGraph.Instance.FindRand(), "INFORM");
+            PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), "INFORM");
             // 1 quest
             Event selectedEvent = EventManager.Instance.Find("Quest", character.CurCity);
-            Quest quest = new Quest(selectedEvent, character);
-
-            if (selectedEvent.ActionType == "Quest")
-            {
-                quest.City = CityGraph.Instance.PutRandomPieceByDistance(quest, character.CurCity, distance);
-            }
+            PieceManager.Instance.AddQuest(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
         }
     }
 }

@@ -15,26 +15,25 @@ namespace ToBeFree
         private int workingMoneyMax;
         private int distanceFromCharacter;
 
-        private List<Piece> pieceList;
-
         public City()
         {
             neighborList = new List<City>();
-            pieceList = new List<Piece>();
             itemList = null;
         }
 
-        public City(string name, string size, string area, List<Item> itemList)
+        public City(string name, string size, string area, List<Item> itemList, int workingMoneyMin, int workingMoneyMax)
          : this()
         {
             this.name = name;
             this.size = size;
             this.area = area;
             this.itemList = itemList;
+            this.workingMoneyMin = workingMoneyMin;
+            this.workingMoneyMax = workingMoneyMax;
         }
 
         public City(City city)
-         : this(city.name, city.size, city.area, city.itemList)
+         : this(city.name, city.size, city.area, city.itemList, city.workingMoneyMin, city.workingMoneyMax)
         {
         }
 
@@ -83,20 +82,7 @@ namespace ToBeFree
                 size = value;
             }
         }
-
-        public List<Piece> PieceList
-        {
-            get
-            {
-                return pieceList;
-            }
-
-            set
-            {
-                pieceList = value;
-            }
-        }
-
+        
         public List<City> NeighborList
         {
             get

@@ -89,58 +89,57 @@ namespace ToBeFree
                         if (detailType == "RAND TO RAND")
                         {
                             Piece piece = PieceManager.Instance.GetRand(bigType);
-                            PieceManager.Instance.Delete(piece, bigType);
-                            piece.City.PieceList.Remove(piece);
-                            CityGraph.Instance.PutRandomPiece(piece, character.CurCity);
+
+                            piece.City = CityGraph.Instance.FindRand();
                         }
                         if (detailType == "RAND TO CLOSE")
                         {
                             Piece piece = PieceManager.Instance.GetRand(bigType);
-                            PieceManager.Instance.Delete(piece, bigType);
-                            piece.City.PieceList.Remove(piece);
-                            CityGraph.Instance.PutRandomPieceByDistance(piece, character.CurCity, 0);
+                            
+                            piece.City = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
                         if (detailType == "FAR TO CLOSE")
                         {
                             Piece piece = PieceManager.Instance.GetLast(bigType);
-                            PieceManager.Instance.Delete(piece, bigType);
-                            piece.City.PieceList.Remove(piece);
-                            CityGraph.Instance.PutRandomPieceByDistance(piece, character.CurCity, 0);
+
+                            piece.City = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
                         if (detailType == "CLOSE TO FAR")
                         {
                             Piece piece = PieceManager.Instance.GetFirst(bigType);
-                            PieceManager.Instance.Delete(piece, bigType);
-                            piece.City.PieceList.Remove(piece);
 
                             System.Random r = new System.Random();
                             int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
-                            CityGraph.Instance.PutRandomPieceByDistance(piece, character.CurCity, randDistance);
+                            piece.City = CityGraph.Instance.FindRandCityByDistance(character.CurCity, randDistance);
                         }
                     }
                     if(middleType == "DEL")
                     {
-                        if(detailType == "RAND")
+                        Piece piece = null;
+                        if (detailType == "RAND")
                         {
-                            
+                            piece = PieceManager.Instance.GetRand(bigType);
                         }
                         if(detailType == "FAR")
                         {
-
+                            piece = PieceManager.Instance.GetLast(bigType);
                         }
                         if(detailType == "CLOSE") {
-
+                            piece = PieceManager.Instance.GetFirst(bigType);
                         }
+                        PieceManager.Instance.Delete(piece);
                     }
                     if(middleType == "ADD")
                     {
                         if(detailType == "RAND")
                         {
-
+                            City city = CityGraph.Instance.FindRand();
+                            Piece piece = PieceManager.Instance.Add(city, bigType);
                         }
                         if(detailType == "CLOSE")
                         {
-
+                            City city = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
+                            Piece piece = PieceManager.Instance.Add(city, bigType);
                         }
                     }
                     // for infrom only
@@ -148,48 +147,93 @@ namespace ToBeFree
                     {
                         if(detailType == "ADD")
                         {
-
+                            character.CurInfoNum++;
                         }
                         if(detailType == "DEL")
                         {
-
+                            character.CurInfoNum--;
                         }
                     }
                     break;
                 case "ITEM":
                     if(middleType == "ADD")
                     {
+                        Item item = null;
                         if (detailType == "ALL")
                         {
-                            // Item item = inventorymanager.getrand(detailType);
-                            // character.Inven.AddItem(item);
+                            item = ItemManager.Instance.GetRand();
                         }
-                        if (detailType == "TAG")
+                        else if (detailType == "TAG")
                         {
+                            item = ItemManager.Instance.GetTagRand(amount);
                         }
-                        if (detailType == "INDEX") {
+                        else if (detailType == "INDEX")
+                        {
                             // Item item = invenManager.get(amount);
+                            ItemManager.Instance.GetByIndex(amount);
                         }
-                        if (detailType == "ALL SELECT") { }
-                        if (detailType == "TAG SELECT") { }
+                        else if (detailType == "ALL SELECT") { }
+                        else if (detailType == "TAG SELECT") { }
+                        else
+                        {
+                            throw new System.Exception("detail type is not right.");
+                        }
+
+                        if(item==null)
+                        {
+                            throw new System.Exception("item is null");
+                        }
+                        character.Inven.AddItem(item);
                     }
                     if(middleType == "DEL")
                     {
+                        Item item = null;
+                        if (detailType == "ALL")
+                        {
+                            item = character.Inven.GetRand();
+                        }
+                        else if (detailType == "TAG")
+                        {
+                            item = character.Inven.GetTagRand(amount);
+                        }
+                        else if (detailType == "INDEX")
+                        {
+                            item = ItemManager.Instance.GetByIndex(amount);
+                        }
+                        else if (detailType == "SELECT") { }
+                        else
+                        {
+                            throw new System.Exception("detail type is not right.");
+                        }
 
+                        if (item == null)
+                        {
+                            throw new System.Exception("item is null");
+                        }
+                        character.Inven.DeleteItem(item);
                     }
                     break;
                 case "MONEY":
                     if (middleType == "SPECIFIC")
                     {
+                        character.CurMoney += amount;
                     }
-                    if (middleType == "RAND ?")
+                    // can add more : RAND ?
+                    if (middleType == "RAND 3")
                     {
+                        int middleMoney = 3;
+                        System.Random r = new System.Random();
+                        int money = r.Next(-middleMoney, middleMoney) + amount;
+                        character.CurMoney += money;
                     }
                     break;
-                case "PLAYER":
+                case "CHARACTER":
                     if(middleType == "MOVE")
                     {
-
+                        if(detailType == "CLOSE")
+                        {
+                            character.CurCity = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
+                        }
                     }
                     break;
                 case "ACTION POWER":

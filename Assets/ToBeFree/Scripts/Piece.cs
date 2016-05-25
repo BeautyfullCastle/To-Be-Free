@@ -10,6 +10,11 @@ namespace ToBeFree
     {
         protected City city;
 
+        public Piece(City city)
+        {
+            this.city = city;
+        }
+
         public City City
         {
             get
@@ -23,11 +28,20 @@ namespace ToBeFree
         }
     }
 
-    public class Police : Piece { }
+    public class Police : Piece
+    {
+        public Police(City city) : base(city) { }
+    }
 
-    public class Information : Piece { }
+    public class Information : Piece
+    {
+        public Information(City city) : base(city) { }
+    }
 
-    public class Broker : Piece { }
+    public class Broker : Piece
+    {
+        public Broker(City city) : base(city) { }
+    }
 
     public class Quest : Piece
     {
@@ -35,16 +49,15 @@ namespace ToBeFree
         private int leftDays;
         private Event curEvent;
         private Character character;
-        
 
-        public Quest()
+        public Quest(City city) : base(city)
         {
             this.duration = 14;
             this.leftDays = this.duration;
             TimeTable.Instance.NotifyEveryday += CheckTimeToDisapper;
         }
 
-        public Quest(Event curEvent, Character character) : this()
+        public Quest(Event curEvent, Character character, City city) : this(city)
         {
             this.curEvent = curEvent;
             this.character = character;
@@ -63,7 +76,6 @@ namespace ToBeFree
         {
             Debug.Log("Quest Disappered.");
             EventManager.Instance.ActivateResultEffects(this.curEvent.Result.Failure.Effects, this.character);
-            city.PieceList.Remove( (Piece)this );
         }
 
         public Event CurEvent

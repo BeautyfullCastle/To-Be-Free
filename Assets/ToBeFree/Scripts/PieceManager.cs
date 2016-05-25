@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -9,42 +8,28 @@ namespace ToBeFree
     {
         private List<Information> informList;
         private List<Police> policeList;
+        private List<Quest> questList;
 
         public PieceManager()
         {
             informList = new List<Information>();
             policeList = new List<Police>();
+            questList = new List<Quest>();
         }
 
-        public List<Information> InformList
+        public void Init()
         {
-            get
+            List<City> bigCityList = CityGraph.Instance.FindCitiesBySize("Big");
+            foreach (City city in bigCityList)
             {
-                return informList;
-            }
-
-            set
-            {
-                informList = value;
+                this.Add(city, "POLICE");
             }
         }
 
-        public List<Police> PoliceList
-        {
-            get
-            {
-                return policeList;
-            }
-
-            set
-            {
-                policeList = value;
-            }
-        }
-
+        // GET ******************************* //
         public Piece GetRand(string type)
         {
-            Random r = new Random();
+            System.Random r = new System.Random();
 
             if(type == "INFORM")
             {
@@ -88,15 +73,94 @@ namespace ToBeFree
             return null;
         }
 
-        public void Delete(Piece piece, string type)
+        // ******* Delete **************
+        public void Delete(Piece piece)
         {
-            if(type == "INFORM")
+            if(piece == null)
+            {
+                Debug.LogError("piece is null");
+                return;
+            }
+            if(piece is Information)
             {
                 informList.Remove(piece as Information);
             }
-            else if(type == "POLICE")
+            else if(piece is Police)
             {
                 policeList.Remove(piece as Police);
+            }
+            else if(piece is Quest)
+            {
+                questList.Remove(piece as Quest);
+            }
+        }
+
+        // ********* Add ***********
+        public Piece Add(City city, string type)
+        {
+            Piece piece = null;
+            if(type == "INFORM")
+            {
+                piece = new Information(city);
+                informList.Add((Information)piece);
+            }
+            else if(type == "POLICE")
+            {
+                piece = new Police(city);
+                policeList.Add((Police)piece);
+            }
+
+            if(piece == null)
+            {
+                Debug.LogError(type + " is wrong : Piece Add(..) ");
+            }
+            return piece;
+        }
+
+        public Quest AddQuest(City city, Character character, Event curEvent)
+        {
+            Quest quest = new Quest(curEvent, character, city);
+            questList.Add(quest);
+
+            return quest;
+        }
+        
+        public List<Information> InformList
+        {
+            get
+            {
+                return informList;
+            }
+
+            set
+            {
+                informList = value;
+            }
+        }
+
+        public List<Police> PoliceList
+        {
+            get
+            {
+                return policeList;
+            }
+
+            set
+            {
+                policeList = value;
+            }
+        }
+
+        public List<Quest> QuestList
+        {
+            get
+            {
+                return questList;
+            }
+
+            set
+            {
+                questList = value;
             }
         }
     }

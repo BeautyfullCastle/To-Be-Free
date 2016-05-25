@@ -77,6 +77,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\EventManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\GameManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Inventory.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\ItemManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Item.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Piece.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\PieceManager.cs" />

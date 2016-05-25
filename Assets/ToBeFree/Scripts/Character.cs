@@ -70,7 +70,6 @@ namespace ToBeFree
         {
             EventManager.Instance.DoCommand("Move", this);
             this.curCity = city;
-            CityGraph.Instance.CalculateDistance(this.curCity);
             Debug.Log("character is moved to " + this.curCity.Name);
 
             return true;
@@ -169,6 +168,7 @@ namespace ToBeFree
             set
             {
                 curCity = value;
+                CityGraph.Instance.CalculateDistance(this.curCity);
             }
         }
 
@@ -177,6 +177,36 @@ namespace ToBeFree
             get
             {
                 return inven;
+            }
+        }
+
+        public int CurInfoNum
+        {
+            get
+            {
+                return curInfoNum;
+            }
+
+            set
+            {
+                curInfoNum = value;
+            }
+        }
+
+        public int CurMoney
+        {
+            get
+            {
+                return curMoney;
+            }
+
+            set
+            {
+                if(curMoney + value < 0)
+                {
+                    throw new System.Exception("not enough money");
+                }
+                curMoney = value;
             }
         }
     }

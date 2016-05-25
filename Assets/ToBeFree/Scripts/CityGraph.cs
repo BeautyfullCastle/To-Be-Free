@@ -22,6 +22,12 @@ namespace ToBeFree
             return city;
         }
 
+        public void Link(City cityA, City cityB)
+        {
+            cityA.Link(cityB);
+            cityB.Link(cityA);
+        }
+
         public City Find(string name)
         {
             return list.Find(x => (x.Name == name));
@@ -33,23 +39,8 @@ namespace ToBeFree
             int randIndex = r.Next(0, list.Count);
             return list[randIndex];
         }
-
-        public void Link(City cityA, City cityB)
-        {
-            cityA.Link(cityB);
-            cityB.Link(cityA);
-        }
-
-        public void Init()
-        {
-            List<City> bigCityList = FindCitiesBySize("Big");
-            foreach (City city in bigCityList)
-            {
-                city.PieceList.Add(new Police() as Piece);
-            }
-        }
-
-        private List<City> FindCitiesBySize(string size)
+        
+        public List<City> FindCitiesBySize(string size)
         {
             List<City> cityListBySize = new List<City>();
             foreach(City city in list)
@@ -62,23 +53,13 @@ namespace ToBeFree
             return cityListBySize;
         }
 
-        public void PutRandomPiece(Piece piece, City curCity)
-        {
-            System.Random r = new System.Random();
-            // put a police in random cities.
-            int randCityIndex = r.Next(0, list.Count);
-            list[randCityIndex].PieceList.Add(piece);
-        }
-
-        public City PutRandomPieceByDistance(Piece piece, City curCity, int distance)
+        public City FindRandCityByDistance(City curCity, int distance)
         {
             System.Random r = new System.Random();
             // put a police in random cities by distance.
             List<City> cityList = CityGraph.Instance.FindCitiesByDistance(curCity, distance);
             int randCityIndex = r.Next(0, cityList.Count);
             
-            cityList[randCityIndex].PieceList.Add(piece);
-            Debug.Log(piece.GetType() + " is added to city " + cityList[randCityIndex].Name);
             return cityList[randCityIndex];
         }
 
@@ -112,6 +93,12 @@ namespace ToBeFree
 
         public void CalculateDistance(City curCity)
         {
+            // TO DO : have to rest every city's distance
+            foreach(City city in list)
+            {
+                city.Distance = 1000;
+            }
+
             curCity.Distance = 0;
             CalcDist(curCity, 0);
         }
