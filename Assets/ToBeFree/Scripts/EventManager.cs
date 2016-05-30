@@ -6,7 +6,8 @@ using System.Collections.Generic;
 namespace ToBeFree {
     public class EventManager : Singleton<EventManager> {
         private List<Event> everyEvents;
-        
+        private ResultEffect[] resultEffects;
+
         public EventManager()
         {
             everyEvents = new List<Event>();
@@ -15,6 +16,11 @@ namespace ToBeFree {
         public Event DoCommand(string actionType, Character character)
         {
             Event selectedEvent = Find(actionType, character.CurCity);
+            if(selectedEvent == null)
+            {
+                Debug.LogError("selectedEvent is null");
+                return null;
+            }
             ActivateEvent(selectedEvent, character);
 
             return selectedEvent;
@@ -26,8 +32,17 @@ namespace ToBeFree {
             
             // <eRegion, List<Event>>
             Dictionary<int, List<Event>> eventListPerRegionDic = InitEventListPerRegionDic(findedEvents, city);
+            if(eventListPerRegionDic.Count == 0)
+            {
+                Debug.LogError("eventListPerRegionDic.Count == 0");
+                return null;
+            }
             List<Event> regionEvents = SelectRandomEventsByProb(eventListPerRegionDic, actionType, "Region");
-
+            if(regionEvents.Count == 0)
+            {
+                Debug.LogError("regionEvents.Count == 0");
+                return null;
+            }
             List<Event> statEvents = null;
             if (actionType == "Global" || actionType== "Quest")
             {
@@ -36,6 +51,11 @@ namespace ToBeFree {
             else
             {
                 Dictionary<int, List<Event>> eventListPerStatDic = InitEventListPerStatDic(regionEvents);
+                if (eventListPerStatDic.Count == 0)
+                {
+                    Debug.LogError("eventListPerStatDic.Count == 0");
+                    return null;
+                }
                 statEvents = SelectRandomEventsByProb(eventListPerStatDic, actionType, "Stat");
             }
             
@@ -49,7 +69,7 @@ namespace ToBeFree {
             Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.Stat + " is activated.");
             
             Result result = currEvent.Result;
-            ResultEffect[] resultEffects = null;
+            
 
             if (currEvent.ActionType == "Global")
             {
@@ -98,8 +118,6 @@ namespace ToBeFree {
                     return false;
                 }
             }
-
-            ActivateResultEffects(resultEffects, character);
             return true;
         }
 
@@ -199,6 +217,11 @@ namespace ToBeFree {
             }
             
             int totalProbVal = prob.CheckAddedAllProbValues();
+            if(totalProbVal == 0)
+            {
+                Debug.LogError("Total prob value is 0");
+                return null;
+            }
             System.Random r = new System.Random();
             int randVal = r.Next(1, totalProbVal);
             
@@ -225,6 +248,19 @@ namespace ToBeFree {
             set
             {
                 everyEvents = value;
+            }
+        }
+
+        public ResultEffect[] ResultEffects
+        {
+            get
+            {
+                return resultEffects;
+            }
+
+            set
+            {
+                resultEffects = value;
             }
         }
     }    

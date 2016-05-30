@@ -15,7 +15,7 @@ namespace ToBeFree
 
     public enum eCommandType
     {
-        MOVE, REST, SHOP, POLICE, INFO, BROKER, ESCAPE
+        MOVE, REST, SHOP, INSPECT, INFO, BROKER, ESCAPE
     }
 
     public enum eDistanceType
@@ -36,22 +36,27 @@ namespace ToBeFree
     public class Effect
     {
         private string bigType;
-        private string detailType;
         private string middleType;
+        private string detailType;
+        
 
-        public Effect(string bigType, string detailType)
+        public Effect(string bigType, string middleType, string detailType = "")
         {
             this.bigType = bigType;
+            this.middleType = middleType;
             this.detailType = detailType;
         }
 
-        public Effect(Effect effect) : this(effect.bigType, effect.detailType)
+        public Effect(Effect effect) : this(effect.bigType, effect.middleType, effect.detailType)
         {
 
         }
-
+        
         public bool Activate(Character character, int amount)
         {
+            // if bEffectRestore is true, have to restore this effect.
+            // DeActivate();
+
             switch (bigType)
             {
                 case "FOOD":
@@ -76,10 +81,20 @@ namespace ToBeFree
                     }
                     break;
                 case "STAT":
-                    if(detailType == "STR")
+                    if (middleType == "ALL") // abnormal
                     {
-                        character.Stat.Strength++;
+
                     }
+                    else if (middleType == "STR")
+                    {
+                        character.Stat.Strength += amount;
+                        Debug.Log("strength : " + character.Stat.Strength);
+                    }
+                    else if(middleType == "AGI")
+                    {
+                        character.Stat.Agility += amount;
+                    }
+
                     //...
                     break;
                 case "INFORM":
@@ -237,10 +252,55 @@ namespace ToBeFree
                     }
                     break;
                 case "ACTION POWER":
-
+                    if(middleType == "DEACTIVE")
+                    {
+                        if (detailType == "WORK") { }
+                        else if (detailType == "MOVE") { }
+                        else if (detailType == "REST") { }
+                        else if (detailType == "SPECIAL") { } // other commands.
+                    }
                     break;
-                       
+                case "SKIP ACTION":
+                    if (middleType == "WORK") { }
+                    else if (middleType == "MOVE") { }
+                    else if (middleType == "INFORM") { }
+                    break;
+                case "ABNORMAL CONDITION":
+                    if (middleType == "DICE")
+                    {
+                        if (detailType == "SUCCESS NUM")
+                        {
 
+                        }
+                        else if (detailType == "MOVE") { }
+                        else if (detailType == "WORK") { }
+                    }
+                    else if (middleType == "VARIATION EVERYDAY")
+                    {
+                        if (detailType == "HEALTH")
+                        {
+
+                        }
+                        else if (detailType == "MENTAL")
+                        {
+
+                        }
+                    }
+                    else if (middleType == "FOOD") { }
+                    else if (middleType == "REST") {
+                        if(detailType == "CANNOT CURE")
+                        {
+
+                        }
+                    }
+                    else if(middleType == "VARIATION ONE DAY")
+                    {
+                        if(detailType == "STAT")
+                        {
+                            
+                        }
+                    }
+                    break;
                 default:
                     break;
             }
@@ -254,19 +314,6 @@ namespace ToBeFree
             get
             {
                 return bigType;
-            }
-        }
-
-        public string DetailType1
-        {
-            get
-            {
-                return detailType;
-            }
-
-            set
-            {
-                detailType = value;
             }
         }
     }

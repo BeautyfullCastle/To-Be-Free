@@ -55,7 +55,7 @@ namespace ToBeFree
             }
             set
             {
-                strength += value;
+                strength = value;
             }
         }
 

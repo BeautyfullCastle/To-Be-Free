@@ -5,11 +5,12 @@ namespace ToBeFree
 {
     public enum eStartTime
     {
-        NOW, ACT
+        NOW, WORK, MOVE, REST, SHOP, INSPECT, INFO, BROKER, ESCAPE, TEST
     }
+
     public enum eDuration
     {
-        ONCE, DAY, EQUIP, FOREVER
+        ONCE, EQUIP
     }
 
     public class Item
@@ -21,10 +22,8 @@ namespace ToBeFree
         private int amount;
         private int price;
         private int maximumStackableQuantity;
-
-        private BuffList buffList;
         
-
+        
         public Item(string name, Effect effect, eStartTime startTime, eDuration duration,
                     int amount, int price, int maximumStackableQuantity)
         {
@@ -57,17 +56,24 @@ namespace ToBeFree
             return item;
         }
 
-        public void Use(Character character)
+        public void ActivateEffect(Character character)
         { 
             if (effect == null)
                 return;
 
-            if (startTime == eStartTime.NOW)
-            {
-                effect.Activate(character, amount);
-                Debug.Log("Item.Use");
-            }
-            //buffList.Add(this);
+            effect.Activate(character, amount);
+            
+            Debug.Log("Item.Use");
+        }
+
+        public void DeactiveEffect(Character character)
+        {
+            if (effect == null)
+                return;
+
+            effect.Activate(character, -amount);
+
+            Debug.Log("Item.Use");
         }
 
         /*
@@ -103,5 +109,31 @@ namespace ToBeFree
         }
 
         public int MaximumStackableQuantity { get; private set; }
+
+        public eStartTime StartTime
+        {
+            get
+            {
+                return startTime;
+            }
+
+            set
+            {
+                startTime = value;
+            }
+        }
+
+        public eDuration Duration
+        {
+            get
+            {
+                return duration;
+            }
+
+            set
+            {
+                duration = value;
+            }
+        }
     }
 }

@@ -8,24 +8,44 @@ namespace ToBeFree
     public class Inventory
     {
         private int maxSlots;
-        public List<InventoryRecord> InventoryRecords = new List<InventoryRecord>();
+        public List<InventoryRecord> InventoryRecords;
         
         public Inventory(int maxSlots)
         {
             this.maxSlots = maxSlots;
+            InventoryRecords = new List<InventoryRecord>();
         }
 
         public void UseItem(Item item, Character character)
         {
-            InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.InventoryItem.Name == item.Name));
+            InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.InventoryItem == item));
 
             if (inventoryRecord == null)
             {
                 throw new Exception("There's no item like this in the inventory : " + item.Name);
             }
-            inventoryRecord.InventoryItem.Use(character);
+            inventoryRecord.InventoryItem.ActivateEffect(character);
+            
+        }
 
-            DeleteItem(item);
+        public List<Item> CheckItemStartTime(eStartTime startTime, Character character)
+        {
+            List<Item> itemsToDeactive = new List<Item>();
+
+            foreach (InventoryRecord record in InventoryRecords)
+            {
+                if(record.InventoryItem.StartTime == startTime)
+                {
+                    UseItem(record.InventoryItem, character);
+                    if(record.InventoryItem.isRestore)
+                        itemsToDeactive.Add(record.InventoryItem.DeepCopy());
+                }
+            }
+
+            InventoryRecords.RemoveAll(x => (x.InventoryItem.Duration == eDuration.ONCE) 
+                                            && (x.InventoryItem.StartTime == startTime));
+
+            return itemsToDeactive;
         }
 
         public void AddItem(Item item)

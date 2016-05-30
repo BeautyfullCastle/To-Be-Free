@@ -8,6 +8,7 @@ namespace ToBeFree
 
         private Character character;
         private string command;
+        private Action action;
 
         protected GameManager() {} // can't use the constructor
 
@@ -16,11 +17,13 @@ namespace ToBeFree
             // await for the event command
             if (Input.GetKeyDown(KeyCode.A))
             {
+                action = new Work();
                 command = "Work";
                 Debug.Log("Command Work input");
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
+                action = new Move();
                 command = "Move";
                 Debug.Log("Command Move input");
             }
@@ -49,12 +52,14 @@ namespace ToBeFree
                 // activate selected event
                 if (command == "Work")
                 {
-                    character.Work();
+                    //character.Work();
+                    action.Activate(character);
                 }
                 if (command == "Move")
                 {
+                    action.Activate(character);
                     //character.PrintMovableCity();
-                    character.MoveTo(CityGraph.Instance.Find("B"));
+                    //character.MoveTo(CityGraph.Instance.Find("B"));
                 }
                 if (command == "Quest")
                 {
@@ -81,18 +86,19 @@ namespace ToBeFree
                 TimeTable.Instance.DayIsGone();
             }
         }
+
 		void Start() {
 
             Effect effect = new Effect("CURE", "HP");
-            Item item = new Item("cure hp 1", effect,
-                eStartTime.NOW, eDuration.ONCE,
-                1, 10, 10);
+            Item cureHP_Now_Once = new Item("cure hp 1", effect, eStartTime.NOW, eDuration.ONCE, 1, 10, 1);
+            Item addSTR_Work_Once = new Item("add str when working once", new Effect("STAT", "STR"), eStartTime.WORK, eDuration.ONCE, 1, 10, 1);
+            Item addSTR_Work_Equip = new Item("add str when working equip", new Effect("STAT", "STR"), eStartTime.WORK, eDuration.EQUIP, 1, 10, 1);
 
-            City cityA = new City("A", "Big", "North", new List<Item>() { item }, 5, 7);
-			City cityB = new City("B", "Midium", "South", new List<Item>() { item }, 3, 5);
-			City cityC = new City("C", "Small", "East", new List<Item>() { item }, 1, 3);
-            City cityC2 = new City("C2", "Big", "East", new List<Item>() { item }, 5, 7);
-            City cityD = new City("D", "Midium", "East", new List<Item>() { item }, 3, 5);
+            City cityA = new City("A", "Big", "North", new List<Item>() { cureHP_Now_Once }, 5, 7);
+			City cityB = new City("B", "Midium", "South", new List<Item>() { cureHP_Now_Once }, 3, 5);
+			City cityC = new City("C", "Small", "East", new List<Item>() { cureHP_Now_Once }, 1, 3);
+            City cityC2 = new City("C2", "Big", "East", new List<Item>() { cureHP_Now_Once }, 5, 7);
+            City cityD = new City("D", "Midium", "East", new List<Item>() { cureHP_Now_Once }, 3, 5);
 
             CityGraph.Instance.Add(cityA);
 			CityGraph.Instance.Add(cityB);
@@ -181,9 +187,11 @@ namespace ToBeFree
             character = new Character("Chris", new Stat(),
                                     cityA, 5, 3, 0, 5, 5, inven);
 
-            // set character's start items.
-            character.Inven.AddItem(item);
-            // item use test
+            // set character's start cureHP_Now_Onces.
+            character.Inven.AddItem(cureHP_Now_Once);
+            character.Inven.AddItem(addSTR_Work_Once);
+            character.Inven.AddItem(addSTR_Work_Equip);
+            // cureHP_Now_Once use test
             //character.Inven.UseItem(character, 0, effect);
 
             // init time calendar.
@@ -192,8 +200,6 @@ namespace ToBeFree
             PieceManager.Instance.Init();
 
             TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
-
-            
         }
 
         private void Instance_NotifyEveryWeek()

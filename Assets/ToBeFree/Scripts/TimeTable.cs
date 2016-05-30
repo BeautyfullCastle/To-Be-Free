@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace ToBeFree
@@ -26,9 +24,7 @@ namespace ToBeFree
 
             ++day;
             NotifyEveryday();
-
             
-
             Debug.Log("Alived day : " + day);
         }
     }
