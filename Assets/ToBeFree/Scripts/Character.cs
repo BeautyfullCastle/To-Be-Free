@@ -63,7 +63,7 @@ namespace ToBeFree
 
         public void Inspect()
         {
-            EventManager.Instance.DoCommand("Inspection", this);
+            EventManager.Instance.DoCommand("Inspect", this);
         }
 
         public bool MoveTo(City city)
@@ -110,6 +110,7 @@ namespace ToBeFree
                 {
                     curHP = stat.TotalHP;
                 }
+                Debug.Log("HP : " + curHP);
             }
         }
 
@@ -126,6 +127,7 @@ namespace ToBeFree
                 {
                     curMental = stat.TotalMental;
                 }
+                Debug.Log("Mental : " + curMental);
             }
         }
 

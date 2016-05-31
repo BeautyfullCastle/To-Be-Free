@@ -37,13 +37,40 @@ namespace ToBeFree
                 if(record.InventoryItem.StartTime == startTime)
                 {
                     UseItem(record.InventoryItem, character);
-                    if(record.InventoryItem.isRestore)
+                    if (record.InventoryItem.IsRestore)
+                    {
                         itemsToDeactive.Add(record.InventoryItem.DeepCopy());
+                    }
                 }
             }
 
             InventoryRecords.RemoveAll(x => (x.InventoryItem.Duration == eDuration.ONCE) 
                                             && (x.InventoryItem.StartTime == startTime));
+
+            return itemsToDeactive;
+        }
+
+        public List<Item> UseStatTestItems(string testStat, Character character)
+        {
+            List<Item> itemsToDeactive = new List<Item>();
+            foreach (InventoryRecord record in InventoryRecords)
+            {
+                if ( (record.InventoryItem.StartTime == eStartTime.TEST)
+                    && (record.InventoryItem.Effect.BigType == "STAT")
+                    && (record.InventoryItem.Effect.MiddleType == testStat) )
+                {
+                    UseItem(record.InventoryItem, character);
+                    if (record.InventoryItem.IsRestore)
+                    {
+                        itemsToDeactive.Add(record.InventoryItem);
+                    }
+                }
+            }
+
+            InventoryRecords.RemoveAll(x => (x.InventoryItem.StartTime == eStartTime.TEST)
+                                            && (x.InventoryItem.Duration == eDuration.ONCE)
+                                            && (x.InventoryItem.Effect.BigType == "STAT")
+                                           && (x.InventoryItem.Effect.MiddleType == testStat));
 
             return itemsToDeactive;
         }
@@ -93,7 +120,7 @@ namespace ToBeFree
         public Item GetTagRand(int iTag) { return null; }
         
 
-        public Item FindItemByType(string bigType, string detailType)
+        public Item FindItemByType(string bigType, string middleType, string detailType="")
         {
             InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.InventoryItem.Effect.BigType == bigType);
             if (inventoryRecord == null)
@@ -104,11 +131,14 @@ namespace ToBeFree
             else
             {
                 Item item = inventoryRecord.InventoryItem;
-                if (string.IsNullOrEmpty(item.Effect.DetailType) || item.Effect.DetailType == detailType)
+                if (string.IsNullOrEmpty(item.Effect.MiddleType) || item.Effect.MiddleType == middleType)
                 {
-                    return item;
+                    if (string.IsNullOrEmpty(item.Effect.DetailType) || item.Effect.DetailType == detailType)
+                    {
+                        return item;
+                    }
                 }
-                Debug.Log("There's no " + bigType + " " + detailType + " item in inventory");
+                Debug.Log("There's no " + bigType + " " + middleType + " " + detailType + " item in inventory");
                 return null;
             }
         }

@@ -69,33 +69,50 @@ namespace ToBeFree
                     }
                     break;
                 case "CURE":
-                    if (detailType == eCureType.BOTH.ToString() || detailType == eCureType.HP.ToString())
+                    if (middleType == "BOTH" || middleType == "HP")
                     {
-                        Debug.Log("HP = " + character.HP + " + " + amount);
+                        Debug.Log("Cure HP");
                         character.HP += amount;
                     }
-                    if (detailType == eCureType.BOTH.ToString() || detailType == eCureType.MENTAL.ToString())
+                    if (middleType == "BOTH" || middleType == "MENTAL")
                     {
-                        Debug.Log("MENTAL = " + character.MENTAL + " + " + amount);
+                        Debug.Log("Cure Mental");
                         character.MENTAL += amount;
                     }
                     break;
                 case "STAT":
-                    if (middleType == "ALL") // abnormal
-                    {
+                    // all for abnormal
 
-                    }
-                    else if (middleType == "STR")
+                    if (middleType == "STR" || middleType == "ALL")
                     {
                         character.Stat.Strength += amount;
-                        Debug.Log("strength : " + character.Stat.Strength);
+                        Debug.Log("effect activate strength : " + character.Stat.Strength);
                     }
-                    else if(middleType == "AGI")
+                    if(middleType == "AGI" || middleType == "ALL")
                     {
                         character.Stat.Agility += amount;
+                        Debug.Log("effect activate agility : " + character.Stat.Agility);
                     }
-
-                    //...
+                    if (middleType == "OBS" || middleType == "ALL")
+                    {
+                        character.Stat.Observation += amount;
+                        Debug.Log("effect activate observation : " + character.Stat.Observation);
+                    }
+                    if (middleType == "BAR" || middleType == "ALL")
+                    {
+                        character.Stat.Bargain += amount;
+                        Debug.Log("effect activate bargain : " + character.Stat.Bargain);
+                    }
+                    if (middleType == "PAT" || middleType == "ALL")
+                    {
+                        character.Stat.Patience += amount;
+                        Debug.Log("effect activate patience : " + character.Stat.Patience);
+                    }
+                    if (middleType == "LUC" || middleType == "ALL")
+                    {
+                        character.Stat.Luck += amount;
+                        Debug.Log("effect activate luck : " + character.Stat.Luck);
+                    }
                     break;
                 case "INFORM":
                 case "POLICE":
@@ -314,6 +331,19 @@ namespace ToBeFree
             get
             {
                 return bigType;
+            }
+        }
+
+        public string MiddleType
+        {
+            get
+            {
+                return middleType;
+            }
+
+            set
+            {
+                middleType = value;
             }
         }
     }

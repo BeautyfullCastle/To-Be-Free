@@ -37,7 +37,7 @@ namespace ToBeFree
             return buffList.Remove(item);
         }
 
-        public void DoWork(eStartTime startTime, Character character)
+        public void Do(eStartTime startTime, Character character)
         {
             foreach(Item item in buffList)
             {

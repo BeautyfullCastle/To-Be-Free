@@ -14,9 +14,12 @@ namespace ToBeFree
             List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
 
             // activate abnormal condition's effect in buff list.
-            BuffList.Instance.DoWork(startTime, character);
+            BuffList.Instance.Do(startTime, character);
 
-            Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
+            if (!string.IsNullOrEmpty(actionName))
+            {
+                Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
+            }
 
             foreach(Item item in itemsToDeactive)
             {
@@ -30,13 +33,16 @@ namespace ToBeFree
         public Rest()
         {
             startTime = eStartTime.REST;
-            actionName = "Rest";
+            actionName = string.Empty;
         }
 
         public override void Activate(Character character)
         {
+            Debug.Log("Rest Action Start");
+
             base.Activate(character);
 
+            Debug.Log("Cure for Rest");
             character.HP++;
             character.MENTAL++;
         }
@@ -81,10 +87,84 @@ namespace ToBeFree
         public override void Activate(Character character)
         {
             base.Activate(character);
-
-            EventManager.Instance.DoCommand("Move", character);
-            character.CurCity = CityGraph.Instance.Find("B");
+            
+            character.CurCity = CityGraph.Instance.Find("A");
             Debug.Log("character is moved to " + character.CurCity.Name);
+        }
+    }
+
+    public class QuestAction : Action
+    {
+        public QuestAction()
+        {
+            startTime = eStartTime.QUEST;
+            actionName = string.Empty;
+        }
+
+        public override void Activate(Character character)
+        {
+            List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
+
+            // activate abnormal condition's effect in buff list.
+            BuffList.Instance.Do(startTime, character);
+            
+            
+            List<Quest> quests = PieceManager.Instance.QuestList.FindAll(x => x.City == character.CurCity);
+            if (quests.Count >= 2)
+            {
+                // can't spawn more than 2 quests in one city.
+            }
+            else if (quests == null || quests.Count == 0)
+            {
+                Debug.LogError("No Quest in this city.");
+            }
+            else
+            {
+                Quest quest = quests[0];
+                if (EventManager.Instance.ActivateEvent(quest.CurEvent, character))
+                {
+                    PieceManager.Instance.QuestList.Remove(quest);
+                }
+            }
+
+            foreach (Item item in itemsToDeactive)
+            {
+                item.DeactiveEffect(character);
+            }
+
+            Debug.Log("character quest activated.");
+        }
+    }
+
+    public class Inspect : Action
+    {
+        public Inspect()
+        {
+            startTime = eStartTime.INSPECT;
+            actionName = string.Empty;
+        }
+
+        public override void Activate(Character character)
+        {
+            List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
+
+            // activate abnormal condition's effect in buff list.
+            BuffList.Instance.Do(startTime, character);
+
+            foreach (Police police in PieceManager.Instance.PoliceList)
+            {
+                if (police.City == character.CurCity)
+                {
+                    character.Inspect();
+                }
+            }
+
+            foreach (Item item in itemsToDeactive)
+            {
+                item.DeactiveEffect(character);
+            }
+
+            Debug.Log("character quest activated.");
         }
     }
 }

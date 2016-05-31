@@ -5,7 +5,7 @@ namespace ToBeFree
 {
     public enum eStartTime
     {
-        NOW, WORK, MOVE, REST, SHOP, INSPECT, INFO, BROKER, ESCAPE, TEST
+        NOW, WORK, MOVE, REST, SHOP, INSPECT, INFO, BROKER, QUEST, ESCAPE, TEST, SPECIALACTION
     }
 
     public enum eDuration
@@ -19,25 +19,27 @@ namespace ToBeFree
         private Effect effect;
         private eStartTime startTime;
         private eDuration duration;
+        private bool isRestore;
         private int amount;
         private int price;
         private int maximumStackableQuantity;
         
-        
-        public Item(string name, Effect effect, eStartTime startTime, eDuration duration,
+
+        public Item(string name, Effect effect, eStartTime startTime, eDuration duration, bool isRestore,
                     int amount, int price, int maximumStackableQuantity)
         {
             this.name = name;
             this.effect = effect;
             this.startTime = startTime;
             this.duration = duration;
+            this.isRestore = isRestore;
             this.amount = amount;
             this.price = price;
             this.maximumStackableQuantity = maximumStackableQuantity;
         }
 
         public Item(Item item)
-         : this(item.name, item.effect, item.startTime, item.duration, item.amount, item.price, item.maximumStackableQuantity)
+         : this(item.name, item.effect, item.startTime, item.duration, item.isRestore, item.amount, item.price, item.maximumStackableQuantity)
         {
 
         }
@@ -49,6 +51,7 @@ namespace ToBeFree
             item.effect = this.effect;
             item.startTime = this.startTime;
             item.duration = this.duration;
+            item.isRestore = this.isRestore;
             item.amount = this.amount;
             item.price = this.price;
             item.maximumStackableQuantity = this.maximumStackableQuantity;
@@ -57,13 +60,14 @@ namespace ToBeFree
         }
 
         public void ActivateEffect(Character character)
-        { 
+        {
+            Debug.Log("Item effect activate");
+
             if (effect == null)
                 return;
 
             effect.Activate(character, amount);
             
-            Debug.Log("Item.Use");
         }
 
         public void DeactiveEffect(Character character)
@@ -133,6 +137,19 @@ namespace ToBeFree
             set
             {
                 duration = value;
+            }
+        }
+
+        public bool IsRestore
+        {
+            get
+            {
+                return isRestore;
+            }
+
+            set
+            {
+                isRestore = value;
             }
         }
     }

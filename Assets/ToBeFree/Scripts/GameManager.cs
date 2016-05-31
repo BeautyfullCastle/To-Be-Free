@@ -9,28 +9,36 @@ namespace ToBeFree
         private Character character;
         private string command;
         private Action action;
+        private Action inspectAction;
 
         protected GameManager() {} // can't use the constructor
 
         void Update()
         {
             // await for the event command
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 action = new Work();
-                command = "Work";
                 Debug.Log("Command Work input");
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.M))
             {
                 action = new Move();
-                command = "Move";
                 Debug.Log("Command Move input");
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                command = "Quest";
+                action = new Rest();
+                Debug.Log("Command Rest input");
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                action = new QuestAction();
                 Debug.Log("Command Quest input");
+            }
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                character.Inven.UseItem(character.Inven.FindItemByType("POLICE", "DEL", "CLOSE"), character);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -38,61 +46,31 @@ namespace ToBeFree
                 
                 // if selected event is not move,
                 // check polices in current city and activate police events.
-                if (command != "Move")
+                if (!(action is Move))
                 {
-                    foreach(Police police in PieceManager.Instance.PoliceList)
-                    {
-                        if(police.City == character.CurCity)
-                        {
-                            character.Inspect();
-                        }
-                    }
+                    inspectAction.Activate(character);
                 }
 
                 // activate selected event
-                if (command == "Work")
-                {
-                    //character.Work();
-                    action.Activate(character);
-                }
-                if (command == "Move")
-                {
-                    action.Activate(character);
-                    //character.PrintMovableCity();
-                    //character.MoveTo(CityGraph.Instance.Find("B"));
-                }
-                if (command == "Quest")
-                {
-                    List<Quest> quests = PieceManager.Instance.QuestList.FindAll(x => x.City == character.CurCity);
-                    if(quests.Count >= 2)
-                    {
-                        // have to handle this.
-                    }
-                    else if(quests == null || quests.Count == 0)
-                    {
-                        Debug.LogError("No Quest in this city.");
-                    }
-                    else
-                    {
-                        Quest quest = quests[0];
-                        if(EventManager.Instance.ActivateEvent(quest.CurEvent, character))
-                        {
-                            PieceManager.Instance.QuestList.Remove(quest);
-                        }
-                    }
-                }
-
-
+                action.Activate(character);
+                
                 TimeTable.Instance.DayIsGone();
             }
         }
 
 		void Start() {
 
+            inspectAction = new Inspect();
+
+
             Effect effect = new Effect("CURE", "HP");
-            Item cureHP_Now_Once = new Item("cure hp 1", effect, eStartTime.NOW, eDuration.ONCE, 1, 10, 1);
-            Item addSTR_Work_Once = new Item("add str when working once", new Effect("STAT", "STR"), eStartTime.WORK, eDuration.ONCE, 1, 10, 1);
-            Item addSTR_Work_Equip = new Item("add str when working equip", new Effect("STAT", "STR"), eStartTime.WORK, eDuration.EQUIP, 1, 10, 1);
+
+            Item cureHP_Now_Once = new Item("cure hp 1", effect, eStartTime.NOW, eDuration.ONCE, false, 1, 10, 1);
+            Item cureBoth_RestEquip = new Item("cureBoth_RestEquip", new Effect("CURE", "BOTH"), eStartTime.REST, eDuration.EQUIP, false, 1, 10, 1);
+            Item addSTR_Work_Once = new Item("add str when working once", new Effect("STAT", "STR"), eStartTime.WORK, eDuration.ONCE, true, 1, 10, 1);
+            Item addSTR_Work_Equip = new Item("add str when working equip", new Effect("STAT", "STR"), eStartTime.WORK, eDuration.EQUIP, true, 1, 10, 1);
+            Item addAGI_Move_Once = new Item("addAGI_Move_Once", new Effect("STAT", "AGI"), eStartTime.TEST, eDuration.ONCE, true, 1, 1, 1);
+            Item delPoliceNearOnce = new Item("del police near once", new Effect("POLICE", "DEL", "CLOSE"), eStartTime.NOW, eDuration.ONCE, false, 1, 1, 1);
 
             City cityA = new City("A", "Big", "North", new List<Item>() { cureHP_Now_Once }, 5, 7);
 			City cityB = new City("B", "Midium", "South", new List<Item>() { cureHP_Now_Once }, 3, 5);
@@ -128,7 +106,7 @@ namespace ToBeFree
             Select select_quest = new Select("CURE", "HP", ">=", 1, "select cure hp > 1", result_quest);
 
             Event event_move = new Event("Move", "A", "AGI", "move strength test, A city", result_agility, false, null);
-            Event event_Inspection = new Event("Inspection", "A", "OBS", "Inspection agility test, A city", result_observation, false, null);
+            Event event_Inspection = new Event("Inspect", "A", "OBS", "Inspection agility test, A city", result_observation, false, null);
             Event event_work_A = new Event("Work", "A", "STR", "police agility test, A city", result_strength, false, null);
             Event event_work_B = new Event("Work", "B", "STR", "police agility test, A city", result_strength, false, null);
             Event event_global = new Event("Global", "ALL", string.Empty, "global event", result_global, false, null);
@@ -151,7 +129,7 @@ namespace ToBeFree
 			Probability regionProbforWork = new Probability("Work", regionProbDataList);
 			Probability regionProbforInfo = new Probability("Info", regionProbDataList);
 			Probability regionProbforBroker = new Probability("Broker", regionProbDataList);
-			Probability regionProbforInspection = new Probability("Inspection", regionProbDataList);
+			Probability regionProbforInspection = new Probability("Inspect", regionProbDataList);
 			Probability regionProbforTaken = new Probability("Taken", regionProbDataList);
 			Probability regionProbforEscape = new Probability ("Escape", regionProbDataList);
             Probability regionProbforGlobal = new Probability("Global", regionProbDataList);
@@ -171,7 +149,7 @@ namespace ToBeFree
 			Probability statProbforWork = new Probability ("Work", statProbDataList);
 			Probability statProbforInfo = new Probability ("Info", statProbDataList);
 			Probability statProbforBroker = new Probability ("Broker", statProbDataList);
-			Probability statProbforInspection = new Probability ("Inspection", statProbDataList);
+			Probability statProbforInspection = new Probability ("Inspect", statProbDataList);
 			Probability statProbforTaken = new Probability ("Taken", statProbDataList);
             Probability statProbforEscape = new Probability("Escape", statProbDataList);
             Probability statProbforGlobal = new Probability ("Global", statProbDataList);
@@ -183,14 +161,17 @@ namespace ToBeFree
 
 			ProbabilityManager.Instance.Init(regionProbs, statProbs);
 
-            Inventory inven = new Inventory(3);
+            Inventory inven = new Inventory(30);
             character = new Character("Chris", new Stat(),
                                     cityA, 5, 3, 0, 5, 5, inven);
 
             // set character's start cureHP_Now_Onces.
             character.Inven.AddItem(cureHP_Now_Once);
+            character.Inven.AddItem(cureBoth_RestEquip);
             character.Inven.AddItem(addSTR_Work_Once);
             character.Inven.AddItem(addSTR_Work_Equip);
+            character.Inven.AddItem(addAGI_Move_Once);
+            character.Inven.AddItem(delPoliceNearOnce);
             // cureHP_Now_Once use test
             //character.Inven.UseItem(character, 0, effect);
 
@@ -198,7 +179,7 @@ namespace ToBeFree
 
             // init CityGraph and put polices in big cities.
             PieceManager.Instance.Init();
-
+            Instance_NotifyEveryWeek();
             TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
         }
 

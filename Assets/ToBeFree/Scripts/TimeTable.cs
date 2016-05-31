@@ -14,16 +14,17 @@ namespace ToBeFree
 
         public TimeTable()
         {
-            day = 0;
+            day = 1;
         }
 
         public void DayIsGone()
         {
+            ++day;
+
+            NotifyEveryday();
+
             if (day % 7 == 0)
                 NotifyEveryWeek();
-
-            ++day;
-            NotifyEveryday();
             
             Debug.Log("Alived day : " + day);
         }

@@ -91,9 +91,12 @@ namespace ToBeFree {
             
             if(!string.IsNullOrEmpty(result.TestStat))
             {
-                int diceNum = 0;
-                diceNum = character.GetDiceNum(currEvent.Result.TestStat);
-
+                List<Item> itemsToDeactive = character.Inven.UseStatTestItems(result.TestStat, character);
+                int diceNum = character.GetDiceNum(result.TestStat);
+                
+                Debug.Log("diceNum : " + diceNum + ", TestItems DiceNum : " + itemsToDeactive.Count);
+                
+                
                 int minSuccessNum = 4;
                 int successDiceNum = 0;
                 System.Random r = new System.Random();
@@ -103,6 +106,11 @@ namespace ToBeFree {
                     {
                         successDiceNum++;
                     }
+                }
+
+                foreach (Item item in itemsToDeactive)
+                {
+                    item.DeactiveEffect(character);
                 }
 
                 if (successDiceNum > 0)
