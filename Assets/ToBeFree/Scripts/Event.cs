@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace ToBeFree
 {
     public class Event
@@ -38,9 +36,8 @@ namespace ToBeFree
             this.result = new Result(event_.result.TestStat, event_.result.Success, event_.result.Failure);
             this.bSelect = event_.bSelect;
             this.selectList = (Select[])event_.selectList.Clone();
-
         }
-        
+
         public string ActionType { get { return actionType; } }
         public string Region { get { return region; } }
         public string Stat { get { return stat; } }

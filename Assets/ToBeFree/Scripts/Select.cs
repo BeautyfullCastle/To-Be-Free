@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -12,7 +11,7 @@ namespace ToBeFree
         private int amount;
         private string script;
         private Result result;
-        
+
         public Select(string bigType, string detailType, string comparisonOperator, int amount, string script, Result result)
         {
             this.bigType = bigType;
@@ -25,12 +24,13 @@ namespace ToBeFree
 
         public bool CheckCondition(Character character)
         {
-            if(bigType == "CURE")
+            // have to fix here.
+            if (bigType == "CURE")
             {
-                if(detailType == "HP")
+                if (detailType == "HP")
                 {
                     Item item = character.Inven.FindItemByType(bigType, detailType);
-                    if(item == null)
+                    if (item == null)
                     {
                         Debug.Log(bigType + " or " + detailType + " is not exist.");
                         return false;
@@ -40,7 +40,7 @@ namespace ToBeFree
                     if (itemType == bigType && item.Effect.DetailType == detailType)
                     {
                         bool isExist = Compare(itemAmount, amount, comparisonOperator);
-                        if(isExist)
+                        if (isExist)
                         {
                             character.Inven.DeleteItem(item);
                         }
@@ -54,11 +54,11 @@ namespace ToBeFree
 
         private bool Compare(int left, int right, string comparisonOp)
         {
-            if(comparisonOp == "<")
+            if (comparisonOp == "<")
             {
                 return left < right;
             }
-            if(comparisonOp == "<=")
+            if (comparisonOp == "<=")
             {
                 return left <= right;
             }
@@ -70,7 +70,7 @@ namespace ToBeFree
             {
                 return left >= right;
             }
-            if(comparisonOp == ">")
+            if (comparisonOp == ">")
             {
                 return left > right;
             }

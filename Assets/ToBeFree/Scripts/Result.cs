@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace ToBeFree
 {
     public class Result
@@ -85,7 +83,7 @@ namespace ToBeFree
                 effects = value;
             }
         }
-        
+
         public ResultScriptAndEffects(string script, ResultEffect[] effects)
         {
             this.script = script;
@@ -98,11 +96,13 @@ namespace ToBeFree
         private int index;
         private Effect effect;
         private int value;
-        
-        public ResultEffect(int index, Effect effect, int value)
+        private AbnormalCondition abnormalCondition;
+
+        public ResultEffect(int index, Effect effect, AbnormalCondition abnormalCondition=null, int value=0)
         {
             this.index = index;
             this.effect = effect;
+            this.abnormalCondition = abnormalCondition;
             this.value = value;
         }
 
@@ -142,6 +142,19 @@ namespace ToBeFree
             set
             {
                 effect = value;
+            }
+        }
+
+        public AbnormalCondition AbnormalCondition
+        {
+            get
+            {
+                return abnormalCondition;
+            }
+
+            set
+            {
+                abnormalCondition = value;
             }
         }
     }

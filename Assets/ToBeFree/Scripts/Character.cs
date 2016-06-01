@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace ToBeFree
 {
     public class Character
     {
-        Stat stat;
-        string name;
-        City curCity;
-        int curMoney;
-        int curFoodNum;
-        int curInfoNum;
-        int curHP;
-        int curMental;
-        
+        private Stat stat;
+        private string name;
+        private City curCity;
+        private int curMoney;
+        private int curFoodNum;
+        private int curInfoNum;
+        private int curHP;
+        private int curMental;
+
         private Inventory inven;
 
         // Todo : skill
@@ -34,27 +32,33 @@ namespace ToBeFree
             this.inven = inven;
         }
 
-        void Start()
+        private void Start()
         {
             //int temp = stat.Strength;
         }
-        
+
         public int GetDiceNum(string stat)
         {
             switch (stat)
             {
                 case "STR":
                     return this.Stat.Strength;
+
                 case "AGI":
                     return this.Stat.Agility;
+
                 case "OBS":
                     return this.Stat.Observation;
+
                 case "BAR":
                     return this.Stat.Bargain;
+
                 case "PAT":
                     return this.Stat.Patience;
+
                 case "LUC":
                     return this.Stat.Luck;
+
                 default:
                     Debug.LogError("GetDiceNum : Stat name is not correct : " + stat);
                     return -1;
@@ -204,7 +208,7 @@ namespace ToBeFree
 
             set
             {
-                if(curMoney + value < 0)
+                if (curMoney + value < 0)
                 {
                     throw new System.Exception("not enough money");
                 }

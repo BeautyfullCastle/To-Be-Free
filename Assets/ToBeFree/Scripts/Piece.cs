@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ToBeFree
 {
@@ -30,17 +26,23 @@ namespace ToBeFree
 
     public class Police : Piece
     {
-        public Police(City city) : base(city) { }
+        public Police(City city) : base(city)
+        {
+        }
     }
 
     public class Information : Piece
     {
-        public Information(City city) : base(city) { }
+        public Information(City city) : base(city)
+        {
+        }
     }
 
     public class Broker : Piece
     {
-        public Broker(City city) : base(city) { }
+        public Broker(City city) : base(city)
+        {
+        }
     }
 
     public class Quest : Piece
@@ -66,7 +68,7 @@ namespace ToBeFree
         public void CheckTimeToDisapper()
         {
             this.leftDays--;
-            if(this.leftDays == 0)
+            if (this.leftDays == 0)
             {
                 Disapper();
             }
@@ -89,8 +91,5 @@ namespace ToBeFree
                 curEvent = value;
             }
         }
-
-        
     }
-
 }

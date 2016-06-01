@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 namespace ToBeFree
 {
@@ -38,7 +37,6 @@ namespace ToBeFree
         private string bigType;
         private string middleType;
         private string detailType;
-        
 
         public Effect(string bigType, string middleType, string detailType = "")
         {
@@ -49,9 +47,8 @@ namespace ToBeFree
 
         public Effect(Effect effect) : this(effect.bigType, effect.middleType, effect.detailType)
         {
-
         }
-        
+
         public bool Activate(Character character, int amount)
         {
             // if bEffectRestore is true, have to restore this effect.
@@ -62,12 +59,14 @@ namespace ToBeFree
                 case "FOOD":
                     character.FOOD += amount;
                     break;
+
                 case "INVEN":
                     for (int i = 0; i < amount; ++i)
                     {
                         character.Inven.AddSlot();
                     }
                     break;
+
                 case "CURE":
                     if (middleType == "BOTH" || middleType == "HP")
                     {
@@ -80,6 +79,7 @@ namespace ToBeFree
                         character.MENTAL += amount;
                     }
                     break;
+
                 case "STAT":
                     // all for abnormal
 
@@ -88,7 +88,7 @@ namespace ToBeFree
                         character.Stat.Strength += amount;
                         Debug.Log("effect activate strength : " + character.Stat.Strength);
                     }
-                    if(middleType == "AGI" || middleType == "ALL")
+                    if (middleType == "AGI" || middleType == "ALL")
                     {
                         character.Stat.Agility += amount;
                         Debug.Log("effect activate agility : " + character.Stat.Agility);
@@ -114,6 +114,7 @@ namespace ToBeFree
                         Debug.Log("effect activate luck : " + character.Stat.Luck);
                     }
                     break;
+
                 case "INFORM":
                 case "POLICE":
                     if (middleType == "MOVE")
@@ -127,7 +128,7 @@ namespace ToBeFree
                         if (detailType == "RAND TO CLOSE")
                         {
                             Piece piece = PieceManager.Instance.GetRand(bigType);
-                            
+
                             piece.City = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
                         if (detailType == "FAR TO CLOSE")
@@ -145,50 +146,52 @@ namespace ToBeFree
                             piece.City = CityGraph.Instance.FindRandCityByDistance(character.CurCity, randDistance);
                         }
                     }
-                    if(middleType == "DEL")
+                    if (middleType == "DEL")
                     {
                         Piece piece = null;
                         if (detailType == "RAND")
                         {
                             piece = PieceManager.Instance.GetRand(bigType);
                         }
-                        if(detailType == "FAR")
+                        if (detailType == "FAR")
                         {
                             piece = PieceManager.Instance.GetLast(bigType);
                         }
-                        if(detailType == "CLOSE") {
+                        if (detailType == "CLOSE")
+                        {
                             piece = PieceManager.Instance.GetFirst(bigType);
                         }
                         PieceManager.Instance.Delete(piece);
                     }
-                    if(middleType == "ADD")
+                    if (middleType == "ADD")
                     {
-                        if(detailType == "RAND")
+                        if (detailType == "RAND")
                         {
                             City city = CityGraph.Instance.FindRand();
                             Piece piece = PieceManager.Instance.Add(city, bigType);
                         }
-                        if(detailType == "CLOSE")
+                        if (detailType == "CLOSE")
                         {
                             City city = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
                             Piece piece = PieceManager.Instance.Add(city, bigType);
                         }
                     }
                     // for infrom only
-                    if(middleType == "CHARACTER")
+                    if (middleType == "CHARACTER")
                     {
-                        if(detailType == "ADD")
+                        if (detailType == "ADD")
                         {
                             character.CurInfoNum++;
                         }
-                        if(detailType == "DEL")
+                        if (detailType == "DEL")
                         {
                             character.CurInfoNum--;
                         }
                     }
                     break;
+
                 case "ITEM":
-                    if(middleType == "ADD")
+                    if (middleType == "ADD")
                     {
                         Item item = null;
                         if (detailType == "ALL")
@@ -211,13 +214,13 @@ namespace ToBeFree
                             throw new System.Exception("detail type is not right.");
                         }
 
-                        if(item==null)
+                        if (item == null)
                         {
                             throw new System.Exception("item is null");
                         }
                         character.Inven.AddItem(item);
                     }
-                    if(middleType == "DEL")
+                    if (middleType == "DEL")
                     {
                         Item item = null;
                         if (detailType == "ALL")
@@ -245,6 +248,7 @@ namespace ToBeFree
                         character.Inven.DeleteItem(item);
                     }
                     break;
+
                 case "MONEY":
                     if (middleType == "SPECIFIC")
                     {
@@ -259,17 +263,19 @@ namespace ToBeFree
                         character.CurMoney += money;
                     }
                     break;
+
                 case "CHARACTER":
-                    if(middleType == "MOVE")
+                    if (middleType == "MOVE")
                     {
-                        if(detailType == "CLOSE")
+                        if (detailType == "CLOSE")
                         {
                             character.CurCity = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
                     }
                     break;
+
                 case "ACTION POWER":
-                    if(middleType == "DEACTIVE")
+                    if (middleType == "DEACTIVE")
                     {
                         if (detailType == "WORK") { }
                         else if (detailType == "MOVE") { }
@@ -277,47 +283,35 @@ namespace ToBeFree
                         else if (detailType == "SPECIAL") { } // other commands.
                     }
                     break;
+
+                case "DICE":
+                    if (middleType == "SUCCESS NUM")
+                    {
+                        if (amount != 4 || amount != 6)
+                        {
+                            throw new System.Exception("Input Dice success num is not 4 or 6.");
+                        }
+                        EventManager.Instance.MinDiceSuccessNum = amount;
+                    }
+                    break;
+
                 case "SKIP ACTION":
                     if (middleType == "WORK") { }
                     else if (middleType == "MOVE") { }
                     else if (middleType == "INFORM") { }
                     break;
+
                 case "ABNORMAL CONDITION":
-                    if (middleType == "DICE")
+                    if (middleType == "ADD")
                     {
-                        if (detailType == "SUCCESS NUM")
-                        {
-
-                        }
-                        else if (detailType == "MOVE") { }
-                        else if (detailType == "WORK") { }
-                    }
-                    else if (middleType == "VARIATION EVERYDAY")
-                    {
-                        if (detailType == "HEALTH")
-                        {
-
-                        }
-                        else if (detailType == "MENTAL")
-                        {
-
-                        }
-                    }
-                    else if (middleType == "FOOD") { }
-                    else if (middleType == "REST") {
-                        if(detailType == "CANNOT CURE")
-                        {
-
-                        }
-                    }
-                    else if(middleType == "VARIATION ONE DAY")
-                    {
-                        if(detailType == "STAT")
+                        if (middleType == "DESPAIR")
                         {
                             
+                            BuffList.Instance.Add(abnormalCondition.Buff);
                         }
                     }
                     break;
+
                 default:
                     break;
             }

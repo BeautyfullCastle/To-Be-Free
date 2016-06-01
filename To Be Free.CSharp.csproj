@@ -206,10 +206,12 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\AbnormalCondition.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Action.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Buff.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\BuffList.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Character.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\City.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\CityGraph.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Condition.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Effect.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Event.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\EventManager.cs" />

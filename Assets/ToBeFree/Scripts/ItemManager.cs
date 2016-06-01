@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace ToBeFree
 {
@@ -34,6 +32,19 @@ namespace ToBeFree
         public Item GetByIndex(int index)
         {
             return itemList[index];
+        }
+
+        public Item GetByType(string bigType, string middleType, string detailType)
+        {
+            foreach (Item item in itemList)
+            {
+                if (item.Effect.BigType == bigType && item.Effect.MiddleType == middleType
+                    && item.Effect.DetailType == detailType)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
     }
 }

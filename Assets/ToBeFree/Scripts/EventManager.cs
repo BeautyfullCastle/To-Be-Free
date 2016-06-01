@@ -1,22 +1,28 @@
-using UnityEngine;
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-namespace ToBeFree {
-    public class EventManager : Singleton<EventManager> {
+namespace ToBeFree
+{
+    public class EventManager : Singleton<EventManager>
+    {
         private List<Event> everyEvents;
         private ResultEffect[] resultEffects;
+        private int minDiceSuccessNum;
+        
+        public delegate void TestEventHandler(Character character);
+        public event TestEventHandler StartTestNotify;
+        public event TestEventHandler EndTestNotify;
 
         public EventManager()
         {
             everyEvents = new List<Event>();
+            minDiceSuccessNum = 4;
         }
 
         public Event DoCommand(string actionType, Character character)
         {
             Event selectedEvent = Find(actionType, character.CurCity);
-            if(selectedEvent == null)
+            if (selectedEvent == null)
             {
                 Debug.LogError("selectedEvent is null");
                 return null;
@@ -26,25 +32,26 @@ namespace ToBeFree {
             return selectedEvent;
         }
 
-        public Event Find(string actionType, City city) {
+        public Event Find(string actionType, City city)
+        {
             // should check here again.
             List<Event> findedEvents = SelectEventsByAction(actionType);
-            
+
             // <eRegion, List<Event>>
             Dictionary<int, List<Event>> eventListPerRegionDic = InitEventListPerRegionDic(findedEvents, city);
-            if(eventListPerRegionDic.Count == 0)
+            if (eventListPerRegionDic.Count == 0)
             {
                 Debug.LogError("eventListPerRegionDic.Count == 0");
                 return null;
             }
             List<Event> regionEvents = SelectRandomEventsByProb(eventListPerRegionDic, actionType, "Region");
-            if(regionEvents.Count == 0)
+            if (regionEvents.Count == 0)
             {
                 Debug.LogError("regionEvents.Count == 0");
                 return null;
             }
             List<Event> statEvents = null;
-            if (actionType == "Global" || actionType== "Quest")
+            if (actionType == "Global" || actionType == "Quest")
             {
                 statEvents = regionEvents;
             }
@@ -58,18 +65,18 @@ namespace ToBeFree {
                 }
                 statEvents = SelectRandomEventsByProb(eventListPerStatDic, actionType, "Stat");
             }
-            
+
             System.Random r = new System.Random();
-            int randVal = r.Next(0, statEvents.Count-1);
-            
+            int randVal = r.Next(0, statEvents.Count - 1);
+
             return statEvents[randVal];
         }
-        
-        public bool ActivateEvent(Event currEvent, Character character) {
+
+        public bool ActivateEvent(Event currEvent, Character character)
+        {
             Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.Stat + " is activated.");
-            
+
             Result result = currEvent.Result;
-            
 
             if (currEvent.ActionType == "Global")
             {
@@ -77,7 +84,7 @@ namespace ToBeFree {
             }
             if (currEvent.ActionType == "Quest" && currEvent.BSelect)
             {
-                if(currEvent.SelectList[0].CheckCondition(character))
+                if (currEvent.SelectList[0].CheckCondition(character))
                 {
                     result = currEvent.SelectList[0].Result;
                     resultEffects = currEvent.SelectList[0].Result.Success.Effects;
@@ -88,29 +95,33 @@ namespace ToBeFree {
                     return false;
                 }
             }
-            
-            if(!string.IsNullOrEmpty(result.TestStat))
+
+            // dice test
+            if (!string.IsNullOrEmpty(result.TestStat))
             {
+                StartTestNotify(character);
+
                 List<Item> itemsToDeactive = character.Inven.UseStatTestItems(result.TestStat, character);
                 int diceNum = character.GetDiceNum(result.TestStat);
-                
+
                 Debug.Log("diceNum : " + diceNum + ", TestItems DiceNum : " + itemsToDeactive.Count);
-                
-                
-                int minSuccessNum = 4;
+
                 int successDiceNum = 0;
                 System.Random r = new System.Random();
                 for (int i = 0; i < diceNum; ++i)
                 {
-                    if (r.Next(1, 6) >= minSuccessNum)
+                    if (r.Next(1, 6) >= minDiceSuccessNum)
                     {
                         successDiceNum++;
                     }
                 }
 
+                EndTestNotify(character);
+
+                // TO DO : move inside EndTestNotify in Item OR delete
                 foreach (Item item in itemsToDeactive)
                 {
-                    item.DeactiveEffect(character);
+                    item.DeactivateEffect(character);
                 }
 
                 if (successDiceNum > 0)
@@ -139,15 +150,24 @@ namespace ToBeFree {
 
             for (int i = 0; i < resultEffects.Length; ++i)
             {
-                resultEffects[i].Effect.Activate(character, resultEffects[i].Value);
+                if (resultEffects[i].Effect != null)
+                {
+                    resultEffects[i].Effect.Activate(character, resultEffects[i].Value);
+                }
+                else if(resultEffects[i].AbnormalCondition != null)
+                {
+                    resultEffects[i].AbnormalCondition.Activate(character, resultEffects[i].Value);
+                }
             }
         }
 
-        private List<Event> SelectEventsByAction(string actionType) {
-            List<Event> findedEvents = new List<Event>();        
+        private List<Event> SelectEventsByAction(string actionType)
+        {
+            List<Event> findedEvents = new List<Event>();
             foreach (Event elem in everyEvents)
             {
-                if(!elem.ActionType.Contains(actionType)) {
+                if (!elem.ActionType.Contains(actionType))
+                {
                     continue;
                 }
                 findedEvents.Add(elem);
@@ -159,7 +179,7 @@ namespace ToBeFree {
             }
             return findedEvents;
         }
-        
+
         private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, string actionType, string probType)
         {
             Probability prob = ProbabilityManager.Instance.FindProbByAction(actionType, probType).DeepCopy();
@@ -167,8 +187,8 @@ namespace ToBeFree {
             return new List<Event>(SelectRandomEvents(prob, eventListDic));
         }
 
-        private Dictionary<int, List<Event>> InitEventListPerRegionDic(List<Event> regionEvents, City city) {
-            
+        private Dictionary<int, List<Event>> InitEventListPerRegionDic(List<Event> regionEvents, City city)
+        {
             Dictionary<int, List<Event>> eventListPerRegionDic = new Dictionary<int, List<Event>>()
             {
                 {0, new List<Event>() }, {1, new List<Event>() }, {2, new List<Event>() }
@@ -176,16 +196,17 @@ namespace ToBeFree {
 
             foreach (Event eventElem in regionEvents)
             {
-                if(eventElem == null) {
+                if (eventElem == null)
+                {
                     Debug.LogError("eventElem can't find.");
                     continue;
                 }
-                
-                if(eventElem.Region == city.Name)
+
+                if (eventElem.Region == city.Name)
                 {
                     eventListPerRegionDic[(int)eRegion.CITY].Add(eventElem);
                 }
-                else if(eventElem.Region == city.Area)
+                else if (eventElem.Region == city.Area)
                 {
                     eventListPerRegionDic[(int)eRegion.AREA].Add(eventElem);
                 }
@@ -204,7 +225,7 @@ namespace ToBeFree {
                 {0, new List<Event>() }, {1, new List<Event>() }, {2, new List<Event>() },
                 { 3, new List<Event>() }, {4, new List<Event>() }, {5, new List<Event>() }
             };
-            
+
             foreach (Event eventElem in statEvents)
             {
                 if (eventElem == null)
@@ -218,32 +239,36 @@ namespace ToBeFree {
             return eventListPerStatDic;
         }
 
-        private List<Event> SelectRandomEvents(Probability prob, Dictionary<int, List<Event>> dic) {
-            if(prob == null) {
+        private List<Event> SelectRandomEvents(Probability prob, Dictionary<int, List<Event>> dic)
+        {
+            if (prob == null)
+            {
                 Debug.LogError("prob is null.");
                 return null;
             }
-            
+
             int totalProbVal = prob.CheckAddedAllProbValues();
-            if(totalProbVal == 0)
+            if (totalProbVal == 0)
             {
                 Debug.LogError("Total prob value is 0");
                 return null;
             }
             System.Random r = new System.Random();
             int randVal = r.Next(1, totalProbVal);
-            
+
             List<Event> eventList;
             int val = 0;
-            foreach(int key in dic.Keys) {
+            foreach (int key in dic.Keys)
+            {
                 val += prob.DataList[key];
-                if(randVal < val) {
+                if (randVal < val)
+                {
                     eventList = dic[key];
                     return eventList;
                 }
             }
             Debug.LogError("Can't find event list. rand Val : + " + randVal + " , total val : " + val);
-            return null;            
+            return null;
         }
 
         public List<Event> EveryEvents
@@ -271,5 +296,18 @@ namespace ToBeFree {
                 resultEffects = value;
             }
         }
-    }    
+
+        public int MinDiceSuccessNum
+        {
+            get
+            {
+                return minDiceSuccessNum;
+            }
+
+            set
+            {
+                minDiceSuccessNum = value;
+            }
+        }
+    }
 }

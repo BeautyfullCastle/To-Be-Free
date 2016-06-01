@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace ToBeFree
 {
@@ -10,7 +9,7 @@ namespace ToBeFree
 
     public enum eDuration
     {
-        ONCE, EQUIP
+        ONCE, EQUIP, DAY, PAT_TEST_REST
     }
 
     public class Item
@@ -23,7 +22,6 @@ namespace ToBeFree
         private int amount;
         private int price;
         private int maximumStackableQuantity;
-        
 
         public Item(string name, Effect effect, eStartTime startTime, eDuration duration, bool isRestore,
                     int amount, int price, int maximumStackableQuantity)
@@ -41,7 +39,6 @@ namespace ToBeFree
         public Item(Item item)
          : this(item.name, item.effect, item.startTime, item.duration, item.isRestore, item.amount, item.price, item.maximumStackableQuantity)
         {
-
         }
 
         public Item DeepCopy()
@@ -67,10 +64,9 @@ namespace ToBeFree
                 return;
 
             effect.Activate(character, amount);
-            
         }
 
-        public void DeactiveEffect(Character character)
+        public void DeactivateEffect(Character character)
         {
             if (effect == null)
                 return;
@@ -84,7 +80,6 @@ namespace ToBeFree
         public bool CheckActCondition() {
             if(type == eType)
             if(duration == eDuration.EQUIP) {
-
             }
         }
         */

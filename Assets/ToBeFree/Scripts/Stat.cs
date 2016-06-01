@@ -1,19 +1,16 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace ToBeFree
+﻿namespace ToBeFree
 {
     public class Stat
     {
-        int strength;
-        int agility;
-        int observation;
-        int bargain;
-        int patience;
-        int luck;
-        int totalHP;
-        int totalMental;
-        int totalFoodNum;
+        private int strength;
+        private int agility;
+        private int observation;
+        private int bargain;
+        private int patience;
+        private int luck;
+        private int totalHP;
+        private int totalMental;
+        private int totalFoodNum;
 
         public Stat()
         {
@@ -41,11 +38,9 @@ namespace ToBeFree
             this.totalFoodNum = stat.totalFoodNum;
         }
 
-        
         public int TotalHP { get { return totalHP; } }
         public int TotalMental { get { return totalMental; } }
         public int TotalFoodNum { get { return totalFoodNum; } }
-
 
         public int Strength
         {

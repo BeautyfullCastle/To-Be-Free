@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -82,7 +81,7 @@ namespace ToBeFree
                 size = value;
             }
         }
-        
+
         public List<City> NeighborList
         {
             get

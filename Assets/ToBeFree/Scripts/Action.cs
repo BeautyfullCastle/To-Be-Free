@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -14,16 +13,16 @@ namespace ToBeFree
             List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
 
             // activate abnormal condition's effect in buff list.
-            BuffList.Instance.Do(startTime, character);
+            BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
 
             if (!string.IsNullOrEmpty(actionName))
             {
                 Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
             }
 
-            foreach(Item item in itemsToDeactive)
+            foreach (Item item in itemsToDeactive)
             {
-                item.DeactiveEffect(character);
+                item.DeactivateEffect(character);
             }
         }
     }
@@ -59,7 +58,7 @@ namespace ToBeFree
         public override void Activate(Character character)
         {
             base.Activate(character);
-            
+
             // if effect is money and event is succeeded,
             ResultEffect[] successResulteffects = EventManager.Instance.ResultEffects;
 
@@ -71,7 +70,7 @@ namespace ToBeFree
                     break;
                 }
             }
-            
+
             Debug.Log("character work.");
         }
     }
@@ -87,7 +86,7 @@ namespace ToBeFree
         public override void Activate(Character character)
         {
             base.Activate(character);
-            
+
             character.CurCity = CityGraph.Instance.Find("A");
             Debug.Log("character is moved to " + character.CurCity.Name);
         }
@@ -106,9 +105,8 @@ namespace ToBeFree
             List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
 
             // activate abnormal condition's effect in buff list.
-            BuffList.Instance.Do(startTime, character);
-            
-            
+            BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
+
             List<Quest> quests = PieceManager.Instance.QuestList.FindAll(x => x.City == character.CurCity);
             if (quests.Count >= 2)
             {
@@ -129,7 +127,7 @@ namespace ToBeFree
 
             foreach (Item item in itemsToDeactive)
             {
-                item.DeactiveEffect(character);
+                item.DeactivateEffect(character);
             }
 
             Debug.Log("character quest activated.");
@@ -149,7 +147,7 @@ namespace ToBeFree
             List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
 
             // activate abnormal condition's effect in buff list.
-            BuffList.Instance.Do(startTime, character);
+            BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
 
             foreach (Police police in PieceManager.Instance.PoliceList)
             {
@@ -161,7 +159,7 @@ namespace ToBeFree
 
             foreach (Item item in itemsToDeactive)
             {
-                item.DeactiveEffect(character);
+                item.DeactivateEffect(character);
             }
 
             Debug.Log("character quest activated.");

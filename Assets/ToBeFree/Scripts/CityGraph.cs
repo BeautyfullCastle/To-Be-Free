@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -39,13 +37,13 @@ namespace ToBeFree
             int randIndex = r.Next(0, list.Count);
             return list[randIndex];
         }
-        
+
         public List<City> FindCitiesBySize(string size)
         {
             List<City> cityListBySize = new List<City>();
-            foreach(City city in list)
+            foreach (City city in list)
             {
-                if(city.Size == size)
+                if (city.Size == size)
                 {
                     cityListBySize.Add(city);
                 }
@@ -59,14 +57,14 @@ namespace ToBeFree
             // put a police in random cities by distance.
             List<City> cityList = CityGraph.Instance.FindCitiesByDistance(curCity, distance);
             int randCityIndex = r.Next(0, cityList.Count);
-            
+
             return cityList[randCityIndex];
         }
 
         private List<City> FindCitiesByDistance(City curCity, int distance)
         {
             List<City> cities = new List<City>();
-            
+
             if (!cities.Contains(curCity))
             {
                 cities.Add(curCity);
@@ -86,7 +84,7 @@ namespace ToBeFree
                 if (!cities.Contains(neighbor))
                 {
                     cities.Add(neighbor);
-                    PutCityInNeighbors(neighbor, cities, distance-1);
+                    PutCityInNeighbors(neighbor, cities, distance - 1);
                 }
             }
         }
@@ -94,7 +92,7 @@ namespace ToBeFree
         public void CalculateDistance(City curCity)
         {
             // TO DO : have to rest every city's distance
-            foreach(City city in list)
+            foreach (City city in list)
             {
                 city.Distance = 1000;
             }
@@ -105,7 +103,7 @@ namespace ToBeFree
 
         private void CalcDist(City city, int dist)
         {
-            if(city == null || dist >= city.Distance)
+            if (city == null || dist >= city.Distance)
             {
                 return;
             }

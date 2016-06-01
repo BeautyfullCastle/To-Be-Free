@@ -1,20 +1,25 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-namespace ToBeFree {
-    public enum eRegion {
+namespace ToBeFree
+{
+    public enum eRegion
+    {
         AREA = 0, CITY, ALL
     }
-    
-    public enum eStat {
+
+    public enum eStat
+    {
         STR = 0, AGI, OBS, BAR, PAT, LUC
     }
-        
-    public class Probability {
+
+    public class Probability
+    {
         private string actionType;
         private List<int> dataList; // Key : dataType, Value : dataValue
 
-        public Probability(string actionType, List<int> dataList) {
+        public Probability(string actionType, List<int> dataList)
+        {
             this.actionType = actionType;
             this.dataList = dataList;
         }
@@ -35,38 +40,41 @@ namespace ToBeFree {
             return prob;
         }
 
-        private void CalculateTotalProb(int[] values) {
+        private void CalculateTotalProb(int[] values)
+        {
             int totalProb = 0;
-            for(int i=0; i<values.Length; ++i) {
+            for (int i = 0; i < values.Length; ++i)
+            {
                 totalProb += values[i];
             }
-            if(totalProb != 100) {
+            if (totalProb != 100)
+            {
                 Debug.LogError("RegionProbability is not 100%.");
                 //return;
             }
         }
-        
-        public int CheckAddedAllProbValues() {
+
+        public int CheckAddedAllProbValues()
+        {
             int addedProbValue = 0;
-            foreach(int val in dataList) { 
+            foreach (int val in dataList)
+            {
                 addedProbValue += val;
             }
             return addedProbValue;
         }
-        
-        public void ResetProbValues(Dictionary<int, List<Event>> eventListDic) {
-            
-            for (int index=0; index<dataList.Count; ++index)
+
+        public void ResetProbValues(Dictionary<int, List<Event>> eventListDic)
+        {
+            for (int index = 0; index < dataList.Count; ++index)
             {
                 if (eventListDic[index].Count == 0) // error
                 {
                     dataList[index] = 0;
                 }
-            }            
+            }
         }
 
-        
-        
         public string ActionType
         {
             get
@@ -93,5 +101,4 @@ namespace ToBeFree {
             }
         }
     }
-
 }

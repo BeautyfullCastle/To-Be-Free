@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ namespace ToBeFree
     {
         private int maxSlots;
         public List<InventoryRecord> InventoryRecords;
-        
+
         public Inventory(int maxSlots)
         {
             this.maxSlots = maxSlots;
@@ -25,7 +24,6 @@ namespace ToBeFree
                 throw new Exception("There's no item like this in the inventory : " + item.Name);
             }
             inventoryRecord.InventoryItem.ActivateEffect(character);
-            
         }
 
         public List<Item> CheckItemStartTime(eStartTime startTime, Character character)
@@ -34,7 +32,7 @@ namespace ToBeFree
 
             foreach (InventoryRecord record in InventoryRecords)
             {
-                if(record.InventoryItem.StartTime == startTime)
+                if (record.InventoryItem.StartTime == startTime)
                 {
                     UseItem(record.InventoryItem, character);
                     if (record.InventoryItem.IsRestore)
@@ -44,7 +42,7 @@ namespace ToBeFree
                 }
             }
 
-            InventoryRecords.RemoveAll(x => (x.InventoryItem.Duration == eDuration.ONCE) 
+            InventoryRecords.RemoveAll(x => (x.InventoryItem.Duration == eDuration.ONCE)
                                             && (x.InventoryItem.StartTime == startTime));
 
             return itemsToDeactive;
@@ -55,9 +53,9 @@ namespace ToBeFree
             List<Item> itemsToDeactive = new List<Item>();
             foreach (InventoryRecord record in InventoryRecords)
             {
-                if ( (record.InventoryItem.StartTime == eStartTime.TEST)
+                if ((record.InventoryItem.StartTime == eStartTime.TEST)
                     && (record.InventoryItem.Effect.BigType == "STAT")
-                    && (record.InventoryItem.Effect.MiddleType == testStat) )
+                    && (record.InventoryItem.Effect.MiddleType == testStat))
                 {
                     UseItem(record.InventoryItem, character);
                     if (record.InventoryItem.IsRestore)
@@ -84,7 +82,7 @@ namespace ToBeFree
             {
                 inventoryRecord.AddToQuantity(1);
             }
-            else if(inventoryRecord == null)
+            else if (inventoryRecord == null)
             {
                 if (InventoryRecords.Count >= maxSlots)
                 {
@@ -98,12 +96,12 @@ namespace ToBeFree
         {
             InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.InventoryItem.Name == item.Name));
 
-            if(inventoryRecord == null)
+            if (inventoryRecord == null)
             {
                 throw new Exception("There's no item like this in the inventory : " + item.Name);
             }
             int remainQuantity = inventoryRecord.DeleteToQuantity(1);
-            if(remainQuantity <= 0)
+            if (remainQuantity <= 0)
             {
                 InventoryRecords.Remove(inventoryRecord);
             }
@@ -118,9 +116,8 @@ namespace ToBeFree
 
         // TO DO : have to implement
         public Item GetTagRand(int iTag) { return null; }
-        
 
-        public Item FindItemByType(string bigType, string middleType, string detailType="")
+        public Item FindItemByType(string bigType, string middleType, string detailType = "")
         {
             InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.InventoryItem.Effect.BigType == bigType);
             if (inventoryRecord == null)
@@ -148,7 +145,6 @@ namespace ToBeFree
             this.maxSlots++;
         }
 
-
         public class InventoryRecord
         {
             public Item InventoryItem { get; private set; }
@@ -162,7 +158,7 @@ namespace ToBeFree
 
             public void AddToQuantity(int amountToAdd)
             {
-                if(Quantity + amountToAdd > InventoryItem.MaximumStackableQuantity)
+                if (Quantity + amountToAdd > InventoryItem.MaximumStackableQuantity)
                 {
                     Debug.LogError(InventoryItem.Name + "'s quantity is full : " + Quantity);
                     return;
@@ -172,7 +168,7 @@ namespace ToBeFree
 
             public int DeleteToQuantity(int amount)
             {
-                if(Quantity - amount < 0)
+                if (Quantity - amount < 0)
                 {
                     Debug.LogError(InventoryItem.Name + "'s quantity is lower than the amount you want. ");
                     return Quantity;
