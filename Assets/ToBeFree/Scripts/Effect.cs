@@ -37,6 +37,7 @@ namespace ToBeFree
         private string bigType;
         private string middleType;
         private string detailType;
+        private int prevAmount;
 
         public Effect(string bigType, string middleType, string detailType = "")
         {
@@ -51,8 +52,6 @@ namespace ToBeFree
 
         public bool Activate(Character character, int amount)
         {
-            // if bEffectRestore is true, have to restore this effect.
-            // DeActivate();
 
             switch (bigType)
             {
@@ -287,11 +286,13 @@ namespace ToBeFree
                 case "DICE":
                     if (middleType == "SUCCESS NUM")
                     {
-                        if (amount != 4 || amount != 6)
+                        if ( !(amount == 4 || amount == 6) )
                         {
                             throw new System.Exception("Input Dice success num is not 4 or 6.");
                         }
-                        EventManager.Instance.MinDiceSuccessNum = amount;
+                        Debug.Log("Effect " + bigType + " " + middleType + " " + amount + " activated.");
+                        prevAmount = DiceTester.Instance.MinSuccessNum;
+                        DiceTester.Instance.MinSuccessNum = amount;
                     }
                     break;
 
@@ -301,21 +302,35 @@ namespace ToBeFree
                     else if (middleType == "INFORM") { }
                     break;
 
-                case "ABNORMAL CONDITION":
-                    if (middleType == "ADD")
-                    {
-                        if (middleType == "DESPAIR")
-                        {
+                //case "ABNORMAL CONDITION":
+                //    if (middleType == "ADD")
+                //    {
+                //        if (middleType == "DESPAIR")
+                //        {
                             
-                            BuffList.Instance.Add(abnormalCondition.Buff);
-                        }
-                    }
-                    break;
+                //            BuffList.Instance.Add(abnormalCondition.Buff);
+                //        }
+                //    }
+                //    break;
 
                 default:
                     break;
             }
             return false;
+        }
+
+        public void Deactivate(Character character)
+        {
+            switch (bigType)
+            {
+                case "DICE":
+                    if (middleType == "SUCCESS NUM")
+                    {
+                        Debug.Log("Effect " + bigType + " " + middleType + " " + prevAmount + " deactivated.");
+                        DiceTester.Instance.MinSuccessNum = prevAmount;
+                    }
+                    break;
+            }
         }
 
         public string DetailType { get { return detailType; } }

@@ -109,7 +109,7 @@ namespace ToBeFree
             Select select_quest = new Select("CURE", "HP", ">=", 1, "select cure hp > 1", result_quest);
 
             Event event_move = new Event("Move", "A", "AGI", "move strength test, A city", result_agility, false, null);
-            Event event_Inspection = new Event("Inspect", "A", "OBS", "Inspection agility test, A city", result_observation, false, null);
+            Event event_Inspection = new Event("Inspect", "B", "OBS", "Inspection agility test, A city", result_observation, false, null);
             Event event_work_A = new Event("Work", "A", "STR", "police agility test, A city", result_strength, false, null);
             Event event_work_B = new Event("Work", "B", "STR", "police agility test, A city", result_strength, false, null);
             Event event_global = new Event("Global", "ALL", string.Empty, "global event", result_global, false, null);
@@ -120,12 +120,12 @@ namespace ToBeFree
             Effect effect_dice_successNum = new Effect("DICE", "SUCCESS NUM", string.Empty);
             Condition spawnCondition_despair = new Condition("MENTAL", string.Empty, string.Empty, "<=", 0);
             Buff despairBuff = new Buff("Despair buff", effect_dice_successNum, true, 6, eStartTime.TEST, eDuration.PAT_TEST_REST, false);
-            AbnormalCondition despair = new AbnormalCondition("despair", despairBuff, spawnCondition_despair, false, false);
+            AbnormalCondition despair = new Despair("despair", despairBuff, spawnCondition_despair, false, false);
 
             ResultEffect[] resultEffects_dice_successNum_6 = new ResultEffect[1] { new ResultEffect(2, null, despair, 6) };
             ResultScriptAndEffects failure_diceNum_6 = new ResultScriptAndEffects("dice num 6", resultEffects_dice_successNum_6);
             Result result_obs_diceNum_6 = new Result("OBS", failure_diceNum_6, failure_diceNum_6);
-            Event event_Inspection_despair = new Event("Inspect", "B", "OBS", "Inspection observation test", result_obs_diceNum_6, false, null);
+            Event event_Inspection_despair = new Event("Inspect", "A", "OBS", "Inspection observation test", result_obs_diceNum_6, false, null);
 
             EventManager.Instance.EveryEvents.Add(event_move);
             EventManager.Instance.EveryEvents.Add(event_Inspection);

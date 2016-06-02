@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -9,6 +10,10 @@ namespace ToBeFree
         public BuffList()
         {
             buffList = new List<Buff>();
+            Rest.CureEventNotify += Rest_Cure_PatienceTest;
+
+            DiceTester.Instance.StartTestNotify += ActivateTestEffect;
+            DiceTester.Instance.EndTestNotify += DeactivateTestEffect;
         }
 
         public Buff Add(Buff buff)
@@ -18,17 +23,23 @@ namespace ToBeFree
                 return null;
             }
             Buff buffInList = buffList.Find(x => x == buff);
-            if (buffInList != null)
+            if (buffInList == null)
             {
-                if(buffInList.IsStack)
-                {
-                    buff.Amount += buffInList.Amount;
-                    return buffInList;
-                }
+                buffList.Add(buff);
+                Debug.Log(buff.Name + " is added to buff list.");
+                return buff;
             }
-            buffList.Add(buff);
 
-            return buff;
+            if (buffInList.IsStack)
+            {
+                buff.Amount += buffInList.Amount;
+                return buffInList;
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public bool Delete(Buff buff)
@@ -47,26 +58,63 @@ namespace ToBeFree
             {
                 if (buff.StartTime == startTime)
                 {
-
                     buff.ActivateEffect(character);
-                    CheckDurationAndDelete(buff, character.Inven);
 
-                    buffList.Remove(buff);
+                    if (buff.Duration == eDuration.ONCE)
+                    {
+                        buffList.Remove(buff);
+                    }
+                    
                 }
             }
         }
 
-        private void CheckDurationAndDelete(Buff buff, Inventory inven)
+        public void ActivateTestEffect(eStartTime startTime, Character character)
         {
-            if (buff.Duration == eDuration.ONCE)
+            foreach (Buff buff in buffList)
             {
-                buffList.Remove(buff);
+                if(buff.StartTime == startTime)
+                    buff.ActivateEffect(character);
             }
         }
 
-        public bool Contains(Buff item)
+        public void DeactivateTestEffect(eStartTime startTime, Character character)
         {
-            return buffList.Contains(item);
+            foreach (Buff buff in buffList)
+            {
+                if (buff.StartTime == eStartTime.TEST)
+                    buff.DeactivateEffect(character);
+            }
+        }
+
+        private bool Rest_Cure_PatienceTest(Character character)
+        {
+            int patienceStat = character.Stat.Patience;
+            bool isTestSucceed = DiceTester.Instance.Test(patienceStat, character);
+
+            Buff buff = buffList.Find(x => x.Duration == eDuration.PAT_TEST_REST);
+            
+            if (isTestSucceed && buff != null)
+            {
+                buffList.Remove(buff);
+            }
+
+            return isTestSucceed;
+        }
+
+        public bool Contains(Buff buff)
+        {
+            return buffList.Contains(buff);
+        }
+
+        public bool Contains(string name)
+        {
+            return buffList.Contains(buffList.Find(x => x.Name == name));
+        }
+
+        public Buff Find(string name)
+        {
+            return buffList.Find(x => x.Name == name);
         }
     }
 

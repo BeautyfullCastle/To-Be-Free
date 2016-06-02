@@ -14,6 +14,9 @@ namespace ToBeFree
 
     public class Item
     {
+        // TO DO (16.06.02) : have to change to include buff in Item class.
+        private Buff buff;
+
         private string name;
         private Effect effect;
         private eStartTime startTime;
@@ -58,7 +61,7 @@ namespace ToBeFree
 
         public void ActivateEffect(Character character)
         {
-            Debug.Log("Item effect activate");
+            Debug.Log("Item " + name + "'s effect activate");
 
             if (effect == null)
                 return;
@@ -68,12 +71,12 @@ namespace ToBeFree
 
         public void DeactivateEffect(Character character)
         {
+            Debug.Log("Item " + name + "'s effect deactivate");
+
             if (effect == null)
                 return;
 
             effect.Activate(character, -amount);
-
-            Debug.Log("Item.Use");
         }
 
         /*

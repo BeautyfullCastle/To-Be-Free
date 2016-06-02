@@ -7,16 +7,10 @@ namespace ToBeFree
     {
         private List<Event> everyEvents;
         private ResultEffect[] resultEffects;
-        private int minDiceSuccessNum;
-        
-        public delegate void TestEventHandler(Character character);
-        public event TestEventHandler StartTestNotify;
-        public event TestEventHandler EndTestNotify;
 
         public EventManager()
         {
             everyEvents = new List<Event>();
-            minDiceSuccessNum = 4;
         }
 
         public Event DoCommand(string actionType, Character character)
@@ -99,39 +93,27 @@ namespace ToBeFree
             // dice test
             if (!string.IsNullOrEmpty(result.TestStat))
             {
-                StartTestNotify(character);
 
                 List<Item> itemsToDeactive = character.Inven.UseStatTestItems(result.TestStat, character);
+
                 int diceNum = character.GetDiceNum(result.TestStat);
-
+                bool isTestSucceed = DiceTester.Instance.Test(diceNum, character);
                 Debug.Log("diceNum : " + diceNum + ", TestItems DiceNum : " + itemsToDeactive.Count);
-
-                int successDiceNum = 0;
-                System.Random r = new System.Random();
-                for (int i = 0; i < diceNum; ++i)
-                {
-                    if (r.Next(1, 6) >= minDiceSuccessNum)
-                    {
-                        successDiceNum++;
-                    }
-                }
-
-                EndTestNotify(character);
-
+                
                 // TO DO : move inside EndTestNotify in Item OR delete
                 foreach (Item item in itemsToDeactive)
                 {
                     item.DeactivateEffect(character);
                 }
 
-                if (successDiceNum > 0)
+                if (isTestSucceed)
                 {
-                    Debug.Log("Event stat dice test succeeded. " + successDiceNum);
+                    Debug.Log("Event stat dice test succeeded. ");
                     resultEffects = currEvent.Result.Success.Effects;
                 }
                 else
                 {
-                    Debug.Log("Event stat dice test failed. " + successDiceNum);
+                    Debug.Log("Event stat dice test failed. ");
                     resultEffects = currEvent.Result.Failure.Effects;
                     ActivateResultEffects(resultEffects, character);
                     return false;
@@ -296,18 +278,6 @@ namespace ToBeFree
                 resultEffects = value;
             }
         }
-
-        public int MinDiceSuccessNum
-        {
-            get
-            {
-                return minDiceSuccessNum;
-            }
-
-            set
-            {
-                minDiceSuccessNum = value;
-            }
-        }
+        
     }
 }

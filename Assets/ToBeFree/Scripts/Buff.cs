@@ -18,15 +18,11 @@ namespace ToBeFree
 
         public Buff()
         {
-            if(startTime == eStartTime.TEST)
-            {
-                EventManager.Instance.StartTestNotify += ActivateEffect;
-                EventManager.Instance.EndTestNotify += DeactivateEffect;
-            }
+            
         }
 
         public Buff(string name, Effect effect, bool isRestore, int amount,
-            eStartTime startTime, eDuration duration, bool isStack)
+            eStartTime startTime, eDuration duration, bool isStack) : this()
         {
             this.name = name;
             this.effect = effect;
@@ -35,11 +31,12 @@ namespace ToBeFree
             this.startTime = startTime;
             this.duration = duration;
             this.isStack = isStack;
+            
         }
 
         public void ActivateEffect(Character character)
         {
-            Debug.Log("Item effect activate");
+            Debug.Log("buff " + name + "'s effect activate");
 
             if (effect == null)
                 return;
@@ -49,12 +46,13 @@ namespace ToBeFree
 
         public void DeactivateEffect(Character character)
         {
+            Debug.Log("buff " + name + "'s effect deactivate");
+
             if (effect == null)
                 return;
 
-            effect.Activate(character, -amount);
-
-            Debug.Log("Item.Use");
+            effect.Deactivate(character);
+            
         }
 
         public eStartTime StartTime

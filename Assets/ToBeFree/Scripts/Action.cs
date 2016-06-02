@@ -8,8 +8,13 @@ namespace ToBeFree
         protected eStartTime startTime;
         protected string actionName;
 
+        public delegate void ActionEventHandler(eStartTime startTime, Character character);
+        static public event ActionEventHandler ActionEventNotify;
+
         public virtual void Activate(Character character)
         {
+            ActionEventNotify(startTime, character);
+
             List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
 
             // activate abnormal condition's effect in buff list.
@@ -29,6 +34,9 @@ namespace ToBeFree
 
     public class Rest : Action
     {
+        public delegate bool CureEventHandler(Character character);
+        static public event CureEventHandler CureEventNotify;
+
         public Rest()
         {
             startTime = eStartTime.REST;
@@ -44,6 +52,8 @@ namespace ToBeFree
             Debug.Log("Cure for Rest");
             character.HP++;
             character.MENTAL++;
+
+            CureEventNotify(character);
         }
     }
 
@@ -87,7 +97,7 @@ namespace ToBeFree
         {
             base.Activate(character);
 
-            character.CurCity = CityGraph.Instance.Find("A");
+            character.CurCity = CityGraph.Instance.Find("B");
             Debug.Log("character is moved to " + character.CurCity.Name);
         }
     }

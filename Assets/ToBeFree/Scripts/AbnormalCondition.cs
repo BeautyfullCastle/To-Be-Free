@@ -4,11 +4,11 @@ namespace ToBeFree
 {
     public class AbnormalCondition
     {
-        private string name;
-        private Buff buff;
-        private Condition spawnCondition;
-        private bool isBody; // body or mental
-        private bool isPositive;
+        protected string name;
+        protected Buff buff;
+        protected Condition spawnCondition;
+        protected bool isBody; // body or mental
+        protected bool isPositive;
 
         public AbnormalCondition(string name, Buff buff, Condition spawnCondition, bool isBody, bool isPositive)
         {
@@ -19,29 +19,16 @@ namespace ToBeFree
             this.isPositive = isPositive;
         }
         
-        public void Activate(Character character, int value)
+        public virtual void Activate(Character character, int value)
         {
-            if(name == "despair")
-            {
-                if(BuffList.Instance.Contains("exhilaration"))
-                {
-                    BuffList.Instance.Delete(BuffList.Instance.Find("exhilaration"));
-                }
-            }
             BuffList.Instance.Add(this.buff);
         }
-
-
+        
         public Buff Buff
         {
             get
             {
                 return buff;
-            }
-
-            set
-            {
-                buff = value;
             }
         }
 
@@ -51,11 +38,27 @@ namespace ToBeFree
             {
                 return spawnCondition;
             }
+        }
+    }
 
-            set
+    public class Despair : AbnormalCondition
+    {
+
+        public Despair(string name, Buff buff, Condition spawnCondition, bool isBody, bool isPositive) : base(name, buff, spawnCondition, isBody, isPositive)
+        {
+            
+        }
+
+        public override void Activate(Character character, int value)
+        {
+            base.Activate(character, value);
+
+            Buff buff_exhilaration = BuffList.Instance.Find("Exhilaration");
+            if (buff_exhilaration == null)
             {
-                spawnCondition = value;
+                return;
             }
+            BuffList.Instance.Delete(buff_exhilaration);
         }
     }
 }
