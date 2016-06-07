@@ -80,8 +80,6 @@ namespace ToBeFree
                     break;
 
                 case "STAT":
-                    // all for abnormal
-
                     if (middleType == "STR" || middleType == "ALL")
                     {
                         character.Stat.Strength += amount;
@@ -301,17 +299,6 @@ namespace ToBeFree
                     else if (middleType == "MOVE") { }
                     else if (middleType == "INFORM") { }
                     break;
-
-                //case "ABNORMAL CONDITION":
-                //    if (middleType == "ADD")
-                //    {
-                //        if (middleType == "DESPAIR")
-                //        {
-                            
-                //            BuffList.Instance.Add(abnormalCondition.Buff);
-                //        }
-                //    }
-                //    break;
 
                 default:
                     break;

@@ -45,7 +45,7 @@ namespace ToBeFree
                 return null;
             }
             List<Event> statEvents = null;
-            if (actionType == "Global" || actionType == "Quest")
+            if (actionType == "GLOBAL" || actionType == "QUEST")
             {
                 statEvents = regionEvents;
             }
@@ -72,11 +72,11 @@ namespace ToBeFree
 
             Result result = currEvent.Result;
 
-            if (currEvent.ActionType == "Global")
+            if (currEvent.ActionType == "GLOBAL")
             {
                 resultEffects = currEvent.Result.Success.Effects;
             }
-            if (currEvent.ActionType == "Quest" && currEvent.BSelect)
+            if (currEvent.ActionType == "QUEST" && currEvent.BSelect)
             {
                 if (currEvent.SelectList[0].CheckCondition(character))
                 {

@@ -67,12 +67,12 @@ namespace ToBeFree
 
         public void Inspect()
         {
-            EventManager.Instance.DoCommand("Inspect", this);
+            EventManager.Instance.DoCommand("INSPECT", this);
         }
 
         public bool MoveTo(City city)
         {
-            EventManager.Instance.DoCommand("Move", this);
+            EventManager.Instance.DoCommand("MOVE", this);
             this.curCity = city;
             Debug.Log("character is moved to " + this.curCity.Name);
 
@@ -81,7 +81,7 @@ namespace ToBeFree
 
         public void Work()
         {
-            Event selectedEvent = EventManager.Instance.DoCommand("Work", this);
+            Event selectedEvent = EventManager.Instance.DoCommand("WORK", this);
             // if effect is money and event is succeeded,
             ResultEffect[] successResulteffects = selectedEvent.Result.Success.Effects;
 

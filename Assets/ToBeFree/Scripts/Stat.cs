@@ -38,6 +38,22 @@
             this.totalFoodNum = stat.totalFoodNum;
         }
 
+        public Stat DeepCopy()
+        {
+            Stat stat = (Stat)this.MemberwiseClone();
+            stat.agility      = this.agility;
+            stat.bargain      = this.bargain;
+            stat.luck         = this.luck;
+            stat.observation  = this.observation;
+            stat.patience     = this.patience;
+            stat.strength     = this.strength;
+            stat.totalFoodNum = this.totalFoodNum;
+            stat.totalHP      = this.totalHP;
+            stat.totalMental  = this.totalMental;
+
+            return stat;
+        }
+
         public int TotalHP { get { return totalHP; } }
         public int TotalMental { get { return totalMental; } }
         public int TotalFoodNum { get { return totalFoodNum; } }

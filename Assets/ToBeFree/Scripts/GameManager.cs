@@ -73,10 +73,10 @@ namespace ToBeFree
                 10, 1);
             Item addSTR_Work_Once = new Item("add str when working once", 
                 new Buff("Buff : add str when working once", 
-                    new Effect("STAT", "STR"), true, 1, eStartTime.WORK, eDuration.ONCE), 
+                    new Effect("STAT", "STR"), true, 1, eStartTime.TEST, eDuration.ONCE), 
                 10, 1);
             Item addSTR_Work_Equip = new Item("add str when working equip", 
-                    new Buff("add str when working equip", new Effect("STAT", "STR"), true, 1, eStartTime.WORK, eDuration.EQUIP), 
+                    new Buff("add str when working equip", new Effect("STAT", "STR"), true, 1, eStartTime.TEST, eDuration.EQUIP), 
                 10, 1);
             Item addAGI_Move_Once = new Item("addAGI_Move_Once", 
                     new Buff("Buff : addAGI_Move_Once", new Effect("STAT", "AGI"), true, 1, eStartTime.TEST, eDuration.ONCE), 
@@ -122,13 +122,13 @@ namespace ToBeFree
 
             Select select_quest = new Select("CURE", "HP", ">=", 1, "select cure hp > 1", result_quest);
 
-            Event event_move = new Event("Move", "A", "AGI", "move strength test, A city", result_agility, false, null);
-            Event event_Inspection = new Event("Inspect", "B", "OBS", "Inspection agility test, A city", result_observation, false, null);
-            Event event_work_A = new Event("Work", "A", "STR", "police agility test, A city", result_strength, false, null);
-            Event event_work_B = new Event("Work", "B", "STR", "police agility test, A city", result_strength, false, null);
-            Event event_global = new Event("Global", "ALL", string.Empty, "global event", result_global, false, null);
-            Event event_quest = new Event("Quest", "ALL", string.Empty, "quest", result_quest, true, new Select[1] { select_quest });
-            Event event_globalquest = new Event("Quest", "ALL", string.Empty, "quest", result_quest, false, null);
+            Event event_move = new Event("MOVE", "A", "AGI", "move strength test, A city", result_agility, false, null);
+            Event event_Inspection = new Event("INSPECT", "B", "OBS", "Inspection agility test, A city", result_observation, false, null);
+            Event event_work_A = new Event("WORK", "A", "STR", "police agility test, A city", result_strength, false, null);
+            Event event_work_B = new Event("WORK", "B", "STR", "police agility test, A city", result_strength, false, null);
+            Event event_global = new Event("GLOBAL", "ALL", string.Empty, "global event", result_global, false, null);
+            Event event_quest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, true, new Select[1] { select_quest });
+            Event event_globalquest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, false, null);
 
             // abnormal condition : despair
             Effect effect_dice_successNum = new Effect("DICE", "SUCCESS NUM", string.Empty);
@@ -139,7 +139,7 @@ namespace ToBeFree
             ResultEffect[] resultEffects_dice_successNum_6 = new ResultEffect[1] { new ResultEffect(2, null, despair, 6) };
             ResultScriptAndEffects failure_diceNum_6 = new ResultScriptAndEffects("dice num 6", resultEffects_dice_successNum_6);
             Result result_obs_diceNum_6 = new Result("OBS", failure_diceNum_6, failure_diceNum_6);
-            Event event_Inspection_despair = new Event("Inspect", "A", "OBS", "Inspection observation test", result_obs_diceNum_6, false, null);
+            Event event_Inspection_despair = new Event("INSPECT", "A", "OBS", "Inspection observation test", result_obs_diceNum_6, false, null);
 
             EventManager.Instance.EveryEvents.Add(event_move);
             EventManager.Instance.EveryEvents.Add(event_Inspection);
@@ -154,15 +154,15 @@ namespace ToBeFree
             regionProbDataList.Add(10);
             regionProbDataList.Add(80);
             regionProbDataList.Add(10);
-            Probability regionProbforMove = new Probability("Move", new List<int>(regionProbDataList));
-            Probability regionProbforWork = new Probability("Work", regionProbDataList);
-            Probability regionProbforInfo = new Probability("Info", regionProbDataList);
-            Probability regionProbforBroker = new Probability("Broker", regionProbDataList);
-            Probability regionProbforInspection = new Probability("Inspect", regionProbDataList);
-            Probability regionProbforTaken = new Probability("Taken", regionProbDataList);
-            Probability regionProbforEscape = new Probability("Escape", regionProbDataList);
-            Probability regionProbforGlobal = new Probability("Global", regionProbDataList);
-            Probability regionProbforQuest = new Probability("Quest", regionProbDataList);
+            Probability regionProbforMove = new Probability("MOVE", new List<int>(regionProbDataList));
+            Probability regionProbforWork = new Probability("WORK", regionProbDataList);
+            Probability regionProbforInfo = new Probability("INFO", regionProbDataList);
+            Probability regionProbforBroker = new Probability("BROKER", regionProbDataList);
+            Probability regionProbforInspection = new Probability("INSPECT", regionProbDataList);
+            Probability regionProbforTaken = new Probability("TAKEN", regionProbDataList);
+            Probability regionProbforEscape = new Probability("ESCAPE", regionProbDataList);
+            Probability regionProbforGlobal = new Probability("GLOBAL", regionProbDataList);
+            Probability regionProbforQuest = new Probability("QUEST", regionProbDataList);
             Probability[] regionProbs = new Probability[9] {
                 regionProbforWork, regionProbforMove, regionProbforInfo, regionProbforBroker,
                 regionProbforInspection, regionProbforTaken, regionProbforEscape, regionProbforGlobal, regionProbforQuest };
@@ -174,15 +174,15 @@ namespace ToBeFree
             statProbDataList.Add(10);
             statProbDataList.Add(10);
             statProbDataList.Add(10);
-            Probability statProbforMove = new Probability("Move", statProbDataList);
-            Probability statProbforWork = new Probability("Work", statProbDataList);
-            Probability statProbforInfo = new Probability("Info", statProbDataList);
-            Probability statProbforBroker = new Probability("Broker", statProbDataList);
-            Probability statProbforInspection = new Probability("Inspect", statProbDataList);
-            Probability statProbforTaken = new Probability("Taken", statProbDataList);
-            Probability statProbforEscape = new Probability("Escape", statProbDataList);
-            Probability statProbforGlobal = new Probability("Global", statProbDataList);
-            Probability statProbforQuest = new Probability("Quest", regionProbDataList);
+            Probability statProbforMove = new Probability("MOVE", statProbDataList);
+            Probability statProbforWork = new Probability("WORK", statProbDataList);
+            Probability statProbforInfo = new Probability("INFO", statProbDataList);
+            Probability statProbforBroker = new Probability("BROKER", statProbDataList);
+            Probability statProbforInspection = new Probability("INSPECT", statProbDataList);
+            Probability statProbforTaken = new Probability("TAKEN", statProbDataList);
+            Probability statProbforEscape = new Probability("ESCAPE", statProbDataList);
+            Probability statProbforGlobal = new Probability("GLOBAL", statProbDataList);
+            Probability statProbforQuest = new Probability("QUEST", regionProbDataList);
             Probability[] statProbs = new Probability[9] {
                 statProbforMove, statProbforWork, statProbforInfo, statProbforBroker, statProbforInspection,
                 statProbforTaken, statProbforEscape, statProbforGlobal, statProbforQuest
@@ -216,8 +216,9 @@ namespace ToBeFree
         {
             // check current quest's end time and apply the result
 
+
             // activate global event
-            Event globalEvent = EventManager.Instance.DoCommand("Global", character);
+            Event globalEvent = EventManager.Instance.DoCommand("GLOBAL", character);
 
             // put pieces in one of random cities (police, information, quest)
             int distance = 0;
@@ -228,7 +229,7 @@ namespace ToBeFree
             PieceManager.Instance.Add(CityGraph.Instance.FindRand(), "INFORM");
             PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), "INFORM");
             // 1 quest
-            Event selectedEvent = EventManager.Instance.Find("Quest", character.CurCity);
+            Event selectedEvent = EventManager.Instance.Find("QUEST", character.CurCity);
             PieceManager.Instance.AddQuest(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
         }
     }

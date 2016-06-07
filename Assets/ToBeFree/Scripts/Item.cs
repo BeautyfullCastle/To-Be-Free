@@ -36,7 +36,7 @@ namespace ToBeFree
         public Item(string name, Buff buff, int price, int maximumStackableQuantity)
         {
             this.name = name;
-            this.buff = buff;
+            this.buff = new Buff(buff);
             this.price = price;
             this.maximumStackableQuantity = maximumStackableQuantity;
         }

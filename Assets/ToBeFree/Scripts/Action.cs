@@ -56,7 +56,7 @@ namespace ToBeFree
         public Work()
         {
             startTime = eStartTime.WORK;
-            actionName = "Work";
+            actionName = "WORK";
         }
 
         public override void Activate(Character character)
@@ -85,7 +85,7 @@ namespace ToBeFree
         public Move()
         {
             startTime = eStartTime.MOVE;
-            actionName = "Move";
+            actionName = "MOVE";
         }
 
         public override void Activate(Character character)

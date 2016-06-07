@@ -15,23 +15,24 @@ namespace ToBeFree
         private eDuration duration;
 
         private bool isStack;
-
-        public Buff()
-        {
-            
-        }
+        
 
         public Buff(string name, Effect effect, bool isRestore, int amount,
-            eStartTime startTime, eDuration duration, bool isStack=false) : this()
+            eStartTime startTime, eDuration duration, bool isStack=false)
         {
             this.name = name;
-            this.effect = effect;
+            this.effect = new Effect(effect);
             this.isRestore = isRestore;
             this.amount = amount;
             this.startTime = startTime;
             this.duration = duration;
             this.isStack = isStack;
             
+        }
+
+        public Buff(Buff buff) : this(buff.name, buff.effect, buff.isRestore, buff.amount,
+            buff.startTime, buff.duration, buff.isStack)
+        {
         }
 
         public void ActivateEffect(Character character)

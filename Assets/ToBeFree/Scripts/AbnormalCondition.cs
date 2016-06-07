@@ -13,7 +13,7 @@ namespace ToBeFree
         public AbnormalCondition(string name, Buff buff, Condition spawnCondition, bool isBody, bool isPositive)
         {
             this.name = name;
-            this.buff = buff;
+            this.buff = new Buff(buff);
             this.spawnCondition = spawnCondition;
             this.isBody = isBody;
             this.isPositive = isPositive;

@@ -10,6 +10,9 @@ namespace ToBeFree
         private bool bSelect;
         private Select[] selectList;
 
+        // for quest
+        private int remainDay;
+
         public Event()
         {
             selectList = new Select[3];
@@ -25,6 +28,11 @@ namespace ToBeFree
             this.result = result;
             this.bSelect = bSelect;
             this.selectList = selectList;
+
+            if(ActionType == "QUEST")
+            {
+
+            }
         }
 
         public Event(Event event_)

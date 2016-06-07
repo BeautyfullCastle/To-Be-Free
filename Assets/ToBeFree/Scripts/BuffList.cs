@@ -6,6 +6,7 @@ namespace ToBeFree
     public class BuffList : Singleton<BuffList>
     {
         private List<Buff> buffList;
+        private Stat prevStat;
 
         public BuffList()
         {
@@ -80,6 +81,7 @@ namespace ToBeFree
 
         public void ActivateEffectByStartTime(eStartTime startTime, Character character)
         {
+            prevStat = character.Stat.DeepCopy();
             foreach (Buff buff in buffList)
             {
                 if(buff.StartTime == startTime)
@@ -94,6 +96,8 @@ namespace ToBeFree
                 if (buff.StartTime == startTime)
                     buff.DeactivateEffect(character);
             }
+            // restore character's stat
+            character.Stat = prevStat.DeepCopy();
         }
 
         private bool Rest_Cure_PatienceTest(Character character)

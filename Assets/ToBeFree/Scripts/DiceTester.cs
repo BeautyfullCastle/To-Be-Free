@@ -31,7 +31,7 @@ namespace ToBeFree
                 {
                     successDiceNum++;
                 }
-                Debug.Log("dice test rand num : " + randNum);
+                //Debug.Log("dice test rand num : " + randNum);
             }
             Debug.Log("Dice test succeed? " + successDiceNum);
 
