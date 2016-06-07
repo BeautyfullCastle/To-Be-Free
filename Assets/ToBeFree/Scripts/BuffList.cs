@@ -12,8 +12,8 @@ namespace ToBeFree
             buffList = new List<Buff>();
             Rest.CureEventNotify += Rest_Cure_PatienceTest;
 
-            DiceTester.Instance.StartTestNotify += ActivateTestEffect;
-            DiceTester.Instance.EndTestNotify += DeactivateTestEffect;
+            DiceTester.Instance.StartTestNotify += ActivateEffectByStartTime;
+            DiceTester.Instance.EndTestNotify += DeactivateEffectByStartTime;
         }
 
         public Buff Add(Buff buff)
@@ -42,18 +42,23 @@ namespace ToBeFree
 
         }
 
-        public bool Delete(Buff buff)
+        public bool Delete(Buff buff, Character character)
         {
             if (buffList == null || buffList.Count == 0 || buff == null)
             {
                 return false;
             }
 
+            // delete item what has same buff.
+            character.Inven.Delete(buff);
+
             return buffList.Remove(buff);
         }
 
         public void CheckStartTimeAndActivate(eStartTime startTime, Character character)
         {
+            List<Buff> buffsToDelete = new List<Buff>();
+
             foreach (Buff buff in buffList)
             {
                 if (buff.StartTime == startTime)
@@ -62,14 +67,18 @@ namespace ToBeFree
 
                     if (buff.Duration == eDuration.ONCE)
                     {
-                        buffList.Remove(buff);
+                        buffsToDelete.Add(buff);
                     }
-                    
                 }
+            }
+
+            foreach(Buff buff in buffsToDelete)
+            {
+                this.Delete(buff, character);
             }
         }
 
-        public void ActivateTestEffect(eStartTime startTime, Character character)
+        public void ActivateEffectByStartTime(eStartTime startTime, Character character)
         {
             foreach (Buff buff in buffList)
             {
@@ -78,11 +87,11 @@ namespace ToBeFree
             }
         }
 
-        public void DeactivateTestEffect(eStartTime startTime, Character character)
+        public void DeactivateEffectByStartTime(eStartTime startTime, Character character)
         {
             foreach (Buff buff in buffList)
             {
-                if (buff.StartTime == eStartTime.TEST)
+                if (buff.StartTime == startTime)
                     buff.DeactivateEffect(character);
             }
         }

@@ -22,7 +22,7 @@ namespace ToBeFree
         }
 
         public Buff(string name, Effect effect, bool isRestore, int amount,
-            eStartTime startTime, eDuration duration, bool isStack) : this()
+            eStartTime startTime, eDuration duration, bool isStack=false) : this()
         {
             this.name = name;
             this.effect = effect;
@@ -120,6 +120,19 @@ namespace ToBeFree
             set
             {
                 amount = value;
+            }
+        }
+
+        public bool IsRestore
+        {
+            get
+            {
+                return isRestore;
+            }
+
+            set
+            {
+                isRestore = value;
             }
         }
     }

@@ -24,7 +24,10 @@ namespace ToBeFree
             NotifyEveryday();
 
             if (day % 7 == 0)
+            {
+                Debug.Log((day / 7) + " weeks are gone.");
                 NotifyEveryWeek();
+            }
 
             Debug.Log("Alived day : " + day);
         }

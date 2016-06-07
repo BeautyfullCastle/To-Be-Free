@@ -6,7 +6,6 @@ namespace ToBeFree
     public class GameManager : MonoSingleton<GameManager>
     {
         private Character character;
-        private string command;
         private Action action;
         private Action inspectAction;
 
@@ -20,26 +19,26 @@ namespace ToBeFree
             if (Input.GetKeyDown(KeyCode.W))
             {
                 action = new Work();
-                Debug.Log("Command Work input");
+                Debug.LogWarning("Command Work input");
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
                 action = new Move();
-                Debug.Log("Command Move input");
+                Debug.LogWarning("Command Move input");
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 action = new Rest();
-                Debug.Log("Command Rest input");
+                Debug.LogWarning("Command Rest input");
             }
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 action = new QuestAction();
-                Debug.Log("Command Quest input");
+                Debug.LogWarning("Command Quest input");
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                character.Inven.UseItem(character.Inven.FindItemByType("POLICE", "DEL", "CLOSE"), character);
+                //character.Inven.UseItem(character.Inven.FindItemByType("POLICE", "DEL", "CLOSE"), character);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -52,7 +51,10 @@ namespace ToBeFree
                 }
 
                 // activate selected event
-                action.Activate(character);
+                if (action != null)
+                {
+                    action.Activate(character);
+                }
 
                 TimeTable.Instance.DayIsGone();
             }
@@ -63,13 +65,25 @@ namespace ToBeFree
             inspectAction = new Inspect();
 
             Effect effect = new Effect("CURE", "HP", string.Empty);
-
-            Item cureHP_Now_Once = new Item("cure hp 1", effect, eStartTime.NOW, eDuration.ONCE, false, 1, 10, 1);
-            Item cureBoth_RestEquip = new Item("cureBoth_RestEquip", new Effect("CURE", "BOTH"), eStartTime.REST, eDuration.EQUIP, false, 1, 10, 1);
-            Item addSTR_Work_Once = new Item("add str when working once", new Effect("STAT", "STR"), eStartTime.WORK, eDuration.ONCE, true, 1, 10, 1);
-            Item addSTR_Work_Equip = new Item("add str when working equip", new Effect("STAT", "STR"), eStartTime.WORK, eDuration.EQUIP, true, 1, 10, 1);
-            Item addAGI_Move_Once = new Item("addAGI_Move_Once", new Effect("STAT", "AGI"), eStartTime.TEST, eDuration.ONCE, true, 1, 1, 1);
-            Item delPoliceNearOnce = new Item("del police near once", new Effect("POLICE", "DEL", "CLOSE"), eStartTime.NOW, eDuration.ONCE, false, 1, 1, 1);
+            Buff buff_cureHP_Now_Once = new Buff("cure hp 1", effect, false, 1, eStartTime.NOW, eDuration.ONCE);
+            Item cureHP_Now_Once = new Item("cure hp 1", buff_cureHP_Now_Once, 10, 1);
+            Item cureBoth_RestEquip = new Item("cureBoth_RestEquip", 
+                new Buff("Buff : Cure both rest equip", 
+                    new Effect("CURE", "BOTH"), false, 1, eStartTime.REST, eDuration.EQUIP), 
+                10, 1);
+            Item addSTR_Work_Once = new Item("add str when working once", 
+                new Buff("Buff : add str when working once", 
+                    new Effect("STAT", "STR"), true, 1, eStartTime.WORK, eDuration.ONCE), 
+                10, 1);
+            Item addSTR_Work_Equip = new Item("add str when working equip", 
+                    new Buff("add str when working equip", new Effect("STAT", "STR"), true, 1, eStartTime.WORK, eDuration.EQUIP), 
+                10, 1);
+            Item addAGI_Move_Once = new Item("addAGI_Move_Once", 
+                    new Buff("Buff : addAGI_Move_Once", new Effect("STAT", "AGI"), true, 1, eStartTime.TEST, eDuration.ONCE), 
+                10, 1);
+            Item delPoliceNearOnce = new Item("del police near once", 
+                    new Buff("Buff : del police near once", new Effect("POLICE", "DEL", "CLOSE"), false, 1, eStartTime.NOW, eDuration.ONCE), 
+                10, 1);
 
             
             City cityA = new City("A", "Big", "North", new List<Item>() { cureHP_Now_Once }, 5, 7);

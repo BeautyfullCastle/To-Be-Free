@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-    public class Action // : Singleton<Action>
+    public class Action
     {
         protected eStartTime startTime;
         protected string actionName;
@@ -13,22 +13,16 @@ namespace ToBeFree
 
         public virtual void Activate(Character character)
         {
-            ActionEventNotify(startTime, character);
-
-            List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
-
-            // activate abnormal condition's effect in buff list.
+            if(ActionEventNotify != null)
+                ActionEventNotify(startTime, character);
+            
             BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
 
             if (!string.IsNullOrEmpty(actionName))
             {
                 Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
             }
-
-            foreach (Item item in itemsToDeactive)
-            {
-                item.DeactivateEffect(character);
-            }
+            
         }
     }
 
@@ -45,7 +39,7 @@ namespace ToBeFree
 
         public override void Activate(Character character)
         {
-            Debug.Log("Rest Action Start");
+            Debug.Log("Rest Action Activated.");
 
             base.Activate(character);
 
@@ -67,6 +61,7 @@ namespace ToBeFree
 
         public override void Activate(Character character)
         {
+            Debug.LogWarning("Work action activated.");
             base.Activate(character);
 
             // if effect is money and event is succeeded,
@@ -81,7 +76,7 @@ namespace ToBeFree
                 }
             }
 
-            Debug.Log("character work.");
+            
         }
     }
 
@@ -95,10 +90,11 @@ namespace ToBeFree
 
         public override void Activate(Character character)
         {
+            Debug.LogWarning("Move action Activated.");
             base.Activate(character);
 
             character.CurCity = CityGraph.Instance.Find("B");
-            Debug.Log("character is moved to " + character.CurCity.Name);
+            Debug.LogWarning("character is moved to " + character.CurCity.Name);
         }
     }
 
@@ -112,9 +108,8 @@ namespace ToBeFree
 
         public override void Activate(Character character)
         {
-            List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
-
-            // activate abnormal condition's effect in buff list.
+            Debug.LogWarning("Quest action Activated.");
+            
             BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
 
             List<Quest> quests = PieceManager.Instance.QuestList.FindAll(x => x.City == character.CurCity);
@@ -135,11 +130,6 @@ namespace ToBeFree
                 }
             }
 
-            foreach (Item item in itemsToDeactive)
-            {
-                item.DeactivateEffect(character);
-            }
-
             Debug.Log("character quest activated.");
         }
     }
@@ -154,9 +144,8 @@ namespace ToBeFree
 
         public override void Activate(Character character)
         {
-            List<Item> itemsToDeactive = character.Inven.CheckItemStartTime(startTime, character);
-
-            // activate abnormal condition's effect in buff list.
+            Debug.LogWarning("Inpect action activated.");
+            
             BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
 
             foreach (Police police in PieceManager.Instance.PoliceList)
@@ -166,13 +155,7 @@ namespace ToBeFree
                     character.Inspect();
                 }
             }
-
-            foreach (Item item in itemsToDeactive)
-            {
-                item.DeactivateEffect(character);
-            }
-
-            Debug.Log("character quest activated.");
+            
         }
     }
 }

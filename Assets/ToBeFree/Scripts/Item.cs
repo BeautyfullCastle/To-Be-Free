@@ -14,141 +14,127 @@ namespace ToBeFree
 
     public class Item
     {
-        // TO DO (16.06.02) : have to change to include buff in Item class.
         private Buff buff;
 
         private string name;
-        private Effect effect;
-        private eStartTime startTime;
-        private eDuration duration;
-        private bool isRestore;
-        private int amount;
         private int price;
         private int maximumStackableQuantity;
 
-        public Item(string name, Effect effect, eStartTime startTime, eDuration duration, bool isRestore,
-                    int amount, int price, int maximumStackableQuantity)
+        //public Item(string name, Effect effect, eStartTime startTime, eDuration duration, bool isRestore,
+        //            int amount, int price, int maximumStackableQuantity)
+        //{
+        //    this.name = name;
+        //    //this.effect = effect;
+        //    //this.startTime = startTime;
+        //    //this.duration = duration;
+        //    //this.isRestore = isRestore;
+        //    //this.amount = amount;
+        //    //this.price = price;
+        //    this.maximumStackableQuantity = maximumStackableQuantity;
+        //}
+
+        public Item(string name, Buff buff, int price, int maximumStackableQuantity)
         {
             this.name = name;
-            this.effect = effect;
-            this.startTime = startTime;
-            this.duration = duration;
-            this.isRestore = isRestore;
-            this.amount = amount;
+            this.buff = buff;
             this.price = price;
             this.maximumStackableQuantity = maximumStackableQuantity;
         }
 
         public Item(Item item)
-         : this(item.name, item.effect, item.startTime, item.duration, item.isRestore, item.amount, item.price, item.maximumStackableQuantity)
-        {
-        }
+            : this(item.name, item.buff, item.price, item.maximumStackableQuantity) { }
+
+        //public Item(Item item)
+        // : this(item.name, item.effect, item.startTime, item.duration, item.isRestore, item.amount, item.price, item.maximumStackableQuantity)
+        //{
+        //}
 
         public Item DeepCopy()
         {
             Item item = (Item)this.MemberwiseClone();
             item.name = this.name;
-            item.effect = this.effect;
-            item.startTime = this.startTime;
-            item.duration = this.duration;
-            item.isRestore = this.isRestore;
-            item.amount = this.amount;
-            item.price = this.price;
+            item.buff = this.buff;
             item.maximumStackableQuantity = this.maximumStackableQuantity;
 
             return item;
         }
-
-        public void ActivateEffect(Character character)
-        {
-            Debug.Log("Item " + name + "'s effect activate");
-
-            if (effect == null)
-                return;
-
-            effect.Activate(character, amount);
-        }
-
-        public void DeactivateEffect(Character character)
-        {
-            Debug.Log("Item " + name + "'s effect deactivate");
-
-            if (effect == null)
-                return;
-
-            effect.Activate(character, -amount);
-        }
-
-        /*
-        public bool CheckActCondition() {
-            if(type == eType)
-            if(duration == eDuration.EQUIP) {
-            }
-        }
-        */
+        
 
         public string Name { get { return name; } }
 
-        public Effect Effect
-        {
-            get
-            {
-                return effect;
-            }
+        //public Effect Effect
+        //{
+        //    get
+        //    {
+        //        return effect;
+        //    }
 
-            set
-            {
-                effect = value;
-            }
-        }
+        //    set
+        //    {
+        //        effect = value;
+        //    }
+        //}
 
-        public int Amount
-        {
-            get
-            {
-                return amount;
-            }
-        }
+        //public int Amount
+        //{
+        //    get
+        //    {
+        //        return amount;
+        //    }
+        //}
 
         public int MaximumStackableQuantity { get; private set; }
 
-        public eStartTime StartTime
+        public Buff Buff
         {
             get
             {
-                return startTime;
+                return buff;
             }
 
             set
             {
-                startTime = value;
+                buff = value;
             }
         }
 
-        public eDuration Duration
-        {
-            get
-            {
-                return duration;
-            }
+        //public eStartTime StartTime
+        //{
+        //    get
+        //    {
+        //        return startTime;
+        //    }
 
-            set
-            {
-                duration = value;
-            }
-        }
+        //    set
+        //    {
+        //        startTime = value;
+        //    }
+        //}
 
-        public bool IsRestore
-        {
-            get
-            {
-                return isRestore;
-            }
+        //public eDuration Duration
+        //{
+        //    get
+        //    {
+        //        return duration;
+        //    }
 
-            set
-            {
-                isRestore = value;
-            }
-        }
+        //    set
+        //    {
+        //        duration = value;
+        //    }
+        //}
+
+        //public bool IsRestore
+        //{
+        //    get
+        //    {
+        //        return isRestore;
+        //    }
+
+        //    set
+        //    {
+        //        isRestore = value;
+        //    }
+        //}
     }
 }

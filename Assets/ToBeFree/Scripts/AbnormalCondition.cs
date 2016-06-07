@@ -58,7 +58,7 @@ namespace ToBeFree
             {
                 return;
             }
-            BuffList.Instance.Delete(buff_exhilaration);
+            BuffList.Instance.Delete(buff_exhilaration, character);
         }
     }
 }

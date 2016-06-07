@@ -15,68 +15,10 @@ namespace ToBeFree
             InventoryRecords = new List<InventoryRecord>();
         }
 
-        public void UseItem(Item item, Character character)
-        {
-            InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.InventoryItem == item));
-
-            if (inventoryRecord == null)
-            {
-                throw new Exception("There's no item like this in the inventory : " + item.Name);
-            }
-            inventoryRecord.InventoryItem.ActivateEffect(character);
-        }
-
-        public List<Item> CheckItemStartTime(eStartTime startTime, Character character)
-        {
-            List<Item> itemsToDeactive = new List<Item>();
-
-            foreach (InventoryRecord record in InventoryRecords)
-            {
-                if (record.InventoryItem.StartTime == startTime)
-                {
-                    UseItem(record.InventoryItem, character);
-                    if (record.InventoryItem.IsRestore)
-                    {
-                        itemsToDeactive.Add(record.InventoryItem.DeepCopy());
-                    }
-                }
-            }
-
-            InventoryRecords.RemoveAll(x => (x.InventoryItem.Duration == eDuration.ONCE)
-                                            && (x.InventoryItem.StartTime == startTime));
-
-            return itemsToDeactive;
-        }
-
-        public List<Item> UseStatTestItems(string testStat, Character character)
-        {
-            List<Item> itemsToDeactive = new List<Item>();
-            foreach (InventoryRecord record in InventoryRecords)
-            {
-                if ((record.InventoryItem.StartTime == eStartTime.TEST)
-                    && (record.InventoryItem.Effect.BigType == "STAT")
-                    && (record.InventoryItem.Effect.MiddleType == testStat))
-                {
-                    UseItem(record.InventoryItem, character);
-                    if (record.InventoryItem.IsRestore)
-                    {
-                        itemsToDeactive.Add(record.InventoryItem);
-                    }
-                }
-            }
-
-            InventoryRecords.RemoveAll(x => (x.InventoryItem.StartTime == eStartTime.TEST)
-                                            && (x.InventoryItem.Duration == eDuration.ONCE)
-                                            && (x.InventoryItem.Effect.BigType == "STAT")
-                                           && (x.InventoryItem.Effect.MiddleType == testStat));
-
-            return itemsToDeactive;
-        }
-
         public void AddItem(Item item)
         {
             InventoryRecord inventoryRecord =
-                   InventoryRecords.Find(x => (x.InventoryItem.Name == item.Name));
+                   InventoryRecords.Find(x => (x.Item.Name == item.Name));
 
             if (inventoryRecord != null)
             {
@@ -90,20 +32,35 @@ namespace ToBeFree
                 }
                 InventoryRecords.Add(new InventoryRecord(item, 1));
             }
+
+            // add item's buff in buff list also.
+            BuffList.Instance.Add(item.Buff);
         }
 
-        public void DeleteItem(Item item)
+        public void Delete(Item item)
         {
-            InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.InventoryItem.Name == item.Name));
+            InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.Item.Name == item.Name));
 
-            if (inventoryRecord == null)
+            this.Delete(inventoryRecord);
+        }
+        
+        public void Delete(Buff buff)
+        {
+            InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.Item.Buff == buff));
+
+            this.Delete(inventoryRecord);
+        }
+
+        private void Delete(InventoryRecord record)
+        {
+            if (record == null)
             {
-                throw new Exception("There's no item like this in the inventory : " + item.Name);
+                throw new Exception("There's no item like this in the inventory : " + record.Item.Name);
             }
-            int remainQuantity = inventoryRecord.DeleteToQuantity(1);
+            int remainQuantity = record.DeleteToQuantity(1);
             if (remainQuantity <= 0)
             {
-                InventoryRecords.Remove(inventoryRecord);
+                InventoryRecords.Remove(record);
             }
         }
 
@@ -111,7 +68,7 @@ namespace ToBeFree
         {
             System.Random r = new System.Random();
             int index = r.Next(0, InventoryRecords.Count - 1);
-            return InventoryRecords[index].InventoryItem;
+            return InventoryRecords[index].Item;
         }
 
         // TO DO : have to implement
@@ -119,7 +76,7 @@ namespace ToBeFree
 
         public Item FindItemByType(string bigType, string middleType, string detailType = "")
         {
-            InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.InventoryItem.Effect.BigType == bigType);
+            InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.Item.Buff.Effect.BigType == bigType);
             if (inventoryRecord == null)
             {
                 Debug.Log("There's no " + bigType + " item in inventory");
@@ -127,10 +84,10 @@ namespace ToBeFree
             }
             else
             {
-                Item item = inventoryRecord.InventoryItem;
-                if (string.IsNullOrEmpty(item.Effect.MiddleType) || item.Effect.MiddleType == middleType)
+                Item item = inventoryRecord.Item;
+                if (string.IsNullOrEmpty(item.Buff.Effect.MiddleType) || item.Buff.Effect.MiddleType == middleType)
                 {
-                    if (string.IsNullOrEmpty(item.Effect.DetailType) || item.Effect.DetailType == detailType)
+                    if (string.IsNullOrEmpty(item.Buff.Effect.DetailType) || item.Buff.Effect.DetailType == detailType)
                     {
                         return item;
                     }
@@ -147,20 +104,20 @@ namespace ToBeFree
 
         public class InventoryRecord
         {
-            public Item InventoryItem { get; private set; }
+            public Item Item { get; private set; }
             public int Quantity { get; private set; }
 
             public InventoryRecord(Item item, int quantity)
             {
-                InventoryItem = item;
+                Item = item;
                 Quantity = quantity;
             }
 
             public void AddToQuantity(int amountToAdd)
             {
-                if (Quantity + amountToAdd > InventoryItem.MaximumStackableQuantity)
+                if (Quantity + amountToAdd > Item.MaximumStackableQuantity)
                 {
-                    Debug.LogError(InventoryItem.Name + "'s quantity is full : " + Quantity);
+                    Debug.LogError(Item.Name + "'s quantity is full : " + Quantity);
                     return;
                 }
                 Quantity += amountToAdd;
@@ -170,7 +127,7 @@ namespace ToBeFree
             {
                 if (Quantity - amount < 0)
                 {
-                    Debug.LogError(InventoryItem.Name + "'s quantity is lower than the amount you want. ");
+                    Debug.LogError(Item.Name + "'s quantity is lower than the amount you want. ");
                     return Quantity;
                 }
                 Quantity -= amount;

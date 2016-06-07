@@ -244,7 +244,7 @@ namespace ToBeFree
                         {
                             throw new System.Exception("item is null");
                         }
-                        character.Inven.DeleteItem(item);
+                        character.Inven.Delete(item);
                     }
                     break;
 

@@ -38,8 +38,8 @@ namespace ToBeFree
         {
             foreach (Item item in itemList)
             {
-                if (item.Effect.BigType == bigType && item.Effect.MiddleType == middleType
-                    && item.Effect.DetailType == detailType)
+                if (item.Buff.Effect.BigType == bigType && item.Buff.Effect.MiddleType == middleType
+                    && item.Buff.Effect.DetailType == detailType)
                 {
                     return item;
                 }

@@ -35,14 +35,14 @@ namespace ToBeFree
                         Debug.Log(bigType + " or " + detailType + " is not exist.");
                         return false;
                     }
-                    string itemType = item.Effect.BigType;
-                    int itemAmount = item.Amount;
-                    if (itemType == bigType && item.Effect.DetailType == detailType)
+                    string itemType = item.Buff.Effect.BigType;
+                    int itemAmount = item.Buff.Amount;
+                    if (itemType == bigType && item.Buff.Effect.DetailType == detailType)
                     {
                         bool isExist = Compare(itemAmount, amount, comparisonOperator);
                         if (isExist)
                         {
-                            character.Inven.DeleteItem(item);
+                            character.Inven.Delete(item);
                         }
                         return isExist;
                     }

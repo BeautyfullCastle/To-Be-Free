@@ -93,18 +93,11 @@ namespace ToBeFree
             // dice test
             if (!string.IsNullOrEmpty(result.TestStat))
             {
-
-                List<Item> itemsToDeactive = character.Inven.UseStatTestItems(result.TestStat, character);
-
+                
                 int diceNum = character.GetDiceNum(result.TestStat);
                 bool isTestSucceed = DiceTester.Instance.Test(diceNum, character);
-                Debug.Log("diceNum : " + diceNum + ", TestItems DiceNum : " + itemsToDeactive.Count);
+                //Debug.Log("diceNum : " + diceNum + ", TestItems DiceNum : " + itemsToDeactive.Count);
                 
-                // TO DO : move inside EndTestNotify in Item OR delete
-                foreach (Item item in itemsToDeactive)
-                {
-                    item.DeactivateEffect(character);
-                }
 
                 if (isTestSucceed)
                 {
