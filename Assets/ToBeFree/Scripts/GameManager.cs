@@ -60,7 +60,7 @@ namespace ToBeFree
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             inspectAction = new Inspect();
 
@@ -221,7 +221,7 @@ namespace ToBeFree
             Event globalEvent = EventManager.Instance.DoCommand("GLOBAL", character);
 
             // put pieces in one of random cities (police, information, quest)
-            int distance = 0;
+            int distance = 2;
             // 2 polices
             PieceManager.Instance.Add(CityGraph.Instance.FindRand(), "POLICE");
             PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), "POLICE");
