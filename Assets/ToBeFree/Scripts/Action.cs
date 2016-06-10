@@ -22,7 +22,11 @@ namespace ToBeFree
             {
                 Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
             }
-            
+        }
+
+        public virtual void Activate(Character character, City city)
+        {
+            this.Activate(character);
         }
     }
 
@@ -88,12 +92,12 @@ namespace ToBeFree
             actionName = "MOVE";
         }
 
-        public override void Activate(Character character)
+        public override void Activate(Character character, City city)
         {
             Debug.LogWarning("Move action Activated.");
             base.Activate(character);
 
-            character.CurCity = CityGraph.Instance.Find("B");
+            character.MoveTo(city);
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
         }
     }

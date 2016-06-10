@@ -98,6 +98,8 @@ namespace ToBeFree
             }
             // restore character's stat
             character.Stat = prevStat.DeepCopy();
+
+            character.HP--;
         }
 
         private bool Rest_Cure_PatienceTest(Character character)

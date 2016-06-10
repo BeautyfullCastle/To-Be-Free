@@ -15,6 +15,9 @@ namespace ToBeFree
 
         private Inventory inven;
 
+        public delegate void OnValueChangeHandler(int value);
+        static public event OnValueChangeHandler OnValueChange;
+
         // Todo : skill
 
         public Character(string name, Stat stat, City curCity,
@@ -72,7 +75,9 @@ namespace ToBeFree
 
         public bool MoveTo(City city)
         {
-            EventManager.Instance.DoCommand("MOVE", this);
+            if (city == null)
+                return false;
+
             this.curCity = city;
             Debug.Log("character is moved to " + this.curCity.Name);
 
@@ -114,6 +119,7 @@ namespace ToBeFree
                 {
                     curHP = stat.TotalHP;
                 }
+                OnValueChange(curHP);
                 Debug.Log("HP : " + curHP);
             }
         }

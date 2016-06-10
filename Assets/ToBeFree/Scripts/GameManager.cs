@@ -13,6 +13,30 @@ namespace ToBeFree
         {
         } // can't use the constructor
 
+
+        public void MoveEvent()
+        {
+            action = new Move();
+            Debug.LogWarning("Command Move input");
+            character.CurCity.PrintNeighbors();
+        }
+
+        public void ClickCity(City city)
+        {
+            if (action is Move)
+            {
+                foreach(City neighbor in character.CurCity.NeighborList)
+                {
+                    if(neighbor.Name == city.Name)
+                    {
+                        action.Activate(character, city);
+                        return;
+                    }
+                }
+                Debug.Log("This city is not neighbor of current city.");
+            }
+        }
+
         private void Update()
         {
             // await for the event command
