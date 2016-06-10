@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/ingame.unity
+- path: Assets/ToBeFree/Scenes/ingame.unity
   isLoaded: 1
   isActive: 1
