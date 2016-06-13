@@ -233,6 +233,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\TimeTable.cs" />
     <Compile Include="Assets\UI\CameraZoom.cs" />
     <Compile Include="Assets\UIStat.cs" />
+    <Compile Include="Assets\XmlTest\Script\ParsingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
@@ -276,6 +277,7 @@
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
+    <None Include="Assets\StreamingAssets\test.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

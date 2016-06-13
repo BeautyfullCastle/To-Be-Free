@@ -1,38 +1,64 @@
-﻿namespace ToBeFree
+﻿using UnityEngine;
+
+namespace ToBeFree
 {
+
+    public enum eStat
+    {
+        HP, TOTALHP, MENTAL, TOTALMENTAL, FOOD, TOTALFOOD, MONEY, INFO, STR, AGI, OBS, BAR, PAT, LUC
+    }
+
     public class Stat
     {
+        private int hp;
+        private int totalHP;
+        private int mental;
+        private int totalMental;
+
         private int strength;
         private int agility;
         private int observation;
         private int bargain;
         private int patience;
         private int luck;
-        private int totalHP;
-        private int totalMental;
+
+        private int money;
+        private int foodNum;
         private int totalFoodNum;
+
+        private int infoNum;
+
+        public delegate void OnValueChangeHandler(int value, eStat stat);
+        static public event OnValueChangeHandler OnValueChange;
 
         public Stat()
         {
-            this.strength = 2;
-            this.agility = 2;
-            this.observation = 2;
-            this.bargain = 2;
-            this.patience = 2;
-            this.luck = 2;
-            this.totalHP = 10;
-            this.totalMental = 10;
-            this.totalFoodNum = 10;
+            this.TotalHP = 5;
+            this.HP = 5;
+            this.TotalMental = 5;
+            this.MENTAL = 5;
+
+            this.Strength = 2;
+            this.Agility = 2;
+            this.Observation = 2;
+            this.Bargain = 2;
+            this.Patience = 2;
+            this.Luck = 2;
+
+            this.Money = 5;
+            this.TotalFoodNum = 10;
+            this.FOOD = 3;
+            this.InfoNum = 0;
         }
 
         public Stat(Stat stat)
         {
-            this.strength = stat.strength;
-            this.agility = stat.agility;
-            this.observation = stat.observation;
-            this.bargain = stat.bargain;
-            this.patience = stat.patience;
-            this.luck = stat.luck;
+            this.Strength = stat.Strength;
+            this.Agility = stat.Agility;
+            this.Observation = stat.Observation;
+            this.Bargain = stat.Bargain;
+            this.Patience = stat.Patience;
+            this.Luck = stat.Luck;
             this.totalHP = stat.totalHP;
             this.totalMental = stat.totalMental;
             this.totalFoodNum = stat.totalFoodNum;
@@ -41,23 +67,19 @@
         public Stat DeepCopy()
         {
             Stat stat = (Stat)this.MemberwiseClone();
-            stat.agility      = this.agility;
-            stat.bargain      = this.bargain;
-            stat.luck         = this.luck;
-            stat.observation  = this.observation;
-            stat.patience     = this.patience;
-            stat.strength     = this.strength;
+            stat.Agility = this.Agility;
+            stat.Bargain = this.Bargain;
+            stat.Luck = this.Luck;
+            stat.Observation = this.Observation;
+            stat.Patience = this.Patience;
+            stat.Strength = this.Strength;
             stat.totalFoodNum = this.totalFoodNum;
             stat.totalHP      = this.totalHP;
             stat.totalMental  = this.totalMental;
 
             return stat;
         }
-
-        public int TotalHP { get { return totalHP; } }
-        public int TotalMental { get { return totalMental; } }
-        public int TotalFoodNum { get { return totalFoodNum; } }
-
+        
         public int Strength
         {
             get
@@ -67,6 +89,7 @@
             set
             {
                 strength = value;
+                OnValueChange(strength, eStat.STR);
             }
         }
 
@@ -80,6 +103,7 @@
             set
             {
                 agility = value;
+                OnValueChange(agility, eStat.AGI);
             }
         }
 
@@ -93,6 +117,7 @@
             set
             {
                 observation = value;
+                OnValueChange(observation, eStat.OBS);
             }
         }
 
@@ -106,6 +131,7 @@
             set
             {
                 bargain = value;
+                OnValueChange(bargain, eStat.BAR);
             }
         }
 
@@ -119,6 +145,7 @@
             set
             {
                 patience = value;
+                OnValueChange(patience, eStat.PAT);
             }
         }
 
@@ -132,6 +159,134 @@
             set
             {
                 luck = value;
+                OnValueChange(luck, eStat.LUC);
+            }
+        }
+
+        public int HP
+        {
+            get
+            {
+                return hp;
+            }
+            set
+            {
+                hp = value;
+                if (hp > TotalHP)
+                {
+                    hp = TotalHP;
+                }
+                OnValueChange(hp, eStat.HP);
+                Debug.Log("HP : " + hp);
+            }
+        }
+
+        public int TotalHP
+        {
+            get
+            {
+                return totalHP;
+            }
+            set
+            {
+                totalHP = value;
+                OnValueChange(totalHP, eStat.TOTALHP);
+            }
+        }
+
+        
+
+        public int MENTAL
+        {
+            get
+            {
+                return mental;
+            }
+            set
+            {
+                mental = value;
+                if (mental > TotalMental)
+                {
+                    mental = TotalMental;
+                }
+                OnValueChange(mental, eStat.MENTAL);
+                Debug.Log("Mental : " + mental);
+            }
+        }
+
+        public int TotalMental
+        {
+            get
+            {
+                return totalMental;
+            }
+            set
+            {
+                totalMental = value;
+                OnValueChange(totalMental, eStat.TOTALMENTAL);
+            }
+        }
+        
+
+        public int FOOD
+        {
+            get
+            {
+                return foodNum;
+            }
+            set
+            {
+                foodNum = value;
+                if (foodNum > TotalFoodNum)
+                {
+                    foodNum = TotalFoodNum;
+                }
+                OnValueChange(foodNum, eStat.FOOD);
+            }
+        }
+
+        public int TotalFoodNum
+        {
+            get
+            {
+                return totalFoodNum;
+            }
+            set
+            {
+                totalFoodNum = value;
+                OnValueChange(totalFoodNum, eStat.TOTALFOOD);
+            }
+        }
+
+        public int InfoNum
+        {
+            get
+            {
+                return infoNum;
+            }
+
+            set
+            {
+                infoNum = value;
+                OnValueChange(InfoNum, eStat.INFO);
+            }
+        }
+
+        public int Money
+        {
+            get
+            {
+                return money;
+            }
+
+            set
+            {
+                if (money + value < 0)
+                {
+                    throw new System.Exception("not enough money");
+                }
+                money = value;
+                OnValueChange(money, eStat.MONEY);
             }
         }
     }

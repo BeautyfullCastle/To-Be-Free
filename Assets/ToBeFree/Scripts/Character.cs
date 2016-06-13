@@ -7,17 +7,9 @@ namespace ToBeFree
         private Stat stat;
         private string name;
         private City curCity;
-        private int curMoney;
-        private int curFoodNum;
-        private int curInfoNum;
-        private int curHP;
-        private int curMental;
 
         private Inventory inven;
-
-        public delegate void OnValueChangeHandler(int value);
-        static public event OnValueChangeHandler OnValueChange;
-
+        
         // Todo : skill
 
         public Character(string name, Stat stat, City curCity,
@@ -27,11 +19,6 @@ namespace ToBeFree
             this.name = name;
             this.stat = stat;
             this.curCity = curCity;
-            this.curMoney = curMoney;
-            this.curFoodNum = curFoodNum;
-            this.curInfoNum = curInfoNum;
-            this.curHP = curHP;
-            this.curMental = curMental;
             this.inven = inven;
         }
 
@@ -94,7 +81,7 @@ namespace ToBeFree
             {
                 if (successResulteffects[i].Effect.BigType == "MONEY")
                 {
-                    this.curMoney += curCity.CalcRandWorkingMoney();
+                    this.Stat.Money += curCity.CalcRandWorkingMoney();
                     break;
                 }
             }
@@ -105,58 +92,7 @@ namespace ToBeFree
         {
             curCity.PrintNeighbors();
         }
-
-        public int HP
-        {
-            get
-            {
-                return curHP;
-            }
-            set
-            {
-                curHP = value;
-                if (curHP > stat.TotalHP)
-                {
-                    curHP = stat.TotalHP;
-                }
-                OnValueChange(curHP);
-                Debug.Log("HP : " + curHP);
-            }
-        }
-
-        public int MENTAL
-        {
-            get
-            {
-                return curMental;
-            }
-            set
-            {
-                curMental = value;
-                if (curMental > stat.TotalMental)
-                {
-                    curMental = stat.TotalMental;
-                }
-                Debug.Log("Mental : " + curMental);
-            }
-        }
-
-        public int FOOD
-        {
-            get
-            {
-                return curFoodNum;
-            }
-            set
-            {
-                curFoodNum += value;
-                if (curFoodNum > stat.TotalFoodNum)
-                {
-                    curFoodNum = stat.TotalFoodNum;
-                }
-            }
-        }
-
+        
         public Stat Stat
         {
             get
@@ -192,34 +128,6 @@ namespace ToBeFree
             }
         }
 
-        public int CurInfoNum
-        {
-            get
-            {
-                return curInfoNum;
-            }
-
-            set
-            {
-                curInfoNum = value;
-            }
-        }
-
-        public int CurMoney
-        {
-            get
-            {
-                return curMoney;
-            }
-
-            set
-            {
-                if (curMoney + value < 0)
-                {
-                    throw new System.Exception("not enough money");
-                }
-                curMoney = value;
-            }
-        }
+        
     }
 }

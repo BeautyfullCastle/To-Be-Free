@@ -1,18 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UIStat : MonoBehaviour {
+namespace ToBeFree {
+    public class UIStat : MonoBehaviour {
+        public eStat stat;
+        private UILabel label;
 
-	private UILabel label;
+        // Use this for initialization
+        void Awake() {
+            label = this.GetComponent<UILabel>();
+            Stat.OnValueChange += OnValueChange;
+        }
 
-	// Use this for initialization
-	void Start () {
-		label = this.GetComponent<UILabel>();
-		ToBeFree.Character.OnValueChange += OnValueChange;
-	}
-	
-	void OnValueChange(int value)
-	{
-		label.text = value.ToString();
-	}
+        void OnValueChange(int value, eStat stat)
+        {
+            if(stat != this.stat)
+            {
+                return;
+            }
+
+            label.text = value.ToString();
+        }
+    }
 }

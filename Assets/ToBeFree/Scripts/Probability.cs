@@ -8,10 +8,6 @@ namespace ToBeFree
         AREA = 0, CITY, ALL
     }
 
-    public enum eStat
-    {
-        STR = 0, AGI, OBS, BAR, PAT, LUC
-    }
 
     public class Probability
     {

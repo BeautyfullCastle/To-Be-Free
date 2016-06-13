@@ -1,6 +1,6 @@
 namespace ToBeFree
 {
-    public enum eActionByEvent
+    public enum eAction
     {
         WORK = 0, MOVE, INFO, BROKER, INSPECTION, TAKEN, ESCAPE
     }

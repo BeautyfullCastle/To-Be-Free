@@ -3,6 +3,11 @@ using UnityEngine;
 
 namespace ToBeFree
 {
+    public enum eCommand
+    {
+        MOVE, WORK, REST, SHOP, QUEST, INFO, BROKER, ESCAPE
+    }
+
     public class Action
     {
         protected eStartTime startTime;
@@ -48,8 +53,8 @@ namespace ToBeFree
             base.Activate(character);
 
             Debug.Log("Cure for Rest");
-            character.HP++;
-            character.MENTAL++;
+            character.Stat.HP++;
+            character.Stat.MENTAL++;
 
             CureEventNotify(character);
         }
@@ -75,7 +80,7 @@ namespace ToBeFree
             {
                 if (successResulteffects[i].Effect.BigType == "MONEY")
                 {
-                    character.CurMoney += character.CurCity.CalcRandWorkingMoney();
+                    character.Stat.Money += character.CurCity.CalcRandWorkingMoney();
                     break;
                 }
             }

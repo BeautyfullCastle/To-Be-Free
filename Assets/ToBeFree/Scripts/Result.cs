@@ -95,8 +95,9 @@ namespace ToBeFree
     {
         private int index;
         private Effect effect;
-        private int value;
         private AbnormalCondition abnormalCondition;
+        private int value;
+        
 
         public ResultEffect(int index, Effect effect, AbnormalCondition abnormalCondition=null, int value=0)
         {

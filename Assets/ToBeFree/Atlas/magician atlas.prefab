@@ -43,7 +43,7 @@ MonoBehaviour:
   mSprites:
   - name: magician1
     x: 0
-    y: 123
+    y: 192
     width: 64
     height: 64
     borderLeft: 0
@@ -56,13 +56,13 @@ MonoBehaviour:
     paddingBottom: 0
   - name: magician2
     x: 0
-    y: 188
-    width: 68
-    height: 68
-    borderLeft: 2
-    borderRight: 2
-    borderTop: 2
-    borderBottom: 2
+    y: 127
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0

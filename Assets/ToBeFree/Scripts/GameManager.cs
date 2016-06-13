@@ -9,16 +9,34 @@ namespace ToBeFree
         private Action action;
         private Action inspectAction;
 
-        protected GameManager()
+        // can't use the constructor
+        private GameManager()
         {
-        } // can't use the constructor
-
-
+        }
+         
         public void MoveEvent()
         {
             action = new Move();
             Debug.LogWarning("Command Move input");
             character.CurCity.PrintNeighbors();
+        }
+
+        public void WorkEvent()
+        {
+            action = new Work();
+            Debug.LogWarning("Command Work input");
+        }
+
+        public void RestEvent()
+        {
+            action = new Rest();
+            Debug.LogWarning("Command Rest input");
+        }
+
+        public void QuestEvent()
+        {
+            action = new QuestAction();
+            Debug.LogWarning("Command Quest input");
         }
 
         public void ClickCity(City city)
@@ -88,8 +106,8 @@ namespace ToBeFree
         {
             inspectAction = new Inspect();
 
-            Effect effect = new Effect("CURE", "HP", string.Empty);
-            Buff buff_cureHP_Now_Once = new Buff("cure hp 1", effect, false, 1, eStartTime.NOW, eDuration.ONCE);
+            Effect effect_Cure_HP = new Effect("CURE", "HP", string.Empty);
+            Buff buff_cureHP_Now_Once = new Buff("cure hp 1", effect_Cure_HP, false, 1, eStartTime.NOW, eDuration.ONCE);
             Item cureHP_Now_Once = new Item("cure hp 1", buff_cureHP_Now_Once, 10, 1);
             Item cureBoth_RestEquip = new Item("cureBoth_RestEquip", 
                 new Buff("Buff : Cure both rest equip", 
@@ -129,8 +147,8 @@ namespace ToBeFree
             CityGraph.Instance.Link(cityC2, cityD);
 
 
-            ResultEffect[] successResultEffects = new ResultEffect[1] { new ResultEffect(0, effect, null, 1) };
-            ResultEffect[] failureResultEffects = new ResultEffect[1] { new ResultEffect(0, effect, null, -1) };
+            ResultEffect[] successResultEffects = new ResultEffect[1] { new ResultEffect(0, effect_Cure_HP, null, 1) };
+            ResultEffect[] failureResultEffects = new ResultEffect[1] { new ResultEffect(0, effect_Cure_HP, null, -1) };
             
 
             ResultScriptAndEffects success = new ResultScriptAndEffects("success", successResultEffects);
@@ -146,9 +164,9 @@ namespace ToBeFree
 
             Select select_quest = new Select("CURE", "HP", ">=", 1, "select cure hp > 1", result_quest);
 
-            Event event_move = new Event("MOVE", "A", "AGI", "move strength test, A city", result_agility, false, null);
-            Event event_Inspection = new Event("INSPECT", "B", "OBS", "Inspection agility test, A city", result_observation, false, null);
-            Event event_work_A = new Event("WORK", "A", "STR", "police agility test, A city", result_strength, false, null);
+            Event event_move = new Event("MOVE", "A", "AGI", "move agility test, A city", result_agility, false, null);
+            Event event_Inspection = new Event("INSPECT", "B", "OBS", "Inspection observation test, B city", result_observation, false, null);
+            Event event_work_A = new Event("WORK", "A", "STR", "police strength test, A city", result_strength, false, null);
             Event event_work_B = new Event("WORK", "B", "STR", "police agility test, A city", result_strength, false, null);
             Event event_global = new Event("GLOBAL", "ALL", string.Empty, "global event", result_global, false, null);
             Event event_quest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, true, new Select[1] { select_quest });

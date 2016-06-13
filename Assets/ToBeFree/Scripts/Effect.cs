@@ -11,12 +11,7 @@ namespace ToBeFree
     {
         HP, MENTAL, BOTH
     }
-
-    public enum eCommandType
-    {
-        MOVE, REST, SHOP, INSPECT, INFO, BROKER, ESCAPE
-    }
-
+    
     public enum eDistanceType
     {
         RANDOM, SELECT, FAR_CLOSE, CLOSE_FAR
@@ -55,8 +50,11 @@ namespace ToBeFree
 
             switch (bigType)
             {
+                case "ABNORMAL":
+                    if (middleType == "ADD") { }
+                    break;
                 case "FOOD":
-                    character.FOOD += amount;
+                    character.Stat.FOOD += amount;
                     break;
 
                 case "INVEN":
@@ -70,12 +68,12 @@ namespace ToBeFree
                     if (middleType == "BOTH" || middleType == "HP")
                     {
                         Debug.Log("Cure HP");
-                        character.HP += amount;
+                        character.Stat.HP += amount;
                     }
                     if (middleType == "BOTH" || middleType == "MENTAL")
                     {
                         Debug.Log("Cure Mental");
-                        character.MENTAL += amount;
+                        character.Stat.MENTAL += amount;
                     }
                     break;
 
@@ -178,11 +176,11 @@ namespace ToBeFree
                     {
                         if (detailType == "ADD")
                         {
-                            character.CurInfoNum++;
+                            character.Stat.InfoNum++;
                         }
                         if (detailType == "DEL")
                         {
-                            character.CurInfoNum--;
+                            character.Stat.InfoNum--;
                         }
                     }
                     break;
@@ -249,7 +247,7 @@ namespace ToBeFree
                 case "MONEY":
                     if (middleType == "SPECIFIC")
                     {
-                        character.CurMoney += amount;
+                        character.Stat.Money += amount;
                     }
                     // can add more : RAND ?
                     if (middleType == "RAND 3")
@@ -257,7 +255,7 @@ namespace ToBeFree
                         int middleMoney = 3;
                         System.Random r = new System.Random();
                         int money = r.Next(-middleMoney, middleMoney) + amount;
-                        character.CurMoney += money;
+                        character.Stat.Money += money;
                     }
                     break;
 
@@ -271,7 +269,7 @@ namespace ToBeFree
                     }
                     break;
 
-                case "ACTION POWER":
+                case "COMMAND":
                     if (middleType == "DEACTIVE")
                     {
                         if (detailType == "WORK") { }
@@ -294,12 +292,20 @@ namespace ToBeFree
                     }
                     break;
 
-                case "SKIP ACTION":
-                    if (middleType == "WORK") { }
-                    else if (middleType == "MOVE") { }
-                    else if (middleType == "INFORM") { }
+                case "EVENT":
+                    if (middleType == "SKIP")
+                    {
+                        if (detailType == "WORK") { }
+                        else if (detailType == "MOVE") { }
+                        else if (detailType == "INFORM") { }
+                        // don't eat food when the time to eat
+                        else if (detailType == "FOOD") { }
+                        // can't cure when rest event activated
+                        else if (detailType == "REST CURE") { }
+                    }
+                    else if(middleType == "LOAD") { }
                     break;
-
+                    
                 default:
                     break;
             }

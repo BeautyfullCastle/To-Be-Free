@@ -28,7 +28,7 @@ namespace ToBeFree
                     // only big
                     if (bigType == "MENTAL")
                     {
-                        return Compare(character.MENTAL, amount, "<=");
+                        return Compare(character.Stat.MENTAL, amount, "<=");
                     }
                 }
                 else
