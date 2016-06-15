@@ -9,59 +9,65 @@ namespace ToBeFree
         private int maxSlots;
         public List<InventoryRecord> InventoryRecords;
 
+        public delegate void UpdateListHandler(Item item);
+        static public event UpdateListHandler AddedItem = delegate {};
+        static public event UpdateListHandler DeletedItem = delegate { };
+
         public Inventory(int maxSlots)
         {
             this.maxSlots = maxSlots;
             InventoryRecords = new List<InventoryRecord>();
         }
 
-        public void AddItem(Item item)
+        public void AddItem(Item item, Character character)
         {
-            InventoryRecord inventoryRecord =
-                   InventoryRecords.Find(x => (x.Item.Name == item.Name));
+            //InventoryRecord inventoryRecord =
+            //       InventoryRecords.Find(x => (x.Item.Name == item.Name));
 
-            if (inventoryRecord != null)
+            //if (inventoryRecord != null)
+            //{
+            //    inventoryRecord.AddToQuantity(1);
+            //}
+            //else if (inventoryRecord == null)
+
+            if(item.Buff.StartTime == eStartTime.NOW)
             {
-                inventoryRecord.AddToQuantity(1);
+                item.Buff.ActivateEffect(character);
+                return;
             }
-            else if (inventoryRecord == null)
+
             {
                 if (InventoryRecords.Count >= maxSlots)
                 {
                     throw new Exception("There is no more space in the inventory.");
                 }
                 InventoryRecords.Add(new InventoryRecord(item, 1));
+                AddedItem(item);
             }
 
             // add item's buff in buff list also.
-            BuffList.Instance.Add(item.Buff);
+            BuffManager.Instance.Add(item.Buff);
         }
 
-        public void Delete(Item item)
+        public void Delete(Item item, Character character)
         {
             InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.Item.Name == item.Name));
+            InventoryRecords.Remove(inventoryRecord);
 
-            this.Delete(inventoryRecord);
+            BuffManager.Instance.Delete(item.Buff, character);
+
+            DeletedItem(item);
         }
         
-        public void Delete(Buff buff)
+        public void Delete(Buff buff, Character character)
         {
             InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.Item.Buff == buff));
 
-            this.Delete(inventoryRecord);
-        }
-
-        private void Delete(InventoryRecord record)
-        {
-            if (record == null)
+            if (inventoryRecord==null)
             {
-                throw new Exception("There's no item like this in the inventory : " + record.Item.Name);
+                return;
             }
-            int remainQuantity = record.DeleteToQuantity(1);
-            if (remainQuantity <= 0)
-            {
-                InventoryRecords.Remove(record);
-            }
+            this.Delete(inventoryRecord.Item, character);
         }
 
         public Item GetRand()

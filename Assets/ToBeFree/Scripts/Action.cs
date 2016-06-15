@@ -21,7 +21,7 @@ namespace ToBeFree
             if(ActionEventNotify != null)
                 ActionEventNotify(startTime, character);
             
-            BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
+            BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
             if (!string.IsNullOrEmpty(actionName))
             {
@@ -119,7 +119,7 @@ namespace ToBeFree
         {
             Debug.LogWarning("Quest action Activated.");
             
-            BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
+            BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
             List<Quest> quests = PieceManager.Instance.QuestList.FindAll(x => x.City == character.CurCity);
             if (quests.Count >= 2)
@@ -155,7 +155,7 @@ namespace ToBeFree
         {
             Debug.LogWarning("Inpect action activated.");
             
-            BuffList.Instance.CheckStartTimeAndActivate(startTime, character);
+            BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
             foreach (Police police in PieceManager.Instance.PoliceList)
             {

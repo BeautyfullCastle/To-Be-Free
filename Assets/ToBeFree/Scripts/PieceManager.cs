@@ -62,11 +62,17 @@ namespace ToBeFree
         {
             if (type == "INFORM")
             {
-                return informList[0] as Piece;
+                if (informList.Count != 0)
+                {
+                    return informList[0] as Piece;
+                }
             }
             if (type == "POLICE")
             {
-                return policeList[0] as Piece;
+                if (policeList.Count != 0)
+                {
+                    return policeList[0] as Piece;
+                }
             }
 
             return null;

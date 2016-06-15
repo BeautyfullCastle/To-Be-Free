@@ -21,7 +21,7 @@ namespace ToBeFree
         
         public virtual void Activate(Character character, int value)
         {
-            BuffList.Instance.Add(this.buff);
+            BuffManager.Instance.Add(this.buff);
         }
         
         public Buff Buff
@@ -53,12 +53,12 @@ namespace ToBeFree
         {
             base.Activate(character, value);
 
-            Buff buff_exhilaration = BuffList.Instance.Find("Exhilaration");
+            Buff buff_exhilaration = BuffManager.Instance.Find("Exhilaration");
             if (buff_exhilaration == null)
             {
                 return;
             }
-            BuffList.Instance.Delete(buff_exhilaration, character);
+            BuffManager.Instance.Delete(buff_exhilaration, character);
         }
     }
 }

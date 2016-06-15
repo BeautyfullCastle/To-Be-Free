@@ -213,7 +213,7 @@ namespace ToBeFree
                         {
                             throw new System.Exception("item is null");
                         }
-                        character.Inven.AddItem(item);
+                        character.Inven.AddItem(item, character);
                     }
                     if (middleType == "DEL")
                     {
@@ -240,7 +240,7 @@ namespace ToBeFree
                         {
                             throw new System.Exception("item is null");
                         }
-                        character.Inven.Delete(item);
+                        character.Inven.Delete(item, character);
                     }
                     break;
 

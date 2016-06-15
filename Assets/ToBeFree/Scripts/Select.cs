@@ -42,7 +42,7 @@ namespace ToBeFree
                         bool isExist = Compare(itemAmount, amount, comparisonOperator);
                         if (isExist)
                         {
-                            character.Inven.Delete(item);
+                            character.Inven.Delete(item, character);
                         }
                         return isExist;
                     }

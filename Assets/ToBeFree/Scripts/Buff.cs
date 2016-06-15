@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace ToBeFree
 {
+    public enum eBuff
+    {
+        NAME, AMOUNT, STACK
+    }
+
     public class Buff
     {
         private string name;
@@ -11,12 +16,13 @@ namespace ToBeFree
         private bool isRestore;
         private int amount;
 
+        private int stack;
+        private bool isStack;
+
         private eStartTime startTime;
         private eDuration duration;
 
-        private bool isStack;
         
-
         public Buff(string name, Effect effect, bool isRestore, int amount,
             eStartTime startTime, eDuration duration, bool isStack=false)
         {
@@ -27,7 +33,7 @@ namespace ToBeFree
             this.startTime = startTime;
             this.duration = duration;
             this.isStack = isStack;
-            
+            this.stack = 1;
         }
 
         public Buff(Buff buff) : this(buff.name, buff.effect, buff.isRestore, buff.amount,
@@ -134,6 +140,19 @@ namespace ToBeFree
             set
             {
                 isRestore = value;
+            }
+        }
+
+        public int Stack
+        {
+            get
+            {
+                return stack;
+            }
+
+            set
+            {
+                stack = value;
             }
         }
     }

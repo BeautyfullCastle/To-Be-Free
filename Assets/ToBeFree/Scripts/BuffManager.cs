@@ -3,12 +3,16 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-    public class BuffList : Singleton<BuffList>
+    public class BuffManager : Singleton<BuffManager>
     {
         private List<Buff> buffList;
         private Stat prevStat;
 
-        public BuffList()
+        public delegate void UpdateListHandler(Buff buff);
+        static public event UpdateListHandler AddedBuff = delegate { };
+        static public event UpdateListHandler DeletedBuff = delegate { };
+
+        public BuffManager()
         {
             buffList = new List<Buff>();
             Rest.CureEventNotify += Rest_Cure_PatienceTest;
@@ -27,12 +31,14 @@ namespace ToBeFree
             if (buffInList == null)
             {
                 buffList.Add(buff);
+                AddedBuff(buff);
                 Debug.Log(buff.Name + " is added to buff list.");
                 return buff;
             }
 
             if (buffInList.IsStack)
             {
+                buff.Stack++;
                 buff.Amount += buffInList.Amount;
                 return buffInList;
             }
@@ -51,8 +57,9 @@ namespace ToBeFree
             }
 
             // delete item what has same buff.
-            character.Inven.Delete(buff);
+            character.Inven.Delete(buff, character);
 
+            DeletedBuff(buff);
             return buffList.Remove(buff);
         }
 
@@ -98,19 +105,22 @@ namespace ToBeFree
             }
             // restore character's stat
             character.Stat = prevStat.DeepCopy();
-
-            character.Stat.HP--;
         }
 
         private bool Rest_Cure_PatienceTest(Character character)
         {
+            Buff buff = buffList.Find(x => x.Duration == eDuration.PAT_TEST_REST);
+            if(buff == null)
+            {
+                return false;
+            }
+
             int patienceStat = character.Stat.Patience;
             bool isTestSucceed = DiceTester.Instance.Test(patienceStat, character);
-
-            Buff buff = buffList.Find(x => x.Duration == eDuration.PAT_TEST_REST);
-            
-            if (isTestSucceed && buff != null)
+                                   
+            if (isTestSucceed)
             {
+                DeletedBuff(buff);
                 buffList.Remove(buff);
             }
 

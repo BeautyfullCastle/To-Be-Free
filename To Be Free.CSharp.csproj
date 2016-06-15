@@ -209,7 +209,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\AbnormalCondition.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Action.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Buff.cs" />
-    <Compile Include="Assets\ToBeFree\Scripts\BuffList.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\BuffManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Character.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\City.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\CityGraph.cs" />
@@ -231,7 +231,11 @@
     <Compile Include="Assets\ToBeFree\Scripts\Select.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Stat.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\TimeTable.cs" />
-    <Compile Include="Assets\UI\CameraZoom.cs" />
+    <Compile Include="Assets\UI\Scripts\CameraZoom.cs" />
+    <Compile Include="Assets\UIBuff.cs" />
+    <Compile Include="Assets\UIBuffManager.cs" />
+    <Compile Include="Assets\UIInventory.cs" />
+    <Compile Include="Assets\UIItem.cs" />
     <Compile Include="Assets\UIStat.cs" />
     <Compile Include="Assets\XmlTest\Script\ParsingTest.cs" />
   </ItemGroup>
