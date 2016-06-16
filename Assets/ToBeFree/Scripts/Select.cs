@@ -5,17 +5,17 @@ namespace ToBeFree
 {
     public class Select
     {
-        private string bigType;
-        private string detailType;
+        private eSubjectType subjectType;
+        private eObjectType objectType;
         private string comparisonOperator;
         private int amount;
         private string script;
         private Result result;
 
-        public Select(string bigType, string detailType, string comparisonOperator, int amount, string script, Result result)
+        public Select(eSubjectType subjectType, eObjectType objectType, string comparisonOperator, int amount, string script, Result result)
         {
-            this.bigType = bigType;
-            this.detailType = detailType;
+            this.subjectType = subjectType;
+            this.objectType = objectType;
             this.comparisonOperator = comparisonOperator;
             this.amount = amount;
             this.script = script;
@@ -25,19 +25,19 @@ namespace ToBeFree
         public bool CheckCondition(Character character)
         {
             // have to fix here.
-            if (bigType == "CURE")
+            if (subjectType == eSubjectType.CHARACTER)
             {
-                if (detailType == "HP")
+                if (objectType == eObjectType.HP)
                 {
-                    Item item = character.Inven.FindItemByType(bigType, detailType);
+                    Item item = character.Inven.FindItemByType(subjectType, eVerbType.ADD, objectType);
                     if (item == null)
                     {
-                        Debug.Log(bigType + " or " + detailType + " is not exist.");
+                        Debug.Log(subjectType + " or " + objectType + " is not exist.");
                         return false;
                     }
-                    string itemType = item.Buff.Effect.BigType;
+                    eSubjectType itemType = item.Buff.Effect.SubjectType;
                     int itemAmount = item.Buff.Amount;
-                    if (itemType == bigType && item.Buff.Effect.DetailType == detailType)
+                    if (itemType == subjectType && item.Buff.Effect.ObjectType == objectType)
                     {
                         bool isExist = Compare(itemAmount, amount, comparisonOperator);
                         if (isExist)
@@ -49,7 +49,7 @@ namespace ToBeFree
                 }
             }
 
-            throw new Exception(bigType + " or " + detailType + " is not right.");
+            throw new Exception(subjectType + " or " + objectType + " is not right.");
         }
 
         private bool Compare(int left, int right, string comparisonOp)

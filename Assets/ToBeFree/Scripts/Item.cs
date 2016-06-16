@@ -19,19 +19,7 @@ namespace ToBeFree
         private string name;
         private int price;
         private int maximumStackableQuantity;
-
-        //public Item(string name, Effect effect, eStartTime startTime, eDuration duration, bool isRestore,
-        //            int amount, int price, int maximumStackableQuantity)
-        //{
-        //    this.name = name;
-        //    //this.effect = effect;
-        //    //this.startTime = startTime;
-        //    //this.duration = duration;
-        //    //this.isRestore = isRestore;
-        //    //this.amount = amount;
-        //    //this.price = price;
-        //    this.maximumStackableQuantity = maximumStackableQuantity;
-        //}
+        
 
         public Item(string name, Buff buff, int price, int maximumStackableQuantity)
         {
@@ -39,6 +27,8 @@ namespace ToBeFree
             this.buff = new Buff(buff);
             this.price = price;
             this.maximumStackableQuantity = maximumStackableQuantity;
+
+            ItemManager.Instance.Add(this);
         }
 
         public Item(Item item)

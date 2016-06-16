@@ -80,25 +80,27 @@ namespace ToBeFree
         // TO DO : have to implement
         public Item GetTagRand(int iTag) { return null; }
 
-        public Item FindItemByType(string bigType, string middleType, string detailType = "")
+        public Item FindItemByType(eSubjectType subjectType, eVerbType verbType, eObjectType objectType = eObjectType.NONE)
         {
-            InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.Item.Buff.Effect.BigType == bigType);
+            InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.Item.Buff.Effect.SubjectType == subjectType);
             if (inventoryRecord == null)
             {
-                Debug.Log("There's no " + bigType + " item in inventory");
+                Debug.Log("There's no " + subjectType + " item in inventory");
                 return null;
             }
             else
             {
                 Item item = inventoryRecord.Item;
-                if (string.IsNullOrEmpty(item.Buff.Effect.MiddleType) || item.Buff.Effect.MiddleType == middleType)
+
+                // WARNING : Maybe this code have bug cause of NONE checking.
+                if ((item.Buff.Effect.VerbType == eVerbType.NONE) || item.Buff.Effect.VerbType == verbType)
                 {
-                    if (string.IsNullOrEmpty(item.Buff.Effect.DetailType) || item.Buff.Effect.DetailType == detailType)
+                    if ((item.Buff.Effect.ObjectType == eObjectType.NONE) || item.Buff.Effect.ObjectType == objectType)
                     {
                         return item;
                     }
                 }
-                Debug.Log("There's no " + bigType + " " + middleType + " " + detailType + " item in inventory");
+                Debug.Log("There's no " + subjectType + " " + verbType + " " + objectType + " item in inventory");
                 return null;
             }
         }

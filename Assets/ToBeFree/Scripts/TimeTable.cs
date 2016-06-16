@@ -5,7 +5,7 @@ namespace ToBeFree
     public class TimeTable : Singleton<TimeTable>
     {
         private int day;
-
+        
         public delegate void TimeEventHandler();
 
         public event TimeEventHandler NotifyEveryday;
@@ -30,6 +30,14 @@ namespace ToBeFree
             }
 
             Debug.Log("Alived day : " + day);
+        }
+
+        public int Day
+        {
+            get
+            {
+                return day;
+            }
         }
     }
 }

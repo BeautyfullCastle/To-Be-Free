@@ -78,7 +78,7 @@ namespace ToBeFree
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {
-                if (successResulteffects[i].Effect.BigType == "MONEY")
+                if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
                 {
                     character.Stat.Money += character.CurCity.CalcRandWorkingMoney();
                     break;

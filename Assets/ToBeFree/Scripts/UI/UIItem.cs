@@ -6,6 +6,10 @@ namespace ToBeFree
 {
     public class UIItem : MonoBehaviour
     {
+        public enum eBelong { SHOP, INVEN }
+
+        public eBelong belong = eBelong.SHOP;
+
         public UILabel itemName;
 
         private Item item;
@@ -14,11 +18,16 @@ namespace ToBeFree
         {
             NGUIDebug.Log(itemName.text);
 
-            // for the test of delte
-            GameManager.Instance.Character.Inven.Delete(this.item, GameManager.Instance.Character);
+            if (belong == eBelong.SHOP)
+            {
+                if (this.item == null)
+                    return;
+
+                GameManager.Instance.Character.Inven.AddItem(this.item, GameManager.Instance.Character);
+            }
         }
 
-        internal void SetInfo(Item item)
+        public void SetInfo(Item item)
         {
             this.item = item;
             itemName.text = item.Name;

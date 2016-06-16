@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ToBeFree
 {
@@ -9,6 +10,8 @@ namespace ToBeFree
         public ItemManager()
         {
             itemList = new List<Item>();
+            // for test
+            Inventory.AddedItem += Add;
         }
 
         public Item GetRand()
@@ -29,17 +32,22 @@ namespace ToBeFree
             return null;
         }
 
+        internal void Add(Item item)
+        {
+            this.itemList.Add(item.DeepCopy());
+        }
+
         public Item GetByIndex(int index)
         {
             return itemList[index];
         }
 
-        public Item GetByType(string bigType, string middleType, string detailType)
+        public Item GetByType(eSubjectType bigType, eVerbType middleType, eObjectType detailType)
         {
             foreach (Item item in itemList)
             {
-                if (item.Buff.Effect.BigType == bigType && item.Buff.Effect.MiddleType == middleType
-                    && item.Buff.Effect.DetailType == detailType)
+                if (item.Buff.Effect.SubjectType == bigType && item.Buff.Effect.VerbType == middleType
+                    && item.Buff.Effect.ObjectType == detailType)
                 {
                     return item;
                 }

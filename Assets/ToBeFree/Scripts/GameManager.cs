@@ -109,29 +109,30 @@ namespace ToBeFree
 
             TimeTable.Instance.DayIsGone();
         }
-        private void Awake()
+
+        private void Start()
         {
             inspectAction = new Inspect();
 
-            Effect effect_Cure_HP = new Effect("CURE", "HP", string.Empty);
+            Effect effect_Cure_HP = new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.HP);
             Buff buff_cureHP_Now_Once = new Buff("cure hp 1", effect_Cure_HP, false, 1, eStartTime.NOW, eDuration.ONCE);
             Item cureHP_Now_Once = new Item("cure hp 1", buff_cureHP_Now_Once, 10, 1);
             Item cureBoth_RestEquip = new Item("cureBoth_RestEquip", 
                 new Buff("Buff : Cure both rest equip", 
-                    new Effect("CURE", "BOTH"), false, 1, eStartTime.REST, eDuration.EQUIP), 
+                    new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.HP_MENTAL), false, 1, eStartTime.REST, eDuration.EQUIP), 
                 10, 1);
             Item addSTR_Work_Once = new Item("add str when working once", 
                 new Buff("Buff : add str when working once", 
-                    new Effect("STAT", "STR"), true, 1, eStartTime.TEST, eDuration.ONCE), 
+                    new Effect(eSubjectType.STAT, eVerbType.ADD, eObjectType.STRENGTH), true, 1, eStartTime.TEST, eDuration.ONCE), 
                 10, 1);
             Item addSTR_Work_Equip = new Item("add str when working equip", 
-                    new Buff("add str when working equip", new Effect("STAT", "STR"), true, 1, eStartTime.TEST, eDuration.EQUIP), 
+                    new Buff("add str when working equip", new Effect(eSubjectType.STAT, eVerbType.ADD, eObjectType.STRENGTH), true, 1, eStartTime.TEST, eDuration.EQUIP), 
                 10, 1);
             Item addAGI_Move_Once = new Item("addAGI_Move_Once", 
-                    new Buff("Buff : addAGI_Move_Once", new Effect("STAT", "AGI"), true, 1, eStartTime.TEST, eDuration.ONCE), 
+                    new Buff("Buff : addAGI_Move_Once", new Effect(eSubjectType.STAT, eVerbType.ADD, eObjectType.AGILITY), true, 1, eStartTime.TEST, eDuration.ONCE), 
                 10, 1);
             Item delPoliceNearOnce = new Item("del police near once", 
-                    new Buff("Buff : del police near once", new Effect("POLICE", "DEL", "CLOSE"), false, 1, eStartTime.NOW, eDuration.ONCE), 
+                    new Buff("Buff : del police near once", new Effect(eSubjectType.POLICE, eVerbType.DEL, eObjectType.CLOSE), false, 1, eStartTime.NOW, eDuration.ONCE), 
                 10, 1);
 
             
@@ -169,7 +170,7 @@ namespace ToBeFree
             Result result_quest = new Result(string.Empty, success, failure);
 
 
-            Select select_quest = new Select("CURE", "HP", ">=", 1, "select cure hp > 1", result_quest);
+            Select select_quest = new Select(eSubjectType.CHARACTER, eObjectType.HP, ">=", 1, "select cure hp > 1", result_quest);
 
             Event event_move = new Event("MOVE", "A", "AGI", "move agility test, A city", result_agility, false, null);
             Event event_Inspection = new Event("INSPECT", "ALL", "OBS", "Inspection observation test, B city", result_observation, false, null);
@@ -180,7 +181,7 @@ namespace ToBeFree
             Event event_globalquest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, false, null);
 
             // abnormal condition : despair
-            Effect effect_dice_successNum = new Effect("DICE", "SUCCESS NUM", string.Empty);
+            Effect effect_dice_successNum = new Effect(eSubjectType.DICE, eVerbType.NONE, eObjectType.SUCCESSNUM);
             Condition spawnCondition_despair = new Condition("MENTAL", string.Empty, string.Empty, "<=", 0);
             Buff despairBuff = new Buff("Despair buff", effect_dice_successNum, true, 6, eStartTime.TEST, eDuration.PAT_TEST_REST, false);
             AbnormalCondition despair = new Despair("despair", despairBuff, spawnCondition_despair, false, false);
@@ -272,11 +273,11 @@ namespace ToBeFree
             // put pieces in one of random cities (police, information, quest)
             int distance = 2;
             // 2 polices
-            PieceManager.Instance.Add(CityGraph.Instance.FindRand(), "POLICE");
-            PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), "POLICE");
+            PieceManager.Instance.Add(CityGraph.Instance.FindRand(), eSubjectType.POLICE);
+            PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.POLICE);
             // 2 informations
-            PieceManager.Instance.Add(CityGraph.Instance.FindRand(), "INFORM");
-            PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), "INFORM");
+            PieceManager.Instance.Add(CityGraph.Instance.FindRand(), eSubjectType.INFO);
+            PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.INFO);
             // 1 quest
             Event selectedEvent = EventManager.Instance.Find("QUEST", character.CurCity);
             PieceManager.Instance.AddQuest(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);

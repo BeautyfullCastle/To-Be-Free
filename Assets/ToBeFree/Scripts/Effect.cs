@@ -2,208 +2,227 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-    public enum eType
+    public enum eSubjectType
     {
-        FOOD, INVEN, CURE, STAT, REROLL, DICE, DICESPOT, INFO, POLICE, CHARACTER, ITEM, MONEY, ACTINGPOWER
+        STAT, DICE,
+        INFO, POLICE, CHARACTER,
+        ITEM, MONEY, FOOD,
+        ACTINGPOWER, ABNORMAL,
+        COMMAND,
+        EVENT, QUEST
     }
 
-    public enum eCureType
+    public enum eVerbType
     {
-        HP, MENTAL, BOTH
-    }
-    
-    public enum eDistanceType
-    {
-        RANDOM, SELECT, FAR_CLOSE, CLOSE_FAR
-    }
-
-    public enum eChangeType
-    {
-        MOVE, ADD, DELETE
+        NONE,
+        ADD, DEL, MOVE,
+        DEACTIVE,
+        SKIP, LOAD,
+        REROLL
     }
 
-    public enum eSelectType
+    // ¸ñÀû¾î
+    public enum eObjectType
     {
-        SELECT, RANDOM
+        NONE,
+        HP, MENTAL, HP_MENTAL,
+        FAR_CLOSE, CLOSE_FAR, RAND_RAND, RAND_CLOSE, CLOSE_CLOSE,
+        CLOSE, FAR, RAND, 
+        ALL, TAG, INDEX, SELECT, SELECT_ALL, SELECT_TAG,
+        WORK, MOVE, REST, REST_CURE, SPECIAL, INFO, FOOD, SHOP,
+        STRENGTH, AGILITY, OBSERVATION, BARGAIN, PATIENCE, LUCK,
+        SOUTHEAST_ASIA, MONGOLIA,
+        SPECIFIC, RAND_3,
+        SUCCESSNUM,
+        INVEN
     }
 
     public class Effect
     {
-        private string bigType;
-        private string middleType;
-        private string detailType;
+        private eSubjectType subjectType;
+        private eVerbType verbType;
+        private eObjectType objectType;
         private int prevAmount;
 
-        public Effect(string bigType, string middleType, string detailType = "")
+        public Effect(eSubjectType subjectType, eVerbType verbType = eVerbType.NONE, eObjectType objectType = eObjectType.NONE)
         {
-            this.bigType = bigType;
-            this.middleType = middleType;
-            this.detailType = detailType;
+            this.subjectType = subjectType;
+            this.verbType = verbType;
+            this.objectType = objectType;
         }
 
-        public Effect(Effect effect) : this(effect.bigType, effect.middleType, effect.detailType)
+        public Effect(Effect effect) : this(effect.subjectType, effect.verbType, effect.objectType)
         {
         }
 
         public bool Activate(Character character, int amount)
         {
 
-            switch (bigType)
+            switch (subjectType)
             {
-                case "ABNORMAL":
-                    if (middleType == "ADD") { }
-                    break;
-                case "FOOD":
-                    character.Stat.FOOD += amount;
-                    break;
-
-                case "INVEN":
-                    for (int i = 0; i < amount; ++i)
+                case eSubjectType.CHARACTER:
+                    if (verbType == eVerbType.ADD)
                     {
-                        character.Inven.AddSlot();
-                    }
-                    break;
-
-                case "CURE":
-                    if (middleType == "BOTH" || middleType == "HP")
-                    {
-                        Debug.Log("Cure HP");
-                        character.Stat.HP += amount;
-                    }
-                    if (middleType == "BOTH" || middleType == "MENTAL")
-                    {
-                        Debug.Log("Cure Mental");
-                        character.Stat.MENTAL += amount;
-                    }
-                    break;
-
-                case "STAT":
-                    if (middleType == "STR" || middleType == "ALL")
-                    {
-                        character.Stat.Strength += amount;
-                        Debug.Log("effect activate strength : " + character.Stat.Strength);
-                    }
-                    if (middleType == "AGI" || middleType == "ALL")
-                    {
-                        character.Stat.Agility += amount;
-                        Debug.Log("effect activate agility : " + character.Stat.Agility);
-                    }
-                    if (middleType == "OBS" || middleType == "ALL")
-                    {
-                        character.Stat.Observation += amount;
-                        Debug.Log("effect activate observation : " + character.Stat.Observation);
-                    }
-                    if (middleType == "BAR" || middleType == "ALL")
-                    {
-                        character.Stat.Bargain += amount;
-                        Debug.Log("effect activate bargain : " + character.Stat.Bargain);
-                    }
-                    if (middleType == "PAT" || middleType == "ALL")
-                    {
-                        character.Stat.Patience += amount;
-                        Debug.Log("effect activate patience : " + character.Stat.Patience);
-                    }
-                    if (middleType == "LUC" || middleType == "ALL")
-                    {
-                        character.Stat.Luck += amount;
-                        Debug.Log("effect activate luck : " + character.Stat.Luck);
-                    }
-                    break;
-
-                case "INFORM":
-                case "POLICE":
-                    if (middleType == "MOVE")
-                    {
-                        if (detailType == "RAND TO RAND")
+                        if (objectType == eObjectType.HP_MENTAL || objectType == eObjectType.HP)
                         {
-                            Piece piece = PieceManager.Instance.GetRand(bigType);
+                            Debug.Log("Cure HP");
+                            character.Stat.HP += amount;
+                        }
+                        if (objectType == eObjectType.HP_MENTAL || objectType == eObjectType.MENTAL)
+                        {
+                            Debug.Log("Cure Mental");
+                            character.Stat.MENTAL += amount;
+                        }
+                        if (objectType == eObjectType.INFO)
+                        {
+                            character.Stat.InfoNum++;
+                        }
+                        if (objectType == eObjectType.FOOD)
+                        {
+                            character.Stat.FOOD += amount;
+                        }
+                        if (objectType == eObjectType.INVEN)
+                        {
+                            for (int i = 0; i < amount; ++i)
+                            {
+                                character.Inven.AddSlot();
+                            }
+                        }
+                    }
+                    if (verbType == eVerbType.DEL)
+                    {
+                        if (objectType == eObjectType.INFO)
+                        {
+                            character.Stat.InfoNum--;
+                        }
+                    }
+                    if (verbType == eVerbType.MOVE)
+                    {
+                        if (objectType == eObjectType.CLOSE)
+                        {
+                            character.CurCity = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
+                        }
+                    }
+                    break;
+                    
+                case eSubjectType.STAT:
+                    if (verbType == eVerbType.ADD)
+                    {
+                        if (objectType == eObjectType.STRENGTH || objectType == eObjectType.ALL)
+                        {
+                            character.Stat.Strength += amount;
+                            Debug.Log("effect activate strength : " + character.Stat.Strength);
+                        }
+                        if (objectType == eObjectType.AGILITY || objectType == eObjectType.ALL)
+                        {
+                            character.Stat.Agility += amount;
+                            Debug.Log("effect activate agility : " + character.Stat.Agility);
+                        }
+                        if (objectType == eObjectType.OBSERVATION || objectType == eObjectType.ALL)
+                        {
+                            character.Stat.Observation += amount;
+                            Debug.Log("effect activate observation : " + character.Stat.Observation);
+                        }
+                        if (objectType == eObjectType.BARGAIN || objectType == eObjectType.ALL)
+                        {
+                            character.Stat.Bargain += amount;
+                            Debug.Log("effect activate bargain : " + character.Stat.Bargain);
+                        }
+                        if (objectType == eObjectType.PATIENCE || objectType == eObjectType.ALL)
+                        {
+                            character.Stat.Patience += amount;
+                            Debug.Log("effect activate patience : " + character.Stat.Patience);
+                        }
+                        if (objectType == eObjectType.LUCK || objectType == eObjectType.ALL)
+                        {
+                            character.Stat.Luck += amount;
+                            Debug.Log("effect activate luck : " + character.Stat.Luck);
+                        }
+                    }
+                    break;
+                    
+                case eSubjectType.INFO:
+                case eSubjectType.POLICE:
+                    if (verbType == eVerbType.MOVE)
+                    {
+                        if (objectType == eObjectType.RAND_RAND)
+                        {
+                            Piece piece = PieceManager.Instance.GetRand(subjectType);
 
                             piece.City = CityGraph.Instance.FindRand();
                         }
-                        if (detailType == "RAND TO CLOSE")
+                        if (objectType == eObjectType.RAND_CLOSE)
                         {
-                            Piece piece = PieceManager.Instance.GetRand(bigType);
+                            Piece piece = PieceManager.Instance.GetRand(subjectType);
 
                             piece.City = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
-                        if (detailType == "FAR TO CLOSE")
+                        if (objectType == eObjectType.FAR_CLOSE)
                         {
-                            Piece piece = PieceManager.Instance.GetLast(bigType);
+                            Piece piece = PieceManager.Instance.GetLast(subjectType);
 
                             piece.City = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
-                        if (detailType == "CLOSE TO FAR")
+                        if (objectType == eObjectType.CLOSE_FAR)
                         {
-                            Piece piece = PieceManager.Instance.GetFirst(bigType);
+                            Piece piece = PieceManager.Instance.GetFirst(subjectType);
 
                             System.Random r = new System.Random();
                             int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
                             piece.City = CityGraph.Instance.FindRandCityByDistance(character.CurCity, randDistance);
                         }
                     }
-                    if (middleType == "DEL")
+                    if (verbType == eVerbType.DEL)
                     {
                         Piece piece = null;
-                        if (detailType == "RAND")
+                        if (objectType == eObjectType.RAND)
                         {
-                            piece = PieceManager.Instance.GetRand(bigType);
+                            piece = PieceManager.Instance.GetRand(subjectType);
                         }
-                        if (detailType == "FAR")
+                        if (objectType == eObjectType.FAR)
                         {
-                            piece = PieceManager.Instance.GetLast(bigType);
+                            piece = PieceManager.Instance.GetLast(subjectType);
                         }
-                        if (detailType == "CLOSE")
+                        if (objectType == eObjectType.CLOSE)
                         {
-                            piece = PieceManager.Instance.GetFirst(bigType);
+                            piece = PieceManager.Instance.GetFirst(subjectType);
                         }
                         PieceManager.Instance.Delete(piece);
                     }
-                    if (middleType == "ADD")
+                    if (verbType == eVerbType.ADD)
                     {
-                        if (detailType == "RAND")
+                        if (objectType == eObjectType.RAND)
                         {
                             City city = CityGraph.Instance.FindRand();
-                            Piece piece = PieceManager.Instance.Add(city, bigType);
+                            Piece piece = PieceManager.Instance.Add(city, subjectType);
                         }
-                        if (detailType == "CLOSE")
+                        if (objectType == eObjectType.CLOSE)
                         {
                             City city = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
-                            Piece piece = PieceManager.Instance.Add(city, bigType);
-                        }
-                    }
-                    // for infrom only
-                    if (middleType == "CHARACTER")
-                    {
-                        if (detailType == "ADD")
-                        {
-                            character.Stat.InfoNum++;
-                        }
-                        if (detailType == "DEL")
-                        {
-                            character.Stat.InfoNum--;
+                            Piece piece = PieceManager.Instance.Add(city, subjectType);
                         }
                     }
                     break;
-
-                case "ITEM":
-                    if (middleType == "ADD")
+                    
+                case eSubjectType.ITEM:
+                    if (verbType == eVerbType.ADD)
                     {
                         Item item = null;
-                        if (detailType == "ALL")
+                        if (objectType == eObjectType.ALL)
                         {
                             item = ItemManager.Instance.GetRand();
                         }
-                        else if (detailType == "TAG")
+                        else if (objectType == eObjectType.TAG)
                         {
                             item = ItemManager.Instance.GetTagRand(amount);
                         }
-                        else if (detailType == "INDEX")
+                        else if (objectType == eObjectType.INDEX)
                         {
                             // Item item = invenManager.get(amount);
                             ItemManager.Instance.GetByIndex(amount);
                         }
-                        else if (detailType == "ALL SELECT") { }
-                        else if (detailType == "TAG SELECT") { }
+                        else if (objectType == eObjectType.SELECT_ALL) { }
+                        else if (objectType == eObjectType.SELECT_TAG) { }
                         else
                         {
                             throw new System.Exception("detail type is not right.");
@@ -215,22 +234,22 @@ namespace ToBeFree
                         }
                         character.Inven.AddItem(item, character);
                     }
-                    if (middleType == "DEL")
+                    if (verbType == eVerbType.DEL)
                     {
                         Item item = null;
-                        if (detailType == "ALL")
+                        if (objectType == eObjectType.ALL)
                         {
                             item = character.Inven.GetRand();
                         }
-                        else if (detailType == "TAG")
+                        else if (objectType == eObjectType.TAG)
                         {
                             item = character.Inven.GetTagRand(amount);
                         }
-                        else if (detailType == "INDEX")
+                        else if (objectType == eObjectType.INDEX)
                         {
                             item = ItemManager.Instance.GetByIndex(amount);
                         }
-                        else if (detailType == "SELECT") { }
+                        else if (objectType == eObjectType.SELECT) { }
                         else
                         {
                             throw new System.Exception("detail type is not right.");
@@ -243,69 +262,73 @@ namespace ToBeFree
                         character.Inven.Delete(item, character);
                     }
                     break;
-
-                case "MONEY":
-                    if (middleType == "SPECIFIC")
+                    
+                case eSubjectType.MONEY:
+                    if (verbType == eVerbType.ADD)
                     {
-                        character.Stat.Money += amount;
-                    }
-                    // can add more : RAND ?
-                    if (middleType == "RAND 3")
-                    {
-                        int middleMoney = 3;
-                        System.Random r = new System.Random();
-                        int money = r.Next(-middleMoney, middleMoney) + amount;
-                        character.Stat.Money += money;
-                    }
-                    break;
-
-                case "CHARACTER":
-                    if (middleType == "MOVE")
-                    {
-                        if (detailType == "CLOSE")
+                        if (objectType == eObjectType.SPECIFIC)
                         {
-                            character.CurCity = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
+                            character.Stat.Money += amount;
+                        }
+                        // can add more : RAND ?
+                        if (objectType == eObjectType.RAND_3)
+                        {
+                            int middleMoney = 3;
+                            System.Random r = new System.Random();
+                            int money = r.Next(-middleMoney, middleMoney) + amount;
+                            character.Stat.Money += money;
                         }
                     }
                     break;
-
-                case "COMMAND":
-                    if (middleType == "DEACTIVE")
+                    
+                case eSubjectType.COMMAND:
+                    if (verbType == eVerbType.DEACTIVE)
                     {
-                        if (detailType == "WORK") { }
-                        else if (detailType == "MOVE") { }
-                        else if (detailType == "REST") { }
-                        else if (detailType == "SPECIAL") { } // other commands.
+                        if (objectType == eObjectType.WORK) { }
+                        else if (objectType == eObjectType.MOVE) { }
+                        else if (objectType == eObjectType.REST) { }
+                        else if (objectType == eObjectType.SPECIAL) { } // other commands.
                     }
                     break;
-
-                case "DICE":
-                    if (middleType == "SUCCESS NUM")
+                    
+                case eSubjectType.DICE:
+                    if (objectType == eObjectType.SUCCESSNUM)
                     {
                         if ( !(amount == 4 || amount == 6) )
                         {
                             throw new System.Exception("Input Dice success num is not 4 or 6.");
                         }
-                        Debug.Log("Effect " + bigType + " " + middleType + " " + amount + " activated.");
+                        Debug.Log("Effect " + subjectType + " " + verbType + " " + amount + " activated.");
                         prevAmount = DiceTester.Instance.MinSuccessNum;
                         DiceTester.Instance.MinSuccessNum = amount;
                     }
                     break;
-
-                case "EVENT":
-                    if (middleType == "SKIP")
-                    {
-                        if (detailType == "WORK") { }
-                        else if (detailType == "MOVE") { }
-                        else if (detailType == "INFORM") { }
-                        // don't eat food when the time to eat
-                        else if (detailType == "FOOD") { }
-                        // can't cure when rest event activated
-                        else if (detailType == "REST CURE") { }
-                    }
-                    else if(middleType == "LOAD") { }
-                    break;
                     
+                case eSubjectType.EVENT:
+                    if (verbType == eVerbType.SKIP)
+                    {
+                        if (objectType == eObjectType.WORK) { }
+                        else if (objectType == eObjectType.MOVE) { }
+                        else if (objectType == eObjectType.INFO) { }
+                        // don't eat food when the time to eat
+                        else if (objectType == eObjectType.FOOD) { }
+                        // can't cure when rest event activated
+                        else if (objectType == eObjectType.REST_CURE) { }
+                        // skip entering the action
+                        else if (objectType == eObjectType.ALL) { }
+                    }
+                    else if(verbType == eVerbType.LOAD) { }
+                    break;
+                case eSubjectType.QUEST:
+                    // load quest
+                    if(verbType == eVerbType.LOAD)
+                    {
+
+                    }
+                    break;
+                case eSubjectType.ABNORMAL:
+                    if (verbType == eVerbType.ADD) { }
+                    break;
                 default:
                     break;
             }
@@ -314,39 +337,22 @@ namespace ToBeFree
 
         public void Deactivate(Character character)
         {
-            switch (bigType)
+            switch (subjectType)
             {
-                case "DICE":
-                    if (middleType == "SUCCESS NUM")
+                case eSubjectType.DICE:
+                    if (objectType == eObjectType.SUCCESSNUM)
                     {
-                        Debug.Log("Effect " + bigType + " " + middleType + " " + prevAmount + " deactivated.");
+                        Debug.Log("Effect " + subjectType + " " + verbType + " " + prevAmount + " deactivated.");
                         DiceTester.Instance.MinSuccessNum = prevAmount;
                     }
                     break;
             }
         }
+        
+        public eSubjectType SubjectType { get { return subjectType; } }
 
-        public string DetailType { get { return detailType; } }
+        public eVerbType VerbType { get { return verbType; } }
 
-        public string BigType
-        {
-            get
-            {
-                return bigType;
-            }
-        }
-
-        public string MiddleType
-        {
-            get
-            {
-                return middleType;
-            }
-
-            set
-            {
-                middleType = value;
-            }
-        }
+        public eObjectType ObjectType { get { return objectType; } }
     }
 }
