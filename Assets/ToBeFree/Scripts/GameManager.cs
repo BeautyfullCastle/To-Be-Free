@@ -245,6 +245,7 @@ namespace ToBeFree
                                     cityA, 5, 3, 0, 5, 5, inven);
 
             // set character's start cureHP_Now_Onces.
+            character.Inven.AddItem(new Item("food", new Buff("food buff", new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.FOOD), false, 1, eStartTime.NOW, eDuration.ONCE), 2, 1), character);
             character.Inven.AddItem(cureHP_Now_Once, character);
             character.Inven.AddItem(cureBoth_RestEquip, character);
             character.Inven.AddItem(addSTR_Work_Once, character);

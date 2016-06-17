@@ -9,7 +9,10 @@ namespace ToBeFree
         ITEM, MONEY, FOOD,
         ACTINGPOWER, ABNORMAL,
         COMMAND,
-        EVENT, QUEST
+        EVENT, QUEST,
+        ROOT,
+        BROKER,
+        NULL
     }
 
     public enum eVerbType
@@ -17,8 +20,12 @@ namespace ToBeFree
         NONE,
         ADD, DEL, MOVE,
         DEACTIVE,
-        SKIP, LOAD,
-        REROLL
+        SKIP, LOAD, OPEN,
+        REROLL,
+        IN,
+        SET,
+        NULL,
+        CANCEL
     }
 
     // ¸ñÀû¾î
@@ -34,7 +41,9 @@ namespace ToBeFree
         SOUTHEAST_ASIA, MONGOLIA,
         SPECIFIC, RAND_3,
         SUCCESSNUM,
-        INVEN
+        INVEN,
+        DETENTION,
+        NULL
     }
 
     public class Effect
@@ -103,6 +112,10 @@ namespace ToBeFree
                             character.CurCity = CityGraph.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
                     }
+                    if(verbType == eVerbType.IN)
+                    {
+                        if (objectType == eObjectType.DETENTION) { }
+                    }
                     break;
                     
                 case eSubjectType.STAT:
@@ -143,6 +156,7 @@ namespace ToBeFree
                     
                 case eSubjectType.INFO:
                 case eSubjectType.POLICE:
+                case eSubjectType.BROKER:
                     if (verbType == eVerbType.MOVE)
                     {
                         if (objectType == eObjectType.RAND_RAND)
@@ -292,15 +306,18 @@ namespace ToBeFree
                     break;
                     
                 case eSubjectType.DICE:
-                    if (objectType == eObjectType.SUCCESSNUM)
+                    if (verbType == eVerbType.SET)
                     {
-                        if ( !(amount == 4 || amount == 6) )
+                        if (objectType == eObjectType.SUCCESSNUM)
                         {
-                            throw new System.Exception("Input Dice success num is not 4 or 6.");
+                            if (!(amount == 4 || amount == 6))
+                            {
+                                throw new System.Exception("Input Dice success num is not 4 or 6.");
+                            }
+                            Debug.Log("Effect " + subjectType + " " + verbType + " " + amount + " activated.");
+                            prevAmount = DiceTester.Instance.MinSuccessNum;
+                            DiceTester.Instance.MinSuccessNum = amount;
                         }
-                        Debug.Log("Effect " + subjectType + " " + verbType + " " + amount + " activated.");
-                        prevAmount = DiceTester.Instance.MinSuccessNum;
-                        DiceTester.Instance.MinSuccessNum = amount;
                     }
                     break;
                     
@@ -329,6 +346,14 @@ namespace ToBeFree
                 case eSubjectType.ABNORMAL:
                     if (verbType == eVerbType.ADD) { }
                     break;
+                case eSubjectType.ROOT:
+                    if(verbType == eVerbType.OPEN)
+                    {
+                        if (objectType == eObjectType.MONGOLIA) { }
+                        if (objectType == eObjectType.SOUTHEAST_ASIA) { }
+                    }
+                    break;
+
                 default:
                     break;
             }
@@ -349,6 +374,164 @@ namespace ToBeFree
             }
         }
         
+        static public eSubjectType ToSubjectType(string subjectType)
+        {
+            switch(subjectType)
+            {
+                case "ABNORMAL":
+                    return eSubjectType.ABNORMAL;
+                case "ACTIONGPOWER":
+                    return eSubjectType.ACTINGPOWER;
+                case "BROKER":
+                    return eSubjectType.BROKER;
+                case "CHARACTER":
+                    return eSubjectType.CHARACTER;
+                case "COMMAND":
+                    return eSubjectType.COMMAND;
+                case "DICE":
+                    return eSubjectType.DICE;
+                case "EVENT":
+                    return eSubjectType.EVENT;
+                case "FOOD":
+                    return eSubjectType.FOOD;
+                case "INFO":
+                    return eSubjectType.INFO;
+                case "ITEM":
+                    return eSubjectType.ITEM;
+                case "MONEY":
+                    return eSubjectType.MONEY;
+                case "POLICE":
+                    return eSubjectType.POLICE;
+                case "QUEST":
+                    return eSubjectType.QUEST;
+                case "ROOT":
+                    return eSubjectType.ROOT;
+                case "STAT":
+                    return eSubjectType.STAT;
+            }
+            return eSubjectType.NULL;
+        }
+
+        static public eVerbType ToVerbType(string verbType)
+        {
+            switch(verbType)
+            {
+                case "ADD":
+                    return eVerbType.ADD;
+                case "CANCEL":
+                    return eVerbType.CANCEL;
+                case "DEACTIVE":
+                    return eVerbType.DEACTIVE;
+                case "DEL":
+                    return eVerbType.DEL;
+                case "IN":
+                    return eVerbType.IN;
+                case "LOAD":
+                    return eVerbType.LOAD;
+                case "MOVE":
+                    return eVerbType.MOVE;
+                case "NONE":
+                    return eVerbType.NONE;
+                case "OPEN":
+                    return eVerbType.OPEN;
+                case "REROLL":
+                    return eVerbType.REROLL;
+                case "SET":
+                    return eVerbType.SET;
+                case "SKIP":
+                    return eVerbType.SKIP;
+            }
+
+            return eVerbType.NULL;
+        }
+
+        static public eObjectType ToObjectType(string objectType)
+        {
+            switch(objectType)
+            {
+                case "AGILITY":
+                    return eObjectType.AGILITY;
+                case "ALL":
+                    return eObjectType.ALL;
+                case "BARGAIN":
+                    return eObjectType.BARGAIN;
+                case "CLOSE":
+                    return eObjectType.CLOSE;
+                case "CLOSE_CLOSE":
+                    return eObjectType.CLOSE_CLOSE;
+                case "CLOSE_FAR":
+                    return eObjectType.CLOSE_FAR;
+                case "DETENTION":
+                    return eObjectType.DETENTION;
+                case "FAR":
+                    return eObjectType.FAR;
+                case "FAR_CLOSE":
+                    return eObjectType.FAR_CLOSE;
+                case "FOOD":
+                    return eObjectType.FOOD;
+                case "HP":
+                    return eObjectType.HP;
+                case "HP_MENTAL":
+                    return eObjectType.HP_MENTAL;
+                case "INDEX":
+                    return eObjectType.INDEX;
+                case "INFO":
+                    return eObjectType.INFO;
+                case "INVEN":
+                    return eObjectType.INVEN;
+                case "LUCK":
+                    return eObjectType.LUCK;
+                case "MENTAL":
+                    return eObjectType.MENTAL;
+                case "MONGOLIA":
+                    return eObjectType.MONGOLIA;
+                case "MOVE":
+                    return eObjectType.MOVE;
+                case "NONE":
+                    return eObjectType.NONE;
+                case "OBSERVATION":
+                    return eObjectType.OBSERVATION;
+                case "PATIENCE":
+                    return eObjectType.PATIENCE;
+                case "RAND":
+                    return eObjectType.RAND;
+                case "RAND_3":
+                    return eObjectType.RAND_3;
+                case "RAND_CLOSE":
+                    return eObjectType.RAND_CLOSE;
+                case "RAND_RAND":
+                    return eObjectType.RAND_RAND;
+                case "REST":
+                    return eObjectType.REST;
+                case "REST_CURE":
+                    return eObjectType.REST_CURE;
+                case "SELECT":
+                    return eObjectType.SELECT;
+                case "SELECT_ALL":
+                    return eObjectType.SELECT_ALL;
+                case "SELECT_TAG":
+                    return eObjectType.SELECT_TAG;
+                case "SHOP":
+                    return eObjectType.SHOP;
+                case "SOUTHEAST_ASIA":
+                    return eObjectType.SOUTHEAST_ASIA;
+                case "SPECIAL":
+                    return eObjectType.SPECIAL;
+                case "SPECIFIC":
+                    return eObjectType.SPECIFIC;
+                case "STRENGTH":
+                    return eObjectType.STRENGTH;
+                case "SUCCESSNUM":
+                    return eObjectType.SUCCESSNUM;
+                case "TAG":
+                    return eObjectType.TAG;
+                case "WORK":
+                    return eObjectType.WORK;
+            }
+            return eObjectType.NULL;
+        }
+
+
         public eSubjectType SubjectType { get { return subjectType; } }
 
         public eVerbType VerbType { get { return verbType; } }

@@ -5,7 +5,8 @@ namespace ToBeFree
 {
     public enum eRegion
     {
-        AREA = 0, CITY, ALL
+        AREA = 0, CITY, ALL,
+        NULL
     }
 
 

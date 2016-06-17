@@ -5,7 +5,7 @@ namespace ToBeFree
 
     public enum eStat
     {
-        HP, TOTALHP, MENTAL, TOTALMENTAL, FOOD, TOTALFOOD, MONEY, INFO, STR, AGI, OBS, BAR, PAT, LUC
+        HP, TOTALHP, MENTAL, TOTALMENTAL, FOOD, TOTALFOOD, MONEY, INFO, STRENGTH, AGILITY, OBSERVATION, BARGAIN, PATIENCE, LUCK, NULL
     }
 
     public class Stat
@@ -89,7 +89,7 @@ namespace ToBeFree
             set
             {
                 strength = value;
-                OnValueChange(strength, eStat.STR);
+                OnValueChange(strength, eStat.STRENGTH);
             }
         }
 
@@ -103,7 +103,7 @@ namespace ToBeFree
             set
             {
                 agility = value;
-                OnValueChange(agility, eStat.AGI);
+                OnValueChange(agility, eStat.AGILITY);
             }
         }
 
@@ -117,7 +117,7 @@ namespace ToBeFree
             set
             {
                 observation = value;
-                OnValueChange(observation, eStat.OBS);
+                OnValueChange(observation, eStat.OBSERVATION);
             }
         }
 
@@ -131,7 +131,7 @@ namespace ToBeFree
             set
             {
                 bargain = value;
-                OnValueChange(bargain, eStat.BAR);
+                OnValueChange(bargain, eStat.BARGAIN);
             }
         }
 
@@ -145,7 +145,7 @@ namespace ToBeFree
             set
             {
                 patience = value;
-                OnValueChange(patience, eStat.PAT);
+                OnValueChange(patience, eStat.PATIENCE);
             }
         }
 
@@ -159,7 +159,7 @@ namespace ToBeFree
             set
             {
                 luck = value;
-                OnValueChange(luck, eStat.LUC);
+                OnValueChange(luck, eStat.LUCK);
             }
         }
 

@@ -1,10 +1,5 @@
 namespace ToBeFree
 {
-    public enum eAction
-    {
-        WORK = 0, MOVE, INFO, BROKER, INSPECTION, TAKEN, ESCAPE
-    }
-
     public class ProbabilityManager : Singleton<ProbabilityManager>
     {
         private Probability[] regionProbs;
@@ -45,22 +40,22 @@ namespace ToBeFree
         {
             switch (estat)
             {
-                case eStat.STR:
+                case eStat.STRENGTH:
                     return "STR";
 
-                case eStat.AGI:
+                case eStat.AGILITY:
                     return "AGI";
 
-                case eStat.OBS:
+                case eStat.OBSERVATION:
                     return "OBS";
 
-                case eStat.BAR:
+                case eStat.BARGAIN:
                     return "BAR";
 
-                case eStat.PAT:
+                case eStat.PATIENCE:
                     return "PAT";
 
-                case eStat.LUC:
+                case eStat.LUCK:
                     return "LUC";
 
                 default:

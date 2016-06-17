@@ -1,10 +1,21 @@
 namespace ToBeFree
 {
+    public enum eEventAction
+    {
+        WORK = 0, MOVE, INSPECT, DETENTION, ESCAPE, GLOBAL, NULL
+    }
+
+    public enum eDifficulty
+    {
+        EASY, NORMAL, HARD, NULL
+    }
+
     public class Event
     {
         private string actionType;
         private string region;
         private string stat;
+        private eDifficulty difficulty;
         private string script;
         private Result result;
         private bool bSelect;

@@ -228,6 +228,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\Result.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Select.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Stat.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\StringToEnum.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\TimeTable.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIBuff.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIBuffManager.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\World\IconCity.cs" />
     <Compile Include="Assets\UI\Scripts\CameraZoom.cs" />
     <Compile Include="Assets\XmlTest\Script\ParsingTest.cs" />
+    <Compile Include="Assets\XmlTest\Script\XMLParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
@@ -283,6 +285,8 @@
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
+    <None Include="Assets\StreamingAssets\Effect.xml" />
+    <None Include="Assets\StreamingAssets\Event.xml" />
     <None Include="Assets\StreamingAssets\test.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

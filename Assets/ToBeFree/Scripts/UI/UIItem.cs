@@ -29,6 +29,9 @@ namespace ToBeFree
 
         public void SetInfo(Item item)
         {
+            if (item == null)
+                return;
+
             this.item = item;
             itemName.text = item.Name;
         }

@@ -4,12 +4,14 @@ namespace ToBeFree
 {
     public enum eStartTime
     {
-        NOW, WORK, MOVE, REST, SHOP, INSPECT, INFO, BROKER, QUEST, ESCAPE, TEST, SPECIALACT
+        NOW, WORK, MOVE, REST, SHOP, INSPECT, INFO, BROKER, QUEST, ESCAPE, TEST, SPECIALACT,
+        NULL
     }
 
     public enum eDuration
     {
-        ONCE, EQUIP, DAY, PAT_TEST_REST
+        ONCE, EQUIP, DAY, PAT_TEST_REST,
+        NULL
     }
 
     public class Item
