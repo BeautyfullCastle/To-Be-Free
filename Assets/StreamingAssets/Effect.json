@@ -1,0 +1,70 @@
+{
+	"effectData": [
+		{
+			"index": 0,
+			"subjectType": "CHARACTER",
+			"verbType": "ADD",
+			"objectType": "HP"
+		},
+		{
+			"index": 1,
+			"subjectType": "CHARACTER",
+			"verbType": "ADD",
+			"objectType": "MENTAL"
+		},
+		{
+			"index": 2,
+			"subjectType": "CHARACTER",
+			"verbType": "ADD",
+			"objectType": "HP_MENTAL"
+		},
+		{
+			"index": 3,
+			"subjectType": "INFO",
+			"verbType": "MOVE",
+			"objectType": "FAR_CLOSE"
+		},
+		{
+			"index": 4,
+			"subjectType": "INFO",
+			"verbType": "MOVE",
+			"objectType": "CLOSE_FAR"
+		},
+		{
+			"index": 5,
+			"subjectType": "INFO",
+			"verbType": "MOVE",
+			"objectType": "RAND_RAND"
+		},
+		{
+			"index": 6,
+			"subjectType": "INFO",
+			"verbType": "MOVE",
+			"objectType": "RAND_CLOSE"
+		},
+		{
+			"index": 7,
+			"subjectType": "INFO",
+			"verbType": "MOVE",
+			"objectType": "CLOSE_CLOSE"
+		},
+		{
+			"index": 8,
+			"subjectType": "INFO",
+			"verbType": "DEL",
+			"objectType": "CLOSE"
+		},
+		{
+			"index": 9,
+			"subjectType": "INFO",
+			"verbType": "DEL",
+			"objectType": "FAR"
+		},
+		{
+			"index": 10,
+			"subjectType": "INFO",
+			"verbType": "DEL",
+			"objectType": "RAND"
+		}
+	]
+}

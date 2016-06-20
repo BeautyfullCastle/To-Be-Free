@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ToBeFree
@@ -376,6 +377,8 @@ namespace ToBeFree
         
         static public eSubjectType ToSubjectType(string subjectType)
         {
+            return (eSubjectType)Enum.Parse(typeof(eSubjectType), subjectType);
+
             switch(subjectType)
             {
                 case "ABNORMAL":

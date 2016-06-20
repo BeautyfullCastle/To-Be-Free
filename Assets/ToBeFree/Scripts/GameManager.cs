@@ -179,7 +179,9 @@ namespace ToBeFree
             Event event_global = new Event("GLOBAL", "ALL", string.Empty, "global event", result_global, false, null);
             Event event_quest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, true, new Select[1] { select_quest });
             Event event_globalquest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, false, null);
-
+            
+            EffectDataList effectDataList = new EffectDataList(Application.streamingAssetsPath + "/Effect.json");
+            Debug.LogWarning(effectDataList.effectData.Length);
             // abnormal condition : despair
             Effect effect_dice_successNum = new Effect(eSubjectType.DICE, eVerbType.NONE, eObjectType.SUCCESSNUM);
             Condition spawnCondition_despair = new Condition("MENTAL", string.Empty, string.Empty, "<=", 0);

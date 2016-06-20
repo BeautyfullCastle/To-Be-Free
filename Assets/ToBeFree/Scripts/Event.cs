@@ -1,3 +1,7 @@
+
+
+using UnityEngine;
+
 namespace ToBeFree
 {
     public enum eEventAction
@@ -27,6 +31,7 @@ namespace ToBeFree
         public Event()
         {
             selectList = new Select[3];
+            
         }
 
         public Event(string actionType, string region, string stat, string script, Result result, bool bSelect, Select[] selectList)
@@ -56,7 +61,7 @@ namespace ToBeFree
             this.bSelect = event_.bSelect;
             this.selectList = (Select[])event_.selectList.Clone();
         }
-
+        
         public string ActionType { get { return actionType; } }
         public string Region { get { return region; } }
         public string Stat { get { return stat; } }
