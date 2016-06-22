@@ -6,91 +6,87 @@ namespace ToBeFree
 {
     public enum eEventAction
     {
-        WORK = 0, MOVE, INSPECT, DETENTION, ESCAPE, GLOBAL, NULL
+        WORK = 0, MOVE, INSPECT, DETENTION, ESCAPE, GLOBAL, BROKER,
+        QUEST,
+        NULL
     }
 
     public enum eDifficulty
     {
-        EASY, NORMAL, HARD, NULL
+        EASY, NORMAL, HARD
     }
 
     public class Event
     {
-        private string actionType;
+        private eEventAction actionType;
         private string region;
-        private string stat;
+        private eTestStat stat;
         private eDifficulty difficulty;
         private string script;
-        private Result result;
-        private bool bSelect;
-        private Select[] selectList;
+        private int resultIndex;
+        private int[] selectIndexList;        
+        
 
-        // for quest
-        private int remainDay;
-
-        public Event()
-        {
-            selectList = new Select[3];
-            
-        }
-
-        public Event(string actionType, string region, string stat, string script, Result result, bool bSelect, Select[] selectList)
-         : this()
+        public Event(eEventAction actionType, string region, eTestStat stat, eDifficulty difficulty, string script, int resultIndex, int[] selectIndexList)
         {
             this.actionType = actionType;
             this.region = region;
             this.stat = stat;
+            this.difficulty = difficulty;
             this.script = script;
-            this.result = result;
-            this.bSelect = bSelect;
-            this.selectList = selectList;
-
-            if(ActionType == "QUEST")
-            {
-
-            }
+            this.resultIndex = resultIndex;
+            this.selectIndexList = selectIndexList;
         }
 
         public Event(Event event_)
         {
-            this.actionType = string.Copy(event_.actionType);
-            this.region = string.Copy(event_.region);
-            this.stat = string.Copy(event_.stat);
+            this.actionType = event_.actionType;
+            this.region = event_.region;
+            this.stat = event_.stat;
+            this.difficulty = event_.difficulty;
             this.script = string.Copy(event_.script);
-            this.result = new Result(event_.result.TestStat, event_.result.Success, event_.result.Failure);
-            this.bSelect = event_.bSelect;
-            this.selectList = (Select[])event_.selectList.Clone();
+            this.resultIndex = event_.resultIndex;
+            this.selectIndexList = event_.selectIndexList;
         }
         
-        public string ActionType { get { return actionType; } }
+        public eEventAction ActionType { get { return actionType; } }
         public string Region { get { return region; } }
-        public string Stat { get { return stat; } }
+        public eTestStat TestStat { get { return stat; } }
         public string Script { get { return script; } }
-        public bool BSelect { get { return bSelect; } }
+
+        public bool HasSelect
+        {
+            get
+            {
+                if(selectIndexList[0] == -99)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
 
         public Result Result
         {
             get
             {
-                return result;
-            }
-
-            set
-            {
-                result = value;
+                if(resultIndex == -99)
+                {
+                    return null;
+                }
+                return ResultManager.Instance.List[resultIndex];
             }
         }
 
-        public Select[] SelectList
+        public int[] SelectIndexList
         {
             get
             {
-                return selectList;
-            }
-
-            set
-            {
-                selectList = value;
+                if (HasSelect)
+                {
+                    return selectIndexList;
+                }
+                return null;
             }
         }
     }

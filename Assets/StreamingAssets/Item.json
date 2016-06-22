@@ -1,0 +1,970 @@
+{
+	"itemDataList": [
+		{
+			"index": 0,
+			"name": "음식과 물",
+			"start time": "NIGHT",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				26
+			],
+			"amountList": [
+				1
+			],
+			"price": 1,
+			"tag": "NULL"
+		},
+		{
+			"index": 1,
+			"name": "라운드백",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				34
+			],
+			"amountList": [
+				2
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 2,
+			"name": "소형 배낭",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				34
+			],
+			"amountList": [
+				4
+			],
+			"price": 6,
+			"tag": "NULL"
+		},
+		{
+			"index": 3,
+			"name": "배낭",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				34
+			],
+			"amountList": [
+				6
+			],
+			"price": 8,
+			"tag": "NULL"
+		},
+		{
+			"index": 4,
+			"name": "등산가방",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				34
+			],
+			"amountList": [
+				8
+			],
+			"price": 10,
+			"tag": "NULL"
+		},
+		{
+			"index": 5,
+			"name": "따뜻한 우유",
+			"start time": "REST",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				0
+			],
+			"amountList": [
+				1
+			],
+			"price": 1,
+			"tag": "NULL"
+		},
+		{
+			"index": 6,
+			"name": "향초",
+			"start time": "REST",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				1
+			],
+			"amountList": [
+				1
+			],
+			"price": 1,
+			"tag": "NULL"
+		},
+		{
+			"index": 7,
+			"name": "종이 안대",
+			"start time": "REST",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				2
+			],
+			"amountList": [
+				1
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 8,
+			"name": "따뜻한 고급우유",
+			"start time": "REST",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				0
+			],
+			"amountList": [
+				2
+			],
+			"price": 3,
+			"tag": "NULL"
+		},
+		{
+			"index": 9,
+			"name": "고급 향초",
+			"start time": "REST",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				1
+			],
+			"amountList": [
+				2
+			],
+			"price": 3,
+			"tag": "NULL"
+		},
+		{
+			"index": 10,
+			"name": "고급 종이 안대",
+			"start time": "REST",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				2
+			],
+			"amountList": [
+				2
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 11,
+			"name": "베게",
+			"start time": "REST",
+			"duration": "EQUIP",
+			"restore": "FALSE",
+			"effectIndexList": [
+				0
+			],
+			"amountList": [
+				1
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 12,
+			"name": "이불",
+			"start time": "REST",
+			"duration": "EQUIP",
+			"restore": "FALSE",
+			"effectIndexList": [
+				1
+			],
+			"amountList": [
+				1
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 13,
+			"name": "침낭",
+			"start time": "REST",
+			"duration": "EQUIP",
+			"restore": "FALSE",
+			"effectIndexList": [
+				2
+			],
+			"amountList": [
+				1
+			],
+			"price": 6,
+			"tag": "NULL"
+		},
+		{
+			"index": 14,
+			"name": "상처약",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				0
+			],
+			"amountList": [
+				1
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 15,
+			"name": "고량주",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				1
+			],
+			"amountList": [
+				1
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 16,
+			"name": "오리요리",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				2
+			],
+			"amountList": [
+				1
+			],
+			"price": 3,
+			"tag": "NULL"
+		},
+		{
+			"index": 17,
+			"name": "고급 상처약",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				0
+			],
+			"amountList": [
+				2
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 18,
+			"name": "고급 고량주",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				1
+			],
+			"amountList": [
+				2
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 19,
+			"name": "북경오리요리",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				2
+			],
+			"amountList": [
+				2
+			],
+			"price": 6,
+			"tag": "NULL"
+		},
+		{
+			"index": 20,
+			"name": "담배",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				0,
+				1
+			],
+			"amountList": [
+				1,
+				-1
+			],
+			"price": 1,
+			"tag": "NULL"
+		},
+		{
+			"index": 21,
+			"name": "기괴한 곤충 요리",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				0,
+				1
+			],
+			"amountList": [
+				1,
+				-1
+			],
+			"price": 1,
+			"tag": "NULL"
+		},
+		{
+			"index": 22,
+			"name": "작업용 장갑",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				27
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 23,
+			"name": "공구벨트",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				27
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 24,
+			"name": "작업용 조끼",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				27
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 25,
+			"name": "1회용 목장갑",
+			"start time": "TEST",
+			"duration": "ONCE",
+			"restore": "TRUE",
+			"effectIndexList": [
+				27
+			],
+			"amountList": [
+				1
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 26,
+			"name": "1회용 코팅장갑",
+			"start time": "TEST",
+			"duration": "ONCE",
+			"restore": "TRUE",
+			"effectIndexList": [
+				27
+			],
+			"amountList": [
+				2
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 27,
+			"name": "얇은 복장",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				28
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 28,
+			"name": "운동화",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				28
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 29,
+			"name": "편안한 의복",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				28
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 30,
+			"name": "비싸보이는 시계",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 31,
+			"name": "깔끔한 복장",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 32,
+			"name": "헤어 컷",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 33,
+			"name": "불편한 구두",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30,
+				28
+			],
+			"amountList": [
+				1,
+				-1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 34,
+			"name": "가그린",
+			"start time": "TEST",
+			"duration": "ONCE",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 35,
+			"name": "향수",
+			"start time": "TEST",
+			"duration": "ONCE",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				2
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 36,
+			"name": "십자가",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				31
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 37,
+			"name": "염불",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				31
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 38,
+			"name": "코란",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				31
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 39,
+			"name": "커피",
+			"start time": "TEST",
+			"duration": "ONCE",
+			"restore": "TRUE",
+			"effectIndexList": [
+				31
+			],
+			"amountList": [
+				1
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 40,
+			"name": "에너지 드링크",
+			"start time": "TEST",
+			"duration": "ONCE",
+			"restore": "TRUE",
+			"effectIndexList": [
+				31
+			],
+			"amountList": [
+				2
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 41,
+			"name": "안경",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 42,
+			"name": "망원경",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 43,
+			"name": "돋보기",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 44,
+			"name": "복주머니",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				32
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 45,
+			"name": "복조리",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				32
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 46,
+			"name": "네잎클로버",
+			"start time": "TEST",
+			"duration": "EQUIP",
+			"restore": "TRUE",
+			"effectIndexList": [
+				32
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 47,
+			"name": "행운의 동전",
+			"start time": "TEST",
+			"duration": "ONCE",
+			"restore": "TRUE",
+			"effectIndexList": [
+				32
+			],
+			"amountList": [
+				1
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 48,
+			"name": "행운의 부적",
+			"start time": "TEST",
+			"duration": "ONCE",
+			"restore": "TRUE",
+			"effectIndexList": [
+				32
+			],
+			"amountList": [
+				2
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 49,
+			"name": "뇌물 제공-1",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				18
+			],
+			"amountList": [
+				1
+			],
+			"price": 8,
+			"tag": "NULL"
+		},
+		{
+			"index": 50,
+			"name": "뇌물 제공-2",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				20
+			],
+			"amountList": [
+				1
+			],
+			"price": 6,
+			"tag": "NULL"
+		},
+		{
+			"index": 51,
+			"name": "소문흘리기-1",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				7
+			],
+			"amountList": [
+				0
+			],
+			"price": 5,
+			"tag": "NULL"
+		},
+		{
+			"index": 52,
+			"name": "소문흘리기-2",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				3
+			],
+			"amountList": [
+				0
+			],
+			"price": 7,
+			"tag": "NULL"
+		},
+		{
+			"index": 53,
+			"name": "소문흘리기-3",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				6
+			],
+			"amountList": [
+				0
+			],
+			"price": 6,
+			"tag": "NULL"
+		},
+		{
+			"index": 54,
+			"name": "레몬에이드",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				56
+			],
+			"amountList": [
+				6
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 55,
+			"name": "초콜릿",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				56
+			],
+			"amountList": [
+				8
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 56,
+			"name": "푸짐한 식사",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				56
+			],
+			"amountList": [
+				7
+			],
+			"price": 2,
+			"tag": "NULL"
+		},
+		{
+			"index": 57,
+			"name": "붕대",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				57
+			],
+			"amountList": [
+				1
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 58,
+			"name": "파스",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				57
+			],
+			"amountList": [
+				2
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 59,
+			"name": "위장약",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				57
+			],
+			"amountList": [
+				3
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 60,
+			"name": "피로회복제",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				57
+			],
+			"amountList": [
+				4
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 61,
+			"name": "불안장애약",
+			"start time": "NOW",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				57
+			],
+			"amountList": [
+				5
+			],
+			"price": 4,
+			"tag": "NULL"
+		},
+		{
+			"index": 62,
+			"name": "대중교통표",
+			"start time": "MOVE",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				47
+			],
+			"amountList": [
+				0
+			],
+			"price": 3,
+			"tag": "NULL"
+		},
+		{
+			"index": 63,
+			"name": "정체불명의 물건",
+			"start time": "QUEST",
+			"duration": "ONCE",
+			"restore": "FALSE",
+			"effectIndexList": [
+				-99
+			],
+			"amountList": [
+				-99
+			],
+			"price": 3,
+			"tag": "NULL"
+		}
+	]
+}

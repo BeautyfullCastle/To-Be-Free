@@ -378,41 +378,6 @@ namespace ToBeFree
         static public eSubjectType ToSubjectType(string subjectType)
         {
             return (eSubjectType)Enum.Parse(typeof(eSubjectType), subjectType);
-
-            switch(subjectType)
-            {
-                case "ABNORMAL":
-                    return eSubjectType.ABNORMAL;
-                case "ACTIONGPOWER":
-                    return eSubjectType.ACTINGPOWER;
-                case "BROKER":
-                    return eSubjectType.BROKER;
-                case "CHARACTER":
-                    return eSubjectType.CHARACTER;
-                case "COMMAND":
-                    return eSubjectType.COMMAND;
-                case "DICE":
-                    return eSubjectType.DICE;
-                case "EVENT":
-                    return eSubjectType.EVENT;
-                case "FOOD":
-                    return eSubjectType.FOOD;
-                case "INFO":
-                    return eSubjectType.INFO;
-                case "ITEM":
-                    return eSubjectType.ITEM;
-                case "MONEY":
-                    return eSubjectType.MONEY;
-                case "POLICE":
-                    return eSubjectType.POLICE;
-                case "QUEST":
-                    return eSubjectType.QUEST;
-                case "ROOT":
-                    return eSubjectType.ROOT;
-                case "STAT":
-                    return eSubjectType.STAT;
-            }
-            return eSubjectType.NULL;
         }
 
         static public eVerbType ToVerbType(string verbType)

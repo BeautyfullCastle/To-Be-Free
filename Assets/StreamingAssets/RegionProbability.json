@@ -1,0 +1,12 @@
+{
+	"regionProbabilityDataList": [
+		{
+			"index": 0,
+			"valueList": [
+				30,
+				60,
+				10
+			]
+		}
+	]
+}

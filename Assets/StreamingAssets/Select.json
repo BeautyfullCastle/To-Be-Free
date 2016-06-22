@@ -1,0 +1,104 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "따라간다",
+			"linkType": "EVENT",
+			"linkIndex": 15
+		},
+		{
+			"index": 1,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "무시한다",
+			"linkType": "RESULT",
+			"linkIndex": 15
+		},
+		{
+			"index": 2,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "몰래 과일을 먹는다.",
+			"linkType": "EVENT",
+			"linkIndex": 22
+		},
+		{
+			"index": 3,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "몰래 과일을 먹는다.",
+			"linkType": "EVENT",
+			"linkIndex": 26
+		},
+		{
+			"index": 4,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "그냥 지나쳐간다.",
+			"linkType": "RESULT",
+			"linkIndex": 22
+		},
+		{
+			"index": 5,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "안에 무엇이 있는지 파본다.",
+			"linkType": "EVENT",
+			"linkIndex": 28
+		},
+		{
+			"index": 6,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "그냥 지나쳐간다.",
+			"linkType": "RESULT",
+			"linkIndex": 27
+		},
+		{
+			"index": 7,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "설득을 해본다",
+			"linkType": "EVENT",
+			"linkIndex": 47
+		},
+		{
+			"index": 8,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "포기한다",
+			"linkType": "RESULT",
+			"linkIndex": 46
+		},
+		{
+			"index": 9,
+			"subjectType": "MONEY",
+			"objectType": "NULL",
+			"comparisonOperator": ">",
+			"compareAmount": 2,
+			"script": "돈(3위안)을 준다",
+			"linkType": "RESULT",
+			"linkIndex": 47
+		}
+	]
+}

@@ -19,11 +19,16 @@ namespace ToBeFree
         SOUTHEAST_ASIA
     }
 
+    public enum eCitySize
+    {
+        SMALL, MIDDLE, BIG
+    }
+
     public class City
     {
-        private string name;
-        private string size;
-        private string area;
+        private eCity name;
+        private eCitySize size;
+        private eArea area;
         private List<City> neighborList;
         private List<Item> itemList;
         private int workingMoneyMin;
@@ -36,7 +41,7 @@ namespace ToBeFree
             itemList = null;
         }
 
-        public City(string name, string size, string area, List<Item> itemList, int workingMoneyMin, int workingMoneyMax)
+        public City(eCity name, eCitySize size, eArea area, List<Item> itemList, int workingMoneyMin, int workingMoneyMax)
          : this()
         {
             this.name = name;
@@ -78,23 +83,24 @@ namespace ToBeFree
             Debug.Log(this.name + ", " + this.size + ", " + this.area);
         }
 
-        public string Name
+        public eCity Name
         {
             get { return name; }
         }
 
-        public string Area { get; internal set; }
+        public eArea Area
+        {
+            get
+            {
+                return area;
+            }
+        }
 
-        public string Size
+        public eCitySize Size
         {
             get
             {
                 return size;
-            }
-
-            set
-            {
-                size = value;
             }
         }
 

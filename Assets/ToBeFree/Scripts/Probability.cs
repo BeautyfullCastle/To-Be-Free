@@ -8,14 +8,13 @@ namespace ToBeFree
         AREA = 0, CITY, ALL,
         NULL
     }
-
-
+    
     public class Probability
     {
-        private string actionType;
+        private eEventAction actionType;
         private List<int> dataList; // Key : dataType, Value : dataValue
 
-        public Probability(string actionType, List<int> dataList)
+        public Probability(eEventAction actionType, List<int> dataList)
         {
             this.actionType = actionType;
             this.dataList = dataList;
@@ -32,7 +31,7 @@ namespace ToBeFree
         public Probability DeepCopy()
         {
             Probability prob = (Probability)this.MemberwiseClone();
-            prob.actionType = string.Copy(this.actionType);
+            prob.actionType = this.actionType;
             prob.dataList = new List<int>(dataList);
             return prob;
         }
@@ -72,7 +71,7 @@ namespace ToBeFree
             }
         }
 
-        public string ActionType
+        public eEventAction ActionType
         {
             get
             {

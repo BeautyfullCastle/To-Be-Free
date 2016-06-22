@@ -3,23 +3,30 @@ using UnityEngine;
 
 namespace ToBeFree
 {
+    public enum eSelectLinkType
+    {
+        EVENT, RESULT
+    }
+
     public class Select
     {
         private eSubjectType subjectType;
         private eObjectType objectType;
         private string comparisonOperator;
-        private int amount;
+        private int compareAmount;
         private string script;
-        private Result result;
+        private eSelectLinkType linkType;
+        private int linkIndex;
 
-        public Select(eSubjectType subjectType, eObjectType objectType, string comparisonOperator, int amount, string script, Result result)
+        public Select(eSubjectType subjectType, eObjectType objectType, string comparisonOperator, int compareAmount, string script, eSelectLinkType linkType, int linkIndex)
         {
             this.subjectType = subjectType;
             this.objectType = objectType;
             this.comparisonOperator = comparisonOperator;
-            this.amount = amount;
+            this.compareAmount = compareAmount;
             this.script = script;
-            this.result = result;
+            this.linkType = linkType;
+            this.linkIndex = linkIndex;
         }
 
         public bool CheckCondition(Character character)
@@ -39,7 +46,7 @@ namespace ToBeFree
                     int itemAmount = item.Buff.Amount;
                     if (itemType == subjectType && item.Buff.Effect.ObjectType == objectType)
                     {
-                        bool isExist = Compare(itemAmount, amount, comparisonOperator);
+                        bool isExist = Compare(itemAmount, compareAmount, comparisonOperator);
                         if (isExist)
                         {
                             character.Inven.Delete(item, character);
@@ -82,12 +89,23 @@ namespace ToBeFree
         {
             get
             {
-                return result;
+                if (linkType == eSelectLinkType.RESULT)
+                {
+                    return ResultManager.Instance.List[linkIndex];
+                }
+                return null;
             }
+        }
 
-            set
+        public Event Event
+        {
+            get
             {
-                result = value;
+                if(linkType == eSelectLinkType.EVENT)
+                {
+                    return EventManager.Instance.List[linkIndex];
+                }
+                return null;
             }
         }
     }

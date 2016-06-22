@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class EffectData
+public class EffectData : IData
 {
     public int index;
     public string subjectType;
@@ -19,10 +19,9 @@ public class EffectData
     //index subject verb object
 }
 
-[Serializable]
 public class EffectDataList
 {
-    public EffectData[] effectData;
+    public EffectData[] dataList;
 
     public EffectDataList(string file)
     {
@@ -30,6 +29,6 @@ public class EffectDataList
         string json = reader.ReadToEnd();
 
         var dataList = JsonUtility.FromJson<EffectDataList>(json);
-        this.effectData = dataList.effectData;
+        this.dataList = dataList.dataList;
     }
 }

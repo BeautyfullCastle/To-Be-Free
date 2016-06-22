@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,15 +6,38 @@ namespace ToBeFree
 {
     public class EventManager : Singleton<EventManager>
     {
-        private List<Event> everyEvents;
         private ResultEffect[] resultEffects;
+
+        private readonly Event[] list;
+        private readonly EventData[] dataList;
+        private readonly string file = Application.streamingAssetsPath + "/Event.json";
 
         public EventManager()
         {
-            everyEvents = new List<Event>();
+            DataList<EventData> cDataList = new DataList<EventData>(file);
+            //EventDataList cDataList = new EventDataList(file);
+            dataList = cDataList.dataList;
+            if (dataList == null)
+                return;
+
+            list = new Event[dataList.Length];
+
+            ParseData();
         }
 
-        public Event DoCommand(string actionType, Character character)
+        private void ParseData()
+        {
+            foreach (EventData data in dataList)
+            {
+                Event curEvent = new Event(EnumConvert<eEventAction>.ToEnum(data.actionType), data.region,
+                                            EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty), 
+                                            data.script, data.resultIndex, data.selectIndexList);
+
+                list[data.index] = curEvent;
+            }
+        }
+
+        public Event DoCommand(eEventAction actionType, Character character)
         {
             Event selectedEvent = Find(actionType, character.CurCity);
             if (selectedEvent == null)
@@ -26,7 +50,7 @@ namespace ToBeFree
             return selectedEvent;
         }
 
-        public Event Find(string actionType, City city)
+        public Event Find(eEventAction actionType, City city)
         {
             // should check here again.
             List<Event> findedEvents = SelectEventsByAction(actionType);
@@ -45,7 +69,7 @@ namespace ToBeFree
                 return null;
             }
             List<Event> statEvents = null;
-            if (actionType == "GLOBAL" || actionType == "QUEST")
+            if (actionType == eEventAction.GLOBAL || actionType == eEventAction.QUEST)
             {
                 statEvents = regionEvents;
             }
@@ -68,20 +92,21 @@ namespace ToBeFree
 
         public bool ActivateEvent(Event currEvent, Character character)
         {
-            Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.Stat + " is activated.");
+            Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.TestStat + " is activated.");
 
             Result result = currEvent.Result;
 
-            if (currEvent.ActionType == "GLOBAL")
+            if (currEvent.ActionType == eEventAction.GLOBAL)
             {
                 resultEffects = currEvent.Result.Success.Effects;
             }
-            if (currEvent.ActionType == "QUEST" && currEvent.BSelect)
+            if (currEvent.ActionType == eEventAction.QUEST && currEvent.HasSelect)
             {
-                if (currEvent.SelectList[0].CheckCondition(character))
+                Select select = SelectManager.Instance.List[currEvent.SelectIndexList[0]];
+                if (select.CheckCondition(character))
                 {
-                    result = currEvent.SelectList[0].Result;
-                    resultEffects = currEvent.SelectList[0].Result.Success.Effects;
+                    result = select.Result;
+                    resultEffects = select.Result.Success.Effects;
                 }
                 else
                 {
@@ -91,7 +116,7 @@ namespace ToBeFree
             }
 
             // dice test
-            if (!string.IsNullOrEmpty(result.TestStat))
+            if (result.TestStat != eTestStat.NULL)
             {
                 
                 int diceNum = character.GetDiceNum(result.TestStat);
@@ -129,19 +154,19 @@ namespace ToBeFree
                 {
                     resultEffects[i].Effect.Activate(character, resultEffects[i].Value);
                 }
-                else if(resultEffects[i].AbnormalCondition != null)
-                {
-                    resultEffects[i].AbnormalCondition.Activate(character, resultEffects[i].Value);
-                }
+                //else if(resultEffects[i].AbnormalCondition != null)
+                //{
+                //    resultEffects[i].AbnormalCondition.Activate(character, resultEffects[i].Value);
+                //}
             }
         }
 
-        private List<Event> SelectEventsByAction(string actionType)
+        private List<Event> SelectEventsByAction(eEventAction actionType)
         {
             List<Event> findedEvents = new List<Event>();
-            foreach (Event elem in everyEvents)
+            foreach (Event elem in list)
             {
-                if (!elem.ActionType.Contains(actionType))
+                if (elem.ActionType != actionType)
                 {
                     continue;
                 }
@@ -155,7 +180,7 @@ namespace ToBeFree
             return findedEvents;
         }
 
-        private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, string actionType, string probType)
+        private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, eEventAction actionType, string probType)
         {
             Probability prob = ProbabilityManager.Instance.FindProbByAction(actionType, probType).DeepCopy();
             prob.ResetProbValues(eventListDic);
@@ -177,11 +202,11 @@ namespace ToBeFree
                     continue;
                 }
 
-                if (eventElem.Region == city.Name)
+                if (eventElem.Region == EnumConvert<eCity>.ToString(city.Name))
                 {
                     eventListPerRegionDic[(int)eRegion.CITY].Add(eventElem);
                 }
-                else if (eventElem.Region == city.Area)
+                else if (eventElem.Region == EnumConvert<eArea>.ToString(city.Area))
                 {
                     eventListPerRegionDic[(int)eRegion.AREA].Add(eventElem);
                 }
@@ -208,7 +233,7 @@ namespace ToBeFree
                     Debug.LogError("eventElem can't find.");
                     continue;
                 }
-                int iStat = ProbabilityManager.Instance.ConvertToIndex(eventElem.Stat);
+                int iStat = (int)eventElem.TestStat;
                 eventListPerStatDic[iStat].Add(eventElem);
             }
             return eventListPerStatDic;
@@ -245,20 +270,7 @@ namespace ToBeFree
             Debug.LogError("Can't find event list. rand Val : + " + randVal + " , total val : " + val);
             return null;
         }
-
-        public List<Event> EveryEvents
-        {
-            get
-            {
-                return everyEvents;
-            }
-
-            set
-            {
-                everyEvents = value;
-            }
-        }
-
+        
         public ResultEffect[] ResultEffects
         {
             get
@@ -271,6 +283,13 @@ namespace ToBeFree
                 resultEffects = value;
             }
         }
-        
+
+        public Event[] List
+        {
+            get
+            {
+                return list;
+            }
+        }
     }
 }

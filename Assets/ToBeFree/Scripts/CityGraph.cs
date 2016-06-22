@@ -26,9 +26,9 @@ namespace ToBeFree
             cityB.Link(cityA);
         }
 
-        public City Find(string name)
+        public City Find(eCity cityName)
         {
-            return list.Find(x => (x.Name == name));
+            return list.Find(x => (x.Name == cityName));
         }
 
         public City FindRand()
@@ -38,7 +38,7 @@ namespace ToBeFree
             return list[randIndex];
         }
 
-        public List<City> FindCitiesBySize(string size)
+        public List<City> FindCitiesBySize(eCitySize size)
         {
             List<City> cityListBySize = new List<City>();
             foreach (City city in list)

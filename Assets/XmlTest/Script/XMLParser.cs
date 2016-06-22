@@ -66,9 +66,9 @@ public class XMLParser : MonoBehaviour
                 foreach (XmlNode child in node.ChildNodes)
                 {
                     string index = child.Attributes.GetNamedItem("index").Value;
-                    eSubjectType subjectType = Effect.ToSubjectType(child.Attributes.GetNamedItem("subject").Value);
-                    eVerbType verbType = Effect.ToVerbType(child.Attributes.GetNamedItem("verb").Value);
-                    eObjectType objectType = Effect.ToObjectType(child.Attributes.GetNamedItem("object").Value);
+                    eSubjectType subjectType = EnumConvert<eSubjectType>.ToEnum(child.Attributes.GetNamedItem("subject").Value);
+                    eVerbType verbType = EnumConvert<eVerbType>.ToEnum(child.Attributes.GetNamedItem("verb").Value);
+                    eObjectType objectType = EnumConvert<eObjectType>.ToEnum(child.Attributes.GetNamedItem("object").Value);
 
                     if(subjectType == eSubjectType.NULL
                         || verbType == eVerbType.NULL

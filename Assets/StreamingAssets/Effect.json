@@ -1,5 +1,5 @@
 {
-	"effectData": [
+	"dataList": [
 		{
 			"index": 0,
 			"subjectType": "CHARACTER",
@@ -65,6 +65,390 @@
 			"subjectType": "INFO",
 			"verbType": "DEL",
 			"objectType": "RAND"
+		},
+		{
+			"index": 11,
+			"subjectType": "INFO",
+			"verbType": "ADD",
+			"objectType": "CLOSE"
+		},
+		{
+			"index": 12,
+			"subjectType": "INFO",
+			"verbType": "ADD",
+			"objectType": "RAND"
+		},
+		{
+			"index": 13,
+			"subjectType": "POLICE",
+			"verbType": "MOVE",
+			"objectType": "FAR_CLOSE"
+		},
+		{
+			"index": 14,
+			"subjectType": "POLICE",
+			"verbType": "MOVE",
+			"objectType": "CLOSE_FAR"
+		},
+		{
+			"index": 15,
+			"subjectType": "POLICE",
+			"verbType": "MOVE",
+			"objectType": "RAND_RAND"
+		},
+		{
+			"index": 16,
+			"subjectType": "POLICE",
+			"verbType": "MOVE",
+			"objectType": "RAND_CLOSE"
+		},
+		{
+			"index": 17,
+			"subjectType": "CHARACTER",
+			"verbType": "CANCEL",
+			"objectType": "MOVE"
+		},
+		{
+			"index": 18,
+			"subjectType": "POLICE",
+			"verbType": "MOVE",
+			"objectType": "CLOSE_CLOSE"
+		},
+		{
+			"index": 19,
+			"subjectType": "POLICE",
+			"verbType": "DEL",
+			"objectType": "CLOSE"
+		},
+		{
+			"index": 20,
+			"subjectType": "POLICE",
+			"verbType": "DEL",
+			"objectType": "FAR"
+		},
+		{
+			"index": 21,
+			"subjectType": "POLICE",
+			"verbType": "DEL",
+			"objectType": "RAND"
+		},
+		{
+			"index": 22,
+			"subjectType": "POLICE",
+			"verbType": "ADD",
+			"objectType": "CLOSE"
+		},
+		{
+			"index": 23,
+			"subjectType": "POLICE",
+			"verbType": "ADD",
+			"objectType": "RAND"
+		},
+		{
+			"index": 24,
+			"subjectType": "CHARACTER",
+			"verbType": "MOVE",
+			"objectType": "CLOSE"
+		},
+		{
+			"index": 25,
+			"subjectType": "DICE",
+			"verbType": "SET",
+			"objectType": "SUCCESSNUM"
+		},
+		{
+			"index": 26,
+			"subjectType": "CHARACTER",
+			"verbType": "ADD",
+			"objectType": "FOOD"
+		},
+		{
+			"index": 27,
+			"subjectType": "STAT",
+			"verbType": "ADD",
+			"objectType": "STRENGTH"
+		},
+		{
+			"index": 28,
+			"subjectType": "STAT",
+			"verbType": "ADD",
+			"objectType": "AGILITY"
+		},
+		{
+			"index": 29,
+			"subjectType": "STAT",
+			"verbType": "ADD",
+			"objectType": "OBSERVATION"
+		},
+		{
+			"index": 30,
+			"subjectType": "STAT",
+			"verbType": "ADD",
+			"objectType": "BARGAIN"
+		},
+		{
+			"index": 31,
+			"subjectType": "STAT",
+			"verbType": "ADD",
+			"objectType": "PATIENCE"
+		},
+		{
+			"index": 32,
+			"subjectType": "STAT",
+			"verbType": "ADD",
+			"objectType": "LUCK"
+		},
+		{
+			"index": 33,
+			"subjectType": "STAT",
+			"verbType": "ADD",
+			"objectType": "ALL"
+		},
+		{
+			"index": 34,
+			"subjectType": "CHARACTER",
+			"verbType": "ADD",
+			"objectType": "INVEN"
+		},
+		{
+			"index": 35,
+			"subjectType": "ITEM",
+			"verbType": "ADD",
+			"objectType": "ALL"
+		},
+		{
+			"index": 36,
+			"subjectType": "ITEM",
+			"verbType": "ADD",
+			"objectType": "TAG"
+		},
+		{
+			"index": 37,
+			"subjectType": "ITEM",
+			"verbType": "ADD",
+			"objectType": "INDEX"
+		},
+		{
+			"index": 38,
+			"subjectType": "ITEM",
+			"verbType": "ADD",
+			"objectType": "SELECT_ALL"
+		},
+		{
+			"index": 39,
+			"subjectType": "ITEM",
+			"verbType": "ADD",
+			"objectType": "SELECT_TAG"
+		},
+		{
+			"index": 40,
+			"subjectType": "ITEM",
+			"verbType": "DEL",
+			"objectType": "ALL"
+		},
+		{
+			"index": 41,
+			"subjectType": "ITEM",
+			"verbType": "DEL",
+			"objectType": "TAG"
+		},
+		{
+			"index": 42,
+			"subjectType": "ITEM",
+			"verbType": "DEL",
+			"objectType": "INDEX"
+		},
+		{
+			"index": 43,
+			"subjectType": "ITEM",
+			"verbType": "DEL",
+			"objectType": "SELECT"
+		},
+		{
+			"index": 44,
+			"subjectType": "MONEY",
+			"verbType": "ADD",
+			"objectType": "SPECIFIC"
+		},
+		{
+			"index": 45,
+			"subjectType": "MONEY",
+			"verbType": "ADD",
+			"objectType": "RAND_3"
+		},
+		{
+			"index": 46,
+			"subjectType": "COMMAND",
+			"verbType": "DEACTIVE",
+			"objectType": "WORK"
+		},
+		{
+			"index": 47,
+			"subjectType": "COMMAND",
+			"verbType": "DEACTIVE",
+			"objectType": "MOVE"
+		},
+		{
+			"index": 48,
+			"subjectType": "COMMAND",
+			"verbType": "DEACTIVE",
+			"objectType": "REST"
+		},
+		{
+			"index": 49,
+			"subjectType": "COMMAND",
+			"verbType": "DEACTIVE",
+			"objectType": "SPECIAL"
+		},
+		{
+			"index": 50,
+			"subjectType": "EVENT",
+			"verbType": "SKIP",
+			"objectType": "WORK"
+		},
+		{
+			"index": 51,
+			"subjectType": "EVENT",
+			"verbType": "SKIP",
+			"objectType": "MOVE"
+		},
+		{
+			"index": 52,
+			"subjectType": "EVENT",
+			"verbType": "SKIP",
+			"objectType": "INFO"
+		},
+		{
+			"index": 53,
+			"subjectType": "EVENT",
+			"verbType": "SKIP",
+			"objectType": "FOOD"
+		},
+		{
+			"index": 54,
+			"subjectType": "EVENT",
+			"verbType": "SKIP",
+			"objectType": "REST_CURE"
+		},
+		{
+			"index": 55,
+			"subjectType": "EVENT",
+			"verbType": "LOAD",
+			"objectType": "NONE"
+		},
+		{
+			"index": 56,
+			"subjectType": "ABNORMAL",
+			"verbType": "ADD",
+			"objectType": "NONE"
+		},
+		{
+			"index": 57,
+			"subjectType": "ABNORMAL",
+			"verbType": "DEL",
+			"objectType": "NONE"
+		},
+		{
+			"index": 58,
+			"subjectType": "COMMAND",
+			"verbType": "DEACTIVE",
+			"objectType": "SHOP"
+		},
+		{
+			"index": 59,
+			"subjectType": "CHARACTER",
+			"verbType": "ADD",
+			"objectType": "INFO"
+		},
+		{
+			"index": 60,
+			"subjectType": "ROOT",
+			"verbType": "OPEN",
+			"objectType": "SOUTHEAST_ASIA"
+		},
+		{
+			"index": 61,
+			"subjectType": "ROOT",
+			"verbType": "OPEN",
+			"objectType": "MONGOLIA"
+		},
+		{
+			"index": 62,
+			"subjectType": "BROKER",
+			"verbType": "MOVE",
+			"objectType": "FAR_CLOSE"
+		},
+		{
+			"index": 63,
+			"subjectType": "BROKER",
+			"verbType": "MOVE",
+			"objectType": "CLOSE_FAR"
+		},
+		{
+			"index": 64,
+			"subjectType": "BROKER",
+			"verbType": "MOVE",
+			"objectType": "RAND_RAND"
+		},
+		{
+			"index": 65,
+			"subjectType": "BROKER",
+			"verbType": "MOVE",
+			"objectType": "RAND_CLOSE"
+		},
+		{
+			"index": 66,
+			"subjectType": "BROKER",
+			"verbType": "MOVE",
+			"objectType": "CLOSE_CLOSE"
+		},
+		{
+			"index": 67,
+			"subjectType": "BROKER",
+			"verbType": "DEL",
+			"objectType": "CLOSE"
+		},
+		{
+			"index": 68,
+			"subjectType": "BROKER",
+			"verbType": "DEL",
+			"objectType": "FAR"
+		},
+		{
+			"index": 69,
+			"subjectType": "BROKER",
+			"verbType": "DEL",
+			"objectType": "RAND"
+		},
+		{
+			"index": 70,
+			"subjectType": "BROKER",
+			"verbType": "ADD",
+			"objectType": "CLOSE"
+		},
+		{
+			"index": 71,
+			"subjectType": "BROKER",
+			"verbType": "ADD",
+			"objectType": "RAND"
+		},
+		{
+			"index": 72,
+			"subjectType": "CHARACTER",
+			"verbType": "IN",
+			"objectType": "DETENTION"
+		},
+		{
+			"index": 73,
+			"subjectType": "EVENT",
+			"verbType": "SKIP",
+			"objectType": "ALL"
+		},
+		{
+			"index": 74,
+			"subjectType": "QUEST",
+			"verbType": "LOAD",
+			"objectType": "NONE"
 		}
 	]
 }

@@ -112,6 +112,13 @@ namespace ToBeFree
 
         private void Start()
         {
+            Debug.LogWarning(EffectManager.Instance.List.Length);
+            Debug.LogWarning(SelectManager.Instance.List[EventManager.Instance.List[13].SelectIndexList[0]].Result.Success.Script);
+        }
+
+        /*
+        private void Start()
+        {
             inspectAction = new Inspect();
 
             Effect effect_Cure_HP = new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.HP);
@@ -136,11 +143,11 @@ namespace ToBeFree
                 10, 1);
 
             
-            City cityA = new City("A", "Big", "North", new List<Item>() { cureHP_Now_Once }, 5, 7);
-            City cityB = new City("B", "Midium", "South", new List<Item>() { cureHP_Now_Once }, 3, 5);
-            City cityC = new City("C", "Small", "East", new List<Item>() { cureHP_Now_Once }, 1, 3);
-            City cityC2 = new City("C2", "Big", "East", new List<Item>() { cureHP_Now_Once }, 5, 7);
-            City cityD = new City("D", "Midium", "East", new List<Item>() { cureHP_Now_Once }, 3, 5);
+            //City cityA = new City("A", "Big", "North", new List<Item>() { cureHP_Now_Once }, 5, 7);
+            //City cityB = new City("B", "Midium", "South", new List<Item>() { cureHP_Now_Once }, 3, 5);
+            //City cityC = new City("C", "Small", "East", new List<Item>() { cureHP_Now_Once }, 1, 3);
+            //City cityC2 = new City("C2", "Big", "East", new List<Item>() { cureHP_Now_Once }, 5, 7);
+            //City cityD = new City("D", "Midium", "East", new List<Item>() { cureHP_Now_Once }, 3, 5);
 
             CityGraph.Instance.Add(cityA);
             CityGraph.Instance.Add(cityB);
@@ -163,25 +170,25 @@ namespace ToBeFree
             ResultScriptAndEffects failure = new ResultScriptAndEffects("failure", failureResultEffects);
             
 
-            Result result_strength = new Result("STR", success, failure);
-            Result result_agility = new Result("AGI", success, failure);
-            Result result_observation = new Result("OBS", success, failure);
-            Result result_global = new Result(string.Empty, failure, null);
-            Result result_quest = new Result(string.Empty, success, failure);
+            //Result result_strength = new Result("STR", success, failure);
+            //Result result_agility = new Result("AGI", success, failure);
+            //Result result_observation = new Result("OBS", success, failure);
+            //Result result_global = new Result(string.Empty, failure, null);
+            //Result result_quest = new Result(string.Empty, success, failure);
 
 
-            Select select_quest = new Select(eSubjectType.CHARACTER, eObjectType.HP, ">=", 1, "select cure hp > 1", result_quest);
+            //Select select_quest = new Select(eSubjectType.CHARACTER, eObjectType.HP, ">=", 1, "select cure hp > 1", result_quest);
 
-            Event event_move = new Event("MOVE", "A", "AGI", "move agility test, A city", result_agility, false, null);
-            Event event_Inspection = new Event("INSPECT", "ALL", "OBS", "Inspection observation test, B city", result_observation, false, null);
-            Event event_work_A = new Event("WORK", "A", "STR", "police strength test, A city", result_strength, false, null);
-            Event event_work_B = new Event("WORK", "B", "STR", "police agility test, A city", result_strength, false, null);
-            Event event_global = new Event("GLOBAL", "ALL", string.Empty, "global event", result_global, false, null);
-            Event event_quest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, true, new Select[1] { select_quest });
-            Event event_globalquest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, false, null);
-            
-            EffectDataList effectDataList = new EffectDataList(Application.streamingAssetsPath + "/Effect.json");
-            Debug.LogWarning(effectDataList.effectData.Length);
+            //Event event_move = new Event("MOVE", "A", "AGI", "move agility test, A city", result_agility, false, null);
+            //Event event_Inspection = new Event("INSPECT", "ALL", "OBS", "Inspection observation test, B city", result_observation, false, null);
+            //Event event_work_A = new Event("WORK", "A", "STR", "police strength test, A city", result_strength, false, null);
+            //Event event_work_B = new Event("WORK", "B", "STR", "police agility test, A city", result_strength, false, null);
+            //Event event_global = new Event("GLOBAL", "ALL", string.Empty, "global event", result_global, false, null);
+            //Event event_quest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, true, new Select[1] { select_quest });
+            //Event event_globalquest = new Event("QUEST", "ALL", string.Empty, "quest", result_quest, false, null);
+
+            //EffectDataList effectDataList = new EffectDataList(Application.streamingAssetsPath + "/Effect.json");
+            Debug.LogWarning(EffectManager.Instance.List.Length);
             // abnormal condition : despair
             Effect effect_dice_successNum = new Effect(eSubjectType.DICE, eVerbType.NONE, eObjectType.SUCCESSNUM);
             Condition spawnCondition_despair = new Condition("MENTAL", string.Empty, string.Empty, "<=", 0);
@@ -190,16 +197,16 @@ namespace ToBeFree
 
             ResultEffect[] resultEffects_dice_successNum_6 = new ResultEffect[1] { new ResultEffect(2, null, despair, 6) };
             ResultScriptAndEffects failure_diceNum_6 = new ResultScriptAndEffects("dice num 6", resultEffects_dice_successNum_6);
-            Result result_obs_diceNum_6 = new Result("OBS", failure_diceNum_6, failure_diceNum_6);
-            Event event_Inspection_despair = new Event("INSPECT", "A", "OBS", "Inspection observation test", result_obs_diceNum_6, false, null);
+            Result result_obs_diceNum_6 = new Result(eStat.OBSERVATION, failure_diceNum_6, failure_diceNum_6);
+            //Event event_Inspection_despair = new Event("INSPECT", "A", "OBS", "Inspection observation test", result_obs_diceNum_6, false, null);
 
-            EventManager.Instance.EveryEvents.Add(event_move);
-            EventManager.Instance.EveryEvents.Add(event_Inspection);
-            EventManager.Instance.EveryEvents.Add(event_work_A);
-            EventManager.Instance.EveryEvents.Add(event_work_B);
-            EventManager.Instance.EveryEvents.Add(event_global);
-            EventManager.Instance.EveryEvents.Add(event_quest);
-            EventManager.Instance.EveryEvents.Add(event_globalquest);
+            //EventManager.Instance.EveryEvents.Add(event_move);
+            //EventManager.Instance.EveryEvents.Add(event_Inspection);
+            //EventManager.Instance.EveryEvents.Add(event_work_A);
+            //EventManager.Instance.EveryEvents.Add(event_work_B);
+            //EventManager.Instance.EveryEvents.Add(event_global);
+            //EventManager.Instance.EveryEvents.Add(event_quest);
+            //EventManager.Instance.EveryEvents.Add(event_globalquest);
             //EventManager.Instance.EveryEvents.Add(event_Inspection_despair);
 
             List<int> regionProbDataList = new List<int>();
@@ -264,6 +271,7 @@ namespace ToBeFree
             Instance_NotifyEveryWeek();
             TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
         }
+        */
 
         private void Instance_NotifyEveryWeek()
         {
@@ -271,7 +279,7 @@ namespace ToBeFree
 
 
             // activate global event
-            Event globalEvent = EventManager.Instance.DoCommand("GLOBAL", character);
+            Event globalEvent = EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
 
             // put pieces in one of random cities (police, information, quest)
             int distance = 2;
@@ -282,7 +290,7 @@ namespace ToBeFree
             PieceManager.Instance.Add(CityGraph.Instance.FindRand(), eSubjectType.INFO);
             PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.INFO);
             // 1 quest
-            Event selectedEvent = EventManager.Instance.Find("QUEST", character.CurCity);
+            Event selectedEvent = EventManager.Instance.Find(eEventAction.QUEST, character.CurCity);
             PieceManager.Instance.AddQuest(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
         }
 

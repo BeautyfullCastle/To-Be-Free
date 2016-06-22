@@ -11,7 +11,7 @@ namespace ToBeFree
     public class Action
     {
         protected eStartTime startTime;
-        protected string actionName;
+        protected eEventAction actionName;
 
         public delegate void ActionEventHandler(eStartTime startTime, Character character);
         static public event ActionEventHandler ActionEventNotify;
@@ -23,10 +23,7 @@ namespace ToBeFree
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
-            if (!string.IsNullOrEmpty(actionName))
-            {
-                Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
-            }
+            Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
         }
 
         public virtual void Activate(Character character, City city)
@@ -43,7 +40,7 @@ namespace ToBeFree
         public Rest()
         {
             startTime = eStartTime.REST;
-            actionName = string.Empty;
+            actionName = eEventAction.NULL;
         }
 
         public override void Activate(Character character)
@@ -65,7 +62,7 @@ namespace ToBeFree
         public Work()
         {
             startTime = eStartTime.WORK;
-            actionName = "WORK";
+            actionName = eEventAction.WORK;
         }
 
         public override void Activate(Character character)
@@ -94,7 +91,7 @@ namespace ToBeFree
         public Move()
         {
             startTime = eStartTime.MOVE;
-            actionName = "MOVE";
+            actionName = eEventAction.MOVE;
         }
 
         public override void Activate(Character character, City city)
@@ -112,7 +109,7 @@ namespace ToBeFree
         public QuestAction()
         {
             startTime = eStartTime.QUEST;
-            actionName = string.Empty;
+            actionName = eEventAction.QUEST;
         }
 
         public override void Activate(Character character)
@@ -148,7 +145,7 @@ namespace ToBeFree
         public Inspect()
         {
             startTime = eStartTime.INSPECT;
-            actionName = string.Empty;
+            actionName = eEventAction.NULL;
         }
 
         public override void Activate(Character character)

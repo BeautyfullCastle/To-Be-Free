@@ -2,27 +2,22 @@ namespace ToBeFree
 {
     public class Result
     {
-        private string testStat;
+        private eTestStat testStat;
         private ResultScriptAndEffects success;
         private ResultScriptAndEffects failure;
 
-        public Result(string testStat, ResultScriptAndEffects success, ResultScriptAndEffects failure)
+        public Result(eTestStat testStat, ResultScriptAndEffects success, ResultScriptAndEffects failure)
         {
             this.testStat = testStat;
             this.success = success;
             this.failure = failure;
         }
 
-        public string TestStat
+        public eTestStat TestStat
         {
             get
             {
                 return testStat;
-            }
-
-            set
-            {
-                testStat = value;
             }
         }
 
@@ -32,11 +27,6 @@ namespace ToBeFree
             {
                 return success;
             }
-
-            set
-            {
-                success = value;
-            }
         }
 
         public ResultScriptAndEffects Failure
@@ -44,11 +34,6 @@ namespace ToBeFree
             get
             {
                 return failure;
-            }
-
-            set
-            {
-                failure = value;
             }
         }
     }
@@ -64,11 +49,6 @@ namespace ToBeFree
             {
                 return script;
             }
-
-            set
-            {
-                script = value;
-            }
         }
 
         public ResultEffect[] Effects
@@ -76,11 +56,6 @@ namespace ToBeFree
             get
             {
                 return effects;
-            }
-
-            set
-            {
-                effects = value;
             }
         }
 
@@ -93,43 +68,21 @@ namespace ToBeFree
 
     public struct ResultEffect
     {
-        private int index;
         private Effect effect;
-        private AbnormalCondition abnormalCondition;
-        private int value;
+        private int amount;
         
 
-        public ResultEffect(int index, Effect effect, AbnormalCondition abnormalCondition=null, int value=0)
+        public ResultEffect(int index, Effect effect, AbnormalCondition abnormalCondition=null, int amount=0)
         {
-            this.index = index;
             this.effect = effect;
-            this.abnormalCondition = abnormalCondition;
-            this.value = value;
-        }
-
-        public int Index
-        {
-            get
-            {
-                return index;
-            }
-
-            set
-            {
-                index = value;
-            }
+            this.amount = amount;
         }
 
         public int Value
         {
             get
             {
-                return value;
-            }
-
-            set
-            {
-                this.value = value;
+                return amount;
             }
         }
 
@@ -138,24 +91,6 @@ namespace ToBeFree
             get
             {
                 return effect;
-            }
-
-            set
-            {
-                effect = value;
-            }
-        }
-
-        public AbnormalCondition AbnormalCondition
-        {
-            get
-            {
-                return abnormalCondition;
-            }
-
-            set
-            {
-                abnormalCondition = value;
             }
         }
     }

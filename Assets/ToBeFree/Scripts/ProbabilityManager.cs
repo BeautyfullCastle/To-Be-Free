@@ -11,7 +11,7 @@ namespace ToBeFree
             this.statProbs = statProbs;
         }
 
-        public Probability FindProbByAction(string actionType, string probName)
+        public Probability FindProbByAction(eEventAction actionType, string probName)
         {
             Probability[] probs = null;
             if (probName == "Region")
@@ -36,26 +36,26 @@ namespace ToBeFree
             return prob;
         }
 
-        public string ConvertToString(eStat estat)
+        public string ConvertToString(eTestStat estat)
         {
             switch (estat)
             {
-                case eStat.STRENGTH:
+                case eTestStat.STRENGTH:
                     return "STR";
 
-                case eStat.AGILITY:
+                case eTestStat.AGILITY:
                     return "AGI";
 
-                case eStat.OBSERVATION:
+                case eTestStat.OBSERVATION:
                     return "OBS";
 
-                case eStat.BARGAIN:
+                case eTestStat.BARGAIN:
                     return "BAR";
 
-                case eStat.PATIENCE:
+                case eTestStat.PATIENCE:
                     return "PAT";
 
-                case eStat.LUCK:
+                case eTestStat.LUCK:
                     return "LUC";
 
                 default:

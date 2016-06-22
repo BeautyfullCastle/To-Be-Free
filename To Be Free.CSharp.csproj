@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -214,20 +216,28 @@
     <Compile Include="Assets\ToBeFree\Scripts\Condition.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\DiceTester.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Effect.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\EffectManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Event.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\EventManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\GameManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Inventory.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Item.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\ItemManager.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\JSON\AbnormalConditionData.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\JSON\DataList.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\JSON\EffectData.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\JSON\EventData.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\JSON\ResultData.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\JSON\SelectData.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Piece.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\PieceManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Police.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Probability.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\ProbabilityManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Result.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\ResultManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Select.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\SelectManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Stat.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\StringToEnum.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\TimeTable.cs" />

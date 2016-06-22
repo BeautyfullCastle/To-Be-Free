@@ -1,0 +1,2048 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"stat": "STRENGTH",
+			"successScript": "당신은 무거운 자제를 성공적으로 날랐습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "당신은 무거운 자제를 나르던 도중 허리를 다쳤습니다.",
+			"failureEffectIndexList": [
+				44,
+				56
+			],
+			"failureEffectValueList": [
+				3,
+				2
+			]
+		},
+		{
+			"index": 1,
+			"stat": "STRENGTH",
+			"successScript": "당신은 무거운 자제를 성공적으로 날랐습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "당신은 무거운 자제를 나르던 도중 다리를 다쳤습니다.",
+			"failureEffectIndexList": [
+				44,
+				56
+			],
+			"failureEffectValueList": [
+				3,
+				1
+			]
+		},
+		{
+			"index": 2,
+			"stat": "STRENGTH",
+			"successScript": "당신의 일하는 모습을 보고 사장이 당신을 불렀습니다. \\n'당신 일을 잘하는거 보니 내 추가로 일을 부탁하지 이걸 처리하면 돈을 더 주겠네' \\n당신은 이를 승낙했습니다.",
+			"successEffectIndexList": [
+				44,
+				74
+			],
+			"successEffectValueList": [
+				3,
+				15
+			],
+			"failureScript": "당신은 무거운 자제를 나르며 체력이 소진되었습니다.",
+			"failureEffectIndexList": [
+				44,
+				0
+			],
+			"failureEffectValueList": [
+				3,
+				1
+			]
+		},
+		{
+			"index": 3,
+			"stat": "NULL",
+			"successScript": "사실 나도 조선인 아내를 데리고 있어서 자네같은 탈북자들을 보면 안타까워 그렇다네'\\n사장은 말하며 식사를  대접했습니다.\\n당신은 맛있는 저녁을 먹으며 힘이 납니다.",
+			"successEffectIndexList": [
+				44,
+				56
+			],
+			"successEffectValueList": [
+				3,
+				7
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 4,
+			"stat": "STRENGTH",
+			"successScript": "무거운 농기구를 나르고 일을 마쳤습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "무거운 농기구에 나르던 도중 다리를 다쳤습니다.",
+			"failureEffectIndexList": [
+				44,
+				56
+			],
+			"failureEffectValueList": [
+				3,
+				1
+			]
+		},
+		{
+			"index": 5,
+			"stat": "AGILITY",
+			"successScript": "성공적으로 공안의 눈을 피해 도망칠 수 있었지만 이 도시에 있는것은 위험해 보입니다.\\n당신은 다른 도시로 이동했습니다.",
+			"successEffectIndexList": [
+				24,
+				24
+			],
+			"successEffectValueList": [
+				1,
+				1
+			],
+			"failureScript": "혼신의 힘을 다해 도망쳤지만 공안에게 잡히고 말았습니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				9
+			]
+		},
+		{
+			"index": 6,
+			"stat": "OBSERVATION",
+			"successScript": "모습과 이야기를 보아하니 의심이 갑니다. 당신은 무시하고 일을 마칩니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "그에게 오늘 받은 일당을 전부 냅니다.\\n'좋아, 오늘 밤 이 앞으로 나오라고 내가 브로커를 데리고 오지'\\n하지만 밤에 나가보니 아무도 오지 않았습니다.\\n아무래도 사기꾼인 것 같습니다. 당신은 주변을 찾았지만 그자로 보이는 자는 없었습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 7,
+			"stat": "BARGAIN",
+			"successScript": "이야기를 하던 중 남한과 관련된 이야기를 나누게 되었습니다.\\n'혹시 남한으로 가고 싶은건가? 그렇다면 내가 근처에서 소문을 들었네'",
+			"successEffectIndexList": [
+				44,
+				12
+			],
+			"successEffectValueList": [
+				3,
+				1
+			],
+			"failureScript": "그자와 이야기 하던 중 일을 마칠 시간이 되었습니다.\\n'다음에 또 볼 수 있으면 좋겠구먼'",
+			"failureEffectIndexList": [
+				44
+			],
+			"failureEffectValueList": [
+				3
+			]
+		},
+		{
+			"index": 8,
+			"stat": "PATIENCE",
+			"successScript": "깐깐한 사장의 요구에 참아가며 일을 마쳤습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "깐깐한 사장의 요구를 맞춰가며 일을 마쳤지만 정신의 피곤함은 어쩔수 없었습니다.",
+			"failureEffectIndexList": [
+				44,
+				1
+			],
+			"failureEffectValueList": [
+				3,
+				1
+			]
+		},
+		{
+			"index": 9,
+			"stat": "AGILITY",
+			"successScript": "상자를 보통보다 빠르게 날랐고 더 많은 상자를 날라 더 많은 보수를 챙깁니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				5
+			],
+			"failureScript": "상자를 빠르게 나르는 것은 테크닉이 필요해보입니다.\\n상자를 많이 나르지 못해서 보수를 적게 받았습니다.",
+			"failureEffectIndexList": [
+				44
+			],
+			"failureEffectValueList": [
+				3
+			]
+		},
+		{
+			"index": 10,
+			"stat": "OBSERVATION",
+			"successScript": "자세히 잘펴본 결과 공안이 맞았고 당신은 공안의 눈을 피해 잠시 숨어 위기를 모면했습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "살펴보았지만 공안은 보이지 않았습니다. \\n하지만 당신은 일을 하던 중 아까 찾지 못했던 공안에게 걸렸습니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			]
+		},
+		{
+			"index": 11,
+			"stat": "BARGAIN",
+			"successScript": "당신의 언변에 다행히도 사장은 돈을 주기로 하였습니다.\\n'불쌍해서 이번만 주는줄 알아'",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "당신은 열심히 설득을 위해서 노력했지만 사장의 화만 돋구었습니다.\\n'공안을 안부르는 것만으로도 다행으로 알아! 당장 꺼져!'\\n당신은 황급히 자리를 벗어났습니다.",
+			"failureEffectIndexList": [
+				44,
+				1
+			],
+			"failureEffectValueList": [
+				3,
+				1
+			]
+		},
+		{
+			"index": 12,
+			"stat": "PATIENCE",
+			"successScript": "당신은 강한 태양빛을 이겨내고 일을 마쳤습니다. 좋지 않은 날씨에 힘을 내준 당신에게 감사의 표시로 사장이 돈을 약간 더 얹어주었습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				5
+			],
+			"failureScript": "당신은 강력한 태양빛에 현기증이 날 것을 참으면 일합니다.",
+			"failureEffectIndexList": [
+				44,
+				0
+			],
+			"failureEffectValueList": [
+				3,
+				1
+			]
+		},
+		{
+			"index": 13,
+			"stat": "LUCK",
+			"successScript": "오늘 행운의 여신은 당신의 것이었습니다.\\n'이야 당신 오늘 운이 정말 좋은데 다음에 또 볼 수 있으면 보자고'",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				6
+			],
+			"failureScript": "안타깝게도 도박을 하면서 일당을 전부 잃고 말았습니다.\\n'어이쿠 오늘은 운이 없었나 보구먼 다음에 또 오면 딸 수 있을 껄세'",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 14,
+			"stat": "LUCK",
+			"successScript": "운이 좋게도 공안은 검문을 대충하고 나갑니다. 당신은 안도의 한숨을 내쉬며 일을 마쳤습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "당신은 모른척했지만 공안에게 들통이 나고 말았습니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			]
+		},
+		{
+			"index": 15,
+			"stat": "NULL",
+			"successScript": "당신은 수상한 조선족의 말을 무시했습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 16,
+			"stat": "PATIENCE",
+			"successScript": "더위를 이겨내고 이동합니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "더위로 인해서 힘이듭니다.",
+			"failureEffectIndexList": [
+				0
+			],
+			"failureEffectValueList": [
+				-1
+			]
+		},
+		{
+			"index": 17,
+			"stat": "PATIENCE",
+			"successScript": "다리가 아픈걸 이겨내고 이동합니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "걸어가는 중 다리에 무언가가 걸렸던것 같습니다. 상처가 났습니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 18,
+			"stat": "PATIENCE",
+			"successScript": "배고픔을 이겨내고 이동합니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "배고픔을 이겨내지 못하고 식량을 먹습니다.",
+			"failureEffectIndexList": [
+				26,
+				42
+			],
+			"failureEffectValueList": [
+				-1,
+				0
+			]
+		},
+		{
+			"index": 19,
+			"stat": "PATIENCE",
+			"successScript": "무거움을 이겨내고 이동합니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "짐이 너무 무거워 결국 짐하나를 버리고 맙니다.",
+			"failureEffectIndexList": [
+				40
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 20,
+			"stat": "PATIENCE",
+			"successScript": "무거움을 이겨내고 이동합니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "무거운 짐을 들다가 허리가 아픕니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				2
+			]
+		},
+		{
+			"index": 21,
+			"stat": "AGILITY",
+			"successScript": "인기척이 사라집니다. 아무래도 잘 도망친 것 같습니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				7
+			],
+			"failureScript": "과수원 주인이 배상을 원합니다. 당신은 돈을 지불합니다.",
+			"failureEffectIndexList": [
+				44
+			],
+			"failureEffectValueList": [
+				-3
+			]
+		},
+		{
+			"index": 22,
+			"stat": "NONE",
+			"successScript": "당신은 그냥 과수원 지나쳐 갔습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 23,
+			"stat": "AGILITY",
+			"successScript": "공안에게 들키지 않고 몸을 숨겼습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "공안이 당신을 발견했습니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			]
+		},
+		{
+			"index": 24,
+			"stat": "OBSERVATION",
+			"successScript": "자세히 보니 멀리 표지판이 보입니다. 표지판을 확인해보고 정확한 길로갑니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "아무래도 길을 잃은것 같습니다.",
+			"failureEffectIndexList": [
+				24
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 25,
+			"stat": "OBSERVATION",
+			"successScript": "주변을 잘 관찰해보니 사람이 없었고 과일 몇개를 먹었습니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				7
+			],
+			"failureScript": "주변에 사람의 형상을 한 무언가가 보입니다. 당신은 황급히 자리를 떠납니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 26,
+			"stat": "STRENGTH",
+			"successScript": "안에 사용할 만한 물건이 있습니다.",
+			"successEffectIndexList": [
+				35
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "상자가 너무 무거워 꺼낼수가 없습니다.\\n상자를 꺼내려고 무리하다가 허리를 삔 거 같습니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				2
+			]
+		},
+		{
+			"index": 27,
+			"stat": "NULL",
+			"successScript": "당신은 상자가 신경 쓰였지만 그냥 지나쳤습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 28,
+			"stat": "NULL",
+			"successScript": "모르는 길을 통해 도시에 도착했습니다. 도시를 확인해봅니다.",
+			"successEffectIndexList": [
+				24
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 29,
+			"stat": "PATIENCE",
+			"successScript": "휴식을 취하지 않고 빠르게 이동했습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "휴식을 취하다가 너무 늦은 시간에 도착했습니다. \\n너무 늦은 시간이라서 이미 상점이 닫았습니다.",
+			"failureEffectIndexList": [
+				58
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 30,
+			"stat": "STRENGTH",
+			"successScript": "무사히 짐을 배달했습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "짐을 옮기던 도중 무게로 그만 짐을 놓고 짐이 부셔지고 말았습니다.\\n아무래도 배상을 해야 할 것 같습니다. 또한 짐을 놓으면서 허리가 다친 것 같습니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				2
+			]
+		},
+		{
+			"index": 31,
+			"stat": "LUCK",
+			"successScript": "길가에 돈이 떨어져 있었습니다.",
+			"successEffectIndexList": [
+				44
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "가봤지만 아무것도 있지 않았습니다. 오히려 실망감에 힘이 빠집니다.",
+			"failureEffectIndexList": [
+				1
+			],
+			"failureEffectValueList": [
+				-1
+			]
+		},
+		{
+			"index": 32,
+			"stat": "LUCK",
+			"successScript": "다행히 문제 없이 차가 지나갑니다.",
+			"successEffectIndexList": [
+				0
+			],
+			"successEffectValueList": [
+				0
+			],
+			"failureScript": "차가 지나가는 도중 서서 공안이 옵니다. 필사적으로 도망갑니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			]
+		},
+		{
+			"index": 33,
+			"stat": "OBSERVATION",
+			"successScript": "열심히 뛰어다뉜 결과 브로커에 대한 정보를 얻었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "열심히 브로커정보를 찾아다녔지만 정보를 찾지 못했습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 34,
+			"stat": "OBSERVATION",
+			"successScript": "조선인으로 추측되는 사람에게 말을 걸어보니 그가 브로커에 대한 정보를 알고 있었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "열심히 브로커정보를 찾아다녔지만 정보를 찾지 못했습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 35,
+			"stat": "OBSERVATION",
+			"successScript": "조선인으로 추측되는 사람에게 말을 걸어보니 그가 브로커에 대한 정보를 알고 있었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "거리에서 브로커정보를 찾는 중 공안의 움직임을 발견했습니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				101
+			]
+		},
+		{
+			"index": 36,
+			"stat": "OBSERVATION",
+			"successScript": "그를 면밀히 관찰하여 수상함을 느낀 당신은 그를 믿지 않았습니다.\\n'뭐야 날 못 믿는거야? 후회할꺼야'\\n그는 떠나갔습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "어이쿠 고맙네 브로커는 저 식당에 있네'\\n당신은 빠르게 식당으로 가서 브로커를 찾았지만 식당에는 아무도 없었습니다.\\n다시 나와 남자를 찾았지만 남자는 이미 사라진 뒤였습니다.",
+			"failureEffectIndexList": [
+				44
+			],
+			"failureEffectValueList": [
+				-3
+			]
+		},
+		{
+			"index": 37,
+			"stat": "OBSERVATION",
+			"successScript": "정보를 알고 있는 사람을 찾아 브로커에 대한 정보를 알아냅니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "주점에서 정보를 알고 있다는 사람을 찾았지만, 사람을 발견하지 못했습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 38,
+			"stat": "STRENGTH",
+			"successScript": "당신 기대보다 일을 잘해줬는데 고맙군 약속한 정보에 돈도 좀 주지'\\n당신은 감사함을 표했습니다.",
+			"successEffectIndexList": [
+				59,
+				44
+			],
+			"successEffectValueList": [
+				1,
+				3
+			],
+			"failureScript": "당신 일을 하는게 정말 형편없군 그래도 약속은 약속이니 정보는 주겠네'\\n당신은 감사함을 표했습니다.",
+			"failureEffectIndexList": [
+				59
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 39,
+			"stat": "STRENGTH",
+			"successScript": "당신 기대보다 일을 잘해줬는데 고맙군 약속한 정보네'",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "당신 일을 하는게 정말 형편없군 오히려 일만 늘렸군! 정보는 줄수 없네!'\\n당신은 사정했지만 그의 마음을 돌릴순 없었습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 40,
+			"stat": "AGILITY",
+			"successScript": "달려가 그를 붙잡았습니다. 그에게서 브로커에 대한 정보를 들었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "정보를 알고 있는 사람을 시야에서 놓쳣습니다. 주변을 둘러봐도 보이지 않습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 41,
+			"stat": "AGILITY",
+			"successScript": "다행히 공안의 눈을 피해 브로커에 대한 정보를 들었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "공안이 눈치를 챘습니다. 위험해 지기 전에 도망쳤습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 42,
+			"stat": "PATIENCE",
+			"successScript": "태양빛을 이겨내고 브로커에 대한 정보를 얻었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "강한 태양빛 아래에서 브로커에 대한 정보를 찾았지만 찾아내지 못했습니다.\\n체력적으로 힘이 듭니다.",
+			"failureEffectIndexList": [
+				0
+			],
+			"failureEffectValueList": [
+				-1
+			]
+		},
+		{
+			"index": 43,
+			"stat": "PATIENCE",
+			"successScript": "기다림 끝에 정보를 알고 있는 이를 만났습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "결국 오늘은 포기하고 돌아갑니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 44,
+			"stat": "BARGAIN",
+			"successScript": "내가 브로커에 대한 정보를 알고 있지'\\n그에게 브로커에 대한 이야기를 들었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "당신은 절박한 마음에 그에게 달려들었으나 반대로 경계심을 사고 말았습니다.\\n그가 반대로 자리를 피했습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 45,
+			"stat": "BARGAIN",
+			"successScript": "당신의 이야기에 마음을 움직여 아무런 대가 없이, 브로커에 대한 정보를 알려주었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "설득은 실패했고 오히려 그의 화만 돋구어 내쫓겼습니다.\\n실망감이 차오릅니다.",
+			"failureEffectIndexList": [
+				1
+			],
+			"failureEffectValueList": [
+				-1
+			]
+		},
+		{
+			"index": 46,
+			"stat": "NONE",
+			"successScript": "완고해보이는 그자를 설득하긴 쉽지 않아 보입니다. 얌전히 떠납니다.",
+			"successEffectIndexList": [
+				0
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 47,
+			"stat": "NONE",
+			"successScript": "당신의 돈에 흡족한 표정을 지으며 브로커에대한 정보를 알려줍니다.",
+			"successEffectIndexList": [
+				59,
+				44
+			],
+			"successEffectValueList": [
+				1,
+				-3
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 48,
+			"stat": "LUCK",
+			"successScript": "운이 좋게도 말을 걸어본 사람이 브로커대한 정보를 알고 있었습니다.",
+			"successEffectIndexList": [
+				59
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "열심히 브로커에 대한 정보를 찾아다녔지만 정보를 찾지 못했습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 49,
+			"stat": "LUCK",
+			"successScript": "운이 좋게도 식사 중인 정보를 알고 있는 사람을 만났습니다.\\n그 사람은 브로커의 정보와 식사도 대접해줍니다.",
+			"successEffectIndexList": [
+				59,
+				56
+			],
+			"successEffectValueList": [
+				1,
+				7
+			],
+			"failureScript": "식당에서 브로커를 찾았지만 찾아내지 못했습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 50,
+			"stat": "BARGAIN",
+			"successScript": "당신의 사정을 알겠네. 좋아, 대신 남한에 입국하면 돈을 보내주게'\\n그에게 탈북루트를 전달 받습니다.",
+			"successEffectIndexList": [
+				60
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "사정은 알겠지만 돈이 없다면 남한으로 보내주기는 힘들겠군'",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 51,
+			"stat": "NULL",
+			"successScript": "이 쪽으로 가면 몽골로 가는 길이네 다만 사막을 약 7일정도 건너야 하네 준비를 단단히하고 가는 것이 좋을 껄세'",
+			"successEffectIndexList": [
+				61
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 52,
+			"stat": "BARGAIN",
+			"successScript": "당신의 사정을 알겠네. 좋아, 대신 남한에 입국하면 돈을 보내주게'\\n그에게 탈북루트를 전달 받습니다.",
+			"successEffectIndexList": [
+				61
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "사정은 알겠지만 돈이 없다면 남한으로 보내주기는 힘들겠군'",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 53,
+			"stat": "NULL",
+			"successScript": "쿤밍시에서 라오스로 이동하게 라오스에서 태국만가면 안전하네'\\n그에게 탈북루트를 전달 받습니다.",
+			"successEffectIndexList": [
+				60
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 54,
+			"stat": "NULL",
+			"successScript": "이리와서 식사를 좀 하지, 식사하면서 루트를 이야기 해주겠네'\\n그에게 식사를 대접받으면서 탈북루트를 전달받습니다.",
+			"successEffectIndexList": [
+				56,
+				60
+			],
+			"successEffectValueList": [
+				7,
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 55,
+			"stat": "PATIENCE",
+			"successScript": "더위를 이겨내고 사막을 건넙니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "더위에 얼마 못가 휴식하고 맙니다.",
+			"failureEffectIndexList": [
+				17
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 56,
+			"stat": "PATIENCE",
+			"successScript": "당신은 사막을 추위를 이겨냈습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "더위와 추위로 신체와 정신이 힘듭니다.",
+			"failureEffectIndexList": [
+				3
+			],
+			"failureEffectValueList": [
+				-1
+			]
+		},
+		{
+			"index": 57,
+			"stat": "NULL",
+			"successScript": "주변을 찾아보니 근처에 낮에 달궈진 바위가 있었습니다. 바위에서 추위를 극복합니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				0
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 58,
+			"stat": "PATIENCE",
+			"successScript": "큰 절망을 이겨내고 오직 사막을 벗어나 탈출하는 것에만 집중해봅니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				8
+			],
+			"failureScript": "큰 절망에 정신을 온전히 다잡히 힘듭니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				0
+			]
+		},
+		{
+			"index": 59,
+			"stat": "NULL",
+			"successScript": "오늘은 어쩔 수 없이 쉬었습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 60,
+			"stat": "OBSERVATION",
+			"successScript": "다행히도 방향이 몽골로 가는 길인것 같습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "걸으면서 아무리 찾아도 어느쪽이 확실한 길인지 알기 힘듭니다.\\n아무래도 먼길을 온 것 같지는 않습니다.",
+			"failureEffectIndexList": [
+				17
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 61,
+			"stat": "PATIENCE",
+			"successScript": "더위를 이겨내고 사막을 건넙니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "더위에 참지 못하고 물을 더 마시고 맙니다",
+			"failureEffectIndexList": [
+				42
+			],
+			"failureEffectValueList": [
+				0
+			]
+		},
+		{
+			"index": 62,
+			"stat": "AGILITY",
+			"successScript": "열심히 차를 따라갔지만 차를 놓치고 맙니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "뛰다가 그만 넘어지고 맙니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 63,
+			"stat": "LUCK",
+			"successScript": "죽은 파충류의 시체였습니다. 찜찜하지만 먹을 수 있을 것 같습니다.",
+			"successEffectIndexList": [
+				37
+			],
+			"successEffectValueList": [
+				0
+			],
+			"failureScript": "가서 확인해 봤지만 아무것도 아니였습니다.",
+			"failureEffectIndexList": [
+				0
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 64,
+			"stat": "PATIENCE",
+			"successScript": "불안감을 이겨내고 걸어갑니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "끝없는 사막에 이대로 죽을까봐 불안하고 겁이납니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				5
+			]
+		},
+		{
+			"index": 65,
+			"stat": "PATIENCE",
+			"successScript": "큰 절망을 이겨내고 오직 사막을 벗어나 탈출하는 것에만 집중해봅니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "큰 절망에 정신을 온전히 다잡히 힘듭니다.",
+			"failureEffectIndexList": [
+				1
+			],
+			"failureEffectValueList": [
+				-1
+			]
+		},
+		{
+			"index": 66,
+			"stat": "STRENGTH",
+			"successScript": "바람을 뚫고 앞으로 나아갑니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "강한 바람에 앞으로 가지 못하고 말았습니다.",
+			"failureEffectIndexList": [
+				62
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 67,
+			"stat": "NULL",
+			"successScript": "당신은 돌뿌리에 걸려 넘어졌습니다.\\n넘어진 다리를 보니 심하게 다친 것 같습니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				1
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 68,
+			"stat": "NULL",
+			"successScript": "소문을 들어보니 브로커에 대한 정보를 아는 인물이 다른 도시로 이동했다고 합니다.",
+			"successEffectIndexList": [
+				5
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 69,
+			"stat": "NULL",
+			"successScript": "소문을 들어보니 브로커에 대한 정보를 아는 인물이 다른 도시로 이동했다고 합니다.",
+			"successEffectIndexList": [
+				4
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 70,
+			"stat": "NULL",
+			"successScript": "소문을 들어보니 브로커에 대한 정보를 아는 인물이 사라졌다고 합니다.",
+			"successEffectIndexList": [
+				10
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 71,
+			"stat": "NULL",
+			"successScript": "늘어나는 탈북자를 잡기 위해 정부에서 새로운 공안이 투입됩니다.",
+			"successEffectIndexList": [
+				23
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 72,
+			"stat": "NULL",
+			"successScript": "늘어나는 탈북자를 잡기 위해 정부에서 새로운 공안이 투입됩니다.",
+			"successEffectIndexList": [
+				22
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 73,
+			"stat": "NULL",
+			"successScript": "일어나보니 허리가 끊어질 듯 아픕니다. 아무래도 피로가 쌓인것 같습니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				2
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 74,
+			"stat": "NULL",
+			"successScript": "일어나니 배가 아픕니다. 무언가 잘 못 먹었나 봅니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 75,
+			"stat": "NULL",
+			"successScript": "탈북자에 대한 이야기를 듣고 공안이 재배치됩니다.",
+			"successEffectIndexList": [
+				13
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 76,
+			"stat": "NULL",
+			"successScript": "황사가 너무 심합니다. 시야가 가립니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				12
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 77,
+			"stat": "NULL",
+			"successScript": "일어나니 팔이 저립니다. 아무래도 무리를 한 것 같습니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				10
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 78,
+			"stat": "NULL",
+			"successScript": "일어나니 다리가 저립니다. 아무래도 무리를 한 것 같습니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				11
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 79,
+			"stat": "NULL",
+			"successScript": "일어나니 머리가 아픕니다. 아무래도 무리를 한 것 같습니다.",
+			"successEffectIndexList": [
+				56
+			],
+			"successEffectValueList": [
+				14
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 80,
+			"stat": "NULL",
+			"successScript": "일어나보니 가방에 물건하나가 사라졌습니다. 아무래도 누군가 훔쳐간 것 같습니다.",
+			"successEffectIndexList": [
+				40
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 81,
+			"stat": "NULL",
+			"successScript": "일어나보니 가방에 식량하나가 사라졌습니다. 아무래도 누군가 훔쳐간 것 같습니다.",
+			"successEffectIndexList": [
+				42
+			],
+			"successEffectValueList": [
+				0
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 82,
+			"stat": "NULL",
+			"successScript": "일어나보니 돈이 사라졌습니다. 아무래도 누군가 훔쳐간 것 같습니다.",
+			"successEffectIndexList": [
+				45
+			],
+			"successEffectValueList": [
+				3
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 83,
+			"stat": "NULL",
+			"successScript": 0,
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "브로커정보를 알고 있는이가 다른 정보를 알고 있는 이와 같이 떠났습니다.",
+			"failureEffectIndexList": [
+				10
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 84,
+			"stat": "NULL",
+			"successScript": "지역담당관에게 돈을 주고 공안의 추가를 막았습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 느렸습니다.",
+			"failureEffectIndexList": [
+				22
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 85,
+			"stat": "NULL",
+			"successScript": "지역담당관에게 돈을 주고 공안의 추가를 막았습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 느렸습니다.",
+			"failureEffectIndexList": [
+				13
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 86,
+			"stat": "NULL",
+			"successScript": 0,
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "시간이 되어 브로커가 이동했습니다.",
+			"failureEffectIndexList": [
+				64
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 87,
+			"stat": "NULL",
+			"successScript": 0,
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "시간이 되어 브로커가 한국으로 돌아갔습니다.",
+			"failureEffectIndexList": [
+				69
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 88,
+			"stat": "NULL",
+			"successScript": 0,
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "시간이 되어 브로커가 한국으로 돌아갔습니다.",
+			"failureEffectIndexList": [
+				67
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 89,
+			"stat": "NULL",
+			"successScript": "다행히 기한에 맞춰 돈을 가져왔습니다.\\n'좋아 시간내에 가져왔군'",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "돈을 가지고 오지 못하다니 그럼 대가를 받아야지'\\n그들이 당신의 다리를 가격했습니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 90,
+			"stat": "STRENGTH",
+			"successScript": "좋아! 도망치지 않고 왔군 수고했어 약속대로 신고하지 않지'",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "시간내에 일을 해결하지 못해 그가 공안에 신고했습니다.\\n공안이 당신을 찾아내 쫓아옵니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			]
+		},
+		{
+			"index": 91,
+			"stat": "NULL",
+			"successScript": 0,
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "브로커 정보를 알고 있는 사람이 멀리 떠났습니다.",
+			"failureEffectIndexList": [
+				4
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 92,
+			"stat": "NULL",
+			"successScript": 0,
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "브로커 정보를 알고 있는 사람이 남한으로 떠났습니다.",
+			"failureEffectIndexList": [
+				8
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 93,
+			"stat": "NULL",
+			"successScript": "다행히 기한에 맞춰 돈을 가져왔습니다.\\n'좋아 시간내에 가져왔군'",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "돈대신 다른걸 받아가도록 하지'\\n그들이 돈 대신 아이템을 받아갔습니다.",
+			"failureEffectIndexList": [
+				40
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 94,
+			"stat": "NULL",
+			"successScript": "좋아! 도망치지 않고 왔군 수고했어 약속대로 신고하지 않지'",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "시간내에 일을 해결하지 못해 그가 공안에 신고했습니다.\\n공안이 당신을 찾아내 쫓아옵니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			]
+		},
+		{
+			"index": 95,
+			"stat": "LUCK",
+			"successScript": "도박을 해서 돈을 벌었습니다.",
+			"successEffectIndexList": [
+				45
+			],
+			"successEffectValueList": [
+				5
+			],
+			"failureScript": "도박판이 끝났다는 이야기가 들립니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 96,
+			"stat": "NULL",
+			"successScript": "고맙네! 이 은혜는 잊지 않겠네, 이건 고마움의 표시네'\\n그는 고마움을 표하며 돈과 아이템을 주고 사라졌습니다.",
+			"successEffectIndexList": [
+				45,
+				35
+			],
+			"successEffectValueList": [
+				3,
+				-99
+			],
+			"failureScript": "그가 독자적으로 브로커정보를 안 것 같습니다.",
+			"failureEffectIndexList": [
+				10
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 97,
+			"stat": "NULL",
+			"successScript": "지역담당관에게 돈을 주고 공안의 추가를 막았습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 느렸습니다.",
+			"failureEffectIndexList": [
+				23
+			],
+			"failureEffectValueList": [
+				1
+			]
+		},
+		{
+			"index": 98,
+			"stat": "BARGAIN",
+			"successScript": "다행히 밀항에 동의해 줬습니다.\\n배를 타고 국경을 넘습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "너무 위험하다며 선장이 거절했습니다.\\n설득에 실패한 것 같습니다.",
+			"failureEffectIndexList": [
+				17
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 99,
+			"stat": "OBSERVATION",
+			"successScript": "길을 찾았습니다. 자세히 보니 라오스기가 보입니다.\\n국경을 넘은 것 같습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "길을 못찾고 헤맵니다. 아무래도 한바퀴를 다시 돌은 모양입니다.\\n도시로 다시 돌아갑니다.",
+			"failureEffectIndexList": [
+				17
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 100,
+			"stat": "AGILITY",
+			"successScript": "공안에게 들키지 않고 국경을 넘었습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "아무래도 공안에 들킨 것 같습니다. 공안이 쫓아옵니다.",
+			"failureEffectIndexList": [
+				55,
+				17
+			],
+			"failureEffectValueList": [
+				102,
+				-99
+			]
+		},
+		{
+			"index": 101,
+			"stat": "PATIENCE",
+			"successScript": "아픈다리를 이끌고 숲을 지나 국경을 넘었습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "상처가 너무 심해 치료를 위해서 도시로 돌아갑니다.",
+			"failureEffectIndexList": [
+				56,
+				17
+			],
+			"failureEffectValueList": [
+				1,
+				-99
+			]
+		},
+		{
+			"index": 102,
+			"stat": "LUCK",
+			"successScript": "아무에게도 들키지 않고 화물선에 올라타 국경을 넘었습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "화물선을 타는 중 선원에게 들키고 맙니다. 공안에게 신고를 한 것 같습니다.\\n공안이 쫓아옵니다.",
+			"failureEffectIndexList": [
+				55,
+				17
+			],
+			"failureEffectValueList": [
+				102,
+				-99
+			]
+		},
+		{
+			"index": 103,
+			"stat": "STRENGTH",
+			"successScript": "당신의 도움으로 빠른 운항 준비를 마친 화물선을 타고 국경을 넘습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "짐을 나르던 중 허리를 다쳤습니다. 상처가 너무 심해서 상처를 치유해야 할 것 같습니다.\\n선장의 만류에 따라 어쩔 수 없이 도시에 남습니다.",
+			"failureEffectIndexList": [
+				56,
+				17
+			],
+			"failureEffectValueList": [
+				2,
+				-99
+			]
+		},
+		{
+			"index": 104,
+			"stat": "OBSERVATION",
+			"successScript": "공안에게 들키지 않고 무사히 자리를 빠져나갑니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "공안이 이상함을 감지한 것 같습니다. 황급히 자리를 피합니다.",
+			"failureEffectIndexList": [
+				73
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 105,
+			"stat": "OBSERVATION",
+			"successScript": "공안에게 들키지 않고 무사히 자리를 빠져나갑니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "공안이 이상함을 감지 한 것 같습니다. 가까이로 다가옵니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			]
+		},
+		{
+			"index": 106,
+			"stat": "OBSERVATION",
+			"successScript": "공안에게 들키지 않고 무사히 자리를 빠져나갑니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "조심스럽게 움직였지만 공안에게 그만 붙잡혔습니다. ",
+			"failureEffectIndexList": [
+				56,
+				73
+			],
+			"failureEffectValueList": [
+				9,
+				-99
+			]
+		},
+		{
+			"index": 107,
+			"stat": "AGILITY",
+			"successScript": "정신없이 도망치고 뒤를 보니 공안에게서 벗어난 듯 합니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "전력을 다해 도망쳤지만 공안에게 붙잡히고 말았습니다.",
+			"failureEffectIndexList": [
+				56,
+				73
+			],
+			"failureEffectValueList": [
+				9,
+				-99
+			]
+		},
+		{
+			"index": 108,
+			"stat": "STRENGTH",
+			"successScript": "일을 열심히 해 급여를 받습니다.",
+			"successEffectIndexList": [
+				45
+			],
+			"successEffectValueList": [
+				6
+			],
+			"failureScript": "사장이 말한 기한이 끝났습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 109,
+			"stat": "AGILITY",
+			"successScript": "공안을 눈을 피해 도망을 치는데 성공했습니다.",
+			"successEffectIndexList": [
+				57
+			],
+			"successEffectValueList": [
+				9
+			],
+			"failureScript": "도망을 치려고 했지만 공안에게 들켜 실패했습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 110,
+			"stat": "LUCK",
+			"successScript": "운이 좋게도 공안이 자리를 피한 틈을 타서 도망을 치는데 성공했습니다.",
+			"successEffectIndexList": [
+				57
+			],
+			"successEffectValueList": [
+				9
+			],
+			"failureScript": "북한으로 송환되었습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		}
+	]
+}

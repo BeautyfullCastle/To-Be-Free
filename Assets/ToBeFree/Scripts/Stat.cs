@@ -8,6 +8,11 @@ namespace ToBeFree
         HP, TOTALHP, MENTAL, TOTALMENTAL, FOOD, TOTALFOOD, MONEY, INFO, STRENGTH, AGILITY, OBSERVATION, BARGAIN, PATIENCE, LUCK, NULL
     }
 
+    public enum eTestStat
+    {
+        STRENGTH, AGILITY, OBSERVATION, BARGAIN, PATIENCE, LUCK, ALL, NULL
+    }
+
     public class Stat
     {
         private int hp;

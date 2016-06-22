@@ -27,26 +27,26 @@ namespace ToBeFree
             //int temp = stat.Strength;
         }
 
-        public int GetDiceNum(string stat)
+        public int GetDiceNum(eTestStat stat)
         {
             switch (stat)
             {
-                case "STR":
+                case eTestStat.STRENGTH:
                     return this.Stat.Strength;
 
-                case "AGI":
+                case eTestStat.AGILITY:
                     return this.Stat.Agility;
 
-                case "OBS":
+                case eTestStat.OBSERVATION:
                     return this.Stat.Observation;
 
-                case "BAR":
+                case eTestStat.BARGAIN:
                     return this.Stat.Bargain;
 
-                case "PAT":
+                case eTestStat.PATIENCE:
                     return this.Stat.Patience;
 
-                case "LUC":
+                case eTestStat.LUCK:
                     return this.Stat.Luck;
 
                 default:
@@ -57,7 +57,7 @@ namespace ToBeFree
 
         public void Inspect()
         {
-            EventManager.Instance.DoCommand("INSPECT", this);
+            EventManager.Instance.DoCommand(eEventAction.INSPECT, this);
         }
 
         public bool MoveTo(City city)
@@ -73,7 +73,7 @@ namespace ToBeFree
 
         public void Work()
         {
-            Event selectedEvent = EventManager.Instance.DoCommand("WORK", this);
+            Event selectedEvent = EventManager.Instance.DoCommand(eEventAction.WORK, this);
             // if effect is money and event is succeeded,
             ResultEffect[] successResulteffects = selectedEvent.Result.Success.Effects;
 

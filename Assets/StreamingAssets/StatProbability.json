@@ -1,0 +1,52 @@
+{
+	"statProbabilityDataList": [
+		{
+			"index": 0,
+			"actionType": "WORK",
+			"vauleList": [
+				50,
+				8,
+				8,
+				8,
+				8,
+				14
+			]
+		},
+		{
+			"index": 1,
+			"actionType": "MOVE",
+			"vauleList": [
+				8,
+				8,
+				8,
+				8,
+				50,
+				14
+			]
+		},
+		{
+			"index": 2,
+			"actionType": "INFO",
+			"vauleList": [
+				8,
+				8,
+				50,
+				8,
+				8,
+				14
+			]
+		},
+		{
+			"index": 3,
+			"actionType": "BROKER",
+			"vauleList": [
+				0,
+				0,
+				0,
+				100,
+				0,
+				0
+			]
+		}
+	]
+}
