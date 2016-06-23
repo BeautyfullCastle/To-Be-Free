@@ -1,24 +1,63 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
 {
-    public class CityGraph : Singleton<CityGraph>
+    public class CityManager : Singleton<CityManager>
     {
-        private List<City> list;
+        private readonly City[] list;
+        private readonly CityData[] dataList;
+        private readonly string file = Application.streamingAssetsPath + "/City.json";
 
-        public CityGraph()
+        public CityManager()
         {
-            Debug.Log("CityGraph constructor");
+            DataList<CityData> cDataList = new DataList<CityData>(file);
+            dataList = cDataList.dataList;
+            if (dataList == null)
+                return;
 
-            this.list = new List<City>();
+            list = new City[dataList.Length];
+
+            ParseData();
         }
 
-        public City Add(City city)
+        private void ParseData()
         {
-            list.Add(city);
-            return city;
+            foreach (CityData data in dataList)
+            {
+                if((data.workingMoneyRange.Length != 2) || data.workingMoneyRange[0] > data.workingMoneyRange[1])
+                {
+                    throw new System.Exception("data.workingMoneyRange is wrong.");
+                }
+
+                Item[] itemList = new Item[data.itemIndexList.Length];
+                for(int i=0; i<data.itemIndexList.Length; ++i)
+                {
+                    Item item = ItemManager.Instance.List[data.itemIndexList[i]];
+                    itemList[i] = item;
+                }
+
+                City city = new City(EnumConvert<eCity>.ToEnum(data.name), EnumConvert<eCitySize>.ToEnum(data.size),
+                                    EnumConvert<eArea>.ToEnum(data.area), itemList, data.workingMoneyRange[0], data.workingMoneyRange[1]);
+
+                list[data.index] = city;
+            }
         }
+
+        public City[] List
+        {
+            get
+            {
+                return list;
+            }
+        }
+
+        //public City Add(City city)
+        //{
+        //    list.Add(city);
+        //    return city;
+        //}
 
         public void Link(City cityA, City cityB)
         {
@@ -28,13 +67,13 @@ namespace ToBeFree
 
         public City Find(eCity cityName)
         {
-            return list.Find(x => (x.Name == cityName));
+            return Array.Find<City>(list, x => (x.Name == cityName));
         }
 
         public City FindRand()
         {
             System.Random r = new System.Random();
-            int randIndex = r.Next(0, list.Count);
+            int randIndex = r.Next(0, list.Length-1);
             return list[randIndex];
         }
 
@@ -55,7 +94,7 @@ namespace ToBeFree
         {
             System.Random r = new System.Random();
             // put a police in random cities by distance.
-            List<City> cityList = CityGraph.Instance.FindCitiesByDistance(curCity, distance);
+            List<City> cityList = CityManager.Instance.FindCitiesByDistance(curCity, distance);
             int randCityIndex = r.Next(0, cityList.Count);
 
             return cityList[randCityIndex];

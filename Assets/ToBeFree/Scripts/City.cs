@@ -29,10 +29,11 @@ namespace ToBeFree
         private eCity name;
         private eCitySize size;
         private eArea area;
-        private List<City> neighborList;
-        private List<Item> itemList;
+        private Item[] itemList;
         private int workingMoneyMin;
         private int workingMoneyMax;
+
+        private List<City> neighborList;
         private int distanceFromCharacter;
 
         public City()
@@ -41,7 +42,7 @@ namespace ToBeFree
             itemList = null;
         }
 
-        public City(eCity name, eCitySize size, eArea area, List<Item> itemList, int workingMoneyMin, int workingMoneyMax)
+        public City(eCity name, eCitySize size, eArea area, Item[] itemList, int workingMoneyMin, int workingMoneyMax)
          : this()
         {
             this.name = name;

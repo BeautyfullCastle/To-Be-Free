@@ -7,6 +7,8 @@ namespace ToBeFree
         protected string name;
         protected Buff buff;
         protected Condition spawnCondition;
+        protected int stack;
+        protected bool isStack;
         protected bool isBody; // body or mental
         protected bool isPositive;
 

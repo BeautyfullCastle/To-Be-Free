@@ -80,29 +80,32 @@ namespace ToBeFree
         // TO DO : have to implement
         public Item GetTagRand(int iTag) { return null; }
 
+        // TODO : have to fix to EffectAmount list.
         public Item FindItemByType(eSubjectType subjectType, eVerbType verbType, eObjectType objectType = eObjectType.NONE)
         {
-            InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.Item.Buff.Effect.SubjectType == subjectType);
-            if (inventoryRecord == null)
-            {
-                Debug.Log("There's no " + subjectType + " item in inventory");
-                return null;
-            }
-            else
-            {
-                Item item = inventoryRecord.Item;
+            //InventoryRecord inventoryRecord = InventoryRecords.Find(x => x.Item.Buff.Effect.SubjectType == subjectType);
+            //if (inventoryRecord == null)
+            //{
+            //    Debug.Log("There's no " + subjectType + " item in inventory");
+            //    return null;
+            //}
+            //else
+            //{
+            //    Item item = inventoryRecord.Item;
 
-                // WARNING : Maybe this code have bug cause of NONE checking.
-                if ((item.Buff.Effect.VerbType == eVerbType.NONE) || item.Buff.Effect.VerbType == verbType)
-                {
-                    if ((item.Buff.Effect.ObjectType == eObjectType.NONE) || item.Buff.Effect.ObjectType == objectType)
-                    {
-                        return item;
-                    }
-                }
-                Debug.Log("There's no " + subjectType + " " + verbType + " " + objectType + " item in inventory");
-                return null;
-            }
+            //    // WARNING : Maybe this code have bug cause of NONE checking.
+                
+            //    if ((item.Buff.Effect.VerbType == eVerbType.NONE) || item.Buff.Effect.VerbType == verbType)
+            //    {
+            //        if ((item.Buff.Effect.ObjectType == eObjectType.NONE) || item.Buff.Effect.ObjectType == objectType)
+            //        {
+            //            return item;
+            //        }
+            //    }
+            //    Debug.Log("There's no " + subjectType + " " + verbType + " " + objectType + " item in inventory");
+            //    return null;
+            //}
+            return null;
         }
 
         public void AddSlot()

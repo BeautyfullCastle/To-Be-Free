@@ -71,7 +71,7 @@ namespace ToBeFree
             base.Activate(character);
 
             // if effect is money and event is succeeded,
-            ResultEffect[] successResulteffects = EventManager.Instance.ResultEffects;
+            EffectAmount[] successResulteffects = EventManager.Instance.ResultEffects;
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {

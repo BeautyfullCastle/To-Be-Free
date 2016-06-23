@@ -45,10 +45,10 @@ namespace ToBeFree
                 effects[i] = EffectManager.Instance.List[indexList[i]];
             }
 
-            ResultEffect[] successResultEffects = new ResultEffect[effects.Length];
+            EffectAmount[] successResultEffects = new EffectAmount[effects.Length];
             for (int i = 0; i < effects.Length; ++i)
             {
-                successResultEffects[i] = new ResultEffect(i, effects[i], null, valueList[i]);
+                successResultEffects[i] = new EffectAmount(effects[i], valueList[i]);
             }
 
             return new ResultScriptAndEffects(script, successResultEffects);

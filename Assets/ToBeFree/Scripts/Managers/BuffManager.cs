@@ -36,13 +36,14 @@ namespace ToBeFree
                 return buff;
             }
 
-            if (buffInList.IsStack)
-            {
-                buff.Stack++;
-                buff.Amount += buffInList.Amount;
-                return buffInList;
-            }
-            else
+            // TODO : have to add this code to AbnormalCondition.
+            //if (buffInList.IsStack)
+            //{
+            //    buff.Stack++;
+            //    buff.Amount += buffInList.Amount;
+            //    return buffInList;
+            //}
+            //else
             {
                 return null;
             }

@@ -1,11 +1,11 @@
 {
-	"itemDataList": [
+	"dataList": [
 		{
 			"index": 0,
 			"name": "음식과 물",
-			"start time": "NIGHT",
+			"startTime": "NIGHT",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				26
 			],
@@ -18,9 +18,9 @@
 		{
 			"index": 1,
 			"name": "라운드백",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				34
 			],
@@ -33,9 +33,9 @@
 		{
 			"index": 2,
 			"name": "소형 배낭",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				34
 			],
@@ -48,9 +48,9 @@
 		{
 			"index": 3,
 			"name": "배낭",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				34
 			],
@@ -63,9 +63,9 @@
 		{
 			"index": 4,
 			"name": "등산가방",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				34
 			],
@@ -78,9 +78,9 @@
 		{
 			"index": 5,
 			"name": "따뜻한 우유",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				0
 			],
@@ -93,9 +93,9 @@
 		{
 			"index": 6,
 			"name": "향초",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				1
 			],
@@ -108,9 +108,9 @@
 		{
 			"index": 7,
 			"name": "종이 안대",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				2
 			],
@@ -123,9 +123,9 @@
 		{
 			"index": 8,
 			"name": "따뜻한 고급우유",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				0
 			],
@@ -138,9 +138,9 @@
 		{
 			"index": 9,
 			"name": "고급 향초",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				1
 			],
@@ -153,9 +153,9 @@
 		{
 			"index": 10,
 			"name": "고급 종이 안대",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				2
 			],
@@ -168,9 +168,9 @@
 		{
 			"index": 11,
 			"name": "베게",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "EQUIP",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				0
 			],
@@ -183,9 +183,9 @@
 		{
 			"index": 12,
 			"name": "이불",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "EQUIP",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				1
 			],
@@ -198,9 +198,9 @@
 		{
 			"index": 13,
 			"name": "침낭",
-			"start time": "REST",
+			"startTime": "REST",
 			"duration": "EQUIP",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				2
 			],
@@ -213,9 +213,9 @@
 		{
 			"index": 14,
 			"name": "상처약",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				0
 			],
@@ -228,9 +228,9 @@
 		{
 			"index": 15,
 			"name": "고량주",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				1
 			],
@@ -243,9 +243,9 @@
 		{
 			"index": 16,
 			"name": "오리요리",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				2
 			],
@@ -258,9 +258,9 @@
 		{
 			"index": 17,
 			"name": "고급 상처약",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				0
 			],
@@ -273,9 +273,9 @@
 		{
 			"index": 18,
 			"name": "고급 고량주",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				1
 			],
@@ -288,9 +288,9 @@
 		{
 			"index": 19,
 			"name": "북경오리요리",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				2
 			],
@@ -303,9 +303,9 @@
 		{
 			"index": 20,
 			"name": "담배",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				0,
 				1
@@ -320,9 +320,9 @@
 		{
 			"index": 21,
 			"name": "기괴한 곤충 요리",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				0,
 				1
@@ -337,9 +337,9 @@
 		{
 			"index": 22,
 			"name": "작업용 장갑",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				27
 			],
@@ -352,9 +352,9 @@
 		{
 			"index": 23,
 			"name": "공구벨트",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				27
 			],
@@ -367,9 +367,9 @@
 		{
 			"index": 24,
 			"name": "작업용 조끼",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				27
 			],
@@ -382,9 +382,9 @@
 		{
 			"index": 25,
 			"name": "1회용 목장갑",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "ONCE",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				27
 			],
@@ -397,9 +397,9 @@
 		{
 			"index": 26,
 			"name": "1회용 코팅장갑",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "ONCE",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				27
 			],
@@ -412,9 +412,9 @@
 		{
 			"index": 27,
 			"name": "얇은 복장",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				28
 			],
@@ -427,9 +427,9 @@
 		{
 			"index": 28,
 			"name": "운동화",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				28
 			],
@@ -442,9 +442,9 @@
 		{
 			"index": 29,
 			"name": "편안한 의복",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				28
 			],
@@ -457,9 +457,9 @@
 		{
 			"index": 30,
 			"name": "비싸보이는 시계",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30
 			],
@@ -472,9 +472,9 @@
 		{
 			"index": 31,
 			"name": "깔끔한 복장",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30
 			],
@@ -487,9 +487,9 @@
 		{
 			"index": 32,
 			"name": "헤어 컷",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30
 			],
@@ -502,9 +502,9 @@
 		{
 			"index": 33,
 			"name": "불편한 구두",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30,
 				28
@@ -519,9 +519,9 @@
 		{
 			"index": 34,
 			"name": "가그린",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "ONCE",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30
 			],
@@ -534,9 +534,9 @@
 		{
 			"index": 35,
 			"name": "향수",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "ONCE",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30
 			],
@@ -549,9 +549,9 @@
 		{
 			"index": 36,
 			"name": "십자가",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				31
 			],
@@ -564,9 +564,9 @@
 		{
 			"index": 37,
 			"name": "염불",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				31
 			],
@@ -579,9 +579,9 @@
 		{
 			"index": 38,
 			"name": "코란",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				31
 			],
@@ -594,9 +594,9 @@
 		{
 			"index": 39,
 			"name": "커피",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "ONCE",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				31
 			],
@@ -609,9 +609,9 @@
 		{
 			"index": 40,
 			"name": "에너지 드링크",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "ONCE",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				31
 			],
@@ -624,9 +624,9 @@
 		{
 			"index": 41,
 			"name": "안경",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30
 			],
@@ -639,9 +639,9 @@
 		{
 			"index": 42,
 			"name": "망원경",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30
 			],
@@ -654,9 +654,9 @@
 		{
 			"index": 43,
 			"name": "돋보기",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				30
 			],
@@ -669,9 +669,9 @@
 		{
 			"index": 44,
 			"name": "복주머니",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				32
 			],
@@ -684,9 +684,9 @@
 		{
 			"index": 45,
 			"name": "복조리",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				32
 			],
@@ -699,9 +699,9 @@
 		{
 			"index": 46,
 			"name": "네잎클로버",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "EQUIP",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				32
 			],
@@ -714,9 +714,9 @@
 		{
 			"index": 47,
 			"name": "행운의 동전",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "ONCE",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				32
 			],
@@ -729,9 +729,9 @@
 		{
 			"index": 48,
 			"name": "행운의 부적",
-			"start time": "TEST",
+			"startTime": "TEST",
 			"duration": "ONCE",
-			"restore": "TRUE",
+			"restore": "true",
 			"effectIndexList": [
 				32
 			],
@@ -744,9 +744,9 @@
 		{
 			"index": 49,
 			"name": "뇌물 제공-1",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				18
 			],
@@ -759,9 +759,9 @@
 		{
 			"index": 50,
 			"name": "뇌물 제공-2",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				20
 			],
@@ -774,9 +774,9 @@
 		{
 			"index": 51,
 			"name": "소문흘리기-1",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				7
 			],
@@ -789,9 +789,9 @@
 		{
 			"index": 52,
 			"name": "소문흘리기-2",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				3
 			],
@@ -804,9 +804,9 @@
 		{
 			"index": 53,
 			"name": "소문흘리기-3",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				6
 			],
@@ -819,9 +819,9 @@
 		{
 			"index": 54,
 			"name": "레몬에이드",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				56
 			],
@@ -834,9 +834,9 @@
 		{
 			"index": 55,
 			"name": "초콜릿",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				56
 			],
@@ -849,9 +849,9 @@
 		{
 			"index": 56,
 			"name": "푸짐한 식사",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				56
 			],
@@ -864,9 +864,9 @@
 		{
 			"index": 57,
 			"name": "붕대",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				57
 			],
@@ -879,9 +879,9 @@
 		{
 			"index": 58,
 			"name": "파스",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				57
 			],
@@ -894,9 +894,9 @@
 		{
 			"index": 59,
 			"name": "위장약",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				57
 			],
@@ -909,9 +909,9 @@
 		{
 			"index": 60,
 			"name": "피로회복제",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				57
 			],
@@ -924,9 +924,9 @@
 		{
 			"index": 61,
 			"name": "불안장애약",
-			"start time": "NOW",
+			"startTime": "NOW",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				57
 			],
@@ -939,9 +939,9 @@
 		{
 			"index": 62,
 			"name": "대중교통표",
-			"start time": "MOVE",
+			"startTime": "MOVE",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				47
 			],
@@ -954,9 +954,9 @@
 		{
 			"index": 63,
 			"name": "정체불명의 물건",
-			"start time": "QUEST",
+			"startTime": "QUEST",
 			"duration": "ONCE",
-			"restore": "FALSE",
+			"restore": "false",
 			"effectIndexList": [
 				-99
 			],

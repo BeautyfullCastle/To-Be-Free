@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class AbnormalConditionData
+public class AbnormalConditionData : IData
 {
     public int index;
     public string name;

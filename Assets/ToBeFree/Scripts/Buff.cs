@@ -11,55 +11,45 @@ namespace ToBeFree
 
     public class Buff
     {
-        private string name;
-        private Effect effect;
-        private bool isRestore;
-        private int amount;
-
-        private int stack;
-        private bool isStack;
-
-        private eStartTime startTime;
-        private eDuration duration;
+        private readonly string name;
+        private readonly EffectAmount[] effectAmountList;
+        private readonly bool isRestore;
+        private readonly eStartTime startTime;
+        private readonly eDuration duration;
 
         
-        public Buff(string name, Effect effect, bool isRestore, int amount,
-            eStartTime startTime, eDuration duration, bool isStack=false)
+        public Buff(string name, EffectAmount[] effectAmountList, bool isRestore,
+            eStartTime startTime, eDuration duration)
         {
             this.name = name;
-            this.effect = new Effect(effect);
+            this.effectAmountList = effectAmountList;
             this.isRestore = isRestore;
-            this.amount = amount;
             this.startTime = startTime;
             this.duration = duration;
-            this.isStack = isStack;
-            this.stack = 1;
         }
 
-        public Buff(Buff buff) : this(buff.name, buff.effect, buff.isRestore, buff.amount,
-            buff.startTime, buff.duration, buff.isStack)
+        public Buff(Buff buff) : this(buff.name, buff.effectAmountList, buff.isRestore,
+            buff.startTime, buff.duration)
         {
         }
 
         public void ActivateEffect(Character character)
         {
             Debug.Log("buff " + name + "'s effect activate");
-
-            if (effect == null)
-                return;
-
-            effect.Activate(character, amount);
+            foreach (EffectAmount effectAmount in effectAmountList)
+            {
+                effectAmount.Activate(character);
+            }
         }
 
         public void DeactivateEffect(Character character)
         {
             Debug.Log("buff " + name + "'s effect deactivate");
 
-            if (effect == null)
-                return;
-
-            effect.Deactivate(character);
-            
+            foreach (EffectAmount effectAmount in effectAmountList)
+            {
+                effectAmount.Deactivate(character);
+            }
         }
 
         public eStartTime StartTime
@@ -78,55 +68,11 @@ namespace ToBeFree
             }
         }
 
-        public Effect Effect
-        {
-            get
-            {
-                return effect;
-            }
-
-            set
-            {
-                effect = value;
-            }
-        }
-
         public string Name
         {
             get
             {
                 return name;
-            }
-
-            set
-            {
-                name = value;
-            }
-        }
-
-        public bool IsStack
-        {
-            get
-            {
-                return isStack;
-            }
-
-            set
-            {
-                isStack = value;
-            }
-        }
-
-        public int Amount
-        {
-            get
-            {
-                return amount;
-            }
-
-            set
-            {
-                amount = value;
             }
         }
 
@@ -136,23 +82,13 @@ namespace ToBeFree
             {
                 return isRestore;
             }
-
-            set
-            {
-                isRestore = value;
-            }
         }
 
-        public int Stack
+        public EffectAmount[] EffectAmountList
         {
             get
             {
-                return stack;
-            }
-
-            set
-            {
-                stack = value;
+                return effectAmountList;
             }
         }
     }

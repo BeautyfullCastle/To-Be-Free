@@ -18,7 +18,7 @@ namespace ToBeFree
 
         public void Init()
         {
-            List<City> bigCityList = CityGraph.Instance.FindCitiesBySize(eCitySize.BIG);
+            List<City> bigCityList = CityManager.Instance.FindCitiesBySize(eCitySize.BIG);
             foreach (City city in bigCityList)
             {
                 this.Add(city, eSubjectType.POLICE);

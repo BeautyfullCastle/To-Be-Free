@@ -8,7 +8,6 @@ namespace ToBeFree
     {
         public UILabel buffName;
         public UILabel amount;
-        public UILabel stack;
 
         private Buff buff;
 
@@ -16,8 +15,10 @@ namespace ToBeFree
         {
             this.buff = buff;
             buffName.text = buff.Name;
-            amount.text = buff.Amount.ToString();
-            stack.text = buff.Stack.ToString();
+            for (int i = 0; i < buff.EffectAmountList.Length; ++i)
+            {
+                amount.text += buff.EffectAmountList[i].ToString();
+            }
         }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+
 namespace ToBeFree
 {
     public class Result
@@ -41,7 +43,7 @@ namespace ToBeFree
     public class ResultScriptAndEffects
     {
         private string script;
-        private ResultEffect[] effects;
+        private EffectAmount[] effects;
 
         public string Script
         {
@@ -51,7 +53,7 @@ namespace ToBeFree
             }
         }
 
-        public ResultEffect[] Effects
+        public EffectAmount[] Effects
         {
             get
             {
@@ -59,26 +61,36 @@ namespace ToBeFree
             }
         }
 
-        public ResultScriptAndEffects(string script, ResultEffect[] effects)
+        public ResultScriptAndEffects(string script, EffectAmount[] effects)
         {
             this.script = script;
             this.effects = effects;
         }
     }
 
-    public struct ResultEffect
+    public class EffectAmount
     {
         private Effect effect;
         private int amount;
         
 
-        public ResultEffect(int index, Effect effect, AbnormalCondition abnormalCondition=null, int amount=0)
+        public EffectAmount(Effect effect, int amount=0)
         {
             this.effect = effect;
             this.amount = amount;
         }
 
-        public int Value
+        public void Activate(Character character)
+        {
+            effect.Activate(character, amount);
+        }
+
+        public void Deactivate(Character character)
+        {
+            effect.Deactivate(character);
+        }
+
+        public int Amount
         {
             get
             {
@@ -93,5 +105,6 @@ namespace ToBeFree
                 return effect;
             }
         }
+
     }
 }

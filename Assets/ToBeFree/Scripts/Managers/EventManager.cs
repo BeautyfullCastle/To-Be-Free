@@ -6,7 +6,7 @@ namespace ToBeFree
 {
     public class EventManager : Singleton<EventManager>
     {
-        private ResultEffect[] resultEffects;
+        private EffectAmount[] resultEffects;
 
         private readonly Event[] list;
         private readonly EventData[] dataList;
@@ -140,7 +140,7 @@ namespace ToBeFree
             return true;
         }
 
-        public void ActivateResultEffects(ResultEffect[] resultEffects, Character character)
+        public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)
         {
             if (resultEffects == null)
             {
@@ -152,7 +152,7 @@ namespace ToBeFree
             {
                 if (resultEffects[i].Effect != null)
                 {
-                    resultEffects[i].Effect.Activate(character, resultEffects[i].Value);
+                    resultEffects[i].Effect.Activate(character, resultEffects[i].Amount);
                 }
                 //else if(resultEffects[i].AbnormalCondition != null)
                 //{
@@ -271,7 +271,7 @@ namespace ToBeFree
             return null;
         }
         
-        public ResultEffect[] ResultEffects
+        public EffectAmount[] ResultEffects
         {
             get
             {

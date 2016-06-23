@@ -1075,7 +1075,7 @@
 			]
 		},
 		{
-			"index": 99,
+			"index": 89,
 			"actionType": "INSPECT",
 			"region": "ALL",
 			"stat": "ALL",
@@ -1087,7 +1087,7 @@
 			]
 		},
 		{
-			"index": 100,
+			"index": 89,
 			"actionType": "INSPECT",
 			"region": "ALL",
 			"stat": "ALL",
@@ -1099,7 +1099,7 @@
 			]
 		},
 		{
-			"index": 101,
+			"index": 90,
 			"actionType": "INSPECT",
 			"region": "ALL",
 			"stat": "ALL",
@@ -1111,7 +1111,7 @@
 			]
 		},
 		{
-			"index": 102,
+			"index": 90,
 			"actionType": "INSPECT",
 			"region": "NONE",
 			"stat": "NULL",
@@ -1123,7 +1123,7 @@
 			]
 		},
 		{
-			"index": 103,
+			"index": 91,
 			"actionType": "DETENTION",
 			"region": "ALL",
 			"stat": "AGILITY",
@@ -1135,7 +1135,7 @@
 			]
 		},
 		{
-			"index": 104,
+			"index": 91,
 			"actionType": "DETENTION",
 			"region": "NONE",
 			"stat": "LUCK",

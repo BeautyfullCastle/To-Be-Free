@@ -23,7 +23,7 @@ namespace ToBeFree
         private int maximumStackableQuantity;
         
 
-        public Item(string name, Buff buff, int price, int maximumStackableQuantity)
+        public Item(string name, Buff buff, int price, int maximumStackableQuantity=1)
         {
             this.name = name;
             this.buff = new Buff(buff);
@@ -82,12 +82,7 @@ namespace ToBeFree
             get
             {
                 return buff;
-            }
-
-            set
-            {
-                buff = value;
-            }
+            }            
         }
 
         //public eStartTime StartTime

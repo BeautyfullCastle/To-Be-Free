@@ -75,7 +75,7 @@ namespace ToBeFree
         {
             Event selectedEvent = EventManager.Instance.DoCommand(eEventAction.WORK, this);
             // if effect is money and event is succeeded,
-            ResultEffect[] successResulteffects = selectedEvent.Result.Success.Effects;
+            EffectAmount[] successResulteffects = selectedEvent.Result.Success.Effects;
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {
@@ -116,7 +116,7 @@ namespace ToBeFree
             set
             {
                 curCity = value;
-                CityGraph.Instance.CalculateDistance(this.curCity);
+                CityManager.Instance.CalculateDistance(this.curCity);
             }
         }
 

@@ -113,7 +113,7 @@ namespace ToBeFree
         private void Start()
         {
             Debug.LogWarning(EffectManager.Instance.List.Length);
-            Debug.LogWarning(SelectManager.Instance.List[EventManager.Instance.List[13].SelectIndexList[0]].Result.Success.Script);
+            Debug.LogWarning(SelectManager.Instance.List[EventManager.Instance.List[13].SelectIndexList[0]].Event.Script);
         }
 
         /*
@@ -284,14 +284,14 @@ namespace ToBeFree
             // put pieces in one of random cities (police, information, quest)
             int distance = 2;
             // 2 polices
-            PieceManager.Instance.Add(CityGraph.Instance.FindRand(), eSubjectType.POLICE);
-            PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.POLICE);
+            PieceManager.Instance.Add(CityManager.Instance.FindRand(), eSubjectType.POLICE);
+            PieceManager.Instance.Add(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.POLICE);
             // 2 informations
-            PieceManager.Instance.Add(CityGraph.Instance.FindRand(), eSubjectType.INFO);
-            PieceManager.Instance.Add(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.INFO);
+            PieceManager.Instance.Add(CityManager.Instance.FindRand(), eSubjectType.INFO);
+            PieceManager.Instance.Add(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.INFO);
             // 1 quest
             Event selectedEvent = EventManager.Instance.Find(eEventAction.QUEST, character.CurCity);
-            PieceManager.Instance.AddQuest(CityGraph.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
+            PieceManager.Instance.AddQuest(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
         }
 
         public Character Character

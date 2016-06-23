@@ -31,32 +31,11 @@ namespace ToBeFree
 
         public bool CheckCondition(Character character)
         {
-            // have to fix here.
-            if (subjectType == eSubjectType.CHARACTER)
+            if(subjectType == eSubjectType.MONEY)
             {
-                if (objectType == eObjectType.HP)
-                {
-                    Item item = character.Inven.FindItemByType(subjectType, eVerbType.ADD, objectType);
-                    if (item == null)
-                    {
-                        Debug.Log(subjectType + " or " + objectType + " is not exist.");
-                        return false;
-                    }
-                    eSubjectType itemType = item.Buff.Effect.SubjectType;
-                    int itemAmount = item.Buff.Amount;
-                    if (itemType == subjectType && item.Buff.Effect.ObjectType == objectType)
-                    {
-                        bool isExist = Compare(itemAmount, compareAmount, comparisonOperator);
-                        if (isExist)
-                        {
-                            character.Inven.Delete(item, character);
-                        }
-                        return isExist;
-                    }
-                }
+                return Compare(character.Stat.Money, compareAmount, comparisonOperator);
             }
-
-            throw new Exception(subjectType + " or " + objectType + " is not right.");
+            throw new Exception("subject type is not right.");
         }
 
         private bool Compare(int left, int right, string comparisonOp)

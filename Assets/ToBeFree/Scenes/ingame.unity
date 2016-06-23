@@ -1323,7 +1323,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 146790, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Name
-      value: C2
+      value: XINNIG
       objectReference: {fileID: 0}
     - target: {fileID: 181818, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Layer
@@ -1570,7 +1570,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 146790, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Name
-      value: B
+      value: CHENDU
       objectReference: {fileID: 0}
     - target: {fileID: 181818, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Layer
@@ -2199,7 +2199,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 146790, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Name
-      value: C
+      value: CHONGQING
       objectReference: {fileID: 0}
     - target: {fileID: 181818, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Layer
@@ -3458,7 +3458,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 146790, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Name
-      value: D
+      value: LANZHOU
       objectReference: {fileID: 0}
     - target: {fileID: 181818, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Layer
@@ -4040,7 +4040,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 146790, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Name
-      value: A
+      value: KUNMING
       objectReference: {fileID: 0}
     - target: {fileID: 181818, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Layer
