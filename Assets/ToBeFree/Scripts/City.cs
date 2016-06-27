@@ -19,6 +19,12 @@ namespace ToBeFree
         SOUTHEAST_ASIA
     }
 
+    public enum eRegion
+    {
+        AREA = 0, CITY, ALL,
+        NULL
+    }
+
     public enum eCitySize
     {
         SMALL, MIDDLE, BIG

@@ -414,7 +414,7 @@
 		},
 		{
 			"index": 34,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "OBSERVATION",
 			"difficulty": "NORMAL",
@@ -426,7 +426,7 @@
 		},
 		{
 			"index": 35,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "OBSERVATION",
 			"difficulty": "NORMAL",
@@ -438,7 +438,7 @@
 		},
 		{
 			"index": 36,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "OBSERVATION",
 			"difficulty": "NORMAL",
@@ -450,7 +450,7 @@
 		},
 		{
 			"index": 37,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "OBSERVATION",
 			"difficulty": "NORMAL",
@@ -462,7 +462,7 @@
 		},
 		{
 			"index": 38,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "OBSERVATION",
 			"difficulty": "NORMAL",
@@ -474,7 +474,7 @@
 		},
 		{
 			"index": 39,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "STRENGTH",
 			"difficulty": "EASY",
@@ -486,7 +486,7 @@
 		},
 		{
 			"index": 40,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "STRENGTH",
 			"difficulty": "NORMAL",
@@ -498,7 +498,7 @@
 		},
 		{
 			"index": 41,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "AGILITY",
 			"difficulty": "NORMAL",
@@ -510,7 +510,7 @@
 		},
 		{
 			"index": 42,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "AGILITY",
 			"difficulty": "NORMAL",
@@ -522,7 +522,7 @@
 		},
 		{
 			"index": 43,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "PATIENCE",
 			"difficulty": "NORMAL",
@@ -534,7 +534,7 @@
 		},
 		{
 			"index": 44,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "PATIENCE",
 			"difficulty": "NORMAL",
@@ -546,7 +546,7 @@
 		},
 		{
 			"index": 45,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "BARGAIN",
 			"difficulty": "NORMAL",
@@ -558,7 +558,7 @@
 		},
 		{
 			"index": 46,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "BARGAIN",
 			"difficulty": "NORMAL",
@@ -572,7 +572,7 @@
 		},
 		{
 			"index": 47,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "NULL",
 			"difficulty": "NORMAL",
@@ -584,7 +584,7 @@
 		},
 		{
 			"index": 48,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "LUCK",
 			"difficulty": "NORMAL",
@@ -596,7 +596,7 @@
 		},
 		{
 			"index": 49,
-			"actionType": "INSPECT",
+			"actionType": "INFO",
 			"region": "ALL",
 			"stat": "LUCK",
 			"difficulty": "NORMAL",
@@ -1087,7 +1087,7 @@
 			]
 		},
 		{
-			"index": 89,
+			"index": 90,
 			"actionType": "INSPECT",
 			"region": "ALL",
 			"stat": "ALL",
@@ -1099,7 +1099,7 @@
 			]
 		},
 		{
-			"index": 90,
+			"index": 91,
 			"actionType": "INSPECT",
 			"region": "ALL",
 			"stat": "ALL",
@@ -1111,9 +1111,9 @@
 			]
 		},
 		{
-			"index": 90,
+			"index": 92,
 			"actionType": "INSPECT",
-			"region": "NONE",
+			"region": "NULL",
 			"stat": "NULL",
 			"difficulty": "NORMAL",
 			"script": "공안에게 들켰습니다. 공안에게 벗어나기 위해 전력으로 도망쳐 봅니다.",
@@ -1123,7 +1123,7 @@
 			]
 		},
 		{
-			"index": 91,
+			"index": 93,
 			"actionType": "DETENTION",
 			"region": "ALL",
 			"stat": "AGILITY",
@@ -1135,9 +1135,9 @@
 			]
 		},
 		{
-			"index": 91,
+			"index": 94,
 			"actionType": "DETENTION",
-			"region": "NONE",
+			"region": "NULL",
 			"stat": "LUCK",
 			"difficulty": "NORMAL",
 			"script": "북한으로 가기 전 도망 칠 수 있는 마지막 기회입니다. 그저 운이 좋기를 바랍니다.",

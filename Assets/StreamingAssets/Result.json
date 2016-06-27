@@ -422,7 +422,7 @@
 		},
 		{
 			"index": 22,
-			"stat": "NONE",
+			"stat": "NULL",
 			"successScript": "당신은 그냥 과수원 지나쳐 갔습니다.",
 			"successEffectIndexList": [
 				-99
@@ -605,10 +605,10 @@
 			"stat": "LUCK",
 			"successScript": "다행히 문제 없이 차가 지나갑니다.",
 			"successEffectIndexList": [
-				0
+				-99
 			],
 			"successEffectValueList": [
-				0
+				-99
 			],
 			"failureScript": "차가 지나가는 도중 서서 공안이 옵니다. 필사적으로 도망갑니다.",
 			"failureEffectIndexList": [
@@ -856,10 +856,10 @@
 		},
 		{
 			"index": 46,
-			"stat": "NONE",
+			"stat": "NULL",
 			"successScript": "완고해보이는 그자를 설득하긴 쉽지 않아 보입니다. 얌전히 떠납니다.",
 			"successEffectIndexList": [
-				0
+				-99
 			],
 			"successEffectValueList": [
 				-99
@@ -874,7 +874,7 @@
 		},
 		{
 			"index": 47,
-			"stat": "NONE",
+			"stat": "NULL",
 			"successScript": "당신의 돈에 흡족한 표정을 지으며 브로커에대한 정보를 알려줍니다.",
 			"successEffectIndexList": [
 				59,
@@ -1070,7 +1070,7 @@
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
-				0
+				-99
 			],
 			"failureEffectValueList": [
 				-99
@@ -1178,7 +1178,7 @@
 			],
 			"failureScript": "가서 확인해 봤지만 아무것도 아니였습니다.",
 			"failureEffectIndexList": [
-				0
+				-99
 			],
 			"failureEffectValueList": [
 				-99
@@ -1529,7 +1529,7 @@
 		{
 			"index": 83,
 			"stat": "NULL",
-			"successScript": 0,
+			"successScript": "NULL",
 			"successEffectIndexList": [
 				-99
 			],
@@ -1583,7 +1583,7 @@
 		{
 			"index": 86,
 			"stat": "NULL",
-			"successScript": 0,
+			"successScript": "NULL",
 			"successEffectIndexList": [
 				-99
 			],
@@ -1601,7 +1601,7 @@
 		{
 			"index": 87,
 			"stat": "NULL",
-			"successScript": 0,
+			"successScript": "NULL",
 			"successEffectIndexList": [
 				-99
 			],
@@ -1619,7 +1619,7 @@
 		{
 			"index": 88,
 			"stat": "NULL",
-			"successScript": 0,
+			"successScript": "NULL",
 			"successEffectIndexList": [
 				-99
 			],
@@ -1673,7 +1673,7 @@
 		{
 			"index": 91,
 			"stat": "NULL",
-			"successScript": 0,
+			"successScript": "NULL",
 			"successEffectIndexList": [
 				-99
 			],
@@ -1691,7 +1691,7 @@
 		{
 			"index": 92,
 			"stat": "NULL",
-			"successScript": 0,
+			"successScript": "NULL",
 			"successEffectIndexList": [
 				-99
 			],

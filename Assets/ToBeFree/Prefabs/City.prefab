@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 432216}
   - 114: {fileID: 11406090}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 114: {fileID: 11489252}
   - 61: {fileID: 6131634}
   - 114: {fileID: 11423598}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: City
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 473036}
   - 114: {fileID: 11418722}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Inform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 490538}
   - 114: {fileID: 11461620}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Police
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 465638}
   - 114: {fileID: 11400032}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 443370}
   - 114: {fileID: 11414712}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Quest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 379, y: 45, z: 0}
+  m_LocalPosition: {x: 1070, y: 205, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 465638}
@@ -123,7 +123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: 0}
+  m_LocalPosition: {x: 0, y: 106, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418612}
@@ -135,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: -51, z: 0}
+  m_LocalPosition: {x: 57, y: -97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418612}
@@ -159,7 +159,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: -51, z: 0}
+  m_LocalPosition: {x: -74, y: -97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418612}
@@ -171,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -50.9, z: 0}
+  m_LocalPosition: {x: -8, y: -97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418612}
@@ -189,7 +189,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 128, y: 128}
+  m_Size: {x: 274, y: 274}
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,8 +273,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 128
-  mHeight: 128
+  mWidth: 274
+  mHeight: 274
   mDepth: 3
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -326,27 +326,27 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 90
-  mHeight: 28
+  mWidth: 192
+  mHeight: 62
   mDepth: 5
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 2
-  aspectRatio: 3.2142856
+  keepAspectRatio: 0
+  aspectRatio: 3.096774
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
-  mText: Tenzhin
-  mFontSize: 28
+  mText: CITYNAME
+  mFontSize: 61
   mFontStyle: 0
-  mAlignment: 2
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
-  mEffectStyle: 2
+  mEffectStyle: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 3
+  mOverflow: 2
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -394,8 +394,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 20
-  mHeight: 20
+  mWidth: 48
+  mHeight: 48
   mDepth: 6
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -447,8 +447,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 20
-  mHeight: 20
+  mWidth: 48
+  mHeight: 48
   mDepth: 6
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -515,8 +515,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 20
-  mHeight: 20
+  mWidth: 48
+  mHeight: 48
   mDepth: 6
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -562,13 +562,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 0}
-    mMethodName: ClickCity
-    mParameters:
-    - obj: {fileID: 11423598}
-      field: City
-    oneShot: 0
+  onClick: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

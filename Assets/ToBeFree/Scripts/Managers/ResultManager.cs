@@ -42,6 +42,11 @@ namespace ToBeFree
             Effect[] effects = new Effect[indexList.Length];
             for (int i = 0; i < effects.Length; ++i)
             {
+                if(indexList[i] == -99)
+                {
+                    effects[i] = null;
+                    continue;
+                }
                 effects[i] = EffectManager.Instance.List[indexList[i]];
             }
 

@@ -30,6 +30,13 @@ namespace ToBeFree
             //}
             //else if (inventoryRecord == null)
 
+            if(character.Stat.Money < item.Price)
+            {
+                NGUIDebug.Log("Shop : Money is not enough to buy.");
+                return;
+            }
+            character.Stat.Money -= item.Price;
+
             if(item.Buff.StartTime == eStartTime.NOW)
             {
                 item.Buff.ActivateEffect(character);
@@ -111,6 +118,21 @@ namespace ToBeFree
         public void AddSlot()
         {
             this.maxSlots++;
+        }
+
+        public void CheckItem(eStartTime startTime, Character character)
+        {
+            List<InventoryRecord> records = InventoryRecords.FindAll(x => x.Item.Buff.StartTime == startTime);
+            for (int i = 0; i < records.Count; ++i)
+            {
+                UseItem(records[i].Item, character);
+            }
+        }
+
+        private void UseItem(Item item, Character character)
+        {
+            item.Buff.ActivateEffect(character);
+            Delete(item, character);
         }
 
         public class InventoryRecord

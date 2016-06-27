@@ -1,0 +1,381 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"name": "KUNMING",
+			"size": "MIDDLE",
+			"area": "YUNNANSHENG",
+			"itemIndexList": [
+				39
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 1,
+			"name": "CHENDU",
+			"size": "BIG",
+			"area": "SICHUANSHENG",
+			"itemIndexList": [
+				12
+			],
+			"workingMoneyRange": [
+				4,
+				7
+			]
+		},
+		{
+			"index": 2,
+			"name": "CHONGQING",
+			"size": "SMALL",
+			"area": "SICHUANSHENG",
+			"itemIndexList": [
+				18
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 3,
+			"name": "XINNIG",
+			"size": "SMALL",
+			"area": "QINGHAISHENG",
+			"itemIndexList": [
+				37
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 4,
+			"name": "LANZHOU",
+			"size": "SMALL",
+			"area": "QINGHAISHENG",
+			"itemIndexList": [
+				16
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 5,
+			"name": "XIAN",
+			"size": "MIDDLE",
+			"area": "SHANXISHENG",
+			"itemIndexList": [
+				42
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 6,
+			"name": "ZHENGZHOU",
+			"size": "MIDDLE",
+			"area": "SHANXISHENG",
+			"itemIndexList": [
+				6
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 7,
+			"name": "WUHAN",
+			"size": "BIG",
+			"area": "HUNANSHENG",
+			"itemIndexList": [
+				27
+			],
+			"workingMoneyRange": [
+				4,
+				7
+			]
+		},
+		{
+			"index": 8,
+			"name": "CHANGSHA",
+			"size": "SMALL",
+			"area": "HUNANSHENG",
+			"itemIndexList": [
+				60
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 9,
+			"name": "NANCHANG",
+			"size": "SMALL",
+			"area": "HUNANSHENG",
+			"itemIndexList": [
+				26
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 10,
+			"name": "NANNING",
+			"size": "SMALL",
+			"area": "GUANGXISHENG",
+			"itemIndexList": [
+				1
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 11,
+			"name": "GUANGZHOU",
+			"size": "BIG",
+			"area": "GUANGDONGSHENG",
+			"itemIndexList": [
+				41
+			],
+			"workingMoneyRange": [
+				4,
+				7
+			]
+		},
+		{
+			"index": 12,
+			"name": "XIANGGANG",
+			"size": "MIDDLE",
+			"area": "GUANGDONGSHENG",
+			"itemIndexList": [
+				28
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 13,
+			"name": "FUZHOU",
+			"size": "SMALL",
+			"area": "FUJIANSHENG",
+			"itemIndexList": [
+				54
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 14,
+			"name": "NANJING",
+			"size": "MIDDLE",
+			"area": "JIANGSUSHENG",
+			"itemIndexList": [
+				32
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 15,
+			"name": "SHANGHAI",
+			"size": "BIG",
+			"area": "JIANGSUSHENG",
+			"itemIndexList": [
+				30
+			],
+			"workingMoneyRange": [
+				4,
+				7
+			]
+		},
+		{
+			"index": 16,
+			"name": "JINAN",
+			"size": "SMALL",
+			"area": "SHANDONGSHENG",
+			"itemIndexList": [
+				23
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 17,
+			"name": "QINGDAO",
+			"size": "MIDDLE",
+			"area": "SHANDONGSHENG",
+			"itemIndexList": [
+				15
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 18,
+			"name": "YANTAI",
+			"size": "SMALL",
+			"area": "SHANDONGSHENG",
+			"itemIndexList": [
+				34
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 19,
+			"name": "SHIJIAZHUANG",
+			"size": "SMALL",
+			"area": "HEBEISHENG",
+			"itemIndexList": [
+				29
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 20,
+			"name": "TIANJIN",
+			"size": "BIG",
+			"area": "HEBEISHENG",
+			"itemIndexList": [
+				55
+			],
+			"workingMoneyRange": [
+				4,
+				7
+			]
+		},
+		{
+			"index": 21,
+			"name": "BEIJING",
+			"size": "BIG",
+			"area": "HEBEISHENG",
+			"itemIndexList": [
+				19
+			],
+			"workingMoneyRange": [
+				4,
+				7
+			]
+		},
+		{
+			"index": 22,
+			"name": "DALIAN",
+			"size": "MIDDLE",
+			"area": "LIAONINGSHENG",
+			"itemIndexList": [
+				22
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 23,
+			"name": "SHENYANG",
+			"size": "MIDDLE",
+			"area": "LIAONINGSHENG",
+			"itemIndexList": [
+				13
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 24,
+			"name": "DANDONG",
+			"size": "SMALL",
+			"area": "LIAONINGSHENG",
+			"itemIndexList": [
+				25
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 25,
+			"name": "CHANGCHUN",
+			"size": "MIDDLE",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				14
+			],
+			"workingMoneyRange": [
+				2,
+				4
+			]
+		},
+		{
+			"index": 26,
+			"name": "JILIN",
+			"size": "SMALL",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				5
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 27,
+			"name": "YANBIAN",
+			"size": "SMALL",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				45
+			],
+			"workingMoneyRange": [
+				0,
+				1
+			]
+		},
+		{
+			"index": 28,
+			"name": "HAERBIN",
+			"size": "BIG",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				20
+			],
+			"workingMoneyRange": [
+				4,
+				7
+			]
+		}
+	]
+}

@@ -18,10 +18,10 @@ namespace ToBeFree {
 
         // Use this for initialization
         void Start()
-        {
+        {            
             grids = GetComponentsInChildren<UIGrid>();
 
-            basicItems[0].SetInfo(ItemManager.Instance.GetByType(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.FOOD));
+            basicItems[0].SetInfo(ItemManager.Instance.GetByIndex(0));
 
             foreach(UIGrid grid in grids)
             {
@@ -38,6 +38,8 @@ namespace ToBeFree {
 
         public void OnExit()
         {
+            TimeTable.Instance.DayIsGone();
+
             this.gameObject.SetActive(false);
         }
     }

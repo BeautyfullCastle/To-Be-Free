@@ -213,6 +213,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\City.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Condition.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Data\CItyData.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Data\ProbabilityData.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\DiceTester.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Effect.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Event.cs" />
@@ -233,7 +234,8 @@
     <Compile Include="Assets\ToBeFree\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\ItemManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\PieceManager.cs" />
-    <Compile Include="Assets\ToBeFree\Scripts\Managers\ProbabilityManager.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Managers\RegionProbabilityManager.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Managers\StatProbabilityManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\ResultManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\SelectManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Misc\StringToEnum.cs" />

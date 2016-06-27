@@ -31,6 +31,10 @@ namespace ToBeFree
                 EffectAmount[] effectAmountList = new EffectAmount[data.effectIndexList.Length];
                 for (int i = 0; i < data.effectIndexList.Length; ++i)
                 {
+                    if(data.effectIndexList[i] == -99)
+                    {
+                        continue;
+                    }
                     EffectAmount effectAmount = new EffectAmount(EffectManager.Instance.List[data.effectIndexList[i]], data.amountList[i]);
                     effectAmountList[i] = effectAmount;
                 }

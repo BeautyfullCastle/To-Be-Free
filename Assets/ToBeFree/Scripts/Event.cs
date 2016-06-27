@@ -7,7 +7,7 @@ namespace ToBeFree
     public enum eEventAction
     {
         WORK = 0, MOVE, INSPECT, DETENTION, ESCAPE, GLOBAL, BROKER,
-        QUEST,
+        QUEST, INFO,
         NULL
     }
 

@@ -1,9 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ToBeFree
 {
+    public enum eProbType
+    {
+        REGION, STAT
+    }
+
     public class EventManager : Singleton<EventManager>
     {
         private EffectAmount[] resultEffects;
@@ -33,6 +39,10 @@ namespace ToBeFree
                                             EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty), 
                                             data.script, data.resultIndex, data.selectIndexList);
 
+                if (list[data.index] != null)
+                {
+                    Debug.LogError("EventManager : data.index is duplicated.");
+                }
                 list[data.index] = curEvent;
             }
         }
@@ -62,8 +72,12 @@ namespace ToBeFree
                 Debug.LogError("eventListPerRegionDic.Count == 0");
                 return null;
             }
-            List<Event> regionEvents = SelectRandomEventsByProb(eventListPerRegionDic, actionType, "Region");
-            if (regionEvents.Count == 0)
+            List<Event> regionEvents = SelectRandomEventsByProb(eventListPerRegionDic, actionType, eProbType.REGION);
+            if(regionEvents == null)
+            {
+                regionEvents = findedEvents;
+            }
+            else if (regionEvents.Count == 0)
             {
                 Debug.LogError("regionEvents.Count == 0");
                 return null;
@@ -81,7 +95,11 @@ namespace ToBeFree
                     Debug.LogError("eventListPerStatDic.Count == 0");
                     return null;
                 }
-                statEvents = SelectRandomEventsByProb(eventListPerStatDic, actionType, "Stat");
+                statEvents = SelectRandomEventsByProb(eventListPerStatDic, actionType, eProbType.STAT);
+                if(statEvents == null)
+                {
+                    statEvents = regionEvents;
+                }
             }
 
             System.Random r = new System.Random();
@@ -99,6 +117,7 @@ namespace ToBeFree
             if (currEvent.ActionType == eEventAction.GLOBAL)
             {
                 resultEffects = currEvent.Result.Success.Effects;
+                return true;
             }
             if (currEvent.ActionType == eEventAction.QUEST && currEvent.HasSelect)
             {
@@ -107,6 +126,7 @@ namespace ToBeFree
                 {
                     result = select.Result;
                     resultEffects = select.Result.Success.Effects;
+                    return true;
                 }
                 else
                 {
@@ -116,7 +136,7 @@ namespace ToBeFree
             }
 
             // dice test
-            if (result.TestStat != eTestStat.NULL)
+            if ((result != null) && (result.TestStat != eTestStat.NULL))
             {
                 
                 int diceNum = character.GetDiceNum(result.TestStat);
@@ -163,10 +183,15 @@ namespace ToBeFree
 
         private List<Event> SelectEventsByAction(eEventAction actionType)
         {
+            if(actionType == eEventAction.NULL)
+            {
+                return null;
+            }
+
             List<Event> findedEvents = new List<Event>();
             foreach (Event elem in list)
             {
-                if (elem.ActionType != actionType)
+                if (elem.ActionType != actionType || elem.Region == "NULL" || elem.TestStat == eTestStat.NULL)
                 {
                     continue;
                 }
@@ -180,9 +205,27 @@ namespace ToBeFree
             return findedEvents;
         }
 
-        private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, eEventAction actionType, string probType)
+        private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, eEventAction actionType, eProbType probType)
         {
-            Probability prob = ProbabilityManager.Instance.FindProbByAction(actionType, probType).DeepCopy();
+            Probability prob = null;
+            if (probType == eProbType.STAT)
+            {
+                StatProbability statProb = StatProbabilityManager.Instance.FindProbByAction(actionType);
+                if(statProb == null)
+                {
+                    return null;
+                }
+                prob = (Probability)statProb.DeepCopy();
+            }
+            else if(probType == eProbType.REGION)
+            {
+                RegionProbability regionProb = RegionProbabilityManager.Instance.Prob;
+                if(regionProb == null)
+                {
+                    return null;
+                }
+                prob = (Probability)RegionProbabilityManager.Instance.Prob.DeepCopy();
+            }
             prob.ResetProbValues(eventListDic);
             return new List<Event>(SelectRandomEvents(prob, eventListDic));
         }
@@ -223,7 +266,7 @@ namespace ToBeFree
             Dictionary<int, List<Event>> eventListPerStatDic = new Dictionary<int, List<Event>>()
             {
                 {0, new List<Event>() }, {1, new List<Event>() }, {2, new List<Event>() },
-                { 3, new List<Event>() }, {4, new List<Event>() }, {5, new List<Event>() }
+                { 3, new List<Event>() }, {4, new List<Event>() }, {5, new List<Event>() }, {6, new List<Event>() }
             };
 
             foreach (Event eventElem in statEvents)
@@ -231,6 +274,10 @@ namespace ToBeFree
                 if (eventElem == null)
                 {
                     Debug.LogError("eventElem can't find.");
+                    continue;
+                }
+                if(eventElem.TestStat == eTestStat.NULL)
+                {
                     continue;
                 }
                 int iStat = (int)eventElem.TestStat;

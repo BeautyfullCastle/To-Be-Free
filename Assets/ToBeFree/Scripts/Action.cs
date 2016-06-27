@@ -22,8 +22,6 @@ namespace ToBeFree
                 ActionEventNotify(startTime, character);
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
-
-            Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
         }
 
         public virtual void Activate(Character character, City city)
@@ -69,12 +67,16 @@ namespace ToBeFree
         {
             Debug.LogWarning("Work action activated.");
             base.Activate(character);
-
+            Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
             // if effect is money and event is succeeded,
             EffectAmount[] successResulteffects = EventManager.Instance.ResultEffects;
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {
+                if(successResulteffects[i].Effect == null)
+                {
+                    continue;
+                }
                 if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
                 {
                     character.Stat.Money += character.CurCity.CalcRandWorkingMoney();
@@ -132,6 +134,7 @@ namespace ToBeFree
                 Quest quest = quests[0];
                 if (EventManager.Instance.ActivateEvent(quest.CurEvent, character))
                 {
+                    Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
                     PieceManager.Instance.QuestList.Remove(quest);
                 }
             }
@@ -145,7 +148,7 @@ namespace ToBeFree
         public Inspect()
         {
             startTime = eStartTime.INSPECT;
-            actionName = eEventAction.NULL;
+            actionName = eEventAction.INSPECT;
         }
 
         public override void Activate(Character character)
@@ -153,6 +156,7 @@ namespace ToBeFree
             Debug.LogWarning("Inpect action activated.");
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+            Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
 
             foreach (Police police in PieceManager.Instance.PoliceList)
             {

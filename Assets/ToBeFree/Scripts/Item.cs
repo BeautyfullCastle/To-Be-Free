@@ -4,7 +4,7 @@ namespace ToBeFree
 {
     public enum eStartTime
     {
-        NOW, WORK, MOVE, REST, SHOP, INSPECT, INFO, BROKER, QUEST, ESCAPE, TEST, SPECIALACT,
+        NOW, WORK, MOVE, REST, SHOP, INSPECT, INFO, BROKER, QUEST, ESCAPE, TEST, SPECIALACT, NIGHT,
         NULL
     }
 
@@ -26,11 +26,9 @@ namespace ToBeFree
         public Item(string name, Buff buff, int price, int maximumStackableQuantity=1)
         {
             this.name = name;
-            this.buff = new Buff(buff);
+            this.buff = buff;
             this.price = price;
             this.maximumStackableQuantity = maximumStackableQuantity;
-
-            ItemManager.Instance.Add(this);
         }
 
         public Item(Item item)
@@ -51,7 +49,6 @@ namespace ToBeFree
             return item;
         }
         
-
         public string Name { get { return name; } }
 
         //public Effect Effect
@@ -83,6 +80,14 @@ namespace ToBeFree
             {
                 return buff;
             }            
+        }
+
+        public int Price
+        {
+            get
+            {
+                return price;
+            }
         }
 
         //public eStartTime StartTime

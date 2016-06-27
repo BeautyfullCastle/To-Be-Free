@@ -42,6 +42,11 @@ namespace ToBeFree
         private void DeleteBuff(Buff buff)
         {
             UIBuff uiBuff = buffs.Find(x => x.buffName.text == buff.Name);
+            if(uiBuff == null)
+            {
+                return;
+            }
+
             DestroyImmediate(uiBuff.gameObject);
             buffs.Remove(uiBuff);
             grid.Reposition();

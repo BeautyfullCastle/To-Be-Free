@@ -105,7 +105,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 64
   mHeight: 64
-  mDepth: 5
+  mDepth: 0
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -154,20 +154,20 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 32
-  mHeight: 36
-  mDepth: 6
+  mWidth: 100
+  mHeight: 100
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 1
+  keepAspectRatio: 0
   aspectRatio: 1
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
-  mText: item name
-  mFontSize: 18
+  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mText: "\uC74C"
+  mFontSize: 16
   mFontStyle: 0
   mAlignment: 0
   mEncoding: 1
@@ -176,9 +176,9 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 3
+  mOverflow: 0
   mMaterial: {fileID: 0}
-  mApplyGradient: 1
+  mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
   mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   mSpacingX: 0
@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebc95b0eeea7cb4aa656aa5bb751f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  belong: 0
   itemName: {fileID: 11452294}
 --- !u!1001 &100100000
 Prefab:

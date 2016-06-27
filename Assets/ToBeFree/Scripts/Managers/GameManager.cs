@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -110,10 +111,24 @@ namespace ToBeFree
             TimeTable.Instance.DayIsGone();
         }
 
+        private void Awake()
+        {
+            TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
+            TimeTable.Instance.NotifyEveryday += Instance_NotifyEveryday;
+            PieceManager.Instance.Init();
+        }
+
         private void Start()
         {
             Debug.LogWarning(EffectManager.Instance.List.Length);
             Debug.LogWarning(SelectManager.Instance.List[EventManager.Instance.List[13].SelectIndexList[0]].Event.Script);
+
+            Inventory inven = new Inventory(3);
+            character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.YANBIAN), 5, 3, 0, 5, 5, inven);
+
+            inspectAction = new Inspect();
+
+            Instance_NotifyEveryWeek();
         }
 
         /*
@@ -273,6 +288,19 @@ namespace ToBeFree
         }
         */
 
+        private void Instance_NotifyEveryday()
+        {
+            character.Inven.CheckItem(eStartTime.NIGHT, character);
+            if (character.Stat.FOOD <= 0)
+            {
+                character.Stat.HP--;
+            }
+            else
+            {
+                character.Stat.FOOD--;
+            }
+        }
+
         private void Instance_NotifyEveryWeek()
         {
             // check current quest's end time and apply the result
@@ -290,8 +318,8 @@ namespace ToBeFree
             PieceManager.Instance.Add(CityManager.Instance.FindRand(), eSubjectType.INFO);
             PieceManager.Instance.Add(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.INFO);
             // 1 quest
-            Event selectedEvent = EventManager.Instance.Find(eEventAction.QUEST, character.CurCity);
-            PieceManager.Instance.AddQuest(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
+            //Event selectedEvent = EventManager.Instance.Find(eEventAction.QUEST, character.CurCity);
+            //PieceManager.Instance.AddQuest(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
         }
 
         public Character Character

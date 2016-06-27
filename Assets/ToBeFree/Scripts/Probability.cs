@@ -3,38 +3,11 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-    public enum eRegion
-    {
-        AREA = 0, CITY, ALL,
-        NULL
-    }
-    
     public class Probability
     {
-        private eEventAction actionType;
-        private List<int> dataList; // Key : dataType, Value : dataValue
+        protected int[] valueList; // Key : dataType, Value : dataValue
 
-        public Probability(eEventAction actionType, List<int> dataList)
-        {
-            this.actionType = actionType;
-            this.dataList = dataList;
-        }
-
-        public Probability(Probability prob) : this(prob.actionType, prob.dataList)
-        { }
-
-        public Probability ShallowCopy()
-        {
-            return (Probability)this.MemberwiseClone();
-        }
-
-        public Probability DeepCopy()
-        {
-            Probability prob = (Probability)this.MemberwiseClone();
-            prob.actionType = this.actionType;
-            prob.dataList = new List<int>(dataList);
-            return prob;
-        }
+        protected Probability() { }
 
         private void CalculateTotalProb(int[] values)
         {
@@ -46,14 +19,14 @@ namespace ToBeFree
             if (totalProb != 100)
             {
                 Debug.LogError("RegionProbability is not 100%.");
-                //return;
+                return;
             }
         }
 
         public int CheckAddedAllProbValues()
         {
             int addedProbValue = 0;
-            foreach (int val in dataList)
+            foreach (int val in valueList)
             {
                 addedProbValue += val;
             }
@@ -62,13 +35,63 @@ namespace ToBeFree
 
         public void ResetProbValues(Dictionary<int, List<Event>> eventListDic)
         {
-            for (int index = 0; index < dataList.Count; ++index)
+            for (int index = 0; index < valueList.Length; ++index)
             {
                 if (eventListDic[index].Count == 0) // error
                 {
-                    dataList[index] = 0;
+                    valueList[index] = 0;
                 }
             }
+        }
+
+        public int[] DataList
+        {
+            get
+            {
+                return valueList;
+            }
+
+            protected set
+            {
+                valueList = value;
+            }
+        }
+    }
+
+    public class RegionProbability : Probability
+    {
+        public RegionProbability(int[] valueList)
+        {
+            this.valueList = valueList;
+        }
+
+        public RegionProbability DeepCopy()
+        {
+            RegionProbability prob = (RegionProbability)this.MemberwiseClone();
+            prob.DataList = (int[])DataList.Clone();
+
+            return prob;
+        }
+
+    }
+
+    public class StatProbability : Probability
+    {
+        private eEventAction actionType;
+
+        public StatProbability(eEventAction actionType, int[] valueList)
+        {
+            this.actionType = actionType;
+            this.valueList = valueList;
+        }
+
+        public StatProbability DeepCopy()
+        {
+            StatProbability prob = (StatProbability)this.MemberwiseClone();
+            prob.ActionType = ActionType;
+            prob.DataList = (int[])DataList.Clone();
+
+            return prob;
         }
 
         public eEventAction ActionType
@@ -78,22 +101,9 @@ namespace ToBeFree
                 return actionType;
             }
 
-            set
+            private set
             {
                 actionType = value;
-            }
-        }
-
-        public List<int> DataList
-        {
-            get
-            {
-                return dataList;
-            }
-
-            set
-            {
-                dataList = value;
             }
         }
     }
