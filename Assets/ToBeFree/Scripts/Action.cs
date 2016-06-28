@@ -69,7 +69,7 @@ namespace ToBeFree
             base.Activate(character);
             Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
             // if effect is money and event is succeeded,
-            EffectAmount[] successResulteffects = EventManager.Instance.ResultEffects;
+            EffectAmount[] successResulteffects = EventManager.Instance.ResultEffectAmountList;
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {
@@ -131,12 +131,12 @@ namespace ToBeFree
             }
             else
             {
-                Quest quest = quests[0];
-                if (EventManager.Instance.ActivateEvent(quest.CurEvent, character))
-                {
-                    Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
-                    PieceManager.Instance.QuestList.Remove(quest);
-                }
+                //Quest quest = quests[0];
+                //if (EventManager.Instance.ActivateEvent(quest.CurEvent, character))
+                //{
+                //    Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
+                //    PieceManager.Instance.QuestList.Remove(quest);
+                //}
             }
 
             Debug.Log("character quest activated.");

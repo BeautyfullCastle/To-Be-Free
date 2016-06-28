@@ -1282,7 +1282,7 @@
 				4
 			],
 			"successEffectValueList": [
-				-99
+				2
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -1685,7 +1685,7 @@
 				4
 			],
 			"failureEffectValueList": [
-				-99
+				2
 			]
 		},
 		{

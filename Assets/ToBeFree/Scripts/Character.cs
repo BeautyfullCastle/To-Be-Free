@@ -48,7 +48,9 @@ namespace ToBeFree
 
                 case eTestStat.LUCK:
                     return this.Stat.Luck;
-
+                case eTestStat.ALL:
+                case eTestStat.NULL:
+                    return -99;
                 default:
                     Debug.LogError("GetDiceNum : Stat name is not correct : " + stat);
                     return -1;
@@ -75,7 +77,7 @@ namespace ToBeFree
         {
             Event selectedEvent = EventManager.Instance.DoCommand(eEventAction.WORK, this);
             // if effect is money and event is succeeded,
-            EffectAmount[] successResulteffects = selectedEvent.Result.Success.Effects;
+            EffectAmount[] successResulteffects = selectedEvent.Result.Success.EffectAmounts;
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {

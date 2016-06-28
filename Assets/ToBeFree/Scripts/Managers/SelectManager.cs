@@ -43,5 +43,18 @@ namespace ToBeFree
                 return list;
             }
         }
+
+        public void OnClick(string text)
+        {
+            Select select = Array.Find(list, x => x.Script == text);
+            if(select.LinkType == eSelectLinkType.RESULT)
+            {
+                EventManager.Instance.TreatResult(select.Result);
+            }
+            else if(select.LinkType == eSelectLinkType.EVENT)
+            {
+                EventManager.Instance.ActivateEvent(select.Event, GameManager.Instance.Character);
+            }
+        }
     }
 }

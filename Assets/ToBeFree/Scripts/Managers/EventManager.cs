@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace ToBeFree
@@ -12,11 +11,17 @@ namespace ToBeFree
 
     public class EventManager : Singleton<EventManager>
     {
-        private EffectAmount[] resultEffects;
-
         private readonly Event[] list;
         private readonly EventData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/Event.json";
+
+        private EffectAmount[] resultEffectAmountList;
+        
+        public delegate void UIChangedHandler(eUIEventLabelType type, string text);
+        public static event UIChangedHandler UIChanged = delegate { };
+
+        public delegate void UIOpenHandler();
+        public static UIOpenHandler UIOpen = delegate { };
 
         public EventManager()
         {
@@ -47,6 +52,56 @@ namespace ToBeFree
             }
         }
 
+        public void TreatResult(Result result)
+        {
+            Character character = GameManager.Instance.Character;
+            bool testResult;
+            if (result.TestStat == eTestStat.ALL || result.TestStat == eTestStat.NULL)
+            {
+                testResult = true;
+                UIChanged(eUIEventLabelType.DICENUM, testResult.ToString());
+            }
+            else
+            {
+                testResult = DiceTester.Instance.Test(character.GetDiceNum(result.TestStat), character);
+                UIChanged(eUIEventLabelType.DICENUM, testResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(result.TestStat)); 
+            }
+            string resultScript = string.Empty;
+            string resultEffect = string.Empty;
+            if (testResult == true)
+            {                
+                resultScript = result.Success.Script;                
+                for (int i = 0; i < result.Success.EffectAmounts.Length; ++i)
+                {
+                    EffectAmount effectAmount = result.Success.EffectAmounts[i];
+                    if(effectAmount.Effect == null)
+                    {
+                        continue;
+                    }
+                    effectAmount.Activate(character);
+                    resultEffect += effectAmount.ToString() + "\n";
+                }
+                resultEffectAmountList = result.Success.EffectAmounts;
+            }
+            else
+            {
+                resultScript = result.Failure.Script;
+                for (int i = 0; i < result.Failure.EffectAmounts.Length; ++i)
+                {
+                    EffectAmount effectAmount = result.Failure.EffectAmounts[i];
+                    if (effectAmount.Effect == null)
+                    {
+                        continue;
+                    }
+                    effectAmount.Activate(character);
+                    resultEffect += effectAmount.ToString() + "\n";
+                }
+                resultEffectAmountList = result.Failure.EffectAmounts;
+            }
+            UIChanged(eUIEventLabelType.RESULT, resultScript);
+            UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
+        }
+
         public Event DoCommand(eEventAction actionType, Character character)
         {
             Event selectedEvent = Find(actionType, character.CurCity);
@@ -55,6 +110,7 @@ namespace ToBeFree
                 Debug.LogError("selectedEvent is null");
                 return null;
             }
+            UIOpen();
             ActivateEvent(selectedEvent, character);
 
             return selectedEvent;
@@ -108,56 +164,79 @@ namespace ToBeFree
             return statEvents[randVal];
         }
 
-        public bool ActivateEvent(Event currEvent, Character character)
+        public void ActivateEvent(Event currEvent, Character character)
         {
             Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.TestStat + " is activated.");
 
-            Result result = currEvent.Result;
-
-            if (currEvent.ActionType == eEventAction.GLOBAL)
+            UIChanged(eUIEventLabelType.EVENT, currEvent.Script);
+            
+            // deal with select part
+            if(currEvent.Result == null)
             {
-                resultEffects = currEvent.Result.Success.Effects;
-                return true;
-            }
-            if (currEvent.ActionType == eEventAction.QUEST && currEvent.HasSelect)
-            {
-                Select select = SelectManager.Instance.List[currEvent.SelectIndexList[0]];
-                if (select.CheckCondition(character))
+                Select[] selectList = new Select[currEvent.SelectIndexList.Length];
+                for (int i = 0; i < currEvent.SelectIndexList.Length; ++i)
                 {
-                    result = select.Result;
-                    resultEffects = select.Result.Success.Effects;
-                    return true;
+                    Select select = SelectManager.Instance.List[currEvent.SelectIndexList[i]];
+                    selectList[i] = select;
                 }
-                else
-                {
-                    Debug.LogError("Quest's Checkcondition is failed.");
-                    return false;
-                }
+                UIChanged(eUIEventLabelType.SELECT_0, selectList[0].Script);
+                if(selectList.Length > 1 && selectList[1] != null)
+                    UIChanged(eUIEventLabelType.SELECT_1, selectList[1].Script);
+                if(selectList.Length > 2 && selectList[2] != null)
+                    UIChanged(eUIEventLabelType.SELECT_2, selectList[2].Script);
+            }
+            // deal with result
+            else
+            {
+                TreatResult(currEvent.Result);
             }
 
-            // dice test
-            if ((result != null) && (result.TestStat != eTestStat.NULL))
-            {
+            //Result result = currEvent.Result;
+
+            //if (currEvent.ActionType == eEventAction.GLOBAL)
+            //{
+            //    resultEffects = currEvent.Result.Success.EffectAmounts;
+            //    return true;
+            //}
+            //if (currEvent.ActionType == eEventAction.QUEST && currEvent.HasSelect)
+            //{
+            //    Select select = SelectManager.Instance.List[currEvent.SelectIndexList[0]];
+            //    if (select.CheckCondition(character))
+            //    {
+            //        result = select.Result;
+            //        resultEffects = select.Result.Success.EffectAmounts;
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        Debug.LogError("Quest's Checkcondition is failed.");
+            //        return false;
+            //    }
+            //}
+
+            //// dice test
+            //if ((result != null) && (result.TestStat != eTestStat.NULL))
+            //{
                 
-                int diceNum = character.GetDiceNum(result.TestStat);
-                bool isTestSucceed = DiceTester.Instance.Test(diceNum, character);
-                //Debug.Log("diceNum : " + diceNum + ", TestItems DiceNum : " + itemsToDeactive.Count);
+            //    int diceNum = character.GetDiceNum(result.TestStat);
+            //    bool isTestSucceed = DiceTester.Instance.Test(diceNum, character);
+            //    //Debug.Log("diceNum : " + diceNum + ", TestItems DiceNum : " + itemsToDeactive.Count);
                 
 
-                if (isTestSucceed)
-                {
-                    Debug.Log("Event stat dice test succeeded. ");
-                    resultEffects = currEvent.Result.Success.Effects;
-                }
-                else
-                {
-                    Debug.Log("Event stat dice test failed. ");
-                    resultEffects = currEvent.Result.Failure.Effects;
-                    ActivateResultEffects(resultEffects, character);
-                    return false;
-                }
-            }
-            return true;
+            //    if (isTestSucceed)
+            //    {
+            //        Debug.Log("Event stat dice test succeeded. ");
+            //        resultEffects = currEvent.Result.Success.EffectAmounts;
+            //    }
+            //    else
+            //    {
+            //        Debug.Log("Event stat dice test failed. ");
+            //        resultEffects = currEvent.Result.Failure.EffectAmounts;
+            //        ActivateResultEffects(resultEffects, character);
+            //        return false;
+            //    }
+            //}
+            //return true;
         }
 
         public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)
@@ -318,16 +397,16 @@ namespace ToBeFree
             return null;
         }
         
-        public EffectAmount[] ResultEffects
+        public EffectAmount[] ResultEffectAmountList
         {
             get
             {
-                return resultEffects;
+                return resultEffectAmountList;
             }
 
-            set
+            private set
             {
-                resultEffects = value;
+                resultEffectAmountList = value;
             }
         }
 

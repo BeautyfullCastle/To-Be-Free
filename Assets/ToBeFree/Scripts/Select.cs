@@ -87,5 +87,31 @@ namespace ToBeFree
                 return null;
             }
         }
+
+        public string Script
+        {
+            get
+            {
+                return script;
+            }
+
+            set
+            {
+                script = value;
+            }
+        }
+
+        public eSelectLinkType LinkType
+        {
+            get
+            {
+                return linkType;
+            }
+
+            set
+            {
+                linkType = value;
+            }
+        }
     }
 }

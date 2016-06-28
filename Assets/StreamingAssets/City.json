@@ -11,6 +11,11 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				1,
+				2,
+				3
 			]
 		},
 		{
@@ -24,6 +29,14 @@
 			"workingMoneyRange": [
 				4,
 				7
+			],
+			"neighborList": [
+				0,
+				2,
+				10,
+				4,
+				3,
+				5
 			]
 		},
 		{
@@ -37,6 +50,11 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				1,
+				5,
+				10
 			]
 		},
 		{
@@ -49,6 +67,10 @@
 			],
 			"workingMoneyRange": [
 				0,
+				1
+			],
+			"neighborList": [
+				4,
 				1
 			]
 		},
@@ -63,6 +85,11 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				3,
+				1,
+				5
 			]
 		},
 		{
@@ -76,6 +103,13 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				4,
+				1,
+				2,
+				19,
+				6
 			]
 		},
 		{
@@ -89,6 +123,11 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				16,
+				7,
+				5
 			]
 		},
 		{
@@ -102,6 +141,11 @@
 			"workingMoneyRange": [
 				4,
 				7
+			],
+			"neighborList": [
+				6,
+				8,
+				9
 			]
 		},
 		{
@@ -115,6 +159,10 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				7,
+				11
 			]
 		},
 		{
@@ -128,6 +176,12 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				7,
+				14,
+				15,
+				13
 			]
 		},
 		{
@@ -141,6 +195,11 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				0,
+				11,
+				2
 			]
 		},
 		{
@@ -154,6 +213,11 @@
 			"workingMoneyRange": [
 				4,
 				7
+			],
+			"neighborList": [
+				12,
+				8,
+				10
 			]
 		},
 		{
@@ -167,6 +231,10 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				11,
+				13
 			]
 		},
 		{
@@ -180,6 +248,11 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				11,
+				12,
+				9
 			]
 		},
 		{
@@ -193,6 +266,11 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				9,
+				15,
+				16
 			]
 		},
 		{
@@ -206,6 +284,10 @@
 			"workingMoneyRange": [
 				4,
 				7
+			],
+			"neighborList": [
+				14,
+				9
 			]
 		},
 		{
@@ -219,6 +301,12 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				6,
+				17,
+				18,
+				19
 			]
 		},
 		{
@@ -232,6 +320,10 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				16,
+				18
 			]
 		},
 		{
@@ -245,6 +337,10 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				17,
+				16
 			]
 		},
 		{
@@ -258,6 +354,11 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				5,
+				20,
+				16
 			]
 		},
 		{
@@ -271,6 +372,10 @@
 			"workingMoneyRange": [
 				4,
 				7
+			],
+			"neighborList": [
+				19,
+				21
 			]
 		},
 		{
@@ -284,6 +389,10 @@
 			"workingMoneyRange": [
 				4,
 				7
+			],
+			"neighborList": [
+				20,
+				23
 			]
 		},
 		{
@@ -297,6 +406,10 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				23,
+				24
 			]
 		},
 		{
@@ -310,6 +423,11 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				22,
+				24,
+				21
 			]
 		},
 		{
@@ -323,6 +441,10 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				22,
+				23
 			]
 		},
 		{
@@ -336,6 +458,11 @@
 			"workingMoneyRange": [
 				2,
 				4
+			],
+			"neighborList": [
+				23,
+				26,
+				28
 			]
 		},
 		{
@@ -349,6 +476,10 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				27,
+				25
 			]
 		},
 		{
@@ -362,6 +493,9 @@
 			"workingMoneyRange": [
 				0,
 				1
+			],
+			"neighborList": [
+				26
 			]
 		},
 		{
@@ -375,6 +509,9 @@
 			"workingMoneyRange": [
 				4,
 				7
+			],
+			"neighborList": [
+				25
 			]
 		}
 	]

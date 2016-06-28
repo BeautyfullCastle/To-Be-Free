@@ -64,7 +64,13 @@ namespace ToBeFree
         public Effect(Effect effect) : this(effect.subjectType, effect.verbType, effect.objectType)
         {
         }
-
+        
+        public override string ToString()
+        {
+            return EnumConvert<eSubjectType>.ToString(subjectType)
+                + " " + EnumConvert<eVerbType>.ToString(verbType)
+                + " " + EnumConvert<eObjectType>.ToString(ObjectType);
+        }
         public bool Activate(Character character, int amount)
         {
 

@@ -305,10 +305,6 @@ namespace ToBeFree
         {
             // check current quest's end time and apply the result
 
-
-            // activate global event
-            Event globalEvent = EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
-
             // put pieces in one of random cities (police, information, quest)
             int distance = 2;
             // 2 polices
@@ -320,6 +316,9 @@ namespace ToBeFree
             // 1 quest
             //Event selectedEvent = EventManager.Instance.Find(eEventAction.QUEST, character.CurCity);
             //PieceManager.Instance.AddQuest(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
+
+            // activate global event
+            Event globalEvent = EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
         }
 
         public Character Character

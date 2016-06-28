@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -53,7 +54,7 @@ namespace ToBeFree
             }
         }
 
-        public EffectAmount[] Effects
+        public EffectAmount[] EffectAmounts
         {
             get
             {
@@ -82,12 +83,27 @@ namespace ToBeFree
 
         public void Activate(Character character)
         {
+            if(effect==null)
+            {
+                Debug.LogError("effect is null.");
+                return;
+            }
             effect.Activate(character, amount);
         }
 
         public void Deactivate(Character character)
         {
+            if (effect == null)
+            {
+                Debug.LogError("effect is null.");
+                return;
+            }
             effect.Deactivate(character);
+        }
+
+        public override string ToString()
+        {
+            return effect.ToString() + " : " + amount.ToString();
         }
 
         public int Amount

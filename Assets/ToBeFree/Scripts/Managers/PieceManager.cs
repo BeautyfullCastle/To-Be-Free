@@ -5,13 +5,13 @@ namespace ToBeFree
 {
     internal class PieceManager : Singleton<PieceManager>
     {
-        private List<Information> informList;
+        private List<Information> infoList;
         private List<Police> policeList;
         private List<Quest> questList;
 
         public PieceManager()
         {
-            informList = new List<Information>();
+            infoList = new List<Information>();
             policeList = new List<Police>();
             questList = new List<Quest>();
         }
@@ -32,8 +32,8 @@ namespace ToBeFree
 
             if (bigType == eSubjectType.INFO)
             {
-                int randI = r.Next(0, informList.Count);
-                return informList[randI] as Piece;
+                int randI = r.Next(0, infoList.Count);
+                return infoList[randI] as Piece;
             }
             else if (bigType == eSubjectType.POLICE)
             {
@@ -48,7 +48,7 @@ namespace ToBeFree
         {
             if (bigType == eSubjectType.INFO)
             {
-                return informList[informList.Count - 1] as Piece;
+                return infoList[infoList.Count - 1] as Piece;
             }
             if (bigType == eSubjectType.POLICE)
             {
@@ -62,9 +62,9 @@ namespace ToBeFree
         {
             if (bigType == eSubjectType.INFO)
             {
-                if (informList.Count != 0)
+                if (infoList.Count != 0)
                 {
-                    return informList[0] as Piece;
+                    return infoList[0] as Piece;
                 }
             }
             if (bigType == eSubjectType.POLICE)
@@ -88,7 +88,7 @@ namespace ToBeFree
             }
             if (piece is Information)
             {
-                informList.Remove(piece as Information);
+                infoList.Remove(piece as Information);
             }
             else if (piece is Police)
             {
@@ -107,7 +107,7 @@ namespace ToBeFree
             if (bigType == eSubjectType.INFO)
             {
                 piece = new Information(city);
-                informList.Add((Information)piece);
+                infoList.Add((Information)piece);
             }
             else if (bigType == eSubjectType.POLICE)
             {
@@ -134,12 +134,12 @@ namespace ToBeFree
         {
             get
             {
-                return informList;
+                return infoList;
             }
 
             set
             {
-                informList = value;
+                infoList = value;
             }
         }
 

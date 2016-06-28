@@ -77,7 +77,7 @@ namespace ToBeFree
         private void Disapper()
         {
             Debug.Log("Quest Disappered.");
-            EventManager.Instance.ActivateResultEffects(this.curEvent.Result.Failure.Effects, this.character);
+            EventManager.Instance.ActivateResultEffects(this.curEvent.Result.Failure.EffectAmounts, this.character);
         }
 
         public Event CurEvent
