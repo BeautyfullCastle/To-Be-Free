@@ -23,11 +23,6 @@ namespace ToBeFree
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
         }
-
-        public virtual void Activate(Character character, City city)
-        {
-            this.Activate(character);
-        }
     }
 
     public class Rest : Action
@@ -96,12 +91,13 @@ namespace ToBeFree
             actionName = eEventAction.MOVE;
         }
 
-        public override void Activate(Character character, City city)
+        public override void Activate(Character character)
         {
             Debug.LogWarning("Move action Activated.");
             base.Activate(character);
+            EventManager.Instance.DoCommand(actionName, character);
 
-            character.MoveTo(city);
+            character.MoveTo(character.NextCity);
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
         }
     }
@@ -156,7 +152,6 @@ namespace ToBeFree
             Debug.LogWarning("Inpect action activated.");
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
-            Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
 
             foreach (Police police in PieceManager.Instance.PoliceList)
             {

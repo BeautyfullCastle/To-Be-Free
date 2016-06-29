@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -38,17 +39,16 @@ namespace ToBeFree
         private Item[] itemList;
         private int workingMoneyMin;
         private int workingMoneyMax;
+        private int[] neighborList;
 
-        private List<City> neighborList;
         private int distanceFromCharacter;
 
         public City()
         {
-            neighborList = new List<City>();
             itemList = null;
         }
 
-        public City(eCity name, eCitySize size, eArea area, Item[] itemList, int workingMoneyMin, int workingMoneyMax)
+        public City(eCity name, eCitySize size, eArea area, Item[] itemList, int workingMoneyMin, int workingMoneyMax, int[] neighborList)
          : this()
         {
             this.name = name;
@@ -57,25 +57,20 @@ namespace ToBeFree
             this.itemList = itemList;
             this.workingMoneyMin = workingMoneyMin;
             this.workingMoneyMax = workingMoneyMax;
+            this.neighborList = neighborList;
         }
 
         public City(City city)
-         : this(city.name, city.size, city.area, city.itemList, city.workingMoneyMin, city.workingMoneyMax)
+         : this(city.name, city.size, city.area, city.itemList, city.workingMoneyMin, city.workingMoneyMax, city.neighborList)
         {
-        }
-
-        public void Link(City city)
-        {
-            neighborList.Add(city);
-            Debug.Log(this.name + " Added neighbor : " + city.Name);
         }
 
         public void PrintNeighbors()
         {
             Debug.Log("Print " + this.name + "'s neighbors under below :");
-            for (int i = 0; i < neighborList.Count; ++i)
+            for (int i = 0; i < NeighborList.Count; ++i)
             {
-                neighborList[i].Print();
+                NeighborList[i].Print();
             }
         }
 
@@ -88,6 +83,18 @@ namespace ToBeFree
         private void Print()
         {
             Debug.Log(this.name + ", " + this.size + ", " + this.area);
+        }
+
+        public bool IsNeighbor(string cityName)
+        {
+            foreach(City neighbor in NeighborList)
+            {
+                if(neighbor.Name == EnumConvert<eCity>.ToEnum(cityName))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public eCity Name
@@ -115,12 +122,12 @@ namespace ToBeFree
         {
             get
             {
-                return neighborList;
-            }
-
-            set
-            {
-                neighborList = value;
+                List<City> neighbors = new List<City>();
+                for(int i=0; i<neighborList.Length; ++i)
+                {
+                    neighbors.Add(CityManager.Instance.List[neighborList[i]]);
+                }
+                return neighbors;
             }
         }
 

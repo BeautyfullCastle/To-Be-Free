@@ -21,8 +21,7 @@ namespace ToBeFree
             informSprite.enabled = PieceManager.Instance.InformList.Exists(x => x.City == this.city);
             questSprite.enabled = PieceManager.Instance.QuestList.Exists(x => x.City == this.city);
         }
-
-
+        
         public City City
         {
             get

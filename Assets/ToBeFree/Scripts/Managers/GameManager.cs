@@ -14,12 +14,28 @@ namespace ToBeFree
         private GameManager()
         {
         }
-         
+                 
         public void MoveEvent()
         {
             action = new Move();
             Debug.LogWarning("Command Move input");
             character.CurCity.PrintNeighbors();
+        }
+
+        public void ClickCity(string cityName)
+        {
+            if(!(action is Move))
+            {
+                Debug.LogError("ClickCity : Action is not Move.");
+                return;
+            }
+            if (!character.CurCity.IsNeighbor(cityName))
+            {
+                Debug.LogError("ClickCity : " + cityName + " is not neighbor.");
+                return;
+            }
+            character.NextCity = CityManager.Instance.Find(cityName);
+            ExcuteCommand();
         }
 
         public void WorkEvent()
@@ -42,23 +58,6 @@ namespace ToBeFree
             Debug.LogWarning("Command Quest input");
             ExcuteCommand();
         }
-
-        public void ClickCity(City city)
-        {
-            if (action is Move)
-            {
-                foreach(City neighbor in character.CurCity.NeighborList)
-                {
-                    if(neighbor.Name == city.Name)
-                    {
-                        action.Activate(character, city);
-                        return;
-                    }
-                }
-                Debug.Log("This city is not neighbor of current city.");
-            }
-        }
-
         private void Update()
         {
             // await for the event command
@@ -125,6 +124,7 @@ namespace ToBeFree
 
             Inventory inven = new Inventory(3);
             character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.YANBIAN), 5, 3, 0, 5, 5, inven);
+            character.MoveTo(character.CurCity);
 
             inspectAction = new Inspect();
 

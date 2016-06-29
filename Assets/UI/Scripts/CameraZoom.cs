@@ -8,7 +8,6 @@ public class CameraZoom : MonoBehaviour {
 
 	private Camera cam;
 	
-
 	// Use this for initialization
 	void Start () {
 		cam = this.transform.GetComponent<Camera>();
@@ -31,6 +30,5 @@ public class CameraZoom : MonoBehaviour {
 				cam.orthographicSize = maxSize;
 			}
 		}
-
 	}
 }

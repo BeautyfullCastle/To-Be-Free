@@ -7,8 +7,12 @@ namespace ToBeFree
         private Stat stat;
         private string name;
         private City curCity;
+        private City nextCity;
 
         private Inventory inven;
+
+        public delegate void MoveCityHandler(string cityName);
+        public static event MoveCityHandler MoveCity = delegate { };
         
         // Todo : skill
 
@@ -21,31 +25,21 @@ namespace ToBeFree
             this.curCity = curCity;
             this.inven = inven;
         }
-
-        private void Start()
-        {
-            //int temp = stat.Strength;
-        }
-
+        
         public int GetDiceNum(eTestStat stat)
         {
             switch (stat)
             {
                 case eTestStat.STRENGTH:
                     return this.Stat.Strength;
-
                 case eTestStat.AGILITY:
                     return this.Stat.Agility;
-
                 case eTestStat.OBSERVATION:
                     return this.Stat.Observation;
-
                 case eTestStat.BARGAIN:
                     return this.Stat.Bargain;
-
                 case eTestStat.PATIENCE:
                     return this.Stat.Patience;
-
                 case eTestStat.LUCK:
                     return this.Stat.Luck;
                 case eTestStat.ALL:
@@ -68,6 +62,7 @@ namespace ToBeFree
                 return false;
 
             this.curCity = city;
+            MoveCity(EnumConvert<eCity>.ToString(this.curCity.Name));
             Debug.Log("character is moved to " + this.curCity.Name);
 
             return true;
@@ -130,6 +125,17 @@ namespace ToBeFree
             }
         }
 
-        
+        public City NextCity
+        {
+            get
+            {
+                return nextCity;
+            }
+
+            set
+            {
+                nextCity = value;
+            }
+        }
     }
 }

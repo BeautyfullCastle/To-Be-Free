@@ -39,35 +39,21 @@ namespace ToBeFree
                 }
 
                 City city = new City(EnumConvert<eCity>.ToEnum(data.name), EnumConvert<eCitySize>.ToEnum(data.size),
-                                    EnumConvert<eArea>.ToEnum(data.area), itemList, data.workingMoneyRange[0], data.workingMoneyRange[1]);
+                                    EnumConvert<eArea>.ToEnum(data.area), itemList, data.workingMoneyRange[0], data.workingMoneyRange[1], 
+                                    data.neighborList);
 
                 list[data.index] = city;
             }
         }
-
-        public City[] List
-        {
-            get
-            {
-                return list;
-            }
-        }
-
-        //public City Add(City city)
-        //{
-        //    list.Add(city);
-        //    return city;
-        //}
-
-        public void Link(City cityA, City cityB)
-        {
-            cityA.Link(cityB);
-            cityB.Link(cityA);
-        }
-
+        
         public City Find(eCity cityName)
         {
             return Array.Find<City>(list, x => (x.Name == cityName));
+        }
+
+        public City Find(string cityName)
+        {
+            return Find(EnumConvert<eCity>.ToEnum(cityName));
         }
 
         public City FindRand()
@@ -151,6 +137,14 @@ namespace ToBeFree
             {
                 neighbor.Distance = city.Distance + 1;
                 CalcDist(neighbor, neighbor.Distance);
+            }
+        }
+
+        public City[] List
+        {
+            get
+            {
+                return list;
             }
         }
     }

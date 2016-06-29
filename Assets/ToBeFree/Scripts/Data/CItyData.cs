@@ -9,5 +9,5 @@ public class CityData : IData
     public string area;
     public int[] itemIndexList;
     public int[] workingMoneyRange;
+    public int[] neighborList;
 }
-
