@@ -44,9 +44,8 @@ namespace ToBeFree
             }
         }
 
-        public void OnClick(string text)
+        public void OnClick(Select select)
         {
-            Select select = Array.Find(list, x => x.Script == text);
             if(select.LinkType == eSelectLinkType.RESULT)
             {
                 EventManager.Instance.TreatResult(select.Result);

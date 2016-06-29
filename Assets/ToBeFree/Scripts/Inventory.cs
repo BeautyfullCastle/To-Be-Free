@@ -79,6 +79,10 @@ namespace ToBeFree
 
         public Item GetRand()
         {
+            if(InventoryRecords.Count <= 0)
+            {
+                return null;
+            }
             System.Random r = new System.Random();
             int index = r.Next(0, InventoryRecords.Count - 1);
             return InventoryRecords[index].Item;

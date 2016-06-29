@@ -20,6 +20,9 @@ namespace ToBeFree
         public delegate void UIChangedHandler(eUIEventLabelType type, string text);
         public static event UIChangedHandler UIChanged = delegate { };
 
+        public delegate void SelectUIChangedHandler(Select[] select);
+        public static event SelectUIChangedHandler SelectUIChanged = delegate { };
+
         public delegate void UIOpenHandler();
         public static UIOpenHandler UIOpen = delegate { };
 
@@ -179,11 +182,7 @@ namespace ToBeFree
                     Select select = SelectManager.Instance.List[currEvent.SelectIndexList[i]];
                     selectList[i] = select;
                 }
-                UIChanged(eUIEventLabelType.SELECT_0, selectList[0].Script);
-                if(selectList.Length > 1 && selectList[1] != null)
-                    UIChanged(eUIEventLabelType.SELECT_1, selectList[1].Script);
-                if(selectList.Length > 2 && selectList[2] != null)
-                    UIChanged(eUIEventLabelType.SELECT_2, selectList[2].Script);
+                SelectUIChanged(selectList);
             }
             // deal with result
             else

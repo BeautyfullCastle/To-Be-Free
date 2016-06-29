@@ -6,18 +6,19 @@ namespace ToBeFree
 {
     public enum eUIEventLabelType
     {
-        EVENT, RESULT, SELECT_0, SELECT_1, SELECT_2, RESULT_EFFECT, DICENUM
+        EVENT, RESULT, RESULT_EFFECT, DICENUM
     }
 
     public class UIEventManager : MonoBehaviour
     {
         public UILabel eventScript;
         public UILabel resultScript;
-        public UILabel[] selectScript;
+        public UILabel[] selectLabels;
         public UILabel resultEffectScript;
         public UILabel diceNum;
         
         private UILabel[] allLabel;
+        private Select[] selectList;
 
         public void Start()
         {
@@ -26,12 +27,13 @@ namespace ToBeFree
             allLabel[1] = resultScript;
             allLabel[2] = resultEffectScript;
             allLabel[3] = diceNum;
-            allLabel[4] = selectScript[0];
-            allLabel[5] = selectScript[1];
-            allLabel[6] = selectScript[2];
+            allLabel[4] = selectLabels[0];
+            allLabel[5] = selectLabels[1];
+            allLabel[6] = selectLabels[2];
 
             EventManager.UIChanged += OnChanged;
-            EventManager.UIOpen += () => gameObject.SetActive(true);
+            EventManager.SelectUIChanged += OnSelectUIChanged;
+            EventManager.UIOpen += () => { gameObject.SetActive(true); ClearAll(); };
 
             ClearAll();
             gameObject.SetActive(false);
@@ -54,24 +56,30 @@ namespace ToBeFree
                 case eUIEventLabelType.DICENUM:
                     diceNum.text = text;
                     break;
-                case eUIEventLabelType.SELECT_0:
-                    selectScript[0].text = text;
-                    break;
-                case eUIEventLabelType.SELECT_1:
-                    selectScript[1].text = text;
-                    break;
-                case eUIEventLabelType.SELECT_2:
-                    selectScript[2].text = text;
-                    break;
                 default:
                     break;
             }
         }
+
+        public void OnSelectUIChanged(Select[] selectList)
+        {
+            this.selectList = selectList;
+
+            for (int i = 0; i < selectLabels.Length; ++i)
+            {
+                selectLabels[i].text = string.Empty;
+            }
+
+            for (int i=0; i<selectList.Length; ++i)
+            {
+                selectLabels[i].text = selectList[i].Script;
+            }
+        }
         
-        public void OnClick(string text)
+        public void OnClick(string index)
         {
             ClearAll();
-            SelectManager.Instance.OnClick(text);
+            SelectManager.Instance.OnClick(selectList[int.Parse(index)]);
         }
 
         public void OnClickOK()

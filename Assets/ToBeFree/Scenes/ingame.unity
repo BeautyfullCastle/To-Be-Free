@@ -2213,7 +2213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventScript: {fileID: 145256723}
   resultScript: {fileID: 1643912466}
-  selectScript:
+  selectLabels:
   - {fileID: 1536578917}
   - {fileID: 1850634857}
   - {fileID: 1005760871}
@@ -4032,7 +4032,7 @@ GameObject:
   - 61: {fileID: 1005760870}
   - 114: {fileID: 1005760869}
   m_Layer: 5
-  m_Name: Select script 3
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4074,7 +4074,13 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 406557159}
+    mMethodName: OnClick
+    mParameters:
+    - obj: {fileID: 1005760868}
+      field: name
+    oneShot: 0
 --- !u!61 &1005760870
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6865,7 +6871,7 @@ GameObject:
   - 61: {fileID: 1536578916}
   - 114: {fileID: 1536578915}
   m_Layer: 5
-  m_Name: Select script 1
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6911,8 +6917,8 @@ MonoBehaviour:
   - mTarget: {fileID: 406557159}
     mMethodName: OnClick
     mParameters:
-    - obj: {fileID: 0}
-      field: 
+    - obj: {fileID: 1536578914}
+      field: name
     oneShot: 0
 --- !u!61 &1536578916
 BoxCollider2D:
@@ -8644,7 +8650,7 @@ GameObject:
   - 61: {fileID: 1850634856}
   - 114: {fileID: 1850634855}
   m_Layer: 5
-  m_Name: Select script 2
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8686,7 +8692,13 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 406557159}
+    mMethodName: OnClick
+    mParameters:
+    - obj: {fileID: 1850634854}
+      field: name
+    oneShot: 0
 --- !u!61 &1850634856
 BoxCollider2D:
   m_ObjectHideFlags: 0
