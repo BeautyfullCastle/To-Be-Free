@@ -713,8 +713,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 125925665}
   - 114: {fileID: 125925664}
+  - 114: {fileID: 125925666}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,6 +744,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &125925666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 125925663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f760b20f3c27e4fc9ae59ed614febaf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &145256722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,7 +2452,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -1.2087708, y: 34.93985, z: 1000.41754, w: 138}
+  mClipRange: {x: -1.566391, y: 34.916687, z: 1000.1018, w: 138}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 3
   mSortingOrder: 0
@@ -3078,7 +3090,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 9, y: 22.939453, z: 4846.505, w: 3432}
+  mClipRange: {x: 8.484619, y: 22.916504, z: 4844.611, w: 3432}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 2
   mSortingOrder: 0
@@ -3154,7 +3166,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -121.58246, y: -63.06015, z: 544, w: 70}
+  mClipRange: {x: -122.413635, y: -63.083313, z: 544, w: 70}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 4
   mSortingOrder: 0

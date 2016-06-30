@@ -53,7 +53,7 @@ namespace ToBeFree
 
         public void Inspect()
         {
-            EventManager.Instance.DoCommand(eEventAction.INSPECT, this);
+            GameManager.Instance.DoCommand(eEventAction.INSPECT, this);
         }
 
         public bool MoveTo(City city)
@@ -70,9 +70,9 @@ namespace ToBeFree
 
         public void Work()
         {
-            Event selectedEvent = EventManager.Instance.DoCommand(eEventAction.WORK, this);
+            GameManager.Instance.DoCommand(eEventAction.WORK, this);
             // if effect is money and event is succeeded,
-            EffectAmount[] successResulteffects = selectedEvent.Result.Success.EffectAmounts;
+            EffectAmount[] successResulteffects = EventManager.Instance.SelectedEvent.Result.Success.EffectAmounts;
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {

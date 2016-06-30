@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System;
 
 namespace ToBeFree
 {
@@ -33,10 +33,16 @@ namespace ToBeFree
 
             EventManager.UIChanged += OnChanged;
             EventManager.SelectUIChanged += OnSelectUIChanged;
-            EventManager.UIOpen += () => { gameObject.SetActive(true); ClearAll(); };
+            EventManager.UIOpen += OpenUI;
 
             ClearAll();
             gameObject.SetActive(false);
+        }
+
+        private void OpenUI()
+        {
+            gameObject.SetActive(true);
+            ClearAll();
         }
 
         public void OnChanged(eUIEventLabelType type, string text)
@@ -85,6 +91,7 @@ namespace ToBeFree
         public void OnClickOK()
         {
             ClearAll();
+            EventManager.Instance.OnClickOK();
             gameObject.SetActive(false);
         }
 

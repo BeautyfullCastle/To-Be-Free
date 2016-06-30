@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace ToBeFree
         private Character character;
         private Action action;
         private Action inspectAction;
-        
+
         // can't use the constructor
         private GameManager()
         {
@@ -58,6 +59,7 @@ namespace ToBeFree
             Debug.LogWarning("Command Quest input");
             ExcuteCommand();
         }
+
         private void Update()
         {
             // await for the event command
@@ -100,7 +102,7 @@ namespace ToBeFree
             {
                 inspectAction.Activate(character);
             }
-
+            
             // activate selected event
             if (action != null)
             {
@@ -110,6 +112,11 @@ namespace ToBeFree
             TimeTable.Instance.DayIsGone();
         }
 
+        public void DoCommand(eEventAction actionType, Character character)
+        {
+            StartCoroutine(EventManager.Instance.DoCommand(actionType, character));
+        }
+
         private void Awake()
         {
             TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
@@ -117,8 +124,10 @@ namespace ToBeFree
             PieceManager.Instance.Init();
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
+            yield return new WaitForSeconds(1f);
+
             Debug.LogWarning(EffectManager.Instance.List.Length);
             Debug.LogWarning(SelectManager.Instance.List[EventManager.Instance.List[13].SelectIndexList[0]].Event.Script);
 
@@ -318,7 +327,7 @@ namespace ToBeFree
             //PieceManager.Instance.AddQuest(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
 
             // activate global event
-            Event globalEvent = EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
+            GameManager.Instance.DoCommand(eEventAction.GLOBAL, character);
         }
 
         public Character Character

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -62,7 +63,7 @@ namespace ToBeFree
         {
             Debug.LogWarning("Work action activated.");
             base.Activate(character);
-            Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
+            GameManager.Instance.DoCommand(actionName, character);
             // if effect is money and event is succeeded,
             EffectAmount[] successResulteffects = EventManager.Instance.ResultEffectAmountList;
 
@@ -95,7 +96,7 @@ namespace ToBeFree
         {
             Debug.LogWarning("Move action Activated.");
             base.Activate(character);
-            EventManager.Instance.DoCommand(actionName, character);
+            GameManager.Instance.DoCommand(actionName, character);
 
             character.MoveTo(character.NextCity);
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
@@ -130,7 +131,7 @@ namespace ToBeFree
                 //Quest quest = quests[0];
                 //if (EventManager.Instance.ActivateEvent(quest.CurEvent, character))
                 //{
-                //    Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
+                //    Event selectedEvent = GameManager.Instance.DoCommand(actionName, character);
                 //    PieceManager.Instance.QuestList.Remove(quest);
                 //}
             }

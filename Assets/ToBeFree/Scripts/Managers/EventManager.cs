@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +10,11 @@ namespace ToBeFree
         REGION, STAT
     }
 
-    public class EventManager : Singleton<EventManager>
+    public class EventManager : MonoSingleton<EventManager>
     {
-        private readonly Event[] list;
-        private readonly EventData[] dataList;
-        private readonly string file = Application.streamingAssetsPath + "/Event.json";
+        private Event[] list;
+        private EventData[] dataList;
+        private string file;
 
         private EffectAmount[] resultEffectAmountList;
         
@@ -25,9 +26,12 @@ namespace ToBeFree
 
         public delegate void UIOpenHandler();
         public static UIOpenHandler UIOpen = delegate { };
+        private bool isFinish;
+        private Event selectedEvent;
 
-        public EventManager()
+        public void Awake()
         {
+            file = Application.streamingAssetsPath + "/Event.json";
             DataList<EventData> cDataList = new DataList<EventData>(file);
             //EventDataList cDataList = new EventDataList(file);
             dataList = cDataList.dataList;
@@ -104,19 +108,33 @@ namespace ToBeFree
             UIChanged(eUIEventLabelType.RESULT, resultScript);
             UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
         }
-
-        public Event DoCommand(eEventAction actionType, Character character)
+        
+        public IEnumerator DoCommand(eEventAction actionType, Character character)
         {
-            Event selectedEvent = Find(actionType, character.CurCity);
+            selectedEvent = Find(actionType, character.CurCity);
             if (selectedEvent == null)
             {
                 Debug.LogError("selectedEvent is null");
-                return null;
+                yield break;
             }
             UIOpen();
             ActivateEvent(selectedEvent, character);
+            yield return StartCoroutine(WaitUntilFinish());
+        }
 
-            return selectedEvent;
+        private IEnumerator WaitUntilFinish()
+        {
+            isFinish = false;
+            while (isFinish == false)
+            {
+                yield return new WaitForSeconds(.1f);
+            }
+            Debug.Log("Finished.");
+        }
+
+        public void OnClickOK()
+        {
+            isFinish = true;
         }
 
         public Event Find(eEventAction actionType, City city)
@@ -402,11 +420,6 @@ namespace ToBeFree
             {
                 return resultEffectAmountList;
             }
-
-            private set
-            {
-                resultEffectAmountList = value;
-            }
         }
 
         public Event[] List
@@ -414,6 +427,14 @@ namespace ToBeFree
             get
             {
                 return list;
+            }
+        }
+
+        public Event SelectedEvent
+        {
+            get
+            {
+                return selectedEvent;
             }
         }
     }
