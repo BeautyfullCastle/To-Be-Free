@@ -36,28 +36,28 @@ namespace ToBeFree
                 return;
             }
             character.NextCity = CityManager.Instance.Find(cityName);
-            ExcuteCommand();
+            StartCoroutine(ExcuteCommand());
         }
 
         public void WorkEvent()
         {
             action = new Work();
             Debug.LogWarning("Command Work input");
-            ExcuteCommand();
+            StartCoroutine(ExcuteCommand());
         }
 
         public void RestEvent()
         {
             action = new Rest();
             Debug.LogWarning("Command Rest input");
-            ExcuteCommand();
+            StartCoroutine(ExcuteCommand());
         }
 
         public void QuestEvent()
         {
             action = new QuestAction();
             Debug.LogWarning("Command Quest input");
-            ExcuteCommand();
+            StartCoroutine(ExcuteCommand());
         }
 
         private void Update()
@@ -94,29 +94,25 @@ namespace ToBeFree
             }
         }
 
-        private void ExcuteCommand()
+        private IEnumerator ExcuteCommand()
         {
             // if selected event is not move,
             // check polices in current city and activate police events.
             if (!(action is Move))
             {
-                inspectAction.Activate(character);
+                yield return StartCoroutine(inspectAction.Activate(character));
             }
             
             // activate selected event
             if (action != null)
             {
-                action.Activate(character);
+                yield return StartCoroutine(action.Activate(character));
+                
             }
 
             TimeTable.Instance.DayIsGone();
         }
-
-        public void DoCommand(eEventAction actionType, Character character)
-        {
-            StartCoroutine(EventManager.Instance.DoCommand(actionType, character));
-        }
-
+        
         private void Awake()
         {
             TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
@@ -139,7 +135,7 @@ namespace ToBeFree
 
             Instance_NotifyEveryWeek();
         }
-
+        
         /*
         private void Start()
         {
@@ -327,7 +323,7 @@ namespace ToBeFree
             //PieceManager.Instance.AddQuest(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
 
             // activate global event
-            GameManager.Instance.DoCommand(eEventAction.GLOBAL, character);
+            EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
         }
 
         public Character Character

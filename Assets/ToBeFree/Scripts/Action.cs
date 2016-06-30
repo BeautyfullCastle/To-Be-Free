@@ -17,12 +17,14 @@ namespace ToBeFree
         public delegate void ActionEventHandler(eStartTime startTime, Character character);
         static public event ActionEventHandler ActionEventNotify;
 
-        public virtual void Activate(Character character)
+        public virtual IEnumerator Activate(Character character)
         {
             if(ActionEventNotify != null)
                 ActionEventNotify(startTime, character);
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+
+            yield return null;
         }
     }
 
@@ -37,7 +39,7 @@ namespace ToBeFree
             actionName = eEventAction.NULL;
         }
 
-        public override void Activate(Character character)
+        public override IEnumerator Activate(Character character)
         {
             Debug.Log("Rest Action Activated.");
 
@@ -46,6 +48,8 @@ namespace ToBeFree
             Debug.Log("Cure for Rest");
             character.Stat.HP++;
             character.Stat.MENTAL++;
+
+            yield return null;
 
             CureEventNotify(character);
         }
@@ -59,13 +63,14 @@ namespace ToBeFree
             actionName = eEventAction.WORK;
         }
 
-        public override void Activate(Character character)
+        public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Work action activated.");
             base.Activate(character);
-            GameManager.Instance.DoCommand(actionName, character);
+            EventManager.Instance.DoCommand(actionName, character);
+            yield return (EventManager.Instance.WaitUntilFinish());
             // if effect is money and event is succeeded,
-            EffectAmount[] successResulteffects = EventManager.Instance.ResultEffectAmountList;
+            EffectAmount[] successResulteffects = EventManager.Instance.ResultSuccessEffectAmountList;
 
             for (int i = 0; i < successResulteffects.Length; ++i)
             {
@@ -79,8 +84,6 @@ namespace ToBeFree
                     break;
                 }
             }
-
-            
         }
     }
 
@@ -92,11 +95,12 @@ namespace ToBeFree
             actionName = eEventAction.MOVE;
         }
 
-        public override void Activate(Character character)
+        public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Move action Activated.");
             base.Activate(character);
-            GameManager.Instance.DoCommand(actionName, character);
+            EventManager.Instance.DoCommand(actionName, character);
+            yield return (EventManager.Instance.WaitUntilFinish());
 
             character.MoveTo(character.NextCity);
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
@@ -111,7 +115,7 @@ namespace ToBeFree
             actionName = eEventAction.QUEST;
         }
 
-        public override void Activate(Character character)
+        public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Quest action Activated.");
             
@@ -131,10 +135,12 @@ namespace ToBeFree
                 //Quest quest = quests[0];
                 //if (EventManager.Instance.ActivateEvent(quest.CurEvent, character))
                 //{
-                //    Event selectedEvent = GameManager.Instance.DoCommand(actionName, character);
+                //    Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
                 //    PieceManager.Instance.QuestList.Remove(quest);
                 //}
             }
+
+            yield return (EventManager.Instance.WaitUntilFinish());
 
             Debug.Log("character quest activated.");
         }
@@ -148,20 +154,20 @@ namespace ToBeFree
             actionName = eEventAction.INSPECT;
         }
 
-        public override void Activate(Character character)
+        public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Inpect action activated.");
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
-            foreach (Police police in PieceManager.Instance.PoliceList)
+            List<Police> policesInThisCity = PieceManager.Instance.PoliceList.FindAll(x => x.City == character.CurCity);
+            Debug.LogWarning("policesInThisCity.Count : " + policesInThisCity.Count);
+            for (int i = 0; i < policesInThisCity.Count; ++i)
             {
-                if (police.City == character.CurCity)
-                {
-                    character.Inspect();
-                }
+                EventManager.Instance.DoCommand(eEventAction.INSPECT, character);
+
+                yield return (EventManager.Instance.WaitUntilFinish());
             }
-            
         }
     }
 }

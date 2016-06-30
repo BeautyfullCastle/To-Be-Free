@@ -16,7 +16,7 @@ namespace ToBeFree
         private EventData[] dataList;
         private string file;
 
-        private EffectAmount[] resultEffectAmountList;
+        private EffectAmount[] resultSuccessEffectAmountList;
         
         public delegate void UIChangedHandler(eUIEventLabelType type, string text);
         public static event UIChangedHandler UIChanged = delegate { };
@@ -88,7 +88,7 @@ namespace ToBeFree
                     effectAmount.Activate(character);
                     resultEffect += effectAmount.ToString() + "\n";
                 }
-                resultEffectAmountList = result.Success.EffectAmounts;
+                resultSuccessEffectAmountList = result.Success.EffectAmounts;
             }
             else
             {
@@ -103,33 +103,32 @@ namespace ToBeFree
                     effectAmount.Activate(character);
                     resultEffect += effectAmount.ToString() + "\n";
                 }
-                resultEffectAmountList = result.Failure.EffectAmounts;
             }
             UIChanged(eUIEventLabelType.RESULT, resultScript);
             UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
         }
-        
-        public IEnumerator DoCommand(eEventAction actionType, Character character)
+
+        public void DoCommand(eEventAction actionType, Character character)
         {
             selectedEvent = Find(actionType, character.CurCity);
             if (selectedEvent == null)
             {
                 Debug.LogError("selectedEvent is null");
-                yield break;
+                return;
             }
             UIOpen();
             ActivateEvent(selectedEvent, character);
-            yield return StartCoroutine(WaitUntilFinish());
+            
+            Debug.Log("DoCommand Finished.");
         }
 
-        private IEnumerator WaitUntilFinish()
+        public IEnumerator WaitUntilFinish()
         {
             isFinish = false;
             while (isFinish == false)
             {
                 yield return new WaitForSeconds(.1f);
             }
-            Debug.Log("Finished.");
         }
 
         public void OnClickOK()
@@ -414,11 +413,11 @@ namespace ToBeFree
             return null;
         }
         
-        public EffectAmount[] ResultEffectAmountList
+        public EffectAmount[] ResultSuccessEffectAmountList
         {
             get
             {
-                return resultEffectAmountList;
+                return resultSuccessEffectAmountList;
             }
         }
 
@@ -435,6 +434,19 @@ namespace ToBeFree
             get
             {
                 return selectedEvent;
+            }
+        }
+
+        public bool IsFinish
+        {
+            get
+            {
+                return isFinish;
+            }
+
+            set
+            {
+                isFinish = value;
             }
         }
     }

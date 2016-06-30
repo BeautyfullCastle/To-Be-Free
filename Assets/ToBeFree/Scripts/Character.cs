@@ -53,7 +53,7 @@ namespace ToBeFree
 
         public void Inspect()
         {
-            GameManager.Instance.DoCommand(eEventAction.INSPECT, this);
+            EventManager.Instance.DoCommand(eEventAction.INSPECT, this);
         }
 
         public bool MoveTo(City city)
@@ -67,24 +67,7 @@ namespace ToBeFree
 
             return true;
         }
-
-        public void Work()
-        {
-            GameManager.Instance.DoCommand(eEventAction.WORK, this);
-            // if effect is money and event is succeeded,
-            EffectAmount[] successResulteffects = EventManager.Instance.SelectedEvent.Result.Success.EffectAmounts;
-
-            for (int i = 0; i < successResulteffects.Length; ++i)
-            {
-                if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
-                {
-                    this.Stat.Money += curCity.CalcRandWorkingMoney();
-                    break;
-                }
-            }
-            Debug.Log("character work.");
-        }
-
+      
         public void PrintMovableCity()
         {
             curCity.PrintNeighbors();
