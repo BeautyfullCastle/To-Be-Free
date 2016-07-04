@@ -81,7 +81,7 @@ namespace ToBeFree
             System.Random r = new System.Random();
             // put a police in random cities by distance.
             List<City> cityList = CityManager.Instance.FindCitiesByDistance(curCity, distance);
-            int randCityIndex = r.Next(0, cityList.Count);
+            int randCityIndex = r.Next(0, cityList.Count-1);
 
             return cityList[randCityIndex];
         }

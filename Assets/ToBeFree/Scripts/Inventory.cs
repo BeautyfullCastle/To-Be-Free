@@ -56,6 +56,11 @@ namespace ToBeFree
             BuffManager.Instance.Add(item.Buff);
         }
 
+        public bool Exist(Item item)
+        {
+            return InventoryRecords.Exists(x => x.Item == item);
+        }
+
         public void Delete(Item item, Character character)
         {
             InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.Item.Name == item.Name));

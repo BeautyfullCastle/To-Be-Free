@@ -115,25 +115,31 @@ namespace ToBeFree
         
         private void Awake()
         {
-            TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
-            TimeTable.Instance.NotifyEveryday += Instance_NotifyEveryday;
-            PieceManager.Instance.Init();
+            
         }
 
         private IEnumerator Start()
         {
-            yield return new WaitForSeconds(1f);
-
-            Debug.LogWarning(EffectManager.Instance.List.Length);
-            Debug.LogWarning(SelectManager.Instance.List[EventManager.Instance.List[13].SelectIndexList[0]].Event.Script);
-
             Inventory inven = new Inventory(3);
             character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.YANBIAN), 5, 3, 0, 5, 5, inven);
             character.MoveTo(character.CurCity);
 
             inspectAction = new Inspect();
 
+            // add polices in big cities.
+            List<City> bigCityList = CityManager.Instance.FindCitiesBySize(eCitySize.BIG);
+            foreach (City city in bigCityList)
+            {
+                PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
+            }
+            //PutPieces();
+
+            yield return new WaitForSeconds(1f);
+            
             Instance_NotifyEveryWeek();
+
+            TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
+            TimeTable.Instance.NotifyEveryday += Instance_NotifyEveryday;
         }
         
         /*
@@ -309,21 +315,41 @@ namespace ToBeFree
         private void Instance_NotifyEveryWeek()
         {
             // check current quest's end time and apply the result
+            List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
+            if (questPieces != null && questPieces.Count > 0)
+            {
+                List<Piece> pastQuestPieces = questPieces.FindAll(x => x.CheckDuration());
+                foreach (QuestPiece pastQuestPiece in pastQuestPieces)
+                {
+                    pastQuestPiece.TreatPastQuests(character);
+                }
+            }
 
-            // put pieces in one of random cities (police, information, quest)
-            int distance = 2;
-            // 2 polices
-            PieceManager.Instance.Add(CityManager.Instance.FindRand(), eSubjectType.POLICE);
-            PieceManager.Instance.Add(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.POLICE);
-            // 2 informations
-            PieceManager.Instance.Add(CityManager.Instance.FindRand(), eSubjectType.INFO);
-            PieceManager.Instance.Add(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.INFO);
-            // 1 quest
-            //Event selectedEvent = EventManager.Instance.Find(eEventAction.QUEST, character.CurCity);
-            //PieceManager.Instance.AddQuest(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), character, selectedEvent);
-
+            PutPieces();
+                     
             // activate global event
             EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
+        }
+
+        private void PutPieces()
+        {
+            // put pieces in one of random cities (police, information, quest)
+            int distance = 2;
+            // 1 random quest
+            Quest selectedQuest = QuestManager.Instance.FindRand();
+            if(CityManager.Instance == null)
+            {
+                Debug.LogError("CityManager.Instance is null");
+            }
+            City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
+            QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
+            PieceManager.Instance.Add(questPiece);
+            // 2 polices
+            PieceManager.Instance.Add(new Police(CityManager.Instance.FindRand(), eSubjectType.POLICE));
+            PieceManager.Instance.Add(new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.POLICE));
+            // 2 informations
+            PieceManager.Instance.Add(new Information(CityManager.Instance.FindRand(), eSubjectType.INFO));
+            PieceManager.Instance.Add(new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.INFO));
         }
 
         public Character Character

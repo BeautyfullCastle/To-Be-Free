@@ -206,53 +206,6 @@ namespace ToBeFree
             {
                 TreatResult(currEvent.Result);
             }
-
-            //Result result = currEvent.Result;
-
-            //if (currEvent.ActionType == eEventAction.GLOBAL)
-            //{
-            //    resultEffects = currEvent.Result.Success.EffectAmounts;
-            //    return true;
-            //}
-            //if (currEvent.ActionType == eEventAction.QUEST && currEvent.HasSelect)
-            //{
-            //    Select select = SelectManager.Instance.List[currEvent.SelectIndexList[0]];
-            //    if (select.CheckCondition(character))
-            //    {
-            //        result = select.Result;
-            //        resultEffects = select.Result.Success.EffectAmounts;
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        Debug.LogError("Quest's Checkcondition is failed.");
-            //        return false;
-            //    }
-            //}
-
-            //// dice test
-            //if ((result != null) && (result.TestStat != eTestStat.NULL))
-            //{
-                
-            //    int diceNum = character.GetDiceNum(result.TestStat);
-            //    bool isTestSucceed = DiceTester.Instance.Test(diceNum, character);
-            //    //Debug.Log("diceNum : " + diceNum + ", TestItems DiceNum : " + itemsToDeactive.Count);
-                
-
-            //    if (isTestSucceed)
-            //    {
-            //        Debug.Log("Event stat dice test succeeded. ");
-            //        resultEffects = currEvent.Result.Success.EffectAmounts;
-            //    }
-            //    else
-            //    {
-            //        Debug.Log("Event stat dice test failed. ");
-            //        resultEffects = currEvent.Result.Failure.EffectAmounts;
-            //        ActivateResultEffects(resultEffects, character);
-            //        return false;
-            //    }
-            //}
-            //return true;
         }
 
         public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)

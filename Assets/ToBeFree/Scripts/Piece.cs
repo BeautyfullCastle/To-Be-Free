@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
     public class Piece
     {
         protected City city;
+        protected eSubjectType subjectType;
 
-        public Piece(City city)
+        public Piece(City city, eSubjectType subjectType)
         {
             this.city = city;
+            this.subjectType = subjectType;
         }
 
         public City City
@@ -17,78 +20,102 @@ namespace ToBeFree
             {
                 return city;
             }
-            set
+        }
+
+        public eSubjectType SubjectType
+        {
+            get
             {
-                city = value;
+                return subjectType;
             }
+        }
+
+        public void MoveCity(City city)
+        {
+            this.city = city;
+        }
+
+        public virtual bool CheckDuration()
+        {
+            return false;
         }
     }
 
     public class Police : Piece
     {
-        public Police(City city) : base(city)
+        public Police(City city, eSubjectType subjectType) : base(city, subjectType)
         {
         }
     }
 
     public class Information : Piece
     {
-        public Information(City city) : base(city)
+        public Information(City city, eSubjectType subjectType) : base(city, subjectType)
         {
         }
     }
 
     public class Broker : Piece
     {
-        public Broker(City city) : base(city)
+        public Broker(City city, eSubjectType subjectType) : base(city, subjectType)
         {
         }
     }
 
-    public class Quest : Piece
+    public class QuestPiece : Piece
     {
-        private int duration;
-        private int leftDays;
-        private Event curEvent;
+        private Quest quest;
         private Character character;
 
-        public Quest(City city) : base(city)
-        {
-            this.duration = 14;
-            this.leftDays = this.duration;
-            TimeTable.Instance.NotifyEveryday += CheckTimeToDisapper;
-        }
+        private int pastWeeks;
 
-        public Quest(Event curEvent, Character character, City city) : this(city)
+        public delegate void AddQuestHandler(QuestPiece piece);
+        public static event AddQuestHandler AddQuest;
+
+        public QuestPiece(Quest quest, Character character, City city, eSubjectType subjectType) : base(city, subjectType)
         {
-            this.curEvent = curEvent;
+            this.quest = quest;
             this.character = character;
+            
+            //TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
+
+            AddQuest(this);
         }
 
-        public void CheckTimeToDisapper()
-        {
-            this.leftDays--;
-            if (this.leftDays == 0)
-            {
-                Disapper();
-            }
-        }
-
-        private void Disapper()
+        public void Disapper()
         {
             Debug.Log("Quest Disappered.");
-            EventManager.Instance.ActivateResultEffects(this.curEvent.Result.Failure.EffectAmounts, this.character);
+            QuestManager.Instance.ActivateResultEffects(this.quest.Result.Failure.EffectAmounts, this.character);
         }
 
-        public Event CurEvent
+        public void WeekIsGone()
+        {
+            pastWeeks++;
+        }
+
+        public void TreatPastQuests(Character character)
+        {
+            
+        }
+
+        public override bool CheckDuration()
+        {
+            return pastWeeks >= quest.Duration;
+        }
+
+        public Quest CurQuest
         {
             get
             {
-                return curEvent;
+                return quest;
             }
-            set
+        }
+
+        public int PastWeeks
+        {
+            get
             {
-                curEvent = value;
+                return pastWeeks;
             }
         }
     }

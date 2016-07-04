@@ -1,84 +1,70 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
 {
-    internal class PieceManager : Singleton<PieceManager>
+    public class PieceManager : Singleton<PieceManager>
     {
-        private List<Information> infoList;
-        private List<Police> policeList;
-        private List<Quest> questList;
+        private List<Piece> list;
 
+        
         public PieceManager()
         {
-            infoList = new List<Information>();
-            policeList = new List<Police>();
-            questList = new List<Quest>();
+            list = new List<Piece>();
         }
-
-        public void Init()
+        
+        public Piece FindRand(eSubjectType type)
         {
-            List<City> bigCityList = CityManager.Instance.FindCitiesBySize(eCitySize.BIG);
-            foreach (City city in bigCityList)
-            {
-                this.Add(city, eSubjectType.POLICE);
-            }
-        }
+            List<Piece> specificTypelist = FindAll(type);
 
-        // GET ******************************* //
-        public Piece GetRand(eSubjectType bigType)
-        {
             System.Random r = new System.Random();
-
-            if (bigType == eSubjectType.INFO)
-            {
-                int randI = r.Next(0, infoList.Count);
-                return infoList[randI] as Piece;
-            }
-            else if (bigType == eSubjectType.POLICE)
-            {
-                int randI = r.Next(0, policeList.Count);
-                return policeList[randI] as Piece;
-            }
-
-            return null;
+            int index = r.Next(0, list.Count);
+            return list[index];
         }
 
-        public Piece GetLast(eSubjectType bigType)
+        public List<Piece> FindAll(eSubjectType type)
         {
-            if (bigType == eSubjectType.INFO)
-            {
-                return infoList[infoList.Count - 1] as Piece;
-            }
-            if (bigType == eSubjectType.POLICE)
-            {
-                return policeList[policeList.Count - 1] as Piece;
-            }
-
-            return null;
+            return list.FindAll(x => x.SubjectType == type);
         }
 
-        public Piece GetFirst(eSubjectType bigType)
+        public Piece GetLast(eSubjectType subjectType)
         {
-            if (bigType == eSubjectType.INFO)
-            {
-                if (infoList.Count != 0)
-                {
-                    return infoList[0] as Piece;
-                }
-            }
-            if (bigType == eSubjectType.POLICE)
-            {
-                if (policeList.Count != 0)
-                {
-                    return policeList[0] as Piece;
-                }
-            }
-
-            return null;
+            return list.FindLast(x => x.SubjectType == subjectType);
         }
 
+        public Piece GetLast()
+        {
+            return list[list.Count - 1];
+        }
+
+        public Piece GetFirst(eSubjectType subjectType)
+        {
+            if (subjectType == eSubjectType.POLICE)
+            {
+                return list.Find(x => x is Police);
+            }
+            else if (subjectType == eSubjectType.INFO)
+            {
+                return list.Find(x => x is Information);
+            }
+            else if (subjectType == eSubjectType.QUEST)
+            {
+                return list.Find(x => x is QuestPiece);
+            }
+            else
+            {
+                throw new Exception("subjectType is wrong>");
+            }
+        }
+
+        public Piece GetFirst()
+        {
+            return list[0];
+        }
+        
         // ******* Delete **************
+
         public void Delete(Piece piece)
         {
             if (piece == null)
@@ -86,86 +72,20 @@ namespace ToBeFree
                 Debug.LogError("piece is null");
                 return;
             }
-            if (piece is Information)
-            {
-                infoList.Remove(piece as Information);
-            }
-            else if (piece is Police)
-            {
-                policeList.Remove(piece as Police);
-            }
-            else if (piece is Quest)
-            {
-                questList.Remove(piece as Quest);
-            }
+            list.Remove(piece);
         }
-
+        
         // ********* Add ***********
-        public Piece Add(City city, eSubjectType bigType)
+        public void Add(Piece piece)
         {
-            Piece piece = null;
-            if (bigType == eSubjectType.INFO)
-            {
-                piece = new Information(city);
-                infoList.Add((Information)piece);
-            }
-            else if (bigType == eSubjectType.POLICE)
-            {
-                piece = new Police(city);
-                policeList.Add((Police)piece);
-            }
-
-            if (piece == null)
-            {
-                Debug.LogError(bigType + " is wrong : Piece Add(..) ");
-            }
-            return piece;
+            list.Add(piece);
         }
 
-        public Quest AddQuest(City city, Character character, Event curEvent)
-        {
-            Quest quest = new Quest(curEvent, character, city);
-            questList.Add(quest);
-
-            return quest;
-        }
-
-        public List<Information> InformList
+        public List<Piece> List
         {
             get
             {
-                return infoList;
-            }
-
-            set
-            {
-                infoList = value;
-            }
-        }
-
-        public List<Police> PoliceList
-        {
-            get
-            {
-                return policeList;
-            }
-
-            set
-            {
-                policeList = value;
-            }
-        }
-
-        public List<Quest> QuestList
-        {
-            get
-            {
-                return questList;
-            }
-
-            set
-            {
-                questList = value;
+                return list;
             }
         }
     }

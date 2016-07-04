@@ -32,7 +32,7 @@ namespace ToBeFree
                                 EnumConvert<eStartTime>.ToEnum(data.startTime), EnumConvert<eDuration>.ToEnum(data.duration));
 
                 string[] splitedList = data.spawnCondition.Split(' ');
-                Condition spawnCondition = new Condition(splitedList[0], splitedList[1], int.Parse(splitedList[2]));
+                Condition spawnCondition = new Condition(EnumConvert<eSubjectType>.ToEnum(splitedList[0]), splitedList[1], int.Parse(splitedList[2]));
                 AbnormalCondition abnormalCondition = new AbnormalCondition(data.name, buff, spawnCondition, bool.Parse(data.isBody), bool.Parse(data.isPositive));
 
                 list[data.index] = abnormalCondition;

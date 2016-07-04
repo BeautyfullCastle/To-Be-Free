@@ -121,23 +121,15 @@ namespace ToBeFree
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
-            List<Quest> quests = PieceManager.Instance.QuestList.FindAll(x => x.City == character.CurCity);
-            if (quests.Count >= 2)
+            List<Piece> quests = PieceManager.Instance.FindAll(eSubjectType.QUEST);
+            QuestPiece questPiece = quests.Find(x => x.City == character.CurCity) as QuestPiece;
+
+            Quest quest = questPiece.CurQuest;
+            if (quest.CheckCondition(character))
             {
-                // can't spawn more than 2 quests in one city.
-            }
-            else if (quests == null || quests.Count == 0)
-            {
-                Debug.LogError("No Quest in this city.");
-            }
-            else
-            {
-                //Quest quest = quests[0];
-                //if (EventManager.Instance.ActivateEvent(quest.CurEvent, character))
-                //{
-                //    Event selectedEvent = EventManager.Instance.DoCommand(actionName, character);
-                //    PieceManager.Instance.QuestList.Remove(quest);
-                //}
+                QuestManager.Instance.ActivateResultEffects(quest.Result.Success.EffectAmounts, character);
+                
+                PieceManager.Instance.List.Remove(questPiece);
             }
 
             yield return (EventManager.Instance.WaitUntilFinish());
@@ -160,7 +152,7 @@ namespace ToBeFree
             
             BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
-            List<Police> policesInThisCity = PieceManager.Instance.PoliceList.FindAll(x => x.City == character.CurCity);
+            List<Piece> policesInThisCity = PieceManager.Instance.FindAll(eSubjectType.POLICE).FindAll(x=>x.City == character.CurCity);
             Debug.LogWarning("policesInThisCity.Count : " + policesInThisCity.Count);
             for (int i = 0; i < policesInThisCity.Count; ++i)
             {

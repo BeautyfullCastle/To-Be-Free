@@ -4,40 +4,33 @@ namespace ToBeFree
 {
     public class Condition
     {
-        private string spawnType;
+        private eSubjectType subjectType;
         private string comparisonOperator;
         private int amount;
 
-        public Condition(string spawnType, string comparisonOperator, int amount)
+        public Condition(eSubjectType subjectType, string comparisonOperator, int amount)
         {
-            this.spawnType = spawnType;
+            this.subjectType = subjectType;
             this.comparisonOperator = comparisonOperator;
             this.amount = amount;
         }
 
         public bool CheckCondition(Character character)
         {
-            //if (string.IsNullOrEmpty(detailType))
-            //{
-            //    if (string.IsNullOrEmpty(middleType))
-            //    {
-                    // only big
-                    if (spawnType == "MENTAL")
-                    {
-                        return Compare(character.Stat.MENTAL, amount, "<=");
-                    }
-            //    }
-            //    else
-            //    {
-            //        // big and middle
-            //    }
-            //}
-            //else
-            //{
-            //    // big and middle and detail
-            //}
-
-            throw new Exception(spawnType);// + " or " + middleType + " or " + detailType + " is not right.");
+            int left = -99;
+            if (subjectType == eSubjectType.MONEY)
+            {
+                left = character.Stat.Money;
+            }
+            else if(subjectType == eSubjectType.ITEM)
+            {
+                return character.Inven.Exist(ItemManager.Instance.List[amount]);
+            }
+            else if(subjectType == eSubjectType.INFO)
+            {
+                left = character.Stat.InfoNum;
+            }
+            return Compare(left, amount, comparisonOperator);
         }
 
         private bool Compare(int left, int right, string comparisonOp)

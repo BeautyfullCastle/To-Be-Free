@@ -168,21 +168,21 @@ namespace ToBeFree
                     {
                         if (objectType == eObjectType.RAND_RAND)
                         {
-                            Piece piece = PieceManager.Instance.GetRand(subjectType);
+                            Piece piece = PieceManager.Instance.FindRand(subjectType);
 
-                            piece.City = CityManager.Instance.FindRand();
+                            piece.MoveCity(CityManager.Instance.FindRand());
                         }
                         if (objectType == eObjectType.RAND_CLOSE)
                         {
-                            Piece piece = PieceManager.Instance.GetRand(subjectType);
+                            Piece piece = PieceManager.Instance.FindRand(subjectType);
 
-                            piece.City = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
+                            piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
                         }
                         if (objectType == eObjectType.FAR_CLOSE)
                         {
                             Piece piece = PieceManager.Instance.GetLast(subjectType);
 
-                            piece.City = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
+                            piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
                         }
                         if (objectType == eObjectType.CLOSE_FAR)
                         {
@@ -190,7 +190,7 @@ namespace ToBeFree
 
                             System.Random r = new System.Random();
                             int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
-                            piece.City = CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance);
+                            piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance));
                         }
                     }
                     if (verbType == eVerbType.DEL)
@@ -198,7 +198,7 @@ namespace ToBeFree
                         Piece piece = null;
                         if (objectType == eObjectType.RAND)
                         {
-                            piece = PieceManager.Instance.GetRand(subjectType);
+                            piece = PieceManager.Instance.FindRand(subjectType);
                         }
                         if (objectType == eObjectType.FAR)
                         {
@@ -215,12 +215,12 @@ namespace ToBeFree
                         if (objectType == eObjectType.RAND)
                         {
                             City city = CityManager.Instance.FindRand();
-                            Piece piece = PieceManager.Instance.Add(city, subjectType);
+                            PieceManager.Instance.Add(new Piece(city, subjectType));
                         }
                         if (objectType == eObjectType.CLOSE)
                         {
                             City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
-                            Piece piece = PieceManager.Instance.Add(city, subjectType);
+                            PieceManager.Instance.Add(new Piece(city, subjectType));
                         }
                     }
                     break;

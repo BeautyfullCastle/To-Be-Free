@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -217,6 +219,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\Data\EventData.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Data\ItemData.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Data\ProbabilityData.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Data\QuestData.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Data\ResultData.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Data\SelectData.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\DiceTester.cs" />
@@ -232,6 +235,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\ItemManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\PieceManager.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Managers\QuestManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\RegionProbabilityManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\ResultManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\SelectManager.cs" />
@@ -240,6 +244,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\Piece.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Police.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Probability.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Quest.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Result.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Select.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Stat.cs" />
@@ -249,6 +254,8 @@
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIEventManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIInventory.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIItem.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\UI\UIQuest.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\UI\UIQuestManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIShop.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIStat.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UITimeTable.cs" />

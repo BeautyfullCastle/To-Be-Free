@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 namespace ToBeFree
 {
@@ -17,11 +19,35 @@ namespace ToBeFree
         {
             city = CityManager.Instance.Find(EnumConvert<eCity>.ToEnum(this.name));
             nameLabel.text = this.name;
-            policeSprite.enabled = PieceManager.Instance.PoliceList.Exists(x => x.City == this.city);
-            informSprite.enabled = PieceManager.Instance.InformList.Exists(x => x.City == this.city);
-            questSprite.enabled = PieceManager.Instance.QuestList.Exists(x => x.City == this.city);
+
+            //TimeTable.Instance.NotifyEveryday += CheckPieces;
+            StartCoroutine(CheckPieces());
         }
-        
+
+        private IEnumerator CheckPieces()
+        {
+            while (true)
+            {
+                List<Piece> polices = PieceManager.Instance.FindAll(eSubjectType.POLICE);
+                if (polices != null && polices.Count > 0)
+                {
+                    policeSprite.enabled = polices.Exists(x => x.City == this.city);
+                }
+                List<Piece> infos = PieceManager.Instance.FindAll(eSubjectType.INFO);
+                if (infos != null && infos.Count > 0)
+                {
+                    informSprite.enabled = infos.Exists(x => x.City == this.city);
+                }
+                List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
+                if (questPieces != null && questPieces.Count > 0)
+                {
+                    questSprite.enabled = questPieces.Exists(x => x.City == this.city);
+                }
+
+                yield return new WaitForSeconds(1f);
+            }
+        }
+
         public City City
         {
             get
