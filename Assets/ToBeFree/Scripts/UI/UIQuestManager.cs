@@ -14,6 +14,7 @@ namespace ToBeFree
         {
             QuestPiece.AddQuest += AddQuest;
             TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
+            QuestManager.DeleteQuest += DeleteQuest;
         }
 
         private void Instance_NotifyEveryWeek()
@@ -32,9 +33,7 @@ namespace ToBeFree
 
             foreach (UIQuest uiQuest in questsToRemove)
             {
-                uiQuests.Remove(uiQuest);
-                uiQuest.QuestPiece.Disapper();
-                DestroyImmediate(uiQuest.gameObject);                
+                DeleteUIQuest(uiQuest);
             }
             grid.Reposition();
         }
@@ -50,6 +49,19 @@ namespace ToBeFree
 
             uiQuests.Add(uiQuest);
             grid.Reposition();
+        }
+
+        public void DeleteQuest(Quest quest)
+        {
+            UIQuest uiQuest = uiQuests.Find(x => x.QuestPiece.CurQuest == quest);
+            DeleteUIQuest(uiQuest);
+        }
+
+        private void DeleteUIQuest(UIQuest uiQuest)
+        {
+            uiQuests.Remove(uiQuest);
+            uiQuest.QuestPiece.Disapper();
+            DestroyImmediate(uiQuest.gameObject);
         }
     }
 }

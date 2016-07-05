@@ -9,7 +9,9 @@ namespace ToBeFree
         private readonly Quest[] list;
         private readonly QuestData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/Quest.json";
-        
+
+        public delegate void DeleteQuestHandler(Quest quest);
+        public static DeleteQuestHandler DeleteQuest;
 
         public QuestManager()
         {
@@ -47,6 +49,12 @@ namespace ToBeFree
         public void ActivateResultEffects(EffectAmount[] effectAmounts, Character character)
         {
             EventManager.Instance.ActivateResultEffects(effectAmounts, character);
+        }
+
+        public void ActivateQuest(Quest quest, bool testResult, Character character)
+        {
+            EventManager.Instance.ActivateQuest(quest, testResult, character);
+            DeleteQuest(quest);
         }
     }
 }

@@ -30,6 +30,10 @@ namespace ToBeFree
             {
                 left = character.Stat.InfoNum;
             }
+            else if(subjectType == eSubjectType.NULL)
+            {
+                return true;
+            }
             return Compare(left, amount, comparisonOperator);
         }
 

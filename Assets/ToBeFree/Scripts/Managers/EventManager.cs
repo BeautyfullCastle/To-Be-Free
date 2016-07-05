@@ -17,7 +17,7 @@ namespace ToBeFree
         private string file;
 
         private EffectAmount[] resultSuccessEffectAmountList;
-        
+
         public delegate void UIChangedHandler(eUIEventLabelType type, string text);
         public static event UIChangedHandler UIChanged = delegate { };
 
@@ -48,7 +48,7 @@ namespace ToBeFree
             foreach (EventData data in dataList)
             {
                 Event curEvent = new Event(EnumConvert<eEventAction>.ToEnum(data.actionType), data.region,
-                                            EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty), 
+                                            EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty),
                                             data.script, data.resultIndex, data.selectIndexList);
 
                 if (list[data.index] != null)
@@ -59,29 +59,34 @@ namespace ToBeFree
             }
         }
 
-        public void TreatResult(Result result)
+        public bool CalculateTestResult(eTestStat testStat, Character character)
         {
-            Character character = GameManager.Instance.Character;
             bool testResult;
-            if (result.TestStat == eTestStat.ALL || result.TestStat == eTestStat.NULL)
+            if (testStat == eTestStat.ALL || testStat == eTestStat.NULL)
             {
                 testResult = true;
                 UIChanged(eUIEventLabelType.DICENUM, testResult.ToString());
             }
             else
             {
-                testResult = DiceTester.Instance.Test(character.GetDiceNum(result.TestStat), character);
-                UIChanged(eUIEventLabelType.DICENUM, testResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(result.TestStat)); 
+                testResult = DiceTester.Instance.Test(character.GetDiceNum(testStat), character);
+                UIChanged(eUIEventLabelType.DICENUM, testResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
             }
+            return testResult;
+        }
+
+        public void TreatResult(Result result, bool testResult, Character character)
+        {
             string resultScript = string.Empty;
             string resultEffect = string.Empty;
             if (testResult == true)
-            {                
-                resultScript = result.Success.Script;                
+            {
+
+                resultScript = result.Success.Script;
                 for (int i = 0; i < result.Success.EffectAmounts.Length; ++i)
                 {
                     EffectAmount effectAmount = result.Success.EffectAmounts[i];
-                    if(effectAmount.Effect == null)
+                    if (effectAmount.Effect == null)
                     {
                         continue;
                     }
@@ -107,6 +112,7 @@ namespace ToBeFree
             UIChanged(eUIEventLabelType.RESULT, resultScript);
             UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
         }
+    
 
         public void DoCommand(eEventAction actionType, Character character)
         {
@@ -204,8 +210,18 @@ namespace ToBeFree
             // deal with result
             else
             {
-                TreatResult(currEvent.Result);
+                bool testResult = CalculateTestResult(currEvent.Result.TestStat, character);
+                TreatResult(currEvent.Result, testResult, character);
             }
+        }
+
+        public void ActivateQuest(Quest currQuest, bool testResult, Character character)
+        {
+            UIOpen();
+
+            UIChanged(eUIEventLabelType.EVENT, currQuest.Script);
+
+            TreatResult(currQuest.Result, testResult, character);
         }
 
         public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)

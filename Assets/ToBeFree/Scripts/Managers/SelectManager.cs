@@ -48,7 +48,8 @@ namespace ToBeFree
         {
             if(select.LinkType == eSelectLinkType.RESULT)
             {
-                EventManager.Instance.TreatResult(select.Result);
+                bool testResult = EventManager.Instance.CalculateTestResult(select.Result.TestStat, GameManager.Instance.Character);
+                EventManager.Instance.TreatResult(select.Result, testResult, GameManager.Instance.Character);
             }
             else if(select.LinkType == eSelectLinkType.EVENT)
             {

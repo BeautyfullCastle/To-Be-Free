@@ -127,8 +127,7 @@ namespace ToBeFree
             Quest quest = questPiece.CurQuest;
             if (quest.CheckCondition(character))
             {
-                QuestManager.Instance.ActivateResultEffects(quest.Result.Success.EffectAmounts, character);
-                
+                QuestManager.Instance.ActivateQuest(quest, true, character);
                 PieceManager.Instance.List.Remove(questPiece);
             }
 
