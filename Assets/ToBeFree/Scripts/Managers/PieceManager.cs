@@ -8,7 +8,11 @@ namespace ToBeFree
     {
         private List<Piece> list;
 
-        
+        public delegate void AddDeletePieceHandler(Piece piece);
+        public static event AddDeletePieceHandler AddPiece;
+        public static event AddDeletePieceHandler DeletePiece;
+
+
         public PieceManager()
         {
             list = new List<Piece>();
@@ -73,12 +77,14 @@ namespace ToBeFree
                 return;
             }
             list.Remove(piece);
+            DeletePiece(piece);
         }
         
         // ********* Add ***********
         public void Add(Piece piece)
         {
             list.Add(piece);
+            AddPiece(piece);
         }
 
         public List<Piece> List

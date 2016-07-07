@@ -15,13 +15,55 @@ namespace ToBeFree
         private City city;
         
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             city = CityManager.Instance.Find(EnumConvert<eCity>.ToEnum(this.name));
             nameLabel.text = this.name;
 
+            PieceManager.AddPiece += PieceManager_AddPiece;
+            PieceManager.DeletePiece += PieceManager_DeletePiece;
+
+            informSprite.enabled = false;
+            policeSprite.enabled = false;
+            questSprite.enabled = false;
+
             //TimeTable.Instance.NotifyEveryday += CheckPieces;
-            StartCoroutine(CheckPieces());
+            //StartCoroutine(CheckPieces());
+        }
+
+        private void PieceManager_DeletePiece(Piece piece)
+        {
+            if (piece.City.Name.ToString() != this.name)
+            {
+                return;
+            }
+            SetPieceSprite(piece.SubjectType, false);
+        }
+
+        private void PieceManager_AddPiece(Piece piece)
+        {
+            if(piece.City.Name.ToString() != this.name)
+            {
+                return;
+            }
+            SetPieceSprite(piece.SubjectType, true);
+        }
+
+        private void SetPieceSprite(eSubjectType type, bool isExist)
+        {
+            if (type == eSubjectType.POLICE)
+            {
+                policeSprite.enabled = isExist;
+            }
+            else if (type == eSubjectType.INFO)
+            {
+                informSprite.enabled = isExist;
+            }
+            else if (type == eSubjectType.QUEST)
+            {
+                questSprite.enabled = isExist;
+            }
+            NGUIDebug.Log(this.name + "'s " + type.ToString() + " sprite is " + isExist);
         }
 
         private IEnumerator CheckPieces()
@@ -44,7 +86,7 @@ namespace ToBeFree
                     questSprite.enabled = questPieces.Exists(x => x.City == this.city);
                 }
 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(.2f);
             }
         }
 

@@ -25,8 +25,7 @@ namespace ToBeFree
         REROLL,
         IN,
         SET,
-        NULL,
-        CANCEL
+        NULL
     }
 
     // ¸ñÀû¾î
@@ -44,7 +43,8 @@ namespace ToBeFree
         SUCCESSNUM,
         INVEN,
         DETENTION,
-        NULL
+        NULL,
+        CANCEL
     }
 
     public class Effect
@@ -53,6 +53,9 @@ namespace ToBeFree
         private eVerbType verbType;
         private eObjectType objectType;
         private int prevAmount;
+
+        public delegate void SkipEventHandler(string eventType);
+        public static event SkipEventHandler SkipEvent;
 
         public Effect(eSubjectType subjectType, eVerbType verbType = eVerbType.NONE, eObjectType objectType = eObjectType.NONE)
         {
@@ -73,7 +76,6 @@ namespace ToBeFree
         }
         public bool Activate(Character character, int amount)
         {
-
             switch (subjectType)
             {
                 case eSubjectType.CHARACTER:
@@ -118,11 +120,18 @@ namespace ToBeFree
                         {
                             character.CurCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
+                        // can't move after move event( in mongolia )
+                        if (objectType == eObjectType.CANCEL)
+                        {
+
+                        }
                     }
                     if(verbType == eVerbType.IN)
                     {
                         if (objectType == eObjectType.DETENTION) { }
                     }
+                    
+                        
                     break;
                     
                 case eSubjectType.STAT:
@@ -273,12 +282,13 @@ namespace ToBeFree
                         else if (objectType == eObjectType.SELECT) { }
                         else
                         {
-                            throw new System.Exception("detail type is not right.");
+                            Debug.LogError("detail type is not right.");
                         }
 
                         if (item == null)
                         {
-                            throw new System.Exception("item is null");
+                            Debug.LogError("item is null");
+                            return false;
                         }
                         character.Inven.Delete(item, character);
                     }
@@ -329,29 +339,45 @@ namespace ToBeFree
                     break;
                     
                 case eSubjectType.EVENT:
-                    if (verbType == eVerbType.SKIP)
+                    //if (verbType == eVerbType.SKIP)
+                    //{
+                    //    // fix. to make buff for skip event and make it succeed.
+                    //    SkipEvent(EnumConvert<eObjectType>.ToString(objectType));
+                    //    if (objectType == eObjectType.WORK)
+                    //    {
+                            
+                    //    }
+                    //    else if (objectType == eObjectType.MOVE) { }
+                    //    else if (objectType == eObjectType.INFO) { }
+                    //    // don't eat food when the time to eat
+                    //    else if (objectType == eObjectType.FOOD) { }
+                    //    // can't cure when rest event activated
+                    //    else if (objectType == eObjectType.REST_CURE) { }
+                    //    // skip entering the action
+                    //    else if (objectType == eObjectType.ALL) { }
+                    //}
+                    if(verbType == eVerbType.LOAD)
                     {
-                        if (objectType == eObjectType.WORK) { }
-                        else if (objectType == eObjectType.MOVE) { }
-                        else if (objectType == eObjectType.INFO) { }
-                        // don't eat food when the time to eat
-                        else if (objectType == eObjectType.FOOD) { }
-                        // can't cure when rest event activated
-                        else if (objectType == eObjectType.REST_CURE) { }
-                        // skip entering the action
-                        else if (objectType == eObjectType.ALL) { }
+                        EventManager.Instance.ActivateEvent(EventManager.Instance.List[amount], character);
                     }
-                    else if(verbType == eVerbType.LOAD) { }
                     break;
                 case eSubjectType.QUEST:
                     // load quest
                     if(verbType == eVerbType.LOAD)
                     {
-
+                        int distance = 2;
+                        City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
+                        Quest selectedQuest = QuestManager.Instance.List[amount];
+                        QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
+                        PieceManager.Instance.Add(questPiece);
                     }
                     break;
                 case eSubjectType.ABNORMAL:
-                    if (verbType == eVerbType.ADD) { }
+                    if (verbType == eVerbType.ADD)
+                    {
+                        //AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
+                        //abnormalCondition.Activate(character);
+                    }
                     break;
                 case eSubjectType.ROOT:
                     if(verbType == eVerbType.OPEN)
@@ -381,131 +407,6 @@ namespace ToBeFree
             }
         }
         
-        static public eSubjectType ToSubjectType(string subjectType)
-        {
-            return (eSubjectType)Enum.Parse(typeof(eSubjectType), subjectType);
-        }
-
-        static public eVerbType ToVerbType(string verbType)
-        {
-            switch(verbType)
-            {
-                case "ADD":
-                    return eVerbType.ADD;
-                case "CANCEL":
-                    return eVerbType.CANCEL;
-                case "DEACTIVE":
-                    return eVerbType.DEACTIVE;
-                case "DEL":
-                    return eVerbType.DEL;
-                case "IN":
-                    return eVerbType.IN;
-                case "LOAD":
-                    return eVerbType.LOAD;
-                case "MOVE":
-                    return eVerbType.MOVE;
-                case "NONE":
-                    return eVerbType.NONE;
-                case "OPEN":
-                    return eVerbType.OPEN;
-                case "REROLL":
-                    return eVerbType.REROLL;
-                case "SET":
-                    return eVerbType.SET;
-                case "SKIP":
-                    return eVerbType.SKIP;
-            }
-
-            return eVerbType.NULL;
-        }
-
-        static public eObjectType ToObjectType(string objectType)
-        {
-            switch(objectType)
-            {
-                case "AGILITY":
-                    return eObjectType.AGILITY;
-                case "ALL":
-                    return eObjectType.ALL;
-                case "BARGAIN":
-                    return eObjectType.BARGAIN;
-                case "CLOSE":
-                    return eObjectType.CLOSE;
-                case "CLOSE_CLOSE":
-                    return eObjectType.CLOSE_CLOSE;
-                case "CLOSE_FAR":
-                    return eObjectType.CLOSE_FAR;
-                case "DETENTION":
-                    return eObjectType.DETENTION;
-                case "FAR":
-                    return eObjectType.FAR;
-                case "FAR_CLOSE":
-                    return eObjectType.FAR_CLOSE;
-                case "FOOD":
-                    return eObjectType.FOOD;
-                case "HP":
-                    return eObjectType.HP;
-                case "HP_MENTAL":
-                    return eObjectType.HP_MENTAL;
-                case "INDEX":
-                    return eObjectType.INDEX;
-                case "INFO":
-                    return eObjectType.INFO;
-                case "INVEN":
-                    return eObjectType.INVEN;
-                case "LUCK":
-                    return eObjectType.LUCK;
-                case "MENTAL":
-                    return eObjectType.MENTAL;
-                case "MONGOLIA":
-                    return eObjectType.MONGOLIA;
-                case "MOVE":
-                    return eObjectType.MOVE;
-                case "NONE":
-                    return eObjectType.NONE;
-                case "OBSERVATION":
-                    return eObjectType.OBSERVATION;
-                case "PATIENCE":
-                    return eObjectType.PATIENCE;
-                case "RAND":
-                    return eObjectType.RAND;
-                case "RAND_3":
-                    return eObjectType.RAND_3;
-                case "RAND_CLOSE":
-                    return eObjectType.RAND_CLOSE;
-                case "RAND_RAND":
-                    return eObjectType.RAND_RAND;
-                case "REST":
-                    return eObjectType.REST;
-                case "REST_CURE":
-                    return eObjectType.REST_CURE;
-                case "SELECT":
-                    return eObjectType.SELECT;
-                case "SELECT_ALL":
-                    return eObjectType.SELECT_ALL;
-                case "SELECT_TAG":
-                    return eObjectType.SELECT_TAG;
-                case "SHOP":
-                    return eObjectType.SHOP;
-                case "SOUTHEAST_ASIA":
-                    return eObjectType.SOUTHEAST_ASIA;
-                case "SPECIAL":
-                    return eObjectType.SPECIAL;
-                case "SPECIFIC":
-                    return eObjectType.SPECIFIC;
-                case "STRENGTH":
-                    return eObjectType.STRENGTH;
-                case "SUCCESSNUM":
-                    return eObjectType.SUCCESSNUM;
-                case "TAG":
-                    return eObjectType.TAG;
-                case "WORK":
-                    return eObjectType.WORK;
-            }
-            return eObjectType.NULL;
-        }
-
-
         public eSubjectType SubjectType { get { return subjectType; } }
 
         public eVerbType VerbType { get { return verbType; } }

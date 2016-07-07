@@ -13,6 +13,14 @@ namespace ToBeFree
         public delegate void DeleteQuestHandler(Quest quest);
         public static DeleteQuestHandler DeleteQuest;
 
+        public Quest[] List
+        {
+            get
+            {
+                return list;
+            }
+        }
+
         public QuestManager()
         {
             DataList<QuestData> cDataList = new DataList<QuestData>(file);

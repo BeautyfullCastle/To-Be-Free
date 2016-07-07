@@ -67,8 +67,7 @@ namespace ToBeFree
         {
             Debug.LogWarning("Work action activated.");
             base.Activate(character);
-            EventManager.Instance.DoCommand(actionName, character);
-            yield return (EventManager.Instance.WaitUntilFinish());
+            yield return (EventManager.Instance.DoCommand(actionName, character));
             // if effect is money and event is succeeded,
             EffectAmount[] successResulteffects = EventManager.Instance.ResultSuccessEffectAmountList;
 
@@ -99,8 +98,7 @@ namespace ToBeFree
         {
             Debug.LogWarning("Move action Activated.");
             base.Activate(character);
-            EventManager.Instance.DoCommand(actionName, character);
-            yield return (EventManager.Instance.WaitUntilFinish());
+            yield return (EventManager.Instance.DoCommand(actionName, character));
 
             character.MoveTo(character.NextCity);
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
@@ -128,7 +126,7 @@ namespace ToBeFree
             if (quest.CheckCondition(character))
             {
                 QuestManager.Instance.ActivateQuest(quest, true, character);
-                PieceManager.Instance.List.Remove(questPiece);
+                PieceManager.Instance.Delete(questPiece);
             }
 
             yield return (EventManager.Instance.WaitUntilFinish());
@@ -155,10 +153,25 @@ namespace ToBeFree
             Debug.LogWarning("policesInThisCity.Count : " + policesInThisCity.Count);
             for (int i = 0; i < policesInThisCity.Count; ++i)
             {
-                EventManager.Instance.DoCommand(eEventAction.INSPECT, character);
-
-                yield return (EventManager.Instance.WaitUntilFinish());
+                yield return EventManager.Instance.DoCommand(eEventAction.INSPECT, character);
             }
+        }
+    }
+
+    public class EnterToShop : Action
+    {
+        public EnterToShop()
+        {
+        }
+
+        public override IEnumerator Activate(Character character)
+        {
+            Debug.LogWarning("Enter to Shop action activated.");
+
+            NGUIDebug.Log("Enter To Shop action");
+            GameManager.Instance.shopUIObj.SetActive(true);
+            yield return EventManager.Instance.WaitUntilFinish();
+            
         }
     }
 }

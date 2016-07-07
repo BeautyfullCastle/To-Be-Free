@@ -9,6 +9,14 @@ namespace ToBeFree
         private readonly AbnormalConditionData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/AbnormalCondition.json";
 
+        public AbnormalCondition[] List
+        {
+            get
+            {
+                return list;
+            }
+        }
+
         public AbnormalConditionManager()
         {
             DataList<AbnormalConditionData> cDataList = new DataList<AbnormalConditionData>(file);

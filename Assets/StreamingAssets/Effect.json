@@ -105,8 +105,8 @@
 		{
 			"index": 17,
 			"subjectType": "CHARACTER",
-			"verbType": "CANCEL",
-			"objectType": "MOVE"
+			"verbType": "MOVE",
+			"objectType": "CANCEL"
 		},
 		{
 			"index": 18,

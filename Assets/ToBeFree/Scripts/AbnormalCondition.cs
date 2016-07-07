@@ -21,7 +21,7 @@ namespace ToBeFree
             this.isPositive = isPositive;
         }
         
-        public virtual void Activate(Character character, int value)
+        public virtual void Activate(Character character)
         {
             BuffManager.Instance.Add(this.buff);
         }
@@ -51,9 +51,9 @@ namespace ToBeFree
             
         }
 
-        public override void Activate(Character character, int value)
+        public override void Activate(Character character)
         {
-            base.Activate(character, value);
+            base.Activate(character);
 
             Buff buff_exhilaration = BuffManager.Instance.Find("Exhilaration");
             if (buff_exhilaration == null)

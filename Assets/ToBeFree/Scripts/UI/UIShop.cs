@@ -39,7 +39,7 @@ namespace ToBeFree {
         public void OnExit()
         {
             TimeTable.Instance.DayIsGone();
-
+            EventManager.Instance.OnClickOK();
             this.gameObject.SetActive(false);
         }
     }

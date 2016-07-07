@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -251,6 +249,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\TimeTable.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIBuff.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIBuffManager.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\UI\UICommand.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIEventManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIInventory.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIItem.cs" />

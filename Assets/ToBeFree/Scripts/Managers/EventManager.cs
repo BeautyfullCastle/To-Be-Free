@@ -113,18 +113,21 @@ namespace ToBeFree
             UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
         }
     
-
-        public void DoCommand(eEventAction actionType, Character character)
+        public IEnumerator DoCommand(eEventAction actionType, Character character)
         {
+            yield return StartCoroutine(GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 1f));
+
             selectedEvent = Find(actionType, character.CurCity);
             if (selectedEvent == null)
             {
                 Debug.LogError("selectedEvent is null");
-                return;
+                yield break; ; 
             }
             UIOpen();
             ActivateEvent(selectedEvent, character);
-            
+
+            yield return StartCoroutine(WaitUntilFinish());
+
             Debug.Log("DoCommand Finished.");
         }
 
