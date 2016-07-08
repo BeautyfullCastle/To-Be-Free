@@ -27,6 +27,10 @@ namespace ToBeFree
             {
                 RegionProbability statProb = new RegionProbability(data.valueList);
 
+                if (list[data.index] != null)
+                {
+                    throw new Exception("Region Probability data.index " + data.index + " is duplicated.");
+                }
                 list[data.index] = statProb;
             }
         }

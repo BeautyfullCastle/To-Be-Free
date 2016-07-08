@@ -85,7 +85,7 @@ namespace ToBeFree
         public void Disapper()
         {
             Debug.Log("Quest Disappered.");
-            QuestManager.Instance.ActivateResultEffects(this.quest.Result.Failure.EffectAmounts, this.character);
+            QuestManager.Instance.ActivateResultEffects(this.quest.Event_.Result.Failure.EffectAmounts, this.character);
         }
 
         public void WeekIsGone()

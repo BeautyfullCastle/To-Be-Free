@@ -13,6 +13,7 @@ namespace ToBeFree
         EVENT, QUEST,
         ROOT,
         BROKER,
+        MENTAL,
         NULL
     }
 
@@ -25,7 +26,8 @@ namespace ToBeFree
         REROLL,
         IN,
         SET,
-        NULL
+        NULL,
+        SUCCESS
     }
 
     // ¸ñÀû¾î
@@ -97,6 +99,10 @@ namespace ToBeFree
                         }
                         if (objectType == eObjectType.FOOD)
                         {
+                            if(amount > 0 && character.IsFull)
+                            {
+                                return false;
+                            }
                             character.Stat.FOOD += amount;
                         }
                         if (objectType == eObjectType.INVEN)
@@ -123,12 +129,15 @@ namespace ToBeFree
                         // can't move after move event( in mongolia )
                         if (objectType == eObjectType.CANCEL)
                         {
-
+                            character.CantMove = true;
                         }
                     }
                     if(verbType == eVerbType.IN)
                     {
-                        if (objectType == eObjectType.DETENTION) { }
+                        if (objectType == eObjectType.DETENTION)
+                        {
+                            AbnormalConditionManager.Instance.Find("Detention").DeActivate(character);
+                        }
                     }
                     
                         
@@ -137,36 +146,7 @@ namespace ToBeFree
                 case eSubjectType.STAT:
                     if (verbType == eVerbType.ADD)
                     {
-                        if (objectType == eObjectType.STRENGTH || objectType == eObjectType.ALL)
-                        {
-                            character.Stat.Strength += amount;
-                            Debug.Log("effect activate strength : " + character.Stat.Strength);
-                        }
-                        if (objectType == eObjectType.AGILITY || objectType == eObjectType.ALL)
-                        {
-                            character.Stat.Agility += amount;
-                            Debug.Log("effect activate agility : " + character.Stat.Agility);
-                        }
-                        if (objectType == eObjectType.OBSERVATION || objectType == eObjectType.ALL)
-                        {
-                            character.Stat.Observation += amount;
-                            Debug.Log("effect activate observation : " + character.Stat.Observation);
-                        }
-                        if (objectType == eObjectType.BARGAIN || objectType == eObjectType.ALL)
-                        {
-                            character.Stat.Bargain += amount;
-                            Debug.Log("effect activate bargain : " + character.Stat.Bargain);
-                        }
-                        if (objectType == eObjectType.PATIENCE || objectType == eObjectType.ALL)
-                        {
-                            character.Stat.Patience += amount;
-                            Debug.Log("effect activate patience : " + character.Stat.Patience);
-                        }
-                        if (objectType == eObjectType.LUCK || objectType == eObjectType.ALL)
-                        {
-                            character.Stat.Luck += amount;
-                            Debug.Log("effect activate luck : " + character.Stat.Luck);
-                        }
+                        character.Stat.Set(objectType, amount);
                     }
                     break;
                     
@@ -339,6 +319,7 @@ namespace ToBeFree
                     break;
                     
                 case eSubjectType.EVENT:
+                    // later.
                     //if (verbType == eVerbType.SKIP)
                     //{
                     //    // fix. to make buff for skip event and make it succeed.
@@ -356,7 +337,19 @@ namespace ToBeFree
                     //    // skip entering the action
                     //    else if (objectType == eObjectType.ALL) { }
                     //}
-                    if(verbType == eVerbType.LOAD)
+                    if(verbType == eVerbType.SKIP)
+                    {
+                        if (objectType == eObjectType.FOOD)
+                        {
+                            character.IsFull = true;
+                        }
+                        // can't cure when rest event activated
+                        else if (objectType == eObjectType.REST_CURE)
+                        {
+                            character.CantCure = true;
+                        }
+                    }
+                    if (verbType == eVerbType.LOAD)
                     {
                         EventManager.Instance.ActivateEvent(EventManager.Instance.List[amount], character);
                     }
@@ -371,12 +364,19 @@ namespace ToBeFree
                         QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
                         PieceManager.Instance.Add(questPiece);
                     }
+                    if(verbType == eVerbType.SUCCESS)
+                    {
+                        Quest quest = QuestManager.Instance.List[amount];
+                        QuestPiece piece = PieceManager.Instance.Find(quest);
+                        QuestManager.Instance.ActivateResultEffects(quest.Event_.Result.Success.EffectAmounts, character);
+                        PieceManager.Instance.Delete(piece);
+                    }
                     break;
                 case eSubjectType.ABNORMAL:
                     if (verbType == eVerbType.ADD)
                     {
-                        //AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
-                        //abnormalCondition.Activate(character);
+                        AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
+                        abnormalCondition.Activate(character);
                     }
                     break;
                 case eSubjectType.ROOT:
@@ -402,6 +402,34 @@ namespace ToBeFree
                     {
                         Debug.Log("Effect " + subjectType + " " + verbType + " " + prevAmount + " deactivated.");
                         DiceTester.Instance.MinSuccessNum = prevAmount;
+                    }
+                    break;
+                case eSubjectType.STAT:
+                    if (verbType == eVerbType.ADD)
+                    {
+                        character.Stat.Restore(objectType);
+                    }
+                    break;
+                case eSubjectType.EVENT:
+                    if (verbType == eVerbType.SKIP)
+                    {
+                        if (objectType == eObjectType.FOOD)
+                        {
+                            character.IsFull = false;
+                        }
+                        else if (objectType == eObjectType.REST_CURE)
+                        {
+                            character.CantCure = false;
+                        }
+                    }
+                    break;
+                case eSubjectType.CHARACTER:
+                    if (verbType == eVerbType.MOVE)
+                    {
+                        if (objectType == eObjectType.CANCEL)
+                        {
+                            character.CantMove = false;
+                        }
                     }
                     break;
             }

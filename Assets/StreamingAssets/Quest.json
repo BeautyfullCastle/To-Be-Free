@@ -11,8 +11,14 @@
 			"stat": "ALL",
 			"difficulty": "EASY",
 			"script": "한 남자가 다가와 브로커에 대한 정보를 알고 있는 사람을 알고 있다고 알려줍니다.\\n'내가 한 브로커에 대한 정보를 알고 있는 사람을 알고 있지, 다만 얼마 있지는 않은 모양이야\\n그리고 떠날때 정보를 알고 있는 이와 같이 떠난다고 하더군'\\n당신의 그의 말을 듣고 브로커정보를 알고 있는 이를 찾아가려 합니다.",
-			"failureScript": "NULL",
-			"resultIndex": 83,
+			"failureScript": "브로커정보를 알고 있는이가 다른 정보를 알고 있는 이와 같이 떠났습니다.",
+			"failureEffectIndexList": [
+				10
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "시간이 되면 브로커정보 삭제",
 			"conditionScript": "NULL"
@@ -28,8 +34,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "지역 공안담당관이 지역에 공안을 늘리려고 한다는 이야기를 들었습니다.\\n돈을 약간 주면 공안을 추가시키지 않을 겁니다.",
-			"failureScript": "NULL",
-			"resultIndex": 84,
+			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 늘렸습니다.",
+			"failureEffectIndexList": [
+				22
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": 95,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 추가를 막기",
 			"conditionScript": "돈 5위안"
@@ -45,8 +57,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "지역 공안담당관이 지역에 공안을 재배치 한다는 이야기를 들었습니다.\\n돈을 약간 주면 공안을 재배치시키지 않을 겁니다.",
-			"failureScript": "NULL",
-			"resultIndex": 85,
+			"failureScript": "지역담당관이 근처 지역에 공안을 재배치 했습니다.",
+			"failureEffectIndexList": [
+				13
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": 96,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 재배치를 막기",
 			"conditionScript": "돈 5위안"
@@ -62,8 +80,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "브로커가 곧 이동한다는 정보를 받았습니다. \\n브로커가 이동하기 전에 브로커에게 접선해야 합니다.",
-			"failureScript": "NULL",
-			"resultIndex": 86,
+			"failureScript": "시간이 되어 브로커가 이동했습니다.",
+			"failureEffectIndexList": [
+				64
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "시간이 되면 브로커 삭제",
 			"conditionScript": "NULL"
@@ -79,8 +103,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "브로커가 곧 한국으로 돌아간다는 정보를 받았습니다. \\n브로커가 한국으로 이동하기 전에 접선해야 합니다.",
-			"failureScript": "NULL",
-			"resultIndex": 87,
+			"failureScript": "시간이 되어 브로커가 한국으로 돌아갔습니다.",
+			"failureEffectIndexList": [
+				69
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "시간이 되면 브로커 삭제",
 			"conditionScript": "NULL"
@@ -96,8 +126,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "브로커가 곧 한국으로 돌아간다는 정보를 받았습니다. \\n브로커가 한국으로 이동하기 전에 접선해야 합니다.",
-			"failureScript": "NULL",
-			"resultIndex": 88,
+			"failureScript": "시간이 되어 브로커가 한국으로 돌아갔습니다.",
+			"failureEffectIndexList": [
+				67
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "시간이 되면 브로커 삭제",
 			"conditionScript": "NULL"
@@ -113,8 +149,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "어쩌다보니 도박판에 끼었습니다. 도박판에서 많은 돈을 잃어 빚을 지게 되었습니다.\\n'조금의 말미를 줄테니 돈을 가져오게 아니면 큰 보복을 해주지'",
-			"failureScript": "NULL",
-			"resultIndex": 89,
+			"failureScript": "시간이 되어 사채업자가 나타났습니다.\\n'돈을 가지고 오지 못하다니 그럼 대가를 받아야지'\\n그들이 당신의 다리를 가격했습니다.",
+			"failureEffectIndexList": [
+				56
+			],
+			"failureEffectValueList": [
+				-99
+			],
+			"eventIndex": 97,
 			"duration": 2,
 			"uiName": "돈을 줘서 도박 빚 갚기",
 			"conditionScript": "돈 5위안"
@@ -130,8 +172,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "브로커가 있다고 들은 식당을 조사했지만 브로커는 없었습니다. 한 남자 다가와 이야기합니다.\\n'보아하니 탈북자로군 공안에 신고하지 않는 대신 내 대신 일을 좀 해달라고'\\n아무래도 거절하긴 힘들어보입니다.",
-			"failureScript": "일을 했지만 실수의 연속이었습니다. 오히려 그의 화만 돋구었습니다.",
-			"resultIndex": 90,
+			"failureScript": "시간내에 일을 해결하지 못해 그가 공안에 신고했습니다.\\n공안이 당신을 찾아내 쫓아옵니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			],
+			"eventIndex": 98,
 			"duration": 2,
 			"uiName": "일을 통해 공안 신고 막기",
 			"conditionScript": "NULL"
@@ -147,8 +195,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "브로커에 대한 정보를 알고 있는 사람이 곧 이곳을 떠난다고 합니다.\\n당신은 그가 멀리 떠나기 전에 그를 만나려 해봅니다.",
-			"failureScript": "NULL",
-			"resultIndex": 91,
+			"failureScript": "브로커 정보를 알고 있는 사람이 멀리 떠났습니다.",
+			"failureEffectIndexList": [
+				4
+			],
+			"failureEffectValueList": [
+				2
+			],
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "시간이 되면 브로커정보 삭제",
 			"conditionScript": "NULL"
@@ -164,8 +218,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "브로커에 대한 정보를 알고 있는 사람이 곧 남한으로 떠난다고 합니다.\\n당신은 그가 멀리 떠나기 전에 그를 만나려 해봅니다.",
-			"failureScript": "NULL",
-			"resultIndex": 92,
+			"failureScript": "브로커 정보를 알고 있는 사람이 남한으로 떠났습니다.",
+			"failureEffectIndexList": [
+				8
+			],
+			"failureEffectValueList": [
+				-99
+			],
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "시간이 되면 브로커정보 삭제",
 			"conditionScript": "NULL"
@@ -181,8 +241,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "어쩌다보니 도박판에 끼었습니다. 도박판에서 많은 돈을 잃어 빚을 지게 되었습니다.\\n'조금의 말미를 줄테니 돈을 가져오게 아니면 큰 보복을 해주지'",
-			"failureScript": "NULL",
-			"resultIndex": 93,
+			"failureScript": "시간이 되어 사채업자가 나타났습니다.\\n'돈을 가지고 오지 못하다니 돈대신 다른걸 받아가도록 하지'\\n그들이 돈 대신 아이템을 받아갔습니다.",
+			"failureEffectIndexList": [
+				40
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": 99,
 			"duration": 2,
 			"uiName": "돈을 줘서 도박 빚 갚기",
 			"conditionScript": "돈 5위안"
@@ -198,8 +264,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "브로커가 있다고 들은 식당을 조사했지만 브로커는 없었습니다. 한 남자 다가와 이야기합니다.\\n'보아하니 탈북자로군 공안에 신고하지 않는 대신 내 대신 배달일을 좀 해달라고\\n물건을 상점에서 구입해서 전달해주면 된다고'\\n아무래도 거절하긴 힘들어보입니다.",
-			"failureScript": "NULL",
-			"resultIndex": 94,
+			"failureScript": "시간내에 일을 해결하지 못해 그가 공안에 신고했습니다.\\n공안이 당신을 찾아내 쫓아옵니다.",
+			"failureEffectIndexList": [
+				55
+			],
+			"failureEffectValueList": [
+				102
+			],
+			"eventIndex": 100,
 			"duration": 2,
 			"uiName": "아이템 배달로 공안 신고 막기",
 			"conditionScript": "NULL"
@@ -215,8 +287,14 @@
 			"stat": "ALL",
 			"difficulty": "EASY",
 			"script": "이봐 좋은 판을 알고 있는데 올텐가?'\\n근처에서 큰 도박판이 벌어진다는 것을 알았습니다.\\n도박을 해서 돈을 벌수 있을 것 같습니다.",
-			"failureScript": "판에 끼어 도박을 했지만 별다른 소득이 없었습니다.",
-			"resultIndex": 95,
+			"failureScript": "도박판이 끝났다는 이야기가 들립니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			],
+			"eventIndex": 101,
 			"duration": 2,
 			"uiName": "도박으로 돈 획득",
 			"conditionScript": "NULL"
@@ -232,11 +310,17 @@
 			"stat": "ALL",
 			"difficulty": "EASY",
 			"script": "한 남자 다가와 이야기합니다.\\n'보아하니 탈북자로군 혹시 브로커에 대한 정보를 알고 있나? 브로커정보를 알려주면 큰 값을 처주지 하며 몇일 뒤 사람이 없는 곳에서 만나자고 제안했습니다.'",
-			"failureScript": "NULL",
-			"resultIndex": 96,
+			"failureScript": "그가 독자적으로 브로커정보를 안 것 같습니다.",
+			"failureEffectIndexList": [
+				10
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": 102,
 			"duration": 2,
 			"uiName": "브로커정보를 팔아 돈 획득",
-			"conditionScript": "브로커정보"
+			"conditionScript": "브로커정보 1"
 		},
 		{
 			"index": 14,
@@ -249,8 +333,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "지역 공안담당관이 지역에 공안을 늘리려고 한다는 이야기를 들었습니다.\\n돈을 약간 주면 공안을 추가시키지 않을 겁니다.",
-			"failureScript": "NULL",
-			"resultIndex": 97,
+			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 느렸습니다.",
+			"failureEffectIndexList": [
+				23
+			],
+			"failureEffectValueList": [
+				1
+			],
+			"eventIndex": 103,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 추가를 막기",
 			"conditionScript": "돈 5위안"
@@ -266,8 +356,14 @@
 			"stat": "NULL",
 			"difficulty": "EASY",
 			"script": "그곳에 있는 사장에게 말을 했으니 찾아가서 일을 하면 돈은 넉넉하게 줄껄쎄\\n'다만 급하게 사람이 필요한 일이니 빨리 찾아가게'",
-			"failureScript": "일을 했지만 실수의 연속이었습니다. 오히려 장비를 고장내 돈을 받지 못했습니다.",
-			"resultIndex": 108,
+			"failureScript": "사장이 말한 기한이 끝났습니다.",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			],
+			"eventIndex": 104,
 			"duration": 2,
 			"uiName": "일을 해서 돈 획득",
 			"conditionScript": "NULL"

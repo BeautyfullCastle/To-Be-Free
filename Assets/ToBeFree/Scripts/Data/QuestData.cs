@@ -14,7 +14,9 @@ public class QuestData : IData
     public string difficulty;
     public string script;
     public string failureScript;
-    public int resultIndex;
+    public int[] failureEffectIndexList;
+    public int[] failureEffectValueList;
+    public int eventIndex;
     public int duration;
     public string uiName;
     public string uiConditionScript;

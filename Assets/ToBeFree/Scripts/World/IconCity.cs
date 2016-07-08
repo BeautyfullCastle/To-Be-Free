@@ -13,7 +13,7 @@ namespace ToBeFree
         public UISprite questSprite;
 
         private City city;
-        
+
         // Use this for initialization
         void Awake()
         {
@@ -42,7 +42,7 @@ namespace ToBeFree
 
         private void PieceManager_AddPiece(Piece piece)
         {
-            if(piece.City.Name.ToString() != this.name)
+            if (piece.City.Name.ToString() != this.name)
             {
                 return;
             }

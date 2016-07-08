@@ -94,5 +94,22 @@ namespace ToBeFree
                 return list;
             }
         }
+
+        public QuestPiece Find(Quest quest)
+        {
+            foreach(Piece piece in list)
+            {
+                if(piece.SubjectType != eSubjectType.QUEST)
+                {
+                    continue;
+                }
+                QuestPiece questPiece = piece as QuestPiece;
+                if(questPiece.CurQuest == quest)
+                {
+                    return questPiece;
+                }
+            }
+            return null;
+        }
     }
 }

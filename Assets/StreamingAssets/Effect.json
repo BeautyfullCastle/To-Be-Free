@@ -334,19 +334,19 @@
 			"index": 55,
 			"subjectType": "EVENT",
 			"verbType": "LOAD",
-			"objectType": "NONE"
+			"objectType": "NULL"
 		},
 		{
 			"index": 56,
 			"subjectType": "ABNORMAL",
 			"verbType": "ADD",
-			"objectType": "NONE"
+			"objectType": "NULL"
 		},
 		{
 			"index": 57,
 			"subjectType": "ABNORMAL",
 			"verbType": "DEL",
-			"objectType": "NONE"
+			"objectType": "NULL"
 		},
 		{
 			"index": 58,
@@ -448,7 +448,13 @@
 			"index": 74,
 			"subjectType": "QUEST",
 			"verbType": "LOAD",
-			"objectType": "NONE"
+			"objectType": "NULL"
+		},
+		{
+			"index": 75,
+			"subjectType": "QUEST",
+			"verbType": "SUCCESS",
+			"objectType": "NULL"
 		}
 	]
 }

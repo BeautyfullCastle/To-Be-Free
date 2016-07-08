@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -21,11 +22,11 @@ namespace ToBeFree
             DiceTester.Instance.EndTestNotify += DeactivateEffectByStartTime;
         }
 
-        public Buff Add(Buff buff)
+        public IEnumerator Add(Buff buff)
         {
             if (buffList == null || buff == null)
             {
-                return null;
+                yield break;
             }
             Buff buffInList = buffList.Find(x => x == buff);
             if (buffInList == null)
@@ -33,8 +34,9 @@ namespace ToBeFree
                 buffList.Add(buff);
                 AddedBuff(buff);
                 Debug.Log(buff.Name + " is added to buff list.");
-                return buff;
             }
+
+            yield return null;
 
             // TODO : have to add this code to AbnormalCondition.
             //if (buffInList.IsStack)
@@ -43,25 +45,22 @@ namespace ToBeFree
             //    buff.Amount += buffInList.Amount;
             //    return buffInList;
             //}
-            //else
-            {
-                return null;
-            }
 
         }
 
-        public bool Delete(Buff buff, Character character)
+        public IEnumerator Delete(Buff buff, Character character)
         {
             if (buffList == null || buffList.Count == 0 || buff == null)
             {
-                return false;
+                yield break;
             }
 
             // delete item what has same buff.
             character.Inven.Delete(buff, character);
 
             DeletedBuff(buff);
-            return buffList.Remove(buff);
+
+            yield return null;
         }
 
         public void CheckStartTimeAndActivate(eStartTime startTime, Character character)
@@ -110,7 +109,7 @@ namespace ToBeFree
 
         private bool Rest_Cure_PatienceTest(Character character)
         {
-            Buff buff = buffList.Find(x => x.Duration == eDuration.PAT_TEST_REST);
+            Buff buff = buffList.Find(x => x.Duration == eDuration.REST_PATIENCE);
             if(buff == null)
             {
                 return false;

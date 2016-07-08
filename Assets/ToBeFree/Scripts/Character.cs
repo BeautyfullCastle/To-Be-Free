@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -24,6 +27,11 @@ namespace ToBeFree
             this.stat = stat;
             this.curCity = curCity;
             this.inven = inven;
+
+            CantCure = false;
+            CantMove = false;
+            IsFull = false;
+            IsDetention = false;
         }
         
         public int GetDiceNum(eTestStat stat)
@@ -51,21 +59,39 @@ namespace ToBeFree
             }
         }
 
+        public void Rest()
+        {
+            if(CantCure)
+            {
+                return;
+            }
+            Stat.HP++;
+            Stat.MENTAL++;
+        }
+
         public void Inspect()
         {
             EventManager.Instance.DoCommand(eEventAction.INSPECT, this);
         }
 
-        public bool MoveTo(City city)
+        public IEnumerator MoveTo(City city)
         {
             if (city == null)
-                return false;
-
+            {
+                yield break;
+            }
+            if(CantMove)
+            {
+                yield break;
+            }
             this.curCity = city;
             MoveCity(EnumConvert<eCity>.ToString(this.curCity.Name));
+
+            yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { GameManager.Instance.FindGameObject(city.Name.ToString()).transform }, 1f);
+
             Debug.Log("character is moved to " + this.curCity.Name);
 
-            return true;
+            yield return null;
         }
       
         public void PrintMovableCity()
@@ -119,6 +145,17 @@ namespace ToBeFree
             {
                 nextCity = value;
             }
+        }
+
+        public bool IsFull { get; internal set; }
+        public bool IsDetention { get; internal set; }
+        public bool CantCure { get; internal set; }
+        public bool CantMove { get; internal set; }
+
+        public IEnumerator HaulIn()
+        {
+            City city = CityManager.Instance.GetNearestCity(CurCity);
+            yield return MoveTo(city);
         }
     }
 }

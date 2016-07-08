@@ -27,6 +27,10 @@ namespace ToBeFree
             {
                 StatProbability statProb = new StatProbability(EnumConvert<eEventAction>.ToEnum(data.actionType), data.valueList);
 
+                if (list[data.index] != null)
+                {
+                    throw new Exception("Stat probability data.index " + data.index + " is duplicated.");
+                }
                 list[data.index] = statProb;
             }
         }

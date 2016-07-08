@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -26,6 +27,13 @@ namespace ToBeFree
         private int bargain;
         private int patience;
         private int luck;
+
+        private int prevStrength;
+        private int prevAgility;
+        private int prevObservation;
+        private int prevBargain;
+        private int prevPatience;
+        private int prevLuck;
 
         private int money;
         private int foodNum;
@@ -186,6 +194,7 @@ namespace ToBeFree
             }
         }
 
+        
         public int TotalHP
         {
             get
@@ -292,6 +301,85 @@ namespace ToBeFree
                 }
                 money = value;
                 OnValueChange(money, eStat.MONEY);
+            }
+        }
+
+        public void Set(eObjectType objectType, int amount)
+        {
+            switch (objectType)
+            {
+                case eObjectType.STRENGTH:
+                    prevStrength = Strength;
+                    Strength += amount;
+                    break;
+                case eObjectType.AGILITY:
+                    prevAgility = Agility;
+                    Agility += amount;
+                    break;
+                case eObjectType.OBSERVATION:
+                    prevObservation = Observation;
+                    Observation += amount;
+                    break;
+                case eObjectType.BARGAIN:
+                    prevBargain = Bargain;
+                    Bargain += amount;
+                    break;
+                case eObjectType.PATIENCE:
+                    Patience = prevPatience;
+                    Patience += amount;
+                    break;
+                case eObjectType.LUCK:
+                    Luck = prevLuck;
+                    Luck += amount;
+                    break;
+                case eObjectType.ALL:
+                    prevStrength     = Strength;
+                    prevAgility      = Agility;
+                    prevObservation  = Observation;
+                    prevBargain      = Bargain;
+                    prevPatience     = Patience;
+                    prevLuck         = Luck;
+
+                    Strength += amount;
+                    Agility += amount;
+                    Observation += amount;
+                    Bargain += amount;
+                    Patience += amount;
+                    Luck += amount;
+                    break;
+            }
+        }
+
+        public void Restore(eObjectType objectType)
+        {
+            switch(objectType)
+            {
+                case eObjectType.STRENGTH:
+                    Strength = prevStrength;
+                    break;
+                case eObjectType.AGILITY:
+                    Agility = prevAgility;
+                    break;
+                case eObjectType.OBSERVATION:
+                    Observation = prevObservation;
+                    break;
+                case eObjectType.BARGAIN:
+                    Bargain = prevBargain;
+                    break;
+                case eObjectType.PATIENCE:
+                    Patience = prevPatience;
+                    break;
+                case eObjectType.LUCK:
+                    Luck = prevLuck;
+                    break;
+                case eObjectType.ALL:
+                    Strength = prevStrength;
+                    Agility = prevAgility;
+                    Observation = prevObservation;
+                    Bargain = prevBargain;
+                    Patience = prevPatience;
+                    Luck = prevLuck;
+                    break;
             }
         }
     }

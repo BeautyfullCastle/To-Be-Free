@@ -44,6 +44,10 @@ namespace ToBeFree
 
                 Item item = new Item(data.name, buff, data.price);
 
+                if (list[data.index] != null)
+                {
+                    throw new Exception("Item data.index " + data.index + " is duplicated.");
+                }
                 list[data.index] = item;
             }
         }

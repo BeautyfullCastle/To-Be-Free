@@ -31,6 +31,10 @@ namespace ToBeFree
                                             EnumConvert<eVerbType>.ToEnum(data.verbType),
                                             EnumConvert<eObjectType>.ToEnum(data.objectType));
 
+                if (list[data.index] != null)
+                {
+                    throw new Exception("Effect data.index " + data.index + " is duplicated.");
+                }
                 list[data.index] = effect;
             }
         }

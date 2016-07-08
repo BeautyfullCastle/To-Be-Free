@@ -42,6 +42,10 @@ namespace ToBeFree
                                     EnumConvert<eArea>.ToEnum(data.area), itemList, data.workingMoneyRange[0], data.workingMoneyRange[1], 
                                     data.neighborList);
 
+                if (list[data.index] != null)
+                {
+                    throw new Exception("City data.index " + data.index + " is duplicated.");
+                }
                 list[data.index] = city;
             }
         }
@@ -116,7 +120,7 @@ namespace ToBeFree
 
         public void CalculateDistance(City curCity)
         {
-            // TO DO : have to rest every city's distance
+            // TO DO : have to reset every city's distance
             foreach (City city in list)
             {
                 city.Distance = 1000;
@@ -124,6 +128,11 @@ namespace ToBeFree
 
             curCity.Distance = 0;
             CalcDist(curCity, 0);
+        }
+
+        internal City GetNearestCity(City curCity)
+        {
+            throw new NotImplementedException();
         }
 
         private void CalcDist(City city, int dist)

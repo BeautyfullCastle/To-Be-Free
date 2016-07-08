@@ -55,6 +55,12 @@ namespace ToBeFree
                 {
                     Debug.LogError("EventManager : data.index is duplicated.");
                 }
+
+                if (list[data.index] != null)
+                {
+                    throw new Exception("Event data.index " + data.index + " is duplicated.");
+                }
+
                 list[data.index] = curEvent;
             }
         }
@@ -81,7 +87,6 @@ namespace ToBeFree
             string resultEffect = string.Empty;
             if (testResult == true)
             {
-
                 resultScript = result.Success.Script;
                 for (int i = 0; i < result.Success.EffectAmounts.Length; ++i)
                 {
@@ -121,7 +126,7 @@ namespace ToBeFree
             if (selectedEvent == null)
             {
                 Debug.LogError("selectedEvent is null");
-                yield break; ; 
+                yield break;
             }
             UIOpen();
             ActivateEvent(selectedEvent, character);
@@ -224,7 +229,7 @@ namespace ToBeFree
 
             UIChanged(eUIEventLabelType.EVENT, currQuest.Script);
 
-            TreatResult(currQuest.Result, testResult, character);
+            TreatResult(currQuest.Event_.Result, testResult, character);
         }
 
         public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)

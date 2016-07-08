@@ -19,8 +19,8 @@ namespace ToBeFree
         private readonly eTestStat stat;
         private readonly eDifficulty difficulty;
         private readonly string script;
-        private readonly string failureScript;
-        private readonly Result result;
+        private readonly ResultScriptAndEffects failureEffects;
+        private readonly Event event_;
         private readonly int duration;
         private readonly string uiName;
         private readonly string uiConditionScript;
@@ -28,7 +28,7 @@ namespace ToBeFree
 
         public Quest(eSubjectType subjectType, eObjectType objectType, string comparisonOperator,
             int compareAmount, eQuestActionType actionType, eRegion region, eTestStat stat, eDifficulty difficulty,
-            string script, string failureScript, Result result, int duration, string uiName, string uiConditionScript)
+            string script, ResultScriptAndEffects failureEffects, Event event_, int duration, string uiName, string uiConditionScript)
         {
             this.subjectType = subjectType;
             this.objectType = objectType;
@@ -40,20 +40,13 @@ namespace ToBeFree
             this.stat = stat;
             this.difficulty = difficulty;
             this.script = script;
-            this.failureScript = failureScript;
-            this.result = result;
+            this.failureEffects = failureEffects;
+            this.event_ = event_;
             this.duration = duration;
             this.uiName = uiName;
             this.uiConditionScript = uiConditionScript;
         }
         
-        public Result Result
-        {
-            get
-            {
-                return result;
-            }
-        }
 
         public int Duration
         {
@@ -87,9 +80,17 @@ namespace ToBeFree
             }
         }
 
+        public Event Event_
+        {
+            get
+            {
+                return event_;
+            }
+        }
+
         public void TreatPastQuest(Character character)
         {
-            QuestManager.Instance.ActivateResultEffects(result.Failure.EffectAmounts, character);
+            QuestManager.Instance.ActivateResultEffects(failureEffects.EffectAmounts, character);
         }
 
         public bool CheckCondition(Character character)

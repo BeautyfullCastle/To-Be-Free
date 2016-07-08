@@ -40,11 +40,24 @@ namespace ToBeFree
                                 EnumConvert<eStartTime>.ToEnum(data.startTime), EnumConvert<eDuration>.ToEnum(data.duration));
 
                 string[] splitedList = data.spawnCondition.Split(' ');
-                Condition spawnCondition = new Condition(EnumConvert<eSubjectType>.ToEnum(splitedList[0]), splitedList[1], int.Parse(splitedList[2]));
-                AbnormalCondition abnormalCondition = new AbnormalCondition(data.name, buff, spawnCondition, bool.Parse(data.isBody), bool.Parse(data.isPositive));
+                Condition spawnCondition = null;
+                if (splitedList.Length == 3)
+                {
+                    spawnCondition = new Condition(EnumConvert<eSubjectType>.ToEnum(splitedList[0]), splitedList[1], int.Parse(splitedList[2]));
+                }                
+                AbnormalCondition abnormalCondition = new AbnormalCondition(data.name, buff, spawnCondition, EnumConvert<eBodyMental>.ToEnum(data.isBody), EnumConvert<ePositiveNegative>.ToEnum(data.isPositive));
 
+                if (list[data.index] != null)
+                {
+                    throw new Exception("AbnormalCondition data.index " + data.index + " is duplicated.");
+                }
                 list[data.index] = abnormalCondition;
             }
+        }
+
+        public AbnormalCondition Find(string name)
+        {
+            return Array.Find(list, x => x.Name == name);
         }
     }
 }

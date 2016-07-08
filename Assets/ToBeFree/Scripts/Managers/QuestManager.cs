@@ -38,11 +38,28 @@ namespace ToBeFree
         {
             foreach (QuestData data in dataList)
             {
+                EffectAmount effect = null;
+                if (data.failureEffectIndexList[0] != -99) {
+                    effect = new EffectAmount(EffectManager.Instance.List[data.failureEffectIndexList[0]], data.failureEffectValueList[0]);
+                }
+                EffectAmount[] effects = new EffectAmount[] { effect };
+                ResultScriptAndEffects resultEffects = new ResultScriptAndEffects(data.failureScript, effects);
+
+                Event event_ = null;
+                if (data.eventIndex != -99)
+                {
+                    event_ = EventManager.Instance.List[data.eventIndex];
+                }
+
                 Quest quest = new Quest(EnumConvert<eSubjectType>.ToEnum(data.subjectType), EnumConvert<eObjectType>.ToEnum(data.objectType),
                     data.comparisonOperator, data.compareAmount, EnumConvert<eQuestActionType>.ToEnum(data.actionType), EnumConvert<eRegion>.ToEnum(data.region),
-                    EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, data.failureScript,
-                    ResultManager.Instance.List[data.resultIndex], data.duration, data.uiName, data.uiConditionScript);
+                    EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, 
+                    resultEffects, event_, data.duration, data.uiName, data.uiConditionScript);
 
+                if(list[data.index] != null)
+                {
+                    throw new Exception("Quest data.index " + data.index + " is duplicated.");
+                }
                 list[data.index] = quest;
             }
         }

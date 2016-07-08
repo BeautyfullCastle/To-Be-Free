@@ -46,8 +46,7 @@ namespace ToBeFree
             base.Activate(character);
 
             Debug.Log("Cure for Rest");
-            character.Stat.HP++;
-            character.Stat.MENTAL++;
+            character.Rest();
 
             yield return null;
 
@@ -154,6 +153,32 @@ namespace ToBeFree
             for (int i = 0; i < policesInThisCity.Count; ++i)
             {
                 yield return EventManager.Instance.DoCommand(eEventAction.INSPECT, character);
+            }
+        }
+    }
+
+    public class DetentionAction : Action
+    {
+        public DetentionAction()
+        {
+            startTime = eStartTime.DETENTION;
+            actionName = eEventAction.DETENTION;
+        }
+
+        public override IEnumerator Activate(Character character)
+        {
+            Debug.LogWarning("Detention action activated.");
+
+            BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+
+            bool testResult = DiceTester.Instance.Test(character.Stat.Agility, character);
+            if(testResult == true)
+            {
+                yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(character);
+            }
+            else
+            {
+                yield return character.HaulIn();
             }
         }
     }
