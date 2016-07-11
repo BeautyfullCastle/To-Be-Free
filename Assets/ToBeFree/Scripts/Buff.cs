@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,12 +34,14 @@ namespace ToBeFree
         {
         }
 
-        public void ActivateEffect(Character character)
+        public IEnumerator ActivateEffect(Character character)
         {
             Debug.Log("buff " + name + "'s effect activate");
             foreach (EffectAmount effectAmount in effectAmountList)
             {
-                effectAmount.Activate(character);
+                yield return EventManager.Instance.WaitUntilFinish();
+
+                yield return effectAmount.Activate(character);
             }
         }
 

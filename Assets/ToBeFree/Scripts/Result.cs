@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ToBeFree
@@ -81,14 +82,14 @@ namespace ToBeFree
             this.amount = amount;
         }
 
-        public void Activate(Character character)
+        public IEnumerator Activate(Character character)
         {
             if(effect==null)
             {
                 Debug.LogError("effect is null.");
-                return;
+                yield break;
             }
-            effect.Activate(character, amount);
+            yield return effect.Activate(character, amount);
         }
 
         public void Deactivate(Character character)

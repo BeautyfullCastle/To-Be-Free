@@ -10,10 +10,7 @@ namespace ToBeFree
         public UILabel city;
 
         private QuestPiece questPiece;
-
-        void Awake()
-        {
-        }
+        
 
         public void SetLabels(string questName, string duration, string condition, string city)
         {

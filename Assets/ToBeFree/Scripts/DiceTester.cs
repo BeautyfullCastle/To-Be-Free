@@ -7,10 +7,6 @@ namespace ToBeFree
     public class DiceTester : Singleton<DiceTester>
     {
         private int minSuccessNum;
-        
-        public delegate void TestEventHandler(eStartTime startTime, Character character);
-        public event TestEventHandler StartTestNotify;
-        public event TestEventHandler EndTestNotify;
 
         public DiceTester()
         {
@@ -19,9 +15,6 @@ namespace ToBeFree
 
         public bool Test(int diceNum, Character character)
         {
-            if(StartTestNotify != null)
-                StartTestNotify(eStartTime.TEST, character);
-
             int successDiceNum = 0;
             System.Random r = new System.Random();
             for (int i = 0; i < diceNum; ++i)
@@ -35,8 +28,7 @@ namespace ToBeFree
             }
             Debug.Log("Dice test succeed? " + successDiceNum);
 
-            if(EndTestNotify != null)
-                EndTestNotify(eStartTime.TEST, character);
+            
 
             if (successDiceNum > 0)
             {

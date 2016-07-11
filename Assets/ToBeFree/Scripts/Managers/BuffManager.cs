@@ -16,10 +16,7 @@ namespace ToBeFree
         public BuffManager()
         {
             buffList = new List<Buff>();
-            Rest.CureEventNotify += Rest_Cure_PatienceTest;
-
-            DiceTester.Instance.StartTestNotify += ActivateEffectByStartTime;
-            DiceTester.Instance.EndTestNotify += DeactivateEffectByStartTime;
+            
         }
 
         public IEnumerator Add(Buff buff)
@@ -63,7 +60,7 @@ namespace ToBeFree
             yield return null;
         }
 
-        public void CheckStartTimeAndActivate(eStartTime startTime, Character character)
+        public IEnumerator CheckStartTimeAndActivate(eStartTime startTime, Character character)
         {
             List<Buff> buffsToDelete = new List<Buff>();
 
@@ -71,7 +68,7 @@ namespace ToBeFree
             {
                 if (buff.StartTime == startTime)
                 {
-                    buff.ActivateEffect(character);
+                    yield return buff.ActivateEffect(character);
 
                     if (buff.Duration == eDuration.ONCE)
                     {
@@ -86,13 +83,15 @@ namespace ToBeFree
             }
         }
 
-        public void ActivateEffectByStartTime(eStartTime startTime, Character character)
+        public IEnumerator ActivateEffectByStartTime(eStartTime startTime, Character character)
         {
             prevStat = character.Stat.DeepCopy();
             foreach (Buff buff in buffList)
             {
-                if(buff.StartTime == startTime)
-                    buff.ActivateEffect(character);
+                if (buff.StartTime == startTime)
+                {
+                    yield return buff.ActivateEffect(character);
+                }
             }
         }
 
@@ -107,24 +106,26 @@ namespace ToBeFree
             character.Stat = prevStat.DeepCopy();
         }
 
-        private bool Rest_Cure_PatienceTest(Character character)
+        public IEnumerator Rest_Cure_PatienceTest(Character character)
         {
             Buff buff = buffList.Find(x => x.Duration == eDuration.REST_PATIENCE);
             if(buff == null)
             {
-                return false;
+                yield break;
             }
 
             int patienceStat = character.Stat.Patience;
+
+            yield return ActivateEffectByStartTime(eStartTime.TEST, character);
             bool isTestSucceed = DiceTester.Instance.Test(patienceStat, character);
-                                   
+            DeactivateEffectByStartTime(eStartTime.TEST, character);
+
             if (isTestSucceed)
             {
                 DeletedBuff(buff);
                 buffList.Remove(buff);
             }
-
-            return isTestSucceed;
+            
         }
 
         public bool Contains(Buff buff)

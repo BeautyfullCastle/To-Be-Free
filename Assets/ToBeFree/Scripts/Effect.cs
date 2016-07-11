@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ToBeFree
@@ -76,7 +77,8 @@ namespace ToBeFree
                 + " " + EnumConvert<eVerbType>.ToString(verbType)
                 + " " + EnumConvert<eObjectType>.ToString(ObjectType);
         }
-        public bool Activate(Character character, int amount)
+
+        public IEnumerator Activate(Character character, int amount)
         {
             switch (subjectType)
             {
@@ -101,7 +103,7 @@ namespace ToBeFree
                         {
                             if(amount > 0 && character.IsFull)
                             {
-                                return false;
+                                yield break;
                             }
                             character.Stat.FOOD += amount;
                         }
@@ -124,7 +126,7 @@ namespace ToBeFree
                     {
                         if (objectType == eObjectType.CLOSE)
                         {
-                            character.CurCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
+                            yield return character.MoveTo(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
                         }
                         // can't move after move event( in mongolia )
                         if (objectType == eObjectType.CANCEL)
@@ -136,7 +138,7 @@ namespace ToBeFree
                     {
                         if (objectType == eObjectType.DETENTION)
                         {
-                            AbnormalConditionManager.Instance.Find("Detention").DeActivate(character);
+                            yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(character);
                         }
                     }
                     
@@ -159,19 +161,19 @@ namespace ToBeFree
                         {
                             Piece piece = PieceManager.Instance.FindRand(subjectType);
 
-                            piece.MoveCity(CityManager.Instance.FindRand());
+                            yield return piece.MoveCity(CityManager.Instance.FindRand());
                         }
                         if (objectType == eObjectType.RAND_CLOSE)
                         {
                             Piece piece = PieceManager.Instance.FindRand(subjectType);
 
-                            piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
+                            yield return piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
                         }
                         if (objectType == eObjectType.FAR_CLOSE)
                         {
                             Piece piece = PieceManager.Instance.GetLast(subjectType);
 
-                            piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
+                            yield return piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
                         }
                         if (objectType == eObjectType.CLOSE_FAR)
                         {
@@ -179,7 +181,7 @@ namespace ToBeFree
 
                             System.Random r = new System.Random();
                             int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
-                            piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance));
+                            yield return piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance));
                         }
                     }
                     if (verbType == eVerbType.DEL)
@@ -242,7 +244,7 @@ namespace ToBeFree
                         {
                             throw new System.Exception("item is null");
                         }
-                        character.Inven.AddItem(item, character);
+                        yield return character.Inven.AddItem(item, character);
                     }
                     if (verbType == eVerbType.DEL)
                     {
@@ -268,7 +270,7 @@ namespace ToBeFree
                         if (item == null)
                         {
                             Debug.LogError("item is null");
-                            return false;
+                            yield break;
                         }
                         character.Inven.Delete(item, character);
                     }
@@ -351,7 +353,7 @@ namespace ToBeFree
                     }
                     if (verbType == eVerbType.LOAD)
                     {
-                        EventManager.Instance.ActivateEvent(EventManager.Instance.List[amount], character);
+                        yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[amount], character);
                     }
                     break;
                 case eSubjectType.QUEST:
@@ -361,8 +363,7 @@ namespace ToBeFree
                         int distance = 2;
                         City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
                         Quest selectedQuest = QuestManager.Instance.List[amount];
-                        QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
-                        PieceManager.Instance.Add(questPiece);
+                        yield return QuestManager.Instance.Load(selectedQuest, character);
                     }
                     if(verbType == eVerbType.SUCCESS)
                     {
@@ -376,7 +377,7 @@ namespace ToBeFree
                     if (verbType == eVerbType.ADD)
                     {
                         AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
-                        abnormalCondition.Activate(character);
+                        yield return abnormalCondition.Activate(character);
                     }
                     break;
                 case eSubjectType.ROOT:
@@ -390,7 +391,7 @@ namespace ToBeFree
                 default:
                     break;
             }
-            return false;
+            yield return null;
         }
 
         public void Deactivate(Character character)

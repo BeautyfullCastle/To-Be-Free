@@ -84,12 +84,12 @@ namespace ToBeFree
         
         public void OnClick(string index)
         {
-            if(selectList == null)
+            if(selectList == null || selectList[int.Parse(index)] == null)
             {
                 return;
             }
             ClearAll();
-            SelectManager.Instance.OnClick(selectList[int.Parse(index)]);
+            StartCoroutine(SelectManager.Instance.OnClick(selectList[int.Parse(index)]));
         }
 
         public void OnClickOK()

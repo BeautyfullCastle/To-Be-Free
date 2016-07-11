@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace ToBeFree
             InventoryRecords = new List<InventoryRecord>();
         }
 
-        public void AddItem(Item item, Character character)
+        public IEnumerator AddItem(Item item, Character character)
         {
             //InventoryRecord inventoryRecord =
             //       InventoryRecords.Find(x => (x.Item.Name == item.Name));
@@ -33,14 +34,14 @@ namespace ToBeFree
             if(character.Stat.Money < item.Price)
             {
                 NGUIDebug.Log("Shop : Money is not enough to buy.");
-                return;
+                yield break; 
             }
             character.Stat.Money -= item.Price;
 
             if(item.Buff.StartTime == eStartTime.NOW)
             {
-                item.Buff.ActivateEffect(character);
-                return;
+                yield return item.Buff.ActivateEffect(character);
+                yield break;
             }
 
             {
@@ -53,7 +54,7 @@ namespace ToBeFree
             }
 
             // add item's buff in buff list also.
-            BuffManager.Instance.Add(item.Buff);
+            yield return BuffManager.Instance.Add(item.Buff);
         }
 
         public bool Exist(Item item)
@@ -129,18 +130,18 @@ namespace ToBeFree
             this.maxSlots++;
         }
 
-        public void CheckItem(eStartTime startTime, Character character)
+        public IEnumerator CheckItem(eStartTime startTime, Character character)
         {
             List<InventoryRecord> records = InventoryRecords.FindAll(x => x.Item.Buff.StartTime == startTime);
             for (int i = 0; i < records.Count; ++i)
             {
-                UseItem(records[i].Item, character);
+                yield return UseItem(records[i].Item, character);
             }
         }
 
-        private void UseItem(Item item, Character character)
+        private IEnumerator UseItem(Item item, Character character)
         {
-            item.Buff.ActivateEffect(character);
+            yield return item.Buff.ActivateEffect(character);
             Delete(item, character);
         }
 

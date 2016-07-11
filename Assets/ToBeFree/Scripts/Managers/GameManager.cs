@@ -203,7 +203,7 @@ namespace ToBeFree
         {
             // Enter
             yield return (ShowStateLabel("Start Day State", 0.5f));
-
+            
             if (character.IsDetention)
             {
                 this.State = GameState.Detention;
@@ -267,10 +267,12 @@ namespace ToBeFree
             // Enter
             yield return (ShowStateLabel("Night State", 0.5f));
 
-            BuffManager.Instance.CheckStartTimeAndActivate(eStartTime.NIGHT, character);
+            yield return BuffManager.Instance.CheckStartTimeAndActivate(eStartTime.NIGHT, character);
+
+            yield return Instance_NotifyEveryday();
 
             TimeTable.Instance.DayIsGone();
-
+            
             while(state == GameState.Night)
             {
                 yield return null;
@@ -290,9 +292,9 @@ namespace ToBeFree
             StartCoroutine((IEnumerator)info.Invoke(this, null));
         }
 
-        private void Instance_NotifyEveryday()
+        private IEnumerator Instance_NotifyEveryday()
         {
-            character.Inven.CheckItem(eStartTime.NIGHT, character);
+            yield return character.Inven.CheckItem(eStartTime.NIGHT, character);
             if (character.Stat.FOOD <= 0)
             {
                 character.Stat.HP--;
@@ -336,20 +338,17 @@ namespace ToBeFree
             {
                 Debug.LogError("CityManager.Instance is null");
             }
-            City city = null;
+            
+            yield return QuestManager.Instance.Load(selectedQuest, character);
+
             if (selectedQuest.Event_ != null)
             {
-                city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
-                pieceCityTransformList.Add(GameObject.Find(city.Name.ToString()).transform);
+                QuestPiece piece = PieceManager.Instance.Find(selectedQuest);
+                pieceCityTransformList.Add(GameObject.Find(piece.City.Name.ToString()).transform);
             }
-            QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
-            uiEventManager.OpenUI();
-            uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);
-            yield return EventManager.Instance.WaitUntilFinish();
 
-            PieceManager.Instance.Add(questPiece);
-            
-            
+
+
             // 2 polices
             Police randPolice = new Police(CityManager.Instance.FindRand(), eSubjectType.POLICE);
             PieceManager.Instance.Add(randPolice);

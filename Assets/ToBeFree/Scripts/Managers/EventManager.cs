@@ -82,7 +82,7 @@ namespace ToBeFree
             return currEventTestResult;
         }
 
-        public void TreatResult(Result result, bool testResult, Character character)
+        public IEnumerator TreatResult(Result result, bool testResult, Character character)
         {
             string resultScript = string.Empty;
             string resultEffect = string.Empty;
@@ -96,7 +96,7 @@ namespace ToBeFree
                     {
                         continue;
                     }
-                    effectAmount.Activate(character);
+                    yield return effectAmount.Activate(character);
                     resultEffect += effectAmount.ToString() + "\n";
                 }
                 resultSuccessEffectAmountList = result.Success.EffectAmounts;
@@ -111,7 +111,7 @@ namespace ToBeFree
                     {
                         continue;
                     }
-                    effectAmount.Activate(character);
+                    yield return effectAmount.Activate(character);
                     resultEffect += effectAmount.ToString() + "\n";
                 }
             }
@@ -121,7 +121,7 @@ namespace ToBeFree
     
         public IEnumerator DoCommand(eEventAction actionType, Character character)
         {
-            yield return StartCoroutine(GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 0.5f));
+            yield return GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 0.5f);
 
             selectedEvent = Find(actionType, character.CurCity);
             if (selectedEvent == null)
@@ -129,11 +129,9 @@ namespace ToBeFree
                 Debug.LogError("selectedEvent is null");
                 yield break;
             }
-            GameManager.Instance.OpenEventUI();
-            ActivateEvent(selectedEvent, character);
 
-            yield return StartCoroutine(WaitUntilFinish());
-
+            yield return ActivateEvent(selectedEvent, character);
+           
             Debug.Log("DoCommand Finished.");
         }
 
@@ -199,8 +197,10 @@ namespace ToBeFree
             return statEvents[randVal];
         }
 
-        public void ActivateEvent(Event currEvent, Character character)
+        public IEnumerator ActivateEvent(Event currEvent, Character character)
         {
+            GameManager.Instance.OpenEventUI();
+
             Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.TestStat + " is activated.");
 
             UIChanged(eUIEventLabelType.EVENT, currEvent.Script);
@@ -219,18 +219,14 @@ namespace ToBeFree
             // deal with result
             else
             {
+                yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
                 bool testResult = CalculateTestResult(currEvent.Result.TestStat, character);
-                TreatResult(currEvent.Result, testResult, character);
+                BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+                yield return TreatResult(currEvent.Result, testResult, character);
             }
-        }
 
-        public void ActivateQuest(Quest currQuest, bool testResult, Character character)
-        {
-            GameManager.Instance.OpenEventUI();
-
-            UIChanged(eUIEventLabelType.EVENT, currQuest.Script);
-
-            TreatResult(currQuest.Event_.Result, testResult, character);
+            yield return WaitUntilFinish();
         }
 
         public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)

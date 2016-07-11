@@ -212,7 +212,7 @@
 		},
 		{
 			"index": 15,
-			"name": "LUCK-",
+			"name": "DecreaseLuck",
 			"spawnCondition": "EVENT",
 			"effectIndex": 32,
 			"amount": -1,
@@ -226,7 +226,7 @@
 		},
 		{
 			"index": 16,
-			"name": "ALL-",
+			"name": "DecreaseAllStat",
 			"spawnCondition": "EVENT",
 			"effectIndex": 33,
 			"amount": -1,

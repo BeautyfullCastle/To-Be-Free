@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -31,9 +32,10 @@ namespace ToBeFree
             }
         }
 
-        public void MoveCity(City city)
+        public IEnumerator MoveCity(City city)
         {
             this.city = city;
+            yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { GameManager.Instance.FindGameObject(city.Name.ToString()).transform }, 1f);
         }
 
         public virtual bool CheckDuration()

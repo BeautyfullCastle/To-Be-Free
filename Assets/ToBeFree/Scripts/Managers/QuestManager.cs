@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,13 +74,29 @@ namespace ToBeFree
             EventManager.Instance.ActivateResultEffects(effectAmounts, character);
         }
 
-        public void ActivateQuest(Quest quest, bool testResult, Character character)
+        public IEnumerator ActivateQuest(Quest quest, bool testResult, Character character)
         {
-            EventManager.Instance.ActivateEvent(quest.Event_, character);
+            yield return EventManager.Instance.ActivateEvent(quest.Event_, character);
             if(EventManager.Instance.CurrEventTestResult)
             {
                 GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
             }
+        }
+
+        public IEnumerator Load(Quest selectedQuest, Character character)
+        {
+            City city = null;
+            int distance = 2;
+            if (selectedQuest.Event_ != null)
+            {
+                city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
+            }
+            QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
+            GameManager.Instance.uiEventManager.OpenUI();
+            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);
+            yield return EventManager.Instance.WaitUntilFinish();
+
+            PieceManager.Instance.Add(questPiece);
         }
     }
 }

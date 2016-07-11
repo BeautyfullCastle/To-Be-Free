@@ -16,7 +16,6 @@ namespace ToBeFree
         {
             BuffManager.AddedBuff += AddBuff;
             BuffManager.DeletedBuff += DeleteBuff;
-            
         }
 
         void Update()

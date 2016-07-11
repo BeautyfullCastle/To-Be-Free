@@ -22,7 +22,7 @@ namespace ToBeFree
             if(ActionEventNotify != null)
                 ActionEventNotify(startTime, character);
             
-            BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+            yield return BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
             yield return null;
         }
@@ -30,8 +30,6 @@ namespace ToBeFree
 
     public class Rest : Action
     {
-        public delegate bool CureEventHandler(Character character);
-        static public event CureEventHandler CureEventNotify;
 
         public Rest()
         {
@@ -48,9 +46,7 @@ namespace ToBeFree
             Debug.Log("Cure for Rest");
             character.Rest();
 
-            yield return null;
-
-            CureEventNotify(character);
+            yield return BuffManager.Instance.Rest_Cure_PatienceTest(character);
         }
     }
 
@@ -115,8 +111,8 @@ namespace ToBeFree
         public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Quest action Activated.");
-            
-            BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+
+            yield return BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
             List<Piece> quests = PieceManager.Instance.FindAll(eSubjectType.QUEST);
             QuestPiece questPiece = quests.Find(x => x.City == character.CurCity) as QuestPiece;
@@ -124,7 +120,7 @@ namespace ToBeFree
             Quest quest = questPiece.CurQuest;
             if (quest.CheckCondition(character))
             {
-                QuestManager.Instance.ActivateQuest(quest, true, character);
+                yield return QuestManager.Instance.ActivateQuest(quest, true, character);
                 PieceManager.Instance.Delete(questPiece);
             }
 
@@ -146,7 +142,7 @@ namespace ToBeFree
         {
             Debug.LogWarning("Inpect action activated.");
             
-            BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+            yield return BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
 
             List<Piece> policesInThisCity = PieceManager.Instance.FindAll(eSubjectType.POLICE).FindAll(x=>x.City == character.CurCity);
             Debug.LogWarning("policesInThisCity.Count : " + policesInThisCity.Count);
@@ -169,9 +165,15 @@ namespace ToBeFree
         {
             Debug.LogWarning("Detention action activated.");
 
-            BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
-
+            yield return BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+            GameManager.Instance.uiEventManager.OpenUI();
+            yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
             bool testResult = DiceTester.Instance.Test(character.Stat.Agility, character);
+            BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
+
+            yield return EventManager.Instance.WaitUntilFinish();
+
             if(testResult == true)
             {
                 yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(character);
