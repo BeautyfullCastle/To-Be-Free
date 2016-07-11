@@ -29,6 +29,8 @@ namespace ToBeFree
         private bool isFinish;
         private Event selectedEvent;
 
+        private bool currEventTestResult;
+
         public void Awake()
         {
             file = Application.streamingAssetsPath + "/Event.json";
@@ -67,18 +69,17 @@ namespace ToBeFree
 
         public bool CalculateTestResult(eTestStat testStat, Character character)
         {
-            bool testResult;
             if (testStat == eTestStat.ALL || testStat == eTestStat.NULL)
             {
-                testResult = true;
-                UIChanged(eUIEventLabelType.DICENUM, testResult.ToString());
+                currEventTestResult = true;
+                UIChanged(eUIEventLabelType.DICENUM, currEventTestResult.ToString());
             }
             else
             {
-                testResult = DiceTester.Instance.Test(character.GetDiceNum(testStat), character);
-                UIChanged(eUIEventLabelType.DICENUM, testResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
+                currEventTestResult = DiceTester.Instance.Test(character.GetDiceNum(testStat), character);
+                UIChanged(eUIEventLabelType.DICENUM, currEventTestResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
             }
-            return testResult;
+            return currEventTestResult;
         }
 
         public void TreatResult(Result result, bool testResult, Character character)
@@ -120,7 +121,7 @@ namespace ToBeFree
     
         public IEnumerator DoCommand(eEventAction actionType, Character character)
         {
-            yield return StartCoroutine(GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 1f));
+            yield return StartCoroutine(GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 0.5f));
 
             selectedEvent = Find(actionType, character.CurCity);
             if (selectedEvent == null)
@@ -128,7 +129,7 @@ namespace ToBeFree
                 Debug.LogError("selectedEvent is null");
                 yield break;
             }
-            UIOpen();
+            GameManager.Instance.OpenEventUI();
             ActivateEvent(selectedEvent, character);
 
             yield return StartCoroutine(WaitUntilFinish());
@@ -225,7 +226,7 @@ namespace ToBeFree
 
         public void ActivateQuest(Quest currQuest, bool testResult, Character character)
         {
-            UIOpen();
+            GameManager.Instance.OpenEventUI();
 
             UIChanged(eUIEventLabelType.EVENT, currQuest.Script);
 
@@ -424,6 +425,14 @@ namespace ToBeFree
             set
             {
                 isFinish = value;
+            }
+        }
+
+        public bool CurrEventTestResult
+        {
+            get
+            {
+                return currEventTestResult;
             }
         }
     }

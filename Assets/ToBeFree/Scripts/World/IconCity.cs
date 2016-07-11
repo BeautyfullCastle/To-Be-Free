@@ -33,6 +33,10 @@ namespace ToBeFree
 
         private void PieceManager_DeletePiece(Piece piece)
         {
+            if (piece.City == null)
+            {
+                return;
+            }
             if (piece.City.Name.ToString() != this.name)
             {
                 return;
@@ -42,6 +46,10 @@ namespace ToBeFree
 
         private void PieceManager_AddPiece(Piece piece)
         {
+            if(piece.City == null)
+            {
+                return;
+            }
             if (piece.City.Name.ToString() != this.name)
             {
                 return;

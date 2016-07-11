@@ -88,6 +88,14 @@ namespace ToBeFree
             }
         }
 
+        public ResultScriptAndEffects FailureEffects
+        {
+            get
+            {
+                return failureEffects;
+            }
+        }
+
         public void TreatPastQuest(Character character)
         {
             QuestManager.Instance.ActivateResultEffects(failureEffects.EffectAmounts, character);

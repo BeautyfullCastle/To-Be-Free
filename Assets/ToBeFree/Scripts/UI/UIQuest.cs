@@ -6,7 +6,7 @@ namespace ToBeFree
     {
         public UILabel questName;
         public UILabel duration;
-        public UILabel successEffect;
+        public UILabel condition;
         public UILabel city;
 
         private QuestPiece questPiece;
@@ -15,11 +15,11 @@ namespace ToBeFree
         {
         }
 
-        public void SetLabels(string questName, string duration, string successEffect, string city)
+        public void SetLabels(string questName, string duration, string condition, string city)
         {
             this.questName.text = questName;
             this.duration.text = duration;
-            this.successEffect.text = successEffect;
+            this.condition.text = condition;
             this.city.text = city;
         }
         

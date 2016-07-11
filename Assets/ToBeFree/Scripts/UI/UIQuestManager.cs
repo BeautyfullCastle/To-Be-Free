@@ -14,7 +14,6 @@ namespace ToBeFree
         {
             QuestPiece.AddQuest += AddQuest;
             TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
-            QuestManager.DeleteQuest += DeleteQuest;
         }
 
         private void Instance_NotifyEveryWeek()
@@ -44,8 +43,13 @@ namespace ToBeFree
             GameObject questObj = NGUITools.AddChild(grid.gameObject, QuestPref);
             UIQuest uiQuest = questObj.GetComponent<UIQuest>();
             uiQuest.QuestPiece = questPiece;
+            string cityName = string.Empty;
+            if(questPiece.City != null)
+            {
+                cityName = EnumConvert<eCity>.ToString(questPiece.City.Name);
+            }
             uiQuest.SetLabels(questPiece.CurQuest.UiName, questPiece.PastWeeks.ToString() + "/" + questPiece.CurQuest.Duration.ToString(),
-                questPiece.CurQuest.UiConditionScript, EnumConvert<eCity>.ToString(questPiece.City.Name));
+                questPiece.CurQuest.UiConditionScript, cityName);
 
             uiQuests.Add(uiQuest);
             grid.Reposition();
@@ -60,7 +64,6 @@ namespace ToBeFree
         private void DeleteUIQuest(UIQuest uiQuest)
         {
             uiQuests.Remove(uiQuest);
-            uiQuest.QuestPiece.Disapper();
             DestroyImmediate(uiQuest.gameObject);
         }
     }

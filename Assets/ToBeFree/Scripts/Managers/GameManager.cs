@@ -20,6 +20,7 @@ namespace ToBeFree
         public Camera worldCam;
         public GameObject commandUIObj;
         public GameObject shopUIObj;
+        public UIEventManager uiEventManager;
 
         private Character character;
         private Action action;
@@ -107,6 +108,11 @@ namespace ToBeFree
             return GameObject.Find(name);
         }
 
+        //public T FindObjectOfType<T>(this UnityEngine.Object unityObject) where T : UnityEngine.Object
+        //{
+        //    return UnityEngine.Object.FindObjectOfType(typeof(T)) as T;
+        //}
+
         private void Awake()
         {
             this.State = GameState.Init;
@@ -137,7 +143,7 @@ namespace ToBeFree
         IEnumerator InitState()
         {
             // Enter
-            yield return (ShowStateLabel("Init State", 1f));
+            yield return (ShowStateLabel("Init State", 0.5f));
 
             Inventory inven = new Inventory(3);
             character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.YANBIAN), 5, 3, 0, 5, 5, inven);
@@ -146,7 +152,7 @@ namespace ToBeFree
 
             inspectAction = new Inspect();
 
-            yield return (ShowStateLabel("Adding Polices to Big cities.", 1f));
+            yield return (ShowStateLabel("Adding Polices to Big cities.", 0.5f));
 
             // add polices in big cities.
             List<City> bigCityList = CityManager.Instance.FindCitiesBySize(eCitySize.BIG);
@@ -158,7 +164,7 @@ namespace ToBeFree
                 NGUIDebug.Log("Add Big city : " + city.Name.ToString());
             }
 
-            yield return (MoveDirectingCam(bigCityTransformList, 1f));
+            yield return (MoveDirectingCam(bigCityTransformList, 0.5f));
             
 
             yield return null;
@@ -177,7 +183,7 @@ namespace ToBeFree
         IEnumerator StartWeekState()
         {
             // Enter
-            yield return (ShowStateLabel("Start Week State", 1f));
+            yield return (ShowStateLabel("Start Week State", 0.5f));
             
 
             yield return (Instance_NotifyEveryWeek());
@@ -196,7 +202,7 @@ namespace ToBeFree
         IEnumerator StartDayState()
         {
             // Enter
-            yield return (ShowStateLabel("Start Day State", 1f));
+            yield return (ShowStateLabel("Start Day State", 0.5f));
 
             if (character.IsDetention)
             {
@@ -214,7 +220,7 @@ namespace ToBeFree
         IEnumerator ActState()
         {
             // Enter
-            yield return (ShowStateLabel("Act State", 1f));
+            yield return (ShowStateLabel("Act State", 0.5f));
             commandUIObj.SetActive(true);
 
             action = null;
@@ -245,7 +251,7 @@ namespace ToBeFree
         IEnumerator DetentionState()
         {
             // Enter
-            yield return (ShowStateLabel("Detention State", 1f));
+            yield return (ShowStateLabel("Detention State", 0.5f));
 
             action = new DetentionAction();
             yield return action.Activate(character);
@@ -259,7 +265,7 @@ namespace ToBeFree
         IEnumerator NightState()
         {
             // Enter
-            yield return (ShowStateLabel("Night State", 1f));
+            yield return (ShowStateLabel("Night State", 0.5f));
 
             BuffManager.Instance.CheckStartTimeAndActivate(eStartTime.NIGHT, character);
 
@@ -306,20 +312,20 @@ namespace ToBeFree
                 List<Piece> pastQuestPieces = questPieces.FindAll(x => x.CheckDuration());
                 foreach (QuestPiece pastQuestPiece in pastQuestPieces)
                 {
-                    pastQuestPiece.TreatPastQuests(character);
+                    yield return pastQuestPiece.TreatPastQuests(character);
                 }
             }
 
-            yield return StartCoroutine(PutPieces());
+            yield return PutPieces();
                      
             // activate global event
-            yield return StartCoroutine(EventManager.Instance.DoCommand(eEventAction.GLOBAL, character));
+            yield return EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
 
         }
 
         private IEnumerator PutPieces()
         {
-            yield return StartCoroutine(ShowStateLabel("Put Pieces", 1f));
+            yield return ShowStateLabel("Put Pieces", 0.5f);
 
             // put pieces in one of random cities (police, information, quest)
             int distance = 2;
@@ -330,10 +336,20 @@ namespace ToBeFree
             {
                 Debug.LogError("CityManager.Instance is null");
             }
-            City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
+            City city = null;
+            if (selectedQuest.Event_ != null)
+            {
+                city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
+                pieceCityTransformList.Add(GameObject.Find(city.Name.ToString()).transform);
+            }
             QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
+            uiEventManager.OpenUI();
+            uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);
+            yield return EventManager.Instance.WaitUntilFinish();
+
             PieceManager.Instance.Add(questPiece);
-            pieceCityTransformList.Add(GameObject.Find(questPiece.City.Name.ToString()).transform);
+            
+            
             // 2 polices
             Police randPolice = new Police(CityManager.Instance.FindRand(), eSubjectType.POLICE);
             PieceManager.Instance.Add(randPolice);
@@ -351,7 +367,7 @@ namespace ToBeFree
             pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name.ToString()).transform);
 
 
-            yield return StartCoroutine(MoveDirectingCam(pieceCityTransformList, 1f));
+            yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
         }
 
         public IEnumerator ShowStateLabel(string text, float duration)
@@ -391,6 +407,11 @@ namespace ToBeFree
             }
             directingCam.enabled = false;
             worldCam.orthographicSize = prevWorldCamSize;
+        }
+
+        public void OpenEventUI()
+        {
+            uiEventManager.OpenUI();
         }
 
         public Character Character

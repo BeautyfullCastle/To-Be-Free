@@ -9,10 +9,7 @@ namespace ToBeFree
         private readonly Quest[] list;
         private readonly QuestData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/Quest.json";
-
-        public delegate void DeleteQuestHandler(Quest quest);
-        public static DeleteQuestHandler DeleteQuest;
-
+        
         public Quest[] List
         {
             get
@@ -38,12 +35,12 @@ namespace ToBeFree
         {
             foreach (QuestData data in dataList)
             {
-                EffectAmount effect = null;
+                EffectAmount failureEffect = null;
                 if (data.failureEffectIndexList[0] != -99) {
-                    effect = new EffectAmount(EffectManager.Instance.List[data.failureEffectIndexList[0]], data.failureEffectValueList[0]);
+                    failureEffect = new EffectAmount(EffectManager.Instance.List[data.failureEffectIndexList[0]], data.failureEffectValueList[0]);
                 }
-                EffectAmount[] effects = new EffectAmount[] { effect };
-                ResultScriptAndEffects resultEffects = new ResultScriptAndEffects(data.failureScript, effects);
+                EffectAmount[] failureEffects = new EffectAmount[] { failureEffect };
+                ResultScriptAndEffects failureResultEffects = new ResultScriptAndEffects(data.failureScript, failureEffects);
 
                 Event event_ = null;
                 if (data.eventIndex != -99)
@@ -54,7 +51,7 @@ namespace ToBeFree
                 Quest quest = new Quest(EnumConvert<eSubjectType>.ToEnum(data.subjectType), EnumConvert<eObjectType>.ToEnum(data.objectType),
                     data.comparisonOperator, data.compareAmount, EnumConvert<eQuestActionType>.ToEnum(data.actionType), EnumConvert<eRegion>.ToEnum(data.region),
                     EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, 
-                    resultEffects, event_, data.duration, data.uiName, data.uiConditionScript);
+                    failureResultEffects, event_, data.duration, data.uiName, data.uiConditionScript);
 
                 if(list[data.index] != null)
                 {
@@ -78,8 +75,11 @@ namespace ToBeFree
 
         public void ActivateQuest(Quest quest, bool testResult, Character character)
         {
-            EventManager.Instance.ActivateQuest(quest, testResult, character);
-            DeleteQuest(quest);
+            EventManager.Instance.ActivateEvent(quest.Event_, character);
+            if(EventManager.Instance.CurrEventTestResult)
+            {
+                GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
+            }
         }
     }
 }

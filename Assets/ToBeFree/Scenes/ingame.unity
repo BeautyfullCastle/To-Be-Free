@@ -737,6 +737,7 @@ MonoBehaviour:
   worldCam: {fileID: 1588055019}
   commandUIObj: {fileID: 174152928}
   shopUIObj: {fileID: 1800058809}
+  uiEventManager: {fileID: 406557159}
 --- !u!4 &125925665
 Transform:
   m_ObjectHideFlags: 0

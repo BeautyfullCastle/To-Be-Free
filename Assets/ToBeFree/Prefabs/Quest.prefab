@@ -77,7 +77,7 @@ GameObject:
   - 4: {fileID: 466452}
   - 114: {fileID: 11487484}
   m_Layer: 5
-  m_Name: SuccessEffect
+  m_Name: Condition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questName: {fileID: 11429710}
   duration: {fileID: 11415324}
-  successEffect: {fileID: 11487484}
+  condition: {fileID: 11487484}
   city: {fileID: 11459038}
 --- !u!114 &11487484
 MonoBehaviour:

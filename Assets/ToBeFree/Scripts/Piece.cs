@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ToBeFree
@@ -82,20 +83,32 @@ namespace ToBeFree
             AddQuest(this);
         }
 
-        public void Disapper()
-        {
-            Debug.Log("Quest Disappered.");
-            QuestManager.Instance.ActivateResultEffects(this.quest.Event_.Result.Failure.EffectAmounts, this.character);
-        }
-
         public void WeekIsGone()
         {
             pastWeeks++;
         }
 
-        public void TreatPastQuests(Character character)
+        public IEnumerator TreatPastQuests(Character character)
         {
-            
+            if(CheckDuration())
+            {
+                GameManager.Instance.OpenEventUI();
+
+                GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT, CurQuest.FailureEffects.Script);
+
+                string effectScript = string.Empty;
+                foreach(EffectAmount effectAmount in CurQuest.FailureEffects.EffectAmounts)
+                {
+                    effectScript += effectAmount.ToString();
+                }
+                GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT_EFFECT, effectScript);
+
+                yield return EventManager.Instance.WaitUntilFinish();
+
+                GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(this.CurQuest);
+
+                yield return null;
+            }
         }
 
         public override bool CheckDuration()

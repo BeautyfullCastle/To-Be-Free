@@ -366,10 +366,10 @@ namespace ToBeFree
                     }
                     if(verbType == eVerbType.SUCCESS)
                     {
-                        Quest quest = QuestManager.Instance.List[amount];
-                        QuestPiece piece = PieceManager.Instance.Find(quest);
-                        QuestManager.Instance.ActivateResultEffects(quest.Event_.Result.Success.EffectAmounts, character);
-                        PieceManager.Instance.Delete(piece);
+                        //Quest quest = QuestManager.Instance.List[amount];
+                        //QuestPiece piece = PieceManager.Instance.Find(quest);
+                        //QuestManager.Instance.ActivateResultEffects(quest.Event_.Result.Success.EffectAmounts, character);
+                        //PieceManager.Instance.Delete(piece);
                     }
                     break;
                 case eSubjectType.ABNORMAL:

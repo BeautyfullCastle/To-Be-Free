@@ -39,7 +39,7 @@ namespace ToBeFree
             gameObject.SetActive(false);
         }
 
-        private void OpenUI()
+        public void OpenUI()
         {
             gameObject.SetActive(true);
             ClearAll();
@@ -84,6 +84,10 @@ namespace ToBeFree
         
         public void OnClick(string index)
         {
+            if(selectList == null)
+            {
+                return;
+            }
             ClearAll();
             SelectManager.Instance.OnClick(selectList[int.Parse(index)]);
         }

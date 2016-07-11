@@ -106,7 +106,7 @@
 			"amount": 1,
 			"isRestore": "true",
 			"stack": "false",
-			"startTime": "EAT",
+			"startTime": "TEST",
 			"duration": "DAY",
 			"script": "하룻동안 주사위테스트 시 4부터 성공으로 취급한다.",
 			"isBody": "MENTAL",

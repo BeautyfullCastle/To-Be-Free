@@ -99,7 +99,7 @@ namespace ToBeFree
             base.Activate(character);
             yield return (EventManager.Instance.DoCommand(actionName, character));
 
-            character.MoveTo(character.NextCity);
+            yield return character.MoveTo(character.NextCity);
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
         }
     }
