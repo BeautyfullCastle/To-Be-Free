@@ -23,7 +23,7 @@ namespace ToBeFree
             grid.Reposition();
         }
 
-        private void AddBuff(Buff buff)
+        public void AddBuff(Buff buff)
         {
             GameObject gObjItem = NGUITools.AddChild(grid.gameObject, objSampleItem);
             // 이제 이름과 아이콘을 세팅할께요.
@@ -38,7 +38,7 @@ namespace ToBeFree
             buffs.Add(uiBuff);
         }
 
-        private void DeleteBuff(Buff buff)
+        public void DeleteBuff(Buff buff)
         {
             UIBuff uiBuff = buffs.Find(x => x.buffName.text == buff.Name);
             if(uiBuff == null)

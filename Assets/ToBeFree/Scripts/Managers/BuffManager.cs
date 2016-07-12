@@ -10,13 +10,27 @@ namespace ToBeFree
         private Stat prevStat;
 
         public delegate void UpdateListHandler(Buff buff);
-        static public event UpdateListHandler AddedBuff = delegate { };
-        static public event UpdateListHandler DeletedBuff = delegate { };
+        static public event UpdateListHandler AddedBuff;
+        static public event UpdateListHandler DeletedBuff;
 
         public BuffManager()
         {
             buffList = new List<Buff>();
-            
+
+            TimeTable.Instance.NotifyEveryday += Instance_NotifyEveryday;
+        }
+
+        private void Instance_NotifyEveryday()
+        {
+            foreach(Buff buff in buffList)
+            {
+                buff.AliveDays++;
+            }
+        }
+
+        public bool Exist(Buff buff)
+        {
+            return buffList.Exists(x => x == buff);
         }
 
         public IEnumerator Add(Buff buff)
@@ -25,23 +39,12 @@ namespace ToBeFree
             {
                 yield break;
             }
-            Buff buffInList = buffList.Find(x => x == buff);
-            if (buffInList == null)
-            {
-                buffList.Add(buff);
-                AddedBuff(buff);
-                Debug.Log(buff.Name + " is added to buff list.");
-            }
+            buffList.Add(buff);
+            //AddedBuff(buff);
+            GameManager.Instance.FindGameObject("BuffManager").GetComponent<UIBuffManager>().AddBuff(buff);
+            Debug.Log(buff.Name + " is added to buff list.");
 
             yield return null;
-
-            // TODO : have to add this code to AbnormalCondition.
-            //if (buffInList.IsStack)
-            //{
-            //    buff.Stack++;
-            //    buff.Amount += buffInList.Amount;
-            //    return buffInList;
-            //}
 
         }
 
@@ -51,41 +54,16 @@ namespace ToBeFree
             {
                 yield break;
             }
-
-            // delete item what has same buff.
-            character.Inven.Delete(buff, character);
-
+            
             DeletedBuff(buff);
 
             yield return null;
         }
-
-        public IEnumerator CheckStartTimeAndActivate(eStartTime startTime, Character character)
-        {
-            List<Buff> buffsToDelete = new List<Buff>();
-
-            foreach (Buff buff in buffList)
-            {
-                if (buff.StartTime == startTime)
-                {
-                    yield return buff.ActivateEffect(character);
-
-                    if (buff.Duration == eDuration.ONCE)
-                    {
-                        buffsToDelete.Add(buff);
-                    }
-                }
-            }
-
-            foreach(Buff buff in buffsToDelete)
-            {
-                this.Delete(buff, character);
-            }
-        }
-
+        
         public IEnumerator ActivateEffectByStartTime(eStartTime startTime, Character character)
         {
-            prevStat = character.Stat.DeepCopy();
+            yield return GameManager.Instance.ShowStateLabel("Activate Effect : " + startTime.ToString(), 0.5f);
+            
             foreach (Buff buff in buffList)
             {
                 if (buff.StartTime == startTime)
@@ -95,15 +73,37 @@ namespace ToBeFree
             }
         }
 
-        public void DeactivateEffectByStartTime(eStartTime startTime, Character character)
+        public IEnumerator DeactivateEffectByStartTime(eStartTime startTime, Character character)
         {
+            yield return GameManager.Instance.ShowStateLabel("DeActivate Effect : " + startTime.ToString(), 0.5f);
+
             foreach (Buff buff in buffList)
             {
                 if (buff.StartTime == startTime)
-                    buff.DeactivateEffect(character);
+                {
+                    yield return buff.DeactivateEffect(character);
+                }
             }
-            // restore character's stat
-            character.Stat = prevStat.DeepCopy();
+        }
+
+        public IEnumerator CheckDuration(Character character)
+        {
+            yield return GameManager.Instance.ShowStateLabel("Check Buff's duration", 0.5f);
+
+            List<Buff> buffsToDelete = new List<Buff>();
+            foreach (Buff buff in buffList)
+            {
+                if (buff.CheckDuration())
+                {
+                    buffsToDelete.Add(buff);
+                }
+            }
+
+            foreach (Buff buff in buffsToDelete)
+            {
+                yield return this.Delete(buff, character);
+            }
+            yield return null;
         }
 
         public IEnumerator Rest_Cure_PatienceTest(Character character)
@@ -116,9 +116,16 @@ namespace ToBeFree
 
             int patienceStat = character.Stat.Patience;
 
+            GameManager.Instance.uiEventManager.OpenUI();
+
             yield return ActivateEffectByStartTime(eStartTime.TEST, character);
             bool isTestSucceed = DiceTester.Instance.Test(patienceStat, character);
-            DeactivateEffectByStartTime(eStartTime.TEST, character);
+            yield return DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Rest Cure Patience Test");
+            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, isTestSucceed.ToString());
+
+            yield return EventManager.Instance.WaitUntilFinish();
 
             if (isTestSucceed)
             {

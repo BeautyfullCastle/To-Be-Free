@@ -221,7 +221,7 @@ namespace ToBeFree
             {
                 yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
                 bool testResult = CalculateTestResult(currEvent.Result.TestStat, character);
-                BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+                yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
                 yield return TreatResult(currEvent.Result, testResult, character);
             }

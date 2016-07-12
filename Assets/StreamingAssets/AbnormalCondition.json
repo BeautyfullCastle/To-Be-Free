@@ -9,7 +9,7 @@
 			"isRestore": "true",
 			"stack": "false",
 			"startTime": "TEST",
-			"duration": "NULL",
+			"duration": "REST_PATIENCE",
 			"script": "주사위테스트 시 6만 성공으로 취급합니다.\\n휴식 시 인내력 테스트 성공 또는 상쾌함상태를 받았을 때 이 상태를 없앱니다.",
 			"isBody": "MENTAL",
 			"isPositive": "NEGATIVE"
@@ -23,7 +23,7 @@
 			"isRestore": "true",
 			"stack": "true",
 			"startTime": "MOVE",
-			"duration": "NULL",
+			"duration": "REST_PATIENCE",
 			"script": "이동 이벤트 주사위테스트 시 주사위 -\\n휴식 시 인내력 테스트 성공하면 이 상태를 없앱니다.",
 			"isBody": "BODY",
 			"isPositive": "NEGATIVE"
@@ -37,7 +37,7 @@
 			"isRestore": "true",
 			"stack": "true",
 			"startTime": "WORK",
-			"duration": "NULL",
+			"duration": "REST_PATIENCE",
 			"script": "일 이벤트 주사위테스트 시 주사위 -\\n휴식 시 인내력 테스트 성공하면 이 상태를 없앱니다.",
 			"isBody": "BODY",
 			"isPositive": "NEGATIVE"
@@ -51,7 +51,7 @@
 			"isRestore": "false",
 			"stack": "true",
 			"startTime": "DAY",
-			"duration": "NULL",
+			"duration": "REST_PATIENCE",
 			"script": "매일 체력 - \\n휴식 시 인내력 테스트 성공하면 이 상태를 없앱니다.",
 			"isBody": "BODY",
 			"isPositive": "NEGATIVE"
@@ -65,7 +65,7 @@
 			"isRestore": "false",
 			"stack": "true",
 			"startTime": "DAY",
-			"duration": "NULL",
+			"duration": "REST_PATIENCE",
 			"script": "매일  정신력 -\\n휴식 시 인내력 테스트 성공하면 이 상태를 없앱니다.",
 			"isBody": "MENTAL",
 			"isPositive": "NEGATIVE"
@@ -75,11 +75,11 @@
 			"name": "AnxietyDisorder",
 			"spawnCondition": "EVENT",
 			"effectIndex": 54,
-			"amount": 0,
+			"amount": -99,
 			"isRestore": "true",
 			"stack": "false",
 			"startTime": "REST",
-			"duration": "NULL",
+			"duration": "REST_PATIENCE",
 			"script": "휴식 시 회복이 되지 않습니다.\\n휴식 시 인내력 테스트 성공하면 이 상태를 없앱니다.",
 			"isBody": "MENTAL",
 			"isPositive": "NEGATIVE"
@@ -92,7 +92,7 @@
 			"amount": 4,
 			"isRestore": "true",
 			"stack": "false",
-			"startTime": "TEST",
+			"startTime": "NIGHT",
 			"duration": "DAY",
 			"script": "하루 식량을 먹지 않아도 됩니다.",
 			"isBody": "BODY",

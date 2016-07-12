@@ -306,6 +306,7 @@ namespace ToBeFree
 
         public void Set(eObjectType objectType, int amount)
         {
+
             switch (objectType)
             {
                 case eObjectType.STRENGTH:

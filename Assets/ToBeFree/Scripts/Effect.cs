@@ -101,10 +101,6 @@ namespace ToBeFree
                         }
                         if (objectType == eObjectType.FOOD)
                         {
-                            if(amount > 0 && character.IsFull)
-                            {
-                                yield break;
-                            }
                             character.Stat.FOOD += amount;
                         }
                         if (objectType == eObjectType.INVEN)
@@ -148,6 +144,7 @@ namespace ToBeFree
                 case eSubjectType.STAT:
                     if (verbType == eVerbType.ADD)
                     {
+                        yield return GameManager.Instance.ShowStateLabel(this.ToString() + " : " + amount, 1f);
                         character.Stat.Set(objectType, amount);
                     }
                     break;
@@ -394,7 +391,7 @@ namespace ToBeFree
             yield return null;
         }
 
-        public void Deactivate(Character character)
+        public IEnumerator Deactivate(Character character)
         {
             switch (subjectType)
             {
@@ -408,6 +405,7 @@ namespace ToBeFree
                 case eSubjectType.STAT:
                     if (verbType == eVerbType.ADD)
                     {
+                        yield return GameManager.Instance.ShowStateLabel(this.ToString() + " Restore", 1f);
                         character.Stat.Restore(objectType);
                     }
                     break;
@@ -434,6 +432,7 @@ namespace ToBeFree
                     }
                     break;
             }
+            yield return null;
         }
         
         public eSubjectType SubjectType { get { return subjectType; } }

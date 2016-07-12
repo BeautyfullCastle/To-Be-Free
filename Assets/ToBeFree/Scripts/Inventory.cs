@@ -41,6 +41,7 @@ namespace ToBeFree
             if(item.Buff.StartTime == eStartTime.NOW)
             {
                 yield return item.Buff.ActivateEffect(character);
+
                 yield break;
             }
 
@@ -54,7 +55,7 @@ namespace ToBeFree
             }
 
             // add item's buff in buff list also.
-            yield return BuffManager.Instance.Add(item.Buff);
+            //yield return BuffManager.Instance.Add(item.Buff);
         }
 
         public bool Exist(Item item)
@@ -142,7 +143,10 @@ namespace ToBeFree
         private IEnumerator UseItem(Item item, Character character)
         {
             yield return item.Buff.ActivateEffect(character);
-            Delete(item, character);
+            if (item.Buff.Duration == eDuration.ONCE)
+            {
+                Delete(item, character);
+            }
         }
 
         public class InventoryRecord

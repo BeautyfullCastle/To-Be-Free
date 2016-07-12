@@ -26,9 +26,7 @@ namespace ToBeFree {
             foreach(UIGrid grid in grids)
             {
                 grid.Reposition();
-            }
-
-            this.gameObject.SetActive(false);
+            }            
         }
 
         public void OnEnter()

@@ -3296,7 +3296,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 622406244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: -355, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 779535385}
@@ -3330,7 +3330,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ignoreTimeScale: 1
+  ignoreTimeScale: 0
   delay: 0
   duration: 1
   steeperCurves: 0
@@ -3368,19 +3368,19 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0, g: 0.006896496, b: 1, a: 1}
   mPivot: 4
-  mWidth: 582
-  mHeight: 128
+  mWidth: 1592
+  mHeight: 190
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.546875
+  aspectRatio: 8.378947
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
-  mText: New Label
+  mText: ddddddddddddddddddddddddddddddddddddddddd
   mFontSize: 128
   mFontStyle: 0
   mAlignment: 0
@@ -3390,7 +3390,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 2
+  mOverflow: 0
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}

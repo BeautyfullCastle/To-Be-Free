@@ -22,7 +22,7 @@ namespace ToBeFree
             if(ActionEventNotify != null)
                 ActionEventNotify(startTime, character);
             
-            yield return BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+            yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
             yield return null;
         }
@@ -41,12 +41,14 @@ namespace ToBeFree
         {
             Debug.Log("Rest Action Activated.");
 
-            base.Activate(character);
+            yield return base.Activate(character);
 
             Debug.Log("Cure for Rest");
             character.Rest();
 
             yield return BuffManager.Instance.Rest_Cure_PatienceTest(character);
+
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
         }
     }
 
@@ -61,7 +63,7 @@ namespace ToBeFree
         public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Work action activated.");
-            base.Activate(character);
+            yield return base.Activate(character);
             yield return (EventManager.Instance.DoCommand(actionName, character));
             // if effect is money and event is succeeded,
             EffectAmount[] successResulteffects = EventManager.Instance.ResultSuccessEffectAmountList;
@@ -78,6 +80,8 @@ namespace ToBeFree
                     break;
                 }
             }
+
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
         }
     }
 
@@ -92,11 +96,13 @@ namespace ToBeFree
         public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Move action Activated.");
-            base.Activate(character);
+            yield return base.Activate(character);
             yield return (EventManager.Instance.DoCommand(actionName, character));
 
             yield return character.MoveTo(character.NextCity);
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
+
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
         }
     }
 
@@ -112,7 +118,7 @@ namespace ToBeFree
         {
             Debug.LogWarning("Quest action Activated.");
 
-            yield return BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+            yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
             List<Piece> quests = PieceManager.Instance.FindAll(eSubjectType.QUEST);
             QuestPiece questPiece = quests.Find(x => x.City == character.CurCity) as QuestPiece;
@@ -125,6 +131,8 @@ namespace ToBeFree
             }
 
             yield return (EventManager.Instance.WaitUntilFinish());
+
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
             Debug.Log("character quest activated.");
         }
@@ -142,14 +150,16 @@ namespace ToBeFree
         {
             Debug.LogWarning("Inpect action activated.");
             
-            yield return BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
+            yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
             List<Piece> policesInThisCity = PieceManager.Instance.FindAll(eSubjectType.POLICE).FindAll(x=>x.City == character.CurCity);
             Debug.LogWarning("policesInThisCity.Count : " + policesInThisCity.Count);
             for (int i = 0; i < policesInThisCity.Count; ++i)
             {
-                yield return EventManager.Instance.DoCommand(eEventAction.INSPECT, character);
+                yield return EventManager.Instance.DoCommand(actionName, character);
             }
+
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
         }
     }
 
@@ -164,12 +174,15 @@ namespace ToBeFree
         public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Detention action activated.");
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-            yield return BuffManager.Instance.CheckStartTimeAndActivate(startTime, character);
             GameManager.Instance.uiEventManager.OpenUI();
+
             yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
             bool testResult = DiceTester.Instance.Test(character.Stat.Agility, character);
-            BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Detention Test");
             GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
 
             yield return EventManager.Instance.WaitUntilFinish();
@@ -182,6 +195,8 @@ namespace ToBeFree
             {
                 yield return character.HaulIn();
             }
+
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
         }
     }
 

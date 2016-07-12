@@ -92,14 +92,14 @@ namespace ToBeFree
             yield return effect.Activate(character, amount);
         }
 
-        public void Deactivate(Character character)
+        public IEnumerator Deactivate(Character character)
         {
             if (effect == null)
             {
                 Debug.LogError("effect is null.");
-                return;
+                yield break;
             }
-            effect.Deactivate(character);
+            yield return effect.Deactivate(character);
         }
 
         public override string ToString()
@@ -112,6 +112,14 @@ namespace ToBeFree
             get
             {
                 return amount;
+            }
+            set
+            {
+                if(amount == -99)
+                {
+                    return;
+                }
+                amount = value;
             }
         }
 

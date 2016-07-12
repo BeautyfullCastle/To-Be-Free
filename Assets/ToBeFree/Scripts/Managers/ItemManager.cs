@@ -14,7 +14,6 @@ namespace ToBeFree
         public ItemManager()
         {
             DataList<ItemData> cDataList = new DataList<ItemData>(file);
-            //ResultDataList cDataList = new ResultDataList(file);
             dataList = cDataList.dataList;
             if (dataList == null)
                 return;

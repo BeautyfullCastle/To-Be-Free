@@ -76,6 +76,17 @@ namespace ToBeFree
 
         private void Update()
         {
+
+            if(Input.GetKeyDown(KeyCode.KeypadPlus))
+            {
+                Time.timeScale += .1f;
+            }
+
+            if (Input.GetKeyDown(KeyCode.KeypadMinus))
+            {
+                Time.timeScale -= .1f;
+            }
+
             // 0. parse data
 
             // 1. start week
@@ -107,11 +118,6 @@ namespace ToBeFree
         {
             return GameObject.Find(name);
         }
-
-        //public T FindObjectOfType<T>(this UnityEngine.Object unityObject) where T : UnityEngine.Object
-        //{
-        //    return UnityEngine.Object.FindObjectOfType(typeof(T)) as T;
-        //}
 
         private void Awake()
         {
@@ -166,7 +172,6 @@ namespace ToBeFree
 
             yield return (MoveDirectingCam(bigCityTransformList, 0.5f));
             
-
             yield return null;
 
 
@@ -187,6 +192,9 @@ namespace ToBeFree
             
 
             yield return (Instance_NotifyEveryWeek());
+
+            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[67], character);
+            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[67], character);
 
             action = null;
             yield return null;
@@ -241,6 +249,12 @@ namespace ToBeFree
                 // activate selected event
                 yield return (action.Activate(character));
             }
+
+            //Item
+            //startime
+            //eDuration
+                
+
             
             this.State = GameState.Night;
 
@@ -264,15 +278,17 @@ namespace ToBeFree
 
         IEnumerator NightState()
         {
+            // after daytime // Temporary
+            yield return BuffManager.Instance.CheckDuration(character);
+
             // Enter
             yield return (ShowStateLabel("Night State", 0.5f));
+            
+            yield return Instance_NotifyEveryNight();
 
-            yield return BuffManager.Instance.CheckStartTimeAndActivate(eStartTime.NIGHT, character);
-
-            yield return Instance_NotifyEveryday();
+            character.Stat.MENTAL = 0;
 
             TimeTable.Instance.DayIsGone();
-            
             while(state == GameState.Night)
             {
                 yield return null;
@@ -292,9 +308,18 @@ namespace ToBeFree
             StartCoroutine((IEnumerator)info.Invoke(this, null));
         }
 
-        private IEnumerator Instance_NotifyEveryday()
+        private IEnumerator Instance_NotifyEveryNight()
         {
             yield return character.Inven.CheckItem(eStartTime.NIGHT, character);
+
+            yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
+
+            if (character.IsFull)
+            {
+                yield return GameManager.Instance.ShowStateLabel("Skip Food", 0.5f);
+                yield break;
+            }
+
             if (character.Stat.FOOD <= 0)
             {
                 character.Stat.HP--;
@@ -303,10 +328,16 @@ namespace ToBeFree
             {
                 character.Stat.FOOD--;
             }
+
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
         }
 
         private IEnumerator Instance_NotifyEveryWeek()
         {
+            yield return character.Inven.CheckItem(eStartTime.WEEK, character);
+
+            yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
+            
             // check current quest's end time and apply the result
             List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
             if (questPieces != null && questPieces.Count > 0)
@@ -323,6 +354,7 @@ namespace ToBeFree
             // activate global event
             yield return EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
 
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.WEEK, character);
         }
 
         private IEnumerator PutPieces()

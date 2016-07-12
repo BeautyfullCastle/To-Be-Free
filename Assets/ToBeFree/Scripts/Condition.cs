@@ -34,6 +34,10 @@ namespace ToBeFree
             {
                 return true;
             }
+            else if(subjectType == eSubjectType.MENTAL)
+            {
+                left = character.Stat.MENTAL;
+            }
             return Compare(left, amount, comparisonOperator);
         }
 

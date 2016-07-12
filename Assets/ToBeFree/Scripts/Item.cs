@@ -6,6 +6,7 @@ namespace ToBeFree
     {
         NOW, WORK, MOVE, REST, SHOP, INSPECT, INFO, BROKER, QUEST, ESCAPE, TEST, SPECIALACT, DAY, NIGHT,
         DETENTION, NULL,
+        WEEK,
     }
 
     public enum eDuration
@@ -34,12 +35,7 @@ namespace ToBeFree
 
         public Item(Item item)
             : this(item.name, item.buff, item.price, item.maximumStackableQuantity) { }
-
-        //public Item(Item item)
-        // : this(item.name, item.effect, item.startTime, item.duration, item.isRestore, item.amount, item.price, item.maximumStackableQuantity)
-        //{
-        //}
-
+        
         public Item DeepCopy()
         {
             Item item = (Item)this.MemberwiseClone();
@@ -51,28 +47,7 @@ namespace ToBeFree
         }
         
         public string Name { get { return name; } }
-
-        //public Effect Effect
-        //{
-        //    get
-        //    {
-        //        return effect;
-        //    }
-
-        //    set
-        //    {
-        //        effect = value;
-        //    }
-        //}
-
-        //public int Amount
-        //{
-        //    get
-        //    {
-        //        return amount;
-        //    }
-        //}
-
+        
         public int MaximumStackableQuantity { get; private set; }
 
         public Buff Buff
@@ -90,44 +65,5 @@ namespace ToBeFree
                 return price;
             }
         }
-
-        //public eStartTime StartTime
-        //{
-        //    get
-        //    {
-        //        return startTime;
-        //    }
-
-        //    set
-        //    {
-        //        startTime = value;
-        //    }
-        //}
-
-        //public eDuration Duration
-        //{
-        //    get
-        //    {
-        //        return duration;
-        //    }
-
-        //    set
-        //    {
-        //        duration = value;
-        //    }
-        //}
-
-        //public bool IsRestore
-        //{
-        //    get
-        //    {
-        //        return isRestore;
-        //    }
-
-        //    set
-        //    {
-        //        isRestore = value;
-        //    }
-        //}
     }
 }

@@ -18,6 +18,8 @@ namespace ToBeFree
         private readonly eStartTime startTime;
         private readonly eDuration duration;
 
+        private int aliveDays;
+
         
         public Buff(string name, EffectAmount[] effectAmountList, bool isRestore,
             eStartTime startTime, eDuration duration)
@@ -27,6 +29,8 @@ namespace ToBeFree
             this.isRestore = isRestore;
             this.startTime = startTime;
             this.duration = duration;
+
+            aliveDays = 0;
         }
 
         public Buff(Buff buff) : this(buff.name, buff.effectAmountList, buff.isRestore,
@@ -39,19 +43,17 @@ namespace ToBeFree
             Debug.Log("buff " + name + "'s effect activate");
             foreach (EffectAmount effectAmount in effectAmountList)
             {
-                yield return EventManager.Instance.WaitUntilFinish();
-
                 yield return effectAmount.Activate(character);
             }
         }
 
-        public void DeactivateEffect(Character character)
+        public IEnumerator DeactivateEffect(Character character)
         {
             Debug.Log("buff " + name + "'s effect deactivate");
 
             foreach (EffectAmount effectAmount in effectAmountList)
             {
-                effectAmount.Deactivate(character);
+                yield return effectAmount.Deactivate(character);
             }
         }
 
@@ -93,6 +95,32 @@ namespace ToBeFree
             {
                 return effectAmountList;
             }
+        }
+
+        public int AliveDays
+        {
+            get
+            {
+                return aliveDays;
+            }
+
+            set
+            {
+                aliveDays = value;
+            }
+        }
+
+        public bool CheckDuration()
+        {
+            if(Duration == eDuration.DAY && this.AliveDays >= 1)
+            {
+                return true;
+            }
+            else if(Duration == eDuration.WEEK && this.AliveDays >= 7)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
