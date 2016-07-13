@@ -1778,6 +1778,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 114130818}
     m_Modifications:
+    - target: {fileID: 11489252, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: onClick.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489252, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: onClick.Array.data[0].mParameters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 418612, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_LocalPosition.x
       value: 308
@@ -1813,6 +1821,22 @@ Prefab:
     - target: {fileID: 146790, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: m_Name
       value: TIANJIN
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489252, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: onClick.Array.data[0].mTarget
+      value: 
+      objectReference: {fileID: 125925664}
+    - target: {fileID: 11489252, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: onClick.Array.data[0].mMethodName
+      value: ClickCity
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489252, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: onClick.Array.data[0].mParameters.Array.data[0].obj
+      value: 
+      objectReference: {fileID: 983702832}
+    - target: {fileID: 11489252, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: onClick.Array.data[0].mParameters.Array.data[0].field
+      value: name
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
@@ -2394,7 +2418,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -1.4939423, y: 34.799072, z: 1000.08875, w: 138}
+  mClipRange: {x: -0.4382019, y: 34, z: 998.8764, w: 138}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 3
   mSortingOrder: 0
@@ -3024,7 +3048,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 8.550537, y: 22.799316, z: 4844.5327, w: 3432}
+  mClipRange: {x: 9, y: 22, z: 4837.259, w: 3432}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 2
   mSortingOrder: 0
@@ -3100,7 +3124,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -122.36078, y: -63.200928, z: 544, w: 70}
+  mClipRange: {x: -123.1236, y: -64, z: 544, w: 70}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 4
   mSortingOrder: 0
@@ -9068,6 +9092,7 @@ GameObject:
   - 124: {fileID: 1853878572}
   - 92: {fileID: 1853878571}
   - 81: {fileID: 1853878570}
+  - 114: {fileID: 1853878575}
   m_Layer: 0
   m_Name: Directing Cam
   m_TagString: Untagged
@@ -9142,6 +9167,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1853878575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1853878569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d166255cacf07b4292b8402b3ddefc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 0
+  delay: 0
+  duration: 1
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {x: 1.1622223, y: 1.9133334, z: -0.022222223}
+  to: {x: 1.1622223, y: 1.9133334, z: -0.022222223}
+  worldSpace: 0
 --- !u!1001 &1897662366
 Prefab:
   m_ObjectHideFlags: 0

@@ -34,8 +34,11 @@ namespace ToBeFree
 
         public IEnumerator MoveCity(City city)
         {
-            this.city = city;
-            yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { GameManager.Instance.FindGameObject(city.Name.ToString()).transform }, 1f);
+            yield return GameManager.Instance.MoveDirectingCam(
+                GameManager.Instance.FindGameObject(this.City.Name.ToString()).transform.position,
+                GameManager.Instance.FindGameObject(city.Name.ToString()).transform.position, 5f);
+
+            this.city = city;            
         }
 
         public virtual bool CheckDuration()

@@ -84,10 +84,15 @@ namespace ToBeFree
             {
                 yield break;
             }
-            this.curCity = city;
-            MoveCity(EnumConvert<eCity>.ToString(this.curCity.Name));
+            
+            
+            yield return GameManager.Instance.MoveDirectingCam(
+                GameManager.Instance.FindGameObject(this.curCity.Name.ToString()).transform.position,
+                GameManager.Instance.FindGameObject(city.Name.ToString()).transform.position,
+                5f);
 
-            yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { GameManager.Instance.FindGameObject(city.Name.ToString()).transform }, 1f);
+            this.curCity = city;
+            MoveCity(EnumConvert<eCity>.ToString(city.Name));
 
             Debug.Log("character is moved to " + this.curCity.Name);
 

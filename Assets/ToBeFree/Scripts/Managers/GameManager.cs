@@ -193,8 +193,8 @@ namespace ToBeFree
 
             yield return (Instance_NotifyEveryWeek());
 
-            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[67], character);
-            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[67], character);
+            //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[67], character);
+            //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[67], character);
 
             action = null;
             yield return null;
@@ -378,8 +378,7 @@ namespace ToBeFree
                 QuestPiece piece = PieceManager.Instance.Find(selectedQuest);
                 pieceCityTransformList.Add(GameObject.Find(piece.City.Name.ToString()).transform);
             }
-
-
+            
 
             // 2 polices
             Police randPolice = new Police(CityManager.Instance.FindRand(), eSubjectType.POLICE);
@@ -397,8 +396,12 @@ namespace ToBeFree
             PieceManager.Instance.Add(randInfoByDistance);
             pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name.ToString()).transform);
 
+            // temporary
+            //Information randInfo2 = new Information(CityManager.Instance.FindRand(), eSubjectType.INFO);
+            //yield return PieceManager.Instance.Move(randInfo, CityManager.Instance.FindRand());
+            //pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name.ToString()).transform);
 
-            yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
+            //yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
         }
 
         public IEnumerator ShowStateLabel(string text, float duration)
@@ -407,7 +410,7 @@ namespace ToBeFree
             TweenAlpha tweenAlpha = stateLabel.transform.GetComponent<TweenAlpha>();
             tweenAlpha.enabled = true;
             tweenAlpha.style = UITweener.Style.Once;
-            tweenAlpha.duration = duration;
+            tweenAlpha.duration = duration / Time.timeScale;
 
             tweenAlpha.PlayForward();
             while(tweenAlpha.value < 1f)
@@ -434,8 +437,37 @@ namespace ToBeFree
             {
                 directingCam.transform.parent = transformList[i];
                 directingCam.transform.localPosition = new Vector3(0, 0, -200f);
-                yield return new WaitForSeconds(duration);
+                yield return new WaitForSeconds(duration / Time.timeScale);
             }
+            directingCam.enabled = false;
+            worldCam.orthographicSize = prevWorldCamSize;
+
+            directingCam.transform.parent = null;
+        }
+
+        public IEnumerator MoveDirectingCam(Vector3 from, Vector3 to, float duration)
+        {
+            float prevWorldCamSize = worldCam.orthographicSize;
+            worldCam.orthographicSize = 10f;
+            
+            float camZPos = directingCam.transform.position.z;
+
+            //directingCam.transform.parent = from;
+            //directingCam.transform.localPosition = new Vector3(0, 0, -200f);
+
+            Vector3 camFrom = new Vector3(from.x, from.y, -10f);
+            Vector3 camTo = new Vector3(to.x, to.y, -10f);
+
+            directingCam.transform.position = camFrom;
+            directingCam.enabled = true;
+
+            duration = duration / Time.timeScale;
+            TweenPosition.Begin(directingCam.gameObject, duration, camTo);
+                
+            yield return new WaitForSeconds(duration);
+
+            //directingCam.transform.parent = to;
+
             directingCam.enabled = false;
             worldCam.orthographicSize = prevWorldCamSize;
         }

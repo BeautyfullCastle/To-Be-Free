@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,22 +45,7 @@ namespace ToBeFree
 
         public Piece GetFirst(eSubjectType subjectType)
         {
-            if (subjectType == eSubjectType.POLICE)
-            {
-                return list.Find(x => x is Police);
-            }
-            else if (subjectType == eSubjectType.INFO)
-            {
-                return list.Find(x => x is Information);
-            }
-            else if (subjectType == eSubjectType.QUEST)
-            {
-                return list.Find(x => x is QuestPiece);
-            }
-            else
-            {
-                throw new Exception("subjectType is wrong>");
-            }
+            return list.Find(x => x.SubjectType == subjectType);
         }
 
         public Piece GetFirst()
@@ -110,6 +96,14 @@ namespace ToBeFree
                 }
             }
             return null;
+        }
+
+        public IEnumerator Move(Piece piece, City city)
+        {
+            Delete(piece);
+            yield return piece.MoveCity(city);
+            Add(piece);
+
         }
     }
 }

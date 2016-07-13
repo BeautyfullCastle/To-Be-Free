@@ -63,7 +63,10 @@ namespace ToBeFree
 
         private void DeleteUIQuest(UIQuest uiQuest)
         {
-            DestroyImmediate(uiQuest.gameObject);
+            if (uiQuest.gameObject != null)
+            {
+                DestroyImmediate(uiQuest.gameObject);
+            }
             uiQuests.Remove(uiQuest);
         }
     }

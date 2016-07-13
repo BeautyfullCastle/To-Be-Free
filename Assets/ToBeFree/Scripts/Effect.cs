@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -154,32 +155,38 @@ namespace ToBeFree
                 case eSubjectType.BROKER:
                     if (verbType == eVerbType.MOVE)
                     {
+                        Piece piece = null;
+                        City startCity = null;
+                        City endCity = null;
                         if (objectType == eObjectType.RAND_RAND)
                         {
-                            Piece piece = PieceManager.Instance.FindRand(subjectType);
-
-                            yield return piece.MoveCity(CityManager.Instance.FindRand());
+                            piece = PieceManager.Instance.FindRand(subjectType);
+                            startCity = piece.City;
+                            endCity = CityManager.Instance.FindRand();
                         }
                         if (objectType == eObjectType.RAND_CLOSE)
                         {
-                            Piece piece = PieceManager.Instance.FindRand(subjectType);
-
-                            yield return piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
+                            piece = PieceManager.Instance.FindRand(subjectType);
+                            startCity = piece.City;
+                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
                         if (objectType == eObjectType.FAR_CLOSE)
                         {
-                            Piece piece = PieceManager.Instance.GetLast(subjectType);
-
-                            yield return piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
+                            piece = PieceManager.Instance.GetLast(subjectType);
+                            startCity = piece.City;
+                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
                         }
                         if (objectType == eObjectType.CLOSE_FAR)
                         {
-                            Piece piece = PieceManager.Instance.GetFirst(subjectType);
+                            piece = PieceManager.Instance.GetFirst(subjectType);
+                            startCity = piece.City;
 
                             System.Random r = new System.Random();
                             int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
-                            yield return piece.MoveCity(CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance));
+
+                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance);                            
                         }
+                        yield return PieceManager.Instance.Move(piece, endCity);
                     }
                     if (verbType == eVerbType.DEL)
                     {
