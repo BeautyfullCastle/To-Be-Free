@@ -36,7 +36,7 @@ namespace ToBeFree
         {
             yield return GameManager.Instance.MoveDirectingCam(
                 GameManager.Instance.FindGameObject(this.City.Name.ToString()).transform.position,
-                GameManager.Instance.FindGameObject(city.Name.ToString()).transform.position, 5f);
+                GameManager.Instance.FindGameObject(city.Name.ToString()).transform.position, 2f);
 
             this.city = city;            
         }

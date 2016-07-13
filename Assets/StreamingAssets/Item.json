@@ -955,7 +955,7 @@
 			"index": 63,
 			"name": "정체불명의 물건",
 			"startTime": "QUEST",
-			"duration": "ONCE",
+			"duration": "EQUIP",
 			"restore": "false",
 			"effectIndexList": [
 				-99

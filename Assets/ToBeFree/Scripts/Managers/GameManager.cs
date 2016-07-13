@@ -79,12 +79,12 @@ namespace ToBeFree
 
             if(Input.GetKeyDown(KeyCode.KeypadPlus))
             {
-                Time.timeScale += .1f;
+                Time.timeScale -= .1f;
             }
 
             if (Input.GetKeyDown(KeyCode.KeypadMinus))
             {
-                Time.timeScale -= .1f;
+                Time.timeScale += .1f;
             }
 
             // 0. parse data
@@ -156,6 +156,8 @@ namespace ToBeFree
 
             yield return character.MoveTo(character.CurCity);
 
+            CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.BEIJING), CityManager.Instance.Find(eCity.YANBIAN));
+
             inspectAction = new Inspect();
 
             yield return (ShowStateLabel("Adding Polices to Big cities.", 0.5f));
@@ -171,6 +173,7 @@ namespace ToBeFree
             }
 
             yield return (MoveDirectingCam(bigCityTransformList, 0.5f));
+
             
             yield return null;
 
@@ -402,6 +405,10 @@ namespace ToBeFree
             //pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name.ToString()).transform);
 
             //yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
+
+            //Piece infoPiece = PieceManager.Instance.GetFirst(eSubjectType.INFO);
+            //Piece infoLast = PieceManager.Instance.GetLast(eSubjectType.INFO);
+
         }
 
         public IEnumerator ShowStateLabel(string text, float duration)

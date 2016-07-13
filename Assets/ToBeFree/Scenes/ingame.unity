@@ -2418,7 +2418,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -0.4382019, y: 34, z: 998.8764, w: 138}
+  mClipRange: {x: -1.4939423, y: 34.799072, z: 1000.08875, w: 138}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 3
   mSortingOrder: 0
@@ -3048,7 +3048,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 9, y: 22, z: 4837.259, w: 3432}
+  mClipRange: {x: 8.550537, y: 22.799316, z: 4844.5327, w: 3432}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 2
   mSortingOrder: 0
@@ -3124,7 +3124,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -123.1236, y: -64, z: 544, w: 70}
+  mClipRange: {x: -122.36078, y: -63.200928, z: 544, w: 70}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 4
   mSortingOrder: 0
