@@ -75,6 +75,28 @@ namespace ToBeFree
             NGUIDebug.Log("Command Shop input");
         }
 
+        public void ClickCommand(string command)
+        {
+            switch(EnumConvert<eCommand>.ToEnum(command))
+            {
+                case eCommand.WORK:
+                    action = new Work();
+                    break;
+                case eCommand.REST:
+                    action = new Rest();
+                    break;
+                case eCommand.QUEST:
+                    action = new QuestAction();
+                    break;
+                case eCommand.SHOP:
+                    action = new EnterToShop();
+                    break;
+                case eCommand.INFO:
+                    action = new InfoAction();
+                    break;
+            }
+        }
+
         private void Update()
         {
 
@@ -187,6 +209,7 @@ namespace ToBeFree
 
             // for test
             //character.Stat.Agility = 0;
+            character.Stat.InfoNum = 2;
 
             // Excute
 
@@ -408,13 +431,13 @@ namespace ToBeFree
             PieceManager.Instance.Add(randInfoByDistance);
             pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name.ToString()).transform);
 
+            yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
+
             // temporary
             //Information randInfo2 = new Information(CityManager.Instance.FindRand(), eSubjectType.INFO);
             //yield return PieceManager.Instance.Move(randInfo, CityManager.Instance.FindRand());
             //pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name.ToString()).transform);
-
-            //yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
-
+            
             //Piece infoPiece = PieceManager.Instance.GetFirst(eSubjectType.INFO);
             //Piece infoLast = PieceManager.Instance.GetLast(eSubjectType.INFO);
 

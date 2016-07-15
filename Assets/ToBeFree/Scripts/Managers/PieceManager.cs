@@ -98,6 +98,27 @@ namespace ToBeFree
             return null;
         }
 
+        public int GetNumberOfPiece(eSubjectType pieceType, City city)
+        {
+            Predicate<Piece> match = (x => x.City == city && x.SubjectType == pieceType);
+            if (list.Exists(match))
+            {
+                var findedList = list.FindAll(match);
+                return findedList.Count;
+            }
+            return 0;
+        }
+
+        public Piece GetPieceOfCity(eSubjectType pieceType, City city)
+        {
+            Predicate<Piece> match = (x => x.City == city && x.SubjectType == pieceType);
+            if (list.Exists(match))
+            {
+                return list.Find(match);
+            }
+            return null;
+        }
+
         public IEnumerator Move(Piece piece, City city)
         {
             Delete(piece);

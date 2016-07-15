@@ -449,12 +449,6 @@
 			"subjectType": "QUEST",
 			"verbType": "LOAD",
 			"objectType": "NULL"
-		},
-		{
-			"index": 75,
-			"subjectType": "QUEST",
-			"verbType": "SUCCESS",
-			"objectType": "NULL"
 		}
 	]
 }

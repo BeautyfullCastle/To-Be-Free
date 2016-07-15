@@ -64,7 +64,7 @@
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 96,
+			"eventIndex": 95,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 재배치를 막기",
 			"conditionScript": "돈 5위안"
@@ -177,9 +177,9 @@
 				55
 			],
 			"failureEffectValueList": [
-				102
+				92
 			],
-			"eventIndex": 98,
+			"eventIndex": 96,
 			"duration": 2,
 			"uiName": "일을 통해 공안 신고 막기",
 			"conditionScript": "NULL"
@@ -248,7 +248,7 @@
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 99,
+			"eventIndex": 97,
 			"duration": 2,
 			"uiName": "돈을 줘서 도박 빚 갚기",
 			"conditionScript": "돈 5위안"
@@ -269,9 +269,9 @@
 				55
 			],
 			"failureEffectValueList": [
-				102
+				92
 			],
-			"eventIndex": 100,
+			"eventIndex": 98,
 			"duration": 2,
 			"uiName": "아이템 배달로 공안 신고 막기",
 			"conditionScript": "NULL"
@@ -294,7 +294,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 101,
+			"eventIndex": 99,
 			"duration": 2,
 			"uiName": "도박으로 돈 획득",
 			"conditionScript": "NULL"
@@ -317,7 +317,7 @@
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 102,
+			"eventIndex": 100,
 			"duration": 2,
 			"uiName": "브로커정보를 팔아 돈 획득",
 			"conditionScript": "브로커정보 1"
@@ -333,14 +333,14 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "지역 공안담당관이 지역에 공안을 늘리려고 한다는 이야기를 들었습니다.\\n돈을 약간 주면 공안을 추가시키지 않을 겁니다.",
-			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 느렸습니다.",
+			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 늘렸습니다.",
 			"failureEffectIndexList": [
 				23
 			],
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 103,
+			"eventIndex": 95,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 추가를 막기",
 			"conditionScript": "돈 5위안"
@@ -363,7 +363,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 104,
+			"eventIndex": 101,
 			"duration": 2,
 			"uiName": "일을 해서 돈 획득",
 			"conditionScript": "NULL"

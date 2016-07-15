@@ -8,9 +8,11 @@ namespace ToBeFree
     public class IconCity : MonoBehaviour
     {
         public UILabel nameLabel;
-        public UISprite informSprite;
-        public UISprite policeSprite;
-        public UISprite questSprite;
+        public GameObject informSprite;        
+        public GameObject questSprite;
+        public GameObject brokerSprite;
+        public GameObject policeSprite;
+        public UILabel policeNumLabel;
 
         private City city;
 
@@ -23,11 +25,12 @@ namespace ToBeFree
             PieceManager.AddPiece += PieceManager_AddPiece;
             PieceManager.DeletePiece += PieceManager_DeletePiece;
 
-            informSprite.enabled = false;
-            policeSprite.enabled = false;
-            questSprite.enabled = false;
+            informSprite.SetActive(false);
+            policeSprite.SetActive(false);
+            questSprite.SetActive(false);
+            brokerSprite.SetActive(false);
 
-            
+
             //TimeTable.Instance.NotifyEveryday += CheckPieces;
             //StartCoroutine(CheckPieces());
         }
@@ -83,15 +86,19 @@ namespace ToBeFree
         {
             if (type == eSubjectType.POLICE)
             {
-                policeSprite.enabled = isExist;
+                policeSprite.SetActive(isExist);
             }
             else if (type == eSubjectType.INFO)
             {
-                informSprite.enabled = isExist;
+                informSprite.SetActive(isExist);
             }
             else if (type == eSubjectType.QUEST)
             {
-                questSprite.enabled = isExist;
+                questSprite.SetActive(isExist);
+            }
+            else if (type == eSubjectType.BROKER)
+            {
+                brokerSprite.SetActive(isExist);
             }
             NGUIDebug.Log(this.name + "'s " + type.ToString() + " sprite is " + isExist);
         }
@@ -103,17 +110,18 @@ namespace ToBeFree
                 List<Piece> polices = PieceManager.Instance.FindAll(eSubjectType.POLICE);
                 if (polices != null && polices.Count > 0)
                 {
-                    policeSprite.enabled = polices.Exists(x => x.City == this.city);
+                    policeSprite.SetActive(polices.Exists(x => x.City == this.city));
+                    policeNumLabel.text = polices.Count.ToString();
                 }
                 List<Piece> infos = PieceManager.Instance.FindAll(eSubjectType.INFO);
                 if (infos != null && infos.Count > 0)
                 {
-                    informSprite.enabled = infos.Exists(x => x.City == this.city);
+                    informSprite.SetActive(infos.Exists(x => x.City == this.city));
                 }
                 List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
                 if (questPieces != null && questPieces.Count > 0)
                 {
-                    questSprite.enabled = questPieces.Exists(x => x.City == this.city);
+                    questSprite.SetActive(questPieces.Exists(x => x.City == this.city));
                 }
 
                 yield return new WaitForSeconds(.2f);

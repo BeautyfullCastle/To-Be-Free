@@ -1009,7 +1009,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "화물선에 몸을 숨겨 국경을 넘는 계획을 세웁니다. 선장을 만나 이야기 해봅니다.",
-			"resultIndex": 93,
+			"resultIndex": 83,
 			"selectIndexList": [
 				-99
 			]
@@ -1021,7 +1021,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "공안의 눈을 피해 숲이 우거진 위험한 길을 지납니다. 길이 어디인지 찾아봅니다.",
-			"resultIndex": 94,
+			"resultIndex": 84,
 			"selectIndexList": [
 				-99
 			]
@@ -1033,7 +1033,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "공안의 눈을 피해 숲이 우거진 위험한 길을 지납니다. 근처에 순찰 중인 공안이 보입니다.\\n공안에게 들키지 않기 위해 숨죽이며 이동합니다.",
-			"resultIndex": 95,
+			"resultIndex": 85,
 			"selectIndexList": [
 				-99
 			]
@@ -1045,7 +1045,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "공안의 눈을 피해 숲이 우거진 위험한 길을 지납니다. 숲을 지나던 중 다리에 상처가 났습니다.\\n점점 더 상처가 심각해지며 고통이 강해집니다.",
-			"resultIndex": 96,
+			"resultIndex": 86,
 			"selectIndexList": [
 				-99
 			]
@@ -1057,7 +1057,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "국경을 넘는 화물선이 보입니다. 화물선에 숨어 국경을 넘고자 합니다.",
-			"resultIndex": 97,
+			"resultIndex": 87,
 			"selectIndexList": [
 				-99
 			]
@@ -1069,7 +1069,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "화물선에 몸을 숨겨 국경을 넘는 계획을 세웁니다. 선장을 만나 이야기 해봅니다.\\n'좋소, 대신 운항 전에 짐을 나르는데 도움 좀 주시요'\\n가서 도움을 줍니다.",
-			"resultIndex": 98,
+			"resultIndex": 88,
 			"selectIndexList": [
 				-99
 			]
@@ -1081,7 +1081,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "공안이 보입니다. 공안에게 들키지 않게 공안을 살펴 보면서 움직입니다.",
-			"resultIndex": 99,
+			"resultIndex": 89,
 			"selectIndexList": [
 				-99
 			]
@@ -1093,7 +1093,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "공안이 보입니다. 공안에게 들키지 않게 공안을 살펴 보면서 움직입니다.",
-			"resultIndex": 100,
+			"resultIndex": 90,
 			"selectIndexList": [
 				-99
 			]
@@ -1105,7 +1105,7 @@
 			"stat": "ALL",
 			"difficulty": "NORMAL",
 			"script": "공안이 보입니다. 공안에게 들키지 않게 공안을 살펴 보면서 움직입니다.",
-			"resultIndex": 101,
+			"resultIndex": 91,
 			"selectIndexList": [
 				-99
 			]
@@ -1117,7 +1117,7 @@
 			"stat": "NULL",
 			"difficulty": "NORMAL",
 			"script": "공안에게 들켰습니다. 공안에게 벗어나기 위해 전력으로 도망쳐 봅니다.",
-			"resultIndex": 102,
+			"resultIndex": 92,
 			"selectIndexList": [
 				-99
 			]
@@ -1129,7 +1129,7 @@
 			"stat": "AGILITY",
 			"difficulty": "NORMAL",
 			"script": "공안에게 붙잡혀 북한으로 송환됩니다. 북한으로 돌아가기 전에 도망쳐봅니다.",
-			"resultIndex": 103,
+			"resultIndex": 93,
 			"selectIndexList": [
 				-99
 			]
@@ -1141,7 +1141,7 @@
 			"stat": "LUCK",
 			"difficulty": "NORMAL",
 			"script": "북한으로 가기 전 도망 칠 수 있는 마지막 기회입니다. 그저 운이 좋기를 바랍니다.",
-			"resultIndex": 104,
+			"resultIndex": 94,
 			"selectIndexList": [
 				-99
 			]
@@ -1153,7 +1153,7 @@
 			"stat": "NULL",
 			"difficulty": "NORMAL",
 			"script": "돈을 가지고 지역 브로커를 통해 뇌물을 전달했습니다.",
-			"resultIndex": 83,
+			"resultIndex": 95,
 			"selectIndexList": [
 				-99
 			]
@@ -1164,8 +1164,8 @@
 			"region": "NULL",
 			"stat": "NULL",
 			"difficulty": "NORMAL",
-			"script": "돈을 가지고 지역 브로커를 통해 뇌물을 전달했습니다.",
-			"resultIndex": 84,
+			"script": "남자가 말한 곳에 도착했습니다.\\n'좋아 도망치치 않고 왔군 이제 일을 해보자고'",
+			"resultIndex": 97,
 			"selectIndexList": [
 				-99
 			]
@@ -1176,8 +1176,8 @@
 			"region": "NULL",
 			"stat": "NULL",
 			"difficulty": "NORMAL",
-			"script": "돈을 사채업자에게 전달했습니다.",
-			"resultIndex": 85,
+			"script": "장소에 도착해 돈을 사채업자에게 전달했습니다.",
+			"resultIndex": 96,
 			"selectIndexList": [
 				-99
 			]
@@ -1188,8 +1188,8 @@
 			"region": "NULL",
 			"stat": "NULL",
 			"difficulty": "NORMAL",
-			"script": "남자가 말한 곳에 도착했습니다.\\n'좋아 도망치치 않고 왔군 이제 일을 해보자고'",
-			"resultIndex": 86,
+			"script": "남자가 말한 물건을 전달합니다.",
+			"resultIndex": 98,
 			"selectIndexList": [
 				-99
 			]
@@ -1199,9 +1199,9 @@
 			"actionType": "QUEST",
 			"region": "NULL",
 			"stat": "NULL",
-			"difficulty": "NORMAL",
-			"script": "장소에 도착해 돈을 사채업자에게 전달했습니다.",
-			"resultIndex": 87,
+			"difficulty": "EASY",
+			"script": "도박장에서 도박을 시작합니다.",
+			"resultIndex": 99,
 			"selectIndexList": [
 				-99
 			]
@@ -1212,8 +1212,8 @@
 			"region": "NULL",
 			"stat": "NULL",
 			"difficulty": "NORMAL",
-			"script": "남자가 말한 물건을 전달합니다.",
-			"resultIndex": 88,
+			"script": "브로커에대한 정보를 남자에게 알려줍니다.",
+			"resultIndex": 100,
 			"selectIndexList": [
 				-99
 			]
@@ -1224,44 +1224,8 @@
 			"region": "NULL",
 			"stat": "NULL",
 			"difficulty": "EASY",
-			"script": "도박장에서 도박을 시작합니다.",
-			"resultIndex": 89,
-			"selectIndexList": [
-				-99
-			]
-		},
-		{
-			"index": 102,
-			"actionType": "QUEST",
-			"region": "NULL",
-			"stat": "NULL",
-			"difficulty": "NORMAL",
-			"script": "브로커에대한 정보를 남자에게 알려줍니다.",
-			"resultIndex": 90,
-			"selectIndexList": [
-				-99
-			]
-		},
-		{
-			"index": 103,
-			"actionType": "QUEST",
-			"region": "NULL",
-			"stat": "NULL",
-			"difficulty": "NORMAL",
-			"script": "돈을 가지고 지역 브로커를 통해 뇌물을 전달했습니다.",
-			"resultIndex": 91,
-			"selectIndexList": [
-				-99
-			]
-		},
-		{
-			"index": 104,
-			"actionType": "QUEST",
-			"region": "NULL",
-			"stat": "NULL",
-			"difficulty": "EASY",
 			"script": "사장이 말한 장소에 도착했습니다.\\n '자네가 장사장이 말한 사람인가? 일손이 급하니 두둑하게 주겠네'\\n이야기를 하고 일을 시작합니다.",
-			"resultIndex": 92,
+			"resultIndex": 101,
 			"selectIndexList": [
 				-99
 			]

@@ -216,4 +216,37 @@ namespace ToBeFree
             
         }
     }
+
+    public class InfoAction : Action
+    {
+        public InfoAction()
+        {
+        }
+
+        public override IEnumerator Activate(Character character)
+        {
+            Debug.LogWarning("Info action activated.");
+            NGUIDebug.Log("Info action");
+
+            Piece piece = PieceManager.Instance.GetPieceOfCity(eSubjectType.INFO, character.CurCity);
+            if(piece != null)
+            {
+                character.Stat.InfoNum++;
+                PieceManager.Instance.Delete(piece);
+            }
+
+            // spawn broker if character's info piece's number is 3.
+            // and delete 3 info pieces.
+            if(character.Stat.InfoNum >= 3)
+            {
+                City cityOfBroker = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2);
+                Piece broker = new Piece(cityOfBroker, eSubjectType.BROKER);
+                PieceManager.Instance.Add(broker);
+                yield return GameManager.Instance.MoveDirectingCam(new List<Transform>() {
+                    GameManager.Instance.FindGameObject(cityOfBroker.Name.ToString()).transform }, 2f);
+            }
+            yield return null;
+
+        }
+    }
 }
