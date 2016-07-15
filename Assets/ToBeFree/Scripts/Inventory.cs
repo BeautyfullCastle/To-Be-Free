@@ -20,24 +20,20 @@ namespace ToBeFree
             InventoryRecords = new List<InventoryRecord>();
         }
 
-        public IEnumerator AddItem(Item item, Character character)
+        public IEnumerator BuyItem(Item item, Character character)
         {
-            //InventoryRecord inventoryRecord =
-            //       InventoryRecords.Find(x => (x.Item.Name == item.Name));
-
-            //if (inventoryRecord != null)
-            //{
-            //    inventoryRecord.AddToQuantity(1);
-            //}
-            //else if (inventoryRecord == null)
-
-            if(character.Stat.Money < item.Price)
+            if (character.Stat.Money < item.Price)
             {
                 NGUIDebug.Log("Shop : Money is not enough to buy.");
-                yield break; 
+                yield break;
             }
             character.Stat.Money -= item.Price;
 
+            yield return AddItem(item, character);
+        }
+
+        public IEnumerator AddItem(Item item, Character character)
+        {
             if(item.Buff.StartTime == eStartTime.NOW)
             {
                 yield return item.Buff.ActivateEffect(character);

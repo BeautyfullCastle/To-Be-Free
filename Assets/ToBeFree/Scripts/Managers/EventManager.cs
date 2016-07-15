@@ -17,6 +17,7 @@ namespace ToBeFree
         private string file;
 
         private EffectAmount[] resultSuccessEffectAmountList;
+        private bool testResult;
 
         public delegate void UIChangedHandler(eUIEventLabelType type, string text);
         public static event UIChangedHandler UIChanged = delegate { };
@@ -220,10 +221,10 @@ namespace ToBeFree
             else
             {
                 yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-                bool testResult = CalculateTestResult(currEvent.Result.TestStat, character);
+                this.TestResult = CalculateTestResult(currEvent.Result.TestStat, character);
                 yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
-                yield return TreatResult(currEvent.Result, testResult, character);
+                yield return TreatResult(currEvent.Result, TestResult, character);
             }
 
             yield return WaitUntilFinish();
@@ -429,6 +430,19 @@ namespace ToBeFree
             get
             {
                 return currEventTestResult;
+            }
+        }
+
+        public bool TestResult
+        {
+            get
+            {
+                return testResult;
+            }
+
+            set
+            {
+                testResult = value;
             }
         }
     }

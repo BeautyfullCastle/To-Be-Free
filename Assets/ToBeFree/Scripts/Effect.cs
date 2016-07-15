@@ -357,7 +357,10 @@ namespace ToBeFree
                     }
                     if (verbType == eVerbType.LOAD)
                     {
-                        yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[amount], character);
+                        if (amount < EventManager.Instance.List.Length)
+                        {
+                            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[amount], character);
+                        }
                     }
                     break;
                 case eSubjectType.QUEST:

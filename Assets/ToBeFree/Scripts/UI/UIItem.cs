@@ -23,7 +23,7 @@ namespace ToBeFree
                 if (this.item == null)
                     return;
 
-                StartCoroutine(GameManager.Instance.Character.Inven.AddItem(this.item, GameManager.Instance.Character));
+                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(this.item, GameManager.Instance.Character));
             }
         }
 

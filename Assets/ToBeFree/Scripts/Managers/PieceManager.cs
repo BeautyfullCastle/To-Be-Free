@@ -98,6 +98,16 @@ namespace ToBeFree
             return null;
         }
 
+        public Piece Find(eSubjectType type, City city)
+        {
+            Predicate<Piece> match = (x => x.City == city && x.SubjectType == type);
+            if (list.Exists(match))
+            {
+                return list.Find(match);
+            }
+            return null;
+        }
+
         public int GetNumberOfPiece(eSubjectType pieceType, City city)
         {
             Predicate<Piece> match = (x => x.City == city && x.SubjectType == pieceType);

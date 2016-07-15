@@ -51,30 +51,6 @@ namespace ToBeFree
             character.NextCity = CityManager.Instance.Find(cityName);
         }
 
-        public void WorkEvent()
-        {
-            action = new Work();
-            NGUIDebug.Log("Command Work input");
-        }
-
-        public void RestEvent()
-        {
-            action = new Rest();
-            NGUIDebug.Log("Command Rest input");
-        }
-
-        public void QuestEvent()
-        {
-            action = new QuestAction();
-            NGUIDebug.Log("Command Quest input");
-        }
-
-        public void ShopEvent()
-        {
-            action = new EnterToShop();
-            NGUIDebug.Log("Command Shop input");
-        }
-
         public void ClickCommand(string command)
         {
             switch(EnumConvert<eCommand>.ToEnum(command))
@@ -93,6 +69,9 @@ namespace ToBeFree
                     break;
                 case eCommand.INFO:
                     action = new InfoAction();
+                    break;
+                case eCommand.BROKER:
+                    action = new BrokerAction();
                     break;
             }
         }
@@ -434,10 +413,15 @@ namespace ToBeFree
             yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
 
             // temporary
+            PieceManager.Instance.Add(new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, 0), eSubjectType.POLICE));
+            PieceManager.Instance.Add(new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, 0), eSubjectType.POLICE));
+            PieceManager.Instance.Add(new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, 0), eSubjectType.POLICE));
+            PieceManager.Instance.Add(new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, 0), eSubjectType.POLICE));
+
             //Information randInfo2 = new Information(CityManager.Instance.FindRand(), eSubjectType.INFO);
             //yield return PieceManager.Instance.Move(randInfo, CityManager.Instance.FindRand());
             //pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name.ToString()).transform);
-            
+
             //Piece infoPiece = PieceManager.Instance.GetFirst(eSubjectType.INFO);
             //Piece infoLast = PieceManager.Instance.GetLast(eSubjectType.INFO);
 

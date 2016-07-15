@@ -66,18 +66,21 @@ namespace ToBeFree
             yield return base.Activate(character);
             yield return (EventManager.Instance.DoCommand(actionName, character));
             // if effect is money and event is succeeded,
-            EffectAmount[] successResulteffects = EventManager.Instance.ResultSuccessEffectAmountList;
-
-            for (int i = 0; i < successResulteffects.Length; ++i)
+            if (EventManager.Instance.TestResult)
             {
-                if(successResulteffects[i].Effect == null)
+                EffectAmount[] successResulteffects = EventManager.Instance.ResultSuccessEffectAmountList;
+
+                for (int i = 0; i < successResulteffects.Length; ++i)
                 {
-                    continue;
-                }
-                if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
-                {
-                    character.Stat.Money += character.CurCity.CalcRandWorkingMoney();
-                    break;
+                    if (successResulteffects[i].Effect == null)
+                    {
+                        continue;
+                    }
+                    if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
+                    {
+                        character.Stat.Money += character.CurCity.CalcRandWorkingMoney();
+                        break;
+                    }
                 }
             }
 
@@ -221,6 +224,7 @@ namespace ToBeFree
     {
         public InfoAction()
         {
+
         }
 
         public override IEnumerator Activate(Character character)
@@ -246,6 +250,31 @@ namespace ToBeFree
                     GameManager.Instance.FindGameObject(cityOfBroker.Name.ToString()).transform }, 2f);
             }
             yield return null;
+
+        }
+    }
+
+    public class BrokerAction : Action
+    {
+        public BrokerAction()
+        {
+            startTime = eStartTime.BROKER;
+            actionName = eEventAction.BROKER;
+        }
+
+        public override IEnumerator Activate(Character character)
+        {
+            Debug.LogWarning("BrokerAction activated.");
+            NGUIDebug.Log("BrokerAction action");
+
+            yield return base.Activate(character);
+            yield return EventManager.Instance.DoCommand(actionName, character);
+            if (EventManager.Instance.TestResult)
+            {
+                PieceManager.Instance.Delete(PieceManager.Instance.Find(eSubjectType.BROKER, character.CurCity));
+            }
+
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
         }
     }

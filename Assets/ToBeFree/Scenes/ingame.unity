@@ -1434,8 +1434,10 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 125925664}
-    mMethodName: WorkEvent
-    mParameters: []
+    mMethodName: ClickCommand
+    mParameters:
+    - obj: {fileID: 271040372}
+      field: 
     oneShot: 0
 --- !u!114 &271040376
 MonoBehaviour:
@@ -3150,8 +3152,10 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 125925664}
-    mMethodName: MoveEvent
-    mParameters: []
+    mMethodName: ClickCommand
+    mParameters:
+    - obj: {fileID: 619020711}
+      field: name
     oneShot: 0
 --- !u!114 &619020714
 MonoBehaviour:
@@ -3439,8 +3443,10 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 125925664}
-    mMethodName: ShopEvent
-    mParameters: []
+    mMethodName: ClickCommand
+    mParameters:
+    - obj: {fileID: 624542167}
+      field: name
     oneShot: 0
 --- !u!114 &624542170
 MonoBehaviour:
@@ -3810,8 +3816,10 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 125925664}
-    mMethodName: QuestEvent
-    mParameters: []
+    mMethodName: ClickCommand
+    mParameters:
+    - obj: {fileID: 812991806}
+      field: name
     oneShot: 0
 --- !u!114 &812991809
 MonoBehaviour:
@@ -4179,8 +4187,10 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 125925664}
-    mMethodName: RestEvent
-    mParameters: []
+    mMethodName: ClickCommand
+    mParameters:
+    - obj: {fileID: 949291557}
+      field: name
     oneShot: 0
 --- !u!114 &949291560
 MonoBehaviour:
@@ -4613,8 +4623,10 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 125925664}
-    mMethodName: MoveEvent
-    mParameters: []
+    mMethodName: ClickCommand
+    mParameters:
+    - obj: {fileID: 1043442121}
+      field: name
     oneShot: 0
 --- !u!114 &1043442123
 MonoBehaviour:
@@ -6101,8 +6113,10 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 125925664}
-    mMethodName: MoveEvent
-    mParameters: []
+    mMethodName: ClickCommand
+    mParameters:
+    - obj: {fileID: 1360626958}
+      field: name
     oneShot: 0
 --- !u!114 &1360626961
 MonoBehaviour:

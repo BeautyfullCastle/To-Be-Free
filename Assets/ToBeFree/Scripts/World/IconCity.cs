@@ -29,10 +29,7 @@ namespace ToBeFree
             policeSprite.SetActive(false);
             questSprite.SetActive(false);
             brokerSprite.SetActive(false);
-
-
-            //TimeTable.Instance.NotifyEveryday += CheckPieces;
-            //StartCoroutine(CheckPieces());
+            
         }
 
         void Start()
@@ -87,6 +84,7 @@ namespace ToBeFree
             if (type == eSubjectType.POLICE)
             {
                 policeSprite.SetActive(isExist);
+                policeNumLabel.text = PieceManager.Instance.GetNumberOfPiece(eSubjectType.POLICE, this.City).ToString();
             }
             else if (type == eSubjectType.INFO)
             {
@@ -101,31 +99,6 @@ namespace ToBeFree
                 brokerSprite.SetActive(isExist);
             }
             NGUIDebug.Log(this.name + "'s " + type.ToString() + " sprite is " + isExist);
-        }
-
-        private IEnumerator CheckPieces()
-        {
-            while (true)
-            {
-                List<Piece> polices = PieceManager.Instance.FindAll(eSubjectType.POLICE);
-                if (polices != null && polices.Count > 0)
-                {
-                    policeSprite.SetActive(polices.Exists(x => x.City == this.city));
-                    policeNumLabel.text = polices.Count.ToString();
-                }
-                List<Piece> infos = PieceManager.Instance.FindAll(eSubjectType.INFO);
-                if (infos != null && infos.Count > 0)
-                {
-                    informSprite.SetActive(infos.Exists(x => x.City == this.city));
-                }
-                List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
-                if (questPieces != null && questPieces.Count > 0)
-                {
-                    questSprite.SetActive(questPieces.Exists(x => x.City == this.city));
-                }
-
-                yield return new WaitForSeconds(.2f);
-            }
         }
 
         public City City
