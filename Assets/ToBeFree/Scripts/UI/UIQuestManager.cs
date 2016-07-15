@@ -58,7 +58,8 @@ namespace ToBeFree
         public void DeleteQuest(Quest quest)
         {
             UIQuest uiQuest = uiQuests.Find(x => x.QuestPiece.CurQuest == quest);
-            DeleteUIQuest(uiQuest);
+            if (uiQuest)
+                DeleteUIQuest(uiQuest);
         }
 
         private void DeleteUIQuest(UIQuest uiQuest)

@@ -12,7 +12,8 @@ namespace ToBeFree
             Init, StartWeek, Detention, Mongolia, Escape,
             StartDay,
             Act,
-            Night
+            Night,
+            NORTHKOREA
         }
         
         public UILabel stateLabel;
@@ -79,14 +80,20 @@ namespace ToBeFree
 
             if(Input.GetKeyDown(KeyCode.KeypadPlus))
             {
-                Time.timeScale -= .1f;
+                if(Time.timeScale >= 0f)
+                    Time.timeScale -= .2f;
             }
 
             if (Input.GetKeyDown(KeyCode.KeypadMinus))
             {
-                Time.timeScale += .1f;
+                if(Time.timeScale <= 3f)
+                    Time.timeScale += .2f;
             }
 
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                character.IsDetention = true;
+            }
             // 0. parse data
 
             // 1. start week
@@ -156,7 +163,8 @@ namespace ToBeFree
 
             yield return character.MoveTo(character.CurCity);
 
-            CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.BEIJING), CityManager.Instance.Find(eCity.YANBIAN));
+            //CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.KUNMING), CityManager.Instance.Find(eCity.DANDONG));
+            
 
             inspectAction = new Inspect();
 
@@ -177,6 +185,8 @@ namespace ToBeFree
             
             yield return null;
 
+            // for test
+            //character.Stat.Agility = 0;
 
             // Excute
 
@@ -217,7 +227,7 @@ namespace ToBeFree
             
             if (character.IsDetention)
             {
-                this.State = GameState.Detention;
+                this.State = GameState.Detention;                
             }
             else
             {
@@ -288,8 +298,7 @@ namespace ToBeFree
             yield return (ShowStateLabel("Night State", 0.5f));
             
             yield return Instance_NotifyEveryNight();
-
-            character.Stat.MENTAL = 0;
+            
 
             TimeTable.Instance.DayIsGone();
             while(state == GameState.Night)

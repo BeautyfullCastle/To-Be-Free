@@ -10,6 +10,8 @@ namespace ToBeFree
         private readonly CityData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/City.json";
 
+        private List<City> neareastPath;
+
         public CityManager()
         {
             DataList<CityData> cDataList = new DataList<CityData>(file);
@@ -127,44 +129,63 @@ namespace ToBeFree
             }
             List<City> path = new List<City>();
             path.Add(curCity);
-            CalcDist(curCity, path);
+            CalcDist(curCity, path, 0);
             Debug.Log(path.Count);
-            List<City> neareastPath = new List<City>();
-            neareastPath.Add(curCity);
-            CalcNeareastPath(curCity, startCity, neareastPath);
-            for(int i=0; i<neareastPath.Count; ++i)
+            for (int i = 0; i < path.Count; ++i)
             {
-                Debug.LogWarning(neareastPath[i].Name.ToString());
+                Debug.Log(path[i].Name.ToString() + " " + path[i].Distance);
+            }
+            neareastPath = new List<City>(startCity.Distance);
+
+            List<City> visited = new List<City>();
+            int farDistance = 0;
+            CalcNeareastPath(curCity, startCity, neareastPath, farDistance, visited);
+            
+            Queue<City> queue = new Queue<City>(neareastPath);
+            while (queue.Count > 0)
+            {
+                City city = queue.Dequeue();
+                Debug.LogWarning(city.Name.ToString() + " " + city.Distance);
             }
         }
 
-        private void CalcNeareastPath(City curCity, City destination, List<City> neareastPath)
+        
+        
+        private void CalcNeareastPath(City curCity, City destination, List<City> neareastPath, int farDistance, List<City> visited)
         {
             foreach(City neighbor in curCity.NeighborList)
-            {        
-                if(neareastPath.Exists(x => x == neighbor))
+            {
+                if(visited.Contains(neighbor))
                 {
                     continue;
                 }
-                if(neareastPath.Count <= neighbor.Distance)
+                if(neighbor.Distance <= farDistance)
                 {
-                    neareastPath.Add(neighbor);
-                }
-                else
-                {
-                    neareastPath[neighbor.Distance] = neighbor;
+                    continue;
                 }
 
-                if (neighbor == destination)
+                if (neareastPath.Count <= neighbor.Distance)
+                    neareastPath.Add(neighbor);
+                else
+                    neareastPath[neighbor.Distance] = neighbor;
+
+                farDistance = neighbor.Distance;
+                visited.Add(neighbor);
+                if(destination == neighbor)
                 {
-                    neareastPath.RemoveRange(neighbor.Distance, neareastPath.Count - neighbor.Distance);
                     break;
                 }
-                CalcNeareastPath(neighbor, destination, neareastPath);
+                CalcNeareastPath(neighbor, destination, neareastPath, farDistance, visited);
             }
+            if (neareastPath.Contains(destination))
+                return;
+            neareastPath.RemoveAt(neareastPath.Count - 1);
+            City lastCity = neareastPath[neareastPath.Count - 1];
+            farDistance = lastCity.Distance;
+            CalcNeareastPath(lastCity, destination, neareastPath, farDistance, visited);
         }
 
-        private void CalcDist(City city, List<City> path)
+        private void CalcDist(City city, List<City> path, int i)
         {
             foreach (City neighbor in city.NeighborList)
             {
@@ -174,25 +195,24 @@ namespace ToBeFree
                 }
                 neighbor.Distance = city.Distance + 1;
                 path.Add(neighbor);
-                Debug.Log(neighbor.Name.ToString() + " " + neighbor.Distance);
-                CalcDist(neighbor, path);
             }
+            ++i;
+            if(path.Count <= i)
+            {
+                return;
+            }
+            CalcDist(path[i], path, i);
         }
 
         public City GetNearestCity(City curCity)
         {
-            //Dictionary<City, int> dic = new Dictionary<City, int>(list.Length);
-            //for (int i = 0; i < list.Length; ++i)
-            //{
-            //    dic.Add(list[0], 0);
-            //}
-
-            //foreach (City city in curCity.NeighborList)
-            //{
-            //    dic[city]++;
-            //}
-            return null;
-            
+            if(neareastPath.Count <=0)
+            {
+                return null;
+            }
+            City neareastCity = new City(neareastPath[0]);
+            neareastPath.RemoveAt(0);
+            return neareastCity;
         }
 
         public City[] List

@@ -11,8 +11,11 @@ namespace ToBeFree
         private string name;
         private City curCity;
         private City nextCity;
+        readonly private City startCity;
 
         private Inventory inven;
+
+        private bool isDetention;
 
         public delegate void MoveCityHandler(string cityName);
         public static event MoveCityHandler MoveCity = delegate { };
@@ -26,6 +29,7 @@ namespace ToBeFree
             this.name = name;
             this.stat = stat;
             this.curCity = curCity;
+            this.startCity = new City(curCity);
             this.inven = inven;
 
             CantCure = false;
@@ -152,14 +156,63 @@ namespace ToBeFree
         }
 
         public bool IsFull { get; internal set; }
-        public bool IsDetention { get; internal set; }
+        public bool IsDetention {
+            get
+            {
+                return isDetention;
+            }
+            set
+            {
+                isDetention = value;
+                if(value==true)
+                    CityManager.Instance.FindNearestPathToStartCity(CurCity, CityManager.Instance.Find(eCity.DANDONG));
+            }
+        }
+
         public bool CantCure { get; internal set; }
         public bool CantMove { get; internal set; }
+
+        public City StartCity
+        {
+            get
+            {
+                return startCity;
+            }
+        }
 
         public IEnumerator HaulIn()
         {
             City city = CityManager.Instance.GetNearestCity(CurCity);
-            yield return MoveTo(city);
+            
+            if (city != null)
+            {
+                yield return MoveTo(city);
+            }
+            // if no more left cities 
+            else
+            {
+                GameManager.Instance.uiEventManager.OpenUI();
+
+                yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, this);
+                bool testResult = DiceTester.Instance.Test(Stat.Luck, this);
+                yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, this);
+
+                GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Last chance to Escape!!!");
+                GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
+
+                yield return EventManager.Instance.WaitUntilFinish();
+                
+                if(testResult == true)
+                {
+                    IsDetention = false;
+                }
+                else
+                {
+                    // game over
+                    yield return GameManager.Instance.ShowStateLabel("Game Over!", 1f);
+                }
+            }
+
         }
     }
 }
