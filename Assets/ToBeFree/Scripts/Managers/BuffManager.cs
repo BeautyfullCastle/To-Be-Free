@@ -56,6 +56,7 @@ namespace ToBeFree
             }
             
             DeletedBuff(buff);
+            buffList.Remove(buff);
 
             yield return null;
         }
@@ -101,7 +102,7 @@ namespace ToBeFree
 
             foreach (Buff buff in buffsToDelete)
             {
-                yield return this.Delete(buff, character);
+                yield return AbnormalConditionManager.Instance.Find(buff.Name).DeActivate(character);
             }
             yield return null;
         }
@@ -129,8 +130,7 @@ namespace ToBeFree
 
             if (isTestSucceed)
             {
-                DeletedBuff(buff);
-                buffList.Remove(buff);
+                yield return this.Delete(buff, character);
             }
             
         }

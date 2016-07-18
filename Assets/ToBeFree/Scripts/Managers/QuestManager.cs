@@ -77,10 +77,7 @@ namespace ToBeFree
         public IEnumerator ActivateQuest(Quest quest, bool testResult, Character character)
         {
             yield return EventManager.Instance.ActivateEvent(quest.Event_, character);
-            if(EventManager.Instance.CurrEventTestResult)
-            {
-                GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
-            }
+            
         }
 
         public IEnumerator Load(Quest selectedQuest, Character character)

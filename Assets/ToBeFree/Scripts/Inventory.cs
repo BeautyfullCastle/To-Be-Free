@@ -59,25 +59,24 @@ namespace ToBeFree
             return InventoryRecords.Exists(x => x.Item == item);
         }
 
-        public void Delete(Item item, Character character)
+        public IEnumerator Delete(Item item, Character character)
         {
             InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.Item.Name == item.Name));
             InventoryRecords.Remove(inventoryRecord);
 
-            BuffManager.Instance.Delete(item.Buff, character);
+            yield return BuffManager.Instance.Delete(item.Buff, character);
 
             DeletedItem(item);
         }
         
-        public void Delete(Buff buff, Character character)
+        public IEnumerator Delete(Buff buff, Character character)
         {
             InventoryRecord inventoryRecord = InventoryRecords.Find(x => (x.Item.Buff == buff));
 
-            if (inventoryRecord==null)
+            if (inventoryRecord != null)
             {
-                return;
-            }
-            this.Delete(inventoryRecord.Item, character);
+                yield return this.Delete(inventoryRecord.Item, character);
+            }            
         }
 
         public Item GetRand()
@@ -141,7 +140,7 @@ namespace ToBeFree
             yield return item.Buff.ActivateEffect(character);
             if (item.Buff.Duration == eDuration.ONCE)
             {
-                Delete(item, character);
+                yield return Delete(item, character);
             }
         }
 

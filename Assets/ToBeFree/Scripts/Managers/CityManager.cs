@@ -28,16 +28,20 @@ namespace ToBeFree
         {
             foreach (CityData data in dataList)
             {
-                if((data.workingMoneyRange.Length != 2) || data.workingMoneyRange[0] > data.workingMoneyRange[1])
+                if((data.workingMoneyRange.Length > 2) || data.workingMoneyRange.Length <= 0)
                 {
                     throw new System.Exception("data.workingMoneyRange is wrong.");
                 }
 
-                Item[] itemList = new Item[data.itemIndexList.Length];
-                for(int i=0; i<data.itemIndexList.Length; ++i)
+                Item[] itemList = null;
+                if (data.itemIndexList.Length > 0 && data.itemIndexList[0] != -99)
                 {
-                    Item item = ItemManager.Instance.List[data.itemIndexList[i]];
-                    itemList[i] = item;
+                    itemList = new Item[data.itemIndexList.Length];
+                    for (int i = 0; i < data.itemIndexList.Length; ++i)
+                    {
+                        Item item = ItemManager.Instance.List[data.itemIndexList[i]];
+                        itemList[i] = item;
+                    }
                 }
 
                 City city = new City(EnumConvert<eCity>.ToEnum(data.name), EnumConvert<eCitySize>.ToEnum(data.size),

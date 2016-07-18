@@ -6,7 +6,7 @@ namespace ToBeFree
 {
     public enum eCommand
     {
-        MOVE, WORK, REST, SHOP, QUEST, INFO, BROKER, ESCAPE
+        MOVE, WORK, REST, SHOP, QUEST, INFO, BROKER, ESCAPE, SPECIAL
     }
 
     public class Action
@@ -130,10 +130,14 @@ namespace ToBeFree
             if (quest.CheckCondition(character))
             {
                 yield return QuestManager.Instance.ActivateQuest(quest, true, character);
-                PieceManager.Instance.Delete(questPiece);
             }
 
-            yield return (EventManager.Instance.WaitUntilFinish());
+            if (EventManager.Instance.TestResult == true)
+            {
+                PieceManager.Instance.Delete(questPiece);
+                GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
+            }
+            
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
@@ -177,7 +181,7 @@ namespace ToBeFree
         public override IEnumerator Activate(Character character)
         {
             Debug.LogWarning("Detention action activated.");
-            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+            yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
             GameManager.Instance.uiEventManager.OpenUI();
 
@@ -246,6 +250,7 @@ namespace ToBeFree
                 City cityOfBroker = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2);
                 Piece broker = new Piece(cityOfBroker, eSubjectType.BROKER);
                 PieceManager.Instance.Add(broker);
+                character.Stat.InfoNum -= 3;
                 yield return GameManager.Instance.MoveDirectingCam(new List<Transform>() {
                     GameManager.Instance.FindGameObject(cityOfBroker.Name.ToString()).transform }, 2f);
             }

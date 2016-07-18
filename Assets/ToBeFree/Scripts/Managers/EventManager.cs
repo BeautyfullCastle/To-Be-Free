@@ -425,14 +425,6 @@ namespace ToBeFree
             }
         }
 
-        public bool CurrEventTestResult
-        {
-            get
-            {
-                return currEventTestResult;
-            }
-        }
-
         public bool TestResult
         {
             get

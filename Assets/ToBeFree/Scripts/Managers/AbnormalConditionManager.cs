@@ -119,7 +119,7 @@ namespace ToBeFree
                 }
                 else
                 {
-                    Debug.LogError("Wrong name : " + data.name);
+                    abnormalCondition = new AbnormalCondition(data.name, buff, spawnCondition, bool.Parse(data.stack), EnumConvert<eBodyMental>.ToEnum(data.isBody), EnumConvert<ePositiveNegative>.ToEnum(data.isPositive));
                 }
 
                 if (list[data.index] != null)

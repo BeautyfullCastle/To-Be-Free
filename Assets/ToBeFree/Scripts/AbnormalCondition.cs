@@ -129,10 +129,9 @@ namespace ToBeFree
             {
                 yield break;
             }
-            BuffManager.Instance.Delete(buff_exhilaration, character);
+            yield return BuffManager.Instance.Delete(buff_exhilaration, character);
             yield return null;   
         }
-
     }
 
     public class LegInjury : AbnormalCondition
@@ -221,7 +220,7 @@ namespace ToBeFree
             {
                 yield break;
             }
-            BuffManager.Instance.Delete(buff_exhilaration, character);
+            yield return BuffManager.Instance.Delete(buff_exhilaration, character);
             yield return null;
         }
     }

@@ -57,8 +57,8 @@ namespace ToBeFree
         private eVerbType verbType;
         private eObjectType objectType;
         private int prevAmount;
-
-        public delegate void SkipEventHandler(string eventType);
+        
+        public delegate void SkipEventHandler(eCommand commandType);
         public static event SkipEventHandler SkipEvent;
 
         public Effect(eSubjectType subjectType, eVerbType verbType = eVerbType.NONE, eObjectType objectType = eObjectType.NONE)
@@ -276,7 +276,7 @@ namespace ToBeFree
                             Debug.LogError("item is null");
                             yield break;
                         }
-                        character.Inven.Delete(item, character);
+                        yield return character.Inven.Delete(item, character);
                     }
                     break;
                     
@@ -301,10 +301,8 @@ namespace ToBeFree
                 case eSubjectType.COMMAND:
                     if (verbType == eVerbType.DEACTIVE)
                     {
-                        if (objectType == eObjectType.WORK) { }
-                        else if (objectType == eObjectType.MOVE) { }
-                        else if (objectType == eObjectType.REST) { }
-                        else if (objectType == eObjectType.SPECIAL) { } // other commands.
+                        // other commands.
+                        SkipEvent(EnumConvert<eCommand>.ToEnum(objectType.ToString()));
                     }
                     break;
                     
@@ -331,8 +329,7 @@ namespace ToBeFree
                     //    // fix. to make buff for skip event and make it succeed.
                     //    SkipEvent(EnumConvert<eObjectType>.ToString(objectType));
                     //    if (objectType == eObjectType.WORK)
-                    //    {
-                            
+                    //    { 
                     //    }
                     //    else if (objectType == eObjectType.MOVE) { }
                     //    else if (objectType == eObjectType.INFO) { }

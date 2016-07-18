@@ -14,7 +14,8 @@
 			],
 			"neighborList": [
 				1,
-				2
+				2,
+				30
 			]
 		},
 		{
@@ -195,7 +196,8 @@
 			"neighborList": [
 				0,
 				11,
-				2
+				2,
+				32
 			]
 		},
 		{
@@ -441,7 +443,8 @@
 			],
 			"neighborList": [
 				22,
-				23
+				23,
+				29
 			]
 		},
 		{
@@ -508,7 +511,140 @@
 				7
 			],
 			"neighborList": [
-				25
+				25,
+				32
+			]
+		},
+		{
+			"index": 29,
+			"name": "NORTHKOREA",
+			"size": "NULL",
+			"area": "NULL",
+			"itemIndexList": [
+				-99
+			],
+			"workingMoneyRange": [
+				-99,
+				-99
+			],
+			"neighborList": [
+				24
+			]
+		},
+		{
+			"index": 30,
+			"name": "LAOS",
+			"size": "NULL",
+			"area": "NULL",
+			"itemIndexList": [
+				-99
+			],
+			"workingMoneyRange": [
+				-99,
+				-99
+			],
+			"neighborList": [
+				0
+			]
+		},
+		{
+			"index": 31,
+			"name": "VIETNAM",
+			"size": "NULL",
+			"area": "NULL",
+			"itemIndexList": [
+				-99
+			],
+			"workingMoneyRange": [
+				-99,
+				-99
+			],
+			"neighborList": [
+				10
+			]
+		},
+		{
+			"index": 32,
+			"name": "MONGOLIA1",
+			"size": "NULL",
+			"area": "NULL",
+			"itemIndexList": [
+				-99
+			],
+			"workingMoneyRange": [
+				-99,
+				-99
+			],
+			"neighborList": [
+				28,
+				33
+			]
+		},
+		{
+			"index": 33,
+			"name": "MONGOLIA2",
+			"size": "NULL",
+			"area": "NULL",
+			"itemIndexList": [
+				-99
+			],
+			"workingMoneyRange": [
+				-99,
+				-99
+			],
+			"neighborList": [
+				32,
+				34
+			]
+		},
+		{
+			"index": 34,
+			"name": "MONGOLIA3",
+			"size": "NULL",
+			"area": "NULL",
+			"itemIndexList": [
+				-99
+			],
+			"workingMoneyRange": [
+				-99,
+				-99
+			],
+			"neighborList": [
+				33,
+				35
+			]
+		},
+		{
+			"index": 35,
+			"name": "MONGOLIA4",
+			"size": "NULL",
+			"area": "NULL",
+			"itemIndexList": [
+				-99
+			],
+			"workingMoneyRange": [
+				-99,
+				-99
+			],
+			"neighborList": [
+				34,
+				36
+			]
+		},
+		{
+			"index": 36,
+			"name": "MONGOLIA",
+			"size": "NULL",
+			"area": "NULL",
+			"itemIndexList": [
+				-99
+			],
+			"workingMoneyRange": [
+				-99,
+				-99
+			],
+			"neighborList": [
+				35
 			]
 		}
 	]
