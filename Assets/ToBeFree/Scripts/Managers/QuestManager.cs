@@ -84,9 +84,9 @@ namespace ToBeFree
         {
             City city = null;
             int distance = 2;
-            if (selectedQuest.Event_ != null)
+            if (selectedQuest.ActionType == eQuestActionType.QUEST)
             {
-                city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
+                city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.QUEST);
             }
             QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
             GameManager.Instance.uiEventManager.OpenUI();

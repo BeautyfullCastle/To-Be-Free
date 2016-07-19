@@ -247,7 +247,7 @@ namespace ToBeFree
             // and delete 3 info pieces.
             if(character.Stat.InfoNum >= 3)
             {
-                City cityOfBroker = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2);
+                City cityOfBroker = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.BROKER);
                 Piece broker = new Piece(cityOfBroker, eSubjectType.BROKER);
                 PieceManager.Instance.Add(broker);
                 character.Stat.InfoNum -= 3;

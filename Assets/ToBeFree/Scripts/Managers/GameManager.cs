@@ -80,6 +80,7 @@ namespace ToBeFree
 
         private void Update()
         {
+
             if(Input.GetKeyDown(KeyCode.KeypadPlus))
             {
                 if(Time.timeScale >= 0f)
@@ -92,7 +93,8 @@ namespace ToBeFree
                     Time.timeScale += .2f;
             }
 
-            if(Input.GetKeyDown(KeyCode.D))
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 character.IsDetention = true;
             }
@@ -104,6 +106,16 @@ namespace ToBeFree
                 //yield return effect.Activate(character, 1);
                 activateAbnormal = true;                
             }
+
+            if(Input.GetKeyDown(KeyCode.P))
+            {
+                PieceManager.Instance.Add(new Police(CityManager.Instance.FindRand(eSubjectType.POLICE), eSubjectType.POLICE));
+            }
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                PieceManager.Instance.Add(new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.INFO), eSubjectType.INFO));
+            }
+#endif
             // 0. parse data
 
             // 1. start week
@@ -316,11 +328,14 @@ namespace ToBeFree
             
             yield return Instance_NotifyEveryNight();
 
+#if UNITY_EDITOR
+            // for the test
             if (activateAbnormal)
             {
                 yield return AbnormalConditionManager.Instance.List[17].Activate(character);
                 activateAbnormal = false;
             }
+#endif
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);
 
@@ -409,7 +424,7 @@ namespace ToBeFree
             
             yield return QuestManager.Instance.Load(selectedQuest, character);
 
-            if (selectedQuest.Event_ != null)
+            if (selectedQuest.ActionType == eQuestActionType.QUEST)
             {
                 QuestPiece piece = PieceManager.Instance.Find(selectedQuest);
                 pieceCityTransformList.Add(GameObject.Find(piece.City.Name.ToString()).transform);
@@ -417,18 +432,18 @@ namespace ToBeFree
             
 
             // 2 polices
-            Police randPolice = new Police(CityManager.Instance.FindRand(), eSubjectType.POLICE);
+            Police randPolice = new Police(CityManager.Instance.FindRand(eSubjectType.POLICE), eSubjectType.POLICE);
             PieceManager.Instance.Add(randPolice);
             pieceCityTransformList.Add(GameObject.Find(randPolice.City.Name.ToString()).transform);
-            Police randPoliceByDistance = new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.POLICE);
+            Police randPoliceByDistance = new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.POLICE), eSubjectType.POLICE);
             PieceManager.Instance.Add(randPoliceByDistance);
             pieceCityTransformList.Add(GameObject.Find(randPoliceByDistance.City.Name.ToString()).transform);
 
             // 2 informations
-            Information randInfo = new Information(CityManager.Instance.FindRand(), eSubjectType.INFO);
+            Information randInfo = new Information(CityManager.Instance.FindRand(eSubjectType.INFO), eSubjectType.INFO);
             PieceManager.Instance.Add(randInfo);
             pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name.ToString()).transform);
-            Information randInfoByDistance = new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance), eSubjectType.INFO);
+            Information randInfoByDistance = new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.INFO), eSubjectType.INFO);
             PieceManager.Instance.Add(randInfoByDistance);
             pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name.ToString()).transform);
 

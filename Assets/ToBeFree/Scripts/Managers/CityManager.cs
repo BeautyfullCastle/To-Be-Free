@@ -66,11 +66,27 @@ namespace ToBeFree
             return Find(EnumConvert<eCity>.ToEnum(cityName));
         }
 
-        public City FindRand()
+        public City FindRand(eSubjectType pieceType)
         {
+            HashSet<City> hashSet = new HashSet<City>(list);
+            hashSet.ExceptWith(Array.FindAll(list, x => x.Area == eArea.NULL));
+
+            if (pieceType != eSubjectType.POLICE)
+            {
+                hashSet.ExceptWith(Array.FindAll(list, x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0));
+            }
+
+            if (hashSet.Count <= 0)
+            {
+                return null;
+            }
+
             System.Random r = new System.Random();
-            int randIndex = r.Next(0, list.Length-1);
-            return list[randIndex];
+            List<City> cityList = new List<City>(hashSet);
+            int index = r.Next(0, cityList.Count - 1);
+
+            return cityList[index];
+            
         }
 
         public List<City> FindCitiesBySize(eCitySize size)
@@ -86,11 +102,24 @@ namespace ToBeFree
             return cityListBySize;
         }
 
-        public City FindRandCityByDistance(City curCity, int distance)
+        public City FindRandCityByDistance(City curCity, int distance, eSubjectType pieceType)
         {
             System.Random r = new System.Random();
             // put a police in random cities by distance.
             List<City> cityList = CityManager.Instance.FindCitiesByDistance(curCity, distance);
+
+            cityList.RemoveAll(x => x.Area == eArea.NULL);
+
+            if (pieceType != eSubjectType.POLICE)
+            {
+                cityList.RemoveAll(x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0);
+            }
+
+            if(cityList.Count <= 0)
+            {
+                return FindRand(pieceType);
+            }
+
             int randCityIndex = r.Next(0, cityList.Count-1);
 
             return cityList[randCityIndex];

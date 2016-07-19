@@ -123,7 +123,7 @@ namespace ToBeFree
                     {
                         if (objectType == eObjectType.CLOSE)
                         {
-                            yield return character.MoveTo(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount));
+                            yield return character.MoveTo(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType));
                         }
                         // can't move after move event( in mongolia )
                         if (objectType == eObjectType.CANCEL)
@@ -162,19 +162,19 @@ namespace ToBeFree
                         {
                             piece = PieceManager.Instance.FindRand(subjectType);
                             startCity = piece.City;
-                            endCity = CityManager.Instance.FindRand();
+                            endCity = CityManager.Instance.FindRand(subjectType);
                         }
                         if (objectType == eObjectType.RAND_CLOSE)
                         {
                             piece = PieceManager.Instance.FindRand(subjectType);
                             startCity = piece.City;
-                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
+                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
                         }
                         if (objectType == eObjectType.FAR_CLOSE)
                         {
                             piece = PieceManager.Instance.GetLast(subjectType);
                             startCity = piece.City;
-                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
+                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
                         }
                         if (objectType == eObjectType.CLOSE_FAR)
                         {
@@ -184,7 +184,7 @@ namespace ToBeFree
                             System.Random r = new System.Random();
                             int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
 
-                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance);                            
+                            endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance, subjectType);
                         }
                         yield return PieceManager.Instance.Move(piece, endCity);
                     }
@@ -209,12 +209,12 @@ namespace ToBeFree
                     {
                         if (objectType == eObjectType.RAND)
                         {
-                            City city = CityManager.Instance.FindRand();
+                            City city = CityManager.Instance.FindRand(subjectType);
                             PieceManager.Instance.Add(new Piece(city, subjectType));
                         }
                         if (objectType == eObjectType.CLOSE)
                         {
-                            City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount);
+                            City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
                             PieceManager.Instance.Add(new Piece(city, subjectType));
                         }
                     }
@@ -365,7 +365,7 @@ namespace ToBeFree
                     if(verbType == eVerbType.LOAD)
                     {
                         int distance = 2;
-                        City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance);
+                        City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, subjectType);
                         Quest selectedQuest = QuestManager.Instance.List[amount];
                         yield return QuestManager.Instance.Load(selectedQuest, character);
                     }

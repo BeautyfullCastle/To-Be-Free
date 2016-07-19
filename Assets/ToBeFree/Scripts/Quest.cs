@@ -96,6 +96,14 @@ namespace ToBeFree
             }
         }
 
+        public eQuestActionType ActionType
+        {
+            get
+            {
+                return actionType;
+            }
+        }
+
         public void TreatPastQuest(Character character)
         {
             QuestManager.Instance.ActivateResultEffects(failureEffects.EffectAmounts, character);

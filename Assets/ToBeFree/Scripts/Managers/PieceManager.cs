@@ -69,6 +69,10 @@ namespace ToBeFree
         // ********* Add ***********
         public void Add(Piece piece)
         {
+            if(piece.City == null)
+            {
+                return;
+            }
             list.Add(piece);
             AddPiece(piece);
         }
