@@ -135,7 +135,7 @@ namespace ToBeFree
                     {
                         if (objectType == eObjectType.DETENTION)
                         {
-                            yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(character);
+                            yield return AbnormalConditionManager.Instance.Find("Detention").Activate(character);
                         }
                     }
                     

@@ -240,7 +240,7 @@ namespace ToBeFree
 
         public override IEnumerator DeActivate(Character character)
         {
-            base.DeActivate(character);
+            yield return base.DeActivate(character);
             yield return null;
         }
     }
@@ -269,14 +269,19 @@ namespace ToBeFree
         public override IEnumerator Activate(Character character)
         {
             yield return base.Activate(character);
+
+            if (character.IsDetention == false)
+            {
+                CityManager.Instance.FindNearestPathToStartCity(character.CurCity, CityManager.Instance.Find(eCity.DANDONG));
+            }
             character.IsDetention = true;
-            
+
             yield return null;
         }
 
         public override IEnumerator DeActivate(Character character)
         {
-            base.DeActivate(character);
+            yield return base.DeActivate(character);
             character.IsDetention = false;
             yield return null;
         }

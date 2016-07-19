@@ -16,9 +16,6 @@ namespace ToBeFree
         private EventData[] dataList;
         private string file;
 
-        private EffectAmount[] resultSuccessEffectAmountList;
-        private bool testResult;
-
         public delegate void UIChangedHandler(eUIEventLabelType type, string text);
         public static event UIChangedHandler UIChanged = delegate { };
 
@@ -30,7 +27,8 @@ namespace ToBeFree
         private bool isFinish;
         private Event selectedEvent;
 
-        private bool currEventTestResult;
+        private bool testResult;
+        private Result currResult;
 
         public void Awake()
         {
@@ -72,15 +70,15 @@ namespace ToBeFree
         {
             if (testStat == eTestStat.ALL || testStat == eTestStat.NULL)
             {
-                currEventTestResult = true;
-                UIChanged(eUIEventLabelType.DICENUM, currEventTestResult.ToString());
+                TestResult = true;
+                UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString());
             }
             else
             {
-                currEventTestResult = DiceTester.Instance.Test(character.GetDiceNum(testStat), character);
-                UIChanged(eUIEventLabelType.DICENUM, currEventTestResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
+                TestResult = DiceTester.Instance.Test(character.GetDiceNum(testStat), character);
+                UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
             }
-            return currEventTestResult;
+            return TestResult;
         }
 
         public IEnumerator TreatResult(Result result, bool testResult, Character character)
@@ -100,7 +98,6 @@ namespace ToBeFree
                     yield return effectAmount.Activate(character);
                     resultEffect += effectAmount.ToString() + "\n";
                 }
-                resultSuccessEffectAmountList = result.Success.EffectAmounts;
             }
             else
             {
@@ -116,6 +113,7 @@ namespace ToBeFree
                     resultEffect += effectAmount.ToString() + "\n";
                 }
             }
+            this.CurrResult = result;
             UIChanged(eUIEventLabelType.RESULT, resultScript);
             UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
         }
@@ -387,14 +385,6 @@ namespace ToBeFree
             Debug.LogError("Can't find event list. rand Val : + " + randVal + " , total val : " + val);
             return null;
         }
-        
-        public EffectAmount[] ResultSuccessEffectAmountList
-        {
-            get
-            {
-                return resultSuccessEffectAmountList;
-            }
-        }
 
         public Event[] List
         {
@@ -431,10 +421,22 @@ namespace ToBeFree
             {
                 return testResult;
             }
-
-            set
+            private set
             {
                 testResult = value;
+            }
+        }
+
+        public Result CurrResult
+        {
+            get
+            {
+                return currResult;
+            }
+
+            private set
+            {
+                currResult = value;
             }
         }
     }

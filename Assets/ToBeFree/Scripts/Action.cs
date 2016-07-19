@@ -68,7 +68,7 @@ namespace ToBeFree
             // if effect is money and event is succeeded,
             if (EventManager.Instance.TestResult)
             {
-                EffectAmount[] successResulteffects = EventManager.Instance.ResultSuccessEffectAmountList;
+                EffectAmount[] successResulteffects = EventManager.Instance.CurrResult.Success.EffectAmounts;
 
                 for (int i = 0; i < successResulteffects.Length; ++i)
                 {
@@ -102,7 +102,34 @@ namespace ToBeFree
             yield return base.Activate(character);
             yield return (EventManager.Instance.DoCommand(actionName, character));
 
-            yield return character.MoveTo(character.NextCity);
+            EffectAmount[] effects = null;
+            if(EventManager.Instance.TestResult)
+            {
+                effects = EventManager.Instance.CurrResult.Success.EffectAmounts;
+            }
+            else
+            {
+                effects = EventManager.Instance.CurrResult.Failure.EffectAmounts;
+            }
+            bool dontMove = false;
+            for (int i = 0; i < effects.Length; ++i)
+            {
+                if (effects[i].Effect == null)
+                {
+                    continue;
+                }
+                if (effects[i].Effect.SubjectType == eSubjectType.CHARACTER
+                    && effects[i].Effect.VerbType == eVerbType.MOVE)
+                {
+                    dontMove = true;
+                    break;
+                }
+            }
+
+            if (dontMove == false)
+            {
+                yield return character.MoveTo(character.NextCity);
+            }
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);

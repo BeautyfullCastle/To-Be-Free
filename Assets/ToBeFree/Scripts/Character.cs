@@ -164,8 +164,6 @@ namespace ToBeFree
             set
             {
                 isDetention = value;
-                if(value==true)
-                    CityManager.Instance.FindNearestPathToStartCity(CurCity, CityManager.Instance.Find(eCity.DANDONG));
             }
         }
 
@@ -204,7 +202,7 @@ namespace ToBeFree
                 
                 if(testResult == true)
                 {
-                    IsDetention = false;
+                    yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(this);
                 }
                 else
                 {

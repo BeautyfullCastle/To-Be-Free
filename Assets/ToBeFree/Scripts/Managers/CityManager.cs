@@ -169,11 +169,16 @@ namespace ToBeFree
                 Debug.Log(path[i].Name.ToString() + " " + path[i].Distance);
             }
             neareastPath = new List<City>(startCity.Distance);
-
+            neareastPath.Add(curCity);
             List<City> visited = new List<City>();
+            visited.Add(curCity);
+
             int farDistance = 0;
             CalcNeareastPath(curCity, startCity, neareastPath, farDistance, visited);
-            
+
+            // if find neareast path, erase current city.
+            neareastPath.Remove(curCity);
+
             Queue<City> queue = new Queue<City>(neareastPath);
             while (queue.Count > 0)
             {
@@ -181,8 +186,6 @@ namespace ToBeFree
                 Debug.LogWarning(city.Name.ToString() + " " + city.Distance);
             }
         }
-
-        
         
         private void CalcNeareastPath(City curCity, City destination, List<City> neareastPath, int farDistance, List<City> visited)
         {
@@ -210,8 +213,13 @@ namespace ToBeFree
                 }
                 CalcNeareastPath(neighbor, destination, neareastPath, farDistance, visited);
             }
+            
             if (neareastPath.Contains(destination))
+            {
                 return;
+            }
+                
+            // remove leaf city and restart from last city of leaf.
             neareastPath.RemoveAt(neareastPath.Count - 1);
             City lastCity = neareastPath[neareastPath.Count - 1];
             farDistance = lastCity.Distance;

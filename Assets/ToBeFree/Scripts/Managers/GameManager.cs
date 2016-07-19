@@ -30,6 +30,7 @@ namespace ToBeFree
         private GameState state;
         private bool activateAbnormal;
         private UICommand[] commands;
+        private bool moveTest;
 
         // can't use the constructor
         private GameManager()
@@ -114,6 +115,11 @@ namespace ToBeFree
             if (Input.GetKeyDown(KeyCode.I))
             {
                 PieceManager.Instance.Add(new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.INFO), eSubjectType.INFO));
+            }
+
+            if(Input.GetKeyDown(KeyCode.M))
+            {
+                moveTest = true;                
             }
 #endif
             // 0. parse data
@@ -334,6 +340,13 @@ namespace ToBeFree
             {
                 yield return AbnormalConditionManager.Instance.List[17].Activate(character);
                 activateAbnormal = false;
+            }
+
+            if (moveTest)
+            {
+                character.Stat.Agility = 0;
+                yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[5], character);
+                moveTest = false;
             }
 #endif
 

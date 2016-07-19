@@ -107,11 +107,9 @@
 			"stat": "AGILITY",
 			"successScript": "성공적으로 공안의 눈을 피해 도망칠 수 있었지만 이 도시에 있는것은 위험해 보입니다.\\n당신은 다른 도시로 이동했습니다.",
 			"successEffectIndexList": [
-				24,
 				24
 			],
 			"successEffectValueList": [
-				1,
 				1
 			],
 			"failureScript": "혼신의 힘을 다해 도망쳤지만 공안에게 잡히고 말았습니다.",
