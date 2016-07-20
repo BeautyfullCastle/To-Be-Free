@@ -746,6 +746,7 @@ MonoBehaviour:
   commandUIObj: {fileID: 174152928}
   shopUIObj: {fileID: 1800058809}
   uiEventManager: {fileID: 406557159}
+  iconCities: []
 --- !u!4 &125925665
 Transform:
   m_ObjectHideFlags: 0
@@ -3109,7 +3110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &619020711
 Transform:
   m_ObjectHideFlags: 0

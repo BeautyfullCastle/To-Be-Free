@@ -520,7 +520,7 @@
 			"index": 29,
 			"name": "NORTHKOREA",
 			"size": "NULL",
-			"area": "NULL",
+			"area": "NORTHKOREA",
 			"itemIndexList": [
 				-99
 			],
@@ -536,7 +536,7 @@
 			"index": 30,
 			"name": "LAOS",
 			"size": "NULL",
-			"area": "NULL",
+			"area": "SOUTHEAST_ASIA",
 			"itemIndexList": [
 				-99
 			],
@@ -552,7 +552,7 @@
 			"index": 31,
 			"name": "VIETNAM",
 			"size": "NULL",
-			"area": "NULL",
+			"area": "SOUTHEAST_ASIA",
 			"itemIndexList": [
 				-99
 			],
@@ -568,7 +568,7 @@
 			"index": 32,
 			"name": "MONGOLIA1",
 			"size": "NULL",
-			"area": "NULL",
+			"area": "MONGOLIA",
 			"itemIndexList": [
 				-99
 			],
@@ -585,7 +585,7 @@
 			"index": 33,
 			"name": "MONGOLIA2",
 			"size": "NULL",
-			"area": "NULL",
+			"area": "MONGOLIA",
 			"itemIndexList": [
 				-99
 			],
@@ -602,7 +602,7 @@
 			"index": 34,
 			"name": "MONGOLIA3",
 			"size": "NULL",
-			"area": "NULL",
+			"area": "MONGOLIA",
 			"itemIndexList": [
 				-99
 			],
@@ -619,7 +619,7 @@
 			"index": 35,
 			"name": "MONGOLIA4",
 			"size": "NULL",
-			"area": "NULL",
+			"area": "MONGOLIA",
 			"itemIndexList": [
 				-99
 			],
@@ -636,7 +636,7 @@
 			"index": 36,
 			"name": "MONGOLIA",
 			"size": "NULL",
-			"area": "NULL",
+			"area": "MONGOLIA",
 			"itemIndexList": [
 				-99
 			],

@@ -387,8 +387,10 @@ namespace ToBeFree
                 case eSubjectType.ROOT:
                     if(verbType == eVerbType.OPEN)
                     {
-                        if (objectType == eObjectType.MONGOLIA) { }
-                        if (objectType == eObjectType.SOUTHEAST_ASIA) { }
+                        if (objectType == eObjectType.MONGOLIA || objectType == eObjectType.SOUTHEAST_ASIA)
+                        {
+                            CityManager.Instance.OpenOrCloseArea(EnumConvert<eArea>.ToEnum(objectType.ToString()), true);
+                        }
                     }
                     break;
 

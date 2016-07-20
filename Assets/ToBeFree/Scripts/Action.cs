@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -100,7 +101,33 @@ namespace ToBeFree
         {
             Debug.LogWarning("Move action Activated.");
             yield return base.Activate(character);
-            yield return (EventManager.Instance.DoCommand(actionName, character));
+
+            string region = string.Empty;
+            if (character.CurCity.Area == eArea.MONGOLIA || character.NextCity.Area == eArea.MONGOLIA)
+            {
+                region = eArea.MONGOLIA.ToString();
+            }
+            else if (character.NextCity.Area == eArea.SOUTHEAST_ASIA)
+            {
+                region = eArea.SOUTHEAST_ASIA.ToString();
+            }
+
+            if (region != string.Empty)
+            {
+                yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
+                Event[] events = Array.FindAll(EventManager.Instance.List, x => x.Region == region);
+                System.Random r = new System.Random();
+                int index = r.Next(0, events.Length - 1);
+                Event selectedEvent = events[index];
+                if (selectedEvent != null)
+                {
+                    yield return EventManager.Instance.ActivateEvent(selectedEvent, character);
+                }
+            }
+            else
+            {
+                yield return (EventManager.Instance.DoCommand(actionName, character));
+            }
 
             EffectAmount[] effects = null;
             if(EventManager.Instance.TestResult)
@@ -112,17 +139,20 @@ namespace ToBeFree
                 effects = EventManager.Instance.CurrResult.Failure.EffectAmounts;
             }
             bool dontMove = false;
-            for (int i = 0; i < effects.Length; ++i)
+            if (effects != null)
             {
-                if (effects[i].Effect == null)
+                for (int i = 0; i < effects.Length; ++i)
                 {
-                    continue;
-                }
-                if (effects[i].Effect.SubjectType == eSubjectType.CHARACTER
-                    && effects[i].Effect.VerbType == eVerbType.MOVE)
-                {
-                    dontMove = true;
-                    break;
+                    if (effects[i].Effect == null)
+                    {
+                        continue;
+                    }
+                    if (effects[i].Effect.SubjectType == eSubjectType.CHARACTER
+                        && effects[i].Effect.VerbType == eVerbType.MOVE)
+                    {
+                        dontMove = true;
+                        break;
+                    }
                 }
             }
 

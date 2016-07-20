@@ -69,7 +69,7 @@ namespace ToBeFree
         public City FindRand(eSubjectType pieceType)
         {
             HashSet<City> hashSet = new HashSet<City>(list);
-            hashSet.ExceptWith(Array.FindAll(list, x => x.Area == eArea.NULL));
+            hashSet.ExceptWith(Array.FindAll(list, x => x.Size == eCitySize.NULL));
 
             if (pieceType != eSubjectType.POLICE)
             {
@@ -108,7 +108,7 @@ namespace ToBeFree
             // put a police in random cities by distance.
             List<City> cityList = CityManager.Instance.FindCitiesByDistance(curCity, distance);
 
-            cityList.RemoveAll(x => x.Area == eArea.NULL);
+            cityList.RemoveAll(x => x.Size == eCitySize.NULL);
 
             if (pieceType != eSubjectType.POLICE)
             {
@@ -261,6 +261,23 @@ namespace ToBeFree
             get
             {
                 return list;
+            }
+        }
+
+        public void OpenOrCloseArea(eArea area, bool isOpen)
+        {
+            if(!(area == eArea.MONGOLIA || area == eArea.SOUTHEAST_ASIA))
+            {
+                Debug.LogError("OpenOrCloseArea : area is not escaping root. " + area.ToString());
+                return;
+            }
+
+            foreach(IconCity iconCity in GameManager.Instance.iconCities)
+            {
+                if (iconCity.City.Area == area)
+                {
+                    iconCity.gameObject.SetActive(isOpen);
+                }
             }
         }
     }

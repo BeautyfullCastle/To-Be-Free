@@ -22,6 +22,7 @@ namespace ToBeFree
         public GameObject commandUIObj;
         public GameObject shopUIObj;
         public UIEventManager uiEventManager;
+        public IconCity[] iconCities;
 
         private Character character;
         private Action action;
@@ -160,8 +161,13 @@ namespace ToBeFree
             commands = commandUIObj.GetComponentsInChildren<UICommand>();
             commandUIObj.SetActive(false);
             shopUIObj.SetActive(false);
+
             TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
             TimeTable.Instance.NotifyEveryday += DayIsGone;
+
+            iconCities = GameObject.FindObjectsOfType<IconCity>();
+            CityManager.Instance.OpenOrCloseArea(eArea.MONGOLIA, false);
+            CityManager.Instance.OpenOrCloseArea(eArea.SOUTHEAST_ASIA, false);
         }
 
         private void DayIsGone()
@@ -348,6 +354,8 @@ namespace ToBeFree
                 yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[5], character);
                 moveTest = false;
             }
+
+            //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[51], character);
 #endif
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);

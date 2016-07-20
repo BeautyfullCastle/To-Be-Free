@@ -29,7 +29,6 @@ namespace ToBeFree
             policeSprite.SetActive(false);
             questSprite.SetActive(false);
             brokerSprite.SetActive(false);
-            
         }
 
         void Start()
