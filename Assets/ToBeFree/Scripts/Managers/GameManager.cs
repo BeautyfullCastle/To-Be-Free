@@ -365,8 +365,11 @@ namespace ToBeFree
                 moveTest = false;
             }
 
-            character.Stat.Observation = 0;
-            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[89], character);
+            //character.Stat.Observation = 0;
+            //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[89], character);
+
+            // opeen mongol event
+            //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[51], character);
 #endif
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);
