@@ -16,6 +16,7 @@ namespace ToBeFree
         private Inventory inven;
 
         private bool isDetention;
+        private bool isActionSkip;
 
         public delegate void MoveCityHandler(string cityName);
         public static event MoveCityHandler MoveCity = delegate { };
@@ -36,6 +37,7 @@ namespace ToBeFree
             CantMove = false;
             IsFull = false;
             IsDetention = false;
+            isActionSkip = false;
         }
         
         public int GetDiceNum(eTestStat stat)
@@ -175,6 +177,19 @@ namespace ToBeFree
             get
             {
                 return startCity;
+            }
+        }
+
+        public bool IsActionSkip
+        {
+            get
+            {
+                return isActionSkip;
+            }
+
+            set
+            {
+                isActionSkip = value;
             }
         }
 

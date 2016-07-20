@@ -95,6 +95,11 @@ namespace ToBeFree
                     Time.timeScale += .2f;
             }
 
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                uiEventManager.OnClickOK();
+            }
+
 #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.D))
             {
@@ -122,6 +127,7 @@ namespace ToBeFree
             {
                 moveTest = true;                
             }
+            
 #endif
             // 0. parse data
 
@@ -303,13 +309,17 @@ namespace ToBeFree
                 yield return (inspectAction.Activate(character));                
             }
 
-            if (character.IsDetention == false)
+            if (character.IsDetention == false && character.IsActionSkip == false)
             {
                 // activate selected event
-                yield return (action.Activate(character));
+                yield return (action.Activate(character));                
             }
-            
-            
+            else if (character.IsActionSkip == true)
+            {
+                character.IsActionSkip = false;
+            }
+
+
             this.State = GameState.Night;
 
             // Exit
@@ -355,7 +365,8 @@ namespace ToBeFree
                 moveTest = false;
             }
 
-            //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[51], character);
+            character.Stat.Observation = 0;
+            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[89], character);
 #endif
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);

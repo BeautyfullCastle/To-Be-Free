@@ -16,7 +16,8 @@ namespace ToBeFree
         ROOT,
         BROKER,
         MENTAL,
-        NULL
+        NULL,
+        ACTION
     }
 
     public enum eVerbType
@@ -321,7 +322,15 @@ namespace ToBeFree
                         }
                     }
                     break;
-                    
+                case eSubjectType.ACTION:
+                    if(verbType == eVerbType.SKIP)
+                    {
+                        if (objectType == eObjectType.ALL)
+                        {
+                            character.IsActionSkip = true;
+                        }
+                    }
+                    break;
                 case eSubjectType.EVENT:
                     // later.
                     //if (verbType == eVerbType.SKIP)
@@ -333,12 +342,6 @@ namespace ToBeFree
                     //    }
                     //    else if (objectType == eObjectType.MOVE) { }
                     //    else if (objectType == eObjectType.INFO) { }
-                    //    // don't eat food when the time to eat
-                    //    else if (objectType == eObjectType.FOOD) { }
-                    //    // can't cure when rest event activated
-                    //    else if (objectType == eObjectType.REST_CURE) { }
-                    //    // skip entering the action
-                    //    else if (objectType == eObjectType.ALL) { }
                     //}
                     if(verbType == eVerbType.SKIP)
                     {
