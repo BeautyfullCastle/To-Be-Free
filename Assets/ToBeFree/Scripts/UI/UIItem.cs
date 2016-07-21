@@ -24,8 +24,6 @@ namespace ToBeFree
         
         void OnClick()
         {
-            NGUIDebug.Log(itemName.text);
-
             if (belong == eBelong.SHOP)
             {
                 if (this.Item == null)

@@ -49,6 +49,7 @@ namespace ToBeFree
             {
                 InventoryRecords.Add(new InventoryRecord(item, 1));
                 AddedItem(item);
+                NGUIDebug.Log(item.Name);
             }
 
             // add item's buff in buff list also.
@@ -130,9 +131,14 @@ namespace ToBeFree
         public IEnumerator CheckItem(eStartTime startTime, Character character)
         {
             List<InventoryRecord> records = InventoryRecords.FindAll(x => x.Item.Buff.StartTime == startTime);
+            
             for (int i = 0; i < records.Count; ++i)
             {
                 yield return UseItem(records[i].Item, character);
+                if (startTime == eStartTime.NIGHT)
+                {
+                    yield break;
+                }
             }
         }
 

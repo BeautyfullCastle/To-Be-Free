@@ -6,7 +6,7 @@ namespace ToBeFree
 
     public enum eStat
     {
-        HP, TOTALHP, MENTAL, TOTALMENTAL, FOOD, TOTALFOOD, MONEY, INFO, STRENGTH, AGILITY, OBSERVATION, BARGAIN, PATIENCE, LUCK, NULL
+        HP, TOTALHP, MENTAL, TOTALMENTAL, FOOD, MONEY, INFO, STRENGTH, AGILITY, OBSERVATION, BARGAIN, PATIENCE, LUCK, NULL
     }
 
     public enum eTestStat
@@ -37,7 +37,6 @@ namespace ToBeFree
 
         private int money;
         private int foodNum;
-        private int totalFoodNum;
 
         private int infoNum;
 
@@ -59,9 +58,12 @@ namespace ToBeFree
             this.Luck = 2;
 
             this.Money = 500;
-            this.TotalFoodNum = 10;
-            this.FOOD = 3;
+            this.FOOD = 0;
             this.InfoNum = 0;
+
+
+            Inventory.AddedItem += AddItem;
+            Inventory.DeletedItem += DeleteItem;
         }
 
         public Stat(Stat stat)
@@ -74,7 +76,6 @@ namespace ToBeFree
             this.Luck = stat.Luck;
             this.totalHP = stat.totalHP;
             this.totalMental = stat.totalMental;
-            this.totalFoodNum = stat.totalFoodNum;
         }
 
         public Stat DeepCopy()
@@ -86,13 +87,28 @@ namespace ToBeFree
             stat.Observation = this.Observation;
             stat.Patience = this.Patience;
             stat.Strength = this.Strength;
-            stat.totalFoodNum = this.totalFoodNum;
             stat.totalHP      = this.totalHP;
             stat.totalMental  = this.totalMental;
 
             return stat;
         }
-        
+
+        private void AddItem(Item item)
+        {
+            if (item.Buff.StartTime == eStartTime.NIGHT)
+            {
+                this.FOOD++;
+            }
+        }
+
+        private void DeleteItem(Item item)
+        {
+            if (item.Buff.StartTime == eStartTime.NIGHT)
+            {
+                this.FOOD--;
+            }
+        }
+
         public int Strength
         {
             get
@@ -251,24 +267,7 @@ namespace ToBeFree
             set
             {
                 foodNum = value;
-                if (foodNum > TotalFoodNum)
-                {
-                    foodNum = TotalFoodNum;
-                }
                 OnValueChange(foodNum, eStat.FOOD);
-            }
-        }
-
-        public int TotalFoodNum
-        {
-            get
-            {
-                return totalFoodNum;
-            }
-            set
-            {
-                totalFoodNum = value;
-                OnValueChange(totalFoodNum, eStat.TOTALFOOD);
             }
         }
 

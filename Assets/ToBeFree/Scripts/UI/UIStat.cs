@@ -10,6 +10,7 @@ namespace ToBeFree {
         void Awake() {
             label = this.GetComponent<UILabel>();
             Stat.OnValueChange += OnValueChange;
+
         }
 
         void OnValueChange(int value, eStat stat)
@@ -21,5 +22,7 @@ namespace ToBeFree {
 
             label.text = value.ToString();
         }
+
+        
     }
 }
