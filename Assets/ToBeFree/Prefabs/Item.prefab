@@ -27,6 +27,7 @@ GameObject:
   - 114: {fileID: 11411594}
   - 61: {fileID: 6108144}
   - 114: {fileID: 11454428}
+  - 114: {fileID: 11432908}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -126,6 +127,31 @@ MonoBehaviour:
   mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
   mSpriteName: white
   mFillCenter: 1
+--- !u!114 &11432908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 113366}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!114 &11452294
 MonoBehaviour:
   m_ObjectHideFlags: 1

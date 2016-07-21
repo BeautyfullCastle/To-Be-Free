@@ -20,10 +20,12 @@ namespace ToBeFree
 
             if (belong == eBelong.SHOP)
             {
-                if (this.item == null)
+                if (this.Item == null)
                     return;
 
-                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(this.item, GameManager.Instance.Character));
+                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(this.Item, GameManager.Instance.Character));
+
+                transform.GetComponentInParent<UIShop>().CheckCityItems();
             }
         }
 
@@ -32,8 +34,21 @@ namespace ToBeFree
             if (item == null)
                 return;
 
-            this.item = item;
+            this.Item = item;
             itemName.text = item.Name;
+        }
+
+        public Item Item
+        {
+            get
+            {
+                return this.item;
+            }
+
+            private set
+            {
+                this.item = value;
+            }
         }
     }
 }

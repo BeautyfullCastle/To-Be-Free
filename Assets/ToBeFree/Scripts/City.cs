@@ -45,7 +45,7 @@ namespace ToBeFree
 
         public City()
         {
-            itemList = null;
+            ItemList = null;
         }
 
         public City(eCity name, eCitySize size, eArea area, Item[] itemList, int workingMoneyMin, int workingMoneyMax, int[] neighborList)
@@ -54,14 +54,14 @@ namespace ToBeFree
             this.name = name;
             this.size = size;
             this.area = area;
-            this.itemList = itemList;
+            this.ItemList = itemList;
             this.workingMoneyMin = workingMoneyMin;
             this.workingMoneyMax = workingMoneyMax;
             this.neighborList = neighborList;
         }
 
         public City(City city)
-         : this(city.name, city.size, city.area, city.itemList, city.workingMoneyMin, city.workingMoneyMax, city.neighborList)
+         : this(city.name, city.size, city.area, city.ItemList, city.workingMoneyMin, city.workingMoneyMax, city.neighborList)
         {
         }
 
@@ -140,6 +140,18 @@ namespace ToBeFree
             set
             {
                 distanceFromCharacter = value;
+            }
+        }
+
+        public Item[] ItemList
+        {
+            get
+            {
+                return itemList;
+            }
+            private set
+            {
+                itemList = value;
             }
         }
     }
