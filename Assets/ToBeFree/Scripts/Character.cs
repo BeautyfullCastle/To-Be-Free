@@ -23,9 +23,7 @@ namespace ToBeFree
         
         // Todo : skill
 
-        public Character(string name, Stat stat, City curCity,
-                        int curMoney, int curFoodNum, int curInfoNum,
-                        int curHP, int curMental, Inventory inven)
+        public Character(string name, Stat stat, City curCity, Inventory inven)
         {
             this.name = name;
             this.stat = stat;

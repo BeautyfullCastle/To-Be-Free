@@ -25,13 +25,14 @@ namespace ToBeFree
             // 그럴려면 먼저 아까 만든 ItemScript를 가져와야겠죠.
             UIItem itemScript = gObjItem.GetComponent<UIItem>();
             itemScript.SetInfo(item);
+            itemScript.belong = UIItem.eBelong.INVEN;
             // 이제 그리드와 스크롤뷰를 재정렬 시킵시다.
             grid.Reposition();
             // 그리고 관리를 위해 만든걸 리스트에 넣어둡시다.
             items.Add(itemScript);
         }
 
-        private void DeleteItem(Item item)
+        public void DeleteItem(Item item)
         {
             UIItem uiItem = items.Find(x => x.itemName.text == item.Name);
             if(uiItem == null)

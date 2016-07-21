@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace ToBeFree {
     public class UIShop : MonoBehaviour {
@@ -27,14 +28,13 @@ namespace ToBeFree {
             foreach (UIGrid grid in grids)
             {
                 grid.Reposition();
-            }            
+            }
         }
-
-        public void CheckCityItems()
+        
+        void OnEnable()
         {
             if (GameManager.Instance.Character.Inven.Exist(GameManager.Instance.Character.CurCity.ItemList[0]))
             {
-                cityItems[0].itemName.text = "재고 없음";
                 cityItems[0].transform.GetComponent<UIButton>().isEnabled = false;
             }
             else
@@ -42,11 +42,7 @@ namespace ToBeFree {
                 cityItems[0].SetInfo(GameManager.Instance.Character.CurCity.ItemList[0]);
                 cityItems[0].transform.GetComponent<UIButton>().isEnabled = true;
             }
-        }
 
-        void OnEnable()
-        {
-            CheckCityItems();
 
             List<Item> randomItemList = new List<Item>(ItemManager.Instance.List);
             randomItemList.Remove(basicItems[0].Item);
@@ -55,9 +51,61 @@ namespace ToBeFree {
             randomItemList.RemoveAll(x => GameManager.Instance.Character.Inven.Exist(x));
 
             System.Random r = new System.Random();
-            int randIndex = r.Next(0, randomItemList.Count-1);
+            int randIndex = r.Next(0, randomItemList.Count - 1);
 
             randomItems[0].SetInfo(randomItemList[randIndex]);
+            randomItems[0].transform.GetComponent<UIButton>().isEnabled = true;
+        }
+
+        // click to buy item
+        public void OnClick(UIItem uiItem)
+        {
+            if (uiItem == randomItems[0])
+            {
+                if (randomItems[0].Item != null && GameManager.Instance.Character.Inven.Exist(randomItems[0].Item))
+                {
+                    return;
+                }
+                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, GameManager.Instance.Character));
+                randomItems[0].transform.GetComponent<UIButton>().isEnabled = false;
+            }
+            else if (uiItem == cityItems[0])
+            {
+                if (GameManager.Instance.Character.Inven.Exist(GameManager.Instance.Character.CurCity.ItemList[0]))
+                {
+                    return;
+                }
+                else
+                {
+                    StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, GameManager.Instance.Character));                    
+                    cityItems[0].transform.GetComponent<UIButton>().isEnabled = false;
+                }
+            }
+            else
+            {
+                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, GameManager.Instance.Character));
+            }
+        }
+
+        public void CheckItems()
+        {
+            if (GameManager.Instance.Character.Inven.Exist(GameManager.Instance.Character.CurCity.ItemList[0]))
+            {
+                cityItems[0].transform.GetComponent<UIButton>().isEnabled = false;
+            }
+            else
+            {
+                cityItems[0].transform.GetComponent<UIButton>().isEnabled = true;
+            }
+
+            if (randomItems[0].Item != null && GameManager.Instance.Character.Inven.Exist(randomItems[0].Item))
+            {
+                randomItems[0].transform.GetComponent<UIButton>().isEnabled = false;
+            }
+            else
+            {
+                randomItems[0].transform.GetComponent<UIButton>().isEnabled = true;
+            }
         }
 
         public void OnExit()

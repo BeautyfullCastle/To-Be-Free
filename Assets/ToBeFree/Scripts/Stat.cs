@@ -58,7 +58,7 @@ namespace ToBeFree
             this.Patience = 2;
             this.Luck = 2;
 
-            this.Money = 5;
+            this.Money = 500;
             this.TotalFoodNum = 10;
             this.FOOD = 3;
             this.InfoNum = 0;

@@ -41,11 +41,12 @@ namespace ToBeFree
                 yield break;
             }
 
+            if (InventoryRecords.Count >= maxSlots)
             {
-                if (InventoryRecords.Count >= maxSlots)
-                {
-                    throw new Exception("There is no more space in the inventory.");
-                }
+                throw new Exception("There is no more space in the inventory.");
+            }
+            else
+            {
                 InventoryRecords.Add(new InventoryRecord(item, 1));
                 AddedItem(item);
             }

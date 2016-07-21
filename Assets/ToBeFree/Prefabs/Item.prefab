@@ -28,6 +28,7 @@ GameObject:
   - 61: {fileID: 6108144}
   - 114: {fileID: 11454428}
   - 114: {fileID: 11432908}
+  - 114: {fileID: 11466282}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -233,6 +234,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   belong: 0
   itemName: {fileID: 11452294}
+--- !u!114 &11466282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9ee9adcf574fc42857acfaad9fb89e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restriction: 0
+  cloneOnDrag: 0
+  pressAndHoldDelay: 1
+  interactable: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

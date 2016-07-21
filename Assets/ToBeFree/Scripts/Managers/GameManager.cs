@@ -200,7 +200,7 @@ namespace ToBeFree
             yield return (ShowStateLabel("Init State", 0.5f));
 
             Inventory inven = new Inventory(3);
-            character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.YANBIAN), 5, 3, 0, 5, 5, inven);
+            character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.YANBIAN), inven);
 
             yield return character.MoveTo(character.CurCity);
 
