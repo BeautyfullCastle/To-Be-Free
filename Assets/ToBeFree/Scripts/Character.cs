@@ -205,8 +205,7 @@ namespace ToBeFree
                 GameManager.Instance.uiEventManager.OpenUI();
 
                 yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, this);
-                bool testResult = (DiceTester.Instance.Test(Stat.Luck) > 0);                
-
+                bool testResult = (DiceTester.Instance.Test(Stat.Luck) > 0);       
                 yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, this);
 
                 GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Last chance to Escape!!!");

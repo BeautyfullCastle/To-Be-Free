@@ -66,6 +66,8 @@ namespace ToBeFree
             Debug.LogWarning("Work action activated.");
             yield return base.Activate(character);
             yield return (EventManager.Instance.DoCommand(actionName, character));
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+            
             // if effect is money and event is succeeded,
             if (EventManager.Instance.TestResult)
             {
@@ -84,8 +86,6 @@ namespace ToBeFree
                     }
                 }
             }
-
-            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
         }
     }
 
@@ -129,6 +129,8 @@ namespace ToBeFree
                 yield return (EventManager.Instance.DoCommand(actionName, character));
             }
 
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+
             EffectAmount[] effects = null;
             if(EventManager.Instance.TestResult)
             {
@@ -161,8 +163,7 @@ namespace ToBeFree
                 yield return character.MoveTo(character.NextCity);
             }
             Debug.LogWarning("character is moved to " + character.CurCity.Name);
-
-            yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+            
         }
     }
 

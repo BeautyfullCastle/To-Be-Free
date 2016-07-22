@@ -379,7 +379,8 @@ namespace ToBeFree
                 moveTest = false;
             }
 
-            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[13], character);
+            yield return AbnormalConditionManager.Instance.List[1].Activate(character);
+            yield return AbnormalConditionManager.Instance.List[2].Activate(character);
 
             // select test
             //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[13], character);

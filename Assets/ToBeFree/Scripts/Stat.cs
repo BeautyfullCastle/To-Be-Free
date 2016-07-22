@@ -332,7 +332,7 @@ namespace ToBeFree
                     Bargain += amount;
                     break;
                 case eObjectType.PATIENCE:
-                    Patience = prevPatience;
+                    prevPatience = Patience;
                     Patience += amount;
                     break;
                 case eObjectType.LUCK:
