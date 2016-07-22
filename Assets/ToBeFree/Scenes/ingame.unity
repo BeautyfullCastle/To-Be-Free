@@ -2176,6 +2176,7 @@ MonoBehaviour:
   - {fileID: 1005760871}
   resultEffectScript: {fileID: 2084345258}
   diceNum: {fileID: 1391157055}
+  okButton: {fileID: 2019435851}
 --- !u!1001 &415865592
 Prefab:
   m_ObjectHideFlags: 0

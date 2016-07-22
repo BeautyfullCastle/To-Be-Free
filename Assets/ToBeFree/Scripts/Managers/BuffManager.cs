@@ -109,28 +109,33 @@ namespace ToBeFree
 
         public IEnumerator Rest_Cure_PatienceTest(Character character)
         {
-            Buff buff = buffList.Find(x => x.Duration == eDuration.REST_PATIENCE);
-            if(buff == null)
+            List<Buff> buffs = buffList.FindAll(x => x.Duration == eDuration.REST_PATIENCE);
+            if(buffs == null)
             {
                 yield break;
             }
-
-            int patienceStat = character.Stat.Patience;
-
-            GameManager.Instance.uiEventManager.OpenUI();
-
-            yield return ActivateEffectByStartTime(eStartTime.TEST, character);
-            bool isTestSucceed = DiceTester.Instance.Test(patienceStat) > 0;
-            yield return DeactivateEffectByStartTime(eStartTime.TEST, character);
-
-            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Rest Cure Patience Test");
-            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, isTestSucceed.ToString());
-
-            yield return EventManager.Instance.WaitUntilFinish();
-
-            if (isTestSucceed)
+            for (int i = 0; i < buffs.Count; ++i)
             {
-                yield return this.Delete(buff, character);
+                Buff buff = buffs[i];
+
+                int patienceStat = character.Stat.Patience;
+
+                GameManager.Instance.uiEventManager.OpenUI();
+
+                yield return ActivateEffectByStartTime(eStartTime.TEST, character);
+                bool isTestSucceed = DiceTester.Instance.Test(patienceStat) > 0;
+                yield return DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+                GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Rest Cure Patience Test");
+                GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, isTestSucceed.ToString());
+
+                yield return EventManager.Instance.WaitUntilFinish();
+
+                if (isTestSucceed)
+                {
+                    yield return buff.DeactivateEffect(character);
+                    yield return this.Delete(buff, character);
+                }
             }
             
         }

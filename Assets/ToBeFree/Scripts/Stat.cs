@@ -116,11 +116,7 @@ namespace ToBeFree
             }
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
-                strength = value;
+                strength = Mathf.Max(value, 1);
                 OnValueChange(strength, eStat.STRENGTH);
             }
         }
@@ -134,11 +130,7 @@ namespace ToBeFree
 
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
-                agility = value;
+                agility = Mathf.Max(value, 1);
                 OnValueChange(agility, eStat.AGILITY);
             }
         }
@@ -152,11 +144,7 @@ namespace ToBeFree
 
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
-                observation = value;
+                observation = Mathf.Max(value, 1);
                 OnValueChange(observation, eStat.OBSERVATION);
             }
         }
@@ -170,11 +158,7 @@ namespace ToBeFree
 
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
-                bargain = value;
+                bargain = Mathf.Max(value, 1);
                 OnValueChange(bargain, eStat.BARGAIN);
             }
         }
@@ -188,11 +172,7 @@ namespace ToBeFree
 
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
-                patience = value;
+                patience = Mathf.Max(value, 1);
                 OnValueChange(patience, eStat.PATIENCE);
             }
         }
@@ -206,11 +186,7 @@ namespace ToBeFree
 
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
-                luck = value;
+                luck = Mathf.Max(value, 1);
                 OnValueChange(luck, eStat.LUCK);
             }
         }

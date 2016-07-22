@@ -85,37 +85,42 @@ namespace ToBeFree
         {
             string resultScript = string.Empty;
             string resultEffect = string.Empty;
+            ResultScriptAndEffects resultScriptAndEffects = null;
             if (testResult == true)
             {
-                resultScript = result.Success.Script;
-                for (int i = 0; i < result.Success.EffectAmounts.Length; ++i)
-                {
-                    EffectAmount effectAmount = result.Success.EffectAmounts[i];
-                    if (effectAmount.Effect == null)
-                    {
-                        continue;
-                    }
-                    yield return effectAmount.Activate(character);
-                    resultEffect += effectAmount.ToString() + "\n";
-                }
+                resultScriptAndEffects = result.Success;
             }
             else
             {
-                resultScript = result.Failure.Script;
-                for (int i = 0; i < result.Failure.EffectAmounts.Length; ++i)
-                {
-                    EffectAmount effectAmount = result.Failure.EffectAmounts[i];
-                    if (effectAmount.Effect == null)
-                    {
-                        continue;
-                    }
-                    yield return effectAmount.Activate(character);
-                    resultEffect += effectAmount.ToString() + "\n";
-                }
+                resultScriptAndEffects = result.Failure;
             }
+
+            resultScript = resultScriptAndEffects.Script;
+            for (int i = 0; i < resultScriptAndEffects.EffectAmounts.Length; ++i)
+            {
+                EffectAmount effectAmount = resultScriptAndEffects.EffectAmounts[i];
+                if (effectAmount.Effect == null)
+                {
+                    continue;
+                }
+                resultEffect += effectAmount.ToString() + "\n";
+            }
+
             this.CurrResult = result;
             UIChanged(eUIEventLabelType.RESULT, resultScript);
             UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
+
+            yield return WaitUntilFinish();
+
+            for (int i = 0; i < resultScriptAndEffects.EffectAmounts.Length; ++i)
+            {
+                EffectAmount effectAmount = resultScriptAndEffects.EffectAmounts[i];
+                if (effectAmount.Effect == null)
+                {
+                    continue;
+                }
+                yield return effectAmount.Activate(character);
+            }
         }
     
         public IEnumerator DoCommand(eEventAction actionType, Character character)
@@ -136,6 +141,7 @@ namespace ToBeFree
 
         public IEnumerator WaitUntilFinish()
         {
+            GameManager.Instance.uiEventManager.okButton.isEnabled = true;
             isFinish = false;
             while (isFinish == false)
             {
@@ -145,7 +151,11 @@ namespace ToBeFree
 
         public void OnClickOK()
         {
-            isFinish = true;
+            if (IsFinish == false)
+            {
+                GameManager.Instance.uiEventManager.okButton.isEnabled = false;
+                isFinish = true;
+            }
         }
 
         public Event Find(eEventAction actionType, City city)
@@ -224,8 +234,6 @@ namespace ToBeFree
 
                 yield return TreatResult(currEvent.Result, TestResult, character);
             }
-
-            yield return WaitUntilFinish();
         }
 
         public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)

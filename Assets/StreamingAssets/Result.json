@@ -1688,12 +1688,10 @@
 			],
 			"failureScript": "조심스럽게 움직였지만 공안에게 그만 붙잡혔습니다. ",
 			"failureEffectIndexList": [
-				56,
-				73
+				56
 			],
 			"failureEffectValueList": [
-				9,
-				-99
+				9
 			]
 		},
 		{
@@ -1708,12 +1706,10 @@
 			],
 			"failureScript": "전력을 다해 도망쳤지만 공안에게 붙잡히고 말았습니다.",
 			"failureEffectIndexList": [
-				56,
-				73
+				56
 			],
 			"failureEffectValueList": [
-				9,
-				-99
+				9
 			]
 		},
 		{

@@ -16,6 +16,7 @@ namespace ToBeFree
         public UILabel[] selectLabels;
         public UILabel resultEffectScript;
         public UILabel diceNum;
+        public UIButton okButton;
         
         private UILabel[] allLabel;
         private Select[] selectList;

@@ -365,7 +365,10 @@ namespace ToBeFree
             // for the test
             if (activateAbnormal)
             {
-                yield return AbnormalConditionManager.Instance.List[17].Activate(character);
+                //foreach(AbnormalCondition ab in AbnormalConditionManager.Instance.List)
+                //    yield return ab.Activate(character);
+
+                yield return AbnormalConditionManager.Instance.List[5].Activate(character);
                 activateAbnormal = false;
             }
 
@@ -376,13 +379,13 @@ namespace ToBeFree
                 moveTest = false;
             }
 
-            //character.Stat.Observation = 0;
+            character.Stat.Observation = 0;
             //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[89], character);
 
             // open mongol event
             //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[51], character);
 
-            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[0], character);
+            //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[0], character);
 #endif
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);
