@@ -379,7 +379,12 @@ namespace ToBeFree
                 moveTest = false;
             }
 
-            character.Stat.Observation = 0;
+            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[13], character);
+
+            // select test
+            //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[13], character);
+
+            //character.Stat.Observation = 0;
             //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[89], character);
 
             // open mongol event

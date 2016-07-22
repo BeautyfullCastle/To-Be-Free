@@ -224,6 +224,7 @@ namespace ToBeFree
                     selectList[i] = select;
                 }
                 SelectUIChanged(selectList);
+                yield return SelectManager.Instance.WaitForSelect();
             }
             // deal with result
             else

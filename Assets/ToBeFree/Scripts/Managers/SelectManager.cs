@@ -10,7 +10,8 @@ namespace ToBeFree
         private readonly Select[] list;
         private readonly SelectData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/Select.json";
-        
+
+        private int selectedIndex;
 
         public SelectManager()
         {
@@ -21,6 +22,8 @@ namespace ToBeFree
                 return;
 
             list = new Select[dataList.Length];
+
+            selectedIndex = -99;
 
             ParseData();
         }
@@ -36,13 +39,15 @@ namespace ToBeFree
                 list[data.index] = select;
             }
         }
-
-        public Select[] List
+        
+        public IEnumerator WaitForSelect()
         {
-            get
+            selectedIndex = -99;
+            while(selectedIndex == -99)
             {
-                return list;
+                yield return new WaitForSeconds(0.1f);
             }
+            yield return OnClick(list[selectedIndex]);
         }
 
         public IEnumerator OnClick(Select select)
@@ -59,6 +64,27 @@ namespace ToBeFree
                 yield return EventManager.Instance.ActivateEvent(select.Event, GameManager.Instance.Character);
             }
             yield return null;
+        }
+
+        public Select[] List
+        {
+            get
+            {
+                return list;
+            }
+        }
+
+        public int SelectedIndex
+        {
+            get
+            {
+                return selectedIndex;
+            }
+
+            set
+            {
+                selectedIndex = value;
+            }
         }
     }
 }

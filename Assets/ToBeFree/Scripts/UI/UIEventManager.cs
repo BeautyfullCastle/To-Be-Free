@@ -90,7 +90,7 @@ namespace ToBeFree
                 return;
             }
             ClearAll();
-            StartCoroutine(SelectManager.Instance.OnClick(selectList[int.Parse(index)]));
+            SelectManager.Instance.SelectedIndex = int.Parse(index);
         }
 
         public void OnClickOK()
