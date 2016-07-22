@@ -87,12 +87,16 @@ namespace ToBeFree
             {
                 if(Time.timeScale >= 0f)
                     Time.timeScale -= .2f;
+
+                NGUIDebug.Log("Time Scale : " + Time.timeScale);
             }
 
             if (Input.GetKeyDown(KeyCode.KeypadMinus))
             {
                 if(Time.timeScale <= 3f)
                     Time.timeScale += .2f;
+
+                NGUIDebug.Log("Time Scale : " + Time.timeScale);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -163,6 +167,8 @@ namespace ToBeFree
 
         private void Awake()
         {
+            ResultManager.Instance.Init();
+
             this.State = GameState.Init;
             commands = commandUIObj.GetComponentsInChildren<UICommand>();
             commandUIObj.SetActive(false);
@@ -172,8 +178,7 @@ namespace ToBeFree
             TimeTable.Instance.NotifyEveryday += DayIsGone;
 
             iconCities = GameObject.FindObjectsOfType<IconCity>();
-            CityManager.Instance.OpenOrCloseArea(eArea.MONGOLIA, false);
-            CityManager.Instance.OpenOrCloseArea(eArea.SOUTHEAST_ASIA, false);
+            
         }
 
         private void DayIsGone()
@@ -196,12 +201,18 @@ namespace ToBeFree
         
         IEnumerator InitState()
         {
+            CityManager.Instance.OpenOrCloseArea(eArea.MONGOLIA, false);
+            CityManager.Instance.OpenOrCloseArea(eArea.SOUTHEAST_ASIA, false);
+
             // Enter
             yield return (ShowStateLabel("Init State", 0.5f));
 
-            Inventory inven = new Inventory(3);
-            character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.YANBIAN), inven);
+            Inventory inven = new Inventory(5);
+            
+            character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.DANDONG), inven);
 
+            yield return inven.AddItem(ItemManager.Instance.List[0], character);
+            yield return inven.AddItem(ItemManager.Instance.List[0], character);
             yield return character.MoveTo(character.CurCity);
 
             //CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.KUNMING), CityManager.Instance.Find(eCity.DANDONG));
@@ -228,7 +239,7 @@ namespace ToBeFree
 
             // for test
             //character.Stat.Agility = 0;
-            character.Stat.InfoNum = 2;
+            //character.Stat.InfoNum = 2;
             
             // Excute
 
@@ -368,8 +379,10 @@ namespace ToBeFree
             //character.Stat.Observation = 0;
             //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[89], character);
 
-            // opeen mongol event
+            // open mongol event
             //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[51], character);
+
+            yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[0], character);
 #endif
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);
@@ -408,7 +421,7 @@ namespace ToBeFree
 
             if (character.Stat.FOOD <= 0)
             {
-                character.Stat.HP--;
+                character.Stat.HP -= 2;
             }
             else
             {

@@ -15,8 +15,9 @@ namespace ToBeFree {
 
         // 그리드를 reset position 하기위해 선언합니다.
         private UIGrid[] grids;
-        
 
+        private int discountNum;
+        
         // Use this for initialization
         void Start()
         {            
@@ -66,7 +67,7 @@ namespace ToBeFree {
                 {
                     return;
                 }
-                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, GameManager.Instance.Character));
+                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character));
                 randomItems[0].transform.GetComponent<UIButton>().isEnabled = false;
             }
             else if (uiItem == cityItems[0])
@@ -77,13 +78,13 @@ namespace ToBeFree {
                 }
                 else
                 {
-                    StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, GameManager.Instance.Character));                    
+                    StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character));                    
                     cityItems[0].transform.GetComponent<UIButton>().isEnabled = false;
                 }
             }
             else
             {
-                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, GameManager.Instance.Character));
+                StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character));
             }
         }
 
@@ -113,6 +114,19 @@ namespace ToBeFree {
             TimeTable.Instance.DayIsGone();
             EventManager.Instance.OnClickOK();
             this.gameObject.SetActive(false);
+        }
+
+        public int DiscountNum
+        {
+            get
+            {
+                return discountNum;
+            }
+
+            set
+            {
+                discountNum = value;
+            }
         }
     }
 }

@@ -11,14 +11,24 @@ namespace ToBeFree
         public eBelong belong = eBelong.SHOP;
 
         public UILabel itemName;
+        public UILabel itemPrice;
 
         private Item item;
 
+        void Awake()
+        {
+            itemName = transform.FindChild("Name").GetComponent<UILabel>();
+            itemPrice = transform.FindChild("Price").GetComponent<UILabel>();
+        }
         void Start()
         {
             if(belong == eBelong.SHOP)
             {
                 GetComponent<UIDragDropItem>().enabled = false;
+            }
+            else
+            {
+                itemPrice.enabled = false;
             }
         }
         
@@ -66,6 +76,7 @@ namespace ToBeFree
 
             this.Item = item;
             itemName.text = item.Name;
+            itemPrice.text = item.Price.ToString();
         }
 
         public Item Item

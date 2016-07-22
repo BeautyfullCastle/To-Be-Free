@@ -13,7 +13,7 @@ namespace ToBeFree
             minSuccessNum = 4;
         }
 
-        public bool Test(int diceNum, Character character)
+        public int Test(int diceNum)
         {
             int successDiceNum = 0;
             System.Random r = new System.Random();
@@ -28,16 +28,7 @@ namespace ToBeFree
             }
             Debug.Log("Dice test succeed? " + successDiceNum);
 
-            
-
-            if (successDiceNum > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return successDiceNum;
         }
 
         public int MinSuccessNum

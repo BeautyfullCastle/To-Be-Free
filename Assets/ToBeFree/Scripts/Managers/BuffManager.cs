@@ -120,7 +120,7 @@ namespace ToBeFree
             GameManager.Instance.uiEventManager.OpenUI();
 
             yield return ActivateEffectByStartTime(eStartTime.TEST, character);
-            bool isTestSucceed = DiceTester.Instance.Test(patienceStat, character);
+            bool isTestSucceed = DiceTester.Instance.Test(patienceStat) > 0;
             yield return DeactivateEffectByStartTime(eStartTime.TEST, character);
 
             GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Rest Cure Patience Test");

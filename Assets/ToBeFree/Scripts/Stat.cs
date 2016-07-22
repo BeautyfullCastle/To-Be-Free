@@ -45,23 +45,22 @@ namespace ToBeFree
 
         public Stat()
         {
-            this.TotalHP = 5;
-            this.HP = 5;
-            this.TotalMental = 5;
-            this.MENTAL = 5;
+            this.TotalHP = 6;
+            this.HP = this.totalHP;
+            this.TotalMental = 6;
+            this.MENTAL = this.TotalMental;
 
             this.Strength = 2;
             this.Agility = 2;
-            this.Observation = 2;
-            this.Bargain = 2;
+            this.Observation = 3;
+            this.Bargain = 4;
             this.Patience = 2;
             this.Luck = 2;
 
-            this.Money = 500;
+            this.Money = 7;
             this.FOOD = 0;
             this.InfoNum = 0;
-
-
+            
             Inventory.AddedItem += AddItem;
             Inventory.DeletedItem += DeleteItem;
         }
@@ -117,6 +116,10 @@ namespace ToBeFree
             }
             set
             {
+                if (value < 1)
+                {
+                    return;
+                }
                 strength = value;
                 OnValueChange(strength, eStat.STRENGTH);
             }
@@ -131,6 +134,10 @@ namespace ToBeFree
 
             set
             {
+                if (value < 1)
+                {
+                    return;
+                }
                 agility = value;
                 OnValueChange(agility, eStat.AGILITY);
             }
@@ -145,6 +152,10 @@ namespace ToBeFree
 
             set
             {
+                if (value < 1)
+                {
+                    return;
+                }
                 observation = value;
                 OnValueChange(observation, eStat.OBSERVATION);
             }
@@ -159,6 +170,10 @@ namespace ToBeFree
 
             set
             {
+                if (value < 1)
+                {
+                    return;
+                }
                 bargain = value;
                 OnValueChange(bargain, eStat.BARGAIN);
             }
@@ -173,6 +188,10 @@ namespace ToBeFree
 
             set
             {
+                if (value < 1)
+                {
+                    return;
+                }
                 patience = value;
                 OnValueChange(patience, eStat.PATIENCE);
             }
@@ -187,6 +206,10 @@ namespace ToBeFree
 
             set
             {
+                if (value < 1)
+                {
+                    return;
+                }
                 luck = value;
                 OnValueChange(luck, eStat.LUCK);
             }
@@ -266,6 +289,10 @@ namespace ToBeFree
             }
             set
             {
+                if (value < 0)
+                {
+                    return;
+                }
                 foodNum = value;
                 OnValueChange(foodNum, eStat.FOOD);
             }
@@ -280,6 +307,10 @@ namespace ToBeFree
 
             set
             {
+                if (value < 0)
+                {
+                    return;
+                }
                 infoNum = value;
                 OnValueChange(InfoNum, eStat.INFO);
             }

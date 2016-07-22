@@ -20,14 +20,15 @@ namespace ToBeFree
             InventoryRecords = new List<InventoryRecord>();
         }
 
-        public IEnumerator BuyItem(Item item, Character character)
+        public IEnumerator BuyItem(Item item, int discountNum, Character character)
         {
-            if (character.Stat.Money < item.Price)
+            int price = Mathf.Clamp(item.Price - discountNum, 1, item.Price);
+            if (character.Stat.Money < price)
             {
                 NGUIDebug.Log("Shop : Money is not enough to buy.");
                 yield break;
             }
-            character.Stat.Money -= item.Price;
+            character.Stat.Money -= price;
 
             yield return AddItem(item, character);
         }

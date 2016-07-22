@@ -243,7 +243,7 @@ namespace ToBeFree
             GameManager.Instance.uiEventManager.OpenUI();
 
             yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-            bool testResult = DiceTester.Instance.Test(character.Stat.Agility, character);
+            bool testResult = (DiceTester.Instance.Test(character.Stat.Agility) > 0);
             yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
             GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Detention Test");
@@ -274,8 +274,23 @@ namespace ToBeFree
         {
             Debug.LogWarning("Enter to Shop action activated.");
 
+            yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
+
+            GameManager.Instance.uiEventManager.OpenUI();
+
+            yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+            int testSucceedDiceNum = DiceTester.Instance.Test(character.Stat.Bargain);
+            yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "협상력 테스트를 통한 할인 금액");
+            GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSucceedDiceNum.ToString());
+
+            yield return EventManager.Instance.WaitUntilFinish();
+
+
             NGUIDebug.Log("Enter To Shop action");
             GameManager.Instance.shopUIObj.SetActive(true);
+            GameManager.Instance.shopUIObj.GetComponent<UIShop>().DiscountNum = testSucceedDiceNum;
             yield return EventManager.Instance.WaitUntilFinish();
             
         }
@@ -285,7 +300,8 @@ namespace ToBeFree
     {
         public InfoAction()
         {
-
+            startTime = eStartTime.INFO;
+            actionName = eEventAction.INFO;
         }
 
         public override IEnumerator Activate(Character character)
@@ -296,7 +312,9 @@ namespace ToBeFree
             Piece piece = PieceManager.Instance.GetPieceOfCity(eSubjectType.INFO, character.CurCity);
             if(piece != null)
             {
-                character.Stat.InfoNum++;
+                yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
+                yield return EventManager.Instance.DoCommand(actionName, character);
+                yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
                 PieceManager.Instance.Delete(piece);
             }
 

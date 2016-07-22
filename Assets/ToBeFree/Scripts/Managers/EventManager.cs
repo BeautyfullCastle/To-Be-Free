@@ -10,7 +10,7 @@ namespace ToBeFree
         REGION, STAT
     }
 
-    public class EventManager : MonoSingleton<EventManager>
+    public class EventManager : Singleton<EventManager>
     {
         private Event[] list;
         private EventData[] dataList;
@@ -30,7 +30,7 @@ namespace ToBeFree
         private bool testResult;
         private Result currResult;
 
-        public void Awake()
+        public EventManager()
         {
             file = Application.streamingAssetsPath + "/Event.json";
             DataList<EventData> cDataList = new DataList<EventData>(file);
@@ -75,7 +75,7 @@ namespace ToBeFree
             }
             else
             {
-                TestResult = DiceTester.Instance.Test(character.GetDiceNum(testStat), character);
+                TestResult = DiceTester.Instance.Test(character.GetDiceNum(testStat)) > 0;
                 UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
             }
             return TestResult;

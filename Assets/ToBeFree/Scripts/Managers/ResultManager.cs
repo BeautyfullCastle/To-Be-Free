@@ -7,11 +7,11 @@ namespace ToBeFree
 {
     public class ResultManager : Singleton<ResultManager>
     {
-        private readonly Result[] list;
-        private readonly ResultData[] dataList;
+        private Result[] list;
+        private ResultData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/Result.json";
 
-        public ResultManager()
+        public void Init()
         {
             DataList<ResultData> cDataList = new DataList<ResultData>(file);
             //ResultDataList cDataList = new ResultDataList(file);
@@ -33,6 +33,10 @@ namespace ToBeFree
 
                 Result result = new Result(EnumConvert<eTestStat>.ToEnum(data.stat), success, failure);
 
+                if(list[data.index] != null)
+                {
+                    continue;
+                }
                 list[data.index] = result;
             }
         }
