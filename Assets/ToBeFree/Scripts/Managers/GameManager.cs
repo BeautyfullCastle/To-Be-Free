@@ -207,12 +207,11 @@ namespace ToBeFree
             // Enter
             yield return (ShowStateLabel("Init State", 0.5f));
 
-            Inventory inven = new Inventory(5);
-            
-            character = new Character("Chris", new Stat(), CityManager.Instance.Find(eCity.DANDONG), inven);
-
-            yield return inven.AddItem(ItemManager.Instance.List[0], character);
-            yield return inven.AddItem(ItemManager.Instance.List[0], character);
+            // character init
+            CharacterManager.Instance.Init();
+            character = CharacterManager.Instance.List[0];
+            character.Stat.RefreshUI();
+            GameObject.FindObjectOfType<UIInventory>().Change(character.Inven);
             yield return character.MoveTo(character.CurCity);
 
             //CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.KUNMING), CityManager.Instance.Find(eCity.DANDONG));
@@ -379,8 +378,8 @@ namespace ToBeFree
                 moveTest = false;
             }
 
-            yield return AbnormalConditionManager.Instance.List[1].Activate(character);
-            yield return AbnormalConditionManager.Instance.List[2].Activate(character);
+            //yield return AbnormalConditionManager.Instance.List[1].Activate(character);
+            //yield return AbnormalConditionManager.Instance.List[2].Activate(character);
 
             // select test
             //yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[13], character);

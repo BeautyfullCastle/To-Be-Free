@@ -45,54 +45,46 @@ namespace ToBeFree
 
         public Stat()
         {
-            this.TotalHP = 6;
-            this.HP = this.totalHP;
-            this.TotalMental = 6;
-            this.MENTAL = this.TotalMental;
+        }
 
-            this.Strength = 2;
-            this.Agility = 2;
-            this.Observation = 3;
-            this.Bargain = 4;
-            this.Patience = 2;
-            this.Luck = 2;
+        public Stat(int hP, int mental, int strength, int agility, int observation, int bargain, int patience, int luck, int startMoney) : this()
+        {
+            this.hp         = hP;
+            this.totalHP    = hP;
+            this.mental     = mental;
+            this.totalMental = mental;
 
-            this.Money = 7;
-            this.FOOD = 0;
-            this.InfoNum = 0;
+            this.strength   = strength;
+            this.agility    = agility;
+            this.observation = observation;
+            this.bargain    = bargain;
+            this.patience   = patience;
+            this.luck       = luck;
+
+            this.money = startMoney;
+        }
+
+        public void RefreshUI()
+        {
+            OnValueChange(hp, eStat.HP);
+            OnValueChange(totalHP, eStat.TOTALHP);
+            OnValueChange(mental, eStat.MENTAL);
+            OnValueChange(totalMental, eStat.TOTALMENTAL);
+
+            OnValueChange(strength, eStat.STRENGTH);
+            OnValueChange(agility, eStat.AGILITY);
+            OnValueChange(observation, eStat.OBSERVATION);
+            OnValueChange(bargain, eStat.BARGAIN);
+            OnValueChange(patience, eStat.PATIENCE);
+            OnValueChange(luck, eStat.LUCK);
+
+            OnValueChange(foodNum, eStat.FOOD);
+            OnValueChange(money, eStat.MONEY);
+            OnValueChange(infoNum, eStat.INFO);
             
-            Inventory.AddedItem += AddItem;
-            Inventory.DeletedItem += DeleteItem;
         }
 
-        public Stat(Stat stat)
-        {
-            this.Strength = stat.Strength;
-            this.Agility = stat.Agility;
-            this.Observation = stat.Observation;
-            this.Bargain = stat.Bargain;
-            this.Patience = stat.Patience;
-            this.Luck = stat.Luck;
-            this.totalHP = stat.totalHP;
-            this.totalMental = stat.totalMental;
-        }
-
-        public Stat DeepCopy()
-        {
-            Stat stat = (Stat)this.MemberwiseClone();
-            stat.Agility = this.Agility;
-            stat.Bargain = this.Bargain;
-            stat.Luck = this.Luck;
-            stat.Observation = this.Observation;
-            stat.Patience = this.Patience;
-            stat.Strength = this.Strength;
-            stat.totalHP      = this.totalHP;
-            stat.totalMental  = this.totalMental;
-
-            return stat;
-        }
-
-        private void AddItem(Item item)
+        public void AddFood(Item item)
         {
             if (item.Buff.StartTime == eStartTime.NIGHT)
             {
@@ -100,7 +92,7 @@ namespace ToBeFree
             }
         }
 
-        private void DeleteItem(Item item)
+        public void DeleteFood(Item item)
         {
             if (item.Buff.StartTime == eStartTime.NIGHT)
             {

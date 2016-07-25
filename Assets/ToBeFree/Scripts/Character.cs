@@ -9,6 +9,8 @@ namespace ToBeFree
     {
         private Stat stat;
         private string name;
+        private string script;
+
         private City curCity;
         private City nextCity;
         readonly private City startCity;
@@ -17,15 +19,17 @@ namespace ToBeFree
 
         private bool isDetention;
         private bool isActionSkip;
+        
 
         public delegate void MoveCityHandler(string cityName);
         public static event MoveCityHandler MoveCity = delegate { };
         
         // Todo : skill
 
-        public Character(string name, Stat stat, City curCity, Inventory inven)
+        public Character(string name, string script, Stat stat, City curCity, Inventory inven)
         {
             this.name = name;
+            this.script = script;
             this.stat = stat;
             this.curCity = curCity;
             this.startCity = new City(curCity);

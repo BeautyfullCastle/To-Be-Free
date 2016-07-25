@@ -6,7 +6,7 @@ namespace ToBeFree
 {
     public class UIInventory : MonoBehaviour
     {
-        private List<UIItem> items = new List<UIItem>();
+        private List<UIItem> items;
         // 우리가 만든 SampleItem을 복사해서 만들기 위해 선언합니다.
         public GameObject objSampleItem;
         // 그리드를 reset position 하기위해 선언합니다.
@@ -14,11 +14,29 @@ namespace ToBeFree
 
         void Awake()
         {
-            Inventory.AddedItem += AddItem;
-            Inventory.DeletedItem += DeleteItem;
+            items = new List<UIItem>();
         }
 
-        private void AddItem(Item item)
+        public void Change(Inventory inven)
+        {
+            if (items != null && items.Count > 0)
+            {
+                foreach (UIItem item in items)
+                {
+                    DestroyImmediate(item.gameObject);
+                }
+                grid.Reposition();
+                items.Clear();
+                items.TrimExcess();
+            }
+
+            foreach(Item item in inven.list)
+            {
+                AddItem(item);
+            }
+        }
+
+        public void AddItem(Item item)
         {
             GameObject gObjItem = NGUITools.AddChild(grid.gameObject, objSampleItem);
             // 이제 이름과 아이콘을 세팅할께요.
