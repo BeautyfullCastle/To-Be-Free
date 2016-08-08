@@ -430,7 +430,7 @@ namespace ToBeFree
             {
                 return testResult;
             }
-            private set
+            set
             {
                 testResult = value;
             }

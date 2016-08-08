@@ -52,10 +52,13 @@ namespace ToBeFree {
             randomItemList.RemoveAll(x => GameManager.Instance.Character.Inven.Exist(x));
 
             System.Random r = new System.Random();
-            int randIndex = r.Next(0, randomItemList.Count - 1);
-
-            randomItems[0].SetInfo(randomItemList[randIndex]);
-            randomItems[0].transform.GetComponent<UIButton>().isEnabled = true;
+            for (int i = 0; i < 3; ++i)
+            {
+                int randIndex = r.Next(0, randomItemList.Count - 1);
+                randomItems[i].SetInfo(randomItemList[randIndex]);
+                randomItems[i].transform.GetComponent<UIButton>().isEnabled = true;
+                randomItemList.Remove(randomItems[i].Item);
+            }
         }
 
         // click to buy item

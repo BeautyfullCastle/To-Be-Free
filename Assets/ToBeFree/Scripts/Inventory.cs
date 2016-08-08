@@ -18,9 +18,15 @@ namespace ToBeFree
 
         public IEnumerator BuyItem(Item item, int discountNum, Character character)
         {
+            if (list.Count >= maxSlots)
+            {
+                NGUIDebug.Log("There is no more space in the inventory.");
+                yield break;
+            }
+
             yield return AddItem(item, character);
 
-            int price = Mathf.Clamp(item.Price - discountNum, 1, item.Price);
+            int price = Mathf.Max(item.Price - discountNum, 1, item.Price);
             if (character.Stat.Money < price)
             {
                 NGUIDebug.Log("Shop : Money is not enough to buy.");

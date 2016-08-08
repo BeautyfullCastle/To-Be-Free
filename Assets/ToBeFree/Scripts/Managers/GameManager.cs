@@ -417,34 +417,37 @@ namespace ToBeFree
 
         private IEnumerator Instance_NotifyEveryNight()
         {
-            yield return character.Inven.CheckItem(eStartTime.NIGHT, character);
+            
 
             yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
-
-            if (character.IsFull)
-            {
-                yield return GameManager.Instance.ShowStateLabel("Skip Food", 0.5f);
-                yield break;
-            }
-
-            if (character.Stat.FOOD <= 0)
-            {
-                character.Stat.HP -= 2;
-            }
-            else
-            {
-                character.Stat.FOOD--;
-            }
-
+            
             yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
         }
 
         private IEnumerator Instance_NotifyEveryWeek()
         {
+            yield return character.Inven.CheckItem(eStartTime.NIGHT, character);
+
             yield return character.Inven.CheckItem(eStartTime.WEEK, character);
 
             yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
             
+            if (character.IsFull)
+            {
+                yield return GameManager.Instance.ShowStateLabel("Skip Food", 0.5f);
+            }
+            else
+            {
+                if (character.Stat.FOOD <= 0)
+                {
+                    character.Stat.HP -= 2;
+                }
+                else
+                {
+                    character.Stat.FOOD--;
+                }
+            }
+
             // check current quest's end time and apply the result
             List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
             if (questPieces != null && questPieces.Count > 0)
@@ -485,23 +488,22 @@ namespace ToBeFree
                 QuestPiece piece = PieceManager.Instance.Find(selectedQuest);
                 pieceCityTransformList.Add(GameObject.Find(piece.City.Name.ToString()).transform);
             }
-            
 
             // 2 polices
             Police randPolice = new Police(CityManager.Instance.FindRand(eSubjectType.POLICE), eSubjectType.POLICE);
             PieceManager.Instance.Add(randPolice);
             pieceCityTransformList.Add(GameObject.Find(randPolice.City.Name.ToString()).transform);
-            Police randPoliceByDistance = new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.POLICE), eSubjectType.POLICE);
-            PieceManager.Instance.Add(randPoliceByDistance);
-            pieceCityTransformList.Add(GameObject.Find(randPoliceByDistance.City.Name.ToString()).transform);
+            //Police randPoliceByDistance = new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.POLICE), eSubjectType.POLICE);
+            //PieceManager.Instance.Add(randPoliceByDistance);
+            //pieceCityTransformList.Add(GameObject.Find(randPoliceByDistance.City.Name.ToString()).transform);
 
             // 2 informations
             Information randInfo = new Information(CityManager.Instance.FindRand(eSubjectType.INFO), eSubjectType.INFO);
             PieceManager.Instance.Add(randInfo);
             pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name.ToString()).transform);
-            Information randInfoByDistance = new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.INFO), eSubjectType.INFO);
-            PieceManager.Instance.Add(randInfoByDistance);
-            pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name.ToString()).transform);
+            //Information randInfoByDistance = new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.INFO), eSubjectType.INFO);
+            //PieceManager.Instance.Add(randInfoByDistance);
+            //pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name.ToString()).transform);
 
             yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
 

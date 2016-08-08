@@ -69,6 +69,24 @@ namespace ToBeFree
             }
         }
 
+        void OnTooltip(bool show)
+        {
+            Item item = show ? this.item : null;            
+            if (item==null)
+            {
+                UITooltip.Hide();
+                return;
+            }
+            
+            string description = this.itemName.text + "\\n";
+
+            foreach(EffectAmount effectAmount in this.item.Buff.EffectAmountList)
+            {
+                description += effectAmount.ToString() + "\\n";
+            }
+            UITooltip.Show(description);
+        }
+
         public void SetInfo(Item item)
         {
             if (item == null)

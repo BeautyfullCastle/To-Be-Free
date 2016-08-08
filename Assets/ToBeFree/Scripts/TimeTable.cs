@@ -5,7 +5,8 @@ namespace ToBeFree
     public class TimeTable : Singleton<TimeTable>
     {
         private int day;
-        
+        private readonly int week;
+
         public delegate void TimeEventHandler();
 
         public event TimeEventHandler NotifyEveryday;
@@ -15,6 +16,7 @@ namespace ToBeFree
         public TimeTable()
         {
             day = 1;
+            week = 4;
         }
 
         public void DayIsGone()
@@ -23,9 +25,9 @@ namespace ToBeFree
 
             NotifyEveryday();
 
-            if (day % 7 == 0)
+            if (day % week == 0)
             {
-                Debug.Log((day / 7) + " weeks are gone.");
+                Debug.Log((day / week) + " weeks are gone.");
                 NotifyEveryWeek();
             }
 

@@ -185,17 +185,18 @@ namespace ToBeFree
             QuestPiece questPiece = quests.Find(x => x.City == character.CurCity) as QuestPiece;
 
             Quest quest = questPiece.CurQuest;
-            if (quest.CheckCondition(character))
+            EventManager.Instance.TestResult = quest.CheckCondition(character);
+            if (EventManager.Instance.TestResult)
             {
                 yield return QuestManager.Instance.ActivateQuest(quest, true, character);
             }
 
+            // have to check TestResult again cause of Dice Test of activated quest.
             if (EventManager.Instance.TestResult == true)
             {
                 PieceManager.Instance.Delete(questPiece);
                 GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
             }
-            
 
             yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 

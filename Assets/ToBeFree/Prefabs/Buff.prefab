@@ -26,6 +26,7 @@ GameObject:
   - 4: {fileID: 420378}
   - 114: {fileID: 11457628}
   - 114: {fileID: 11473462}
+  - 61: {fileID: 6132538}
   m_Layer: 5
   m_Name: Buff
   m_TagString: Untagged
@@ -116,6 +117,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 420378}
   m_RootOrder: 0
+--- !u!61 &6132538
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171720}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 64, y: 64}
 --- !u!114 &11414836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,7 +232,7 @@ MonoBehaviour:
   mWidth: 64
   mHeight: 64
   mDepth: 0
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 1
@@ -250,7 +265,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffName: {fileID: 11414836}
   amount: {fileID: 11492030}
-  stack: {fileID: 11476158}
 --- !u!114 &11476158
 MonoBehaviour:
   m_ObjectHideFlags: 1
