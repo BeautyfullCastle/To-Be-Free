@@ -22,6 +22,7 @@ namespace ToBeFree
         public GameObject commandUIObj;
         public GameObject shopUIObj;
         public UIEventManager uiEventManager;
+        public GameObject uiSetting;
         public IconCity[] iconCities;
 
         private Character character;
@@ -32,20 +33,19 @@ namespace ToBeFree
         private bool activateAbnormal;
         private UICommand[] commands;
         private bool moveTest;
+        private bool readyToMove;
+
 
         // can't use the constructor
         private GameManager()
         {
         }
 
-        public void MoveEvent()
-        {            
-            NGUIDebug.Log("Command Move input");
-            character.CurCity.PrintNeighbors();
-        }
-
         public void ClickCity(string cityName)
         {
+            if (readyToMove == false)
+                return;
+
             if (!character.CurCity.IsNeighbor(cityName))
             {
                 Debug.LogError("ClickCity : " + cityName + " is not neighbor.");
@@ -53,12 +53,18 @@ namespace ToBeFree
             }
             action = new Move();
             character.NextCity = CityManager.Instance.Find(cityName);
+
+            readyToMove = false;
         }
 
         public void ClickCommand(string command)
         {
             switch(EnumConvert<eCommand>.ToEnum(command))
             {
+                case eCommand.MOVE:
+                    readyToMove = true;
+                    character.CurCity.PrintNeighbors();
+                    break;
                 case eCommand.WORK:
                     action = new Work();
                     break;
@@ -102,6 +108,15 @@ namespace ToBeFree
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 uiEventManager.OnClickOK();
+            }
+
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                uiSetting.SetActive(!uiSetting.activeSelf);
+                int mask = 32; // UI Layer Num : 2 ^ 5
+                if (uiSetting.activeSelf)
+                    mask = 256; // Setting Layer Num : 2 ^ 8
+                GameObject.Find("UI Camera").GetComponent<UICamera>().eventReceiverMask = mask;
             }
 
 #if UNITY_EDITOR
@@ -178,6 +193,8 @@ namespace ToBeFree
             TimeTable.Instance.NotifyEveryday += DayIsGone;
 
             iconCities = GameObject.FindObjectsOfType<IconCity>();
+
+            uiSetting.SetActive(false);
             
         }
 
