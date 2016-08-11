@@ -182,7 +182,9 @@ namespace ToBeFree
 
         private void Awake()
         {
+            EventManager.Instance.Init();
             ResultManager.Instance.Init();
+            QuestManager.Instance.Init();
 
             this.State = GameState.Init;
             commands = commandUIObj.GetComponentsInChildren<UICommand>();

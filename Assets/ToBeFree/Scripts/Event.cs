@@ -50,7 +50,7 @@ namespace ToBeFree
         public eEventAction ActionType { get { return actionType; } }
         public string Region { get { return region; } }
         public eTestStat TestStat { get { return stat; } }
-        public string Script { get { return script; } }
+        public string Script { get { return script; } set { script = value; } }
 
         public bool HasSelect
         {

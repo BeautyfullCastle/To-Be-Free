@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Language;
 using UnityEngine;
 
 namespace ToBeFree
 {
     public class CityManager : Singleton<CityManager>
     {
-        private readonly City[] list;
+        private City[] list;
         private readonly CityData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/City.json";
+
+        private readonly Language.CityData[] engList;
+        private readonly Language.CityData[] korList;
 
         private List<City> neareastPath;
 
@@ -22,6 +26,12 @@ namespace ToBeFree
             list = new City[dataList.Length];
 
             ParseData();
+
+            engList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/English/City.json").dataList;
+            korList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/Korean/City.json").dataList;
+            //LanguageManager<Language.CityData>.Instance.Init();
+            //Language.CityData[] data = LanguageManager<Language.CityData>.Instance.KoreanDataList;
+            
         }
 
         private void ParseData()
@@ -58,12 +68,17 @@ namespace ToBeFree
         
         public City Find(eCity cityName)
         {
-            return Array.Find<City>(list, x => (x.Name == cityName));
+            return Array.Find<City>(list, x => (x.Name == cityName));            
         }
 
         public City Find(string cityName)
         {
             return Find(EnumConvert<eCity>.ToEnum(cityName));
+        }
+
+        public int FindIndex(eCity cityName)
+        {
+            return Array.FindIndex<City>(list, x => (x.Name == cityName));
         }
 
         public City FindRand(eSubjectType pieceType)
@@ -261,6 +276,35 @@ namespace ToBeFree
             get
             {
                 return list;
+            }
+        }
+
+        public City[] List1
+        {
+            get
+            {
+                return list;
+            }
+
+            set
+            {
+                list = value;
+            }
+        }
+
+        public Language.CityData[] EngList
+        {
+            get
+            {
+                return engList;
+            }
+        }
+
+        public Language.CityData[] KorList
+        {
+            get
+            {
+                return korList;
             }
         }
 

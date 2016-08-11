@@ -1,0 +1,189 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"name": "KUNMING",
+			"area": "YUNNANSHENG"
+		},
+		{
+			"index": 1,
+			"name": "CHENDU",
+			"area": "SICHUANSHENG"
+		},
+		{
+			"index": 2,
+			"name": "CHONGQING",
+			"area": "SICHUANSHENG"
+		},
+		{
+			"index": 3,
+			"name": "XINNIG",
+			"area": "QINGHAISHENG"
+		},
+		{
+			"index": 4,
+			"name": "LANZHOU",
+			"area": "QINGHAISHENG"
+		},
+		{
+			"index": 5,
+			"name": "XIAN",
+			"area": "SHANXISHENG"
+		},
+		{
+			"index": 6,
+			"name": "ZHENGZHOU",
+			"area": "SHANXISHENG"
+		},
+		{
+			"index": 7,
+			"name": "WUHAN",
+			"area": "HUNANSHENG"
+		},
+		{
+			"index": 8,
+			"name": "CHANGSHA",
+			"area": "HUNANSHENG"
+		},
+		{
+			"index": 9,
+			"name": "NANCHANG",
+			"area": "HUNANSHENG"
+		},
+		{
+			"index": 10,
+			"name": "NANNING",
+			"area": "GUANGXISHENG"
+		},
+		{
+			"index": 11,
+			"name": "GUANGZHOU",
+			"area": "GUANGDONGSHENG"
+		},
+		{
+			"index": 12,
+			"name": "XIANGGANG",
+			"area": "GUANGDONGSHENG"
+		},
+		{
+			"index": 13,
+			"name": "FUZHOU",
+			"area": "FUJIANSHENG"
+		},
+		{
+			"index": 14,
+			"name": "NANJING",
+			"area": "JIANGSUSHENG"
+		},
+		{
+			"index": 15,
+			"name": "SHANGHAI",
+			"area": "JIANGSUSHENG"
+		},
+		{
+			"index": 16,
+			"name": "JINAN",
+			"area": "SHANDONGSHENG"
+		},
+		{
+			"index": 17,
+			"name": "QINGDAO",
+			"area": "SHANDONGSHENG"
+		},
+		{
+			"index": 18,
+			"name": "YANTAI",
+			"area": "SHANDONGSHENG"
+		},
+		{
+			"index": 19,
+			"name": "SHIJIAZHUANG",
+			"area": "HEBEISHENG"
+		},
+		{
+			"index": 20,
+			"name": "TIANJIN",
+			"area": "HEBEISHENG"
+		},
+		{
+			"index": 21,
+			"name": "BEIJING",
+			"area": "HEBEISHENG"
+		},
+		{
+			"index": 22,
+			"name": "DALIAN",
+			"area": "LIAONINGSHENG"
+		},
+		{
+			"index": 23,
+			"name": "SHENYANG",
+			"area": "LIAONINGSHENG"
+		},
+		{
+			"index": 24,
+			"name": "DANDONG",
+			"area": "LIAONINGSHENG"
+		},
+		{
+			"index": 25,
+			"name": "CHANGCHUN",
+			"area": "JILINSHENG"
+		},
+		{
+			"index": 26,
+			"name": "JILIN",
+			"area": "JILINSHENG"
+		},
+		{
+			"index": 27,
+			"name": "YANBIAN",
+			"area": "JILINSHENG"
+		},
+		{
+			"index": 28,
+			"name": "HAERBIN",
+			"area": "JILINSHENG"
+		},
+		{
+			"index": 29,
+			"name": "NORTHKOREA",
+			"area": "NORTHKOREA"
+		},
+		{
+			"index": 30,
+			"name": "LAOS",
+			"area": "SOUTHEAST_ASIA"
+		},
+		{
+			"index": 31,
+			"name": "VIETNAM",
+			"area": "SOUTHEAST_ASIA"
+		},
+		{
+			"index": 32,
+			"name": "MONGOLIA1",
+			"area": "MONGOLIA"
+		},
+		{
+			"index": 33,
+			"name": "MONGOLIA2",
+			"area": "MONGOLIA"
+		},
+		{
+			"index": 34,
+			"name": "MONGOLIA3",
+			"area": "MONGOLIA"
+		},
+		{
+			"index": 35,
+			"name": "MONGOLIA4",
+			"area": "MONGOLIA"
+		},
+		{
+			"index": 36,
+			"name": "MONGOLIA",
+			"area": "MONGOLIA"
+		}
+	]
+}

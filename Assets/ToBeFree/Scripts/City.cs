@@ -100,6 +100,7 @@ namespace ToBeFree
         public eCity Name
         {
             get { return name; }
+            set { name = value; }
         }
 
         public eArea Area

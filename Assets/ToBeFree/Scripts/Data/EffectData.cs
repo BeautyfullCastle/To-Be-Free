@@ -18,17 +18,3 @@ public class EffectData : IData
 
     //index subject verb object
 }
-
-public class EffectDataList
-{
-    public EffectData[] dataList;
-
-    public EffectDataList(string file)
-    {
-        StreamReader reader = new StreamReader(file);
-        string json = reader.ReadToEnd();
-
-        var dataList = JsonUtility.FromJson<EffectDataList>(json);
-        this.dataList = dataList.dataList;
-    }
-}

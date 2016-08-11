@@ -15,11 +15,15 @@ namespace ToBeFree
         public UILabel policeNumLabel;
 
         private City city;
+        private int cityIndex;
 
         // Use this for initialization
         void Awake()
         {
             city = CityManager.Instance.Find(EnumConvert<eCity>.ToEnum(this.name));
+
+            cityIndex = CityManager.Instance.FindIndex(EnumConvert<eCity>.ToEnum(this.name));
+            
             nameLabel.text = this.name;
 
             PieceManager.AddPiece += PieceManager_AddPiece;
@@ -29,6 +33,20 @@ namespace ToBeFree
             policeSprite.SetActive(false);
             questSprite.SetActive(false);
             brokerSprite.SetActive(false);
+
+            LanguageSelection.selectLanguageForUI += ChangeLanguage;
+        }
+
+        public void ChangeLanguage(eLanguage language)
+        {
+            if(language == eLanguage.KOREAN)
+            {
+                nameLabel.text = CityManager.Instance.KorList[cityIndex].name;
+            }
+            if (language == eLanguage.ENGLISH)
+            {
+                nameLabel.text = CityManager.Instance.EngList[cityIndex].name;
+            }
         }
 
         void Start()

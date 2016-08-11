@@ -7,8 +7,8 @@ namespace ToBeFree
 {
     public class QuestManager : Singleton<QuestManager>
     {
-        private readonly Quest[] list;
-        private readonly QuestData[] dataList;
+        private Quest[] list;
+        private QuestData[] dataList;
         private readonly string file = Application.streamingAssetsPath + "/Quest.json";
         
         public Quest[] List
@@ -21,13 +21,18 @@ namespace ToBeFree
 
         public QuestManager()
         {
+            
+        }
+
+        public void Init()
+        {
             DataList<QuestData> cDataList = new DataList<QuestData>(file);
             dataList = cDataList.dataList;
             if (dataList == null)
                 return;
 
             list = new Quest[dataList.Length];
-            
+
 
             ParseData();
         }
@@ -65,7 +70,7 @@ namespace ToBeFree
         public Quest FindRand()
         {
             System.Random r = new System.Random();
-            int index = r.Next(0, list.Length);
+            int index = r.Next(0, list.Length-1);
             return list[index];
         }
 
@@ -95,5 +100,7 @@ namespace ToBeFree
 
             PieceManager.Instance.Add(questPiece);
         }
+
+        
     }
 }

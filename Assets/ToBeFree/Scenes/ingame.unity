@@ -486,6 +486,10 @@ Prefab:
       propertyPath: m_Name
       value: Music Volume Slider
       objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
+      propertyPath: mValue
+      value: 0.039
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
   m_IsPrefabParent: 0
@@ -1873,7 +1877,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: startsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: functionName
@@ -5128,7 +5132,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: items.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: onChange.Array.size
@@ -5260,15 +5264,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: mSelectedItem
-      value: 
+      value: ENGLISH
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: items.Array.data[0]
-      value: First Option
+      value: ENGLISH
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: items.Array.data[1]
-      value: Second Option
+      value: KOREAN
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: items.Array.data[2]
@@ -5280,7 +5284,7 @@ Prefab:
       objectReference: {fileID: 867129868}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: onChange.Array.data[1].mMethodName
-      value: OnSelectionChange
+      value: SelectLanguage
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: onChange.Array.data[1].mParameters.Array.data[0].obj
@@ -5320,10 +5324,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 867129866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57832cb38fe24b84cae9d4b15d611980, type: 3}
+  m_Script: {fileID: 11500000, guid: 5058bcda3933378488995e979f6f110d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Resolutionlist: {fileID: 0}
 --- !u!61 &867129869
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8772,6 +8775,10 @@ Prefab:
     - target: {fileID: 100004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Name
       value: SFX Volume Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
+      propertyPath: mValue
+      value: 0.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}

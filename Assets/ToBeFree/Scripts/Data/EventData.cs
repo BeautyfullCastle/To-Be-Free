@@ -15,16 +15,3 @@ public class EventData : IData
     public int[] selectIndexList;
 }
 
-public class EventDataList
-{
-    public EventData[] dataList;
-
-    public EventDataList(string file)
-    {
-        StreamReader reader = new StreamReader(file);
-        string json = reader.ReadToEnd();
-
-        var dataList = JsonUtility.FromJson<EventDataList>(json);
-        this.dataList = dataList.dataList;
-    }
-}

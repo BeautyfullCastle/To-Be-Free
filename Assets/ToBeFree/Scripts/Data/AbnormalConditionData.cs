@@ -19,30 +19,3 @@ public class AbnormalConditionData : IData
     public string isBody;
     public string isPositive;
 }
-
-public class AbnormalConditionDataList
-{
-    private List<AbnormalConditionData> abnormalConditionDataList;
-
-    public AbnormalConditionDataList(string file)
-    {
-        StreamReader reader = new StreamReader(file);
-        string json = reader.ReadToEnd();
-
-        var dataList = JsonUtility.FromJson<AbnormalConditionDataList>(json);
-        this.abnormalConditionDataList = dataList.abnormalConditionDataList;
-    }
-
-    public List<AbnormalConditionData> List
-    {
-        get
-        {
-            return abnormalConditionDataList;
-        }
-
-        set
-        {
-            abnormalConditionDataList = value;
-        }
-    }
-}

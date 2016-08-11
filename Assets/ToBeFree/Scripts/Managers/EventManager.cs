@@ -16,6 +16,10 @@ namespace ToBeFree
         private EventData[] dataList;
         private string file;
 
+        private Language.EventData[] engList;
+        private Language.EventData[] korList;
+        private List<Language.EventData[]> languageList;
+
         public delegate void UIChangedHandler(eUIEventLabelType type, string text);
         public static event UIChangedHandler UIChanged = delegate { };
 
@@ -30,16 +34,23 @@ namespace ToBeFree
         private bool testResult;
         private Result currResult;
 
-        public EventManager()
+        public void Init()
         {
             file = Application.streamingAssetsPath + "/Event.json";
             DataList<EventData> cDataList = new DataList<EventData>(file);
-            //EventDataList cDataList = new EventDataList(file);
             dataList = cDataList.dataList;
             if (dataList == null)
                 return;
 
             list = new Event[dataList.Length];
+
+            engList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/English/Event.json").dataList;
+            korList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/Korean/Event.json").dataList;
+            languageList = new List<Language.EventData[]>(2);
+            languageList.Add(engList);
+            languageList.Add(korList);
+
+            LanguageSelection.selectLanguageForManager += ChangeLanguage;
 
             ParseData();
         }
@@ -63,6 +74,14 @@ namespace ToBeFree
                 }
 
                 list[data.index] = curEvent;
+            }
+        }
+
+        public void ChangeLanguage(eLanguage language)
+        {
+            foreach (Language.EventData data in languageList[(int)language])
+            {
+                list[data.index].Script = data.script;
             }
         }
 
