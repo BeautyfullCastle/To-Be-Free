@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -65,9 +63,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BezierCurves\Scripts\BezierCurve.cs" />
+    <Compile Include="Assets\BezierCurves\Scripts\BezierCurveList.cs" />
+    <Compile Include="Assets\BezierCurves\Scripts\BezierPoint.cs" />
+    <Compile Include="Assets\BezierCurves\Scripts\MoveOnBeziers.cs" />
+    <Compile Include="Assets\DrawLine.cs" />
     <Compile Include="Assets\ETC\Scripts\MonoBehaviourExtended.cs" />
     <Compile Include="Assets\ETC\Scripts\MonoSingleTon.cs" />
     <Compile Include="Assets\ETC\Scripts\Singleton.cs" />
+    <Compile Include="Assets\EditorPathScript.cs" />
+    <Compile Include="Assets\MoveOnPathScript.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -206,6 +211,7 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+    <Compile Include="Assets\Node.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\AbnormalCondition.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Action.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Buff.cs" />
@@ -276,6 +282,7 @@
     <Compile Include="Assets\XmlTest\Script\XMLParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\BezierCurves\readme.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />

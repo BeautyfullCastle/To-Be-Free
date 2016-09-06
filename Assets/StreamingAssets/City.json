@@ -2,7 +2,7 @@
 	"dataList": [
 		{
 			"index": 0,
-			"name": "KUNMING",
+			"name": "TUMEN",
 			"size": "MIDDLE",
 			"area": "YUNNANSHENG",
 			"itemIndexList": [
@@ -20,7 +20,7 @@
 		},
 		{
 			"index": 1,
-			"name": "CHENDU",
+			"name": "YANBIAN",
 			"size": "BIG",
 			"area": "SICHUANSHENG",
 			"itemIndexList": [
@@ -39,7 +39,7 @@
 		},
 		{
 			"index": 2,
-			"name": "CHONGQING",
+			"name": "ANTU",
 			"size": "SMALL",
 			"area": "SICHUANSHENG",
 			"itemIndexList": [
@@ -57,7 +57,7 @@
 		},
 		{
 			"index": 3,
-			"name": "XINNIG",
+			"name": "DUNHUA",
 			"size": "SMALL",
 			"area": "QINGHAISHENG",
 			"itemIndexList": [
@@ -73,7 +73,7 @@
 		},
 		{
 			"index": 4,
-			"name": "LANZHOU",
+			"name": "JIAOHE",
 			"size": "SMALL",
 			"area": "QINGHAISHENG",
 			"itemIndexList": [
@@ -91,7 +91,7 @@
 		},
 		{
 			"index": 5,
-			"name": "XIAN",
+			"name": "JILIN",
 			"size": "MIDDLE",
 			"area": "SHANXISHENG",
 			"itemIndexList": [
@@ -111,7 +111,7 @@
 		},
 		{
 			"index": 6,
-			"name": "ZHENGZHOU",
+			"name": "CHANGCHUN",
 			"size": "MIDDLE",
 			"area": "SHANXISHENG",
 			"itemIndexList": [
@@ -129,7 +129,7 @@
 		},
 		{
 			"index": 7,
-			"name": "WUHAN",
+			"name": "GONGZHUULING",
 			"size": "BIG",
 			"area": "HUNANSHENG",
 			"itemIndexList": [
@@ -147,7 +147,7 @@
 		},
 		{
 			"index": 8,
-			"name": "CHANGSHA",
+			"name": "SIPING",
 			"size": "SMALL",
 			"area": "HUNANSHENG",
 			"itemIndexList": [
@@ -164,7 +164,7 @@
 		},
 		{
 			"index": 9,
-			"name": "NANCHANG",
+			"name": "YITONG",
 			"size": "SMALL",
 			"area": "HUNANSHENG",
 			"itemIndexList": [
@@ -183,7 +183,7 @@
 		},
 		{
 			"index": 10,
-			"name": "NANNING",
+			"name": "LIAOYUAN",
 			"size": "SMALL",
 			"area": "GUANGXISHENG",
 			"itemIndexList": [
@@ -202,7 +202,7 @@
 		},
 		{
 			"index": 11,
-			"name": "GUANGZHOU",
+			"name": "KAIYUAN",
 			"size": "BIG",
 			"area": "GUANGDONGSHENG",
 			"itemIndexList": [
@@ -220,7 +220,7 @@
 		},
 		{
 			"index": 12,
-			"name": "XIANGGANG",
+			"name": "TIELING",
 			"size": "MIDDLE",
 			"area": "GUANGDONGSHENG",
 			"itemIndexList": [
@@ -237,7 +237,7 @@
 		},
 		{
 			"index": 13,
-			"name": "FUZHOU",
+			"name": "FUSHUN",
 			"size": "SMALL",
 			"area": "FUJIANSHENG",
 			"itemIndexList": [
@@ -255,7 +255,7 @@
 		},
 		{
 			"index": 14,
-			"name": "NANJING",
+			"name": "SHENYANG",
 			"size": "MIDDLE",
 			"area": "JIANGSUSHENG",
 			"itemIndexList": [
@@ -273,7 +273,7 @@
 		},
 		{
 			"index": 15,
-			"name": "SHANGHAI",
+			"name": "BENXI",
 			"size": "BIG",
 			"area": "JIANGSUSHENG",
 			"itemIndexList": [
@@ -290,7 +290,7 @@
 		},
 		{
 			"index": 16,
-			"name": "JINAN",
+			"name": "LIAOYANG",
 			"size": "SMALL",
 			"area": "SHANDONGSHENG",
 			"itemIndexList": [
@@ -310,7 +310,7 @@
 		},
 		{
 			"index": 17,
-			"name": "QINGDAO",
+			"name": "ANSHAN",
 			"size": "MIDDLE",
 			"area": "SHANDONGSHENG",
 			"itemIndexList": [
@@ -327,7 +327,7 @@
 		},
 		{
 			"index": 18,
-			"name": "YANTAI",
+			"name": "HAICHENG",
 			"size": "SMALL",
 			"area": "SHANDONGSHENG",
 			"itemIndexList": [
@@ -344,7 +344,7 @@
 		},
 		{
 			"index": 19,
-			"name": "SHIJIAZHUANG",
+			"name": "YINGKOU",
 			"size": "SMALL",
 			"area": "HEBEISHENG",
 			"itemIndexList": [
@@ -362,7 +362,7 @@
 		},
 		{
 			"index": 20,
-			"name": "TIANJIN",
+			"name": "PENJIN",
 			"size": "BIG",
 			"area": "HEBEISHENG",
 			"itemIndexList": [
@@ -379,7 +379,7 @@
 		},
 		{
 			"index": 21,
-			"name": "BEIJING",
+			"name": "SHUANGLIAO",
 			"size": "BIG",
 			"area": "HEBEISHENG",
 			"itemIndexList": [
@@ -396,7 +396,7 @@
 		},
 		{
 			"index": 22,
-			"name": "DALIAN",
+			"name": "DIAOBINGSHAN",
 			"size": "MIDDLE",
 			"area": "LIAONINGSHENG",
 			"itemIndexList": [
@@ -413,7 +413,7 @@
 		},
 		{
 			"index": 23,
-			"name": "SHENYANG",
+			"name": "KANGPING",
 			"size": "MIDDLE",
 			"area": "LIAONINGSHENG",
 			"itemIndexList": [
@@ -432,7 +432,7 @@
 		},
 		{
 			"index": 24,
-			"name": "DANDONG",
+			"name": "XINMIN",
 			"size": "SMALL",
 			"area": "LIAONINGSHENG",
 			"itemIndexList": [
@@ -450,7 +450,7 @@
 		},
 		{
 			"index": 25,
-			"name": "CHANGCHUN",
+			"name": "ZHNGWU",
 			"size": "MIDDLE",
 			"area": "JILINSHENG",
 			"itemIndexList": [
@@ -468,7 +468,7 @@
 		},
 		{
 			"index": 26,
-			"name": "JILIN",
+			"name": "HEISHAN",
 			"size": "SMALL",
 			"area": "JILINSHENG",
 			"itemIndexList": [
@@ -485,7 +485,7 @@
 		},
 		{
 			"index": 27,
-			"name": "YANBIAN",
+			"name": "TAIAN",
 			"size": "SMALL",
 			"area": "JILINSHENG",
 			"itemIndexList": [
@@ -501,7 +501,7 @@
 		},
 		{
 			"index": 28,
-			"name": "HAERBIN",
+			"name": "LIAOZHONG",
 			"size": "BIG",
 			"area": "JILINSHENG",
 			"itemIndexList": [
@@ -518,15 +518,15 @@
 		},
 		{
 			"index": 29,
-			"name": "NORTHKOREA",
-			"size": "NULL",
-			"area": "NORTHKOREA",
+			"name": "HORQINZUOYIHOUQI",
+			"size": "BIG",
+			"area": "JILINSHENG",
 			"itemIndexList": [
-				-99
+				20
 			],
 			"workingMoneyRange": [
-				-99,
-				-99
+				4,
+				8
 			],
 			"neighborList": [
 				24
@@ -534,15 +534,15 @@
 		},
 		{
 			"index": 30,
-			"name": "LAOS",
-			"size": "NULL",
-			"area": "SOUTHEAST_ASIA",
+			"name": "BAISHAN",
+			"size": "BIG",
+			"area": "JILINSHENG",
 			"itemIndexList": [
-				-99
+				20
 			],
 			"workingMoneyRange": [
-				-99,
-				-99
+				4,
+				9
 			],
 			"neighborList": [
 				0
@@ -550,15 +550,15 @@
 		},
 		{
 			"index": 31,
-			"name": "VIETNAM",
-			"size": "NULL",
-			"area": "SOUTHEAST_ASIA",
+			"name": "TONGLIAO",
+			"size": "BIG",
+			"area": "JILINSHENG",
 			"itemIndexList": [
-				-99
+				20
 			],
 			"workingMoneyRange": [
-				-99,
-				-99
+				4,
+				10
 			],
 			"neighborList": [
 				10
@@ -566,15 +566,15 @@
 		},
 		{
 			"index": 32,
-			"name": "MONGOLIA1",
-			"size": "NULL",
-			"area": "MONGOLIA",
+			"name": "GAIZHOU",
+			"size": "BIG",
+			"area": "JILINSHENG",
 			"itemIndexList": [
-				-99
+				20
 			],
 			"workingMoneyRange": [
-				-99,
-				-99
+				4,
+				11
 			],
 			"neighborList": [
 				28,
@@ -583,15 +583,15 @@
 		},
 		{
 			"index": 33,
-			"name": "MONGOLIA2",
-			"size": "NULL",
-			"area": "MONGOLIA",
+			"name": "WAFANGDIAN",
+			"size": "BIG",
+			"area": "JILINSHENG",
 			"itemIndexList": [
-				-99
+				20
 			],
 			"workingMoneyRange": [
-				-99,
-				-99
+				4,
+				12
 			],
 			"neighborList": [
 				32,
@@ -600,15 +600,15 @@
 		},
 		{
 			"index": 34,
-			"name": "MONGOLIA3",
-			"size": "NULL",
-			"area": "MONGOLIA",
+			"name": "PULANDIAN",
+			"size": "BIG",
+			"area": "JILINSHENG",
 			"itemIndexList": [
-				-99
+				20
 			],
 			"workingMoneyRange": [
-				-99,
-				-99
+				4,
+				13
 			],
 			"neighborList": [
 				33,
@@ -617,15 +617,15 @@
 		},
 		{
 			"index": 35,
-			"name": "MONGOLIA4",
-			"size": "NULL",
-			"area": "MONGOLIA",
+			"name": "DALIAN",
+			"size": "BIG",
+			"area": "JILINSHENG",
 			"itemIndexList": [
-				-99
+				20
 			],
 			"workingMoneyRange": [
-				-99,
-				-99
+				4,
+				14
 			],
 			"neighborList": [
 				34,
@@ -634,15 +634,95 @@
 		},
 		{
 			"index": 36,
-			"name": "MONGOLIA",
-			"size": "NULL",
-			"area": "MONGOLIA",
+			"name": "ZHUANGHE",
+			"size": "BIG",
+			"area": "JILINSHENG",
 			"itemIndexList": [
-				-99
+				20
 			],
 			"workingMoneyRange": [
-				-99,
-				-99
+				4,
+				15
+			],
+			"neighborList": [
+				35
+			]
+		},
+		{
+			"index": 37,
+			"name": "DONGGANG",
+			"size": "BIG",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				20
+			],
+			"workingMoneyRange": [
+				4,
+				16
+			],
+			"neighborList": [
+				35
+			]
+		},
+		{
+			"index": 38,
+			"name": "DANDONG",
+			"size": "BIG",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				20
+			],
+			"workingMoneyRange": [
+				4,
+				17
+			],
+			"neighborList": [
+				35
+			]
+		},
+		{
+			"index": 39,
+			"name": "KUANDIAN",
+			"size": "BIG",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				20
+			],
+			"workingMoneyRange": [
+				4,
+				18
+			],
+			"neighborList": [
+				35
+			]
+		},
+		{
+			"index": 40,
+			"name": "HUANREN",
+			"size": "BIG",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				20
+			],
+			"workingMoneyRange": [
+				4,
+				19
+			],
+			"neighborList": [
+				35
+			]
+		},
+		{
+			"index": 41,
+			"name": "TONGHUA",
+			"size": "BIG",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				20
+			],
+			"workingMoneyRange": [
+				4,
+				20
 			],
 			"neighborList": [
 				35

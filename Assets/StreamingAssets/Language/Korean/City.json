@@ -2,188 +2,213 @@
 	"dataList": [
 		{
 			"index": 0,
-			"name": "쿤밍",
+			"name": "투먼",
 			"area": "연안성"
 		},
 		{
 			"index": 1,
-			"name": "청도",
+			"name": "옌볜",
 			"area": "스촨성"
 		},
 		{
 			"index": 2,
-			"name": "충칭",
+			"name": "안투현",
 			"area": "스촨성"
 		},
 		{
 			"index": 3,
-			"name": "신닝",
+			"name": "둔화시",
 			"area": "칭하이성"
 		},
 		{
 			"index": 4,
-			"name": "란저우",
+			"name": "자오허시",
 			"area": "칭하이성"
 		},
 		{
 			"index": 5,
-			"name": "시안",
+			"name": "지린시",
 			"area": "산시성"
 		},
 		{
 			"index": 6,
-			"name": "정저우",
+			"name": "장춘시",
 			"area": "산시성"
 		},
 		{
 			"index": 7,
-			"name": "우한",
+			"name": "궁주링시",
 			"area": "후난성"
 		},
 		{
 			"index": 8,
-			"name": "창사",
+			"name": "쓰핑시",
 			"area": "후난성"
 		},
 		{
 			"index": 9,
-			"name": "난창",
+			"name": "이퉁만족 자치현",
 			"area": "후난성"
 		},
 		{
 			"index": 10,
-			"name": "난닝",
+			"name": "랴오위안시",
 			"area": "광시성"
 		},
 		{
 			"index": 11,
-			"name": "광저우",
+			"name": "카이위안시",
 			"area": "관동성"
 		},
 		{
 			"index": 12,
-			"name": "홍콩",
+			"name": "테링시",
 			"area": "관동성"
 		},
 		{
 			"index": 13,
-			"name": "후저우",
+			"name": "푸순시",
 			"area": "후지안성"
 		},
 		{
 			"index": 14,
-			"name": "난징",
+			"name": "선양시",
 			"area": "장수성"
 		},
 		{
 			"index": 15,
-			"name": "상하이",
+			"name": "번시시",
 			"area": "장수성"
 		},
 		{
 			"index": 16,
-			"name": "지난",
+			"name": "랴오양시",
 			"area": "산동성"
 		},
 		{
 			"index": 17,
-			"name": "칭다오",
+			"name": "안산시",
 			"area": "산동성"
 		},
 		{
 			"index": 18,
-			"name": "얀타이",
+			"name": "하이청시",
 			"area": "산동성"
 		},
 		{
 			"index": 19,
-			"name": "스자좡",
+			"name": "잉커우시",
 			"area": "허베이성"
 		},
 		{
 			"index": 20,
-			"name": "톈진",
+			"name": "판진시",
 			"area": "허베이성"
 		},
 		{
 			"index": 21,
-			"name": "베이징",
+			"name": "솽랴오시",
 			"area": "허베이성"
 		},
 		{
 			"index": 22,
-			"name": "다롄",
+			"name": "다오빙산시",
 			"area": "랴오닝성"
 		},
 		{
 			"index": 23,
-			"name": "선양",
+			"name": "캉핑현",
 			"area": "랴오닝성"
 		},
 		{
 			"index": 24,
-			"name": "단둥",
+			"name": "신민시",
 			"area": "랴오닝성"
 		},
 		{
 			"index": 25,
-			"name": "창춘",
+			"name": "장우현",
 			"area": "지린성"
 		},
 		{
 			"index": 26,
-			"name": "지린",
+			"name": "헤이산현",
 			"area": "지린성"
 		},
 		{
 			"index": 27,
-			"name": "연변",
+			"name": "타이안현",
 			"area": "지린성"
 		},
 		{
 			"index": 28,
-			"name": "하얼빈",
+			"name": "랴오중현",
 			"area": "지린성"
 		},
 		{
 			"index": 29,
-			"name": "북조선",
-			"area": "북조선"
+			"name": "커얼친 좌익후기",
+			"area": "지린성"
 		},
 		{
 			"index": 30,
-			"name": "라오스",
-			"area": "동남아시아"
+			"name": "바이산시",
+			"area": "지린성"
 		},
 		{
 			"index": 31,
-			"name": "베트남",
-			"area": "동남아시아"
+			"name": "퉁라오시",
+			"area": "지린성"
 		},
 		{
 			"index": 32,
-			"name": "몽골1",
-			"area": "몽골"
+			"name": "가이저우시",
+			"area": "지린성"
 		},
 		{
 			"index": 33,
-			"name": "몽골2",
-			"area": "몽골"
+			"name": "와팡뎬시",
+			"area": "지린성"
 		},
 		{
 			"index": 34,
-			"name": "몽골3",
-			"area": "몽골"
+			"name": "푸란뎬시",
+			"area": "지린성"
 		},
 		{
 			"index": 35,
-			"name": "몽골4",
-			"area": "몽골"
+			"name": "다롄시",
+			"area": "지린성"
 		},
 		{
 			"index": 36,
-			"name": "몽골",
-			"area": "몽골"
+			"name": "좡허시",
+			"area": "지린성"
+		},
+		{
+			"index": 37,
+			"name": "둥강시",
+			"area": "지린성"
+		},
+		{
+			"index": 38,
+			"name": "단둥시",
+			"area": "지린성"
+		},
+		{
+			"index": 39,
+			"name": "관뎬만족 자치현",
+			"area": "지린성"
+		},
+		{
+			"index": 40,
+			"name": "환런만족 자치현",
+			"area": "지린성"
+		},
+		{
+			"index": 41,
+			"name": "퉁화시",
+			"area": "지린성"
 		}
 	]
 }

@@ -40,17 +40,17 @@ public class UICommand : MonoBehaviour {
 			}
 		}
 
-		if(GameManager.Instance.Character.CurCity.Area == eArea.MONGOLIA)
-		{
-			if(!(this.commandType == eCommand.MOVE || this.commandType == eCommand.REST))
-			{
-				this.GetComponent<UIButton>().isEnabled = false;
-			}
-		}
+		//if(GameManager.Instance.Character.CurCity.Area == eArea.MONGOLIA)
+		//{
+		//	if(!(this.commandType == eCommand.MOVE || this.commandType == eCommand.REST))
+		//	{
+		//		this.GetComponent<UIButton>().isEnabled = false;
+		//	}
+		//}
 
 		if(this.GetComponent<UIButton>().isEnabled == false)
 		{
-			if (GameManager.Instance.Character.CurCity.Area != eArea.MONGOLIA)
+			//if (GameManager.Instance.Character.CurCity.Area != eArea.MONGOLIA)
 			{
 				this.GetComponent<UIButton>().isEnabled = true;
 			}
