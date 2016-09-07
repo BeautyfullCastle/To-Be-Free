@@ -46,7 +46,7 @@ namespace ToBeFree
             string cityName = string.Empty;
             if(questPiece.City != null)
             {
-                cityName = EnumConvert<eCity>.ToString(questPiece.City.Name);
+                cityName = questPiece.City.Name;
             }
             uiQuest.SetLabels(questPiece.CurQuest.UiName, questPiece.PastWeeks.ToString() + "/" + questPiece.CurQuest.Duration.ToString(),
                 questPiece.CurQuest.UiConditionScript, cityName);

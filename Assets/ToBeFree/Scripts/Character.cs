@@ -13,7 +13,6 @@ namespace ToBeFree
 
 		private City curCity;
 		private City nextCity;
-		readonly private City startCity;
 
 		private BezierPoint curPoint;
 
@@ -29,13 +28,12 @@ namespace ToBeFree
 		
 		// Todo : skill
 
-		public Character(string name, string script, Stat stat, City curCity, Inventory inven)
+		public Character(string name, string script, Stat stat, string startCityName, Inventory inven)
 		{
 			this.name = name;
 			this.script = script;
 			this.stat = stat;
-			this.curCity = curCity;
-			this.startCity = new City(curCity);
+			this.curCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
 			this.inven = inven;
 
 			CantCure = false;
@@ -98,7 +96,7 @@ namespace ToBeFree
 				2f);
 
 			this.CurCity = city;
-			MoveCity(EnumConvert<eCity>.ToString(city.Name));
+			//MoveCity(city.Name);
 
 			Debug.Log("character is moved to " + this.curCity.Name);
 
@@ -122,12 +120,18 @@ namespace ToBeFree
 			//	point.gameObject.transform.position,
 			//	2f);
 
+			if(CurPoint == null)
+			{
+				Debug.LogError("CurPoint of character is null");
+				yield break;
+			}
 			moveTime = 0f;
 			while (moveTime < 1f)
 			{
 				moveTime += Time.deltaTime;
+				
 				GameObject.Find("Character").transform.position = BezierCurve.GetPoint(CurPoint, point, moveTime);
-				yield return new WaitForFixedUpdate();
+				yield return new WaitForSeconds(Time.deltaTime);
 			}
 			this.CurCity = point.GetComponent<IconCity>().City;
 
@@ -168,6 +172,7 @@ namespace ToBeFree
 			set
 			{
 				curCity = value;
+				CurPoint = Array.Find<IconCity>(GameManager.Instance.iconCities, x => x.City == curCity).GetComponent<BezierPoint>();
 			}
 		}
 
@@ -206,14 +211,6 @@ namespace ToBeFree
 
 		public bool CantCure { get; internal set; }
 		public bool CantMove { get; internal set; }
-
-		public City StartCity
-		{
-			get
-			{
-				return startCity;
-			}
-		}
 
 		public bool IsActionSkip
 		{

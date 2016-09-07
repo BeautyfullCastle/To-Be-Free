@@ -16,6 +16,6 @@ public class CharacterData : IData
     public int luck;
     public int startMoney;
     public int startInven;
-    public int startCityIndex;
+    public string startCity;
     public int[] itemIndex; 
 }

@@ -15,7 +15,6 @@ namespace ToBeFree
         private readonly int compareAmount;
         private readonly Condition condition;
         private readonly eQuestActionType actionType;
-        private readonly eRegion region;
         private readonly eTestStat stat;
         private readonly eDifficulty difficulty;
         private readonly string script;
@@ -27,7 +26,7 @@ namespace ToBeFree
         
 
         public Quest(eSubjectType subjectType, eObjectType objectType, string comparisonOperator,
-            int compareAmount, eQuestActionType actionType, eRegion region, eTestStat stat, eDifficulty difficulty,
+            int compareAmount, eQuestActionType actionType, eTestStat stat, eDifficulty difficulty,
             string script, ResultScriptAndEffects failureEffects, Event event_, int duration, string uiName, string uiConditionScript)
         {
             this.subjectType = subjectType;
@@ -36,7 +35,6 @@ namespace ToBeFree
             this.compareAmount = compareAmount;
             this.condition = new Condition(subjectType, comparisonOperator, compareAmount);
             this.actionType = actionType;
-            this.region = region;
             this.stat = stat;
             this.difficulty = difficulty;
             this.script = script;

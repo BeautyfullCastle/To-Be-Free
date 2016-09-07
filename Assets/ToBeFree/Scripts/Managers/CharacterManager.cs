@@ -38,7 +38,7 @@ namespace ToBeFree
                 Stat stat = new Stat(data.HP, data.mental, data.strength, data.agility, data.observation, data.bargain, data.patience, data.luck, data.startMoney);
                 Inventory inven = new Inventory(data.startInven);                
 
-                Character character = new Character(data.name, data.script, stat, CityManager.Instance.List[data.startCityIndex], inven);
+                Character character = new Character(data.name, data.script, stat, data.startCity, inven);
 
                 for (int i = 0; i < data.itemIndex.Length; ++i)
                 {

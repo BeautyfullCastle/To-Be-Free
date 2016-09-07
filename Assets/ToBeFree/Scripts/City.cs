@@ -4,46 +4,15 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-	public enum eCity
-	{
-		NULL, TUMEN, YANBIAN, ANTU, DUNHUA, JIAOHE, JILIN, CHANGCHUN, GONGZHUULING, SIPING, YITONG,
-		LIAOYUAN, KAIYUAN, TIELING, FUSHUN, SHENYANG, BENXI, LIAOYANG, ANSHAN, HAICHENG, YINGKOU, PENJIN,
-		SHUANGLIAO, DIAOBINGSHAN, KANGPING, XINMIN, ZHNGWU, HEISHAN, TAIAN, LIAOZHONG, HORQINZUOYIHOUQI,
-		BAISHAN, TONGLIAO, GAIZHOU, WAFANGDIAN, PULANDIAN, DALIAN, ZHUANGHE, DONGGANG, DANDONG, KUANDIAN,
-		HUANREN, TONGHUA
-	}
-
-	public enum eArea
-	{
-		YUNNANSHENG, SICHUANSHENG, QINGHAISHENG, SHANXISHENG, HUNANSHENG, GUANGXISHENG, GUANGDONGSHENG, FUJIANSHENG, JIANGSUSHENG,
-		SHANDONGSHENG, HEBEISHENG, LIAONINGSHENG, JILINSHENG,        
-		MONGOLIA, SOUTHEAST_ASIA, NORTHKOREA,
-		NONE, NULL,
-	}
-
-	public enum eRegion
-	{
-		AREA = 0, CITY, ALL,
-		NULL
-	}
-
-	public enum eCitySize
-	{
-		SMALL, MIDDLE, BIG, NULL
-	}
-
 	public class City
 	{
-		private eCity name;
-		private eCitySize size;
-		private eArea area;
+		private string name;
 		private Item[] itemList;
 		private int workingMoneyMin;
 		private int workingMoneyMax;
-		private int[] neighborList;
+		private List<City> neighbors;
 
 		private int distanceFromCharacter;
-		private string name1;
 		private eNodeType type;
 
 		public City()
@@ -51,35 +20,47 @@ namespace ToBeFree
 			ItemList = null;
 		}
 
-		public City(eCity name, eCitySize size, eArea area, Item[] itemList, int workingMoneyMin, int workingMoneyMax, int[] neighborList)
-		 : this()
-		{
-			this.name = name;
-			this.size = size;
-			this.area = area;
-			this.ItemList = itemList;
-			this.workingMoneyMin = workingMoneyMin;
-			this.workingMoneyMax = workingMoneyMax;
-			this.neighborList = neighborList;
-		}
-
-		public City(City city)
-		 : this(city.name, city.size, city.area, city.ItemList, city.workingMoneyMin, city.workingMoneyMax, city.neighborList)
-		{
-		}
-
 		public City(string name, eNodeType type)
 		{
-			this.name = EnumConvert<eCity>.ToEnum(name);
-			this.type = type;
+			this.name = name;
+			this.Type = type;
+			if (this.Type == eNodeType.BIGCITY)
+			{
+				this.workingMoneyMin = 2;
+				this.workingMoneyMax = 4;
+			}
+			else if (this.Type == eNodeType.MIDDLECITY)
+			{
+				this.workingMoneyMin = 1;
+				this.workingMoneyMax = 3;
+			}
+			else if (this.Type == eNodeType.SMALLCITY)
+			{
+				this.workingMoneyMin = 0;
+				this.workingMoneyMax = 2;
+			}
+			else
+			{
+				this.workingMoneyMin = 0;
+				this.workingMoneyMax = 0;
+			}
+		}
+
+		public City(City curCity) : this(curCity.name, curCity.Type)
+		{
+		}
+
+		public void InitNeighbors(List<City> neighbors)
+		{
+			this.neighbors = neighbors;
 		}
 
 		public void PrintNeighbors()
 		{
 			Debug.Log("Print " + this.name + "'s neighbors under below :");
-			for (int i = 0; i < NeighborList.Count; ++i)
+			for (int i = 0; i < Neighbors.Count; ++i)
 			{
-				NeighborList[i].Print();
+				Neighbors[i].Print();
 			}
 		}
 
@@ -91,14 +72,14 @@ namespace ToBeFree
 
 		private void Print()
 		{
-			Debug.Log(this.name + ", " + this.size + ", " + this.area);
+			Debug.Log(this.name);
 		}
 
 		public bool IsNeighbor(string cityName)
 		{
-			foreach(City neighbor in NeighborList)
+			foreach(City neighbor in Neighbors)
 			{
-				if(neighbor.Name == EnumConvert<eCity>.ToEnum(cityName))
+				if(neighbor.Name == cityName)
 				{
 					return true;
 				}
@@ -106,37 +87,16 @@ namespace ToBeFree
 			return false;
 		}
 		
-		public eCity Name
+		public string Name
 		{
 			get { return name; }
 			set { name = value; }
 		}
 
-		public eArea Area
+		public List<City> Neighbors
 		{
 			get
 			{
-				return area;
-			}
-		}
-
-		public eCitySize Size
-		{
-			get
-			{
-				return size;
-			}
-		}
-
-		public List<City> NeighborList
-		{
-			get
-			{
-				List<City> neighbors = new List<City>();
-				for(int i=0; i<neighborList.Length; ++i)
-				{
-					neighbors.Add(CityManager.Instance.List[neighborList[i]]);
-				}
 				return neighbors;
 			}
 		}
@@ -162,6 +122,19 @@ namespace ToBeFree
 			private set
 			{
 				itemList = value;
+			}
+		}
+
+		public eNodeType Type
+		{
+			get
+			{
+				return type;
+			}
+
+			set
+			{
+				type = value;
 			}
 		}
 	}

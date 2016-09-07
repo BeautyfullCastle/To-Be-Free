@@ -11,7 +11,7 @@ namespace ToBeFree
 		NULL, BIGCITY, MIDDLECITY, SMALLCITY, TOWN, MOUNTAIN
 	}
 
-	[ExecuteInEditMode]
+	//[ExecuteInEditMode]
 	public class IconCity : MonoBehaviour
 	{
 		public UILabel nameLabel;
@@ -24,19 +24,37 @@ namespace ToBeFree
 		public eNodeType type = eNodeType.TOWN;
 
 		private City city;
-		private int cityIndex;
 
 		public IconCity This { get { return this; } }
 
-		// Use this for initialization
+		public void Init()
+		{
+			city = new City(gameObject.name, type);						
+		}
+
+		public void InitNeighbors()
+		{
+			if(GetComponent<BezierPoint>() == null)
+			{
+				Debug.LogError("No BezierPoint in " + this.name);
+				return;
+			}
+			if (FindObjectOfType<BezierCurveList>().Dic.ContainsKey(GetComponent<BezierPoint>()) == false)
+			{
+				Debug.LogError("Not contains this point " + this.name);
+				return;
+			}
+			List<BezierPoint> points = FindObjectOfType<BezierCurveList>().Dic[GetComponent<BezierPoint>()];
+			List<City> neighbors = new List<City>();
+			foreach (BezierPoint point in points)
+			{
+				neighbors.Add(point.GetComponent<IconCity>().City);
+			}
+			city.InitNeighbors(neighbors);
+		}
+
 		void Awake()
 		{
-			//city = CityManager.Instance.Find(EnumConvert<eCity>.ToEnum(this.name));
-
-			//cityIndex = CityManager.Instance.FindIndex(EnumConvert<eCity>.ToEnum(this.name));
-
-			city = new City(gameObject.name, type);
-			
 			nameLabel.text = this.name;
 
 			PieceManager.AddPiece += PieceManager_AddPiece;
@@ -49,45 +67,42 @@ namespace ToBeFree
 
 			LanguageSelection.selectLanguageForUI += ChangeLanguage;
 
-
-			EventDelegate eventDel = new EventDelegate(GameManager.Instance, "ClickCity");
-			eventDel.parameters[0] = new EventDelegate.Parameter(this);
-			EventDelegate.Add(GetComponent<UIButton>().onClick, eventDel);
-			
 		}
+
+		//void Start()
+		//{
+		//	UIButton m_BtnTest = GetComponent<UIButton>();
+
+		//	EventDelegate.Parameter param = new EventDelegate.Parameter();
+
+		//	// 파라메타로 지정할 오브젝트가 있는 컴포넌트
+		//	param.obj = gameObject.GetComponent<Transform>();
+
+		//	// 해당 오브젝트의 변수명
+		//	param.field = "name";
+
+		//	// 이벤트 등록 및 파라메타 추가
+		//	EventDelegate onClick = new EventDelegate(GameObject.FindObjectOfType<GameManager>(), "ClickCity");
+
+		//	onClick.parameters[0] = param;
+
+		//	EventDelegate.Add(m_BtnTest.onClick, onClick);
+		//}
 
 		public void ChangeLanguage(eLanguage language)
 		{
-			if(language == eLanguage.KOREAN)
+			Language.CityData[] list = null;
+			if (language == eLanguage.KOREAN)
 			{
-				nameLabel.text = CityManager.Instance.KorList[cityIndex].name;
+				list = CityManager.Instance.KorList;				
 			}
-			if (language == eLanguage.ENGLISH)
+			else if (language == eLanguage.ENGLISH)
 			{
-				nameLabel.text = CityManager.Instance.EngList[cityIndex].name;
+				list = CityManager.Instance.EngList;
 			}
+			nameLabel.text = Array.Find<Language.CityData>(CityManager.Instance.KorList, x => x.index == city.Name).name;
 		}
-
-		void Start()
-		{
-			UIButton m_BtnTest = GetComponent<UIButton>();
-			
-			EventDelegate.Parameter param = new EventDelegate.Parameter();
-
-			// 파라메타로 지정할 오브젝트가 있는 컴포넌트
-			param.obj = gameObject.GetComponent<Transform>();
-
-			// 해당 오브젝트의 변수명
-			param.field = "name";
-
-			// 이벤트 등록 및 파라메타 추가
-			EventDelegate onClick = new EventDelegate(GameObject.FindObjectOfType<GameManager>(), "ClickCity");
-
-			onClick.parameters[0] = param;
-
-			EventDelegate.Add(m_BtnTest.onClick, onClick);
 		
-	}
 
 		private void PieceManager_DeletePiece(Piece piece)
 		{
@@ -137,8 +152,9 @@ namespace ToBeFree
 			NGUIDebug.Log(this.name + "'s " + type.ToString() + " sprite is " + isExist);
 		}
 
-		void Update()
+		void Start()
 		{
+
 			if (type == eNodeType.BIGCITY)
 			{
 				GetComponent<UISprite>().color = Color.white;
@@ -153,16 +169,19 @@ namespace ToBeFree
 			{
 				GetComponent<UISprite>().color = new Color(1, 1, 0.5f);
 				nameLabel.text = type.ToString();
+				gameObject.name = type.ToString();
 			}
 			else if (type == eNodeType.TOWN)
 			{
 				GetComponent<UISprite>().color = new Color(1, 0.8f, 1f);
 				nameLabel.text = type.ToString();
+				gameObject.name = type.ToString();
 			}
 			else if (type == eNodeType.MOUNTAIN)
 			{
 				GetComponent<UISprite>().color = new Color(0.5f, 1, 0.5f);
 				nameLabel.text = type.ToString();
+				gameObject.name = type.ToString();
 			}
 			else
 			{

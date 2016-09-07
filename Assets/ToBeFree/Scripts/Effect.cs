@@ -387,15 +387,6 @@ namespace ToBeFree
                         yield return abnormalCondition.Activate(character);
                     }
                     break;
-                case eSubjectType.ROOT:
-                    if(verbType == eVerbType.OPEN)
-                    {
-                        if (objectType == eObjectType.MONGOLIA || objectType == eObjectType.SOUTHEAST_ASIA)
-                        {
-                            CityManager.Instance.OpenOrCloseArea(EnumConvert<eArea>.ToEnum(objectType.ToString()), true);
-                        }
-                    }
-                    break;
 
                 default:
                     break;

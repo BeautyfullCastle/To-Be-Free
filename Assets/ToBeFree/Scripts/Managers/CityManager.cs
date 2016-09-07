@@ -7,93 +7,53 @@ namespace ToBeFree
 {
 	public class CityManager : Singleton<CityManager>
 	{
-		private City[] list;
-		private readonly CityData[] dataList;
-		private readonly string file = Application.streamingAssetsPath + "/City.json";
+		private List<City> list;
 
-		private readonly Language.CityData[] engList;
-		private readonly Language.CityData[] korList;
+		private Language.CityData[] engList;
+		private Language.CityData[] korList;
 
 		private List<City> neareastPath;
 		private IconCity nextCity;
 
 		private BezierCurveList curves;
 
-		public CityManager()
+		public void Init()
 		{
-			DataList<CityData> cDataList = new DataList<CityData>(file);
-			dataList = cDataList.dataList;
-			if (dataList == null)
-				return;
-
-			list = new City[dataList.Length];
-
-			ParseData();
-
 			engList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/English/City.json").dataList;
 			korList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/Korean/City.json").dataList;
-			//LanguageManager<Language.CityData>.Instance.Init();
-			//Language.CityData[] data = LanguageManager<Language.CityData>.Instance.KoreanDataList;
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
-			
+			curves.Init();
 		}
 
-		private void ParseData()
-		{
-			foreach (CityData data in dataList)
+		public void InitList()
+		{ 
+			// 중복 제거한 City List 생성
+			HashSet<City> hashSet = new HashSet<City>();
+			foreach(BezierCurve curve in curves.List)
 			{
-				if((data.workingMoneyRange.Length > 2) || data.workingMoneyRange.Length <= 0)
+				foreach(BezierPoint point in curve.points)
 				{
-					throw new System.Exception("data.workingMoneyRange is wrong.");
+					hashSet.Add(point.GetComponent<IconCity>().City);
 				}
-
-				Item[] itemList = null;
-				if (data.itemIndexList.Length > 0 && data.itemIndexList[0] != -99)
-				{
-					itemList = new Item[data.itemIndexList.Length];
-					for (int i = 0; i < data.itemIndexList.Length; ++i)
-					{
-						Item item = ItemManager.Instance.List[data.itemIndexList[i]];
-						itemList[i] = item;
-					}
-				}
-
-				City city = new City(EnumConvert<eCity>.ToEnum(data.name), EnumConvert<eCitySize>.ToEnum(data.size),
-									EnumConvert<eArea>.ToEnum(data.area), itemList, data.workingMoneyRange[0], data.workingMoneyRange[1], 
-									data.neighborList);
-
-				if (list[data.index] != null)
-				{
-					throw new Exception("City data.index " + data.index + " is duplicated.");
-				}
-				list[data.index] = city;
 			}
+			list = new List<City>(hashSet);
 		}
 		
-		public City Find(eCity cityName)
-		{
-			return Array.Find<City>(list, x => (x.Name == cityName));            
-		}
-
+		
 		public City Find(string cityName)
 		{
-			return Find(EnumConvert<eCity>.ToEnum(cityName));
-		}
-
-		public int FindIndex(eCity cityName)
-		{
-			return Array.FindIndex<City>(list, x => (x.Name == cityName));
+			return GameObject.Find(cityName).GetComponent<IconCity>().City;
 		}
 
 		public City FindRand(eSubjectType pieceType)
 		{
 			HashSet<City> hashSet = new HashSet<City>(list);
-			hashSet.ExceptWith(Array.FindAll(list, x => x.Size == eCitySize.NULL));
+			//hashSet.ExceptWith(list.FindAll(x => x.Type == eNodeType.NULL));
 
 			if (pieceType != eSubjectType.POLICE)
 			{
-				hashSet.ExceptWith(Array.FindAll(list, x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0));
+				hashSet.ExceptWith(list.FindAll(x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0));
 			}
 
 			if (hashSet.Count <= 0)
@@ -106,20 +66,19 @@ namespace ToBeFree
 			int index = r.Next(0, cityList.Count - 1);
 
 			return cityList[index];
-			
 		}
 
-		public List<City> FindCitiesBySize(eCitySize size)
+		public List<City> FindCitiesByType(eNodeType size)
 		{
-			List<City> cityListBySize = new List<City>();
+			List<City> cityList = new List<City>();
 			foreach (City city in list)
 			{
-				if (city.Size == size)
+				if (city.Type == size)
 				{
-					cityListBySize.Add(city);
+					cityList.Add(city);
 				}
 			}
-			return cityListBySize;
+			return cityList;
 		}
 
 		public City FindRandCityByDistance(City curCity, int distance, eSubjectType pieceType)
@@ -128,7 +87,7 @@ namespace ToBeFree
 			// put a police in random cities by distance.
 			List<City> cityList = CityManager.Instance.FindCitiesByDistance(curCity, distance);
 
-			cityList.RemoveAll(x => x.Size == eCitySize.NULL);
+			cityList.RemoveAll(x => x.Type == eNodeType.NULL);
 
 			if (pieceType != eSubjectType.POLICE)
 			{
@@ -163,7 +122,7 @@ namespace ToBeFree
 			if (distance <= 0)
 				return;
 
-			foreach (City neighbor in city.NeighborList)
+			foreach (City neighbor in city.Neighbors)
 			{
 				if (!cities.Contains(neighbor))
 				{
@@ -209,7 +168,7 @@ namespace ToBeFree
 		
 		private void CalcNeareastPath(City curCity, City destination, List<City> neareastPath, int farDistance, List<City> visited)
 		{
-			foreach(City neighbor in curCity.NeighborList)
+			foreach(City neighbor in curCity.Neighbors)
 			{
 				if(visited.Contains(neighbor))
 				{
@@ -248,7 +207,7 @@ namespace ToBeFree
 
 		private void CalcDist(City city, List<City> path, int i)
 		{
-			foreach (City neighbor in city.NeighborList)
+			foreach (City neighbor in city.Neighbors)
 			{
 				if(path.Exists(x => x == neighbor))
 				{
@@ -283,24 +242,11 @@ namespace ToBeFree
 			return path;
 		}
 
-		public City[] List
+		public List<City> List
 		{
 			get
 			{
 				return list;
-			}
-		}
-
-		public City[] List1
-		{
-			get
-			{
-				return list;
-			}
-
-			set
-			{
-				list = value;
 			}
 		}
 
@@ -330,25 +276,6 @@ namespace ToBeFree
 			set
 			{
 				nextCity = value;
-			}
-		}
-
-		public void OpenOrCloseArea(eArea area, bool isOpen)
-		{
-			if(!(area == eArea.MONGOLIA || area == eArea.SOUTHEAST_ASIA))
-			{
-				Debug.LogError("OpenOrCloseArea : area is not escaping root. " + area.ToString());
-				return;
-			}
-
-			foreach(IconCity iconCity in GameManager.Instance.iconCities)
-			{
-				if (iconCity.City == null) return;
-
-				if (iconCity.City.Area == area)
-				{
-					iconCity.gameObject.SetActive(isOpen);
-				}
 			}
 		}
 	}

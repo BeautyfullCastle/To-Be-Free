@@ -5,467 +5,378 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-    public enum eProbType
-    {
-        REGION, STAT
-    }
+	public enum eProbType
+	{
+		REGION, STAT
+	}
 
-    public class EventManager : Singleton<EventManager>
-    {
-        private Event[] list;
-        private EventData[] dataList;
-        private string file;
+	public class EventManager : Singleton<EventManager>
+	{
+		private Event[] list;
+		private EventData[] dataList;
+		private string file;
 
-        private Language.EventData[] engList;
-        private Language.EventData[] korList;
-        private List<Language.EventData[]> languageList;
+		private Language.EventData[] engList;
+		private Language.EventData[] korList;
+		private List<Language.EventData[]> languageList;
 
-        public delegate void UIChangedHandler(eUIEventLabelType type, string text);
-        public static event UIChangedHandler UIChanged = delegate { };
+		public delegate void UIChangedHandler(eUIEventLabelType type, string text);
+		public static event UIChangedHandler UIChanged = delegate { };
 
-        public delegate void SelectUIChangedHandler(Select[] select);
-        public static event SelectUIChangedHandler SelectUIChanged = delegate { };
+		public delegate void SelectUIChangedHandler(Select[] select);
+		public static event SelectUIChangedHandler SelectUIChanged = delegate { };
 
-        public delegate void UIOpenHandler();
-        public static UIOpenHandler UIOpen = delegate { };
-        private bool isFinish;
-        private Event selectedEvent;
+		public delegate void UIOpenHandler();
+		public static UIOpenHandler UIOpen = delegate { };
+		private bool isFinish;
+		private Event selectedEvent;
 
-        private bool testResult;
-        private Result currResult;
+		private bool testResult;
+		private Result currResult;
 
-        public void Init()
-        {
-            file = Application.streamingAssetsPath + "/Event.json";
-            DataList<EventData> cDataList = new DataList<EventData>(file);
-            dataList = cDataList.dataList;
-            if (dataList == null)
-                return;
+		public void Init()
+		{
+			file = Application.streamingAssetsPath + "/Event.json";
+			DataList<EventData> cDataList = new DataList<EventData>(file);
+			dataList = cDataList.dataList;
+			if (dataList == null)
+				return;
 
-            list = new Event[dataList.Length];
+			list = new Event[dataList.Length];
 
-            engList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/English/Event.json").dataList;
-            korList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/Korean/Event.json").dataList;
-            languageList = new List<Language.EventData[]>(2);
-            languageList.Add(engList);
-            languageList.Add(korList);
+			engList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/English/Event.json").dataList;
+			korList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/Korean/Event.json").dataList;
+			languageList = new List<Language.EventData[]>(2);
+			languageList.Add(engList);
+			languageList.Add(korList);
 
-            LanguageSelection.selectLanguageForManager += ChangeLanguage;
+			LanguageSelection.selectLanguageForManager += ChangeLanguage;
 
-            ParseData();
-        }
+			ParseData();
+		}
 
-        private void ParseData()
-        {
-            foreach (EventData data in dataList)
-            {
-                Event curEvent = new Event(EnumConvert<eEventAction>.ToEnum(data.actionType), data.region,
-                                            EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty),
-                                            data.script, data.resultIndex, data.selectIndexList);
+		private void ParseData()
+		{
+			foreach (EventData data in dataList)
+			{
+				Event curEvent = new Event(EnumConvert<eEventAction>.ToEnum(data.actionType), data.region,
+											EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty),
+											data.script, data.resultIndex, data.selectIndexList);
 
-                if (list[data.index] != null)
-                {
-                    Debug.LogError("EventManager : data.index is duplicated.");
-                }
+				if (list[data.index] != null)
+				{
+					Debug.LogError("EventManager : data.index is duplicated.");
+				}
 
-                if (list[data.index] != null)
-                {
-                    throw new Exception("Event data.index " + data.index + " is duplicated.");
-                }
+				if (list[data.index] != null)
+				{
+					throw new Exception("Event data.index " + data.index + " is duplicated.");
+				}
 
-                list[data.index] = curEvent;
-            }
-        }
+				list[data.index] = curEvent;
+			}
+		}
 
-        public void ChangeLanguage(eLanguage language)
-        {
-            foreach (Language.EventData data in languageList[(int)language])
-            {
-                list[data.index].Script = data.script;
-            }
-        }
+		public void ChangeLanguage(eLanguage language)
+		{
+			foreach (Language.EventData data in languageList[(int)language])
+			{
+				list[data.index].Script = data.script;
+			}
+		}
 
-        public bool CalculateTestResult(eTestStat testStat, Character character)
-        {
-            if (testStat == eTestStat.ALL || testStat == eTestStat.NULL)
-            {
-                TestResult = true;
-                UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString());
-            }
-            else
-            {
-                TestResult = DiceTester.Instance.Test(character.GetDiceNum(testStat)) > 0;
-                UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
-            }
-            return TestResult;
-        }
+		public bool CalculateTestResult(eTestStat testStat, Character character)
+		{
+			if (testStat == eTestStat.ALL || testStat == eTestStat.NULL)
+			{
+				TestResult = true;
+				UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString());
+			}
+			else
+			{
+				TestResult = DiceTester.Instance.Test(character.GetDiceNum(testStat)) > 0;
+				UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
+			}
+			return TestResult;
+		}
 
-        public IEnumerator TreatResult(Result result, bool testResult, Character character)
-        {
-            string resultScript = string.Empty;
-            string resultEffect = string.Empty;
-            ResultScriptAndEffects resultScriptAndEffects = null;
-            if (testResult == true)
-            {
-                resultScriptAndEffects = result.Success;
-            }
-            else
-            {
-                resultScriptAndEffects = result.Failure;
-            }
+		public IEnumerator TreatResult(Result result, bool testResult, Character character)
+		{
+			string resultScript = string.Empty;
+			string resultEffect = string.Empty;
+			ResultScriptAndEffects resultScriptAndEffects = null;
+			if (testResult == true)
+			{
+				resultScriptAndEffects = result.Success;
+			}
+			else
+			{
+				resultScriptAndEffects = result.Failure;
+			}
 
-            resultScript = resultScriptAndEffects.Script;
-            for (int i = 0; i < resultScriptAndEffects.EffectAmounts.Length; ++i)
-            {
-                EffectAmount effectAmount = resultScriptAndEffects.EffectAmounts[i];
-                if (effectAmount.Effect == null)
-                {
-                    continue;
-                }
-                resultEffect += effectAmount.ToString() + "\n";
-            }
+			resultScript = resultScriptAndEffects.Script;
+			for (int i = 0; i < resultScriptAndEffects.EffectAmounts.Length; ++i)
+			{
+				EffectAmount effectAmount = resultScriptAndEffects.EffectAmounts[i];
+				if (effectAmount.Effect == null)
+				{
+					continue;
+				}
+				resultEffect += effectAmount.ToString() + "\n";
+			}
 
-            this.CurrResult = result;
-            UIChanged(eUIEventLabelType.RESULT, resultScript);
-            UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
+			this.CurrResult = result;
+			UIChanged(eUIEventLabelType.RESULT, resultScript);
+			UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
 
-            yield return WaitUntilFinish();
+			yield return WaitUntilFinish();
 
-            for (int i = 0; i < resultScriptAndEffects.EffectAmounts.Length; ++i)
-            {
-                EffectAmount effectAmount = resultScriptAndEffects.EffectAmounts[i];
-                if (effectAmount.Effect == null)
-                {
-                    continue;
-                }
-                yield return effectAmount.Activate(character);
-            }
-        }
-    
-        public IEnumerator DoCommand(eEventAction actionType, Character character)
-        {
-            yield return GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 0.5f);
+			for (int i = 0; i < resultScriptAndEffects.EffectAmounts.Length; ++i)
+			{
+				EffectAmount effectAmount = resultScriptAndEffects.EffectAmounts[i];
+				if (effectAmount.Effect == null)
+				{
+					continue;
+				}
+				yield return effectAmount.Activate(character);
+			}
+		}
+	
+		public IEnumerator DoCommand(eEventAction actionType, Character character)
+		{
+			yield return GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 0.5f);
 
-            selectedEvent = Find(actionType, character.CurCity);
-            if (selectedEvent == null)
-            {
-                Debug.LogError("selectedEvent is null");
-                yield break;
-            }
+			selectedEvent = Find(actionType, character.CurCity);
+			if (selectedEvent == null)
+			{
+				Debug.LogError("selectedEvent is null");
+				yield break;
+			}
 
-            yield return ActivateEvent(selectedEvent, character);
-           
-            Debug.Log("DoCommand Finished.");
-        }
+			yield return ActivateEvent(selectedEvent, character);
+		   
+			Debug.Log("DoCommand Finished.");
+		}
 
-        public IEnumerator WaitUntilFinish()
-        {
-            GameManager.Instance.uiEventManager.okButton.isEnabled = true;
-            isFinish = false;
-            while (isFinish == false)
-            {
-                yield return new WaitForSeconds(.1f);
-            }
-        }
+		public IEnumerator WaitUntilFinish()
+		{
+			GameManager.Instance.uiEventManager.okButton.isEnabled = true;
+			isFinish = false;
+			while (isFinish == false)
+			{
+				yield return new WaitForSeconds(.1f);
+			}
+		}
 
-        public void OnClickOK()
-        {
-            if (IsFinish == false)
-            {
-                GameManager.Instance.uiEventManager.okButton.isEnabled = false;
-                isFinish = true;
-            }
-        }
+		public void OnClickOK()
+		{
+			if (IsFinish == false)
+			{
+				GameManager.Instance.uiEventManager.okButton.isEnabled = false;
+				isFinish = true;
+			}
+		}
 
-        public Event Find(eEventAction actionType, City city)
-        {
-            // should check here again.
-            List<Event> findedEvents = SelectEventsByAction(actionType);
+		public Event Find(eEventAction actionType, City city)
+		{
+			/*
+			 * 이벤트는 랜덤으로 발생
+			하루에 이벤트발생 가능성에 확률을 추가한다.
+			발생조건 있음(일을 할때 라던지)
+			이벤트는 하루에 최대 하나만 나옴
+			*/
+			
+			List<Event> findedEvents = SelectEventsByAction(actionType);
+			
+			System.Random r = new System.Random();
+			int randVal = r.Next(0, findedEvents.Count - 1);
 
-            // <eRegion, List<Event>>
-            Dictionary<int, List<Event>> eventListPerRegionDic = InitEventListPerRegionDic(findedEvents, city);
-            if (eventListPerRegionDic.Count == 0)
-            {
-                Debug.LogError("eventListPerRegionDic.Count == 0");
-                return null;
-            }
-            List<Event> regionEvents = SelectRandomEventsByProb(eventListPerRegionDic, actionType, eProbType.REGION);
-            if(regionEvents == null)
-            {
-                regionEvents = findedEvents;
-            }
-            else if (regionEvents.Count == 0)
-            {
-                Debug.LogError("regionEvents.Count == 0");
-                return null;
-            }
-            List<Event> statEvents = null;
-            if (actionType == eEventAction.GLOBAL || actionType == eEventAction.QUEST)
-            {
-                statEvents = regionEvents;
-            }
-            else
-            {
-                Dictionary<int, List<Event>> eventListPerStatDic = InitEventListPerStatDic(regionEvents);
-                if (eventListPerStatDic.Count == 0)
-                {
-                    Debug.LogError("eventListPerStatDic.Count == 0");
-                    return null;
-                }
-                statEvents = SelectRandomEventsByProb(eventListPerStatDic, actionType, eProbType.STAT);
-                if(statEvents == null)
-                {
-                    statEvents = regionEvents;
-                }
-            }
+			return findedEvents[randVal];
+		}
 
-            System.Random r = new System.Random();
-            int randVal = r.Next(0, statEvents.Count - 1);
+		public IEnumerator ActivateEvent(Event currEvent, Character character)
+		{
+			GameManager.Instance.OpenEventUI();
 
-            return statEvents[randVal];
-        }
+			Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.TestStat + " is activated.");
 
-        public IEnumerator ActivateEvent(Event currEvent, Character character)
-        {
-            GameManager.Instance.OpenEventUI();
+			UIChanged(eUIEventLabelType.EVENT, currEvent.Script);
+			
+			// deal with select part
+			if(currEvent.Result == null)
+			{
+				Select[] selectList = new Select[currEvent.SelectIndexList.Length];
+				for (int i = 0; i < currEvent.SelectIndexList.Length; ++i)
+				{
+					Select select = SelectManager.Instance.List[currEvent.SelectIndexList[i]];
+					selectList[i] = select;
+				}
+				SelectUIChanged(selectList);
+				yield return SelectManager.Instance.WaitForSelect();
+			}
+			// deal with result
+			else
+			{
+				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+				this.TestResult = CalculateTestResult(currEvent.Result.TestStat, character);
+				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
-            Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.TestStat + " is activated.");
+				yield return TreatResult(currEvent.Result, TestResult, character);
+			}
+		}
 
-            UIChanged(eUIEventLabelType.EVENT, currEvent.Script);
-            
-            // deal with select part
-            if(currEvent.Result == null)
-            {
-                Select[] selectList = new Select[currEvent.SelectIndexList.Length];
-                for (int i = 0; i < currEvent.SelectIndexList.Length; ++i)
-                {
-                    Select select = SelectManager.Instance.List[currEvent.SelectIndexList[i]];
-                    selectList[i] = select;
-                }
-                SelectUIChanged(selectList);
-                yield return SelectManager.Instance.WaitForSelect();
-            }
-            // deal with result
-            else
-            {
-                yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-                this.TestResult = CalculateTestResult(currEvent.Result.TestStat, character);
-                yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+		public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)
+		{
+			if (resultEffects == null)
+			{
+				Debug.LogError("resultEffects null");
+				return;
+			}
 
-                yield return TreatResult(currEvent.Result, TestResult, character);
-            }
-        }
+			for (int i = 0; i < resultEffects.Length; ++i)
+			{
+				if (resultEffects[i].Effect != null)
+				{
+					resultEffects[i].Effect.Activate(character, resultEffects[i].Amount);
+				}
+			}
+		}
 
-        public void ActivateResultEffects(EffectAmount[] resultEffects, Character character)
-        {
-            if (resultEffects == null)
-            {
-                Debug.LogError("resultEffects null");
-                return;
-            }
+		private List<Event> SelectEventsByAction(eEventAction actionType)
+		{
+			if(actionType == eEventAction.NULL)
+			{
+				return null;
+			}
 
-            for (int i = 0; i < resultEffects.Length; ++i)
-            {
-                if (resultEffects[i].Effect != null)
-                {
-                    resultEffects[i].Effect.Activate(character, resultEffects[i].Amount);
-                }
-                //else if(resultEffects[i].AbnormalCondition != null)
-                //{
-                //    resultEffects[i].AbnormalCondition.Activate(character, resultEffects[i].Value);
-                //}
-            }
-        }
+			List<Event> findedEvents = new List<Event>();
+			foreach (Event elem in list)
+			{
+				if (elem.ActionType != actionType || elem.Region == "NULL" || elem.TestStat == eTestStat.NULL)
+				{
+					continue;
+				}
+				findedEvents.Add(elem);
+			}
+			if (findedEvents.Count == 0)
+			{
+				Debug.LogError("Events for " + actionType + " are not exist.");
+				return null;
+			}
+			return findedEvents;
+		}
 
-        private List<Event> SelectEventsByAction(eEventAction actionType)
-        {
-            if(actionType == eEventAction.NULL)
-            {
-                return null;
-            }
+		private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, eEventAction actionType, eProbType probType)
+		{
+			Probability prob = null;
+			if (probType == eProbType.STAT)
+			{
+				StatProbability statProb = StatProbabilityManager.Instance.FindProbByAction(actionType);
+				if(statProb == null)
+				{
+					return null;
+				}
+				prob = (Probability)statProb.DeepCopy();
+			}
+			else if(probType == eProbType.REGION)
+			{
+				RegionProbability regionProb = RegionProbabilityManager.Instance.Prob;
+				if(regionProb == null)
+				{
+					return null;
+				}
+				prob = (Probability)RegionProbabilityManager.Instance.Prob.DeepCopy();
+			}
+			prob.ResetProbValues(eventListDic);
+			return new List<Event>(SelectRandomEvents(prob, eventListDic));
+		}
+		
 
-            List<Event> findedEvents = new List<Event>();
-            foreach (Event elem in list)
-            {
-                if (elem.ActionType != actionType || elem.Region == "NULL" || elem.TestStat == eTestStat.NULL)
-                {
-                    continue;
-                }
-                findedEvents.Add(elem);
-            }
-            if (findedEvents.Count == 0)
-            {
-                Debug.LogError("Events for " + actionType + " are not exist.");
-                return null;
-            }
-            return findedEvents;
-        }
+		private List<Event> SelectRandomEvents(Probability prob, Dictionary<int, List<Event>> dic)
+		{
+			if (prob == null)
+			{
+				Debug.LogError("prob is null.");
+				return null;
+			}
 
-        private List<Event> SelectRandomEventsByProb(Dictionary<int, List<Event>> eventListDic, eEventAction actionType, eProbType probType)
-        {
-            Probability prob = null;
-            if (probType == eProbType.STAT)
-            {
-                StatProbability statProb = StatProbabilityManager.Instance.FindProbByAction(actionType);
-                if(statProb == null)
-                {
-                    return null;
-                }
-                prob = (Probability)statProb.DeepCopy();
-            }
-            else if(probType == eProbType.REGION)
-            {
-                RegionProbability regionProb = RegionProbabilityManager.Instance.Prob;
-                if(regionProb == null)
-                {
-                    return null;
-                }
-                prob = (Probability)RegionProbabilityManager.Instance.Prob.DeepCopy();
-            }
-            prob.ResetProbValues(eventListDic);
-            return new List<Event>(SelectRandomEvents(prob, eventListDic));
-        }
+			int totalProbVal = prob.CheckAddedAllProbValues();
+			if (totalProbVal == 0)
+			{
+				Debug.LogError("Total prob value is 0");
+				return null;
+			}
+			System.Random r = new System.Random();
+			int randVal = r.Next(1, totalProbVal);
 
-        private Dictionary<int, List<Event>> InitEventListPerRegionDic(List<Event> regionEvents, City city)
-        {
-            Dictionary<int, List<Event>> eventListPerRegionDic = new Dictionary<int, List<Event>>()
-            {
-                {0, new List<Event>() }, {1, new List<Event>() }, {2, new List<Event>() }
-            };
+			List<Event> eventList;
+			int val = 0;
+			foreach (int key in dic.Keys)
+			{
+				val += prob.DataList[key];
+				if (randVal < val)
+				{
+					eventList = dic[key];
+					return eventList;
+				}
+			}
+			Debug.LogError("Can't find event list. rand Val : + " + randVal + " , total val : " + val);
+			return null;
+		}
 
-            foreach (Event eventElem in regionEvents)
-            {
-                if (eventElem == null)
-                {
-                    Debug.LogError("eventElem can't find.");
-                    continue;
-                }
+		public Event[] List
+		{
+			get
+			{
+				return list;
+			}
+		}
 
-                if (eventElem.Region == EnumConvert<eCity>.ToString(city.Name))
-                {
-                    eventListPerRegionDic[(int)eRegion.CITY].Add(eventElem);
-                }
-                else if (eventElem.Region == EnumConvert<eArea>.ToString(city.Area))
-                {
-                    eventListPerRegionDic[(int)eRegion.AREA].Add(eventElem);
-                }
-                else if (eventElem.Region == "ALL")
-                {
-                    eventListPerRegionDic[(int)eRegion.ALL].Add(eventElem);
-                }
-            }
-            return eventListPerRegionDic;
-        }
+		public Event SelectedEvent
+		{
+			get
+			{
+				return selectedEvent;
+			}
+		}
 
-        private Dictionary<int, List<Event>> InitEventListPerStatDic(List<Event> statEvents)
-        {
-            Dictionary<int, List<Event>> eventListPerStatDic = new Dictionary<int, List<Event>>()
-            {
-                {0, new List<Event>() }, {1, new List<Event>() }, {2, new List<Event>() },
-                { 3, new List<Event>() }, {4, new List<Event>() }, {5, new List<Event>() }, {6, new List<Event>() }
-            };
+		public bool IsFinish
+		{
+			get
+			{
+				return isFinish;
+			}
 
-            foreach (Event eventElem in statEvents)
-            {
-                if (eventElem == null)
-                {
-                    Debug.LogError("eventElem can't find.");
-                    continue;
-                }
-                if(eventElem.TestStat == eTestStat.NULL)
-                {
-                    continue;
-                }
-                int iStat = (int)eventElem.TestStat;
-                eventListPerStatDic[iStat].Add(eventElem);
-            }
-            return eventListPerStatDic;
-        }
+			set
+			{
+				isFinish = value;
+			}
+		}
 
-        private List<Event> SelectRandomEvents(Probability prob, Dictionary<int, List<Event>> dic)
-        {
-            if (prob == null)
-            {
-                Debug.LogError("prob is null.");
-                return null;
-            }
+		public bool TestResult
+		{
+			get
+			{
+				return testResult;
+			}
+			set
+			{
+				testResult = value;
+			}
+		}
 
-            int totalProbVal = prob.CheckAddedAllProbValues();
-            if (totalProbVal == 0)
-            {
-                Debug.LogError("Total prob value is 0");
-                return null;
-            }
-            System.Random r = new System.Random();
-            int randVal = r.Next(1, totalProbVal);
+		public Result CurrResult
+		{
+			get
+			{
+				return currResult;
+			}
 
-            List<Event> eventList;
-            int val = 0;
-            foreach (int key in dic.Keys)
-            {
-                val += prob.DataList[key];
-                if (randVal < val)
-                {
-                    eventList = dic[key];
-                    return eventList;
-                }
-            }
-            Debug.LogError("Can't find event list. rand Val : + " + randVal + " , total val : " + val);
-            return null;
-        }
-
-        public Event[] List
-        {
-            get
-            {
-                return list;
-            }
-        }
-
-        public Event SelectedEvent
-        {
-            get
-            {
-                return selectedEvent;
-            }
-        }
-
-        public bool IsFinish
-        {
-            get
-            {
-                return isFinish;
-            }
-
-            set
-            {
-                isFinish = value;
-            }
-        }
-
-        public bool TestResult
-        {
-            get
-            {
-                return testResult;
-            }
-            set
-            {
-                testResult = value;
-            }
-        }
-
-        public Result CurrResult
-        {
-            get
-            {
-                return currResult;
-            }
-
-            private set
-            {
-                currResult = value;
-            }
-        }
-    }
+			private set
+			{
+				currResult = value;
+			}
+		}
+	}
 }
+ 

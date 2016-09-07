@@ -8,8 +8,7 @@ namespace Language
     [Serializable]
     public class CityData : IData
     {
-        public int index;
+        public string index;
         public string name;
-        public string area;
     }
 }

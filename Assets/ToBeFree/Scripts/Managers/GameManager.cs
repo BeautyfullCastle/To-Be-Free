@@ -42,8 +42,20 @@ namespace ToBeFree
 		{
 		}
 
-		private void Awake()
+		private void Init()
 		{
+			CityManager.Instance.Init();
+			iconCities = GameObject.FindObjectsOfType<IconCity>();
+			foreach(IconCity iconCity in iconCities)
+			{
+				iconCity.Init();
+			}
+			foreach (IconCity iconCity in iconCities)
+			{
+				iconCity.InitNeighbors();
+			}
+			CityManager.Instance.InitList();
+
 			EventManager.Instance.Init();
 			ResultManager.Instance.Init();
 			QuestManager.Instance.Init();
@@ -56,29 +68,13 @@ namespace ToBeFree
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
 
-			iconCities = GameObject.FindObjectsOfType<IconCity>();
+			
 
 			uiSetting.SetActive(false);
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
 		}
-
-		//public void ClickCity(string cityName)
-		//{
-		//	if (readyToMove == false)
-		//		return;
-
-		//	if (!character.CurCity.IsNeighbor(cityName))
-		//	{
-		//		Debug.LogError("ClickCity : " + cityName + " is not neighbor.");
-		//		return;
-		//	}
-		//	action = new Move();
-		//	character.NextCity = CityManager.Instance.Find(cityName);
-
-		//	readyToMove = false;
-		//}
-
+		
 		public void ClickCity(IconCity city)
 		{
 			if (readyToMove == false)
@@ -86,7 +82,6 @@ namespace ToBeFree
 
 			CityManager.Instance.NextCity = city;
 			action = new Move();
-			//character.NextCity = CityManager.Instance.Find(cityName);
 
 			readyToMove = false;
 		}
@@ -234,11 +229,10 @@ namespace ToBeFree
 		
 		IEnumerator InitState()
 		{
-			CityManager.Instance.OpenOrCloseArea(eArea.MONGOLIA, false);
-			CityManager.Instance.OpenOrCloseArea(eArea.SOUTHEAST_ASIA, false);
-
 			// Enter
 			yield return (ShowStateLabel("Init State", 0.5f));
+
+			Init();
 
 			// character init
 			CharacterManager.Instance.Init();
@@ -254,17 +248,17 @@ namespace ToBeFree
 
 			yield return (ShowStateLabel("Adding Polices to Big cities.", 0.5f));
 
+			// HAVE TO CHANGE
 			// add polices in big cities.
-			List<City> bigCityList = CityManager.Instance.FindCitiesBySize(eCitySize.BIG);
-			List<Transform> bigCityTransformList = new List<Transform>();
-			foreach (City city in bigCityList)
-			{
-				PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
-				bigCityTransformList.Add(GameObject.Find(city.Name.ToString()).transform);
-				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
-			}
-
-			yield return (MoveDirectingCam(bigCityTransformList, 0.5f));
+			//List<City> bigCityList = CityManager.Instance.FindCitiesBySize(eCitySize.BIG);
+			//List<Transform> bigCityTransformList = new List<Transform>();
+			//foreach (City city in bigCityList)
+			//{
+			//	PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
+			//	bigCityTransformList.Add(GameObject.Find(city.Name.ToString()).transform);
+			//	NGUIDebug.Log("Add Big city : " + city.Name.ToString());
+			//}
+			//yield return (MoveDirectingCam(bigCityTransformList, 0.5f));
 
 			
 			yield return null;
@@ -393,6 +387,7 @@ namespace ToBeFree
 			
 			yield return Instance_NotifyEveryNight();
 
+			#region editor test
 #if UNITY_EDITOR
 			// for the test
 			if (activateAbnormal)
@@ -425,6 +420,7 @@ namespace ToBeFree
 
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[0], character);
 #endif
+			#endregion
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);
 
@@ -519,24 +515,24 @@ namespace ToBeFree
 			if (selectedQuest.ActionType == eQuestActionType.QUEST)
 			{
 				QuestPiece piece = PieceManager.Instance.Find(selectedQuest);
-				pieceCityTransformList.Add(GameObject.Find(piece.City.Name.ToString()).transform);
+				pieceCityTransformList.Add(GameObject.Find(piece.City.Name).transform);
 			}
 
 			// 2 polices
 			Police randPolice = new Police(CityManager.Instance.FindRand(eSubjectType.POLICE), eSubjectType.POLICE);
 			PieceManager.Instance.Add(randPolice);
-			pieceCityTransformList.Add(GameObject.Find(randPolice.City.Name.ToString()).transform);
+			pieceCityTransformList.Add(GameObject.Find(randPolice.City.Name).transform);
 			//Police randPoliceByDistance = new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.POLICE), eSubjectType.POLICE);
 			//PieceManager.Instance.Add(randPoliceByDistance);
-			//pieceCityTransformList.Add(GameObject.Find(randPoliceByDistance.City.Name.ToString()).transform);
+			//pieceCityTransformList.Add(GameObject.Find(randPoliceByDistance.City.Name).transform);
 
 			// 2 informations
 			Information randInfo = new Information(CityManager.Instance.FindRand(eSubjectType.INFO), eSubjectType.INFO);
 			PieceManager.Instance.Add(randInfo);
-			pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name.ToString()).transform);
+			pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name).transform);
 			//Information randInfoByDistance = new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.INFO), eSubjectType.INFO);
 			//PieceManager.Instance.Add(randInfoByDistance);
-			//pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name.ToString()).transform);
+			//pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name).transform);
 
 			yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
 
@@ -545,7 +541,7 @@ namespace ToBeFree
 			
 			//Information randInfo2 = new Information(CityManager.Instance.FindRand(), eSubjectType.INFO);
 			//yield return PieceManager.Instance.Move(randInfo, CityManager.Instance.FindRand());
-			//pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name.ToString()).transform);
+			//pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name).transform);
 
 			//Piece infoPiece = PieceManager.Instance.GetFirst(eSubjectType.INFO);
 			//Piece infoLast = PieceManager.Instance.GetLast(eSubjectType.INFO);
