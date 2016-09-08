@@ -22,6 +22,8 @@ namespace ToBeFree
 		private bool isActionSkip;
 
 		private float moveTime;
+		private int ap;
+		readonly private int totalAP = 3;
 
 		public delegate void MoveCityHandler(string cityName);
 		public static event MoveCityHandler MoveCity = delegate { };
@@ -33,7 +35,7 @@ namespace ToBeFree
 			this.name = name;
 			this.script = script;
 			this.stat = stat;
-			this.curCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
+			this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
 			this.inven = inven;
 
 			CantCure = false;
@@ -88,19 +90,14 @@ namespace ToBeFree
 			{
 				yield break;
 			}
-			
-			
-			yield return GameManager.Instance.MoveDirectingCam(
-				GameManager.Instance.FindGameObject(this.curCity.Name.ToString()).transform.position,
-				GameManager.Instance.FindGameObject(city.Name.ToString()).transform.position,
-				2f);
 
-			this.CurCity = city;
-			//MoveCity(city.Name);
+			IconCity iconcity = Array.Find<IconCity>(GameManager.Instance.iconCities, x => x.City == city);
+			if(iconcity == null)
+			{
+				yield break;
+			}
 
-			Debug.Log("character is moved to " + this.curCity.Name);
-
-			yield return null;
+			yield return MoveTo(iconcity.GetComponent<BezierPoint>());
 		}
 
 		public IEnumerator MoveTo(BezierPoint point)
@@ -114,32 +111,29 @@ namespace ToBeFree
 				yield break;
 			}
 
-
-			//yield return GameManager.Instance.MoveDirectingCam(
-			//	GameManager.Instance.FindGameObject(this.curCity.Name.ToString()).transform.position,
-			//	point.gameObject.transform.position,
-			//	2f);
-
 			if(CurPoint == null)
 			{
 				Debug.LogError("CurPoint of character is null");
 				yield break;
 			}
+
 			moveTime = 0f;
 			while (moveTime < 1f)
 			{
 				moveTime += Time.deltaTime;
 				
 				GameObject.Find("Character").transform.position = BezierCurve.GetPoint(CurPoint, point, moveTime);
+
+				//StartCoroutine(GameManager.Instance.MoveDirectingCam(CurPoint.transform.position, point.transform.position, moveTime);
+
 				yield return new WaitForSeconds(Time.deltaTime);
 			}
 			this.CurCity = point.GetComponent<IconCity>().City;
-
 			
-
 			//MoveCity(EnumConvert<eCity>.ToString(city.Name));
 
-			//Debug.Log("character is moved to " + this.curCity.Name);
+
+			Debug.Log("character is moved to " + this.curCity.Name);
 
 			yield return null;
 		}
@@ -149,6 +143,46 @@ namespace ToBeFree
 			curCity.PrintNeighbors();
 		}
 		
+		public IEnumerator HaulIn()
+		{
+			City city = CityManager.Instance.GetNearestCity(CurCity);
+			
+			if (city != null)
+			{
+				yield return MoveTo(city);
+			}
+			// if no more left cities 
+			else
+			{
+				GameManager.Instance.uiEventManager.OpenUI();
+
+				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, this);
+				bool testResult = (DiceTester.Instance.Test(Stat.Luck) > 0);       
+				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, this);
+
+				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Last chance to Escape!!!");
+				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
+
+				yield return EventManager.Instance.WaitUntilFinish();
+				
+				if(testResult == true)
+				{
+					yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(this);
+				}
+				else
+				{
+					// game over
+					yield return GameManager.Instance.ShowStateLabel("Game Over!", 1f);
+				}
+			}
+
+		}
+
+		public void ResetAP()
+		{
+			ap = 0;
+		}
+
 		public Stat Stat
 		{
 			get
@@ -198,7 +232,8 @@ namespace ToBeFree
 		}
 
 		public bool IsFull { get; internal set; }
-		public bool IsDetention {
+		public bool IsDetention
+		{
 			get
 			{
 				return isDetention;
@@ -238,39 +273,25 @@ namespace ToBeFree
 			}
 		}
 
-		public IEnumerator HaulIn()
+		public int AP
 		{
-			City city = CityManager.Instance.GetNearestCity(CurCity);
-			
-			if (city != null)
+			get
 			{
-				yield return MoveTo(city);
-			}
-			// if no more left cities 
-			else
-			{
-				GameManager.Instance.uiEventManager.OpenUI();
-
-				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, this);
-				bool testResult = (DiceTester.Instance.Test(Stat.Luck) > 0);       
-				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, this);
-
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Last chance to Escape!!!");
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
-
-				yield return EventManager.Instance.WaitUntilFinish();
-				
-				if(testResult == true)
-				{
-					yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(this);
-				}
-				else
-				{
-					// game over
-					yield return GameManager.Instance.ShowStateLabel("Game Over!", 1f);
-				}
+				return ap;
 			}
 
+			set
+			{
+				ap = value;
+			}
+		}
+
+		public int RemainAP
+		{
+			get
+			{
+				return totalAP - ap;
+			}
 		}
 	}
 }

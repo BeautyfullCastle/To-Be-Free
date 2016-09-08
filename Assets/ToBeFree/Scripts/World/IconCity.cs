@@ -41,7 +41,7 @@ namespace ToBeFree
 			}
 			if (FindObjectOfType<BezierCurveList>().Dic.ContainsKey(GetComponent<BezierPoint>()) == false)
 			{
-				Debug.LogError("Not contains this point " + this.name);
+				Debug.LogError("Not contains this point " + this.name + this.transform.parent.name);
 				return;
 			}
 			List<BezierPoint> points = FindObjectOfType<BezierCurveList>().Dic[GetComponent<BezierPoint>()];

@@ -29,6 +29,7 @@ GameObject:
   - 61: {fileID: 6131634}
   - 114: {fileID: 11423598}
   - 114: {fileID: 11431178}
+  - 114: {fileID: 11458520}
   m_Layer: 0
   m_Name: City
   m_TagString: Untagged
@@ -630,6 +631,50 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11458520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146790}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 1
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - time: 0.4817308
+      value: 0.96298075
+      inSlope: 1.0001659
+      outSlope: 1.0001659
+      tangentMode: 0
+    - time: 0.9916667
+      value: 0.037500083
+      inSlope: -1.1911759
+      outSlope: -1.1911759
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 1
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: 0
+  to: 1
 --- !u!114 &11461620
 MonoBehaviour:
   m_ObjectHideFlags: 1

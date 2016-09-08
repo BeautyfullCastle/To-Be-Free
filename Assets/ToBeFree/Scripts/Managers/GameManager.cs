@@ -84,6 +84,12 @@ namespace ToBeFree
 			action = new Move();
 
 			readyToMove = false;
+			
+			foreach (IconCity c in iconCities)
+			{
+				c.GetComponent<TweenAlpha>().value = 1;
+				c.GetComponent<TweenAlpha>().enabled = false;
+			}
 		}
 
 		public void ClickCommand(string command)
@@ -92,7 +98,11 @@ namespace ToBeFree
 			{
 				case eCommand.MOVE:
 					readyToMove = true;
-					character.CurCity.PrintNeighbors();
+					List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP);
+					foreach(City city in cities)
+					{
+						Array.Find<IconCity>(iconCities, x=>x.City==city).GetComponent<TweenAlpha>().enabled = true;
+					}
 					break;
 				case eCommand.WORK:
 					action = new Work();
@@ -356,8 +366,16 @@ namespace ToBeFree
 				character.IsActionSkip = false;
 			}
 
-
-			this.State = GameState.Night;
+			if(character.RemainAP <= 0)
+			{
+				this.State = GameState.Night;
+				character.ResetAP();
+			}
+			else
+			{
+				this.State = GameState.Act;
+			}
+			
 
 			// Exit
 			NextState();
@@ -446,8 +464,6 @@ namespace ToBeFree
 
 		private IEnumerator Instance_NotifyEveryNight()
 		{
-			
-
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);

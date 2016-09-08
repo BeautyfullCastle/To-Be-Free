@@ -102,32 +102,7 @@ namespace ToBeFree
 			Debug.LogWarning("Move action Activated.");
 			yield return base.Activate(character);
 
-			string region = string.Empty;
-			//if (character.CurCity.Area == eArea.MONGOLIA || character.NextCity.Area == eArea.MONGOLIA)
-			//{
-			//    region = eArea.MONGOLIA.ToString();
-			//}
-			//else if (character.NextCity.Area == eArea.SOUTHEAST_ASIA)
-			//{
-			//    region = eArea.SOUTHEAST_ASIA.ToString();
-			//}
-
-			if (region != string.Empty)
-			{
-				yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
-				Event[] events = Array.FindAll(EventManager.Instance.List, x => x.Region == region);
-				System.Random r = new System.Random();
-				int index = r.Next(0, events.Length - 1);
-				Event selectedEvent = events[index];
-				if (selectedEvent != null)
-				{
-					yield return EventManager.Instance.ActivateEvent(selectedEvent, character);
-				}
-			}
-			else
-			{
-				yield return (EventManager.Instance.DoCommand(actionName, character));
-			}
+			yield return EventManager.Instance.DoCommand(actionName, character);
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
@@ -161,13 +136,30 @@ namespace ToBeFree
 			if (dontMove == false)
 			{
 				List<BezierPoint> path = CityManager.Instance.CalcPath();
+				int pathAP = 0;
 				foreach(BezierPoint point in path)
 				{
+					if(point.GetComponent<IconCity>().type == eNodeType.MOUNTAIN)
+					{
+						pathAP += 2;
+					}
+					else
+					{
+						pathAP++;
+					}
+				}
+				if(pathAP > character.RemainAP)
+				{
+					Debug.LogError("path is too long.");
+					yield break;
+				}
+				foreach (BezierPoint point in path)
+				{
 					yield return character.MoveTo(point);
+					character.AP++;
 				}
 			}
-			//Debug.LogWarning("character is moved to " + character.CurCity.Name);
-			
+			//Debug.LogWarning("character is moved to " + character.CurCity.Name);	
 		}
 	}
 

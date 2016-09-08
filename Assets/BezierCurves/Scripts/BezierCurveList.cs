@@ -90,7 +90,7 @@ public class BezierCurveList : MonoBehaviour {
 			{
 				s += p.gameObject.name + ", ";
 			}
-			Debug.LogWarning(s);
+			//Debug.LogWarning(s);
 		}
 	}
 
@@ -165,6 +165,11 @@ public class BezierCurveList : MonoBehaviour {
 		{
 			point = parentDic[point];
 			path.Add(point);
+		}
+
+		if (path.Contains(p1))
+		{
+			path.Remove(p1);
 		}
 
 		path.Reverse();

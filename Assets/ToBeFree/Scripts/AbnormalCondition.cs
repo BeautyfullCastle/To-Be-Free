@@ -168,7 +168,7 @@ namespace ToBeFree
 
 			if (character.IsDetention == false)
 			{
-				CityManager.Instance.FindNearestPathToStartCity(character.CurCity, CityManager.Instance.Find("TUMEN"));
+				CityManager.Instance.FindNearestPath(character.CurCity, CityManager.Instance.Find("TUMEN"));
 			}
 			character.IsDetention = true;
 

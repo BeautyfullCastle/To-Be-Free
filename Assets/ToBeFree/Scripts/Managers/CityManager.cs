@@ -104,7 +104,7 @@ namespace ToBeFree
 			return cityList[randCityIndex];
 		}
 
-		private List<City> FindCitiesByDistance(City curCity, int distance)
+		public List<City> FindCitiesByDistance(City curCity, int distance)
 		{
 			List<City> cities = new List<City>();
 
@@ -127,12 +127,20 @@ namespace ToBeFree
 				if (!cities.Contains(neighbor))
 				{
 					cities.Add(neighbor);
-					PutCityInNeighbors(neighbor, cities, distance - 1);
+					if(neighbor.Type == eNodeType.MOUNTAIN || city.Type == eNodeType.MOUNTAIN)
+					{
+						distance -= 2;
+					}
+					else
+					{
+						distance--;
+					}
+					PutCityInNeighbors(neighbor, cities, distance);
 				}
 			}
 		}
 		
-		public void FindNearestPathToStartCity(City curCity, City startCity)
+		public void FindNearestPath(City curCity, City destCity)
 		{
 			// TO DO : have to reset every city's distance
 			foreach (City city in list)
@@ -147,13 +155,13 @@ namespace ToBeFree
 			{
 				Debug.Log(path[i].Name.ToString() + " " + path[i].Distance);
 			}
-			neareastPath = new List<City>(startCity.Distance);
+			neareastPath = new List<City>(destCity.Distance);
 			neareastPath.Add(curCity);
 			List<City> visited = new List<City>();
 			visited.Add(curCity);
 
 			int farDistance = 0;
-			CalcNeareastPath(curCity, startCity, neareastPath, farDistance, visited);
+			CalcNeareastPath(curCity, destCity, neareastPath, farDistance, visited);
 
 			// if find neareast path, erase current city.
 			neareastPath.Remove(curCity);
@@ -237,7 +245,7 @@ namespace ToBeFree
 
 		public List<BezierPoint> CalcPath()
 		{
-			BezierPoint currentPoint = GameObject.Find(GameManager.Instance.Character.CurCity.Name.ToString()).GetComponent<BezierPoint>();
+			BezierPoint currentPoint = Array.Find<IconCity>(GameManager.Instance.iconCities, x=>x.City==GameManager.Instance.Character.CurCity).GetComponent<BezierPoint>();
 			List<BezierPoint> path = curves.GetPath(currentPoint, NextCity.GetComponent<BezierPoint>());
 			return path;
 		}
