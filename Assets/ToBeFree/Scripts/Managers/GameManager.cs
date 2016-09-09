@@ -57,7 +57,6 @@ namespace ToBeFree
 				iconCity.InitNeighbors();
 			}
 			
-
 			EventManager.Instance.Init();
 			ResultManager.Instance.Init();
 			QuestManager.Instance.Init();
@@ -95,8 +94,9 @@ namespace ToBeFree
 		}
 
 		public void ClickCommand(string command)
-		{
-			switch(EnumConvert<eCommand>.ToEnum(command))
+		{ 
+			eCommand commandType = EnumConvert<eCommand>.ToEnum(command);			
+			switch (commandType)
 			{
 				case eCommand.MOVE:
 					readyToMove = true;
@@ -125,6 +125,8 @@ namespace ToBeFree
 					action = new BrokerAction();
 					break;
 			}
+
+			character.CanAction[(int)commandType] = false;
 		}
 
 		private void Update()
@@ -371,7 +373,6 @@ namespace ToBeFree
 			if(character.RemainAP <= 0)
 			{
 				this.State = GameState.Night;
-				character.ResetAP();
 			}
 			else
 			{
@@ -467,7 +468,9 @@ namespace ToBeFree
 		private IEnumerator Instance_NotifyEveryNight()
 		{
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
-			
+
+			character.Reset();
+
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
 		}
 

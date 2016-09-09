@@ -38,6 +38,9 @@ public class UICommand : MonoBehaviour {
 				Quest quest = piece.CurQuest;
 				this.GetComponent<UIButton>().isEnabled = quest.CheckCondition(GameManager.Instance.Character);
 			}
+
+			// one command can use in one day.
+			this.gameObject.SetActive(GameManager.Instance.Character.CanAction[(int)EnumConvert<eCommand>.ToEnum(this.gameObject.name)]);
 		}
 
 		//if(GameManager.Instance.Character.CurCity.Area == eArea.MONGOLIA)

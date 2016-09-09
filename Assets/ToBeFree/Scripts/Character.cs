@@ -25,6 +25,8 @@ namespace ToBeFree
 		private int ap;
 		readonly private int totalAP = 3;
 
+		private bool[] canAction = new bool[9];
+
 		public delegate void MoveCityHandler(string cityName);
 		public static event MoveCityHandler MoveCity = delegate { };
 		
@@ -43,6 +45,16 @@ namespace ToBeFree
 			IsFull = false;
 			IsDetention = false;
 			isActionSkip = false;
+
+			SetCanAction(true);
+		}
+
+		private void SetCanAction(bool canAction)
+		{
+			for (int i = 0; i < this.canAction.Length; ++i)
+			{
+				this.canAction[i] = canAction;
+			}
 		}
 		
 		public int GetDiceNum(eTestStat stat)
@@ -178,9 +190,10 @@ namespace ToBeFree
 
 		}
 
-		public void ResetAP()
+		public void Reset()
 		{
 			ap = 0;
+			SetCanAction(true);
 		}
 
 		public Stat Stat
@@ -291,6 +304,19 @@ namespace ToBeFree
 			get
 			{
 				return totalAP - ap;
+			}
+		}
+
+		public bool[] CanAction
+		{
+			get
+			{
+				return canAction;
+			}
+
+			set
+			{
+				canAction = value;
 			}
 		}
 	}
