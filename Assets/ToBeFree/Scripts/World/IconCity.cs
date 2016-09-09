@@ -39,16 +39,21 @@ namespace ToBeFree
 				Debug.LogError("No BezierPoint in " + this.name);
 				return;
 			}
-			if (FindObjectOfType<BezierCurveList>().Dic.ContainsKey(GetComponent<BezierPoint>()) == false)
-			{
-				Debug.LogError("Not contains this point " + this.name + this.transform.parent.name);
-				return;
-			}
-			List<BezierPoint> points = FindObjectOfType<BezierCurveList>().Dic[GetComponent<BezierPoint>()];
+
 			List<City> neighbors = new List<City>();
-			foreach (BezierPoint point in points)
+			foreach (BezierCurveList curveList in CityManager.Instance.Curves)
 			{
-				neighbors.Add(point.GetComponent<IconCity>().City);
+				if (curveList.Dic.ContainsKey(GetComponent<BezierPoint>()) == false)
+				{
+					//Debug.LogError("Not contains this point " + this.name + this.transform.parent.name);
+					continue;
+				}
+				List<BezierPoint> points = curveList.Dic[GetComponent<BezierPoint>()];
+				
+				foreach (BezierPoint point in points)
+				{
+					neighbors.Add(point.GetComponent<IconCity>().City);
+				}
 			}
 			city.InitNeighbors(neighbors);
 		}

@@ -5,9 +5,14 @@ using UnityEngine;
 
 namespace ToBeFree
 {
+	public enum eWay
+	{
+		NORMAL, MOUNTAIN, BUS
+	}
+
 	public class CityManager : Singleton<CityManager>
 	{
-		private List<City> list;
+		private List<City>[] list;
 
 		private Language.CityData[] engList;
 		private Language.CityData[] korList;
@@ -15,29 +20,40 @@ namespace ToBeFree
 		private List<City> neareastPath;
 		private IconCity nextCity;
 
-		private BezierCurveList curves;
+		private BezierCurveList[] curves = new BezierCurveList[2];
 
 		public void Init()
 		{
 			engList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/English/City.json").dataList;
 			korList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/Korean/City.json").dataList;
 
-			curves = GameObject.FindObjectOfType<BezierCurveList>();
-			curves.Init();
+			
+			curves[(int)eWay.NORMAL] = GameObject.Find(eWay.NORMAL.ToString()).GetComponent<BezierCurveList>();
+			curves[(int)eWay.MOUNTAIN] = GameObject.Find(eWay.MOUNTAIN.ToString()).GetComponent<BezierCurveList>();
+			
+			foreach(BezierCurveList curve in curves)
+			{
+				curve.Init();
+			}
 		}
 
 		public void InitList()
-		{ 
+		{
+			list = new List<City>[2];
+
 			// 중복 제거한 City List 생성
-			HashSet<City> hashSet = new HashSet<City>();
-			foreach(BezierCurve curve in curves.List)
+			for(int i=0; i<curves.Length; ++i)
 			{
-				foreach(BezierPoint point in curve.points)
+				HashSet<City> hashSet = new HashSet<City>();
+				foreach (BezierCurve curve in curves[i].List)
 				{
-					hashSet.Add(point.GetComponent<IconCity>().City);
+					foreach (BezierPoint point in curve.points)
+					{
+						hashSet.Add(point.GetComponent<IconCity>().City);
+					}
 				}
+				list[i] = new List<City>(hashSet);
 			}
-			list = new List<City>(hashSet);
 		}
 		
 		
@@ -48,12 +64,12 @@ namespace ToBeFree
 
 		public City FindRand(eSubjectType pieceType)
 		{
-			HashSet<City> hashSet = new HashSet<City>(list);
+			HashSet<City> hashSet = new HashSet<City>(list[(int)eWay.NORMAL]);
 			//hashSet.ExceptWith(list.FindAll(x => x.Type == eNodeType.NULL));
 
 			if (pieceType != eSubjectType.POLICE)
 			{
-				hashSet.ExceptWith(list.FindAll(x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0));
+				hashSet.ExceptWith(list[(int)eWay.NORMAL].FindAll(x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0));
 			}
 
 			if (hashSet.Count <= 0)
@@ -71,7 +87,7 @@ namespace ToBeFree
 		public List<City> FindCitiesByType(eNodeType size)
 		{
 			List<City> cityList = new List<City>();
-			foreach (City city in list)
+			foreach (City city in list[(int)eWay.NORMAL])
 			{
 				if (city.Type == size)
 				{
@@ -143,7 +159,7 @@ namespace ToBeFree
 		public void FindNearestPath(City curCity, City destCity)
 		{
 			// TO DO : have to reset every city's distance
-			foreach (City city in list)
+			foreach (City city in list[(int)eWay.NORMAL])
 			{
 				city.Distance = 0;
 			}
@@ -245,18 +261,21 @@ namespace ToBeFree
 
 		public List<BezierPoint> CalcPath()
 		{
+			eNodeType currCityType = GameManager.Instance.Character.CurCity.Type;
+			eNodeType destCityType = NextCity.type;
+
+			eWay way = eWay.NORMAL;
+			if(currCityType == eNodeType.MOUNTAIN || destCityType == eNodeType.MOUNTAIN)
+			{
+				way = eWay.MOUNTAIN;
+			}
 			BezierPoint currentPoint = Array.Find<IconCity>(GameManager.Instance.iconCities, x=>x.City==GameManager.Instance.Character.CurCity).GetComponent<BezierPoint>();
-			List<BezierPoint> path = curves.GetPath(currentPoint, NextCity.GetComponent<BezierPoint>());
+			BezierPoint destinationPoint = NextCity.GetComponent<BezierPoint>();
+
+			List<BezierPoint> path = curves[(int)way].GetPath(currentPoint, destinationPoint);
 			return path;
 		}
-
-		public List<City> List
-		{
-			get
-			{
-				return list;
-			}
-		}
+		
 
 		public Language.CityData[] EngList
 		{
@@ -284,6 +303,14 @@ namespace ToBeFree
 			set
 			{
 				nextCity = value;
+			}
+		}
+
+		public BezierCurveList[] Curves
+		{
+			get
+			{
+				return curves;
 			}
 		}
 	}

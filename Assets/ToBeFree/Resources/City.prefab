@@ -140,7 +140,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5400, y: 1323, z: 0}
+  m_LocalPosition: {x: 5314, y: 1282, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 473662}
@@ -547,7 +547,7 @@ MonoBehaviour:
   brokerSprite: {fileID: 181818}
   policeSprite: {fileID: 161174}
   policeNumLabel: {fileID: 11406090}
-  type: 3
+  type: 5
 --- !u!114 &11431178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -603,7 +603,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bdf1bb89ca83e12448b041d7649b20fc, type: 3}
   mFont: {fileID: 0}
-  mText: SMALLCITY
+  mText: MOUNTAIN
   mFontSize: 24
   mFontStyle: 1
   mAlignment: 2

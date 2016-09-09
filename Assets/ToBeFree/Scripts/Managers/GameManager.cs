@@ -50,11 +50,13 @@ namespace ToBeFree
 			{
 				iconCity.Init();
 			}
+
+			CityManager.Instance.InitList();
 			foreach (IconCity iconCity in iconCities)
 			{
 				iconCity.InitNeighbors();
 			}
-			CityManager.Instance.InitList();
+			
 
 			EventManager.Instance.Init();
 			ResultManager.Instance.Init();
