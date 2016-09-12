@@ -110,7 +110,7 @@ namespace ToBeFree
 						c.GetComponent<UIButton>().isEnabled = false;
 					}
 
-					// set the cities abled and twink only you can go.
+					// set the cities abled and twinkle only you can go.
 					List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP);
 					foreach(City city in cities)
 					{
@@ -146,7 +146,6 @@ namespace ToBeFree
 
 		private void Update()
 		{
-
 			if(Input.GetKeyDown(KeyCode.KeypadPlus))
 			{
 				if(Time.timeScale >= 0f)
@@ -514,20 +513,20 @@ namespace ToBeFree
 			}
 
 			// check current quest's end time and apply the result
-			List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
-			if (questPieces != null && questPieces.Count > 0)
-			{
-				List<Piece> pastQuestPieces = questPieces.FindAll(x => x.CheckDuration());
-				foreach (QuestPiece pastQuestPiece in pastQuestPieces)
-				{
-					yield return pastQuestPiece.TreatPastQuests(character);
-				}
-			}
+			//List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
+			//if (questPieces != null && questPieces.Count > 0)
+			//{
+			//	List<Piece> pastQuestPieces = questPieces.FindAll(x => x.CheckDuration());
+			//	foreach (QuestPiece pastQuestPiece in pastQuestPieces)
+			//	{
+			//		yield return pastQuestPiece.TreatPastQuests(character);
+			//	}
+			//}
 
-			yield return PutPieces();
+			//yield return PutPieces();
 					 
 			// activate global event
-			yield return EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
+			//yield return EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.WEEK, character);
 		}

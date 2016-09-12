@@ -31,7 +31,6 @@ namespace ToBeFree
 
 	public class Rest : Action
 	{
-
 		public Rest()
 		{
 			startTime = eStartTime.REST;
@@ -156,7 +155,7 @@ namespace ToBeFree
 				foreach (BezierPoint point in path)
 				{
 					yield return character.MoveTo(point);
-					character.AP++;
+					character.AP += pathAP;
 				}
 			}
 			//Debug.LogWarning("character is moved to " + character.CurCity.Name);	
