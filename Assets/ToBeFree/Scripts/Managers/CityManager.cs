@@ -13,6 +13,7 @@ namespace ToBeFree
 	public class CityManager : Singleton<CityManager>
 	{
 		private List<City>[] list;
+		private List<City> everyCity;
 
 		private Language.CityData[] engList;
 		private Language.CityData[] korList;
@@ -28,8 +29,8 @@ namespace ToBeFree
 			korList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/Korean/City.json").dataList;
 
 			
-			curves[(int)eWay.NORMAL] = GameObject.Find(eWay.NORMAL.ToString()).GetComponent<BezierCurveList>();
-			curves[(int)eWay.MOUNTAIN] = GameObject.Find(eWay.MOUNTAIN.ToString()).GetComponent<BezierCurveList>();
+			curves[(int)eWay.NORMAL] = GameObject.Find(eWay.NORMAL.ToString()+"WAY").GetComponent<BezierCurveList>();
+			curves[(int)eWay.MOUNTAIN] = GameObject.Find(eWay.MOUNTAIN.ToString() + "WAY").GetComponent<BezierCurveList>();
 			
 			foreach(BezierCurveList curve in curves)
 			{
@@ -54,8 +55,30 @@ namespace ToBeFree
 				}
 				list[i] = new List<City>(hashSet);
 			}
+			
+			// initialize everyCity
+			everyCity = new List<City>();
+			foreach(List<City> cities in list)
+			{
+				foreach(City city in cities)
+				{
+					if(everyCity.Contains(city))
+					{
+						continue;
+					}
+					city.Distance = 0;
+					everyCity.Add(city);
+				}
+			}
 		}
 		
+		private void ResetCitiesDistance()
+		{
+			foreach (City city in everyCity)
+			{
+				city.Distance = 0;
+			}
+		}
 		
 		public City Find(string cityName)
 		{
@@ -100,6 +123,8 @@ namespace ToBeFree
 		public City FindRandCityByDistance(City curCity, int distance, eSubjectType pieceType)
 		{
 			System.Random r = new System.Random();
+
+			ResetCitiesDistance();
 			// put a police in random cities by distance.
 			List<City> cityList = CityManager.Instance.FindCitiesByDistance(curCity, distance);
 
@@ -122,8 +147,9 @@ namespace ToBeFree
 
 		public List<City> FindCitiesByDistance(City curCity, int distance)
 		{
-			List<City> cities = new List<City>();
+			ResetCitiesDistance();
 
+			List<City> cities = new List<City>();
 			if (!cities.Contains(curCity))
 			{
 				cities.Add(curCity);
@@ -135,25 +161,30 @@ namespace ToBeFree
 
 		private void PutCityInNeighbors(City city, List<City> cities, int distance)
 		{
-			if (distance <= 0)
+			if(cities.Count-1 >= everyCity.Count)
+			{
 				return;
+			}
 
 			foreach (City neighbor in city.Neighbors)
 			{
 				if (!cities.Contains(neighbor))
 				{
-					cities.Add(neighbor);
 					if(neighbor.Type == eNodeType.MOUNTAIN || city.Type == eNodeType.MOUNTAIN)
 					{
-						distance -= 2;
+						neighbor.Distance = city.Distance + 2;
 					}
 					else
 					{
-						distance--;
+						neighbor.Distance = city.Distance + 1;
 					}
+					if (neighbor.Distance > distance)
+						continue;
+					cities.Add(neighbor);
 					PutCityInNeighbors(neighbor, cities, distance);
 				}
 			}
+			
 		}
 		
 		public void FindNearestPath(City curCity, City destCity)
@@ -311,6 +342,14 @@ namespace ToBeFree
 			get
 			{
 				return curves;
+			}
+		}
+
+		public List<City> EveryCity
+		{
+			get
+			{
+				return everyCity;
 			}
 		}
 	}

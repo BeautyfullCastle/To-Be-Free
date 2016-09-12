@@ -582,6 +582,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -817,6 +825,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4292,6 +4308,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -6161,6 +6185,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -6605,6 +6637,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -6683,6 +6723,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -8018,6 +8066,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -8210,6 +8266,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -9499,6 +9563,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -9553,6 +9625,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11173,6 +11253,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11227,6 +11315,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11641,6 +11737,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -12598,6 +12702,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -13441,7 +13553,7 @@ GameObject:
   - 4: {fileID: 897981552}
   - 114: {fileID: 897981553}
   m_Layer: 0
-  m_Name: MOUNTAIN
+  m_Name: MOUNTAINWAY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14074,6 +14186,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -14213,6 +14333,14 @@ Prefab:
     - target: {fileID: 11458520, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: to
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
@@ -14550,6 +14678,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -15956,6 +16092,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16410,6 +16554,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16474,6 +16626,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18275,6 +18435,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21268,6 +21436,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21520,6 +21696,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21939,6 +22123,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -22042,6 +22234,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -22292,7 +22492,7 @@ GameObject:
   - 4: {fileID: 1541367480}
   - 114: {fileID: 1541367481}
   m_Layer: 0
-  m_Name: NORMAL
+  m_Name: NORMALWAY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22336,7 +22536,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1541367479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e8066f2a7a73384585979f79048e7a3, type: 3}
   m_Name: 
@@ -22624,6 +22824,10 @@ Prefab:
     - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
       propertyPath: type
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
@@ -23215,6 +23419,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24341,6 +24553,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24395,6 +24615,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24583,6 +24811,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25038,6 +25274,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25782,6 +26026,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -26358,6 +26610,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -27945,6 +28205,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28091,6 +28359,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28716,6 +28992,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28838,6 +29122,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29414,6 +29706,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29478,6 +29778,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -31177,6 +31485,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -31231,6 +31547,14 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11423598, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mText
+      value: SMALLCITY
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0

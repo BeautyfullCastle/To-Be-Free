@@ -90,6 +90,7 @@ namespace ToBeFree
 			{
 				c.GetComponent<TweenAlpha>().value = 1;
 				c.GetComponent<TweenAlpha>().enabled = false;
+				c.GetComponent<UIButton>().isEnabled = true;
 			}
 		}
 
@@ -100,12 +101,26 @@ namespace ToBeFree
 			{
 				case eCommand.MOVE:
 					readyToMove = true;
+
+					// set the button disabled every city.
+					foreach (IconCity c in iconCities)
+					{
+						c.GetComponent<TweenAlpha>().value = 1;
+						c.GetComponent<TweenAlpha>().enabled = false;
+						c.GetComponent<UIButton>().isEnabled = false;
+					}
+
+					// set the cities abled and twink only you can go.
 					List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP);
 					foreach(City city in cities)
 					{
-						Array.Find<IconCity>(iconCities, x=>x.City==city).GetComponent<TweenAlpha>().enabled = true;
+						IconCity iconCity = Array.Find<IconCity>(iconCities, x => x.City == city);
+						iconCity.GetComponent<TweenAlpha>().enabled = true;
+						iconCity.GetComponent<UIButton>().isEnabled = true;
+						Debug.Log("City you can go : " + city.Name);
 					}
 					break;
+
 				case eCommand.WORK:
 					action = new Work();
 					break;

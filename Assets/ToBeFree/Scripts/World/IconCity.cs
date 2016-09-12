@@ -11,7 +11,7 @@ namespace ToBeFree
 		NULL, BIGCITY, MIDDLECITY, SMALLCITY, TOWN, MOUNTAIN
 	}
 
-	//[ExecuteInEditMode]
+	[ExecuteInEditMode]
 	public class IconCity : MonoBehaviour
 	{
 		public UILabel nameLabel;

@@ -116,7 +116,7 @@ public class BezierCurveList : MonoBehaviour {
 		}
 		Gizmos.DrawSphere(points[points.Count-1].transform.position, 0.05f);
 		s += points[points.Count - 1].gameObject.name;
-		Debug.Log(s);
+		//Debug.Log(s);
 	}
 
 	public List<BezierPoint> GetPath(BezierPoint p1, BezierPoint p2)
