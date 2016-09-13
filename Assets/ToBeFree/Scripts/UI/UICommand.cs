@@ -39,8 +39,17 @@ public class UICommand : MonoBehaviour {
 				this.GetComponent<UIButton>().isEnabled = quest.CheckCondition(GameManager.Instance.Character);
 			}
 
+			if(this.name == "SHOP")
+			{
+				this.gameObject.SetActive(GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.BIGCITY
+										|| GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.MIDDLECITY);
+			}
+
 			// one command can use in one day.
-			this.gameObject.SetActive(GameManager.Instance.Character.CanAction[(int)EnumConvert<eCommand>.ToEnum(this.gameObject.name)]);
+			if (this.gameObject.activeSelf)
+			{
+				this.gameObject.SetActive(GameManager.Instance.Character.CanAction[(int)EnumConvert<eCommand>.ToEnum(this.gameObject.name)]);
+			}
 		}
 
 		//if(GameManager.Instance.Character.CurCity.Area == eArea.MONGOLIA)
