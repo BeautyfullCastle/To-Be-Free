@@ -7,7 +7,7 @@ namespace ToBeFree
 	public class City
 	{
 		private string name;
-		private Item[] itemList;
+		private Item item;
 		private int workingMoneyMin;
 		private int workingMoneyMax;
 		private List<City> neighbors;
@@ -17,7 +17,7 @@ namespace ToBeFree
 
 		public City()
 		{
-			ItemList = null;
+			Item = null;
 		}
 
 		public City(string name, eNodeType type)
@@ -43,6 +43,11 @@ namespace ToBeFree
 			{
 				this.workingMoneyMin = 0;
 				this.workingMoneyMax = 0;
+			}
+
+			if (this.Type == eNodeType.BIGCITY || this.Type == eNodeType.MIDDLECITY)
+			{
+				item = CityManager.Instance.SetCityItem();
 			}
 		}
 
@@ -113,15 +118,15 @@ namespace ToBeFree
 			}
 		}
 
-		public Item[] ItemList
+		public Item Item
 		{
 			get
 			{
-				return itemList;
+				return item;
 			}
 			private set
 			{
-				itemList = value;
+				item = value;
 			}
 		}
 

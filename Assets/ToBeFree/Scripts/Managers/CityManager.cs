@@ -23,11 +23,12 @@ namespace ToBeFree
 
 		private BezierCurveList[] curves = new BezierCurveList[2];
 
+		private List<Item> cityItems = new List<Item>();
+
 		public void Init()
 		{
 			engList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/English/City.json").dataList;
 			korList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/Korean/City.json").dataList;
-
 			
 			curves[(int)eWay.NORMAL] = GameObject.Find(eWay.NORMAL.ToString()+"WAY").GetComponent<BezierCurveList>();
 			curves[(int)eWay.MOUNTAIN] = GameObject.Find(eWay.MOUNTAIN.ToString() + "WAY").GetComponent<BezierCurveList>();
@@ -35,6 +36,23 @@ namespace ToBeFree
 			foreach(BezierCurveList curve in curves)
 			{
 				curve.Init();
+			}
+		}
+
+		public Item SetCityItem()
+		{
+			Item item = ItemManager.Instance.GetRand();
+			while (true)
+			{
+				if (cityItems.Contains(item))
+				{
+					item = ItemManager.Instance.GetRand();
+				}
+				else
+				{
+					cityItems.Add(item);
+					return item;
+				}
 			}
 		}
 

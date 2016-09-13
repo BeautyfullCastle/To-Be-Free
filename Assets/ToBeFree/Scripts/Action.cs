@@ -85,6 +85,8 @@ namespace ToBeFree
 					}
 				}
 			}
+
+			character.AP++;
 		}
 	}
 
@@ -273,21 +275,21 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
-			GameManager.Instance.uiEventManager.OpenUI();
+			//GameManager.Instance.uiEventManager.OpenUI();
 
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-			int testSucceedDiceNum = DiceTester.Instance.Test(character.Stat.Bargain);
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+			//yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+			//int testSucceedDiceNum = DiceTester.Instance.Test(character.Stat.Bargain);
+			//yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "협상력 테스트를 통한 할인 금액");
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSucceedDiceNum.ToString());
+			//GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "협상력 테스트를 통한 할인 금액");
+			//GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSucceedDiceNum.ToString());
 
-			yield return EventManager.Instance.WaitUntilFinish();
+			//yield return EventManager.Instance.WaitUntilFinish();
 
 
 			NGUIDebug.Log("Enter To Shop action");
 			GameManager.Instance.shopUIObj.SetActive(true);
-			GameManager.Instance.shopUIObj.GetComponent<UIShop>().DiscountNum = testSucceedDiceNum;
+			//GameManager.Instance.shopUIObj.GetComponent<UIShop>().DiscountNum = testSucceedDiceNum;
 			yield return EventManager.Instance.WaitUntilFinish();
 			
 		}
