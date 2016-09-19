@@ -108,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 3329430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -64, y: 57, z: 0}
+  m_LocalPosition: {x: -39, y: 52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
@@ -141,15 +141,15 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.9632353, g: 0.6728482, b: 0.6728482, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1000
-  mHeight: 654
+  mWidth: 878
+  mHeight: 878
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.529052
+  aspectRatio: 1
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -163,8 +163,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
-  mSpriteName: white
+  mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mSpriteName: note
   mFillCenter: 1
 --- !u!1 &6461328
 GameObject:
@@ -237,16 +237,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 12
+  mWidth: 14
   mHeight: 28
   mDepth: 5
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.42857143
+  aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 4
   mFontSize: 28
   mFontStyle: 0
@@ -341,8 +341,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.1875
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Basic Items
   mFontSize: 64
   mFontStyle: 0
@@ -436,7 +436,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 86
+      value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_LocalScale.x
@@ -456,15 +456,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: onChange.Array.data[1].mTarget
@@ -492,11 +492,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
+    - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
+      propertyPath: mFont
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
@@ -598,6 +607,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -662,16 +676,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 62
+  mWidth: 90
   mHeight: 28
   mDepth: 1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.2142856
+  aspectRatio: 3.2142856
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Mental
   mFontSize: 28
   mFontStyle: 0
@@ -779,7 +793,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &42859612
@@ -841,6 +855,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -903,6 +922,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -965,6 +997,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -1034,8 +1079,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 2
   mFontSize: 39
   mFontStyle: 1
@@ -1185,6 +1230,15 @@ Prefab:
       propertyPath: mText
       value: ZHNGWU
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -1251,16 +1305,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 80
+  mWidth: 110
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.857143
+  aspectRatio: 3.9285715
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Strength
   mFontSize: 28
   mFontStyle: 0
@@ -1484,7 +1538,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1 &105571138
@@ -1608,7 +1662,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 119722726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51, y: 33, z: 0}
+  m_LocalPosition: {x: -50, y: 33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 468436988}
@@ -1643,13 +1697,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.8308824, g: 0.82009614, b: 0.4398789, a: 1}
   mPivot: 4
-  mWidth: 900
+  mWidth: 901
   mHeight: 138
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.521739
+  aspectRatio: 6.5289855
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1663,7 +1717,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
   mSpriteName: white
   mFillCenter: 1
 --- !u!4 &120436247 stripped
@@ -1782,6 +1836,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -1864,7 +1931,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1 &145256722
@@ -1913,18 +1980,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 844
-  mHeight: 136
+  mWidth: 330
+  mHeight: 88
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.2058825
+  aspectRatio: 3.75
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
-  mText: Event script
-  mFontSize: 36
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
+  mText: "Event \uC2A4\uD06C\uB9BD\uD2B8"
+  mFontSize: 20
   mFontStyle: 0
   mAlignment: 1
   mEncoding: 1
@@ -1933,7 +2000,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 1
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -1958,7 +2025,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 145256722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 251, z: 0}
+  m_LocalPosition: {x: -31, y: 276, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
@@ -2069,16 +2136,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 70
+  mWidth: 98
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.5
+  aspectRatio: 3.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Bargain
   mFontSize: 28
   mFontStyle: 0
@@ -2197,7 +2264,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1 &162225532
@@ -2318,8 +2385,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uBBFC\uCCA9\uC131"
   mFontSize: 39
   mFontStyle: 1
@@ -2407,6 +2474,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -2635,7 +2715,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &173263847
@@ -2697,6 +2777,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -2816,6 +2909,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -2898,8 +3004,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 0
   mFontSize: 28
   mFontStyle: 0
@@ -3007,7 +3113,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1 &181241781
@@ -3128,16 +3234,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 8
+  mWidth: 14
   mHeight: 28
   mDepth: 5
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.2857143
+  aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: /
   mFontSize: 28
   mFontStyle: 0
@@ -3225,16 +3331,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 60
+  mWidth: 88
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.142857
+  aspectRatio: 3.142857
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Money
   mFontSize: 28
   mFontStyle: 0
@@ -3378,6 +3484,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -3460,6 +3579,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -3532,6 +3664,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -3747,8 +3892,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uD798"
   mFontSize: 39
   mFontStyle: 1
@@ -3836,6 +3981,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -3890,6 +4048,15 @@ Prefab:
       propertyPath: mText
       value: GAIZHOU
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -3972,6 +4139,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4019,7 +4199,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 108, y: 64}
+  m_Size: {x: 154, y: 64}
 --- !u!114 &271040375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4081,7 +4261,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 108
+  mWidth: 154
   mHeight: 64
   mDepth: 1
   autoResizeBoxCollider: 1
@@ -4089,8 +4269,8 @@ MonoBehaviour:
   keepAspectRatio: 2
   aspectRatio: 1.8181819
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Work
   mFontSize: 64
   mFontStyle: 0
@@ -4190,6 +4370,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4262,6 +4455,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4324,6 +4530,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4404,19 +4615,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: mText
@@ -4452,7 +4663,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 8298f3014addb4740b073bab416a0335, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
+    - target: {fileID: 11400004, guid: 8298f3014addb4740b073bab416a0335, type: 2}
+      propertyPath: mFont
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6500000, guid: 8298f3014addb4740b073bab416a0335, type: 2}
@@ -4545,6 +4765,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4609,6 +4842,15 @@ Prefab:
       propertyPath: mText
       value: KUANDIAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4669,6 +4911,15 @@ Prefab:
       propertyPath: mText
       value: TAIAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4801,6 +5052,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -4863,16 +5127,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 12
+  mWidth: 14
   mHeight: 28
   mDepth: 5
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.42857143
+  aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 4
   mFontSize: 28
   mFontStyle: 0
@@ -5000,19 +5264,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6500000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Size.x
@@ -5098,6 +5362,24 @@ Prefab:
       propertyPath: m_Name
       value: Resolution Popup
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
+    - target: {fileID: 11400000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: mFont
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
+    - target: {fileID: 11400008, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: mFont
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6500000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
@@ -5167,6 +5449,15 @@ Prefab:
       propertyPath: mText
       value: YANBIAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -5663,7 +5954,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3009
+  startingRenderQueue: 3007
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -5752,16 +6043,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 78
+  mWidth: 110
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.7857144
+  aspectRatio: 3.9285715
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Patience
   mFontSize: 28
   mFontStyle: 0
@@ -6044,7 +6335,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3011
+  startingRenderQueue: 3008
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6133,6 +6424,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -6389,6 +6685,15 @@ Prefab:
       propertyPath: mText
       value: DANDONG
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -6525,6 +6830,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -6611,6 +6921,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -6687,7 +7002,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -1.3019409, y: 35.059265, z: 999.41174, w: 138}
+  mClipRange: {x: -1, y: 34.72455, z: 1000, w: 138}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 0
   mSortingOrder: 0
@@ -6757,6 +7072,15 @@ Prefab:
       propertyPath: mText
       value: TONGHUA
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -6825,6 +7149,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -7039,6 +7376,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -7108,8 +7458,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.09375
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Shop
   mFontSize: 64
   mFontStyle: 0
@@ -7295,8 +7645,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 4
   mFontSize: 39
   mFontStyle: 1
@@ -7384,6 +7734,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -7496,7 +7859,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 90, y: 64}
+  m_Size: {x: 118, y: 64}
 --- !u!114 &505770455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7558,7 +7921,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 90
+  mWidth: 118
   mHeight: 64
   mDepth: 1
   autoResizeBoxCollider: 1
@@ -7566,8 +7929,8 @@ MonoBehaviour:
   keepAspectRatio: 2
   aspectRatio: 1.8181819
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Info
   mFontSize: 64
   mFontStyle: 0
@@ -7679,6 +8042,15 @@ Prefab:
       propertyPath: mText
       value: DALIAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -7769,19 +8141,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: mText
@@ -7817,7 +8189,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 8298f3014addb4740b073bab416a0335, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 8298f3014addb4740b073bab416a0335, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
+    - target: {fileID: 11400004, guid: 8298f3014addb4740b073bab416a0335, type: 2}
+      propertyPath: mFont
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6500000, guid: 8298f3014addb4740b073bab416a0335, type: 2}
@@ -7896,6 +8277,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -7958,6 +8352,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -8020,6 +8419,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -8158,6 +8570,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -8220,6 +8637,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -8299,8 +8729,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 8.446809
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uCE90\uB9AD\uD130\uB97C \uC774\uD574\uD560 \uC218 \uC788\uB294 \uC124\uBA85\n(\uC778\uB0B4\uB825\uC774
     \uAC15\uD55C \uC544\uBC84\uC9C0)\r"
   mFontSize: 39
@@ -8455,8 +8885,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uC815\uC2E0\uB825"
   mFontSize: 39
   mFontStyle: 1
@@ -8584,7 +9014,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 13.403931, y: -71.94116, z: 4830.4707, w: 2734}
+  mClipRange: {x: 14, y: -72.27539, z: 4834, w: 2734}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 2
   mSortingOrder: 0
@@ -8670,7 +9100,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -123.18439, y: -62.940628, z: 544, w: 70}
+  mClipRange: {x: -122.00006, y: -63.275345, z: 544, w: 70}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 0
   mSortingOrder: 0
@@ -8758,6 +9188,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -8827,8 +9270,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 5
   mFontSize: 39
   mFontStyle: 1
@@ -9118,6 +9561,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -9180,6 +9636,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -9455,6 +9924,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -9517,6 +9991,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -9579,6 +10058,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -9651,6 +10143,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -9768,8 +10273,8 @@ MonoBehaviour:
   keepAspectRatio: 2
   aspectRatio: 1.8181819
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Escape
   mFontSize: 64
   mFontStyle: 0
@@ -9916,8 +10421,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 8.378947
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: ddddddddddddddddddddddddddddddddddddddddd
   mFontSize: 128
   mFontStyle: 0
@@ -9990,7 +10495,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 106, y: 64}
+  m_Size: {x: 150, y: 64}
 --- !u!114 &624542169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10052,7 +10557,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 106
+  mWidth: 150
   mHeight: 64
   mDepth: 1
   autoResizeBoxCollider: 1
@@ -10060,8 +10565,8 @@ MonoBehaviour:
   keepAspectRatio: 2
   aspectRatio: 1.8181819
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Shop
   mFontSize: 64
   mFontStyle: 0
@@ -10153,6 +10658,15 @@ Prefab:
       propertyPath: mText
       value: TONGLIAO
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -10365,6 +10879,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -10497,6 +11024,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -10572,8 +11112,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uCCB4\uB825"
   mFontSize: 39
   mFontStyle: 1
@@ -10733,8 +11273,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 5.324324
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Name
   mFontSize: 39
   mFontStyle: 1
@@ -10814,6 +11354,15 @@ Prefab:
       propertyPath: mText
       value: DIAOBINGSHAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -10896,6 +11445,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -10960,6 +11522,15 @@ Prefab:
       propertyPath: mText
       value: JILIN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11058,6 +11629,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11150,6 +11734,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11212,6 +11801,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11274,6 +11868,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11328,6 +11935,15 @@ Prefab:
       propertyPath: mText
       value: SHENYANG
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11401,8 +12017,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.1875
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: City Items
   mFontSize: 64
   mFontStyle: 0
@@ -11510,7 +12126,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &765116637
@@ -11572,6 +12188,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11634,6 +12263,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11706,6 +12340,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11768,6 +12415,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -11836,7 +12496,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3018
+  startingRenderQueue: 3017
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -12078,7 +12738,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!114 &799800947 stripped
@@ -12264,7 +12924,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 118, y: 64}
+  m_Size: {x: 172, y: 64}
 --- !u!114 &812991808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12326,7 +12986,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 118
+  mWidth: 172
   mHeight: 64
   mDepth: 1
   autoResizeBoxCollider: 1
@@ -12334,8 +12994,8 @@ MonoBehaviour:
   keepAspectRatio: 2
   aspectRatio: 1.8181819
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Quest
   mFontSize: 64
   mFontStyle: 0
@@ -12599,6 +13259,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -12653,6 +13318,15 @@ Prefab:
       propertyPath: mText
       value: CHANGCHUN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -12717,6 +13391,15 @@ Prefab:
       propertyPath: mText
       value: HUANREN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -12737,9 +13420,17 @@ Prefab:
       propertyPath: items.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: onClick.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: onChange.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: onClick.Array.data[0].mParameters.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: onChange.Array.data[1].mParameters.Array.size
@@ -12803,19 +13494,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6500000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Size.x
@@ -12900,6 +13591,40 @@ Prefab:
     - target: {fileID: 100004, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
       propertyPath: m_Name
       value: Language Popup
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: onClick.Array.data[0].mTarget
+      value: 
+      objectReference: {fileID: 867129868}
+    - target: {fileID: 11400002, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: onClick.Array.data[0].mMethodName
+      value: SelectLanguage
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: onClick.Array.data[0].mParameters.Array.data[0].obj
+      value: 
+      objectReference: {fileID: 1236058909}
+    - target: {fileID: 11400002, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: onClick.Array.data[0].mParameters.Array.data[0].field
+      value: text
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
+    - target: {fileID: 11400000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: mFont
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
+    - target: {fileID: 11400008, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
+      propertyPath: mFont
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6500000, guid: ea7ea4be01fdadf45a93ce4ffd074f36, type: 2}
@@ -13014,8 +13739,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uD611\uC0C1\uB825"
   mFontSize: 39
   mFontStyle: 1
@@ -13103,6 +13828,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -13167,6 +13905,15 @@ Prefab:
       propertyPath: mText
       value: JIAOHE
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -13402,8 +14149,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.03125
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Menu
   mFontSize: 39
   mFontStyle: 1
@@ -13545,6 +14292,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -13634,8 +14394,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 1
   mFontSize: 39
   mFontStyle: 1
@@ -13715,6 +14475,15 @@ Prefab:
       propertyPath: mText
       value: FUSHUN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -13912,7 +14681,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 90, y: 64}
+  m_Size: {x: 124, y: 64}
 --- !u!114 &949291559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13974,7 +14743,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 90
+  mWidth: 124
   mHeight: 64
   mDepth: 1
   autoResizeBoxCollider: 1
@@ -13982,8 +14751,8 @@ MonoBehaviour:
   keepAspectRatio: 2
   aspectRatio: 1.8181819
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Rest
   mFontSize: 64
   mFontStyle: 0
@@ -14083,6 +14852,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -14165,7 +14939,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &953711721
@@ -14231,6 +15005,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -14299,6 +15078,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -14338,7 +15130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &981774372
 Transform:
   m_ObjectHideFlags: 0
@@ -14346,7 +15138,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 981774371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1.598579, y: 1.5985793, z: 1.598579}
   m_Children:
   - {fileID: 982409122}
@@ -14441,8 +15233,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 982409121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 166.3, y: -37.1, z: 0}
+  m_LocalScale: {x: 3.109452, y: 1.3589647, z: 1}
   m_Children:
   - {fileID: 1672417136}
   m_Father: {fileID: 981774372}
@@ -14575,6 +15367,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -14644,8 +15441,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.090909
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Tooltip Window Multi-line, auto-scales the background to envelop the text.
     Supports [0088FF]co[FF0000]lo[00FF00]rs!
   mFontSize: 22
@@ -14759,7 +15556,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1005760867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 18, z: 0}
+  m_LocalPosition: {x: -18, y: 63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
@@ -14808,7 +15605,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 844, y: 42}
+  m_Size: {x: 328, y: 36}
 --- !u!114 &1005760871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14839,18 +15636,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 844
-  mHeight: 42
+  mWidth: 328
+  mHeight: 36
   mDepth: 1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 20.095238
+  aspectRatio: 9.111111
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Select script 3
-  mFontSize: 36
+  mFontSize: 20
   mFontStyle: 0
   mAlignment: 1
   mEncoding: 1
@@ -14859,7 +15656,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 1
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -14936,6 +15733,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -14998,6 +15808,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -15080,7 +15903,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!114 &1027858792 stripped
@@ -15148,16 +15971,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 48
+  mWidth: 64
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.7142857
+  aspectRatio: 2.2857144
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Food
   mFontSize: 28
   mFontStyle: 0
@@ -15391,6 +16214,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -15486,7 +16322,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 108
+  mWidth: 162
   mHeight: 64
   mDepth: 1
   autoResizeBoxCollider: 1
@@ -15494,8 +16330,8 @@ MonoBehaviour:
   keepAspectRatio: 2
   aspectRatio: 1.8181819
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Move
   mFontSize: 64
   mFontStyle: 0
@@ -15537,7 +16373,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 108, y: 64}
+  m_Size: {x: 162, y: 64}
 --- !u!114 &1043442125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15616,8 +16452,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uAD00\uCC30\uB825"
   mFontSize: 39
   mFontStyle: 1
@@ -15717,6 +16553,15 @@ Prefab:
       propertyPath: mText
       value: ANSHAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -15791,6 +16636,15 @@ Prefab:
       propertyPath: mText
       value: YITONG
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -15855,6 +16709,15 @@ Prefab:
       propertyPath: mText
       value: XINMIN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -15927,6 +16790,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -15989,6 +16865,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16043,6 +16924,15 @@ Prefab:
       propertyPath: mText
       value: KAIYUAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16127,6 +17017,15 @@ Prefab:
       propertyPath: mText
       value: LIAOZHONG
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16218,7 +17117,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &1123869619
@@ -16280,6 +17179,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16362,8 +17274,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 0
   mFontSize: 28
   mFontStyle: 0
@@ -16451,6 +17363,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16523,6 +17440,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16595,16 +17517,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 110
+  mWidth: 154
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.9285715
+  aspectRatio: 5.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Observation
   mFontSize: 28
   mFontStyle: 0
@@ -16694,6 +17616,15 @@ Prefab:
       propertyPath: mText
       value: ZHUANGHE
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16758,6 +17689,15 @@ Prefab:
       propertyPath: mText
       value: ANTU
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16830,6 +17770,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -16914,7 +17867,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &1170346194
@@ -16968,6 +17921,15 @@ Prefab:
       propertyPath: mText
       value: SHUANGLIAO
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -17032,6 +17994,15 @@ Prefab:
       propertyPath: mText
       value: DUNHUA
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -17174,6 +18145,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -17321,16 +18305,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 40
+  mWidth: 52
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.4285715
+  aspectRatio: 1.8571428
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Info
   mFontSize: 28
   mFontStyle: 0
@@ -17417,16 +18401,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 144
+  mWidth: 206
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.142857
+  aspectRatio: 7.357143
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Character Name
   mFontSize: 28
   mFontStyle: 0
@@ -17526,6 +18510,15 @@ Prefab:
       propertyPath: mText
       value: GONGZHUULING
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -17725,6 +18718,12 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 418612, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_PrefabInternal: {fileID: 1485244891}
+--- !u!114 &1236058909 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400008, guid: ea7ea4be01fdadf45a93ce4ffd074f36,
+    type: 2}
+  m_PrefabInternal: {fileID: 867129864}
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
 --- !u!1 &1242255834
 GameObject:
   m_ObjectHideFlags: 0
@@ -17804,8 +18803,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 0
   mFontSize: 28
   mFontStyle: 0
@@ -17893,6 +18892,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -17955,6 +18967,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -17983,7 +19008,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1255781404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1440, y: -2242, z: 0}
+  m_LocalPosition: {x: 1354, y: -686, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 114130818}
@@ -18259,6 +19284,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18331,6 +19369,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18403,6 +19446,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18457,6 +19513,15 @@ Prefab:
       propertyPath: mText
       value: WAFANGDIAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18529,6 +19594,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18593,6 +19671,15 @@ Prefab:
       propertyPath: mText
       value: BENXI
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18669,6 +19756,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18751,7 +19851,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &1313285411
@@ -18813,6 +19913,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18877,6 +19990,15 @@ Prefab:
       propertyPath: mText
       value: HORQINZUOYIHOUQI
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -18943,6 +20065,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -19007,6 +20142,15 @@ Prefab:
       propertyPath: mText
       value: LIAOYUAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -19079,6 +20223,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -19230,7 +20387,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 140, y: 64}
+  m_Size: {x: 194, y: 64}
 --- !u!114 &1360626960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19292,7 +20449,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 140
+  mWidth: 194
   mHeight: 64
   mDepth: 1
   autoResizeBoxCollider: 1
@@ -19300,8 +20457,8 @@ MonoBehaviour:
   keepAspectRatio: 2
   aspectRatio: 1.8181819
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Broker
   mFontSize: 64
   mFontStyle: 0
@@ -19411,6 +20568,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -19493,8 +20663,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.1875
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 1 Day
   mFontSize: 64
   mFontStyle: 0
@@ -19582,6 +20752,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -19707,18 +20890,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 844
-  mHeight: 50
+  mWidth: 332
+  mHeight: 32
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 16.88
+  aspectRatio: 10.375
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
-  mText: dice num / total
-  mFontSize: 36
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
+  mText: "dice num / \uD1A0\uD0C8"
+  mFontSize: 20
   mFontStyle: 0
   mAlignment: 1
   mEncoding: 1
@@ -19727,7 +20910,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 1
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -19752,7 +20935,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1391157054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 158, z: 0}
+  m_LocalPosition: {x: -29, y: 203, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
@@ -19896,8 +21079,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 0
   mFontSize: 28
   mFontStyle: 0
@@ -20005,8 +21188,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 0
   mFontSize: 28
   mFontStyle: 0
@@ -20114,8 +21297,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 0
   mFontSize: 28
   mFontStyle: 0
@@ -20209,7 +21392,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 86
+      value: -116
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_LocalScale.x
@@ -20229,15 +21412,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: onChange.Array.data[1].mTarget
@@ -20265,11 +21448,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_Layer
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
+    - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
+      propertyPath: mFont
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
@@ -20361,6 +21553,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -20423,6 +21628,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -20495,6 +21713,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -20549,6 +21780,15 @@ Prefab:
       propertyPath: mText
       value: TIELING
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -20627,16 +21867,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 10
+  mWidth: 14
   mHeight: 28
   mDepth: 5
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.35714287
+  aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 5
   mFontSize: 28
   mFontStyle: 0
@@ -20860,6 +22100,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -20932,6 +22185,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21122,6 +22388,15 @@ Prefab:
       propertyPath: mText
       value: LIAOYANG
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21340,6 +22615,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21394,6 +22674,15 @@ Prefab:
       propertyPath: mText
       value: SIPING
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21466,6 +22755,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21528,6 +22830,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21600,6 +22915,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21684,7 +23004,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &1505231508
@@ -21796,6 +23116,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -21878,8 +23211,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 0
   mFontSize: 28
   mFontStyle: 0
@@ -21967,6 +23300,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -22078,6 +23416,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -22152,6 +23495,15 @@ Prefab:
       propertyPath: mText
       value: TUMEN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -22200,7 +23552,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1536578913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 112, z: 0}
+  m_LocalPosition: {x: -19, y: 156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
@@ -22249,7 +23601,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 844, y: 42}
+  m_Size: {x: 328, y: 36}
 --- !u!114 &1536578917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22280,18 +23632,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 844
-  mHeight: 42
+  mWidth: 328
+  mHeight: 36
   mDepth: 1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 20.095238
+  aspectRatio: 9.111111
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Select script 1
-  mFontSize: 36
+  mFontSize: 20
   mFontStyle: 0
   mAlignment: 1
   mEncoding: 1
@@ -22300,7 +23652,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 1
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -22459,16 +23811,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 40
+  mWidth: 62
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.4285715
+  aspectRatio: 2.2142856
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Luck
   mFontSize: 28
   mFontStyle: 0
@@ -22665,6 +24017,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -22747,6 +24104,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -22821,6 +24191,11 @@ Prefab:
       propertyPath: aspectRatio
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -22965,8 +24340,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 1
   mFontSize: 39
   mFontStyle: 1
@@ -23181,6 +24556,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -23263,6 +24651,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -23460,6 +24853,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -23540,8 +24946,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 0
   mFontSize: 28
   mFontStyle: 0
@@ -23709,6 +25115,15 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.r
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -23768,18 +25183,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 844
-  mHeight: 136
+  mWidth: 326
+  mHeight: 80
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.2058825
+  aspectRatio: 4.075
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Result script
-  mFontSize: 36
+  mFontSize: 20
   mFontStyle: 0
   mAlignment: 1
   mEncoding: 1
@@ -23788,7 +25203,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 1
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -23813,7 +25228,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1643912465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: -78, z: 0}
+  m_LocalPosition: {x: -19, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
@@ -23884,8 +25299,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.1875
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Random Items
   mFontSize: 64
   mFontStyle: 0
@@ -23992,7 +25407,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &1669341601
@@ -24046,6 +25461,15 @@ Prefab:
       propertyPath: mText
       value: DONGGANG
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24199,6 +25623,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24253,6 +25690,15 @@ Prefab:
       propertyPath: mText
       value: KANGPING
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24325,6 +25771,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24387,6 +25838,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24449,6 +25905,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24511,6 +25980,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24583,6 +26065,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24659,6 +26146,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24671,7 +26171,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1697745922}
   - 114: {fileID: 1697745923}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24728,8 +26228,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.1875
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uC124\uC815"
   mFontSize: 64
   mFontStyle: 0
@@ -24894,6 +26394,15 @@ Prefab:
       propertyPath: mText
       value: BAISHAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -24974,6 +26483,15 @@ Prefab:
       propertyPath: onClick.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 125925664}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25046,6 +26564,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25108,6 +26631,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25239,8 +26775,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0384614
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 1
   mFontSize: 39
   mFontStyle: 1
@@ -25345,8 +26881,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 12.030303
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uCE90\uB9AD\uD130 \uBC30\uACBD\uC124\uBA85\r"
   mFontSize: 39
   mFontStyle: 1
@@ -25434,6 +26970,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25488,6 +27037,15 @@ Prefab:
       propertyPath: mText
       value: HEISHAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25582,7 +27140,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1 &1751956478
@@ -25664,7 +27222,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &1755855456
@@ -25726,6 +27284,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25798,6 +27369,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -25862,16 +27438,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 26
+  mWidth: 38
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.9285714
+  aspectRatio: 1.3571428
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: HP
   mFontSize: 28
   mFontStyle: 0
@@ -26062,16 +27638,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 8
+  mWidth: 14
   mHeight: 28
   mDepth: 5
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.2857143
+  aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: /
   mFontSize: 28
   mFontStyle: 0
@@ -26179,7 +27755,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1 &1781341626
@@ -26293,8 +27869,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.1875
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Exit
   mFontSize: 64
   mFontStyle: 0
@@ -26382,6 +27958,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -26444,6 +28025,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -26506,6 +28100,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -26525,7 +28132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1800058810
 Transform:
   m_ObjectHideFlags: 0
@@ -26670,6 +28277,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -26790,6 +28410,15 @@ Prefab:
       propertyPath: mText
       value: YINGKOU
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -26874,16 +28503,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 12
+  mWidth: 14
   mHeight: 28
   mDepth: 5
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.42857143
+  aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 4
   mFontSize: 28
   mFontStyle: 0
@@ -26981,16 +28610,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 56
+  mWidth: 82
   mHeight: 28
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2
+  aspectRatio: 2.9285715
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Agility
   mFontSize: 28
   mFontStyle: 0
@@ -27044,7 +28673,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1850634853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 65, z: 0}
+  m_LocalPosition: {x: -19, y: 109, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
@@ -27093,7 +28722,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 844, y: 42}
+  m_Size: {x: 328, y: 36}
 --- !u!114 &1850634857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27124,18 +28753,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 844
-  mHeight: 42
+  mWidth: 328
+  mHeight: 36
   mDepth: 1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 20.095238
+  aspectRatio: 9.111111
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Select script 2
-  mFontSize: 36
+  mFontSize: 20
   mFontStyle: 0
   mAlignment: 1
   mEncoding: 1
@@ -27144,7 +28773,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 1
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -27221,16 +28850,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 10
+  mWidth: 14
   mHeight: 28
   mDepth: 5
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.35714287
+  aspectRatio: 0.5
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 5
   mFontSize: 28
   mFontStyle: 0
@@ -27457,6 +29086,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -27539,7 +29181,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1 &1859949190
@@ -27737,6 +29379,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -27819,7 +29474,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1 &1881086752
@@ -27888,8 +29543,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 16.125
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uB2A5\uB825\uCE58"
   mFontSize: 39
   mFontStyle: 1
@@ -27977,6 +29632,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28069,7 +29729,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &1896597059
@@ -28131,6 +29791,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28185,6 +29850,15 @@ Prefab:
       propertyPath: mText
       value: PENJIN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28257,6 +29931,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28281,13 +29968,13 @@ GameObject:
   - 114: {fileID: 1915852220}
   - 114: {fileID: 1915852221}
   - 114: {fileID: 1915852222}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1915852219
 Transform:
   m_ObjectHideFlags: 0
@@ -28295,7 +29982,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1915852218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -144, y: -108, z: 0}
+  m_LocalPosition: {x: -143, y: -108, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1697745922}
@@ -28344,7 +30031,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3007
+  startingRenderQueue: 3010
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -28443,6 +30130,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28507,6 +30207,15 @@ Prefab:
       propertyPath: mText
       value: HAICHENG
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28764,6 +30473,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28832,6 +30546,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28894,6 +30621,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -28956,6 +30688,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29018,6 +30763,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29082,6 +30840,15 @@ Prefab:
       propertyPath: mText
       value: PULANDIAN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29203,6 +30970,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29265,6 +31045,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29303,8 +31096,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2019435848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 341, y: -237, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 161, y: -150, z: 0}
+  m_LocalScale: {x: 0.7776907, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
   m_RootOrder: 8
@@ -29321,7 +31114,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 162, y: 36}
+  m_Size: {x: 42, y: 22}
 --- !u!114 &2019435851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29381,27 +31174,27 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 162
-  mHeight: 36
+  mWidth: 42
+  mHeight: 22
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.5
+  aspectRatio: 1.9090909
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: OK
-  mFontSize: 36
-  mFontStyle: 1
-  mAlignment: 0
+  mFontSize: 20
+  mFontStyle: 0
+  mAlignment: 1
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 1
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -29478,6 +31271,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29550,6 +31348,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -29955,6 +31758,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -30417,18 +32233,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 844
-  mHeight: 48
+  mWidth: 328
+  mHeight: 54
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 17.583334
+  aspectRatio: 6.0740743
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: Result effect description
-  mFontSize: 36
+  mFontSize: 20
   mFontStyle: 0
   mAlignment: 1
   mEncoding: 1
@@ -30437,7 +32253,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 1
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -30462,7 +32278,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2084345257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: -179, z: 0}
+  m_LocalPosition: {x: 0, y: -80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406557157}
@@ -30536,6 +32352,19 @@ Prefab:
       propertyPath: mText
       value: TOWN
       objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -30828,7 +32657,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3025
+  startingRenderQueue: 3018
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -31054,7 +32883,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2142315511}
   - 114: {fileID: 2142315512}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31123,7 +32952,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11404420, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
+  mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
   mSpriteName: white
   mFillCenter: 1
 --- !u!1001 &2142447436
@@ -31185,6 +33014,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -31247,6 +33081,11 @@ Prefab:
       propertyPath: mText
       value: SMALLCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 11449062, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0

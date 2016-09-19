@@ -1,214 +1,192 @@
 {
 	"dataList": [
 		{
-			"index": 0,
-			"name": "투먼",
-			"area": "연안성"
+			"index": "TUMEN",
+			"name": "투먼"
 		},
 		{
-			"index": 1,
-			"name": "옌볜",
-			"area": "스촨성"
+			"index": "YANBIAN",
+			"name": "옌볜"
 		},
 		{
-			"index": 2,
-			"name": "안투현",
-			"area": "스촨성"
+			"index": "ANTU",
+			"name": "안투현"
 		},
 		{
-			"index": 3,
-			"name": "둔화시",
-			"area": "칭하이성"
+			"index": "DUNHUA",
+			"name": "둔화시"
 		},
 		{
-			"index": 4,
-			"name": "자오허시",
-			"area": "칭하이성"
+			"index": "JIAOHE",
+			"name": "자오허시"
 		},
 		{
-			"index": 5,
-			"name": "지린시",
-			"area": "산시성"
+			"index": "JILIN",
+			"name": "지린시"
 		},
 		{
-			"index": 6,
-			"name": "장춘시",
-			"area": "산시성"
+			"index": "CHANGCHUN",
+			"name": "장춘시"
 		},
 		{
-			"index": 7,
-			"name": "궁주링시",
-			"area": "후난성"
+			"index": "GONGZHUULING",
+			"name": "궁주링시"
 		},
 		{
-			"index": 8,
-			"name": "쓰핑시",
-			"area": "후난성"
+			"index": "SIPING",
+			"name": "쓰핑시"
 		},
 		{
-			"index": 9,
-			"name": "이퉁만족 자치현",
-			"area": "후난성"
+			"index": "YITONG",
+			"name": "이퉁만족 자치현"
 		},
 		{
-			"index": 10,
-			"name": "랴오위안시",
-			"area": "광시성"
+			"index": "LIAOYUAN",
+			"name": "랴오위안시"
 		},
 		{
-			"index": 11,
-			"name": "카이위안시",
-			"area": "관동성"
+			"index": "KAIYUAN",
+			"name": "카이위안시"
 		},
 		{
-			"index": 12,
-			"name": "테링시",
-			"area": "관동성"
+			"index": "TIELING",
+			"name": "테링시"
 		},
 		{
-			"index": 13,
-			"name": "푸순시",
-			"area": "후지안성"
+			"index": "FUSHUN",
+			"name": "푸순시"
 		},
 		{
-			"index": 14,
-			"name": "선양시",
-			"area": "장수성"
+			"index": "SHENYANG",
+			"name": "선양시"
 		},
 		{
-			"index": 15,
-			"name": "번시시",
-			"area": "장수성"
+			"index": "BENXI",
+			"name": "번시시"
 		},
 		{
-			"index": 16,
-			"name": "랴오양시",
-			"area": "산동성"
+			"index": "LIAOYANG",
+			"name": "랴오양시"
 		},
 		{
-			"index": 17,
-			"name": "안산시",
-			"area": "산동성"
+			"index": "ANSHAN",
+			"name": "안산시"
 		},
 		{
-			"index": 18,
-			"name": "하이청시",
-			"area": "산동성"
+			"index": "HAICHENG",
+			"name": "하이청시"
 		},
 		{
-			"index": 19,
-			"name": "잉커우시",
-			"area": "허베이성"
+			"index": "YINGKOU",
+			"name": "잉커우시"
 		},
 		{
-			"index": 20,
-			"name": "판진시",
-			"area": "허베이성"
+			"index": "PENJIN",
+			"name": "판진시"
 		},
 		{
-			"index": 21,
-			"name": "솽랴오시",
-			"area": "허베이성"
+			"index": "SHUANGLIAO",
+			"name": "솽랴오시"
 		},
 		{
-			"index": 22,
-			"name": "다오빙산시",
-			"area": "랴오닝성"
+			"index": "DIAOBINGSHAN",
+			"name": "다오빙산시"
 		},
 		{
-			"index": 23,
-			"name": "캉핑현",
-			"area": "랴오닝성"
+			"index": "KANGPING",
+			"name": "캉핑현"
 		},
 		{
-			"index": 24,
-			"name": "신민시",
-			"area": "랴오닝성"
+			"index": "XINMIN",
+			"name": "신민시"
 		},
 		{
-			"index": 25,
-			"name": "장우현",
-			"area": "지린성"
+			"index": "ZHNGWU",
+			"name": "장우현"
 		},
 		{
-			"index": 26,
-			"name": "헤이산현",
-			"area": "지린성"
+			"index": "HEISHAN",
+			"name": "헤이산현"
 		},
 		{
-			"index": 27,
-			"name": "타이안현",
-			"area": "지린성"
+			"index": "TAIAN",
+			"name": "타이안현"
 		},
 		{
-			"index": 28,
-			"name": "랴오중현",
-			"area": "지린성"
+			"index": "LIAOZHONG",
+			"name": "랴오중현"
 		},
 		{
-			"index": 29,
-			"name": "커얼친 좌익후기",
-			"area": "지린성"
+			"index": "HORQINZUOYIHOUQI",
+			"name": "커얼친 좌익후기"
 		},
 		{
-			"index": 30,
-			"name": "바이산시",
-			"area": "지린성"
+			"index": "BAISHAN",
+			"name": "바이산시"
 		},
 		{
-			"index": 31,
-			"name": "퉁라오시",
-			"area": "지린성"
+			"index": "TONGLIAO",
+			"name": "퉁라오시"
 		},
 		{
-			"index": 32,
-			"name": "가이저우시",
-			"area": "지린성"
+			"index": "GAIZHOU",
+			"name": "가이저우시"
 		},
 		{
-			"index": 33,
-			"name": "와팡뎬시",
-			"area": "지린성"
+			"index": "WAFANGDIAN",
+			"name": "와팡뎬시"
 		},
 		{
-			"index": 34,
-			"name": "푸란뎬시",
-			"area": "지린성"
+			"index": "PULANDIAN",
+			"name": "푸란뎬시"
 		},
 		{
-			"index": 35,
-			"name": "다롄시",
-			"area": "지린성"
+			"index": "DALIAN",
+			"name": "다롄시"
 		},
 		{
-			"index": 36,
-			"name": "좡허시",
-			"area": "지린성"
+			"index": "ZHUANGHE",
+			"name": "좡허시"
 		},
 		{
-			"index": 37,
-			"name": "둥강시",
-			"area": "지린성"
+			"index": "DONGGANG",
+			"name": "둥강시"
 		},
 		{
-			"index": 38,
-			"name": "단둥시",
-			"area": "지린성"
+			"index": "DANDONG",
+			"name": "단둥시"
 		},
 		{
-			"index": 39,
-			"name": "관뎬만족 자치현",
-			"area": "지린성"
+			"index": "KUANDIAN",
+			"name": "관뎬만족 자치현"
 		},
 		{
-			"index": 40,
-			"name": "환런만족 자치현",
-			"area": "지린성"
+			"index": "HUANREN",
+			"name": "환런만족 자치현"
 		},
 		{
-			"index": 41,
-			"name": "퉁화시",
-			"area": "지린성"
+			"index": "TONGHUA",
+			"name": "퉁화시"
+		},
+		{
+			"index": "TOWN",
+			"name": "마을"
+		},
+		{
+			"index": "SMALLCITY",
+			"name": "소도시"
+		},
+		{
+			"index": "MOUNTAIN",
+			"name": "산"
+		},
+		{
+			"index": "FENGCHENG",
+			"name": "펑청시"
+		},
+		{
+			"index": "DASHIQIAO",
+			"name": "다스차오시"
 		}
 	]
 }

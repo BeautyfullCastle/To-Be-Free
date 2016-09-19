@@ -252,7 +252,9 @@
     <Compile Include="Assets\ToBeFree\Scripts\Managers\SelectManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Managers\StatProbabilityManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Misc\AudioControl.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Misc\CameraZoom.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Misc\LanguageSelection.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\Misc\ReplaceFont.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Misc\ResolutionDetection.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Misc\StringToEnum.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Piece.cs" />
@@ -277,7 +279,6 @@
     <Compile Include="Assets\ToBeFree\Scripts\UI\UITrashCan.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\World\IconCharacter.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\World\IconCity.cs" />
-    <Compile Include="Assets\UI\Scripts\CameraZoom.cs" />
     <Compile Include="Assets\XmlTest\Script\ParsingTest.cs" />
     <Compile Include="Assets\XmlTest\Script\XMLParser.cs" />
   </ItemGroup>

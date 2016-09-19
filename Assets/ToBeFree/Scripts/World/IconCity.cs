@@ -105,7 +105,7 @@ namespace ToBeFree
 			{
 				list = CityManager.Instance.EngList;
 			}
-			nameLabel.text = Array.Find<Language.CityData>(CityManager.Instance.KorList, x => x.index == city.Name).name;
+			nameLabel.text = Array.Find<Language.CityData>(list, x => x.index == city.Name).name;
 		}
 		
 

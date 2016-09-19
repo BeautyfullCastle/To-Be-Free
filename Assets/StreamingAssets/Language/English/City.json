@@ -1,214 +1,192 @@
 {
 	"dataList": [
 		{
-			"index": 0,
-			"name": "TUMEN",
-			"area": "YUNNANSHENG"
+			"index": "TUMEN",
+			"name": "TUMEN"
 		},
 		{
-			"index": 1,
-			"name": "YANBIAN",
-			"area": "SICHUANSHENG"
+			"index": "YANBIAN",
+			"name": "YANBIAN"
 		},
 		{
-			"index": 2,
-			"name": "ANTU",
-			"area": "SICHUANSHENG"
+			"index": "ANTU",
+			"name": "ANTU"
 		},
 		{
-			"index": 3,
-			"name": "DUNHUA",
-			"area": "QINGHAISHENG"
+			"index": "DUNHUA",
+			"name": "DUNHUA"
 		},
 		{
-			"index": 4,
-			"name": "JIAOHE",
-			"area": "QINGHAISHENG"
+			"index": "JIAOHE",
+			"name": "JIAOHE"
 		},
 		{
-			"index": 5,
-			"name": "JILIN",
-			"area": "SHANXISHENG"
+			"index": "JILIN",
+			"name": "JILIN"
 		},
 		{
-			"index": 6,
-			"name": "CHANGCHUN",
-			"area": "SHANXISHENG"
+			"index": "CHANGCHUN",
+			"name": "CHANGCHUN"
 		},
 		{
-			"index": 7,
-			"name": "GONGZHUULING",
-			"area": "HUNANSHENG"
+			"index": "GONGZHUULING",
+			"name": "GONGZHUULING"
 		},
 		{
-			"index": 8,
-			"name": "SIPING",
-			"area": "HUNANSHENG"
+			"index": "SIPING",
+			"name": "SIPING"
 		},
 		{
-			"index": 9,
-			"name": "YITONG",
-			"area": "HUNANSHENG"
+			"index": "YITONG",
+			"name": "YITONG"
 		},
 		{
-			"index": 10,
-			"name": "LIAOYUAN",
-			"area": "GUANGXISHENG"
+			"index": "LIAOYUAN",
+			"name": "LIAOYUAN"
 		},
 		{
-			"index": 11,
-			"name": "KAIYUAN",
-			"area": "GUANGDONGSHENG"
+			"index": "KAIYUAN",
+			"name": "KAIYUAN"
 		},
 		{
-			"index": 12,
-			"name": "TIELING",
-			"area": "GUANGDONGSHENG"
+			"index": "TIELING",
+			"name": "TIELING"
 		},
 		{
-			"index": 13,
-			"name": "FUSHUN",
-			"area": "FUJIANSHENG"
+			"index": "FUSHUN",
+			"name": "FUSHUN"
 		},
 		{
-			"index": 14,
-			"name": "SHENYANG",
-			"area": "JIANGSUSHENG"
+			"index": "SHENYANG",
+			"name": "SHENYANG"
 		},
 		{
-			"index": 15,
-			"name": "BENXI",
-			"area": "JIANGSUSHENG"
+			"index": "BENXI",
+			"name": "BENXI"
 		},
 		{
-			"index": 16,
-			"name": "LIAOYANG",
-			"area": "SHANDONGSHENG"
+			"index": "LIAOYANG",
+			"name": "LIAOYANG"
 		},
 		{
-			"index": 17,
-			"name": "ANSHAN",
-			"area": "SHANDONGSHENG"
+			"index": "ANSHAN",
+			"name": "ANSHAN"
 		},
 		{
-			"index": 18,
-			"name": "HAICHENG",
-			"area": "SHANDONGSHENG"
+			"index": "HAICHENG",
+			"name": "HAICHENG"
 		},
 		{
-			"index": 19,
-			"name": "YINGKOU",
-			"area": "HEBEISHENG"
+			"index": "YINGKOU",
+			"name": "YINGKOU"
 		},
 		{
-			"index": 20,
-			"name": "PENJIN",
-			"area": "HEBEISHENG"
+			"index": "PENJIN",
+			"name": "PENJIN"
 		},
 		{
-			"index": 21,
-			"name": "SHUANGLIAO",
-			"area": "HEBEISHENG"
+			"index": "SHUANGLIAO",
+			"name": "SHUANGLIAO"
 		},
 		{
-			"index": 22,
-			"name": "DIAOBINGSHAN",
-			"area": "LIAONINGSHENG"
+			"index": "DIAOBINGSHAN",
+			"name": "DIAOBINGSHAN"
 		},
 		{
-			"index": 23,
-			"name": "KANGPING",
-			"area": "LIAONINGSHENG"
+			"index": "KANGPING",
+			"name": "KANGPING"
 		},
 		{
-			"index": 24,
-			"name": "XINMIN",
-			"area": "LIAONINGSHENG"
+			"index": "XINMIN",
+			"name": "XINMIN"
 		},
 		{
-			"index": 25,
-			"name": "ZHNGWU",
-			"area": "JILINSHENG"
+			"index": "ZHNGWU",
+			"name": "ZHNGWU"
 		},
 		{
-			"index": 26,
-			"name": "HEISHAN",
-			"area": "JILINSHENG"
+			"index": "HEISHAN",
+			"name": "HEISHAN"
 		},
 		{
-			"index": 27,
-			"name": "TAIAN",
-			"area": "JILINSHENG"
+			"index": "TAIAN",
+			"name": "TAIAN"
 		},
 		{
-			"index": 28,
-			"name": "LIAOZHONG",
-			"area": "JILINSHENG"
+			"index": "LIAOZHONG",
+			"name": "LIAOZHONG"
 		},
 		{
-			"index": 29,
-			"name": "HORQINZUOYIHOUQI",
-			"area": "JILINSHENG"
+			"index": "HORQINZUOYIHOUQI",
+			"name": "HORQINZUOYIHOUQI"
 		},
 		{
-			"index": 30,
-			"name": "BAISHAN",
-			"area": "JILINSHENG"
+			"index": "BAISHAN",
+			"name": "BAISHAN"
 		},
 		{
-			"index": 31,
-			"name": "TONGLIAO",
-			"area": "JILINSHENG"
+			"index": "TONGLIAO",
+			"name": "TONGLIAO"
 		},
 		{
-			"index": 32,
-			"name": "GAIZHOU",
-			"area": "JILINSHENG"
+			"index": "GAIZHOU",
+			"name": "GAIZHOU"
 		},
 		{
-			"index": 33,
-			"name": "WAFANGDIAN",
-			"area": "JILINSHENG"
+			"index": "WAFANGDIAN",
+			"name": "WAFANGDIAN"
 		},
 		{
-			"index": 34,
-			"name": "PULANDIAN",
-			"area": "JILINSHENG"
+			"index": "PULANDIAN",
+			"name": "PULANDIAN"
 		},
 		{
-			"index": 35,
-			"name": "DALIAN",
-			"area": "JILINSHENG"
+			"index": "DALIAN",
+			"name": "DALIAN"
 		},
 		{
-			"index": 36,
-			"name": "ZHUANGHE",
-			"area": "JILINSHENG"
+			"index": "ZHUANGHE",
+			"name": "ZHUANGHE"
 		},
 		{
-			"index": 37,
-			"name": "DONGGANG",
-			"area": "JILINSHENG"
+			"index": "DONGGANG",
+			"name": "DONGGANG"
 		},
 		{
-			"index": 38,
-			"name": "DANDONG",
-			"area": "JILINSHENG"
+			"index": "DANDONG",
+			"name": "DANDONG"
 		},
 		{
-			"index": 39,
-			"name": "KUANDIAN",
-			"area": "JILINSHENG"
+			"index": "KUANDIAN",
+			"name": "KUANDIAN"
 		},
 		{
-			"index": 40,
-			"name": "HUANREN",
-			"area": "JILINSHENG"
+			"index": "HUANREN",
+			"name": "HUANREN"
 		},
 		{
-			"index": 41,
-			"name": "TONGHUA",
-			"area": "JILINSHENG"
+			"index": "TONGHUA",
+			"name": "TONGHUA"
+		},
+		{
+			"index": "TOWN",
+			"name": "Town"
+		},
+		{
+			"index": "SMALLCITY",
+			"name": "Small City"
+		},
+		{
+			"index": "MOUNTAIN",
+			"name": "Mountain"
+		},
+		{
+			"index": "FENGCHENG",
+			"name": "Fengcheng"
+		},
+		{
+			"index": "DASHIQIAO",
+			"name": "Dashiqiao"
 		}
 	]
 }
