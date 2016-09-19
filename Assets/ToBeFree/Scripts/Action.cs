@@ -154,10 +154,11 @@ namespace ToBeFree
 					Debug.LogError("path is too long.");
 					yield break;
 				}
+
+				character.AP += pathAP;
 				foreach (BezierPoint point in path)
 				{
-					yield return character.MoveTo(point);
-					character.AP += pathAP;
+					yield return character.MoveTo(point);					
 				}
 			}
 			//Debug.LogWarning("character is moved to " + character.CurCity.Name);	

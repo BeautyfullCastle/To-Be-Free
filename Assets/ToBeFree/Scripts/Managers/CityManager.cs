@@ -7,7 +7,7 @@ namespace ToBeFree
 {
 	public enum eWay
 	{
-		NORMAL, MOUNTAIN, BUS
+		NORMAL, MOUNTAIN, ENTIRE, BUS
 	}
 
 	public class CityManager : Singleton<CityManager>
@@ -21,7 +21,7 @@ namespace ToBeFree
 		private List<City> neareastPath;
 		private IconCity nextCity;
 
-		private BezierCurveList[] curves = new BezierCurveList[2];
+		private BezierCurveList[] curves = new BezierCurveList[3];
 
 		private List<Item> cityItems = new List<Item>();
 
@@ -32,8 +32,9 @@ namespace ToBeFree
 			
 			curves[(int)eWay.NORMAL] = GameObject.Find(eWay.NORMAL.ToString()+"WAY").GetComponent<BezierCurveList>();
 			curves[(int)eWay.MOUNTAIN] = GameObject.Find(eWay.MOUNTAIN.ToString() + "WAY").GetComponent<BezierCurveList>();
-			
-			foreach(BezierCurveList curve in curves)
+			curves[(int)eWay.ENTIRE] = GameObject.Find(eWay.ENTIRE.ToString() + "WAY").GetComponent<BezierCurveList>();
+
+			foreach (BezierCurveList curve in curves)
 			{
 				curve.Init();
 			}
@@ -58,7 +59,7 @@ namespace ToBeFree
 
 		public void InitList()
 		{
-			list = new List<City>[2];
+			list = new List<City>[3];
 
 			// 중복 제거한 City List 생성
 			for(int i=0; i<curves.Length; ++i)
@@ -312,16 +313,19 @@ namespace ToBeFree
 		{
 			eNodeType currCityType = GameManager.Instance.Character.CurCity.Type;
 			eNodeType destCityType = NextCity.type;
-
-			eWay way = eWay.NORMAL;
-			if(currCityType == eNodeType.MOUNTAIN || destCityType == eNodeType.MOUNTAIN)
-			{
-				way = eWay.MOUNTAIN;
-			}
+			
 			BezierPoint currentPoint = Array.Find<IconCity>(GameManager.Instance.iconCities, x=>x.City==GameManager.Instance.Character.CurCity).GetComponent<BezierPoint>();
 			BezierPoint destinationPoint = NextCity.GetComponent<BezierPoint>();
-
-			List<BezierPoint> path = curves[(int)way].GetPath(currentPoint, destinationPoint);
+			
+			List<BezierPoint> path = null;
+			if (currCityType == eNodeType.MOUNTAIN || destCityType == eNodeType.MOUNTAIN)
+			{
+				path = curves[(int)eWay.ENTIRE].GetPath(currentPoint, destinationPoint);
+			}
+			else
+			{
+				path = curves[(int)eWay.NORMAL].GetPath(currentPoint, destinationPoint);
+			}			
 			return path;
 		}
 		
