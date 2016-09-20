@@ -13,6 +13,8 @@ namespace ToBeFree {
 		public List<UIItem> cityItems;
 		public List<UIItem> randomItems;
 
+		private List<UIItem> items = new List<UIItem>();
+
 		// 그리드를 reset position 하기위해 선언합니다.
 		private UIGrid[] grids;
 
@@ -32,6 +34,7 @@ namespace ToBeFree {
 			}
 
 			discountNum = 0;
+			
 		}
 		
 		void OnEnable()
@@ -47,43 +50,47 @@ namespace ToBeFree {
 			randomItemList.RemoveAll(x => GameManager.Instance.Character.Inven.Exist(x));
 
 			System.Random r = new System.Random();
-			for (int i = 0; i < 3; ++i)
+			for (int i = 0; i < randomItems.Count; ++i)
 			{
+				if(GameManager.Instance.Character.CurCity.Type==eNodeType.MIDDLECITY)
+				{
+					if(i >= 3)
+					{
+						randomItems[i].gameObject.SetActive(false);
+						continue;
+					}
+				}
+				randomItems[i].gameObject.SetActive(true);
 				int randIndex = r.Next(0, randomItemList.Count - 1);
 				randomItems[i].SetInfo(randomItemList[randIndex]);
 				randomItems[i].transform.GetComponent<UIButton>().isEnabled = true;
 				randomItemList.Remove(randomItems[i].Item);
 			}
+
+			items.AddRange(basicItems);
+			items.AddRange(cityItems);
+			items.AddRange(randomItems);
+
+			CheckAllItems();
 		}
 
 		// click to buy item
 		public void OnClick(UIItem uiItem)
 		{
-			if (uiItem == randomItems[0])
+			foreach (UIItem item in items)
 			{
-				if (randomItems[0].Item != null && GameManager.Instance.Character.Inven.Exist(randomItems[0].Item))
+				if(item.name == uiItem.name)
 				{
-					return;
-				}
-				StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character));
-				randomItems[0].transform.GetComponent<UIButton>().isEnabled = false;
-			}
-			else if (uiItem == cityItems[0])
-			{
-				if (GameManager.Instance.Character.Inven.Exist(GameManager.Instance.Character.CurCity.Item))
-				{
-					return;
-				}
-				else
-				{
-					StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character));                    
-					cityItems[0].transform.GetComponent<UIButton>().isEnabled = false;
+					StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character));
+					if (uiItem != basicItems[0])
+					{
+						uiItem.transform.GetComponent<UIButton>().isEnabled = false;
+					}	
+					break;
 				}
 			}
-			else
-			{
-				StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character));
-			}
+
+			CheckItemsPrice();
 		}
 
 		public void CheckItems()
@@ -97,19 +104,59 @@ namespace ToBeFree {
 				cityItems[0].transform.GetComponent<UIButton>().isEnabled = true;
 			}
 
-			if (randomItems[0].Item != null && GameManager.Instance.Character.Inven.Exist(randomItems[0].Item))
+			for(int i=0; i<randomItems.Count; ++i)
 			{
-				randomItems[0].transform.GetComponent<UIButton>().isEnabled = false;
+				if (randomItems[i].Item != null && GameManager.Instance.Character.Inven.Exist(randomItems[i].Item))
+				{
+					randomItems[i].transform.GetComponent<UIButton>().isEnabled = false;
+				}
+				else
+				{
+					randomItems[i].transform.GetComponent<UIButton>().isEnabled = true;
+				}
 			}
-			else
+		}
+
+		private void CheckItemsPrice()
+		{
+			foreach (UIItem uiItem in items)
 			{
-				randomItems[0].transform.GetComponent<UIButton>().isEnabled = true;
+				if (uiItem == null || uiItem.Item == null)
+				{
+					uiItem.transform.GetComponent<UIButton>().isEnabled = false;
+					continue;
+				}
+
+				if (uiItem.transform.GetComponent<UIButton>().isEnabled == false)
+					continue;
+
+				uiItem.transform.GetComponent<UIButton>().isEnabled = (GameManager.Instance.Character.Stat.Money >= uiItem.Item.Price);
+			}
+		}
+
+		private void CheckAllItems()
+		{
+			foreach (UIItem uiItem in items)
+			{
+				if (uiItem == null || uiItem.Item == null)
+				{
+					uiItem.transform.GetComponent<UIButton>().isEnabled = false;
+					continue;
+				}
+
+				if (uiItem == basicItems[0])
+				{
+					uiItem.transform.GetComponent<UIButton>().isEnabled = true;
+					continue;
+				}	
+
+				uiItem.transform.GetComponent<UIButton>().isEnabled = ((GameManager.Instance.Character.Stat.Money > uiItem.Item.Price) && (GameManager.Instance.Character.Inven.Exist(uiItem.Item) == false));
 			}
 		}
 
 		public void OnExit()
 		{
-			TimeTable.Instance.DayIsGone();
+			GameManager.Instance.Character.AP++;
 			EventManager.Instance.OnClickOK();
 			this.gameObject.SetActive(false);
 		}

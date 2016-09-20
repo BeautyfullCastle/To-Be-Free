@@ -90,6 +90,7 @@ namespace ToBeFree
 			}
 			Stat.HP++;
 			Stat.MENTAL++;
+			AP++;
 		}
 		
 		public IEnumerator MoveTo(City city)

@@ -220,8 +220,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 1
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uC74C"
   mFontSize: 16
   mFontStyle: 0
@@ -288,8 +288,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 0.90909094
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: 00
   mFontSize: 16
   mFontStyle: 0
