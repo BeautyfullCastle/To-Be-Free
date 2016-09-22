@@ -277,18 +277,18 @@ namespace ToBeFree
 			yield return (ShowStateLabel("Adding Polices to Big cities.", 0.5f));
 
 			// HAVE TO CHANGE
-			// add polices in big cities.
-			//List<City> bigCityList = CityManager.Instance.FindCitiesBySize(eCitySize.BIG);
-			//List<Transform> bigCityTransformList = new List<Transform>();
-			//foreach (City city in bigCityList)
-			//{
-			//	PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
-			//	bigCityTransformList.Add(GameObject.Find(city.Name.ToString()).transform);
-			//	NGUIDebug.Log("Add Big city : " + city.Name.ToString());
-			//}
-			//yield return (MoveDirectingCam(bigCityTransformList, 0.5f));
+			//add polices in big cities.
+			List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
+			List<Transform> bigCityTransformList = new List<Transform>();
+			foreach (City city in bigCityList)
+			{
+				PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
+				bigCityTransformList.Add(GameObject.Find(city.Name.ToString()).transform);
+				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
+			}
+			yield return (MoveDirectingCam(bigCityTransformList, 0.5f));
 
-			
+
 			yield return null;
 
 			// for test
@@ -326,7 +326,7 @@ namespace ToBeFree
 			// Exit
 			NextState();
 		}
-		
+
 		IEnumerator StartDayState()
 		{
 			// Enter
@@ -335,6 +335,32 @@ namespace ToBeFree
 			yield return character.Inven.CheckItem(eStartTime.DAY, character);
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.DAY, character);
+
+			/*
+			 * 행동 시
+			특수 이벤트 나올지 검사
+			(특수 이벤트만 있는 행동은 100%)
+			- 안나오면 해당 행동 일반 이벤트 실행 및 특수 이벤트 확률 증가
+			- 나오면 5개의 이벤트 중 하나 골라서 해당 행동의 특수 이벤트 불러온 후 특수이벤트 확률 0으로 만듦
+
+			해당 행동 시작하면 특수 이벤트 / 일반 이벤트 / 스킵 중 하나 실행
+
+			이벤트 발생 확률 하루마다 증가
+			이벤트 확률 / 5
+
+			5개의 이벤트
+			- 하루 시작 1
+			- (공안)
+			- 행동 3
+			- 끝 1
+			*/
+
+			character.AddSpecialEventProbability();
+
+
+			// 하루 시작 이벤트
+			if(character.CheckSpecialEvent())
+				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.START), character);
 
 			if (character.IsDetention)
 			{
@@ -367,23 +393,26 @@ namespace ToBeFree
 				yield return null;
 			}
 			commandUIObj.SetActive(false);
+			
+			// 공안 이벤트
 			// if selected event is not move,
 			// check polices in current city and activate police events.
 			if (!(action is Move))
 			{
-				yield return (inspectAction.Activate(character));                
+				yield return inspectAction.Activate(character);
 			}
 
+			// 행동 이벤트
 			if (character.IsDetention == false && character.IsActionSkip == false)
 			{
 				// activate selected event
-				yield return (action.Activate(character));                
+				yield return action.Activate(character);
 			}
 			else if (character.IsActionSkip == true)
 			{
 				character.IsActionSkip = false;
 			}
-
+			
 			if(character.RemainAP <= 0)
 			{
 				this.State = GameState.Night;
@@ -393,7 +422,6 @@ namespace ToBeFree
 				this.State = GameState.Act;
 			}
 			
-
 			// Exit
 			NextState();
 		}
@@ -441,8 +469,10 @@ namespace ToBeFree
 				moveTest = false;
 			}
 
-			//yield return AbnormalConditionManager.Instance.List[1].Activate(character);
-			//yield return AbnormalConditionManager.Instance.List[2].Activate(character);
+			yield return AbnormalConditionManager.Instance.List[1].Activate(character);
+			yield return AbnormalConditionManager.Instance.List[2].Activate(character);
+
+			character.Stat.HP = 1;
 
 			// select test
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[13], character);
@@ -482,6 +512,12 @@ namespace ToBeFree
 		private IEnumerator Instance_NotifyEveryNight()
 		{
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
+
+			// 하루 끝 이벤트
+			if (character.CheckSpecialEvent())
+			{
+				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
+			}
 
 			character.Reset();
 
@@ -678,3 +714,4 @@ namespace ToBeFree
 		}
 	}
 }
+ 

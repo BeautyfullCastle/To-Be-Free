@@ -92,6 +92,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 114, y: 34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 467202}
   m_RootOrder: 1
@@ -104,6 +105,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -63, y: 34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 467202}
   m_RootOrder: 0
@@ -116,6 +118,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 127, y: -44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 467202}
   m_RootOrder: 2
@@ -128,6 +131,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 463452}
   - {fileID: 440766}
@@ -144,6 +148,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -127, y: -44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 467202}
   m_RootOrder: 3
@@ -199,8 +204,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.0714285
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uB0A8\uC740 \uAE30\uD55C\n1/2\uC8FC"
   mFontSize: 27
   mFontStyle: 1
@@ -267,8 +272,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 4.4583335
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uD018\uC2A4\uD2B8 \uC774\uB984"
   mFontSize: 27
   mFontStyle: 0
@@ -388,8 +393,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.0714285
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uB3C4\uC2DC"
   mFontSize: 27
   mFontStyle: 1
@@ -471,8 +476,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.0714285
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11492572, guid: edf647d16605d6546b5465875db74926, type: 2}
+  mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
+  mFont: {fileID: 0}
   mText: "\uB3C8 5\uC704\uC548"
   mFontSize: 27
   mFontStyle: 1

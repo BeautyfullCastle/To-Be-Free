@@ -33,6 +33,7 @@ namespace ToBeFree
 
 		private bool testResult;
 		private Result currResult;
+		private int testSuccessNum;
 
 		public void Init()
 		{
@@ -59,9 +60,8 @@ namespace ToBeFree
 		{
 			foreach (EventData data in dataList)
 			{
-				Event curEvent = new Event(EnumConvert<eEventAction>.ToEnum(data.actionType), data.region,
-											EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty),
-											data.script, data.resultIndex, data.selectIndexList);
+				Event curEvent = new Event(EnumConvert<eEventAction>.ToEnum(data.actionType), 
+					EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, data.resultIndex, data.selectIndexList);
 
 				if (list[data.index] != null)
 				{
@@ -85,7 +85,7 @@ namespace ToBeFree
 			}
 		}
 
-		public bool CalculateTestResult(eTestStat testStat, Character character)
+		public void CalculateTestResult(eTestStat testStat, Character character)
 		{
 			if (testStat == eTestStat.ALL || testStat == eTestStat.NULL)
 			{
@@ -94,13 +94,13 @@ namespace ToBeFree
 			}
 			else
 			{
-				TestResult = DiceTester.Instance.Test(character.GetDiceNum(testStat)) > 0;
+				testSuccessNum = DiceTester.Instance.Test(character.GetDiceNum(testStat));
+				TestResult = testSuccessNum > 0;
 				UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
 			}
-			return TestResult;
 		}
 
-		public IEnumerator TreatResult(Result result, bool testResult, Character character)
+		public IEnumerator TreatResult(Result result, Character character)
 		{
 			string resultScript = string.Empty;
 			string resultEffect = string.Empty;
@@ -146,7 +146,7 @@ namespace ToBeFree
 		{
 			yield return GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 0.5f);
 
-			selectedEvent = Find(actionType, character.CurCity);
+			selectedEvent = Find(actionType);
 			if (selectedEvent == null)
 			{
 				Debug.LogError("selectedEvent is null");
@@ -177,7 +177,7 @@ namespace ToBeFree
 			}
 		}
 
-		public Event Find(eEventAction actionType, City city)
+		public Event Find(eEventAction actionType)
 		{
 			/*
 			 * 이벤트는 랜덤으로 발생
@@ -198,7 +198,7 @@ namespace ToBeFree
 		{
 			GameManager.Instance.OpenEventUI();
 
-			Debug.Log(currEvent.ActionType + " " + currEvent.Region + " " + currEvent.TestStat + " is activated.");
+			Debug.Log(currEvent.ActionType + " is activated.");
 
 			UIChanged(eUIEventLabelType.EVENT, currEvent.Script);
 			
@@ -218,10 +218,10 @@ namespace ToBeFree
 			else
 			{
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-				this.TestResult = CalculateTestResult(currEvent.Result.TestStat, character);
+				CalculateTestResult(currEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
-				yield return TreatResult(currEvent.Result, TestResult, character);
+				yield return TreatResult(currEvent.Result, character);
 			}
 		}
 
@@ -252,11 +252,10 @@ namespace ToBeFree
 			List<Event> findedEvents = new List<Event>();
 			foreach (Event elem in list)
 			{
-				if (elem.ActionType != actionType || elem.Region == "NULL" || elem.TestStat == eTestStat.NULL)
+				if( (elem.ActionType & actionType) == elem.ActionType)
 				{
-					continue;
+					findedEvents.Add(elem);
 				}
-				findedEvents.Add(elem);
 			}
 			if (findedEvents.Count == 0)
 			{
@@ -375,6 +374,14 @@ namespace ToBeFree
 			private set
 			{
 				currResult = value;
+			}
+		}
+
+		public int TestSuccessNum
+		{
+			get
+			{
+				return testSuccessNum;
 			}
 		}
 	}

@@ -27,6 +27,14 @@ namespace ToBeFree
 
 			yield return null;
 		}
+
+		public eEventAction ActionName
+		{
+			get
+			{
+				return actionName;
+			}
+		}
 	}
 
 	public class Rest : Action
@@ -42,13 +50,53 @@ namespace ToBeFree
 			Debug.Log("Rest Action Activated.");
 
 			yield return base.Activate(character);
+			
+			if (character.CheckSpecialEvent())
+			{
+				actionName = eEventAction.REST_SPECIAL;
+			}
+			else
+			{
+				actionName = eEventAction.REST;
+			}
 
-			Debug.Log("Cure for Rest");
-			character.Rest();
+			yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
 
-			yield return BuffManager.Instance.Rest_Cure_PatienceTest(character);
+			Event selectedEvent = EventManager.Instance.Find(actionName);
+			if (selectedEvent == null)
+			{
+				Debug.LogError("selectedEvent is null");
+				yield break;
+			}
 
+			GameManager.Instance.OpenEventUI();
+
+			Debug.Log(selectedEvent.ActionType + " is activated.");
+
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+			
+			// deal with result
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+			EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+			int testSuccessNum = EventManager.Instance.TestSuccessNum;
+
+			if(actionName == eEventAction.REST)
+			{
+				// TODO : 숨기 휴식 testSuccessNum -2
+				yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, testSuccessNum);
+			}
+			else
+			{
+				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
+			}
+
+			Debug.Log("DoCommand Finished.");
+			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+
+			character.AP++;
 		}
 	}
 
@@ -64,7 +112,17 @@ namespace ToBeFree
 		{
 			Debug.LogWarning("Work action activated.");
 			yield return base.Activate(character);
-			yield return (EventManager.Instance.DoCommand(actionName, character));
+			
+			if (character.CheckSpecialEvent())
+			{
+				actionName = eEventAction.WORK_START | eEventAction.WORK_END;
+			}
+			else
+			{
+				actionName = eEventAction.WORK;
+			}
+
+			yield return EventManager.Instance.DoCommand(actionName, character);
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 			
 			// if effect is money and event is succeeded,
@@ -103,7 +161,12 @@ namespace ToBeFree
 			Debug.LogWarning("Move action Activated.");
 			yield return base.Activate(character);
 
-			yield return EventManager.Instance.DoCommand(actionName, character);
+			if (character.CheckSpecialEvent())
+			{
+				// TODO : have to add bus action
+				actionName = eEventAction.MOVE;
+				yield return EventManager.Instance.DoCommand(actionName, character);
+			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
@@ -170,7 +233,7 @@ namespace ToBeFree
 		public QuestAction()
 		{
 			startTime = eStartTime.QUEST;
-			actionName = eEventAction.QUEST;
+			//actionName = eEventAction.QUEST;
 		}
 
 		public override IEnumerator Activate(Character character)
@@ -220,6 +283,14 @@ namespace ToBeFree
 			Debug.LogWarning("policesInThisCity.Count : " + policesInThisCity.Count);
 			for (int i = 0; i < policesInThisCity.Count; ++i)
 			{
+				if (character.CheckSpecialEvent())
+				{
+					actionName = eEventAction.INSPECT_SPECIAL;
+				}
+				else
+				{
+					actionName = eEventAction.INSPECT;
+				}
 				yield return EventManager.Instance.DoCommand(actionName, character);
 			}
 
@@ -301,7 +372,7 @@ namespace ToBeFree
 		public InfoAction()
 		{
 			startTime = eStartTime.INFO;
-			actionName = eEventAction.INFO;
+			//actionName = eEventAction.INFO;
 		}
 
 		public override IEnumerator Activate(Character character)

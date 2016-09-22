@@ -20,6 +20,7 @@ namespace ToBeFree {
 
 		private int discountNum;
 		
+		
 		// Use this for initialization
 		void Start()
 		{
@@ -34,7 +35,6 @@ namespace ToBeFree {
 			}
 
 			discountNum = 0;
-			
 		}
 		
 		void OnEnable()

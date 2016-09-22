@@ -27,6 +27,8 @@ namespace ToBeFree
 
 		private bool[] canAction = new bool[9];
 
+		private int specialEventProbability = 0;
+
 		public delegate void MoveCityHandler(string cityName);
 		public static event MoveCityHandler MoveCity = delegate { };
 		
@@ -188,7 +190,27 @@ namespace ToBeFree
 					yield return GameManager.Instance.ShowStateLabel("Game Over!", 1f);
 				}
 			}
+		}
 
+		public void AddSpecialEventProbability()
+		{
+			specialEventProbability += 20;
+			if (specialEventProbability > 100)
+			{
+				specialEventProbability = 100;
+			}
+		}
+
+		public bool CheckSpecialEvent()
+		{
+			System.Random r = new System.Random();
+
+			bool hasSpecialEvent = specialEventProbability > r.Next(0, 100);
+			if (hasSpecialEvent)
+			{
+				specialEventProbability = 0;
+			}
+			return hasSpecialEvent;
 		}
 
 		public void Reset()
