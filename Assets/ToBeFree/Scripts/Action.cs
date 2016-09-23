@@ -54,45 +54,49 @@ namespace ToBeFree
 			if (character.CheckSpecialEvent())
 			{
 				actionName = eEventAction.REST_SPECIAL;
+
+				yield return EventManager.Instance.DoCommand(actionName, character);
 			}
 			else
 			{
 				actionName = eEventAction.REST;
+
+				yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
+
+				Event selectedEvent = EventManager.Instance.Find(actionName);
+				if (selectedEvent == null)
+				{
+					Debug.LogError("selectedEvent is null");
+					yield break;
+				}
+
+				GameManager.Instance.OpenEventUI();
+
+				Debug.Log(selectedEvent.ActionType + " is activated.");
+
+				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+
+				// deal with result
+				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+				EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+				int testSuccessNum = EventManager.Instance.TestSuccessNum;
+
+				if (actionName == eEventAction.REST)
+				{
+					// TODO : 숨기 휴식 testSuccessNum -2
+					yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, testSuccessNum);
+				}
+				else
+				{
+					yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
+				}
+
+				Debug.Log("DoCommand Finished.");
 			}
 
-			yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
-
-			Event selectedEvent = EventManager.Instance.Find(actionName);
-			if (selectedEvent == null)
-			{
-				Debug.LogError("selectedEvent is null");
-				yield break;
-			}
-
-			GameManager.Instance.OpenEventUI();
-
-			Debug.Log(selectedEvent.ActionType + " is activated.");
-
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
 			
-			// deal with result
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-			EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
-
-			int testSuccessNum = EventManager.Instance.TestSuccessNum;
-
-			if(actionName == eEventAction.REST)
-			{
-				// TODO : 숨기 휴식 testSuccessNum -2
-				yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, testSuccessNum);
-			}
-			else
-			{
-				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
-			}
-
-			Debug.Log("DoCommand Finished.");
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 

@@ -109,35 +109,25 @@ namespace ToBeFree
 
 		public IEnumerator Rest_Cure_PatienceTest(Character character, int testSuccessNum)
 		{
-			GameManager.Instance.uiEventManager.OpenUI();
-			
-			if(testSuccessNum <= 0)
-			{
-				yield break;
-			}
-
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Rest Cure Patience Test");
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSuccessNum.ToString());
-
-			// 주사위 개수만큼 버프들부터 제거 후 나머지는 HP 회복에 씀
-			List<Buff> buffs = buffList.FindAll(x => x.Duration == eDuration.REST_PATIENCE);
-			if (buffs != null)
-			{
-				for (int i = 0; i < buffs.Count; ++i)
-				{
-					Buff buff = buffs[i];
-
-					if (testSuccessNum > 0)
-					{
-						yield return buff.DeactivateEffect(character);
-						yield return this.Delete(buff, character);
-						testSuccessNum--;
-					}
-				}
-			}
-
 			if (testSuccessNum > 0)
 			{
+				// 주사위 개수만큼 버프들부터 제거 후 나머지는 HP 회복에 씀
+				List<Buff> buffs = buffList.FindAll(x => x.Duration == eDuration.REST_PATIENCE);
+				if (buffs != null)
+				{
+					for (int i = 0; i < buffs.Count; ++i)
+					{
+						Buff buff = buffs[i];
+
+						if (testSuccessNum > 0)
+						{
+							yield return buff.DeactivateEffect(character);
+							yield return this.Delete(buff, character);
+							testSuccessNum--;
+						}
+					}
+				}
+
 				character.Stat.HP += testSuccessNum;
 			}
 
