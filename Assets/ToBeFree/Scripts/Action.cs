@@ -7,13 +7,15 @@ namespace ToBeFree
 {
 	public enum eCommand
 	{
-		MOVE, WORK, REST, SHOP, QUEST, INFO, BROKER, ESCAPE, SPECIAL
+		MOVE, WORK, REST, SHOP, QUEST, INFO, BROKER, ESCAPE, SPECIAL,
+		NULL
 	}
 
 	public class Action
 	{
 		protected eStartTime startTime;
 		protected eEventAction actionName;
+		protected int requiredTime;
 
 		public delegate void ActionEventHandler(eStartTime startTime, Character character);
 		static public event ActionEventHandler ActionEventNotify;
@@ -34,6 +36,23 @@ namespace ToBeFree
 			{
 				return actionName;
 			}
+			set
+			{
+				actionName = value;
+			}
+		}
+
+		public int RequiredTime
+		{
+			get
+			{
+				return requiredTime;
+			}
+
+			set
+			{
+				requiredTime = value;
+			}
 		}
 	}
 
@@ -53,14 +72,15 @@ namespace ToBeFree
 			
 			if (character.CheckSpecialEvent())
 			{
-				actionName = eEventAction.REST_SPECIAL;
+				if (actionName == eEventAction.REST)
+					actionName = eEventAction.REST_SPECIAL;
+				else if (actionName == eEventAction.HIDE) 
+					actionName = eEventAction.HIDE_SPECIAL;
 
 				yield return EventManager.Instance.DoCommand(actionName, character);
 			}
 			else
 			{
-				actionName = eEventAction.REST;
-
 				yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
 
 				Event selectedEvent = EventManager.Instance.Find(actionName);
@@ -81,26 +101,23 @@ namespace ToBeFree
 				EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
-				int testSuccessNum = EventManager.Instance.TestSuccessNum;
+				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime;
 
-				if (actionName == eEventAction.REST)
+				if(actionName == eEventAction.HIDE)
 				{
-					// TODO : 숨기 휴식 testSuccessNum -2
-					yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, testSuccessNum);
+					testSuccessNum -= 2;
 				}
-				else
-				{
-					yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
-				}
+
+				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSuccessNum.ToString());
+
+				yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, testSuccessNum);
 
 				Debug.Log("DoCommand Finished.");
 			}
-
-			
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			character.AP++;
+			character.AP += requiredTime + 1;
 		}
 	}
 
@@ -148,7 +165,7 @@ namespace ToBeFree
 				}
 			}
 
-			character.AP++;
+			character.AP += requiredTime + 1;
 		}
 	}
 

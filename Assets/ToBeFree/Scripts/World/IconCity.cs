@@ -72,28 +72,10 @@ namespace ToBeFree
 
 			LanguageSelection.selectLanguageForUI += ChangeLanguage;
 
+			EventDelegate.Parameter param = new EventDelegate.Parameter(this, string.Empty);
+			NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), this.GetComponent<UIButton>(), "ClickCity", new EventDelegate.Parameter[] { param });
 		}
-
-		//void Start()
-		//{
-		//	UIButton m_BtnTest = GetComponent<UIButton>();
-
-		//	EventDelegate.Parameter param = new EventDelegate.Parameter();
-
-		//	// 파라메타로 지정할 오브젝트가 있는 컴포넌트
-		//	param.obj = gameObject.GetComponent<Transform>();
-
-		//	// 해당 오브젝트의 변수명
-		//	param.field = "name";
-
-		//	// 이벤트 등록 및 파라메타 추가
-		//	EventDelegate onClick = new EventDelegate(GameObject.FindObjectOfType<GameManager>(), "ClickCity");
-
-		//	onClick.parameters[0] = param;
-
-		//	EventDelegate.Add(m_BtnTest.onClick, onClick);
-		//}
-
+		
 		public void ChangeLanguage(eLanguage language)
 		{
 			Language.CityData[] list = null;

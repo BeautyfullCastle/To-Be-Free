@@ -68,9 +68,7 @@ namespace ToBeFree
 
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
-
 			
-
 			uiSetting.SetActive(false);
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
@@ -94,9 +92,20 @@ namespace ToBeFree
 			}
 		}
 
+		private eCommand curCommandType = eCommand.NULL;
+
 		public void ClickCommand(string command)
 		{ 
-			eCommand commandType = EnumConvert<eCommand>.ToEnum(command);			
+			eCommand commandType = EnumConvert<eCommand>.ToEnum(command);
+
+			commandPopupGrid.transform.DestroyChildren();
+
+			if (curCommandType == commandType)
+			{
+				curCommandType = eCommand.NULL;
+				return;
+			}
+			
 			switch (commandType)
 			{
 				case eCommand.MOVE:
@@ -123,9 +132,16 @@ namespace ToBeFree
 
 				case eCommand.WORK:
 					action = new Work();
+
+					InstantiatePopup("Normal Work", eEventAction.WORK);
+
 					break;
 				case eCommand.REST:
 					action = new Rest();
+
+					InstantiatePopup("Normal Rest", eEventAction.REST);
+					InstantiatePopup("Hide Rest", eEventAction.HIDE);
+
 					break;
 				case eCommand.QUEST:
 					action = new QuestAction();
@@ -142,8 +158,38 @@ namespace ToBeFree
 			}
 
 			character.CanAction[(int)commandType] = false;
+			curCommandType = commandType;
 		}
 
+		public UIGrid commandPopupGrid;
+		private bool isActStart = false;
+
+		private void InstantiatePopup(string name, eEventAction actionType)
+		{
+			GameObject prefab = Resources.Load("Command Popup") as GameObject;
+			GameObject obj = Instantiate(prefab) as GameObject;
+			obj.transform.SetParent(commandPopupGrid.transform);
+			obj.transform.localScale = Vector3.one;
+			UICommandPopup popup = obj.GetComponent<UICommandPopup>();
+			popup.nameLabel.text = name;
+			popup.actionType = actionType;
+
+			commandPopupGrid.Reposition();
+		}
+
+		public void ClickCommandRequiredTime(eEventAction actionType, string requiredTime)
+		{
+			int iRequiredTime = int.Parse(requiredTime) - 1;
+
+			action.RequiredTime = iRequiredTime;
+			action.ActionName = actionType;
+
+			isActStart = true;
+
+			curCommandType = eCommand.NULL;
+			commandPopupGrid.transform.DestroyChildren();
+		}
+		
 		private void Update()
 		{
 			if(Input.GetKeyDown(KeyCode.KeypadPlus))
@@ -386,18 +432,18 @@ namespace ToBeFree
 				command.SetActiveCommands();
 			}
 			commandUIObj.GetComponent<UIGrid>().Reposition();
-
-			action = null;
-			while (action == null)
+			
+			while(isActStart==false)
 			{
 				yield return null;
 			}
 			commandUIObj.SetActive(false);
+			isActStart = false;
 			
 			// 공안 이벤트
 			// if selected event is not move,
 			// check polices in current city and activate police events.
-			if (!(action is Move))
+			if ((action is Move == false) || (action is Rest && action.ActionName == eEventAction.HIDE) )
 			{
 				yield return inspectAction.Activate(character);
 			}

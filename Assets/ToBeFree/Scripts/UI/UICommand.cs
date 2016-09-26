@@ -19,20 +19,20 @@ public class UICommand : MonoBehaviour {
 	{
 		if (skippedDay < 2)
 		{
-			this.gameObject.SetActive(false);
+			this.GetComponent<UIButton>().isEnabled = false;
 		}
 		else
 		{
 			if (this.name == "QUEST" || this.name == "INFO" || this.name == "BROKER")
 			{
-				this.gameObject.SetActive(PieceManager.Instance.GetNumberOfPiece(EnumConvert<eSubjectType>.ToEnum(this.name), GameManager.Instance.Character.CurCity) > 0);
+				this.GetComponent<UIButton>().isEnabled = PieceManager.Instance.GetNumberOfPiece(EnumConvert<eSubjectType>.ToEnum(this.name), GameManager.Instance.Character.CurCity) > 0;
 			}
 			else
 			{
-				this.gameObject.SetActive(true);
+				this.GetComponent<UIButton>().isEnabled = true;
 			}
 
-			if (this.name == "QUEST" && this.gameObject.activeSelf)
+			if (this.name == "QUEST" && GetComponent<UIButton>().isEnabled)
 			{
 				QuestPiece piece = PieceManager.Instance.Find(eSubjectType.QUEST, GameManager.Instance.Character.CurCity) as QuestPiece;
 				Quest quest = piece.CurQuest;
@@ -41,32 +41,21 @@ public class UICommand : MonoBehaviour {
 
 			if(this.name == "SHOP")
 			{
-				this.gameObject.SetActive(GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.BIGCITY
+				this.GetComponent<UIButton>().isEnabled = (GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.BIGCITY
 										|| GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.MIDDLECITY);
 			}
 
 			// one command can use in one day.
-			if (this.gameObject.activeSelf)
+			if (this.GetComponent<UIButton>().isEnabled)
 			{
-				this.gameObject.SetActive(GameManager.Instance.Character.CanAction[(int)EnumConvert<eCommand>.ToEnum(this.gameObject.name)]);
+				this.GetComponent<UIButton>().isEnabled = GameManager.Instance.Character.CanAction[(int)EnumConvert<eCommand>.ToEnum(this.gameObject.name)];
 			}
 		}
 
-		//if(GameManager.Instance.Character.CurCity.Area == eArea.MONGOLIA)
+		//if(this.GetComponent<UIButton>().isEnabled == false)
 		//{
-		//	if(!(this.commandType == eCommand.MOVE || this.commandType == eCommand.REST))
-		//	{
-		//		this.GetComponent<UIButton>().isEnabled = false;
-		//	}
+		//	this.GetComponent<UIButton>().isEnabled = true;
 		//}
-
-		if(this.GetComponent<UIButton>().isEnabled == false)
-		{
-			//if (GameManager.Instance.Character.CurCity.Area != eArea.MONGOLIA)
-			{
-				this.GetComponent<UIButton>().isEnabled = true;
-			}
-		}
 	}
 
 	private void Instance_NotifyEveryday()
