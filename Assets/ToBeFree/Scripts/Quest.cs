@@ -4,8 +4,9 @@ namespace ToBeFree
 {
     public enum eQuestActionType
     {
-        QUEST, GLOBAL_QUEST
-    }
+        QUEST,
+		QUEST_BROKERINFO
+	}
 
     public class Quest
     {

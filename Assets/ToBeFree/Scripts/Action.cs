@@ -182,49 +182,53 @@ namespace ToBeFree
 			Debug.LogWarning("Move action Activated.");
 			yield return base.Activate(character);
 
+			bool dontMove = false;
+
 			if (character.CheckSpecialEvent())
 			{
 				// TODO : have to add bus action
 				actionName = eEventAction.MOVE;
 				yield return EventManager.Instance.DoCommand(actionName, character);
-			}
 
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			EffectAmount[] effects = null;
-			if(EventManager.Instance.TestResult)
-			{
-				effects = EventManager.Instance.CurrResult.Success.EffectAmounts;
-			}
-			else
-			{
-				effects = EventManager.Instance.CurrResult.Failure.EffectAmounts;
-			}
-			bool dontMove = false;
-			if (effects != null)
-			{
-				for (int i = 0; i < effects.Length; ++i)
+
+				EffectAmount[] effects = null;
+				if (EventManager.Instance.TestResult)
 				{
-					if (effects[i].Effect == null)
+					effects = EventManager.Instance.CurrResult.Success.EffectAmounts;
+				}
+				else
+				{
+					effects = EventManager.Instance.CurrResult.Failure.EffectAmounts;
+				}
+
+				if (effects != null)
+				{
+					for (int i = 0; i < effects.Length; ++i)
 					{
-						continue;
-					}
-					if (effects[i].Effect.SubjectType == eSubjectType.CHARACTER
-						&& effects[i].Effect.VerbType == eVerbType.MOVE)
-					{
-						dontMove = true;
-						break;
+						if (effects[i].Effect == null)
+						{
+							continue;
+						}
+						if (effects[i].Effect.SubjectType == eSubjectType.CHARACTER
+							&& effects[i].Effect.VerbType == eVerbType.MOVE)
+						{
+							dontMove = true;
+							break;
+						}
 					}
 				}
+
+				yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 			}
 
 			if (dontMove == false)
 			{
 				List<BezierPoint> path = CityManager.Instance.CalcPath();
 				int pathAP = 0;
-				foreach(BezierPoint point in path)
+				foreach (BezierPoint point in path)
 				{
-					if(point.GetComponent<IconCity>().type == eNodeType.MOUNTAIN)
+					if (point.GetComponent<IconCity>().type == eNodeType.MOUNTAIN)
 					{
 						pathAP += 2;
 					}
@@ -401,6 +405,161 @@ namespace ToBeFree
 			Debug.LogWarning("Info action activated.");
 			NGUIDebug.Log("Info action");
 
+			base.Activate(character);
+
+			if (character.CheckSpecialEvent())
+			{
+				if(actionName == eEventAction.INVESTIGATION_BROKER)
+				{
+					actionName = eEventAction.INVESTIGATION_BROKER_SPECIAL;
+				}
+				else if(actionName == eEventAction.INVESTIGATION_CITY)
+				{
+					actionName = eEventAction.INVESTIGATION_CITY_SPECIAL;
+				}
+				else if(actionName == eEventAction.INVESTIGATION_POLICE)
+				{
+					actionName = eEventAction.INVESTIGATION_POLICE_SPECIAL;
+				}
+				else if(actionName == eEventAction.GATHERING)
+				{
+					actionName = eEventAction.GATHERING_SPECIAL;
+				}
+
+				yield return EventManager.Instance.DoCommand(actionName, character);
+			}
+			// 일반 조사
+			else
+			{
+				yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
+
+				Event selectedEvent = EventManager.Instance.Find(actionName);
+				if (selectedEvent == null)
+				{
+					Debug.LogError("selectedEvent is null");
+					yield break;
+				}
+
+				GameManager.Instance.OpenEventUI();
+
+				Debug.Log(selectedEvent.ActionType + " is activated.");
+
+				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+
+				// deal with result
+				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+				EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime;
+				
+				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSuccessNum.ToString());
+
+				List<EffectAmount> list = new List<EffectAmount>(3);
+				List<EffectAmount> finalList = new List<EffectAmount>();
+
+				if (ActionName == eEventAction.INVESTIGATION_BROKER)
+				{
+					Quest quest = QuestManager.Instance.FindRand(eQuestActionType.QUEST_BROKERINFO);
+					int questIndex = QuestManager.Instance.IndexOf(quest);
+					EffectAmount brokerInfoQuest = new EffectAmount(new Effect(eSubjectType.QUEST, eVerbType.LOAD), questIndex);
+
+					EffectAmount brokerInfo = new EffectAmount(new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.INFO));
+
+					//하나성공: 브로커정보 퀘스트 받음
+					if (testSuccessNum == 1)
+					{
+						finalList.Add(brokerInfoQuest);
+					}
+					//둘성공: 브로커정보 퀘스트 또는 브로커정보를 얻음
+					if (testSuccessNum == 2)
+					{
+						list.Add(brokerInfoQuest);
+						list.Add(brokerInfo);
+
+						finalList.Add(list[UnityEngine.Random.Range(0, list.Count - 1)]);
+					}
+					//셋성공: 브로커정보를 얻음
+					else if (testSuccessNum >= 3)
+					{
+						finalList.Add(brokerInfoQuest);
+						finalList.Add(brokerInfo);
+					}
+				}
+				else if (ActionName == eEventAction.INVESTIGATION_CITY)
+				{
+					//돈, 퀘스트, 아이템 중 1, 2, 3 (중복 없음)
+					int money = 1;
+					Effect moneyEffect = new Effect(eSubjectType.MONEY, eVerbType.ADD, eObjectType.SPECIFIC);
+					EffectAmount moneyEffectAmount = new EffectAmount(moneyEffect, money);
+
+					Effect questEffect = new Effect(eSubjectType.QUEST, eVerbType.LOAD);
+					EffectAmount questEffectAmount = new EffectAmount(moneyEffect, UnityEngine.Random.Range(0, QuestManager.Instance.List.Length - 1));
+
+					Effect itemEffect = new Effect(eSubjectType.ITEM, eVerbType.ADD, eObjectType.ALL);					
+					EffectAmount itemEffectAmount = new EffectAmount(itemEffect, -99);
+					
+					list.Add(moneyEffectAmount);
+					list.Add(questEffectAmount);
+					list.Add(itemEffectAmount);
+					
+					int rand = UnityEngine.Random.Range(0, 2);
+
+					if (testSuccessNum == 1)
+					{
+						finalList.Add(list[rand]);
+					}
+					else if (testSuccessNum == 2)
+					{
+						list.RemoveAt(rand);
+						finalList.AddRange(list);
+					}
+					else if (testSuccessNum >= 3)
+					{
+						finalList.AddRange(list);
+					}
+				}
+				else if(ActionName == eEventAction.INVESTIGATION_POLICE)
+				{
+					//공안의 스탯, 공안의 위치, 집중단속확률 중 1, 2, 3 (중복 없음)
+					EffectAmount addStat = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.ADD, eObjectType.STAT), 1);
+					EffectAmount revealPosition = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.POSITION), 1);
+					EffectAmount getProbability = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.CRACKDOWN_PROBABILITY), 1);
+
+					list.Add(addStat);
+					list.Add(revealPosition);
+					list.Add(getProbability);
+
+					int rand = UnityEngine.Random.Range(0, 2);
+
+					if (testSuccessNum == 1)
+					{
+						finalList.Add(list[rand]);
+					}
+					else if (testSuccessNum == 2)
+					{
+						list.RemoveAt(rand);
+						finalList.AddRange(list);
+					}
+					else if (testSuccessNum >= 3)
+					{
+						finalList.AddRange(list);
+					}
+				}
+
+				selectedEvent.Result.Success.EffectAmounts = finalList.ToArray();
+				
+
+				Debug.Log("DoCommand Finished.");
+			}
+
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+
+			character.AP += requiredTime + 1;
+
+			
+
+			// 이전 브로커 정보 처리했던 부분
 			Piece piece = PieceManager.Instance.GetPieceOfCity(eSubjectType.INFO, character.CurCity);
 			if(piece != null)
 			{

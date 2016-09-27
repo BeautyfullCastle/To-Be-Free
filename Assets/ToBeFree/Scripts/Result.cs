@@ -61,6 +61,10 @@ namespace ToBeFree
             {
                 return effects;
             }
+			set
+			{
+				EffectAmounts = value;
+			}
         }
 
         public ResultScriptAndEffects(string script, EffectAmount[] effects)

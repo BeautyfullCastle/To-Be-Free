@@ -23,20 +23,27 @@ public class UICommand : MonoBehaviour {
 		}
 		else
 		{
-			if (this.name == "QUEST" || this.name == "INFO" || this.name == "BROKER")
+			if (this.name == "BROKER")
 			{
-				this.GetComponent<UIButton>().isEnabled = PieceManager.Instance.GetNumberOfPiece(EnumConvert<eSubjectType>.ToEnum(this.name), GameManager.Instance.Character.CurCity) > 0;
+				bool hasBroker = PieceManager.Instance.GetNumberOfPiece(eSubjectType.BROKER, GameManager.Instance.Character.CurCity) > 0;
+
+				QuestPiece piece = PieceManager.Instance.Find(eSubjectType.QUEST, GameManager.Instance.Character.CurCity) as QuestPiece;
+				bool hasAndCanDoQuest = false;
+				if (piece == null)
+				{
+					hasAndCanDoQuest = false;
+				}
+				else
+				{
+					Quest quest = piece.CurQuest;
+					hasAndCanDoQuest = quest.CheckCondition(GameManager.Instance.Character);
+				}
+
+				this.GetComponent<UIButton>().isEnabled = (hasBroker | hasAndCanDoQuest);
 			}
 			else
 			{
 				this.GetComponent<UIButton>().isEnabled = true;
-			}
-
-			if (this.name == "QUEST" && GetComponent<UIButton>().isEnabled)
-			{
-				QuestPiece piece = PieceManager.Instance.Find(eSubjectType.QUEST, GameManager.Instance.Character.CurCity) as QuestPiece;
-				Quest quest = piece.CurQuest;
-				this.GetComponent<UIButton>().isEnabled = quest.CheckCondition(GameManager.Instance.Character);
 			}
 
 			if(this.name == "SHOP")

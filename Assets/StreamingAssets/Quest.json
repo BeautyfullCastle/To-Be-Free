@@ -41,7 +41,7 @@
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 95,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 추가를 막기",
 			"conditionScript": "돈 5위안"
@@ -64,7 +64,7 @@
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 95,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 재배치를 막기",
 			"conditionScript": "돈 5위안"
@@ -156,7 +156,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 97,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "돈을 줘서 도박 빚 갚기",
 			"conditionScript": "돈 5위안"
@@ -179,7 +179,7 @@
 			"failureEffectValueList": [
 				92
 			],
-			"eventIndex": 96,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "일을 통해 공안 신고 막기",
 			"conditionScript": "NULL"
@@ -248,7 +248,7 @@
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 97,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "돈을 줘서 도박 빚 갚기",
 			"conditionScript": "돈 5위안"
@@ -271,7 +271,7 @@
 			"failureEffectValueList": [
 				92
 			],
-			"eventIndex": 98,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "아이템 배달로 공안 신고 막기",
 			"conditionScript": "NULL"
@@ -294,7 +294,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 99,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "도박으로 돈 획득",
 			"conditionScript": "NULL"
@@ -317,7 +317,7 @@
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 100,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "브로커정보를 팔아 돈 획득",
 			"conditionScript": "브로커정보 1"
@@ -340,7 +340,7 @@
 			"failureEffectValueList": [
 				1
 			],
-			"eventIndex": 95,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 추가를 막기",
 			"conditionScript": "돈 5위안"
@@ -363,9 +363,32 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 101,
+			"eventIndex": 26,
 			"duration": 2,
 			"uiName": "일을 해서 돈 획득",
+			"conditionScript": "NULL"
+		},
+		{
+			"index": 16,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"actionType": "QUEST_BROKERINFO",
+			"region": "NULL",
+			"stat": "NULL",
+			"difficulty": "EASY",
+			"script": "브로커 정보 퀘스트를 받습니다.",
+			"failureScript": "브로커 정보 획득 기간 종료",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			],
+			"eventIndex": 27,
+			"duration": 2,
+			"uiName": "시간이 되면 브로커정보 삭제",
 			"conditionScript": "NULL"
 		}
 	]

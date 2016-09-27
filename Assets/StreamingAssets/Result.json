@@ -82,7 +82,7 @@
 			"successEffectValueList": [
 				-99
 			],
-			"failureScript": 0,
+			"failureScript": "탈출을 시도했지만 붙잡혔습니다.",
 			"failureEffectIndexList": [
 				-99
 			],
@@ -469,75 +469,39 @@
 			]
 		},
 		{
-			"index": 0,
-			"stat": 0,
-			"successScript": 0,
+			"index": 26,
+			"stat": "PATIENCE",
+			"successScript": "퀘스트 결과 성공",
 			"successEffectIndexList": [
-				0
+				-99
 			],
 			"successEffectValueList": [
-				0
+				-99
 			],
-			"failureScript": 0,
+			"failureScript": "퀘스트 결과 실패",
 			"failureEffectIndexList": [
-				0
+				-99
 			],
 			"failureEffectValueList": [
-				0
+				-99
 			]
 		},
 		{
-			"index": 0,
-			"stat": 0,
-			"successScript": 0,
+			"index": 27,
+			"stat": "NULL",
+			"successScript": "브로커 정보 퀘스트 결과 성공(무조건)",
 			"successEffectIndexList": [
-				0
+				59
 			],
 			"successEffectValueList": [
-				0
+				1
 			],
-			"failureScript": 0,
+			"failureScript": "NULL",
 			"failureEffectIndexList": [
-				0
+				-99
 			],
 			"failureEffectValueList": [
-				0
-			]
-		},
-		{
-			"index": 0,
-			"stat": 0,
-			"successScript": 0,
-			"successEffectIndexList": [
-				0
-			],
-			"successEffectValueList": [
-				0
-			],
-			"failureScript": 0,
-			"failureEffectIndexList": [
-				0
-			],
-			"failureEffectValueList": [
-				0
-			]
-		},
-		{
-			"index": 0,
-			"stat": 0,
-			"successScript": 0,
-			"successEffectIndexList": [
-				0
-			],
-			"successEffectValueList": [
-				0
-			],
-			"failureScript": 0,
-			"failureEffectIndexList": [
-				0
-			],
-			"failureEffectValueList": [
-				0
+				-99
 			]
 		}
 	]

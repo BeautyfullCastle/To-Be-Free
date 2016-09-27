@@ -142,7 +142,7 @@
 		},
 		{
 			"index": 14,
-			"actionType": "INVESTIGATION_BROKER",
+			"actionType": "INVESTIGATION_BROKER_SPECIAL",
 			"difficulty": "EASY",
 			"script": "특수이벤트 브로커조사",
 			"resultIndex": 14,
@@ -152,7 +152,7 @@
 		},
 		{
 			"index": 15,
-			"actionType": "INVESTIGATION_POLICE",
+			"actionType": "INVESTIGATION_POLICE_SPECIAL",
 			"difficulty": "EASY",
 			"script": "특수이벤트 공안조사",
 			"resultIndex": 15,
@@ -162,7 +162,7 @@
 		},
 		{
 			"index": 16,
-			"actionType": "INVESTIGATION_CITY",
+			"actionType": "INVESTIGATION_CITY_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "특수이벤트 도시조사",
 			"resultIndex": 16,
@@ -256,6 +256,26 @@
 			"difficulty": "NORMAL",
 			"script": "특수이벤트 숨기",
 			"resultIndex": 25,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 26,
+			"actionType": "QUEST",
+			"difficulty": "EASY",
+			"script": "퀘스트 결과 이벤트",
+			"resultIndex": 26,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 27,
+			"actionType": "QUEST_BROKERINFO",
+			"difficulty": "EASY",
+			"script": "브로커 정보 퀘스트 결과 이벤트",
+			"resultIndex": 27,
 			"selectIndexList": [
 				-99
 			]

@@ -80,10 +80,10 @@ namespace ToBeFree
 				return;
 
 			CityManager.Instance.NextCity = city;
-			action = new Move();
 
 			readyToMove = false;
-			
+			isActStart = true;
+
 			foreach (IconCity c in iconCities)
 			{
 				c.GetComponent<TweenAlpha>().value = 1;
@@ -109,25 +109,11 @@ namespace ToBeFree
 			switch (commandType)
 			{
 				case eCommand.MOVE:
-					readyToMove = true;
+					action = new Move();
 
-					// set the button disabled every city.
-					foreach (IconCity c in iconCities)
-					{
-						c.GetComponent<TweenAlpha>().value = 1;
-						c.GetComponent<TweenAlpha>().enabled = false;
-						c.GetComponent<UIButton>().isEnabled = false;
-					}
-
-					// set the cities abled and twinkle only you can go.
-					List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP);
-					foreach(City city in cities)
-					{
-						IconCity iconCity = Array.Find<IconCity>(iconCities, x => x.City == city);
-						iconCity.GetComponent<TweenAlpha>().enabled = true;
-						iconCity.GetComponent<UIButton>().isEnabled = true;
-						Debug.Log("City you can go : " + city.Name);
-					}
+					InstantiatePopup("Normal Move", eEventAction.MOVE);
+					InstantiatePopup("Bus", eEventAction.MOVE_BUS);
+					
 					break;
 
 				case eCommand.WORK:
@@ -143,17 +129,23 @@ namespace ToBeFree
 					InstantiatePopup("Hide Rest", eEventAction.HIDE);
 
 					break;
-				case eCommand.QUEST:
-					action = new QuestAction();
-					break;
 				case eCommand.SHOP:
 					action = new EnterToShop();
 					break;
 				case eCommand.INFO:
 					action = new InfoAction();
+
+					InstantiatePopup("City Investigation", eEventAction.INVESTIGATION_CITY);
+					InstantiatePopup("Broker Investigation", eEventAction.INVESTIGATION_BROKER);
+					InstantiatePopup("Police Investigation", eEventAction.INVESTIGATION_POLICE);
+					InstantiatePopup("Gathering Investigation", eEventAction.GATHERING);
+
 					break;
+					// broker and quest command
 				case eCommand.BROKER:
-					action = new BrokerAction();
+					InstantiatePopup("Broker", eEventAction.BROKER);
+					InstantiatePopup("Quest", eEventAction.QUEST);
+
 					break;
 			}
 
@@ -174,20 +166,61 @@ namespace ToBeFree
 			popup.nameLabel.text = name;
 			popup.actionType = actionType;
 
+			if (actionType == (actionType & (eEventAction.MOVE | eEventAction.MOVE_BUS | eEventAction.BROKER | eEventAction.QUEST)))
+			{
+				popup.requiredTimeButtons[1].gameObject.SetActive(false);
+				popup.requiredTimeButtons[2].gameObject.SetActive(false);
+			}
+
 			commandPopupGrid.Reposition();
 		}
 
 		public void ClickCommandRequiredTime(eEventAction actionType, string requiredTime)
 		{
+			if (actionType == eEventAction.BROKER)
+			{
+				action = new BrokerAction();
+			}
+			else if (actionType == eEventAction.QUEST)
+			{
+				action = new QuestAction();
+			}
+			
 			int iRequiredTime = int.Parse(requiredTime) - 1;
 
 			action.RequiredTime = iRequiredTime;
 			action.ActionName = actionType;
-
-			isActStart = true;
-
+			
 			curCommandType = eCommand.NULL;
 			commandPopupGrid.transform.DestroyChildren();
+
+			
+			if (actionType != (actionType & (eEventAction.MOVE | eEventAction.MOVE_BUS)))
+			{
+				isActStart = true;
+			}
+			else
+			{
+				readyToMove = true;
+
+				// set the button disabled every city.
+				foreach (IconCity c in iconCities)
+				{
+					c.GetComponent<TweenAlpha>().value = 1;
+					c.GetComponent<TweenAlpha>().enabled = false;
+					c.GetComponent<UIButton>().isEnabled = false;
+				}
+
+				// set the cities abled and twinkle only you can go.
+				List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP);
+				foreach (City city in cities)
+				{
+					IconCity iconCity = Array.Find<IconCity>(iconCities, x => x.City == city);
+					iconCity.GetComponent<TweenAlpha>().enabled = true;
+					iconCity.GetComponent<UIButton>().isEnabled = true;
+					Debug.Log("City you can go : " + city.Name);
+				}
+			}
 		}
 		
 		private void Update()
@@ -382,6 +415,11 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.DAY, character);
 
+#if UNITY_EDITOR
+			// for test
+			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
+			PieceManager.Instance.Add(new QuestPiece(QuestManager.Instance.List[1], character, character.CurCity, eSubjectType.QUEST));
+#endif
 			/*
 			 * 행동 시
 			특수 이벤트 나올지 검사
@@ -594,19 +632,19 @@ namespace ToBeFree
 				}
 			}
 
-			// check current quest's end time and apply the result
-			//List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
-			//if (questPieces != null && questPieces.Count > 0)
-			//{
-			//	List<Piece> pastQuestPieces = questPieces.FindAll(x => x.CheckDuration());
-			//	foreach (QuestPiece pastQuestPiece in pastQuestPieces)
-			//	{
-			//		yield return pastQuestPiece.TreatPastQuests(character);
-			//	}
-			//}
+			//check current quest's end time and apply the result
+			List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
+			if (questPieces != null && questPieces.Count > 0)
+			{
+				List<Piece> pastQuestPieces = questPieces.FindAll(x => x.CheckDuration());
+				foreach (QuestPiece pastQuestPiece in pastQuestPieces)
+				{
+					yield return pastQuestPiece.TreatPastQuests(character);
+				}
+			}
 
 			//yield return PutPieces();
-					 
+
 			// activate global event
 			//yield return EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
 

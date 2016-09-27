@@ -196,6 +196,12 @@ namespace ToBeFree
 
 		public IEnumerator ActivateEvent(Event currEvent, Character character)
 		{
+			if(currEvent == null)
+			{
+				Debug.LogError("ActivateEvent : currEvent is null!");
+				yield break;
+			}
+
 			GameManager.Instance.OpenEventUI();
 
 			Debug.Log(currEvent.ActionType + " is activated.");

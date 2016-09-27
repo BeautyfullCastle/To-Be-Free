@@ -51,7 +51,7 @@ namespace ToBeFree
 				Event event_ = null;
 				if (data.eventIndex != -99)
 				{
-					event_ = EventManager.Instance.List[0];// data.eventIndex];
+					event_ = EventManager.Instance.List[data.eventIndex];
 				}
 
 				Quest quest = new Quest(EnumConvert<eSubjectType>.ToEnum(data.subjectType), EnumConvert<eObjectType>.ToEnum(data.objectType),
@@ -69,9 +69,19 @@ namespace ToBeFree
 		
 		public Quest FindRand()
 		{
-			System.Random r = new System.Random();
-			int index = r.Next(0, list.Length-1);
+			int index = UnityEngine.Random.Range(0, list.Length-1);
 			return list[index];
+		}
+		
+		public Quest FindRand(eQuestActionType questActionType)
+		{
+			Quest[] array = Array.FindAll(list, x => x.ActionType == questActionType);
+			return array[UnityEngine.Random.Range(0, array.Length - 1)];
+		}
+
+		public int IndexOf(Quest quest)
+		{
+			return Array.IndexOf(list, quest as Quest);
 		}
 
 		public void ActivateResultEffects(EffectAmount[] effectAmounts, Character character)
