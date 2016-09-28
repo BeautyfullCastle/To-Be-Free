@@ -5,136 +5,201 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-    public class Piece
-    {
-        protected City city;
-        protected eSubjectType subjectType;
+	public class Piece
+	{
+		protected City city;
+		protected eSubjectType subjectType;
 
-        public Piece(City city, eSubjectType subjectType)
-        {
-            this.city = city;
-            this.subjectType = subjectType;
-        }
+		public Piece(City city, eSubjectType subjectType)
+		{
+			this.city = city;
+			this.subjectType = subjectType;
+		}
 
-        public City City
-        {
-            get
-            {
-                return city;
-            }
-        }
+		public City City
+		{
+			get
+			{
+				return city;
+			}
+		}
 
-        public eSubjectType SubjectType
-        {
-            get
-            {
-                return subjectType;
-            }
-        }
+		public eSubjectType SubjectType
+		{
+			get
+			{
+				return subjectType;
+			}
+		}
 
-        public IEnumerator MoveCity(City city)
-        {
-            yield return GameManager.Instance.MoveDirectingCam(
-                GameManager.Instance.FindGameObject(this.City.Name.ToString()).transform.position,
-                GameManager.Instance.FindGameObject(city.Name.ToString()).transform.position, 2f);
+		public IEnumerator MoveCity(City city)
+		{
+			yield return GameManager.Instance.MoveDirectingCam(
+				GameManager.Instance.FindGameObject(this.City.Name.ToString()).transform.position,
+				GameManager.Instance.FindGameObject(city.Name.ToString()).transform.position, 2f);
 
-            this.city = city;            
-        }
+			this.city = city;            
+		}
 
-        public virtual bool CheckDuration()
-        {
-            return false;
-        }
-    }
+		public virtual bool CheckDuration()
+		{
+			return false;
+		}
+	}
 
-    public class Police : Piece
-    {
-        public Police(City city, eSubjectType subjectType) : base(city, subjectType)
-        {
-        }
-    }
+	public class Police : Piece
+	{
+		private int power;
+		private int movement;
+		readonly private int max;
 
-    public class Information : Piece
-    {
-        public Information(City city, eSubjectType subjectType) : base(city, subjectType)
-        {
-        }
-    }
+		public Police(City city, eSubjectType subjectType) : base(city, subjectType)
+		{
+			Power = UnityEngine.Random.Range(1, 3);
+			Movement = UnityEngine.Random.Range(1, 3);
+			max = 5;
+		}
 
-    public class Broker : Piece
-    {
-        public Broker(City city, eSubjectType subjectType) : base(city, subjectType)
-        {
-        }
-    }
+		public IEnumerator AddStat(bool IsCrackDown)
+		{
+			if (IsCrackDown)
+			{
+				Power++;
+				Movement++;
+			}
+			else
+			{
+				int randIndex = UnityEngine.Random.Range(0, 1);
+				if (randIndex == 0)
+				{
+					Power++;
+				}
+				else if (randIndex == 1)
+				{
+					Movement++;
+				}
+			}
+		}
 
-    public class QuestPiece : Piece
-    {
-        private Quest quest;
-        private Character character;
+		public bool IsMaxStat()
+		{
+			return (Power >= max | Movement >= max);
+		}
 
-        private int pastWeeks;
+		public int Power
+		{
+			get
+			{
+				return power;
+			}
+			private set
+			{
+				power = value;
+				if (power > max)
+				{
+					power = max;
+				}
+			}
+		}
 
-        public delegate void AddQuestHandler(QuestPiece piece);
-        public static event AddQuestHandler AddQuest;
+		public int Movement
+		{
+			get
+			{
+				return movement;
+			}
+			private set
+			{
+				movement = value;
+				if (movement > max)
+				{
+					movement = max;
+				}
+			}
+		}
+	}
 
-        public QuestPiece(Quest quest, Character character, City city, eSubjectType subjectType) : base(city, subjectType)
-        {
-            this.quest = quest;
-            this.character = character;
-            
-            //TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
+	public class Information : Piece
+	{
+		public Information(City city, eSubjectType subjectType) : base(city, subjectType)
+		{
+		}
+	}
 
-            AddQuest(this);
-        }
+	public class Broker : Piece
+	{
+		public Broker(City city, eSubjectType subjectType) : base(city, subjectType)
+		{
+		}
+	}
 
-        public void WeekIsGone()
-        {
-            pastWeeks++;
-        }
+	public class QuestPiece : Piece
+	{
+		private Quest quest;
+		private Character character;
 
-        public IEnumerator TreatPastQuests(Character character)
-        {
-            if(CheckDuration())
-            {
-                GameManager.Instance.OpenEventUI();
+		private int pastWeeks;
 
-                GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT, CurQuest.FailureEffects.Script);
+		public delegate void AddQuestHandler(QuestPiece piece);
+		public static event AddQuestHandler AddQuest;
 
-                string effectScript = string.Empty;
-                foreach(EffectAmount effectAmount in CurQuest.FailureEffects.EffectAmounts)
-                {
-                    effectScript += effectAmount.ToString();
-                }
-                GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT_EFFECT, effectScript);
+		public QuestPiece(Quest quest, Character character, City city, eSubjectType subjectType) : base(city, subjectType)
+		{
+			this.quest = quest;
+			this.character = character;
+			
+			//TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 
-                yield return EventManager.Instance.WaitUntilFinish();
+			AddQuest(this);
+		}
 
-                GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(this.CurQuest);
+		public void WeekIsGone()
+		{
+			pastWeeks++;
+		}
 
-                yield return null;
-            }
-        }
+		public IEnumerator TreatPastQuests(Character character)
+		{
+			if(CheckDuration())
+			{
+				GameManager.Instance.OpenEventUI();
 
-        public override bool CheckDuration()
-        {
-            return pastWeeks >= quest.Duration;
-        }
+				GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT, CurQuest.FailureEffects.Script);
 
-        public Quest CurQuest
-        {
-            get
-            {
-                return quest;
-            }
-        }
+				string effectScript = string.Empty;
+				foreach(EffectAmount effectAmount in CurQuest.FailureEffects.EffectAmounts)
+				{
+					effectScript += effectAmount.ToString();
+				}
+				GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT_EFFECT, effectScript);
 
-        public int PastWeeks
-        {
-            get
-            {
-                return pastWeeks;
-            }
-        }
-    }
+				yield return EventManager.Instance.WaitUntilFinish();
+
+				GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(this.CurQuest);
+
+				yield return null;
+			}
+		}
+
+		public override bool CheckDuration()
+		{
+			return pastWeeks >= quest.Duration;
+		}
+
+		public Quest CurQuest
+		{
+			get
+			{
+				return quest;
+			}
+		}
+
+		public int PastWeeks
+		{
+			get
+			{
+				return pastWeeks;
+			}
+		}
+	}
 }

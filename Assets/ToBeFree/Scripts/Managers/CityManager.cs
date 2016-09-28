@@ -40,6 +40,11 @@ namespace ToBeFree
 			}
 		}
 
+		public City GetRand()
+		{
+			return everyCity[UnityEngine.Random.Range(0, list.Length - 1)];
+		}
+
 		public Item SetCityItem()
 		{
 			Item item = ItemManager.Instance.GetRand();

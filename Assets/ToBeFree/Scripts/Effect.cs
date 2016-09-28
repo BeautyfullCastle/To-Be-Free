@@ -30,7 +30,8 @@ namespace ToBeFree
 		IN,
 		SET,
 		NULL,
-		SUCCESS
+		SUCCESS,
+		REVEAL
 	}
 
 	// ¸ñÀû¾î
@@ -49,7 +50,10 @@ namespace ToBeFree
 		INVEN,
 		DETENTION,
 		NULL,
-		CANCEL
+		CANCEL,
+		STAT,
+		POSITION,
+		CRACKDOWN_PROBABILITY
 	}
 
 	public class Effect
@@ -218,6 +222,31 @@ namespace ToBeFree
 							City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
 							PieceManager.Instance.Add(new Piece(city, subjectType));
 						}
+						if(objectType == eObjectType.STAT)
+						{
+							// add one random police's stat
+							if (subjectType == eSubjectType.POLICE)
+							{
+								
+							}
+						}
+					}
+					if (verbType == eVerbType.REVEAL)
+					{
+						if (subjectType == eSubjectType.POLICE)
+						{
+							// reveal one police's position
+							if (objectType == eObjectType.POSITION)
+							{
+
+							}
+							// reveal police's crackdown probability
+							if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
+							{
+								
+							}
+						}
+						
 					}
 					break;
 					

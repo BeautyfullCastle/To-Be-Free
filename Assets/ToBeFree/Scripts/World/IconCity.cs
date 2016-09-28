@@ -11,11 +11,10 @@ namespace ToBeFree
 		NULL, BIGCITY, MIDDLECITY, SMALLCITY, TOWN, MOUNTAIN
 	}
 
-	[ExecuteInEditMode]
+	//[ExecuteInEditMode]
 	public class IconCity : MonoBehaviour
 	{
 		public UILabel nameLabel;
-		public GameObject informSprite;
 		public GameObject questSprite;
 		public GameObject brokerSprite;
 		public GameObject policeSprite;
@@ -24,9 +23,7 @@ namespace ToBeFree
 		public eNodeType type = eNodeType.TOWN;
 
 		private City city;
-
-		public IconCity This { get { return this; } }
-
+		
 		public void Init()
 		{
 			city = new City(gameObject.name, type);						
@@ -64,8 +61,7 @@ namespace ToBeFree
 
 			PieceManager.AddPiece += PieceManager_AddPiece;
 			PieceManager.DeletePiece += PieceManager_DeletePiece;
-
-			informSprite.SetActive(false);
+			
 			policeSprite.SetActive(false);
 			questSprite.SetActive(false);
 			brokerSprite.SetActive(false);
@@ -124,10 +120,6 @@ namespace ToBeFree
 				policeSprite.SetActive(isExist);
 				policeNumLabel.text = PieceManager.Instance.GetNumberOfPiece(eSubjectType.POLICE, this.City).ToString();
 			}
-			else if (type == eSubjectType.INFO)
-			{
-				informSprite.SetActive(isExist);
-			}
 			else if (type == eSubjectType.QUEST)
 			{
 				questSprite.SetActive(isExist);
@@ -141,7 +133,6 @@ namespace ToBeFree
 
 		void Start()
 		{
-
 			if (type == eNodeType.BIGCITY)
 			{
 				GetComponent<UISprite>().color = Color.white;

@@ -11,6 +11,8 @@ namespace ToBeFree
 		private string name;
 		private string script;
 
+		private IconCharacter iconCharacter;
+
 		private City curCity;
 		private City nextCity;
 
@@ -25,7 +27,7 @@ namespace ToBeFree
 		private int ap;
 		readonly private int totalAP = 3;
 
-		private bool[] canAction = new bool[9];
+		private bool[] canAction = new bool[10];
 
 		private int specialEventProbability = 0;
 
@@ -39,6 +41,7 @@ namespace ToBeFree
 			this.name = name;
 			this.script = script;
 			this.stat = stat;
+			this.iconCharacter = GameObject.FindObjectOfType<IconCharacter>();
 			this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
 			this.inven = inven;
 
@@ -137,7 +140,7 @@ namespace ToBeFree
 			{
 				moveTime += Time.deltaTime;
 				
-				GameObject.Find("Character").transform.position = BezierCurve.GetPoint(CurPoint, point, moveTime);
+				iconCharacter.transform.position = BezierCurve.GetPoint(CurPoint, point, moveTime);
 
 				//StartCoroutine(GameManager.Instance.MoveDirectingCam(CurPoint.transform.position, point.transform.position, moveTime);
 
@@ -146,8 +149,7 @@ namespace ToBeFree
 			this.CurCity = point.GetComponent<IconCity>().City;
 			
 			//MoveCity(EnumConvert<eCity>.ToString(city.Name));
-
-
+			
 			Debug.Log("character is moved to " + this.curCity.Name);
 
 			yield return null;

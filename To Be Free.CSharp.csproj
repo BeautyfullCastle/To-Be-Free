@@ -261,7 +261,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\Misc\ResolutionDetection.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Misc\StringToEnum.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Piece.cs" />
-    <Compile Include="Assets\ToBeFree\Scripts\Police.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\CrackDown.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Probability.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Quest.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Result.cs" />

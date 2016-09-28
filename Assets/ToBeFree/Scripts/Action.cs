@@ -7,7 +7,7 @@ namespace ToBeFree
 {
 	public enum eCommand
 	{
-		MOVE, WORK, REST, SHOP, QUEST, INFO, BROKER, ESCAPE, SPECIAL,
+		MOVE, WORK, REST, SHOP, BROKER, ESCAPE, SPECIAL, INVESTIGATION,
 		NULL
 	}
 
@@ -171,10 +171,13 @@ namespace ToBeFree
 
 	public class Move : Action
 	{
+		private Inspect inspectAction;
+
 		public Move()
 		{
 			startTime = eStartTime.MOVE;
 			actionName = eEventAction.MOVE;
+			inspectAction = new Inspect();
 		}
 
 		public override IEnumerator Activate(Character character)
@@ -189,9 +192,7 @@ namespace ToBeFree
 				// TODO : have to add bus action
 				actionName = eEventAction.MOVE;
 				yield return EventManager.Instance.DoCommand(actionName, character);
-
-
-
+				
 				EffectAmount[] effects = null;
 				if (EventManager.Instance.TestResult)
 				{
@@ -246,7 +247,12 @@ namespace ToBeFree
 				character.AP += pathAP;
 				foreach (BezierPoint point in path)
 				{
-					yield return character.MoveTo(point);					
+					// TODO : 집중 단속 기간 추가
+					if(actionName != eEventAction.HIDE)
+					{
+						yield return inspectAction.Activate(character);
+					}
+					yield return character.MoveTo(point);
 				}
 			}
 			//Debug.LogWarning("character is moved to " + character.CurCity.Name);	
@@ -548,7 +554,8 @@ namespace ToBeFree
 				}
 
 				selectedEvent.Result.Success.EffectAmounts = finalList.ToArray();
-				
+
+				yield return EventManager.Instance.WaitUntilFinish();
 
 				Debug.Log("DoCommand Finished.");
 			}
@@ -556,31 +563,29 @@ namespace ToBeFree
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
 			character.AP += requiredTime + 1;
-
 			
+			//// 이전 브로커 정보 처리했던 부분
+			//Piece piece = PieceManager.Instance.GetPieceOfCity(eSubjectType.INFO, character.CurCity);
+			//if(piece != null)
+			//{
+			//	yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
+			//	yield return EventManager.Instance.DoCommand(actionName, character);
+			//	yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+			//	PieceManager.Instance.Delete(piece);
+			//}
 
-			// 이전 브로커 정보 처리했던 부분
-			Piece piece = PieceManager.Instance.GetPieceOfCity(eSubjectType.INFO, character.CurCity);
-			if(piece != null)
-			{
-				yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
-				yield return EventManager.Instance.DoCommand(actionName, character);
-				yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
-				PieceManager.Instance.Delete(piece);
-			}
-
-			// spawn broker if character's info piece's number is 3.
-			// and delete 3 info pieces.
-			if(character.Stat.InfoNum >= 3)
-			{
-				City cityOfBroker = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.BROKER);
-				Piece broker = new Piece(cityOfBroker, eSubjectType.BROKER);
-				PieceManager.Instance.Add(broker);
-				character.Stat.InfoNum -= 3;
-				yield return GameManager.Instance.MoveDirectingCam(new List<Transform>() {
-					GameManager.Instance.FindGameObject(cityOfBroker.Name.ToString()).transform }, 2f);
-			}
-			yield return null;
+			//// spawn broker if character's info piece's number is 3.
+			//// and delete 3 info pieces.
+			//if(character.Stat.InfoNum >= 3)
+			//{
+			//	City cityOfBroker = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.BROKER);
+			//	Piece broker = new Piece(cityOfBroker, eSubjectType.BROKER);
+			//	PieceManager.Instance.Add(broker);
+			//	character.Stat.InfoNum -= 3;
+			//	yield return GameManager.Instance.MoveDirectingCam(new List<Transform>() {
+			//		GameManager.Instance.FindGameObject(cityOfBroker.Name.ToString()).transform }, 2f);
+			//}
+			//yield return null;
 
 		}
 	}
@@ -606,7 +611,6 @@ namespace ToBeFree
 			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
-
 		}
 	}
 }

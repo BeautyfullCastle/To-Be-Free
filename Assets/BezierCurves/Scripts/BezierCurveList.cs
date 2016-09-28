@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class BezierCurveList : MonoBehaviour {
 
 	public BezierPoint point1;

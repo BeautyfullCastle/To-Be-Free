@@ -132,7 +132,7 @@ namespace ToBeFree
 				case eCommand.SHOP:
 					action = new EnterToShop();
 					break;
-				case eCommand.INFO:
+				case eCommand.INVESTIGATION:
 					action = new InfoAction();
 
 					InstantiatePopup("City Investigation", eEventAction.INVESTIGATION_CITY);
@@ -481,7 +481,7 @@ namespace ToBeFree
 			// 공안 이벤트
 			// if selected event is not move,
 			// check polices in current city and activate police events.
-			if ((action is Move == false) || (action is Rest && action.ActionName == eEventAction.HIDE) )
+			if (action is Move == false)
 			{
 				yield return inspectAction.Activate(character);
 			}
@@ -643,6 +643,7 @@ namespace ToBeFree
 				}
 			}
 
+			yield return CrackDown.Instance.Check();
 			//yield return PutPieces();
 
 			// activate global event
