@@ -10,8 +10,8 @@ namespace ToBeFree
         private List<Piece> list;
 
         public delegate void AddDeletePieceHandler(Piece piece);
-        public static event AddDeletePieceHandler AddPiece;
-        public static event AddDeletePieceHandler DeletePiece;
+        public static event AddDeletePieceHandler AddPiece = delegate { };
+        public static event AddDeletePieceHandler DeletePiece = delegate { };
 
 
         public PieceManager()
@@ -138,7 +138,6 @@ namespace ToBeFree
             Delete(piece);
             yield return piece.MoveCity(city);
             Add(piece);
-
         }
     }
 }

@@ -282,6 +282,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\UI\UITrashCan.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\World\IconCharacter.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\World\IconCity.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\World\IconPiece.cs" />
     <Compile Include="Assets\UICommandPopup.cs" />
     <Compile Include="Assets\XmlTest\Script\ParsingTest.cs" />
     <Compile Include="Assets\XmlTest\Script\XMLParser.cs" />

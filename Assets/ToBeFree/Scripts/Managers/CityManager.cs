@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Language;
 using UnityEngine;
+using System.Collections;
 
 namespace ToBeFree
 {
@@ -19,11 +20,13 @@ namespace ToBeFree
 		private Language.CityData[] korList;
 
 		private List<City> neareastPath;
-		private IconCity nextCity;
 
 		private BezierCurveList[] curves = new BezierCurveList[3];
 
 		private List<Item> cityItems = new List<Item>();
+
+		private float currMoveTime;
+		private float totalMoveTime;
 
 		public void Init()
 		{
@@ -38,11 +41,14 @@ namespace ToBeFree
 			{
 				curve.Init();
 			}
+
+			currMoveTime = 0f;
+			totalMoveTime = 1f;
 		}
 
 		public City GetRand()
 		{
-			return everyCity[UnityEngine.Random.Range(0, list.Length - 1)];
+			return everyCity[UnityEngine.Random.Range(0, list.Length)];
 		}
 
 		public Item SetCityItem()
@@ -180,6 +186,8 @@ namespace ToBeFree
 			}
 			PutCityInNeighbors(curCity, cities, distance);
 
+			cities.Remove(curCity);
+
 			return cities;
 		}
 
@@ -314,13 +322,13 @@ namespace ToBeFree
 			return neareastCity;
 		}
 
-		public List<BezierPoint> CalcPath()
+		public List<City> CalcPath(City curCity, City destCity)
 		{
-			eNodeType currCityType = GameManager.Instance.Character.CurCity.Type;
-			eNodeType destCityType = NextCity.type;
-			
-			BezierPoint currentPoint = Array.Find<IconCity>(GameManager.Instance.iconCities, x=>x.City==GameManager.Instance.Character.CurCity).GetComponent<BezierPoint>();
-			BezierPoint destinationPoint = NextCity.GetComponent<BezierPoint>();
+			eNodeType currCityType = curCity.Type;
+			eNodeType destCityType = destCity.Type;
+
+			BezierPoint currentPoint = curCity.IconCity.GetComponent<BezierPoint>();
+			BezierPoint destinationPoint = destCity.IconCity.GetComponent<BezierPoint>();
 			
 			List<BezierPoint> path = null;
 			if (currCityType == eNodeType.MOUNTAIN || destCityType == eNodeType.MOUNTAIN)
@@ -330,10 +338,51 @@ namespace ToBeFree
 			else
 			{
 				path = curves[(int)eWay.NORMAL].GetPath(currentPoint, destinationPoint);
-			}			
-			return path;
+			}
+
+			List<City> cityList = new List<City>();
+			foreach(BezierPoint point in path)
+			{
+				cityList.Add(point.GetComponent<IconCity>().City);
+			}
+			return cityList;
 		}
-		
+
+		public IEnumerator MoveTo(Transform character, City curCity, City city)
+		{
+			if (curCity ==null || city == null)
+			{
+				yield break;
+			}
+			IconCity curIconCity = Array.Find<IconCity>(GameManager.Instance.iconCities, x => x.City == curCity);
+			IconCity iconcity = Array.Find<IconCity>(GameManager.Instance.iconCities, x => x.City == city);
+			if (curIconCity == null || iconcity == null)
+			{
+				yield break;
+			}
+
+			yield return MoveTo(character, curIconCity.GetComponent<BezierPoint>(), iconcity.GetComponent<BezierPoint>());
+		}
+
+		public IEnumerator MoveTo(Transform character, BezierPoint curPoint, BezierPoint point)
+		{
+			if (curPoint == null || point == null)
+			{
+				yield break;
+			}
+
+			currMoveTime = 0f;
+			while (currMoveTime < totalMoveTime)
+			{
+				currMoveTime += Time.deltaTime;
+
+				character.position = BezierCurve.GetPoint(curPoint, point, currMoveTime);
+				yield return GameManager.Instance.MoveDirectingCam(character.position, character.position, Time.deltaTime);
+			}
+
+			yield return null;
+		}
+
 
 		public Language.CityData[] EngList
 		{
@@ -348,19 +397,6 @@ namespace ToBeFree
 			get
 			{
 				return korList;
-			}
-		}
-
-		public IconCity NextCity
-		{
-			get
-			{
-				return nextCity;
-			}
-
-			set
-			{
-				nextCity = value;
 			}
 		}
 

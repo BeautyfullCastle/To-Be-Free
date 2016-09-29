@@ -9,9 +9,9 @@ public class CameraZoom : MonoBehaviour {
 	private Camera cam;
 	
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		cam = this.transform.GetComponent<Camera>();
-		
 	}
 	
 	// Update is called once per frame

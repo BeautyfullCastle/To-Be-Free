@@ -97,64 +97,19 @@ namespace ToBeFree
 			Stat.MENTAL++;
 			AP++;
 		}
-		
+
 		public IEnumerator MoveTo(City city)
 		{
-			if (city == null)
-			{
-				yield break;
-			}
-			if(CantMove)
-			{
-				yield break;
-			}
-
-			IconCity iconcity = Array.Find<IconCity>(GameManager.Instance.iconCities, x => x.City == city);
-			if(iconcity == null)
-			{
-				yield break;
-			}
-
-			yield return MoveTo(iconcity.GetComponent<BezierPoint>());
-		}
-
-		public IEnumerator MoveTo(BezierPoint point)
-		{
-			if (point == null)
-			{
-				yield break;
-			}
 			if (CantMove)
 			{
 				yield break;
 			}
 
-			if(CurPoint == null)
-			{
-				Debug.LogError("CurPoint of character is null");
-				yield break;
-			}
+			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city);
 
-			moveTime = 0f;
-			while (moveTime < 1f)
-			{
-				moveTime += Time.deltaTime;
-				
-				iconCharacter.transform.position = BezierCurve.GetPoint(CurPoint, point, moveTime);
-
-				//StartCoroutine(GameManager.Instance.MoveDirectingCam(CurPoint.transform.position, point.transform.position, moveTime);
-
-				yield return new WaitForSeconds(Time.deltaTime);
-			}
-			this.CurCity = point.GetComponent<IconCity>().City;
-			
-			//MoveCity(EnumConvert<eCity>.ToString(city.Name));
-			
-			Debug.Log("character is moved to " + this.curCity.Name);
-
-			yield return null;
+			this.CurCity = city;
 		}
-
+		
 		public void PrintMovableCity()
 		{
 			curCity.PrintNeighbors();

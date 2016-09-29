@@ -69,14 +69,14 @@ namespace ToBeFree
 		
 		public Quest FindRand()
 		{
-			int index = UnityEngine.Random.Range(0, list.Length-1);
+			int index = UnityEngine.Random.Range(0, list.Length);
 			return list[index];
 		}
 		
 		public Quest FindRand(eQuestActionType questActionType)
 		{
 			Quest[] array = Array.FindAll(list, x => x.ActionType == questActionType);
-			return array[UnityEngine.Random.Range(0, array.Length - 1)];
+			return array[UnityEngine.Random.Range(0, array.Length)];
 		}
 
 		public int IndexOf(Quest quest)

@@ -14,16 +14,19 @@ namespace ToBeFree
 
 		private int distanceFromCharacter;
 		private eNodeType type;
+		private IconCity iconCity;
 
 		public City()
 		{
 			Item = null;
 		}
 
-		public City(string name, eNodeType type)
+		public City(string name, eNodeType type, IconCity iconCity)
 		{
 			this.name = name;
 			this.Type = type;
+			this.iconCity = iconCity;
+
 			if (this.Type == eNodeType.BIGCITY)
 			{
 				this.workingMoneyMin = 2;
@@ -51,7 +54,7 @@ namespace ToBeFree
 			}
 		}
 
-		public City(City curCity) : this(curCity.name, curCity.Type)
+		public City(City curCity) : this(curCity.name, curCity.Type, curCity.iconCity)
 		{
 		}
 
@@ -140,6 +143,14 @@ namespace ToBeFree
 			set
 			{
 				type = value;
+			}
+		}
+
+		public IconCity IconCity
+		{
+			get
+			{
+				return iconCity;
 			}
 		}
 	}

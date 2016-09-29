@@ -31,7 +31,7 @@ namespace ToBeFree
 		private bool RaiseAndCheckProbability()
 		{
 			probability += increasingProbability;
-			return probability > UnityEngine.Random.Range(0, 99);
+			return probability > UnityEngine.Random.Range(0, 100);
 		}
 
 		public IEnumerator Check()
@@ -43,7 +43,7 @@ namespace ToBeFree
 			else
 			{
 				
-				int randIndex = UnityEngine.Random.Range(0, 2);
+				int randIndex = UnityEngine.Random.Range(0, 3);
 				// add one more police
 				if (randIndex == 0)
 				{

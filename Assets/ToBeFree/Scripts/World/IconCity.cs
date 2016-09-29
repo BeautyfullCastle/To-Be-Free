@@ -26,7 +26,7 @@ namespace ToBeFree
 		
 		public void Init()
 		{
-			city = new City(gameObject.name, type);						
+			city = new City(gameObject.name, type, this);						
 		}
 
 		public void InitNeighbors()
@@ -59,8 +59,8 @@ namespace ToBeFree
 		{
 			nameLabel.text = this.name;
 
-			PieceManager.AddPiece += PieceManager_AddPiece;
-			PieceManager.DeletePiece += PieceManager_DeletePiece;
+			//PieceManager.AddPiece += PieceManager_AddPiece;
+			//PieceManager.DeletePiece += PieceManager_DeletePiece;
 			
 			policeSprite.SetActive(false);
 			questSprite.SetActive(false);
@@ -86,7 +86,6 @@ namespace ToBeFree
 			nameLabel.text = Array.Find<Language.CityData>(list, x => x.index == city.Name).name;
 		}
 		
-
 		private void PieceManager_DeletePiece(Piece piece)
 		{
 			if (piece.City == null)

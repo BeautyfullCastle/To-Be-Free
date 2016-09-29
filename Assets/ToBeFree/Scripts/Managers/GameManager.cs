@@ -24,6 +24,8 @@ namespace ToBeFree
 		public UIEventManager uiEventManager;
 		public GameObject uiSetting;
 		public IconCity[] iconCities;
+		public UIGrid commandPopupGrid;
+		public GameObject IconPieceObj;
 
 		private Character character;
 		private Action action;
@@ -34,6 +36,8 @@ namespace ToBeFree
 		private UICommand[] commands;
 		private bool moveTest;
 		private bool readyToMove;
+
+		private bool isActStart = false;
 
 		private BezierCurveList curves;
 
@@ -79,7 +83,7 @@ namespace ToBeFree
 			if (readyToMove == false)
 				return;
 
-			CityManager.Instance.NextCity = city;
+			character.NextCity = city.City;
 
 			readyToMove = false;
 			isActStart = true;
@@ -152,9 +156,6 @@ namespace ToBeFree
 			character.CanAction[(int)commandType] = false;
 			curCommandType = commandType;
 		}
-
-		public UIGrid commandPopupGrid;
-		private bool isActStart = false;
 
 		private void InstantiatePopup(string name, eEventAction actionType)
 		{
@@ -418,7 +419,10 @@ namespace ToBeFree
 #if UNITY_EDITOR
 			// for test
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
-			PieceManager.Instance.Add(new QuestPiece(QuestManager.Instance.List[1], character, character.CurCity, eSubjectType.QUEST));
+			//PieceManager.Instance.Add(new QuestPiece(QuestManager.Instance.List[1], character, character.CurCity, eSubjectType.QUEST));
+			
+			Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
+			yield return police.Move();
 #endif
 			/*
 			 * Заµї ЅГ

@@ -225,11 +225,11 @@ namespace ToBeFree
 
 			if (dontMove == false)
 			{
-				List<BezierPoint> path = CityManager.Instance.CalcPath();
+				List<City> path = CityManager.Instance.CalcPath(character.CurCity, character.NextCity);
 				int pathAP = 0;
-				foreach (BezierPoint point in path)
+				foreach (City city in path)
 				{
-					if (point.GetComponent<IconCity>().type == eNodeType.MOUNTAIN)
+					if (city.Type == eNodeType.MOUNTAIN)
 					{
 						pathAP += 2;
 					}
@@ -245,14 +245,14 @@ namespace ToBeFree
 				}
 
 				character.AP += pathAP;
-				foreach (BezierPoint point in path)
+				foreach (City city in path)
 				{
 					// TODO : 집중 단속 기간 추가
 					if(actionName != eEventAction.HIDE)
 					{
 						yield return inspectAction.Activate(character);
 					}
-					yield return character.MoveTo(point);
+					yield return character.MoveTo(city);
 				}
 			}
 			//Debug.LogWarning("character is moved to " + character.CurCity.Name);	
@@ -483,7 +483,7 @@ namespace ToBeFree
 						list.Add(brokerInfoQuest);
 						list.Add(brokerInfo);
 
-						finalList.Add(list[UnityEngine.Random.Range(0, list.Count - 1)]);
+						finalList.Add(list[UnityEngine.Random.Range(0, list.Count)]);
 					}
 					//셋성공: 브로커정보를 얻음
 					else if (testSuccessNum >= 3)
@@ -500,7 +500,7 @@ namespace ToBeFree
 					EffectAmount moneyEffectAmount = new EffectAmount(moneyEffect, money);
 
 					Effect questEffect = new Effect(eSubjectType.QUEST, eVerbType.LOAD);
-					EffectAmount questEffectAmount = new EffectAmount(moneyEffect, UnityEngine.Random.Range(0, QuestManager.Instance.List.Length - 1));
+					EffectAmount questEffectAmount = new EffectAmount(moneyEffect, UnityEngine.Random.Range(0, QuestManager.Instance.List.Length));
 
 					Effect itemEffect = new Effect(eSubjectType.ITEM, eVerbType.ADD, eObjectType.ALL);					
 					EffectAmount itemEffectAmount = new EffectAmount(itemEffect, -99);
@@ -509,7 +509,7 @@ namespace ToBeFree
 					list.Add(questEffectAmount);
 					list.Add(itemEffectAmount);
 					
-					int rand = UnityEngine.Random.Range(0, 2);
+					int rand = UnityEngine.Random.Range(0, 3);
 
 					if (testSuccessNum == 1)
 					{
@@ -536,7 +536,7 @@ namespace ToBeFree
 					list.Add(revealPosition);
 					list.Add(getProbability);
 
-					int rand = UnityEngine.Random.Range(0, 2);
+					int rand = UnityEngine.Random.Range(0, 3);
 
 					if (testSuccessNum == 1)
 					{

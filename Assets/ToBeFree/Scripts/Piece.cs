@@ -8,12 +8,16 @@ namespace ToBeFree
 	public class Piece
 	{
 		protected City city;
+		protected IconPiece iconPiece;
 		protected eSubjectType subjectType;
 
 		public Piece(City city, eSubjectType subjectType)
 		{
 			this.city = city;
 			this.subjectType = subjectType;
+			GameObject pieceObj = GameObject.Instantiate(GameManager.Instance.IconPieceObj, GameManager.Instance.IconPieceObj.transform.parent) as GameObject;
+			iconPiece = pieceObj.GetComponent<IconPiece>();
+			iconPiece.Init(subjectType, city.IconCity.transform.position);
 		}
 
 		public City City
@@ -31,14 +35,16 @@ namespace ToBeFree
 				return subjectType;
 			}
 		}
-
-		public IEnumerator MoveCity(City city)
+		
+		public IEnumerator MoveCity(City destCity)
 		{
-			yield return GameManager.Instance.MoveDirectingCam(
-				GameManager.Instance.FindGameObject(this.City.Name.ToString()).transform.position,
-				GameManager.Instance.FindGameObject(city.Name.ToString()).transform.position, 2f);
+			List<City> path = CityManager.Instance.CalcPath(city, destCity);
 
-			this.city = city;            
+			foreach (City nextCity in path)
+			{
+				yield return CityManager.Instance.MoveTo(iconPiece.transform, city, nextCity);
+				city = nextCity;
+			}
 		}
 
 		public virtual bool CheckDuration()
@@ -55,9 +61,12 @@ namespace ToBeFree
 
 		public Police(City city, eSubjectType subjectType) : base(city, subjectType)
 		{
-			Power = UnityEngine.Random.Range(1, 3);
-			Movement = UnityEngine.Random.Range(1, 3);
 			max = 5;
+
+			Power = UnityEngine.Random.Range(1, 4);
+			Movement = UnityEngine.Random.Range(1, 4);
+
+			iconPiece.Init(subjectType, city.IconCity.transform.position, Power, Movement);
 		}
 
 		public IEnumerator AddStat(bool IsCrackDown)
@@ -69,7 +78,7 @@ namespace ToBeFree
 			}
 			else
 			{
-				int randIndex = UnityEngine.Random.Range(0, 1);
+				int randIndex = UnityEngine.Random.Range(0, 2);
 				if (randIndex == 0)
 				{
 					Power++;
@@ -79,6 +88,19 @@ namespace ToBeFree
 					Movement++;
 				}
 			}
+
+			yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { iconPiece.transform }, 1f);
+		}
+
+		public IEnumerator Move()
+		{
+			// city list can move.
+			List<City> cityList = CityManager.Instance.FindCitiesByDistance(city, movement);
+
+			// police can't go to the mountain.
+			cityList.RemoveAll(x => x.Type == eNodeType.MOUNTAIN);
+
+			yield return MoveCity(cityList[UnityEngine.Random.Range(0, cityList.Count)]);
 		}
 
 		public bool IsMaxStat()
