@@ -550,7 +550,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameLabel: {fileID: 11449062}
-  informSprite: {fileID: 157862}
   questSprite: {fileID: 172744}
   brokerSprite: {fileID: 181818}
   policeSprite: {fileID: 161174}
@@ -813,13 +812,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 0}
-    mMethodName: ClickCity
-    mParameters:
-    - obj: {fileID: 11423598}
-      field: 
-    oneShot: 0
+  onClick: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -324,7 +324,7 @@ namespace ToBeFree
 
 		private void WeekIsGone()
 		{
-			state = GameState.StartWeek;
+			state = GameState.StartWeek;			
 		}
 
 		private void Start()

@@ -227,7 +227,8 @@ namespace ToBeFree
 							// add one random police's stat
 							if (subjectType == eSubjectType.POLICE)
 							{
-								
+								Police police = PieceManager.Instance.FindRand(subjectType) as Police;
+								yield return police.AddStat(CrackDown.Instance.IsCrackDown);
 							}
 						}
 					}

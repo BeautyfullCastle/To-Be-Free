@@ -94,6 +94,8 @@ namespace ToBeFree
 
 		public IEnumerator Move()
 		{
+			OverlapPolices(false);
+
 			// city list can move.
 			List<City> cityList = CityManager.Instance.FindCitiesByDistance(city, movement);
 
@@ -101,6 +103,38 @@ namespace ToBeFree
 			cityList.RemoveAll(x => x.Type == eNodeType.MOUNTAIN);
 
 			yield return MoveCity(cityList[UnityEngine.Random.Range(0, cityList.Count)]);
+
+			OverlapPolices(true);
+		}
+
+		public void OverlapPolices(bool isOverlap)
+		{
+			List<Piece> pieces = PieceManager.Instance.FindAll(subjectType, city);
+			if (pieces.Count > 1)
+			{
+				foreach (Piece piece in pieces)
+				{
+					Police police = piece as Police;
+					if (isOverlap)
+					{
+						if (police == this)
+							continue;
+
+						iconPiece.Power += police.Power;
+						iconPiece.Movement += police.movement;
+						iconPiece.Number++;
+
+						police.iconPiece.gameObject.SetActive(false);
+					}
+					else
+					{
+						police.iconPiece.Power = police.Power;
+						police.iconPiece.Movement = police.Movement;
+						police.iconPiece.Number = 1;
+						this.iconPiece.gameObject.SetActive(true);
+					}
+				}
+			}
 		}
 
 		public bool IsMaxStat()
@@ -121,6 +155,7 @@ namespace ToBeFree
 				{
 					power = max;
 				}
+				iconPiece.Power = power;
 			}
 		}
 
@@ -137,6 +172,7 @@ namespace ToBeFree
 				{
 					movement = max;
 				}
+				iconPiece.Movement = movement;
 			}
 		}
 	}

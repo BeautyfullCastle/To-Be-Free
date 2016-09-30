@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -65,6 +66,17 @@ namespace ToBeFree
 			}
 		}
 
-
+		public bool IsCrackDown
+		{
+			get
+			{
+				return isCrackDown;
+			}
+			set
+			{
+				isCrackDown = value;
+				GameObject.Find("CrackDown Effect").GetComponent<UISprite>().enabled = isCrackDown;
+			}
+		}
 	}
 }

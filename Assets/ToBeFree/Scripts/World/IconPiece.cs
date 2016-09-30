@@ -43,10 +43,49 @@ public class IconPiece : MonoBehaviour
 		if(subjectType == eSubjectType.POLICE)
 		{
 			powerLabel.gameObject.SetActive(true);
-			powerLabel.text = power.ToString();
+			Power = power;
 
 			movementLabel.gameObject.SetActive(true);
-			movementLabel.text = movement.ToString();
+			Movement = movement;
+
+			numberLabel.gameObject.SetActive(true);
+			Number = 1;
+		}
+	}
+
+	public int Power
+	{
+		get
+		{
+			return int.Parse(powerLabel.text);
+		}
+		set
+		{
+			powerLabel.text = value.ToString();
+		}
+	}
+
+	public int Movement
+	{
+		get
+		{
+			return int.Parse(movementLabel.text);
+		}
+		set
+		{
+			movementLabel.text = value.ToString();
+		}
+	}
+
+	public int Number
+	{
+		get
+		{
+			return int.Parse(numberLabel.text);
+		}
+		set
+		{
+			numberLabel.text = value.ToString();
 		}
 	}
 }

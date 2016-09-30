@@ -99,7 +99,7 @@ namespace ToBeFree
 		{
 			City city = null;
 			int distance = 2;
-			if (selectedQuest.ActionType == eQuestActionType.QUEST)
+			if (selectedQuest.ActionType == eQuestActionType.QUEST || selectedQuest.ActionType == eQuestActionType.QUEST_BROKERINFO)
 			{
 				city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.QUEST);
 			}

@@ -470,7 +470,7 @@ namespace ToBeFree
 					int questIndex = QuestManager.Instance.IndexOf(quest);
 					EffectAmount brokerInfoQuest = new EffectAmount(new Effect(eSubjectType.QUEST, eVerbType.LOAD), questIndex);
 
-					EffectAmount brokerInfo = new EffectAmount(new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.INFO));
+					EffectAmount brokerInfo = new EffectAmount(new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.INFO), 1);
 
 					//하나성공: 브로커정보 퀘스트 받음
 					if (testSuccessNum == 1)
@@ -488,7 +488,6 @@ namespace ToBeFree
 					//셋성공: 브로커정보를 얻음
 					else if (testSuccessNum >= 3)
 					{
-						finalList.Add(brokerInfoQuest);
 						finalList.Add(brokerInfo);
 					}
 				}
@@ -500,7 +499,7 @@ namespace ToBeFree
 					EffectAmount moneyEffectAmount = new EffectAmount(moneyEffect, money);
 
 					Effect questEffect = new Effect(eSubjectType.QUEST, eVerbType.LOAD);
-					EffectAmount questEffectAmount = new EffectAmount(moneyEffect, UnityEngine.Random.Range(0, QuestManager.Instance.List.Length));
+					EffectAmount questEffectAmount = new EffectAmount(questEffect, UnityEngine.Random.Range(0, QuestManager.Instance.List.Length));
 
 					Effect itemEffect = new Effect(eSubjectType.ITEM, eVerbType.ADD, eObjectType.ALL);					
 					EffectAmount itemEffectAmount = new EffectAmount(itemEffect, -99);
@@ -553,9 +552,32 @@ namespace ToBeFree
 					}
 				}
 
-				selectedEvent.Result.Success.EffectAmounts = finalList.ToArray();
+				EffectAmount[] effectAmounts = selectedEvent.Result.Success.EffectAmounts;
+				effectAmounts = finalList.ToArray();
+				
+				string resultEffectScript = string.Empty;
+				string resultScript = ActionName.ToString() + " Result";
+				foreach (EffectAmount effectAmount in effectAmounts)
+				{
+					if (effectAmount.Effect == null)
+					{
+						continue;
+					}
+					resultEffectScript += effectAmount.ToString() + "\n";
+				}
+				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT, resultScript);
+				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT_EFFECT, resultEffectScript);
 
 				yield return EventManager.Instance.WaitUntilFinish();
+
+				foreach (EffectAmount effectAmount in effectAmounts)
+				{
+					if (effectAmount.Effect == null)
+					{
+						continue;
+					}
+					yield return effectAmount.Activate(character);
+				}
 
 				Debug.Log("DoCommand Finished.");
 			}
