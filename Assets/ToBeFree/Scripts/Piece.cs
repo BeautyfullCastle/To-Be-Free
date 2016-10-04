@@ -17,7 +17,8 @@ namespace ToBeFree
 			this.subjectType = subjectType;
 			GameObject pieceObj = GameObject.Instantiate(GameManager.Instance.IconPieceObj, GameManager.Instance.IconPieceObj.transform.parent) as GameObject;
 			iconPiece = pieceObj.GetComponent<IconPiece>();
-			iconPiece.Init(subjectType, city.IconCity.transform.position);
+			iconPiece.Init(subjectType);
+			city.IconCity.PutPiece(iconPiece);
 		}
 
 		public City City
@@ -45,6 +46,7 @@ namespace ToBeFree
 				yield return CityManager.Instance.MoveTo(iconPiece.transform, city, nextCity);
 				city = nextCity;
 			}
+			city.IconCity.PutPiece(this.iconPiece);
 		}
 
 		public virtual bool CheckDuration()
@@ -66,7 +68,7 @@ namespace ToBeFree
 			Power = UnityEngine.Random.Range(1, 4);
 			Movement = UnityEngine.Random.Range(1, 4);
 
-			iconPiece.Init(subjectType, city.IconCity.transform.position, Power, Movement);
+			iconPiece.Init(subjectType, Power, Movement);
 		}
 
 		public IEnumerator AddStat(bool IsCrackDown)
@@ -93,7 +95,7 @@ namespace ToBeFree
 
 		public IEnumerator Move()
 		{
-			OverlapPolices(false);
+			//OverlapPolices(false);
 
 			// city list can move.
 			List<City> cityList = CityManager.Instance.FindCitiesByDistance(city, movement);
@@ -103,7 +105,7 @@ namespace ToBeFree
 
 			yield return MoveCity(cityList[UnityEngine.Random.Range(0, cityList.Count)]);
 
-			OverlapPolices(true);
+			//OverlapPolices(true);
 		}
 
 		public void OverlapPolices(bool isOverlap)

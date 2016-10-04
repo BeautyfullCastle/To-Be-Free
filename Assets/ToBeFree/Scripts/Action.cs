@@ -248,7 +248,7 @@ namespace ToBeFree
 				foreach (City city in path)
 				{
 					// TODO : 집중 단속 기간 추가
-					if(actionName != eEventAction.HIDE)
+					if(CrackDown.Instance.IsCrackDown)
 					{
 						yield return inspectAction.Activate(character);
 					}

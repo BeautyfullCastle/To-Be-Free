@@ -410,8 +410,8 @@ namespace ToBeFree
 #if UNITY_EDITOR
 			// for test
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
-			//PieceManager.Instance.Add(new QuestPiece(QuestManager.Instance.List[1], character, character.CurCity, eSubjectType.QUEST));
-			
+			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[26], character);
+			yield return QuestManager.Instance.Load(QuestManager.Instance.List[1], character);
 			Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
 			yield return police.Move();
 #endif
@@ -476,7 +476,7 @@ namespace ToBeFree
 			// 공안 이벤트
 			// if selected event is not move,
 			// check polices in current city and activate police events.
-			if (action is Move == false)
+			if (action is Move == false && action.ActionName != eEventAction.HIDE)
 			{
 				yield return inspectAction.Activate(character);
 			}

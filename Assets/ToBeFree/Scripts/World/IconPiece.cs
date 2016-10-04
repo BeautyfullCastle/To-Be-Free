@@ -20,11 +20,11 @@ public class IconPiece : MonoBehaviour
 		numberLabel.gameObject.SetActive(false);
 	}
 
-	public void Init(eSubjectType subjectType, Vector3 position)
+	public void Init(eSubjectType subjectType)
 	{
 		this.subjectType = subjectType;
 		this.gameObject.name = subjectType.ToString();
-		this.transform.position = position;
+		
 		if (subjectType == eSubjectType.POLICE)
 		{
 			this.transform.localPosition = new Vector3(transform.localPosition.x - 30, transform.localPosition.y + 30);
@@ -36,9 +36,9 @@ public class IconPiece : MonoBehaviour
 		}
 	}
 
-	public void Init(eSubjectType subjectType, Vector3 position, int power, int movement)
+	public void Init(eSubjectType subjectType, int power, int movement)
 	{
-		Init(subjectType, position);
+		Init(subjectType);
 
 		if(subjectType == eSubjectType.POLICE)
 		{

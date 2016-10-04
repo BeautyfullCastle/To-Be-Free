@@ -15,12 +15,15 @@ namespace ToBeFree
 	public class IconCity : MonoBehaviour
 	{
 		public UILabel nameLabel;
-		public GameObject questSprite;
-		public GameObject brokerSprite;
-		public GameObject policeSprite;
-		public UILabel policeNumLabel;
 
 		public eNodeType type = eNodeType.TOWN;
+
+		[SerializeField]
+		private UIGrid grid;
+		[SerializeField]
+		private Transform questOffset;
+		[SerializeField]
+		private Transform brokerOffset;
 
 		private City city;
 		
@@ -59,17 +62,62 @@ namespace ToBeFree
 		{
 			nameLabel.text = this.name;
 
-			//PieceManager.AddPiece += PieceManager_AddPiece;
-			//PieceManager.DeletePiece += PieceManager_DeletePiece;
-			
-			policeSprite.SetActive(false);
-			questSprite.SetActive(false);
-			brokerSprite.SetActive(false);
+			grid = this.gameObject.GetComponentInChildren<UIGrid>();
+			questOffset = this.transform.FindChild("Quest Offset");
+			brokerOffset = this.transform.FindChild("Broker Offset");
 
 			LanguageSelection.selectLanguageForUI += ChangeLanguage;
 
 			EventDelegate.Parameter param = new EventDelegate.Parameter(this, string.Empty);
 			NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), this.GetComponent<UIButton>(), "ClickCity", new EventDelegate.Parameter[] { param });
+		}
+
+		void Start()
+		{
+			if (this.gameObject.name == eNodeType.SMALLCITY.ToString())
+			{
+				GetComponent<UISprite>().color = new Color(1, 1, 0.5f);
+				type = EnumConvert<eNodeType>.ToEnum(this.gameObject.name);
+				nameLabel.text = type.ToString();
+			}
+			else if (this.gameObject.name == eNodeType.TOWN.ToString())
+			{
+				GetComponent<UISprite>().color = new Color(1, 0.8f, 1f);
+				type = EnumConvert<eNodeType>.ToEnum(this.gameObject.name);
+				nameLabel.text = type.ToString();
+			}
+			else if (this.gameObject.name == eNodeType.MOUNTAIN.ToString())
+			{
+				GetComponent<UISprite>().color = new Color(0.5f, 1, 0.5f);
+				type = EnumConvert<eNodeType>.ToEnum(this.gameObject.name);
+				nameLabel.text = type.ToString();
+			}
+			else
+			{
+				GetComponent<UISprite>().color = Color.white;
+				type = eNodeType.BIGCITY;
+				nameLabel.text = gameObject.name;
+			}
+		}
+
+		public void PutPiece(IconPiece iconPiece)
+		{
+			if(iconPiece.subjectType == eSubjectType.POLICE)
+			{
+				grid.AddChild(iconPiece.transform);
+				grid.enabled = true;
+			}
+			else if(iconPiece.subjectType == eSubjectType.QUEST)
+			{
+				iconPiece.transform.SetParent(questOffset);
+				iconPiece.transform.localPosition = Vector3.zero;
+			}
+			else if (iconPiece.subjectType == eSubjectType.BROKER)
+			{
+				iconPiece.transform.SetParent(brokerOffset);
+				iconPiece.transform.localPosition = Vector3.zero;
+			}
+			iconPiece.transform.localScale = Vector3.one;
 		}
 		
 		public void ChangeLanguage(eLanguage language)
@@ -86,85 +134,6 @@ namespace ToBeFree
 			nameLabel.text = Array.Find<Language.CityData>(list, x => x.index == city.Name).name;
 		}
 		
-		private void PieceManager_DeletePiece(Piece piece)
-		{
-			if (piece.City == null)
-			{
-				return;
-			}
-			if (piece.City.Name.ToString() != this.name)
-			{
-				return;
-			}
-			SetPieceSprite(piece.SubjectType, false);
-		}
-
-		private void PieceManager_AddPiece(Piece piece)
-		{
-			if(piece.City == null)
-			{
-				return;
-			}
-			if (piece.City.Name.ToString() != this.name)
-			{
-				return;
-			}
-			SetPieceSprite(piece.SubjectType, true);
-		}
-
-		private void SetPieceSprite(eSubjectType type, bool isExist)
-		{
-			if (type == eSubjectType.POLICE)
-			{
-				policeSprite.SetActive(isExist);
-				policeNumLabel.text = PieceManager.Instance.GetNumberOfPiece(eSubjectType.POLICE, this.City).ToString();
-			}
-			else if (type == eSubjectType.QUEST)
-			{
-				questSprite.SetActive(isExist);
-			}
-			else if (type == eSubjectType.BROKER)
-			{
-				brokerSprite.SetActive(isExist);
-			}
-			NGUIDebug.Log(this.name + "'s " + type.ToString() + " sprite is " + isExist);
-		}
-
-		void Start()
-		{
-			if (type == eNodeType.BIGCITY)
-			{
-				GetComponent<UISprite>().color = Color.white;
-				nameLabel.text = gameObject.name;
-			}
-			else if(type == eNodeType.MIDDLECITY)
-			{
-				GetComponent<UISprite>().color = new Color(1, 1, 0.8f);
-				nameLabel.text = gameObject.name;
-			}
-			else if (type == eNodeType.SMALLCITY)
-			{
-				GetComponent<UISprite>().color = new Color(1, 1, 0.5f);
-				nameLabel.text = type.ToString();
-				gameObject.name = type.ToString();
-			}
-			else if (type == eNodeType.TOWN)
-			{
-				GetComponent<UISprite>().color = new Color(1, 0.8f, 1f);
-				nameLabel.text = type.ToString();
-				gameObject.name = type.ToString();
-			}
-			else if (type == eNodeType.MOUNTAIN)
-			{
-				GetComponent<UISprite>().color = new Color(0.5f, 1, 0.5f);
-				nameLabel.text = type.ToString();
-				gameObject.name = type.ToString();
-			}
-			else
-			{
-			}
-		}
-
 		public City City
 		{
 			get
