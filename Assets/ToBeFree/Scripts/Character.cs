@@ -108,6 +108,8 @@ namespace ToBeFree
 			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city);
 
 			this.CurCity = city;
+
+			PieceManager.Instance.SetVisible();
 		}
 		
 		public void PrintMovableCity()

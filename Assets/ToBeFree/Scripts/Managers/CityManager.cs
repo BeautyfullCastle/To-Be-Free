@@ -354,8 +354,8 @@ namespace ToBeFree
 			{
 				yield break;
 			}
-			IconCity curIconCity = Array.Find<IconCity>(GameManager.Instance.iconCities, x => x.City == curCity);
-			IconCity iconcity = Array.Find<IconCity>(GameManager.Instance.iconCities, x => x.City == city);
+			IconCity curIconCity = curCity.IconCity;
+			IconCity iconcity = city.IconCity;
 			if (curIconCity == null || iconcity == null)
 			{
 				yield break;

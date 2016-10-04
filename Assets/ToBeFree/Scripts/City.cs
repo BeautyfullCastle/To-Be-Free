@@ -82,18 +82,6 @@ namespace ToBeFree
 		{
 			Debug.Log(this.name);
 		}
-
-		public bool IsNeighbor(string cityName)
-		{
-			foreach(City neighbor in Neighbors)
-			{
-				if(neighbor.Name == cityName)
-				{
-					return true;
-				}
-			}
-			return false;
-		}
 		
 		public string Name
 		{
