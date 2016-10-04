@@ -100,14 +100,16 @@ namespace ToBeFree
 		}
 		
 		// ********* Add ***********
-		public void Add(Piece piece)
+		public IEnumerator Add(Piece piece)
 		{
 			if(piece.City == null)
 			{
-				return;
+				yield break;
 			}
 			list.Add(piece);
 			AddPiece(piece);
+
+			yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { piece.City.IconCity.transform }, 1f);
 		}
 
 		public int GetNumberOfPiece(eSubjectType pieceType, City city)
@@ -133,9 +135,7 @@ namespace ToBeFree
 
 		public IEnumerator Move(Piece piece, City city)
 		{
-			Delete(piece);
 			yield return piece.MoveCity(city);
-			Add(piece);
 		}
 
 		public List<Piece> List

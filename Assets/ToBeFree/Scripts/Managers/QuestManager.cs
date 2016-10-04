@@ -108,9 +108,7 @@ namespace ToBeFree
 			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);
 			yield return EventManager.Instance.WaitUntilFinish();
 
-			PieceManager.Instance.Add(questPiece);
+			yield return PieceManager.Instance.Add(questPiece);
 		}
-
-		
 	}
 }

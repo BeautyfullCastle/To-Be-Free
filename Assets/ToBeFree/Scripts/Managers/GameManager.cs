@@ -270,15 +270,6 @@ namespace ToBeFree
 				activateAbnormal = true;
 			}
 
-			if(Input.GetKeyDown(KeyCode.P))
-			{
-				PieceManager.Instance.Add(new Police(CityManager.Instance.FindRand(eSubjectType.POLICE), eSubjectType.POLICE));
-			}
-			if (Input.GetKeyDown(KeyCode.I))
-			{
-				PieceManager.Instance.Add(new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.INFO), eSubjectType.INFO));
-			}
-
 			if(Input.GetKeyDown(KeyCode.M))
 			{
 				moveTest = true;                
@@ -362,7 +353,7 @@ namespace ToBeFree
 			List<Transform> bigCityTransformList = new List<Transform>();
 			foreach (City city in bigCityList)
 			{
-				PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
+				yield return PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
 				bigCityTransformList.Add(GameObject.Find(city.Name.ToString()).transform);
 				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 			}
@@ -680,7 +671,7 @@ namespace ToBeFree
 
 			// 2 polices
 			Police randPolice = new Police(CityManager.Instance.FindRand(eSubjectType.POLICE), eSubjectType.POLICE);
-			PieceManager.Instance.Add(randPolice);
+			yield return PieceManager.Instance.Add(randPolice);
 			pieceCityTransformList.Add(GameObject.Find(randPolice.City.Name).transform);
 			//Police randPoliceByDistance = new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.POLICE), eSubjectType.POLICE);
 			//PieceManager.Instance.Add(randPoliceByDistance);
@@ -688,7 +679,7 @@ namespace ToBeFree
 
 			// 2 informations
 			Information randInfo = new Information(CityManager.Instance.FindRand(eSubjectType.INFO), eSubjectType.INFO);
-			PieceManager.Instance.Add(randInfo);
+			yield return PieceManager.Instance.Add(randInfo);
 			pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name).transform);
 			//Information randInfoByDistance = new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.INFO), eSubjectType.INFO);
 			//PieceManager.Instance.Add(randInfoByDistance);

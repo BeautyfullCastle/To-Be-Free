@@ -215,12 +215,12 @@ namespace ToBeFree
 						if (objectType == eObjectType.RAND)
 						{
 							City city = CityManager.Instance.FindRand(subjectType);
-							PieceManager.Instance.Add(new Piece(city, subjectType));
+							yield return PieceManager.Instance.Add(new Piece(city, subjectType));
 						}
 						if (objectType == eObjectType.CLOSE)
 						{
 							City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
-							PieceManager.Instance.Add(new Piece(city, subjectType));
+							yield return PieceManager.Instance.Add(new Piece(city, subjectType));
 						}
 						if(objectType == eObjectType.STAT)
 						{

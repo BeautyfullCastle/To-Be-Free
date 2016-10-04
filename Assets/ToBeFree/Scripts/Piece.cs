@@ -88,7 +88,6 @@ namespace ToBeFree
 					Movement++;
 				}
 			}
-
 			yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { iconPiece.transform }, 1f);
 		}
 
