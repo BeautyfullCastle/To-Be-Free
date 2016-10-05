@@ -247,7 +247,7 @@ namespace ToBeFree
 				character.AP += pathAP;
 				foreach (City city in path)
 				{
-					// TODO : 집중 단속 기간 추가
+					// 집중 단속 기간이면 공안 단속 들어감
 					if(CrackDown.Instance.IsCrackDown)
 					{
 						yield return inspectAction.Activate(character);
@@ -413,6 +413,7 @@ namespace ToBeFree
 
 			base.Activate(character);
 
+			// 스페셜 이벤트 처리
 			if (character.CheckSpecialEvent())
 			{
 				if(actionName == eEventAction.INVESTIGATION_BROKER)
@@ -461,8 +462,8 @@ namespace ToBeFree
 				
 				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSuccessNum.ToString());
 
-				List<EffectAmount> list = new List<EffectAmount>(3);
-				List<EffectAmount> finalList = new List<EffectAmount>();
+				ArrayList list = new ArrayList(3);
+				ArrayList finalList = new ArrayList();
 
 				if (ActionName == eEventAction.INVESTIGATION_BROKER)
 				{
@@ -491,9 +492,10 @@ namespace ToBeFree
 						finalList.Add(brokerInfo);
 					}
 				}
+				// 도시 조사 : 돈, 퀘스트, 아이템 중 1, 2, 3 (중복 없음)
 				else if (ActionName == eEventAction.INVESTIGATION_CITY)
 				{
-					//돈, 퀘스트, 아이템 중 1, 2, 3 (중복 없음)
+					
 					int money = 1;
 					Effect moneyEffect = new Effect(eSubjectType.MONEY, eVerbType.ADD, eObjectType.SPECIFIC);
 					EffectAmount moneyEffectAmount = new EffectAmount(moneyEffect, money);
@@ -524,14 +526,14 @@ namespace ToBeFree
 						finalList.AddRange(list);
 					}
 				}
-				else if(ActionName == eEventAction.INVESTIGATION_POLICE)
+				//공안 조사 : 하루 시야 증가, 클릭한 도시의 공안 수, 집중단속확률 중 1, 2, 3 (중복 없음)
+				else if (ActionName == eEventAction.INVESTIGATION_POLICE)
 				{
-					//공안의 스탯, 공안의 위치, 집중단속확률 중 1, 2, 3 (중복 없음)
-					EffectAmount addStat = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.ADD, eObjectType.STAT), 1);
-					EffectAmount revealPosition = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.POSITION), 1);
+					Buff addViewRange = BuffManager.Instance.Find("Add View Range");
+					EffectAmount revealPosition = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.NUMBER), 1);
 					EffectAmount getProbability = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.CRACKDOWN_PROBABILITY), 1);
-
-					list.Add(addStat);
+					
+					list.Add(addViewRange);
 					list.Add(revealPosition);
 					list.Add(getProbability);
 
@@ -551,64 +553,53 @@ namespace ToBeFree
 						finalList.AddRange(list);
 					}
 				}
-
-				EffectAmount[] effectAmounts = selectedEvent.Result.Success.EffectAmounts;
-				effectAmounts = finalList.ToArray();
 				
 				string resultEffectScript = string.Empty;
 				string resultScript = ActionName.ToString() + " Result";
-				foreach (EffectAmount effectAmount in effectAmounts)
+				foreach (var item in finalList)
 				{
-					if (effectAmount.Effect == null)
+					if(item is EffectAmount)
 					{
-						continue;
+						EffectAmount effectAmount = item as EffectAmount;
+						if (effectAmount.Effect == null)
+						{
+							continue;
+						}
+						resultEffectScript += effectAmount.ToString() + "\n";
 					}
-					resultEffectScript += effectAmount.ToString() + "\n";
+					else if(item is Buff)
+					{
+						Buff buff = item as Buff;
+						resultEffectScript += "Buff : " + buff.Name + "\n";
+					}
 				}
 				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT, resultScript);
 				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT_EFFECT, resultEffectScript);
 
 				yield return EventManager.Instance.WaitUntilFinish();
 
-				foreach (EffectAmount effectAmount in effectAmounts)
+				foreach (var item in finalList)
 				{
-					if (effectAmount.Effect == null)
+					if (item is EffectAmount)
 					{
-						continue;
+						EffectAmount effectAmount = item as EffectAmount;
+						if (effectAmount.Effect == null)
+						{
+							continue;
+						}
+						yield return effectAmount.Activate(character);
 					}
-					yield return effectAmount.Activate(character);
+					else if (item is Buff)
+					{
+						Buff buff = item as Buff;
+						yield return buff.ActivateEffect(character);
+					}
 				}
-
-				Debug.Log("DoCommand Finished.");
 			}
-
+			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
 			character.AP += requiredTime + 1;
-			
-			//// 이전 브로커 정보 처리했던 부분
-			//Piece piece = PieceManager.Instance.GetPieceOfCity(eSubjectType.INFO, character.CurCity);
-			//if(piece != null)
-			//{
-			//	yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
-			//	yield return EventManager.Instance.DoCommand(actionName, character);
-			//	yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
-			//	PieceManager.Instance.Delete(piece);
-			//}
-
-			//// spawn broker if character's info piece's number is 3.
-			//// and delete 3 info pieces.
-			//if(character.Stat.InfoNum >= 3)
-			//{
-			//	City cityOfBroker = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.BROKER);
-			//	Piece broker = new Piece(cityOfBroker, eSubjectType.BROKER);
-			//	PieceManager.Instance.Add(broker);
-			//	character.Stat.InfoNum -= 3;
-			//	yield return GameManager.Instance.MoveDirectingCam(new List<Transform>() {
-			//		GameManager.Instance.FindGameObject(cityOfBroker.Name.ToString()).transform }, 2f);
-			//}
-			//yield return null;
-
 		}
 	}
 

@@ -449,6 +449,12 @@
 			"subjectType": "QUEST",
 			"verbType": "LOAD",
 			"objectType": "NULL"
+		},
+		{
+			"index": 75,
+			"subjectType": "CHARACTER",
+			"verbType": "ADD",
+			"objectType": "VIEWRANGE"
 		}
 	]
 }

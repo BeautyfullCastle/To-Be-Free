@@ -83,5 +83,13 @@ namespace ToBeFree
 				GameObject.Find("CrackDown Effect").GetComponent<UISprite>().enabled = isCrackDown;
 			}
 		}
+
+		public int Probability
+		{
+			get
+			{
+				return probability;
+			}
+		}
 	}
 }

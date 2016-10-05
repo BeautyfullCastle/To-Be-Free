@@ -77,17 +77,32 @@ namespace ToBeFree
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
 		}
-		
+
+		bool revealPoliceNum = false;
+
 		public void ClickCity(IconCity city)
 		{
-			if (readyToMove == false)
-				return;
+			// 공안 조사 : 해당 도시의 공안 수 보여주는 이펙트
+			if (revealPoliceNum)
+			{
+				revealPoliceNum = false;
+				int policeNumInClickedCity = PieceManager.Instance.FindAll(eSubjectType.POLICE, city.City).Count;
 
-			character.NextCity = city.City;
+				uiEventManager.OpenUI();
+				uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Police Number of This City : " + city.name + " : " + policeNumInClickedCity);
+				StartCoroutine(EventManager.Instance.WaitUntilFinish());
+			}
 
-			readyToMove = false;
-			isActStart = true;
+			// 캐릭터 도시 이동
+			if(readyToMove)
+			{
+				character.NextCity = city.City;
 
+				readyToMove = false;
+				isActStart = true;
+			}
+			
+			// 도시 아이콘 정상화
 			foreach (IconCity c in iconCities)
 			{
 				c.GetComponent<TweenAlpha>().value = 1;
@@ -207,18 +222,15 @@ namespace ToBeFree
 				// set the button disabled every city.
 				foreach (IconCity c in iconCities)
 				{
-					c.GetComponent<TweenAlpha>().value = 1;
-					c.GetComponent<TweenAlpha>().enabled = false;
-					c.GetComponent<UIButton>().isEnabled = false;
+					c.SetEnable(false);
 				}
 
-				// set the cities abled and twinkle only you can go.
+				// set the cities enabled and twinkle only you can go.
 				List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP);
 				foreach (City city in cities)
 				{
 					IconCity iconCity = Array.Find<IconCity>(iconCities, x => x.City == city);
-					iconCity.GetComponent<TweenAlpha>().enabled = true;
-					iconCity.GetComponent<UIButton>().isEnabled = true;
+					iconCity.SetEnable(true);
 					Debug.Log("City you can go : " + city.Name);
 				}
 			}

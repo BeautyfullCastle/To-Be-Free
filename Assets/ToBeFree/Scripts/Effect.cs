@@ -51,8 +51,8 @@ namespace ToBeFree
 		DETENTION,
 		NULL,
 		CANCEL,
-		STAT,
-		POSITION,
+		VIEWRANGE,
+		NUMBER,
 		CRACKDOWN_PROBABILITY
 	}
 
@@ -115,6 +115,11 @@ namespace ToBeFree
 							{
 								character.Inven.AddSlot();
 							}
+						}
+						if(objectType == eObjectType.VIEWRANGE)
+						{
+							prevAmount = character.Stat.ViewRange;
+							character.Stat.ViewRange += amount;
 						}
 					}
 					if (verbType == eVerbType.DEL)
@@ -222,7 +227,7 @@ namespace ToBeFree
 							City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
 							yield return PieceManager.Instance.Add(new Piece(city, subjectType));
 						}
-						if(objectType == eObjectType.STAT)
+						if(objectType == eObjectType.VIEWRANGE)
 						{
 							// add one random police's stat
 							if (subjectType == eSubjectType.POLICE)
@@ -236,15 +241,20 @@ namespace ToBeFree
 					{
 						if (subjectType == eSubjectType.POLICE)
 						{
-							// reveal one police's position
-							if (objectType == eObjectType.POSITION)
+							// reveal number of polices in this position
+							if (objectType == eObjectType.NUMBER)
 							{
-
+								foreach (IconCity c in GameManager.Instance.iconCities)
+								{
+									c.SetEnable(true);
+								}
 							}
 							// reveal police's crackdown probability
 							if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
 							{
-								
+								GameManager.Instance.uiEventManager.OpenUI();
+								GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Crackdown Probability is " + CrackDown.Instance.Probability);
+								yield return EventManager.Instance.WaitUntilFinish();
 							}
 						}
 						
@@ -469,6 +479,13 @@ namespace ToBeFree
 						if (objectType == eObjectType.CANCEL)
 						{
 							character.CantMove = false;
+						}
+					}
+					if(verbType == eVerbType.ADD)
+					{
+						if (objectType == eObjectType.VIEWRANGE)
+						{
+							character.Stat.ViewRange = prevAmount;
 						}
 					}
 					break;
