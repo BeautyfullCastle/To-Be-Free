@@ -965,6 +965,36 @@
 			],
 			"price": 3,
 			"tag": "NULL"
+		},
+		{
+			"index": 64,
+			"name": "건빵",
+			"startTime": "NIGHT",
+			"duration": "ONCE",
+			"restore": "false",
+			"effectIndexList": [
+				26
+			],
+			"amountList": [
+				2
+			],
+			"price": 3,
+			"tag": "NULL"
+		},
+		{
+			"index": 65,
+			"name": "육포",
+			"startTime": "NIGHT",
+			"duration": "ONCE",
+			"restore": "false",
+			"effectIndexList": [
+				26
+			],
+			"amountList": [
+				3
+			],
+			"price": 5,
+			"tag": "NULL"
 		}
 	]
 }

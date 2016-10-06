@@ -553,7 +553,34 @@ namespace ToBeFree
 						finalList.AddRange(list);
 					}
 				}
-				
+				//식량아이템 얻기 차는량이 하나 또는 둘 또는 셋
+				else if (ActionName ==  eEventAction.GATHERING)
+				{
+					Item food1 = ItemManager.Instance.List[0];
+					Item food2 = ItemManager.Instance.List[64];
+					Item food3 = ItemManager.Instance.List[65];
+
+					list.Add(food1);
+					list.Add(food3);
+
+					if (testSuccessNum == 1)
+					{
+						list.Add(food1);
+					}
+					else if(testSuccessNum >= 2)
+					{
+						list.Add(food2);
+						if (testSuccessNum >= 3)
+						{
+							list.Add(food3);							
+						}
+					}
+
+					int rand = UnityEngine.Random.Range(0, list.Count);
+					finalList.Add(list[rand]);
+				}
+
+
 				string resultEffectScript = string.Empty;
 				string resultScript = ActionName.ToString() + " Result";
 				foreach (var item in finalList)
@@ -571,6 +598,11 @@ namespace ToBeFree
 					{
 						AbnormalCondition abnormalCondition = item as AbnormalCondition;
 						resultEffectScript += "Buff : " + abnormalCondition.Name + "\n";
+					}
+					else if(item is Item)
+					{
+						Item addingItem = item as Item;
+						resultEffectScript += "Item : " + addingItem.Name + "\n";
 					}
 				}
 				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT, resultScript);
@@ -593,6 +625,11 @@ namespace ToBeFree
 					{
 						AbnormalCondition abnormalCondition = item as AbnormalCondition;
 						yield return abnormalCondition.Activate(character);
+					}
+					else if (item is Item)
+					{
+						Item addingItem = item as Item;
+						yield return character.Inven.AddItem(addingItem, character);
 					}
 				}
 			}

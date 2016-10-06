@@ -160,10 +160,31 @@ namespace ToBeFree
 				case eCommand.INVESTIGATION:
 					action = new Investigation();
 
-					InstantiatePopup("City Investigation", eEventAction.INVESTIGATION_CITY);
-					InstantiatePopup("Broker Investigation", eEventAction.INVESTIGATION_BROKER);
-					InstantiatePopup("Police Investigation", eEventAction.INVESTIGATION_POLICE);
-					InstantiatePopup("Gathering Investigation", eEventAction.GATHERING);
+					UICommandPopup[] investigationPopups = new UICommandPopup[3];
+					UICommandPopup gatheringPopup = null;
+
+					investigationPopups[0] = InstantiatePopup("City Investigation", eEventAction.INVESTIGATION_CITY);
+					investigationPopups[1] = InstantiatePopup("Broker Investigation", eEventAction.INVESTIGATION_BROKER);
+					investigationPopups[2] = InstantiatePopup("Police Investigation", eEventAction.INVESTIGATION_POLICE);
+					gatheringPopup = InstantiatePopup("Gathering Investigation", eEventAction.GATHERING);
+
+					if(character.CurCity.Type == eNodeType.MOUNTAIN)
+					{
+						foreach(UICommandPopup popup in investigationPopups)
+						{
+							foreach(UIButton button in popup.requiredTimeButtons)
+							{
+								button.isEnabled = false;
+							}
+						}
+					}
+					else
+					{
+						foreach (UIButton button in gatheringPopup.requiredTimeButtons)
+						{
+							button.isEnabled = false;
+						}
+					}
 
 					break;
 					// broker and quest command
@@ -174,11 +195,10 @@ namespace ToBeFree
 					break;
 			}
 
-			character.CanAction[(int)commandType] = false;
 			curCommandType = commandType;
 		}
 
-		private void InstantiatePopup(string name, eEventAction actionType)
+		private UICommandPopup InstantiatePopup(string name, eEventAction actionType)
 		{
 			GameObject prefab = Resources.Load("Command Popup") as GameObject;
 			GameObject obj = Instantiate(prefab) as GameObject;
@@ -200,6 +220,8 @@ namespace ToBeFree
 			}
 
 			commandPopupGrid.Reposition();
+
+			return popup;
 		}
 
 		public void ClickCommandRequiredTime(eEventAction actionType, string requiredTime)
@@ -217,7 +239,8 @@ namespace ToBeFree
 
 			action.RequiredTime = iRequiredTime;
 			action.ActionName = actionType;
-			
+
+			character.CanAction[(int)curCommandType] = false;
 			curCommandType = eCommand.NULL;
 			commandPopupGrid.transform.DestroyChildren();
 
@@ -373,15 +396,11 @@ namespace ToBeFree
 			// HAVE TO CHANGE
 			//add polices in big cities.
 			List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
-			List<Transform> bigCityTransformList = new List<Transform>();
 			foreach (City city in bigCityList)
 			{
 				yield return PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
-				bigCityTransformList.Add(GameObject.Find(city.Name.ToString()).transform);
 				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 			}
-			yield return (MoveDirectingCam(bigCityTransformList, 0.5f));
-
 
 			yield return null;
 

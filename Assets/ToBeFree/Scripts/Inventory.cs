@@ -48,7 +48,7 @@ namespace ToBeFree
 			yield return null;
 		}
 
-		public void AddingItem(Item item, Character character)
+		private void AddingItem(Item item, Character character)
 		{
 			if (list.Count >= maxSlots)
 			{

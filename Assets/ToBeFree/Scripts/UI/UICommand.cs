@@ -23,6 +23,15 @@ public class UICommand : MonoBehaviour {
 		}
 		else
 		{
+			// one command can use in one day.
+			this.GetComponent<UIButton>().isEnabled = GameManager.Instance.Character.CanAction[(int)EnumConvert<eCommand>.ToEnum(this.gameObject.name)];
+
+			if(this.GetComponent<UIButton>().isEnabled == false)
+			{
+				return;
+			}
+
+			// 브로커나 퀘스트가 있으면 활성화
 			if (this.name == "BROKER")
 			{
 				bool hasBroker = PieceManager.Instance.GetNumberOfPiece(eSubjectType.BROKER, GameManager.Instance.Character.CurCity) > 0;
@@ -41,28 +50,16 @@ public class UICommand : MonoBehaviour {
 
 				this.GetComponent<UIButton>().isEnabled = (hasBroker | hasAndCanDoQuest);
 			}
-			else
+			else if(this.name == "WORK")
 			{
-				this.GetComponent<UIButton>().isEnabled = true;
+				this.GetComponent<UIButton>().isEnabled = !(GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.MOUNTAIN);
 			}
-
-			if(this.name == "SHOP")
+			else if (this.name == "SHOP")
 			{
 				this.GetComponent<UIButton>().isEnabled = (GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.BIGCITY
 										|| GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.MIDDLECITY);
 			}
-
-			// one command can use in one day.
-			if (this.GetComponent<UIButton>().isEnabled)
-			{
-				this.GetComponent<UIButton>().isEnabled = GameManager.Instance.Character.CanAction[(int)EnumConvert<eCommand>.ToEnum(this.gameObject.name)];
-			}
 		}
-
-		//if(this.GetComponent<UIButton>().isEnabled == false)
-		//{
-		//	this.GetComponent<UIButton>().isEnabled = true;
-		//}
 	}
 
 	private void Instance_NotifyEveryday()

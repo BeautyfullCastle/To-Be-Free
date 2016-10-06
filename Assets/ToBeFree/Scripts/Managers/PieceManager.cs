@@ -109,7 +109,11 @@ namespace ToBeFree
 			list.Add(piece);
 			AddPiece(piece);
 
-			yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { piece.City.IconCity.transform }, 1f);
+			if (!(piece is Police))
+			{
+				yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { piece.City.IconCity.transform }, 1f);
+			}
+			yield return null;
 		}
 		
 		
