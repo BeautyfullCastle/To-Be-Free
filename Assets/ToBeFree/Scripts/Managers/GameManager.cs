@@ -193,6 +193,11 @@ namespace ToBeFree
 				popup.requiredTimeButtons[1].gameObject.SetActive(false);
 				popup.requiredTimeButtons[2].gameObject.SetActive(false);
 			}
+			else
+			{
+				popup.requiredTimeButtons[1].gameObject.SetActive(character.RemainAP >= 2);
+				popup.requiredTimeButtons[2].gameObject.SetActive(character.RemainAP >= 3);
+			}
 
 			commandPopupGrid.Reposition();
 		}
