@@ -52,8 +52,8 @@ namespace ToBeFree
 			foreach (City nextCity in path)
 			{
 				city = nextCity;
-				PieceManager.Instance.SetVisible();
-				if(this.iconPiece.gameObject.activeSelf)
+				GameManager.Instance.Character.Stat.SetViewRange();
+				if (this.iconPiece.gameObject.activeSelf)
 				{
 					yield return CityManager.Instance.MoveTo(iconPiece.transform, city, nextCity);
 				}

@@ -16,7 +16,7 @@ namespace ToBeFree
         public TimeTable()
         {
             day = 1;
-            week = 4;
+            week = 7;
         }
 
         public void DayIsGone()

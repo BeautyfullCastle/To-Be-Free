@@ -65,6 +65,7 @@ namespace ToBeFree
 			yield return BuffManager.Instance.Delete(this.buff, character);
 
 			this.stack = 1;
+			this.buff.AliveDays = 0;
 
 			yield return null;
 		}

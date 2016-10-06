@@ -244,10 +244,28 @@ namespace ToBeFree
 							// reveal number of polices in this position
 							if (objectType == eObjectType.NUMBER)
 							{
+								GameManager.Instance.uiEventManager.OpenUI();
+								GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Please Click the city that you want to see the number of polices : ");
+								yield return EventManager.Instance.WaitUntilFinish();
+
 								foreach (IconCity c in GameManager.Instance.iconCities)
 								{
 									c.SetEnable(true);
 								}
+
+								GameManager.Instance.revealPoliceNum = false;
+								while (GameManager.Instance.revealPoliceNum == false)
+								{
+									yield return null;
+								}
+
+								City city = GameManager.Instance.ClickedIconCity.City;
+								int policeNumInClickedCity = PieceManager.Instance.FindAll(eSubjectType.POLICE, city).Count;
+
+								GameManager.Instance.uiEventManager.OpenUI();
+								GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "The number of polices in " + city.Name + " : " + policeNumInClickedCity);
+								yield return EventManager.Instance.WaitUntilFinish();
+								
 							}
 							// reveal police's crackdown probability
 							if (objectType == eObjectType.CRACKDOWN_PROBABILITY)

@@ -44,6 +44,8 @@ namespace ToBeFree
 			GameManager.Instance.FindGameObject("BuffManager").GetComponent<UIBuffManager>().AddBuff(buff);
 			Debug.Log(buff.Name + " is added to buff list.");
 
+			yield return ActivateEffectByStartTime(eStartTime.NOW, GameManager.Instance.Character);
+
 			yield return null;
 
 		}
@@ -102,6 +104,11 @@ namespace ToBeFree
 
 			foreach (Buff buff in buffsToDelete)
 			{
+				if(buff.StartTime == eStartTime.NOW)
+				{
+					yield return buff.DeactivateEffect(character);
+				}
+				
 				yield return AbnormalConditionManager.Instance.Find(buff.Name).DeActivate(character);
 			}
 			yield return null;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -322,6 +323,18 @@ namespace ToBeFree
 			set
 			{
 				viewRange = value;
+				SetViewRange();
+			}
+		}
+
+		public void SetViewRange()
+		{
+			Character character = GameManager.Instance.Character;
+			List<City> cityList = CityManager.Instance.FindCitiesByDistance(character.CurCity, ViewRange);
+			foreach (Piece piece in PieceManager.Instance.FindAll(eSubjectType.POLICE))
+			{
+				Police police = piece as Police;
+				police.IconPiece.gameObject.SetActive(cityList.Exists(x => x == police.City));
 			}
 		}
 

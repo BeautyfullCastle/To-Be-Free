@@ -398,11 +398,11 @@ namespace ToBeFree
 		}
 	}
 
-	public class InfoAction : Action
+	public class Investigation : Action
 	{
-		public InfoAction()
+		public Investigation()
 		{
-			startTime = eStartTime.INFO;
+			startTime = eStartTime.INVESTIGATION;
 			//actionName = eEventAction.INFO;
 		}
 
@@ -529,7 +529,7 @@ namespace ToBeFree
 				//공안 조사 : 하루 시야 증가, 클릭한 도시의 공안 수, 집중단속확률 중 1, 2, 3 (중복 없음)
 				else if (ActionName == eEventAction.INVESTIGATION_POLICE)
 				{
-					Buff addViewRange = BuffManager.Instance.Find("Add View Range");
+					AbnormalCondition addViewRange = AbnormalConditionManager.Instance.Find("Add View Range");
 					EffectAmount revealPosition = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.NUMBER), 1);
 					EffectAmount getProbability = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.CRACKDOWN_PROBABILITY), 1);
 					
@@ -567,10 +567,10 @@ namespace ToBeFree
 						}
 						resultEffectScript += effectAmount.ToString() + "\n";
 					}
-					else if(item is Buff)
+					else if(item is AbnormalCondition)
 					{
-						Buff buff = item as Buff;
-						resultEffectScript += "Buff : " + buff.Name + "\n";
+						AbnormalCondition abnormalCondition = item as AbnormalCondition;
+						resultEffectScript += "Buff : " + abnormalCondition.Name + "\n";
 					}
 				}
 				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT, resultScript);
@@ -589,10 +589,10 @@ namespace ToBeFree
 						}
 						yield return effectAmount.Activate(character);
 					}
-					else if (item is Buff)
+					else if (item is AbnormalCondition)
 					{
-						Buff buff = item as Buff;
-						yield return buff.ActivateEffect(character);
+						AbnormalCondition abnormalCondition = item as AbnormalCondition;
+						yield return abnormalCondition.Activate(character);
 					}
 				}
 			}

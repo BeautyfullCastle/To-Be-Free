@@ -112,16 +112,7 @@ namespace ToBeFree
 			yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { piece.City.IconCity.transform }, 1f);
 		}
 		
-		public void SetVisible()
-		{
-			Character character = GameManager.Instance.Character;
-			List<City> cityList = CityManager.Instance.FindCitiesByDistance(character.CurCity, character.Stat.ViewRange);
-			foreach (Piece piece in FindAll(eSubjectType.POLICE))
-			{
-				Police police = piece as Police;
-				police.IconPiece.gameObject.SetActive(cityList.Exists(x => x == police.City));
-			}
-		}
+		
 
 		public int GetNumberOfPiece(eSubjectType pieceType, City city)
 		{

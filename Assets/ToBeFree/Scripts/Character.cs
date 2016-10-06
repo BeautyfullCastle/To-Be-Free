@@ -109,7 +109,7 @@ namespace ToBeFree
 
 			this.CurCity = city;
 
-			PieceManager.Instance.SetVisible();
+			Stat.SetViewRange();
 		}
 		
 		public void PrintMovableCity()

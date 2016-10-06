@@ -78,21 +78,16 @@ namespace ToBeFree
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
 		}
 
-		bool revealPoliceNum = false;
+		private List<IEnumerator> coroutines;
+		public void AddCoroutine(IEnumerator routine)
+		{
+			coroutines.Add(routine);
+		}
 
+		public bool revealPoliceNum = false;
+		public IconCity ClickedIconCity = null;
 		public void ClickCity(IconCity city)
 		{
-			// 공안 조사 : 해당 도시의 공안 수 보여주는 이펙트
-			if (revealPoliceNum)
-			{
-				revealPoliceNum = false;
-				int policeNumInClickedCity = PieceManager.Instance.FindAll(eSubjectType.POLICE, city.City).Count;
-
-				uiEventManager.OpenUI();
-				uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Police Number of This City : " + city.name + " : " + policeNumInClickedCity);
-				StartCoroutine(EventManager.Instance.WaitUntilFinish());
-			}
-
 			// 캐릭터 도시 이동
 			if(readyToMove)
 			{
@@ -100,6 +95,14 @@ namespace ToBeFree
 
 				readyToMove = false;
 				isActStart = true;
+			}
+			else
+			{
+				// 공안 조사 : 해당 도시의 공안 수 보여주는 이펙트
+				if (revealPoliceNum == false)
+				{
+					revealPoliceNum = true;
+				}
 			}
 			
 			// 도시 아이콘 정상화
@@ -109,6 +112,8 @@ namespace ToBeFree
 				c.GetComponent<TweenAlpha>().enabled = false;
 				c.GetComponent<UIButton>().isEnabled = true;
 			}
+
+			ClickedIconCity = city;
 		}
 
 		private eCommand curCommandType = eCommand.NULL;
@@ -150,9 +155,10 @@ namespace ToBeFree
 					break;
 				case eCommand.SHOP:
 					action = new EnterToShop();
+					isActStart = true;
 					break;
 				case eCommand.INVESTIGATION:
-					action = new InfoAction();
+					action = new Investigation();
 
 					InstantiatePopup("City Investigation", eEventAction.INVESTIGATION_CITY);
 					InstantiatePopup("Broker Investigation", eEventAction.INVESTIGATION_BROKER);
@@ -423,9 +429,9 @@ namespace ToBeFree
 			// for test
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[26], character);
-			yield return QuestManager.Instance.Load(QuestManager.Instance.List[1], character);
-			Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
-			yield return police.Move();
+			//yield return QuestManager.Instance.Load(QuestManager.Instance.List[1], character);
+			//Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
+			//yield return police.Move();
 #endif
 			/*
 			 * 행동 시
@@ -560,10 +566,10 @@ namespace ToBeFree
 				moveTest = false;
 			}
 
-			yield return AbnormalConditionManager.Instance.List[1].Activate(character);
-			yield return AbnormalConditionManager.Instance.List[2].Activate(character);
+			//yield return AbnormalConditionManager.Instance.List[1].Activate(character);
+			//yield return AbnormalConditionManager.Instance.List[2].Activate(character);
 
-			character.Stat.HP = 1;
+			//character.Stat.HP = 1;
 
 			// select test
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[13], character);

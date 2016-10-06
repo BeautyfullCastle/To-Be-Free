@@ -51,7 +51,7 @@ public class IconPiece : MonoBehaviour
 			numberLabel.gameObject.SetActive(true);
 			Number = 1;
 
-			PieceManager.Instance.SetVisible();
+			GameManager.Instance.Character.Stat.SetViewRange();
 		}
 	}
 
