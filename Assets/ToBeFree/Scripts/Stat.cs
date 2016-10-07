@@ -42,12 +42,15 @@ namespace ToBeFree
 		private int infoNum;
 		private int viewRange;
 
+		private int tempDiceNum;
+
 		public delegate void OnValueChangeHandler(int value, eStat stat);
 		static public event OnValueChangeHandler OnValueChange;
 
 		public Stat()
 		{
 			viewRange = 1;
+			tempDiceNum = 0;
 		}
 
 		public Stat(int hP, int mental, int strength, int agility, int observation, int bargain, int patience, int luck, int startMoney) : this()
@@ -324,6 +327,19 @@ namespace ToBeFree
 			{
 				viewRange = value;
 				SetViewRange();
+			}
+		}
+
+		public int TempDiceNum
+		{
+			get
+			{
+				return tempDiceNum;
+			}
+
+			set
+			{
+				tempDiceNum = value;
 			}
 		}
 

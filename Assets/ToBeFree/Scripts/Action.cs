@@ -413,6 +413,19 @@ namespace ToBeFree
 
 			base.Activate(character);
 
+			character.Stat.TempDiceNum = 0;
+			// 도시크기 별 주사위 추가 - 중도시 주사위1, 대도시는 주사위2
+			if(character.CurCity.Type == eNodeType.MIDDLECITY)
+			{
+				character.Stat.TempDiceNum += 1;
+			}
+			else if (character.CurCity.Type == eNodeType.BIGCITY)
+			{
+				character.Stat.TempDiceNum += 2;
+			}
+
+			character.Stat.TempDiceNum += requiredTime;
+
 			// 스페셜 이벤트 처리
 			if (character.CheckSpecialEvent())
 			{
@@ -458,8 +471,9 @@ namespace ToBeFree
 				EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
-				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime;
-				
+				int testSuccessNum = EventManager.Instance.TestSuccessNum;
+				character.Stat.TempDiceNum = 0;
+
 				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSuccessNum.ToString());
 
 				ArrayList list = new ArrayList(3);
@@ -571,10 +585,9 @@ namespace ToBeFree
 								list.Add(food3);
 							}
 						}
+						int rand = UnityEngine.Random.Range(0, list.Count);
+						finalList.Add(list[rand]);
 					}
-
-					int rand = UnityEngine.Random.Range(0, list.Count);
-					finalList.Add(list[rand]);
 				}
 
 

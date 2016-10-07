@@ -64,20 +64,27 @@ namespace ToBeFree
 		
 		public int GetDiceNum(eTestStat stat)
 		{
+			int diceNum = 0;
 			switch (stat)
 			{
 				case eTestStat.STRENGTH:
-					return this.Stat.Strength;
+					diceNum = this.Stat.Strength;
+					break;
 				case eTestStat.AGILITY:
-					return this.Stat.Agility;
+					diceNum = this.Stat.Agility;
+					break;
 				case eTestStat.OBSERVATION:
-					return this.Stat.Observation;
+					diceNum = this.Stat.Observation;
+					break;
 				case eTestStat.BARGAIN:
-					return this.Stat.Bargain;
+					diceNum = this.Stat.Bargain;
+					break;
 				case eTestStat.PATIENCE:
-					return this.Stat.Patience;
+					diceNum = this.Stat.Patience;
+					break;
 				case eTestStat.LUCK:
-					return this.Stat.Luck;
+					diceNum = this.Stat.Luck;
+					break;
 				case eTestStat.ALL:
 				case eTestStat.NULL:
 					return -99;
@@ -85,6 +92,8 @@ namespace ToBeFree
 					Debug.LogError("GetDiceNum : Stat name is not correct : " + stat);
 					return -1;
 			}
+
+			return diceNum + this.Stat.TempDiceNum;
 		}
 
 		public void Rest()
