@@ -98,7 +98,28 @@ namespace ToBeFree
 			{
 				if (buff.CheckDuration())
 				{
-					buffsToDelete.Add(buff);
+					// DAY_TEST는 매일밤 주사위 하나 굴려서 4 이하면 사라짐.
+					if(buff.Duration == eDuration.DAY_TEST)
+					{
+						GameManager.Instance.uiEventManager.OpenUI();
+						
+						bool testResult = (DiceTester.Instance.Test(1) <= 4);
+
+						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "DAY_TEST for " + buff.Name);
+						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
+
+						yield return EventManager.Instance.WaitUntilFinish();
+
+						if(testResult)
+						{
+							buffsToDelete.Add(buff);
+						}
+					}
+					else
+					{
+						buffsToDelete.Add(buff);
+					}
+					
 				}
 			}
 

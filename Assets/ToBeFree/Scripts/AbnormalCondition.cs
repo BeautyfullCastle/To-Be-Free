@@ -74,9 +74,7 @@ namespace ToBeFree
 		{
 			return spawnCondition.CheckCondition(character);
 		}
-
-
-
+		
 		public Buff Buff
 		{
 			get
@@ -98,6 +96,30 @@ namespace ToBeFree
 			get
 			{
 				return name;
+			}
+		}
+	}
+
+	public class Hunger : AbnormalCondition
+	{
+		public Hunger(string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive) : base(name, buff, spawnCondition, isStack, isBody, isPositive)
+		{
+			Stat.OnValueChange += Stat_OnValueChange;
+		}
+
+		private void Stat_OnValueChange(int value, eStat stat)
+		{
+			//밤마다 배고픔 수치만큼 체력피해를 입습니다.\n 식량을 먹으면 사라집니다.
+			if (BuffManager.Instance.Exist(this.buff))
+			{
+				if(stat == eStat.FOOD && value > 1)
+				{
+					this.DeActivate(GameManager.Instance.Character);
+				}
+			}
+			if (CheckCondition(GameManager.Instance.Character))
+			{	
+				GameManager.Instance.StartCoroutine(Activate(GameManager.Instance.Character));
 			}
 		}
 	}

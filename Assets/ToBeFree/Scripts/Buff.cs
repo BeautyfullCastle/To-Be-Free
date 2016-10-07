@@ -115,6 +115,10 @@ namespace ToBeFree
 			{
 				return true;
 			}
+			else if (Duration == eDuration.DAY_TEST && this.AliveDays >= 1)
+			{
+				return true;
+			}
 			else if(Duration == eDuration.WEEK && this.AliveDays >= 7)
 			{
 				return true;
