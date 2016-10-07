@@ -560,19 +560,16 @@ namespace ToBeFree
 					Item food2 = ItemManager.Instance.List[64];
 					Item food3 = ItemManager.Instance.List[65];
 
-					list.Add(food1);
-					list.Add(food3);
-
-					if (testSuccessNum == 1)
+					if (testSuccessNum >= 1)
 					{
 						list.Add(food1);
-					}
-					else if(testSuccessNum >= 2)
-					{
-						list.Add(food2);
-						if (testSuccessNum >= 3)
+						if (testSuccessNum >= 2)
 						{
-							list.Add(food3);							
+							list.Add(food2);
+							if (testSuccessNum >= 3)
+							{
+								list.Add(food3);
+							}
 						}
 					}
 
