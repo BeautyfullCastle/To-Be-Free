@@ -476,6 +476,10 @@ namespace ToBeFree
 			- 끝 1
 			*/
 
+			// 집중 단속 시 모든 공안 이동력만큼 움직이기
+			yield return CrackDown.Instance.MoveEveryPolice();
+
+			// 스페셜 이벤트 확률 증가
 			character.AddSpecialEventProbability();
 
 

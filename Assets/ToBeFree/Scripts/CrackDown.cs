@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -49,26 +50,38 @@ namespace ToBeFree
 					if (randIndex == 0)
 					{
 						Police police = new Police(CityManager.Instance.GetRand(), eSubjectType.POLICE);
-						NGUIDebug.Log("CrackDown : Added Police");
+						NGUIDebug.Log("Police Time : Added Police");
 						yield return PieceManager.Instance.Add(police);
 					}
 					// add one police's stat
 					else if (randIndex == 1)
 					{
 						Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
-						NGUIDebug.Log("CrackDown : Added Police's STAT in " + police.City.Name);
+						NGUIDebug.Log("Police Time : Added Police's STAT in " + police.City.Name);
 						yield return police.AddStat(isCrackDown);
 					}
 					// move one police
 					else if (randIndex == 2)
 					{
 						Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
-						NGUIDebug.Log("CrackDown : Moved Police from " + police.City.Name);
+						NGUIDebug.Log("Police Time : Moved Police from " + police.City.Name);
 						yield return police.Move();
 					}
 				}
 			}
-			
+		}
+
+		public IEnumerator MoveEveryPolice()
+		{	if (isCrackDown)
+			{
+				List<Piece> pieces = PieceManager.Instance.FindAll(eSubjectType.POLICE);
+				foreach (Piece piece in pieces)
+				{
+					Police police = piece as Police;
+					NGUIDebug.Log("CrackDown : Move Police from " + police.City.Name);
+					yield return police.Move();
+				}
+			}
 		}
 
 		public bool IsCrackDown

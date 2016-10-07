@@ -175,7 +175,7 @@ namespace ToBeFree
 			return cityList[randCityIndex];
 		}
 
-		public List<City> FindCitiesByDistance(City curCity, int distance)
+		public List<City> FindCitiesByDistance(City curCity, int distance, bool removeCurCity = true)
 		{
 			ResetCitiesDistance();
 
@@ -186,7 +186,10 @@ namespace ToBeFree
 			}
 			PutCityInNeighbors(curCity, cities, distance);
 
-			cities.Remove(curCity);
+			if(removeCurCity)
+			{
+				cities.Remove(curCity);
+			}	
 
 			return cities;
 		}
