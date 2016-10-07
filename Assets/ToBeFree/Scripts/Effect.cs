@@ -38,12 +38,12 @@ namespace ToBeFree
 	public enum eObjectType
 	{
 		NONE,
-		HP, MENTAL, HP_MENTAL,
+		HP,
 		FAR_CLOSE, CLOSE_FAR, RAND_RAND, RAND_CLOSE, CLOSE_CLOSE,
 		CLOSE, FAR, RAND, 
 		ALL, TAG, INDEX, SELECT, SELECT_ALL, SELECT_TAG,
 		WORK, MOVE, REST, REST_CURE, SPECIAL, INFO, FOOD, SHOP,
-		STRENGTH, AGILITY, OBSERVATION, BARGAIN, PATIENCE, LUCK,
+		STRENGTH, AGILITY, CONCENTRATION, TALENT,
 		SOUTHEAST_ASIA, MONGOLIA,
 		SPECIFIC, RAND_3,
 		SUCCESSNUM,
@@ -53,7 +53,8 @@ namespace ToBeFree
 		CANCEL,
 		VIEWRANGE,
 		NUMBER,
-		CRACKDOWN_PROBABILITY
+		CRACKDOWN_PROBABILITY,
+		MENTAL, HP_MENTAL, PATIENCE, LUCK // 지워야 되는 것들
 	}
 
 	public class Effect
@@ -91,15 +92,10 @@ namespace ToBeFree
 				case eSubjectType.CHARACTER:
 					if (verbType == eVerbType.ADD)
 					{
-						if (objectType == eObjectType.HP_MENTAL || objectType == eObjectType.HP)
+						if (objectType == eObjectType.HP)
 						{
 							Debug.Log("Cure HP");
 							character.Stat.HP += amount;
-						}
-						if (objectType == eObjectType.HP_MENTAL || objectType == eObjectType.MENTAL)
-						{
-							Debug.Log("Cure Mental");
-							character.Stat.MENTAL += amount;
 						}
 						if (objectType == eObjectType.INFO)
 						{
@@ -148,8 +144,6 @@ namespace ToBeFree
 							yield return AbnormalConditionManager.Instance.Find("Detention").Activate(character);
 						}
 					}
-					
-						
 					break;
 					
 				case eSubjectType.STAT:

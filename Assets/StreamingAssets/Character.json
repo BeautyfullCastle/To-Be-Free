@@ -5,18 +5,18 @@
 			"name": "이영희",
 			"script": "신의주에서 중국과 불법무역을 하던 그녀는 주변 무역인들이 조사에 잡혀가는 모습을 보고 군인에게 돈을 주고 북한을 탈출한다./n이제 그녀에게 믿을 건 무역을 하며 익힌 중국어와 무역으로 벌어들인 돈 뿐이다.",
 			"HP": 6,
-			"mental": 6,
 			"strength": 2,
 			"agility": 2,
-			"observation": 3,
-			"bargain": 4,
-			"patience": 2,
-			"luck": 2,
+			"concentration": 3,
+			"talent": 4,
 			"startMoney": 7,
 			"startInven": 7,
 			"startCity": "TUMEN",
 			"itemIndex": [
 				0,
+				0
+			],
+			"eventindex": [
 				0
 			]
 		},
@@ -25,18 +25,18 @@
 			"name": "김철수",
 			"script": "함경남도에서 온갖 험한일을 하면서 생활을 연명하던 그는 남한에서는 풍족하게 먹고 산다는 말에 탈북을 결심한다. 고향을 떠나 국경지대에서 압록강을 건너는데 모은 돈을 다쓴 그는 자신의 몸하나에 의지하여 자유를 찾고자 한다.",
 			"HP": 6,
-			"mental": 6,
 			"strength": 4,
 			"agility": 2,
-			"observation": 2,
-			"bargain": 1,
-			"patience": 3,
-			"luck": 2,
+			"concentration": 2,
+			"talent": 1,
 			"startMoney": 3,
 			"startInven": 7,
 			"startCity": "DANDONG",
 			"itemIndex": [
 				0,
+				0
+			],
+			"eventindex": [
 				0
 			]
 		}

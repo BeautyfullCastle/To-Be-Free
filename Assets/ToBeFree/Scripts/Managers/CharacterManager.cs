@@ -35,7 +35,7 @@ namespace ToBeFree
         {
             foreach (CharacterData data in dataList)
             {
-                Stat stat = new Stat(data.HP, data.mental, data.strength, data.agility, data.observation, data.bargain, data.patience, data.luck, data.startMoney);
+                Stat stat = new Stat(data.HP, data.strength, data.agility, data.concentration, data.talent, data.startMoney);
                 Inventory inven = new Inventory(data.startInven);                
 
                 Character character = new Character(data.name, data.script, stat, data.startCity, inven);

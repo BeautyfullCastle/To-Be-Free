@@ -73,17 +73,11 @@ namespace ToBeFree
 				case eTestStat.AGILITY:
 					diceNum = this.Stat.Agility;
 					break;
-				case eTestStat.OBSERVATION:
-					diceNum = this.Stat.Observation;
+				case eTestStat.CONCENTRATION:
+					diceNum = this.Stat.Concentration;
 					break;
-				case eTestStat.BARGAIN:
-					diceNum = this.Stat.Bargain;
-					break;
-				case eTestStat.PATIENCE:
-					diceNum = this.Stat.Patience;
-					break;
-				case eTestStat.LUCK:
-					diceNum = this.Stat.Luck;
+				case eTestStat.TALENT:
+					diceNum = this.Stat.Talent;
 					break;
 				case eTestStat.ALL:
 				case eTestStat.NULL:
@@ -103,7 +97,6 @@ namespace ToBeFree
 				return;
 			}
 			Stat.HP++;
-			Stat.MENTAL++;
 			AP++;
 		}
 
@@ -134,29 +127,29 @@ namespace ToBeFree
 			{
 				yield return MoveTo(city);
 			}
-			// if no more left cities 
+			// if no more left cities, have to call the event about escape from the camp.
 			else
 			{
-				GameManager.Instance.uiEventManager.OpenUI();
+				//GameManager.Instance.uiEventManager.OpenUI();
 
-				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, this);
-				bool testResult = (DiceTester.Instance.Test(Stat.Luck) > 0);       
-				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, this);
+				////yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, this);
+				////bool testResult = (DiceTester.Instance.Test(Stat.Luck) > 0);       
+				////yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, this);
 
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Last chance to Escape!!!");
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
+				////GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Last chance to Escape!!!");
+				////GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
 
-				yield return EventManager.Instance.WaitUntilFinish();
+				//yield return EventManager.Instance.WaitUntilFinish();
 				
-				if(testResult == true)
-				{
-					yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(this);
-				}
-				else
-				{
-					// game over
-					yield return GameManager.Instance.ShowStateLabel("Game Over!", 1f);
-				}
+				//if(testResult == true)
+				//{
+				//	yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(this);
+				//}
+				//else
+				//{
+				//	// game over
+				//	yield return GameManager.Instance.ShowStateLabel("Game Over!", 1f);
+				//}
 			}
 		}
 

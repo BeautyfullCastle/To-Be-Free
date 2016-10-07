@@ -49,15 +49,7 @@ namespace ToBeFree
                 AbnormalCondition abnormalCondition = null;
                 
                 
-                if (data.name == typeof(Despair).Name)
-                {
-                    abnormalCondition = new Despair(data.name, buff, spawnCondition, bool.Parse(data.stack), EnumConvert<eBodyMental>.ToEnum(data.isBody), EnumConvert<ePositiveNegative>.ToEnum(data.isPositive));
-                }
-                else if (data.name == typeof(Exhilaration).Name)
-                {
-                    abnormalCondition = new Exhilaration(data.name, buff, spawnCondition, bool.Parse(data.stack), EnumConvert<eBodyMental>.ToEnum(data.isBody), EnumConvert<ePositiveNegative>.ToEnum(data.isPositive));
-                }
-                else if (data.name == typeof(Detention).Name)
+                if (data.name == typeof(Detention).Name)
                 {
                     abnormalCondition = new Detention(data.name, buff, spawnCondition, bool.Parse(data.stack), EnumConvert<eBodyMental>.ToEnum(data.isBody), EnumConvert<ePositiveNegative>.ToEnum(data.isPositive));
                 }

@@ -20,7 +20,7 @@
 		},
 		{
 			"index": 1,
-			"stat": "OBSERVATION",
+			"stat": "TALENT",
 			"successScript": "브로커에 대한 정보를 파악하는데 성공했습니다.",
 			"successEffectIndexList": [
 				-99
@@ -38,7 +38,7 @@
 		},
 		{
 			"index": 2,
-			"stat": "OBSERVATION",
+			"stat": "TALENT",
 			"successScript": "공안에 대한 정보를 파악하는데 성공했습니다.",
 			"successEffectIndexList": [
 				-99
@@ -56,7 +56,7 @@
 		},
 		{
 			"index": 3,
-			"stat": "OBSERVATION",
+			"stat": "TALENT",
 			"successScript": "도시에 대한 정보를 파악하는데 성공했습니다.",
 			"successEffectIndexList": [
 				-99
@@ -110,7 +110,7 @@
 		},
 		{
 			"index": 6,
-			"stat": "PATIENCE",
+			"stat": "CONCENTRATION",
 			"successScript": "당신은 편한상태로 휴식을 취했습니다.",
 			"successEffectIndexList": [
 				-99
@@ -128,7 +128,7 @@
 		},
 		{
 			"index": 7,
-			"stat": "PATIENCE",
+			"stat": "CONCENTRATION",
 			"successScript": "당신은 공안을 피해서 휴식을 취했습니다.",
 			"successEffectIndexList": [
 				-99
@@ -146,7 +146,7 @@
 		},
 		{
 			"index": 8,
-			"stat": "PATIENCE",
+			"stat": "TALENT",
 			"successScript": "다행히 먹을 수 있는 것들을 찾을 수 있었습니다.",
 			"successEffectIndexList": [
 				-99
@@ -164,7 +164,7 @@
 		},
 		{
 			"index": 9,
-			"stat": "PATIENCE",
+			"stat": "AGILITY",
 			"successScript": "술에 취해 잠든 공안들 사이로 무사히 탈출할 수 있었습니다.",
 			"successEffectIndexList": [
 				-99
@@ -182,7 +182,7 @@
 		},
 		{
 			"index": 10,
-			"stat": "PATIENCE",
+			"stat": "AGILITY",
 			"successScript": "특수이벤트 이동 성공",
 			"successEffectIndexList": [
 				-99
@@ -200,7 +200,7 @@
 		},
 		{
 			"index": 11,
-			"stat": "PATIENCE",
+			"stat": "AGILITY",
 			"successScript": "특수이벤트 버스이동 성공",
 			"successEffectIndexList": [
 				-99
@@ -218,7 +218,7 @@
 		},
 		{
 			"index": 12,
-			"stat": "PATIENCE",
+			"stat": "STRENGTH",
 			"successScript": "특수이벤트 일 중 성공",
 			"successEffectIndexList": [
 				-99
@@ -236,7 +236,7 @@
 		},
 		{
 			"index": 13,
-			"stat": "PATIENCE",
+			"stat": "STRENGTH",
 			"successScript": "특수이벤트 일 끝 성공",
 			"successEffectIndexList": [
 				-99
@@ -254,7 +254,7 @@
 		},
 		{
 			"index": 14,
-			"stat": "PATIENCE",
+			"stat": "TALENT",
 			"successScript": "특수이벤트 브로커조사 성공",
 			"successEffectIndexList": [
 				-99
@@ -272,7 +272,7 @@
 		},
 		{
 			"index": 15,
-			"stat": "PATIENCE",
+			"stat": "TALENT",
 			"successScript": "특수이벤트 공안조사 성공",
 			"successEffectIndexList": [
 				-99
@@ -290,7 +290,7 @@
 		},
 		{
 			"index": 16,
-			"stat": "PATIENCE",
+			"stat": "TALENT",
 			"successScript": "특수이벤트 도시조사 성공",
 			"successEffectIndexList": [
 				-99
@@ -308,7 +308,7 @@
 		},
 		{
 			"index": 17,
-			"stat": "PATIENCE",
+			"stat": "AGILITY",
 			"successScript": "특수이벤트 브로커 성공",
 			"successEffectIndexList": [
 				-99
@@ -326,7 +326,7 @@
 		},
 		{
 			"index": 18,
-			"stat": "PATIENCE",
+			"stat": "STRENGTH",
 			"successScript": "특수이벤트 하루시작 성공",
 			"successEffectIndexList": [
 				-99
@@ -344,7 +344,7 @@
 		},
 		{
 			"index": 19,
-			"stat": "PATIENCE",
+			"stat": "TALENT",
 			"successScript": "특수이벤트 하루끝 성공",
 			"successEffectIndexList": [
 				-99
@@ -362,7 +362,7 @@
 		},
 		{
 			"index": 20,
-			"stat": "PATIENCE",
+			"stat": "AGILITY",
 			"successScript": "특수이벤트 공안체크 성공",
 			"successEffectIndexList": [
 				-99
@@ -380,7 +380,7 @@
 		},
 		{
 			"index": 21,
-			"stat": "PATIENCE",
+			"stat": "AGILITY",
 			"successScript": "특수이벤트 체포 성공",
 			"successEffectIndexList": [
 				-99
@@ -398,7 +398,7 @@
 		},
 		{
 			"index": 22,
-			"stat": "PATIENCE",
+			"stat": "TALENT",
 			"successScript": "특수이벤트 채집 성공",
 			"successEffectIndexList": [
 				-99
@@ -416,7 +416,7 @@
 		},
 		{
 			"index": 23,
-			"stat": "PATIENCE",
+			"stat": "AGILITY",
 			"successScript": "특수이벤트 수용소 성공",
 			"successEffectIndexList": [
 				-99
@@ -434,7 +434,7 @@
 		},
 		{
 			"index": 24,
-			"stat": "PATIENCE",
+			"stat": "CONCENTRATION",
 			"successScript": "특수이벤트 휴식 성공",
 			"successEffectIndexList": [
 				-99
@@ -452,7 +452,7 @@
 		},
 		{
 			"index": 25,
-			"stat": "PATIENCE",
+			"stat": "CONCENTRATION",
 			"successScript": "특수이벤트 숨기 성공",
 			"successEffectIndexList": [
 				-99
@@ -470,7 +470,7 @@
 		},
 		{
 			"index": 26,
-			"stat": "PATIENCE",
+			"stat": "CONCENTRATION",
 			"successScript": "퀘스트 결과 성공",
 			"successEffectIndexList": [
 				-99
@@ -495,6 +495,24 @@
 			],
 			"successEffectValueList": [
 				1
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 28,
+			"stat": "NULL",
+			"successScript": "캐릭터0의 능력발동 결과",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [

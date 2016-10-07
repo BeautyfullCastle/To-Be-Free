@@ -484,7 +484,6 @@ namespace ToBeFree
 					Quest quest = QuestManager.Instance.FindRand(eQuestActionType.QUEST_BROKERINFO);
 					int questIndex = QuestManager.Instance.IndexOf(quest);
 					EffectAmount brokerInfoQuest = new EffectAmount(new Effect(eSubjectType.QUEST, eVerbType.LOAD), questIndex);
-
 					EffectAmount brokerInfo = new EffectAmount(new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.INFO), 1);
 
 					//하나성공: 브로커정보 퀘스트 받음

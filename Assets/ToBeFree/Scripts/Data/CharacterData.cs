@@ -7,11 +7,10 @@ public class CharacterData : IData
     public string name;
     public string script;
     public int HP;
-    public int mental;
     public int strength;
     public int agility;
-    public int observation;
-    public int bargain;
+    public int concentration;
+    public int talent;
     public int patience;
     public int luck;
     public int startMoney;

@@ -178,13 +178,13 @@
 			"index": 29,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "OBSERVATION"
+			"objectType": "CONCENTRATION"
 		},
 		{
 			"index": 30,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "BARGAIN"
+			"objectType": "TALENT"
 		},
 		{
 			"index": 31,
@@ -455,6 +455,18 @@
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
 			"objectType": "VIEWRANGE"
+		},
+		{
+			"index": 76,
+			"subjectType": "POLICE",
+			"verbType": "REVEAL",
+			"objectType": "NUMBER"
+		},
+		{
+			"index": 77,
+			"subjectType": "POLICE",
+			"verbType": "REVEAL",
+			"objectType": "CRACKDOWN_PROBABILITY"
 		}
 	]
 }

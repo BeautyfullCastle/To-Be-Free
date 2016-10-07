@@ -102,60 +102,6 @@ namespace ToBeFree
 		}
 	}
 
-	public class Despair : AbnormalCondition
-	{
-		public Despair(string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive) : base(name, buff, spawnCondition, isStack, isBody, isPositive)
-		{
-			Stat.OnValueChange += Stat_OnValueChange;
-		}
-
-		private void Stat_OnValueChange(int value, eStat stat)
-		{
-			if (CheckCondition(GameManager.Instance.Character))
-			{
-				if (BuffManager.Instance.Exist(this.buff))
-				{
-					return;
-				}
-				GameManager.Instance.StartCoroutine(Activate(GameManager.Instance.Character));
-			}
-		}
-
-		public override IEnumerator Activate(Character character)
-		{
-			yield return base.Activate(character);
-
-			Buff buff_Exhilaration = BuffManager.Instance.Find("Exhilaration");
-			if (buff_Exhilaration == null)
-			{
-				yield break;
-			}
-			yield return BuffManager.Instance.Delete(buff_Exhilaration, character);
-			yield return null;
-		}
-	}
-
-	public class Exhilaration : AbnormalCondition
-	{
-		public Exhilaration(string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive) : base(name, buff, spawnCondition, isStack, isBody, isPositive)
-		{
-
-		}
-
-		public override IEnumerator Activate(Character character)
-		{
-			yield return base.Activate(character);
-
-			Buff buff_Despair = BuffManager.Instance.Find("Despair");
-			if (buff_Despair == null)
-			{
-				yield break;
-			}
-			yield return BuffManager.Instance.Delete(buff_Despair, character);
-			yield return null;
-		}
-	}
-
 	public class Detention : AbnormalCondition
 	{
 		public Detention(string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive) : base(name, buff, spawnCondition, isStack, isBody, isPositive)
