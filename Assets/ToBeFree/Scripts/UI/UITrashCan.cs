@@ -7,11 +7,15 @@ namespace ToBeFree
 	{
 		public GameObject droppedItemPrefab;
 
+		[SerializeField]
 		private UIShop shop;
 
 		public void Start()
 		{
-			shop = GameObject.FindObjectOfType<UIShop>();
+			if(shop == null)
+			{
+				shop = GameObject.FindObjectOfType<UIShop>();
+			}			
 		}
 
 		public void OnDrop(GameObject dropped)
@@ -28,7 +32,11 @@ namespace ToBeFree
 			GameObject newPower = NGUITools.AddChild(this.gameObject,
 													 droppedItemPrefab);
 			// 드롭된 게임오브젝트는 삭제한다.
-			StartCoroutine(GameManager.Instance.Character.Inven.Delete(dropped.GetComponent<UIItem>().Item, GameManager.Instance.Character));
+			if(gameObject.name == "TrashCan")
+				StartCoroutine(GameManager.Instance.Character.Inven.Delete(dropped.GetComponent<UIItem>().Item, GameManager.Instance.Character));
+			else
+				StartCoroutine(GameManager.Instance.Character.Inven.UseItem(dropped.GetComponent<UIItem>().Item, GameManager.Instance.Character));
+			
 
 			shop.CheckItems();
 		}

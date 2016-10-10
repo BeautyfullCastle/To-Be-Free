@@ -24,7 +24,6 @@ namespace ToBeFree
 		private string name;
 		private int price;
 		private int maximumStackableQuantity;
-		
 
 		public Item(string name, Buff buff, int price, int maximumStackableQuantity=1)
 		{

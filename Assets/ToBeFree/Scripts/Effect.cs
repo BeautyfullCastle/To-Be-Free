@@ -9,7 +9,7 @@ namespace ToBeFree
 	{
 		STAT, DICE,
 		INFO, POLICE, CHARACTER,
-		ITEM, MONEY, FOOD,
+		ITEM, MONEY, SATIETY,
 		ACTINGPOWER, ABNORMAL,
 		COMMAND,
 		EVENT, QUEST,
@@ -103,7 +103,7 @@ namespace ToBeFree
 						}
 						if (objectType == eObjectType.FOOD)
 						{
-							character.Stat.FOOD += amount;
+							character.Stat.Satiety += amount;
 						}
 						if (objectType == eObjectType.INVEN)
 						{

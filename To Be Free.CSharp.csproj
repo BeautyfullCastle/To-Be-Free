@@ -268,6 +268,7 @@
     <Compile Include="Assets\ToBeFree\Scripts\Select.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\Stat.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\TimeTable.cs" />
+    <Compile Include="Assets\ToBeFree\Scripts\UI\DoubleClick.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIBuff.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UIBuffManager.cs" />
     <Compile Include="Assets\ToBeFree\Scripts\UI\UICommand.cs" />

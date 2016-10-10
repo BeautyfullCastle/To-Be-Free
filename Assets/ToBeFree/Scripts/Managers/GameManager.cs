@@ -445,7 +445,7 @@ namespace ToBeFree
 			// Enter
 			yield return (ShowStateLabel("Start Day State", 0.5f));
 
-			yield return character.Inven.CheckItem(eStartTime.DAY, character);
+			
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.DAY, character);
 
@@ -646,32 +646,30 @@ namespace ToBeFree
 
 			character.Reset();
 
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
-		}
 
-		private IEnumerator Instance_NotifyEveryWeek()
-		{
-			yield return character.Inven.CheckItem(eStartTime.NIGHT, character);
-
-			yield return character.Inven.CheckItem(eStartTime.WEEK, character);
-
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
-			
 			if (character.IsFull)
 			{
 				yield return GameManager.Instance.ShowStateLabel("Skip Food", 0.5f);
 			}
 			else
 			{
-				if (character.Stat.FOOD <= 0)
+				if (character.Stat.Satiety <= 0)
 				{
 					character.Stat.HP -= 2;
 				}
 				else
 				{
-					character.Stat.FOOD--;
+					character.Stat.Satiety--;
 				}
 			}
+
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
+		}
+
+		private IEnumerator Instance_NotifyEveryWeek()
+		{
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
+			
 
 			//check current quest's end time and apply the result
 			List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);

@@ -7,7 +7,8 @@ namespace ToBeFree
 
 	public enum eStat
 	{
-		HP, TOTALHP, FOOD, MONEY, INFO, STRENGTH, AGILITY, CONCENTRATION, TALENT, NULL
+		HP, TOTALHP, SATIETY, MONEY, INFO, STRENGTH, AGILITY, CONCENTRATION, TALENT, NULL,
+		TOTALSATIETY
 	}
 
 	public enum eTestStat
@@ -20,6 +21,9 @@ namespace ToBeFree
 		private int hp;
 		private int totalHP;
 
+		private int satiety;
+		private int totalSatiety;
+
 		private int strength; // 일
 		private int agility; // 공안
 		private int concentration; // 휴식
@@ -31,7 +35,6 @@ namespace ToBeFree
 		private int prevTalent;
 
 		private int money;
-		private int foodNum;
 
 		private int infoNum;
 		private int viewRange;
@@ -45,6 +48,8 @@ namespace ToBeFree
 		{
 			viewRange = 1;
 			tempDiceNum = 0;
+			TotalSatiety = 5;
+			Satiety = TotalSatiety;
 		}
 
 		public Stat(int hP, int strength, int agility, int concentration, int talent, int startMoney) : this()
@@ -65,31 +70,17 @@ namespace ToBeFree
 			OnValueChange(hp, eStat.HP);
 			OnValueChange(totalHP, eStat.TOTALHP);
 
+			OnValueChange(satiety, eStat.SATIETY);
+			OnValueChange(satiety, eStat.TOTALSATIETY);
+
 			OnValueChange(strength, eStat.STRENGTH);
 			OnValueChange(agility, eStat.AGILITY);
 			OnValueChange(concentration, eStat.CONCENTRATION);
 			OnValueChange(talent, eStat.TALENT);
 
-			OnValueChange(foodNum, eStat.FOOD);
 			OnValueChange(money, eStat.MONEY);
 			OnValueChange(infoNum, eStat.INFO);
 			
-		}
-
-		public void AddFood(Item item)
-		{
-			if (item.Buff.StartTime == eStartTime.NIGHT)
-			{
-				this.FOOD++;
-			}
-		}
-
-		public void DeleteFood(Item item)
-		{
-			if (item.Buff.StartTime == eStartTime.NIGHT)
-			{
-				this.FOOD--;
-			}
 		}
 
 		public int Strength
@@ -179,20 +170,45 @@ namespace ToBeFree
 			}
 		}
 		
-		public int FOOD
+		public int Satiety
 		{
 			get
 			{
-				return foodNum;
+				return satiety;
 			}
 			set
+			{
+				if (value < 0) 
+				{
+					satiety = 0;
+				}
+				else if (value > TotalSatiety)
+				{
+					satiety = TotalSatiety;
+				}
+				else
+				{
+					satiety = value;
+				}
+				
+				OnValueChange(satiety, eStat.SATIETY);
+			}
+		}
+
+		public int TotalSatiety
+		{
+			get
+			{
+				return totalSatiety;
+			}
+			private set
 			{
 				if (value < 0)
 				{
 					return;
 				}
-				foodNum = value;
-				OnValueChange(foodNum, eStat.FOOD);
+				totalSatiety = value;
+				OnValueChange(satiety, eStat.TOTALSATIETY);
 			}
 		}
 

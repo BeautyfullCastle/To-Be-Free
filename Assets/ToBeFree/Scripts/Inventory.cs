@@ -37,18 +37,12 @@ namespace ToBeFree
 
 		public IEnumerator AddItem(Item item, Character character)
 		{
-			if(item.Buff.StartTime == eStartTime.NOW)
-			{
-				yield return item.Buff.ActivateEffect(character);
-				yield break;
-			}
-
 			AddingItem(item, character);
 
 			yield return null;
 		}
 
-		private void AddingItem(Item item, Character character)
+		public void AddingItem(Item item, Character character)
 		{
 			if (list.Count >= maxSlots)
 			{
@@ -57,8 +51,8 @@ namespace ToBeFree
 			else
 			{
 				list.Add(new Item(item));
-				character.Stat.AddFood(item);
 				GameObject.FindObjectOfType<UIInventory>().AddItem(item);
+				
 				NGUIDebug.Log(item.Name);
 			}
 		}
@@ -72,7 +66,6 @@ namespace ToBeFree
 		{
 			Item findedItem = list.Find(x => (x.Name == item.Name));
 			list.Remove(findedItem);
-			character.Stat.DeleteFood(item);
 			GameObject.FindObjectOfType<UIInventory>().DeleteItem(findedItem);
 
 			yield return BuffManager.Instance.Delete(item.Buff, character);
@@ -109,27 +102,48 @@ namespace ToBeFree
 			this.maxSlots++;
 		}
 
-		public IEnumerator CheckItem(eStartTime startTime, Character character)
+		public IEnumerator CheckItem(eStartTime startTime, bool isActive, Character character)
 		{
 			List<Item> items = list.FindAll(x => x.Buff.StartTime == startTime);
 			
 			for (int i = 0; i < items.Count; ++i)
 			{
-				yield return UseItem(items[i], character);
-				if (startTime == eStartTime.NIGHT)
+				
+				// 장비템은 알아서 사용됨
+				if (items[i].Buff.Duration == eDuration.EQUIP)
 				{
-					yield break;
+					if (isActive)
+						yield return UseItem(items[i], character);
+					else
+						yield return DeactvieItems(items[i], character);
+				}
+				// 소모 아이템은 활성화/비활성화
+				else if (items[i].Buff.Duration == eDuration.ONCE)
+				{
+					SetItemEnabled(items[i], isActive);
 				}
 			}
 		}
 
-		private IEnumerator UseItem(Item item, Character character)
+		public void SetItemEnabled(Item item, bool isEnabled)
+		{
+			UIItem uiItem = GameObject.FindObjectOfType<UIInventory>().Find(item);
+
+			uiItem.GetComponent<UIButton>().isEnabled = isEnabled;
+		}
+
+		public IEnumerator UseItem(Item item, Character character)
 		{
 			yield return item.Buff.ActivateEffect(character);
 			if (item.Buff.Duration == eDuration.ONCE)
 			{
 				yield return Delete(item, character);
 			}
+		}
+
+		public IEnumerator DeactvieItems(Item item, Character character)
+		{
+			yield return item.Buff.DeactivateEffect(character);
 		}
 	}
 }

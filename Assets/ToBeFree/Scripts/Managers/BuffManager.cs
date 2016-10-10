@@ -65,6 +65,8 @@ namespace ToBeFree
 		
 		public IEnumerator ActivateEffectByStartTime(eStartTime startTime, Character character)
 		{
+			yield return character.Inven.CheckItem(startTime, true, character);
+
 			yield return GameManager.Instance.ShowStateLabel("Activate Effect : " + startTime.ToString(), 0.5f);
 			
 			foreach (Buff buff in buffList)
@@ -78,6 +80,8 @@ namespace ToBeFree
 
 		public IEnumerator DeactivateEffectByStartTime(eStartTime startTime, Character character)
 		{
+			yield return character.Inven.CheckItem(startTime, false, character);
+
 			yield return GameManager.Instance.ShowStateLabel("DeActivate Effect : " + startTime.ToString(), 0.5f);
 
 			foreach (Buff buff in buffList)

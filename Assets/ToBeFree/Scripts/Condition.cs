@@ -30,9 +30,9 @@ namespace ToBeFree
 			{
 				left = character.Stat.InfoNum;
 			}
-			else if(subjectType == eSubjectType.FOOD)
+			else if(subjectType == eSubjectType.SATIETY)
 			{
-				left = character.Stat.FOOD;
+				left = character.Stat.Satiety;
 			}
 			else if(subjectType == eSubjectType.NULL)
 			{
