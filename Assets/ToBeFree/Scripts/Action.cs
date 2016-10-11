@@ -74,14 +74,20 @@ namespace ToBeFree
 			{
 				if (actionName == eEventAction.REST)
 					actionName = eEventAction.REST_SPECIAL;
-				else if (actionName == eEventAction.HIDE) 
+				else if (actionName == eEventAction.HIDE)
 					actionName = eEventAction.HIDE_SPECIAL;
 
+				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+
 				yield return EventManager.Instance.DoCommand(actionName, character);
+
+				yield return TimeTable.Instance.SpendRemainTime();
 			}
 			else
 			{
 				yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
+
+				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
 				Event selectedEvent = EventManager.Instance.Find(actionName);
 				if (selectedEvent == null)
@@ -137,13 +143,21 @@ namespace ToBeFree
 			if (character.CheckSpecialEvent())
 			{
 				actionName = eEventAction.WORK_START | eEventAction.WORK_END;
+
+				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+
+				yield return EventManager.Instance.DoCommand(actionName, character);
+
+				yield return TimeTable.Instance.SpendRemainTime();
 			}
 			else
 			{
 				actionName = eEventAction.WORK;
-			}
 
-			yield return EventManager.Instance.DoCommand(actionName, character);
+				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
+
+				yield return EventManager.Instance.DoCommand(actionName, character);
+			}
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 			
 			// if effect is money and event is succeeded,
@@ -191,7 +205,12 @@ namespace ToBeFree
 			{
 				// TODO : have to add bus action
 				actionName = eEventAction.MOVE;
+
+				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+
 				yield return EventManager.Instance.DoCommand(actionName, character);
+
+				yield return TimeTable.Instance.SpendRemainTime();
 				
 				EffectAmount[] effects = null;
 				if (EventManager.Instance.TestResult)
@@ -273,6 +292,8 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
+			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
+			
 			List<Piece> quests = PieceManager.Instance.FindAll(eSubjectType.QUEST);
 			QuestPiece questPiece = quests.Find(x => x.City == character.CurCity) as QuestPiece;
 
@@ -378,17 +399,7 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
-			//GameManager.Instance.uiEventManager.OpenUI();
-
-			//yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-			//int testSucceedDiceNum = DiceTester.Instance.Test(character.Stat.Bargain);
-			//yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
-
-			//GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "협상력 테스트를 통한 할인 금액");
-			//GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSucceedDiceNum.ToString());
-
-			//yield return EventManager.Instance.WaitUntilFinish();
-
+			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);			
 
 			NGUIDebug.Log("Enter To Shop action");
 			GameManager.Instance.shopUIObj.SetActive(true);
@@ -446,12 +457,18 @@ namespace ToBeFree
 					actionName = eEventAction.GATHERING_SPECIAL;
 				}
 
+				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+
 				yield return EventManager.Instance.DoCommand(actionName, character);
+
+				yield return TimeTable.Instance.SpendRemainTime();
 			}
 			// 일반 조사
 			else
 			{
 				yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
+
+				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
 				Event selectedEvent = EventManager.Instance.Find(actionName);
 				if (selectedEvent == null)
@@ -663,7 +680,13 @@ namespace ToBeFree
 			NGUIDebug.Log("BrokerAction action");
 
 			yield return base.Activate(character);
+
+			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+
 			yield return EventManager.Instance.DoCommand(actionName, character);
+
+			yield return TimeTable.Instance.SpendRemainTime();
+
 			if (EventManager.Instance.TestResult)
 			{
 				PieceManager.Instance.Delete(PieceManager.Instance.Find(eSubjectType.BROKER, character.CurCity));

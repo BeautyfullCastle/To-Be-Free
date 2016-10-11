@@ -127,9 +127,12 @@ namespace ToBeFree
 
 		public void SetItemEnabled(Item item, bool isEnabled)
 		{
-			UIItem uiItem = GameObject.FindObjectOfType<UIInventory>().Find(item);
+			List<UIItem> uiItems = GameObject.FindObjectOfType<UIInventory>().FindAll(item);
 
-			uiItem.GetComponent<UIButton>().isEnabled = isEnabled;
+			foreach(UIItem uiItem in uiItems)
+			{
+				uiItem.GetComponent<UIButton>().isEnabled = isEnabled;
+			}
 		}
 
 		public IEnumerator UseItem(Item item, Character character)

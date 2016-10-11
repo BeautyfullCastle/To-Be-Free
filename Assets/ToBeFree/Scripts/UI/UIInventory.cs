@@ -63,9 +63,9 @@ namespace ToBeFree
 			grid.Reposition();
 		}
 
-		public UIItem Find(Item item)
+		public List<UIItem> FindAll(Item item)
 		{
-			return this.items.Find(x => x.Item.Name == item.Name);
+			return this.items.FindAll(x => x.Item.Name == item.Name);
 		}
 	}
 }

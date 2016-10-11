@@ -3,7 +3,7 @@
 		{
 			"index": 0,
 			"name": "음식과 물",
-			"startTime": "NIGHT",
+			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
 			"effectIndexList": [
@@ -969,7 +969,7 @@
 		{
 			"index": 64,
 			"name": "건빵",
-			"startTime": "NIGHT",
+			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
 			"effectIndexList": [
@@ -984,7 +984,7 @@
 		{
 			"index": 65,
 			"name": "육포",
-			"startTime": "NIGHT",
+			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
 			"effectIndexList": [

@@ -444,9 +444,7 @@ namespace ToBeFree
 		{
 			// Enter
 			yield return (ShowStateLabel("Start Day State", 0.5f));
-
 			
-
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.DAY, character);
 
 #if UNITY_EDITOR
@@ -567,12 +565,12 @@ namespace ToBeFree
 
 		IEnumerator NightState()
 		{
+			// Enter
+			yield return (ShowStateLabel("Night State", 0.5f));
+
 			// after daytime // Temporary
 			yield return BuffManager.Instance.CheckDuration(character);
 
-			// Enter
-			yield return (ShowStateLabel("Night State", 0.5f));
-			
 			yield return Instance_NotifyEveryNight();
 
 			#region editor test
@@ -641,7 +639,13 @@ namespace ToBeFree
 			// 하루 끝 이벤트
 			if (character.CheckSpecialEvent())
 			{
+				yield return TimeTable.Instance.SpendTime(0, eSpendTime.RAND);
 				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
+				yield return TimeTable.Instance.SpendRemainTime();
+			}
+			else
+			{
+				yield return TimeTable.Instance.SpendTime(0, eSpendTime.END);
 			}
 
 			character.Reset();
