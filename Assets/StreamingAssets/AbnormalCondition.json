@@ -24,7 +24,7 @@
 			"stack": "false",
 			"startTime": "MOVE",
 			"duration": "REST_PATIENCE",
-			"script": "이동 할 때 이동한 지역당 체력이 1피해를 입습니다.\\n휴식 시 집중에 성공하면 이 상태를 없앱니다.",
+			"script": "이동 할 때 체력이 1피해를 입습니다.\\n휴식 시 집중에 성공하면 이 상태를 없앱니다.",
 			"isBody": "BODY",
 			"isPositive": "NEGATIVE"
 		},
@@ -73,13 +73,13 @@
 		{
 			"index": 5,
 			"name": "Hunger",
-			"spawnCondition": "SATIETY <= 0 ",
+			"spawnCondition": "SATIETY <= 0",
 			"effectIndex": 0,
 			"amount": -1,
 			"isRestore": "false",
 			"stack": "true",
 			"startTime": "DAY",
-			"duration": "FOOD",
+			"duration": "NULL",
 			"script": "밤마다 배고픔 수치만큼 체력피해를 입습니다.\\n 식량을 먹으면 사라집니다.",
 			"isBody": "NULL",
 			"isPositive": "NULL"
@@ -157,7 +157,7 @@
 		{
 			"index": 11,
 			"name": "Add View Range",
-			"spawnCondition": "NULL",
+			"spawnCondition": "EVENT",
 			"effectIndex": 75,
 			"amount": 1,
 			"isRestore": "true",

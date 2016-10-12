@@ -16,7 +16,7 @@ namespace ToBeFree
 		private readonly int week;
 
 		int totalHour;
-		int remainHour;
+		int usedHour;
 
 		public delegate void TimeEventHandler();
 
@@ -49,9 +49,9 @@ namespace ToBeFree
 		public IEnumerator SpendTime(int requiredTime, eSpendTime timer)
 		{
 			totalHour = (requiredTime+1) * 6;
-			int usedHour = 0;
+			usedHour = 0;
 			int randHour = UnityEngine.Random.Range(0, totalHour);
-			remainHour = totalHour - randHour;
+			int remainHour = totalHour - randHour;
 
 			while (true)
 			{
@@ -68,7 +68,6 @@ namespace ToBeFree
 				}
 				else if (timer == eSpendTime.RAND)
 				{
-					
 					if (usedHour >= randHour)
 					{
 						yield break;
@@ -79,11 +78,11 @@ namespace ToBeFree
 
 		public IEnumerator SpendRemainTime()
 		{
-			while (remainHour < totalHour)
+			while (usedHour < totalHour)
 			{
 				yield return new WaitForSeconds(1f);
 				Hour++;
-				remainHour++;
+				usedHour++;
 			}
 		}
 
@@ -103,7 +102,10 @@ namespace ToBeFree
 			}
 			set
 			{
-				hour = value;
+				if (value >= 24)
+					hour = 0;
+				else
+					hour = value;
 				NotifyEveryHour();
 			}
 		}

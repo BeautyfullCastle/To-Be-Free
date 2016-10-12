@@ -392,8 +392,7 @@ namespace ToBeFree
 			inspectAction = new Inspect();
 
 			yield return (ShowStateLabel("Adding Polices to Big cities.", 0.5f));
-
-			// HAVE TO CHANGE
+			
 			//add polices in big cities.
 			List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
 			foreach (City city in bigCityList)
@@ -404,11 +403,12 @@ namespace ToBeFree
 
 			yield return null;
 
+#if UNITY_EDITOR
 			// for test
 			//character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 2;
-			
-			// Excute
+			character.Stat.Satiety = 1;
+#endif
 
 			this.State = GameState.StartWeek;
 
@@ -666,6 +666,8 @@ namespace ToBeFree
 					character.Stat.Satiety--;
 				}
 			}
+
+			yield return AbnormalConditionManager.Instance.ActiveByCondition();
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
 		}

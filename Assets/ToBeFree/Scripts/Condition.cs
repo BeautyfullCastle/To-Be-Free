@@ -38,6 +38,10 @@ namespace ToBeFree
 			{
 				return true;
 			}
+			else if(subjectType == eSubjectType.EVENT)
+			{
+				return false;
+			}
 			return Compare(left, amount, comparisonOperator);
 		}
 

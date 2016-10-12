@@ -55,7 +55,6 @@ namespace ToBeFree
 			{
 				yield return BuffManager.Instance.Add(this.buff);
 			}
-
 		}
 
 		public virtual IEnumerator DeActivate(Character character)
@@ -112,14 +111,10 @@ namespace ToBeFree
 			//밤마다 배고픔 수치만큼 체력피해를 입습니다.\n 식량을 먹으면 사라집니다.
 			if (BuffManager.Instance.Exist(this.buff))
 			{
-				if(stat == eStat.SATIETY && value > 1)
+				if(stat == eStat.SATIETY && value >= 1)
 				{
-					this.DeActivate(GameManager.Instance.Character);
+					GameManager.Instance.StartCoroutine(this.DeActivate(GameManager.Instance.Character));
 				}
-			}
-			if (CheckCondition(GameManager.Instance.Character))
-			{	
-				GameManager.Instance.StartCoroutine(Activate(GameManager.Instance.Character));
 			}
 		}
 	}
