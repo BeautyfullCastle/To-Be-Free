@@ -407,7 +407,7 @@ namespace ToBeFree
 			// for test
 			//character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 2;
-			character.Stat.Satiety = 1;
+			//character.Stat.Satiety = 1;
 #endif
 
 			this.State = GameState.StartWeek;

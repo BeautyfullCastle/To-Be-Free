@@ -10,7 +10,7 @@ namespace ToBeFree
 
         public DiceTester()
         {
-            minSuccessNum = 4;
+            minSuccessNum = 5;
         }
 
         public int Test(int diceNum)

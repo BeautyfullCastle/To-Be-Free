@@ -338,12 +338,37 @@ namespace ToBeFree
 				if (character.CheckSpecialEvent())
 				{
 					actionName = eEventAction.INSPECT_SPECIAL;
+					yield return EventManager.Instance.DoCommand(actionName, character);
 				}
 				else
 				{
 					actionName = eEventAction.INSPECT;
+
+					yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
+
+					Event selectedEvent = EventManager.Instance.Find(actionName);
+					if (selectedEvent == null)
+					{
+						Debug.LogError("selectedEvent is null");
+						yield break;
+					}
+
+					GameManager.Instance.uiEventManager.OpenUI();
+
+					yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+					Police police = policesInThisCity[i] as Police;
+					int characterSuccessNum = DiceTester.Instance.Test(character.Stat.Agility);
+					int policeSuccessNum = DiceTester.Instance.Test(police.Power);
+					EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
+					yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+					GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+
+					GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, 
+						EventManager.Instance.TestResult.ToString() + ", " + characterSuccessNum.ToString() + " : " + policeSuccessNum.ToString());
+
+					yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
 				}
-				yield return EventManager.Instance.DoCommand(actionName, character);
 			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
