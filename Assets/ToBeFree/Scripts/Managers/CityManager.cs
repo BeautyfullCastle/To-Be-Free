@@ -224,36 +224,7 @@ namespace ToBeFree
 		
 		public void FindNearestPath(City curCity, City destCity)
 		{
-			// TO DO : have to reset every city's distance
-			foreach (City city in list[(int)eWay.NORMAL])
-			{
-				city.Distance = 0;
-			}
-			List<City> path = new List<City>();
-			path.Add(curCity);
-			CalcDist(curCity, path, 0);
-			Debug.Log(path.Count);
-			for (int i = 0; i < path.Count; ++i)
-			{
-				Debug.Log(path[i].Name.ToString() + " " + path[i].Distance);
-			}
-			neareastPath = new List<City>(destCity.Distance);
-			neareastPath.Add(curCity);
-			List<City> visited = new List<City>();
-			visited.Add(curCity);
-
-			int farDistance = 0;
-			CalcNeareastPath(curCity, destCity, neareastPath, farDistance, visited);
-
-			// if find neareast path, erase current city.
-			neareastPath.Remove(curCity);
-
-			Queue<City> queue = new Queue<City>(neareastPath);
-			while (queue.Count > 0)
-			{
-				City city = queue.Dequeue();
-				Debug.LogWarning(city.Name.ToString() + " " + city.Distance);
-			}
+			neareastPath = CalcPath(curCity, destCity);
 		}
 		
 		private void CalcNeareastPath(City curCity, City destination, List<City> neareastPath, int farDistance, List<City> visited)
@@ -320,7 +291,7 @@ namespace ToBeFree
 			{
 				return null;
 			}
-			City neareastCity = new City(neareastPath[0]);
+			City neareastCity = neareastPath[0];
 			neareastPath.RemoveAt(0);
 			return neareastCity;
 		}

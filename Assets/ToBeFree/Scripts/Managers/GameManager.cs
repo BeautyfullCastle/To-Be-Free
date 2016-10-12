@@ -405,7 +405,7 @@ namespace ToBeFree
 
 #if UNITY_EDITOR
 			// for test
-			//character.Stat.Agility = 0;
+			character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 2;
 			//character.Stat.Satiety = 1;
 #endif
@@ -487,7 +487,7 @@ namespace ToBeFree
 
 			if (character.IsDetention)
 			{
-				this.State = GameState.Detention;                
+				this.State = GameState.Detention;
 			}
 			else
 			{
@@ -836,8 +836,7 @@ namespace ToBeFree
 			{
 				return state;
 			}
-
-			set
+			private set
 			{
 				state = value;
 			}

@@ -346,28 +346,14 @@ namespace ToBeFree
 
 					yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
 
-					Event selectedEvent = EventManager.Instance.Find(actionName);
-					if (selectedEvent == null)
-					{
-						Debug.LogError("selectedEvent is null");
-						yield break;
-					}
-
-					GameManager.Instance.uiEventManager.OpenUI();
-
-					yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
 					Police police = policesInThisCity[i] as Police;
-					int characterSuccessNum = DiceTester.Instance.Test(character.Stat.Agility);
-					int policeSuccessNum = DiceTester.Instance.Test(police.Power);
-					EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
-					yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+					yield return police.Fight(actionName, character);
 
-					GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
-
-					GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, 
-						EventManager.Instance.TestResult.ToString() + ", " + characterSuccessNum.ToString() + " : " + policeSuccessNum.ToString());
-
-					yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
+					if (EventManager.Instance.TestResult == false)
+					{
+						character.CaughtPolice = police;
+						break;
+					}
 				}
 			}
 
@@ -385,27 +371,30 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			Debug.LogWarning("Detention action activated.");
-			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
+			yield return base.Activate(character);
 
-			GameManager.Instance.uiEventManager.OpenUI();
-
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-			bool testResult = (DiceTester.Instance.Test(character.Stat.Agility) > 0);
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
-
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Detention Test");
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
-
-			yield return EventManager.Instance.WaitUntilFinish();
-
-			if(testResult == true)
-			{
-				yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(character);
-			}
-			else
+			// ActState : 체포상태에서 체포된 공안의 이동력만큼 이동
+			if (GameManager.Instance.State == GameManager.GameState.Detention)
 			{
 				yield return character.HaulIn();
+			}
+			/* 밤단계 때 
+			 * 단둥 또는 투먼시에 도착하지 않았으면 공안체크로 탈출 시도 이벤트
+			 * 단둥 또는 투먼시에 도착하면 다음날부터 밤단계에 수용소이벤트 출력
+			 * - 수용소이벤트 실패 시 북송 게임오버
+			 * */
+			else if (GameManager.Instance.State == GameManager.GameState.Night)
+			{
+				if (character.CheckSpecialEvent())
+				{
+					actionName = eEventAction.DETENTION_SPECIAL;
+					yield return EventManager.Instance.DoCommand(actionName, character);
+				}
+				else
+				{
+					actionName = eEventAction.DETENTION;
+					yield return character.CaughtPolice.Fight(actionName, character);
+				}
 			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);

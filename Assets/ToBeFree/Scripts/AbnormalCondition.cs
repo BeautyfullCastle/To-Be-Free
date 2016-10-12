@@ -136,6 +136,10 @@ namespace ToBeFree
 			}
 			character.IsDetention = true;
 
+			yield return TimeTable.Instance.SpendTime(character.RemainAP-1, eSpendTime.END);
+
+			character.AP = character.TotalAP;
+
 			yield return null;
 		}
 

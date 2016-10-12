@@ -446,6 +446,11 @@ namespace ToBeFree
 						AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
 						yield return abnormalCondition.Activate(character);
 					}
+					if (verbType == eVerbType.DEL)
+					{
+						AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
+						yield return abnormalCondition.DeActivate(character);
+					}
 					break;
 
 				default:

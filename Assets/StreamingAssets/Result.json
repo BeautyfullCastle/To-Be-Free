@@ -84,10 +84,10 @@
 			],
 			"failureScript": "탈출을 시도했지만 붙잡혔습니다.",
 			"failureEffectIndexList": [
-				-99
+				56
 			],
 			"failureEffectValueList": [
-				-99
+				6
 			]
 		},
 		{
@@ -236,20 +236,20 @@
 		},
 		{
 			"index": 13,
-			"stat": "STRENGTH",
-			"successScript": "특수이벤트 일 끝 성공",
+			"stat": "TALENT",
+			"successScript": "알겠네, 알겠어 주겠네'",
 			"successEffectIndexList": [
-				-99
+				"undefined"
 			],
 			"successEffectValueList": [
-				-99
+				"undefined"
 			],
-			"failureScript": "특수이벤트 일 끝 실패",
+			"failureScript": "",
 			"failureEffectIndexList": [
-				-99
+				"undefined"
 			],
 			"failureEffectValueList": [
-				-99
+				"undefined"
 			]
 		},
 		{
@@ -372,10 +372,10 @@
 			],
 			"failureScript": "특수이벤트 공안체크 실패",
 			"failureEffectIndexList": [
-				-99
+				56
 			],
 			"failureEffectValueList": [
-				-99
+				6
 			]
 		},
 		{

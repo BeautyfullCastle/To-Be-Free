@@ -31,6 +31,8 @@ namespace ToBeFree
 
 		private int specialEventProbability = 0;
 
+		private Police caughtPolice;
+
 		public delegate void MoveCityHandler(string cityName);
 		public static event MoveCityHandler MoveCity = delegate { };
 		
@@ -126,6 +128,7 @@ namespace ToBeFree
 			if (city != null)
 			{
 				yield return MoveTo(city);
+				yield return this.caughtPolice.MoveCity(city);
 			}
 			// if no more left cities, have to call the event about escape from the camp.
 			else
@@ -301,6 +304,27 @@ namespace ToBeFree
 			set
 			{
 				canAction = value;
+			}
+		}
+
+		public Police CaughtPolice
+		{
+			get
+			{
+				return caughtPolice;
+			}
+
+			set
+			{
+				caughtPolice = value;
+			}
+		}
+
+		public int TotalAP
+		{
+			get
+			{
+				return totalAP;
 			}
 		}
 	}

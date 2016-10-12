@@ -155,6 +155,32 @@ namespace ToBeFree
 				iconPiece.Movement = movement;
 			}
 		}
+
+		public IEnumerator Fight(eEventAction actionName, Character character)
+		{
+			Event selectedEvent = EventManager.Instance.Find(actionName);
+			if (selectedEvent == null)
+			{
+				Debug.LogError("selectedEvent is null");
+				yield break;
+			}
+
+			GameManager.Instance.uiEventManager.OpenUI();
+
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+
+			int characterSuccessNum = DiceTester.Instance.Test(character.Stat.Agility);
+			int policeSuccessNum = DiceTester.Instance.Test(this.Power);
+			EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM,
+				EventManager.Instance.TestResult.ToString() + ", " + characterSuccessNum.ToString() + " : " + policeSuccessNum.ToString());
+
+			yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
+		}
 	}
 
 	public class Information : Piece
