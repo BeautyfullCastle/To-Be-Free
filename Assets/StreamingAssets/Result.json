@@ -95,10 +95,10 @@
 			"stat": "AGILITY",
 			"successScript": "공안의 눈을 피해 탈출에 성공했습니다. 공안이 눈치채기 전에 재빠르게 도망쳤습니다.",
 			"successEffectIndexList": [
-				-99
+				57
 			],
 			"successEffectValueList": [
-				-99
+				6
 			],
 			"failureScript": "탈출을 시도하려 했지만 공안의 감시의 틈이 없었습니다.",
 			"failureEffectIndexList": [
@@ -167,10 +167,10 @@
 			"stat": "AGILITY",
 			"successScript": "술에 취해 잠든 공안들 사이로 무사히 탈출할 수 있었습니다.",
 			"successEffectIndexList": [
-				-99
+				57
 			],
 			"successEffectValueList": [
-				-99
+				6
 			],
 			"failureScript": "탈출하던 중 붙잡혔습니다.",
 			"failureEffectIndexList": [
@@ -383,10 +383,10 @@
 			"stat": "AGILITY",
 			"successScript": "특수이벤트 체포 성공",
 			"successEffectIndexList": [
-				-99
+				57
 			],
 			"successEffectValueList": [
-				-99
+				6
 			],
 			"failureScript": "특수이벤트 체포 실패",
 			"failureEffectIndexList": [
@@ -419,10 +419,10 @@
 			"stat": "AGILITY",
 			"successScript": "특수이벤트 수용소 성공",
 			"successEffectIndexList": [
-				-99
+				57
 			],
 			"successEffectValueList": [
-				-99
+				6
 			],
 			"failureScript": "특수이벤트 수용소 실패",
 			"failureEffectIndexList": [

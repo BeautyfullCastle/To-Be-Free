@@ -92,7 +92,7 @@
 			"amount": -99,
 			"isRestore": "false",
 			"stack": "false",
-			"startTime": "DAY",
+			"startTime": "NOW",
 			"duration": "NULL",
 			"script": "공안에게 잡혔습니다. 매일 민첩테스트로 탈출을 시도합니다.\\n실패하면 북한으로 이동합니다.\\n마지막도시에서도 실패 시 행운테스트를 하며, 행운테스트도 실패 시 게임오버가 됩니다.",
 			"isBody": "NULL",

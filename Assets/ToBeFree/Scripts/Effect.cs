@@ -141,7 +141,14 @@ namespace ToBeFree
 					{
 						if (objectType == eObjectType.DETENTION)
 						{
-							yield return AbnormalConditionManager.Instance.Find("Detention").Activate(character);
+							if (character.IsDetention == false)
+							{
+								CityManager.Instance.FindNearestPath(character.CurCity, CityManager.Instance.Find("TUMEN"));								
+								character.IsDetention = true;
+
+								yield return TimeTable.Instance.SpendTime(character.RemainAP - 1, eSpendTime.END);
+								character.AP = character.TotalAP;
+							}
 						}
 					}
 					break;

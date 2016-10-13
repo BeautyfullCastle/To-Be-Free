@@ -126,23 +126,6 @@ namespace ToBeFree
 
 		}
 
-		public override IEnumerator Activate(Character character)
-		{
-			yield return base.Activate(character);
-
-			if (character.IsDetention == false)
-			{
-				CityManager.Instance.FindNearestPath(character.CurCity, CityManager.Instance.Find("TUMEN"));
-			}
-			character.IsDetention = true;
-
-			yield return TimeTable.Instance.SpendTime(character.RemainAP-1, eSpendTime.END);
-
-			character.AP = character.TotalAP;
-
-			yield return null;
-		}
-
 		public override IEnumerator DeActivate(Character character)
 		{
 			yield return base.DeActivate(character);

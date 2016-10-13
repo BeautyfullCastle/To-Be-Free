@@ -206,11 +206,7 @@ namespace ToBeFree
 				// TODO : have to add bus action
 				actionName = eEventAction.MOVE;
 
-				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
-
 				yield return EventManager.Instance.DoCommand(actionName, character);
-
-				yield return TimeTable.Instance.SpendRemainTime();
 				
 				EffectAmount[] effects = null;
 				if (EventManager.Instance.TestResult)
@@ -245,25 +241,7 @@ namespace ToBeFree
 			if (dontMove == false)
 			{
 				List<City> path = CityManager.Instance.CalcPath(character.CurCity, character.NextCity);
-				int pathAP = 0;
-				foreach (City city in path)
-				{
-					if (city.Type == eNodeType.MOUNTAIN)
-					{
-						pathAP += 2;
-					}
-					else
-					{
-						pathAP++;
-					}
-				}
-				if(pathAP > character.RemainAP)
-				{
-					Debug.LogError("path is too long.");
-					yield break;
-				}
-
-				character.AP += pathAP;
+				
 				foreach (City city in path)
 				{
 					// 집중 단속 기간이면 공안 단속 들어감
@@ -271,7 +249,11 @@ namespace ToBeFree
 					{
 						yield return inspectAction.Activate(character);
 					}
-					yield return character.MoveTo(city);
+
+					if (character.IsDetention == false)
+					{
+						yield return character.MoveTo(city);
+					}
 				}
 			}
 			//Debug.LogWarning("character is moved to " + character.CurCity.Name);	
@@ -388,11 +370,14 @@ namespace ToBeFree
 				if (character.CheckSpecialEvent())
 				{
 					actionName = eEventAction.DETENTION_SPECIAL;
+					yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
 					yield return EventManager.Instance.DoCommand(actionName, character);
+					yield return TimeTable.Instance.SpendRemainTime();
 				}
 				else
 				{
 					actionName = eEventAction.DETENTION;
+					yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 					yield return character.CaughtPolice.Fight(actionName, character);
 				}
 			}
@@ -413,7 +398,7 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
-			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);			
+			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
 			NGUIDebug.Log("Enter To Shop action");
 			GameManager.Instance.shopUIObj.SetActive(true);

@@ -314,6 +314,9 @@ namespace ToBeFree
 				path = curves[(int)eWay.NORMAL].GetPath(currentPoint, destinationPoint);
 			}
 
+			if (path == null)
+				return null;
+
 			List<City> cityList = new List<City>();
 			foreach(BezierPoint point in path)
 			{
@@ -346,12 +349,26 @@ namespace ToBeFree
 			}
 
 			currMoveTime = 0f;
+			float currTimeCounter = totalMoveTime;
+
 			while (currMoveTime < totalMoveTime)
 			{
+				if (character.gameObject.name == "Character")
+				{
+					if (currTimeCounter >= (totalMoveTime / 6))
+					{
+						TimeTable.Instance.Hour++;
+						currTimeCounter = 0f;
+					}
+				}
+
 				currMoveTime += Time.deltaTime;
+				currTimeCounter += Time.deltaTime;
 
 				character.position = BezierCurve.GetPoint(curPoint, point, currMoveTime);
 				yield return GameManager.Instance.MoveDirectingCam(character.position, character.position, Time.deltaTime);
+
+				
 			}
 
 			yield return null;

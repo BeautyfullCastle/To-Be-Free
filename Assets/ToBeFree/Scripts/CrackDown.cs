@@ -78,6 +78,12 @@ namespace ToBeFree
 				foreach (Piece piece in pieces)
 				{
 					Police police = piece as Police;
+					
+					// 체포해 후송 중인 공안은 따로 이동시키지 않는다.
+					if(police == GameManager.Instance.Character.CaughtPolice)
+					{
+						continue;
+					}
 					NGUIDebug.Log("CrackDown : Move Police from " + police.City.Name);
 					yield return police.Move();
 				}

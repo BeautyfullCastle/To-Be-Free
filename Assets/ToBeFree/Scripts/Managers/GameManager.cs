@@ -384,7 +384,7 @@ namespace ToBeFree
 			character = CharacterManager.Instance.List[0];
 			character.Stat.RefreshUI();
 			GameObject.FindObjectOfType<UIInventory>().Change(character.Inven);
-			yield return character.MoveTo(character.CurCity);
+			//yield return character.MoveTo(character.CurCity);
 
 			//CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.KUNMING), CityManager.Instance.Find(eCity.DANDONG));
 			
@@ -482,8 +482,13 @@ namespace ToBeFree
 
 
 			// 하루 시작 이벤트
-			if(character.CheckSpecialEvent())
-				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.START), character);
+			if (character.IsDetention == false)
+			{
+				if (character.CheckSpecialEvent())
+				{
+					yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.START), character);
+				}
+			}
 
 			if (character.IsDetention)
 			{
@@ -636,8 +641,14 @@ namespace ToBeFree
 		{
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
 
+			// 구금 상태일 때 밤단계 탈출 시도를 위한.
+			if(character.IsDetention == true && action is DetentionAction)
+			{
+				yield return action.Activate(character);
+			}
+			
 			// 하루 끝 이벤트
-			if (character.CheckSpecialEvent())
+			if (character.CheckSpecialEvent() && character.IsDetention == false)
 			{
 				yield return TimeTable.Instance.SpendTime(0, eSpendTime.RAND);
 				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
