@@ -153,10 +153,6 @@ namespace ToBeFree
 					InstantiatePopup("Hide Rest", eEventAction.HIDE);
 
 					break;
-				case eCommand.SHOP:
-					action = new EnterToShop();
-					isActStart = true;
-					break;
 				case eCommand.INVESTIGATION:
 					action = new Investigation();
 
@@ -185,13 +181,26 @@ namespace ToBeFree
 							button.isEnabled = false;
 						}
 					}
-
 					break;
-					// broker and quest command
+				case eCommand.SHOP:
+					action = new EnterToShop();
+					character.CanAction[(int)commandType] = false;
+					isActStart = true;
+					break;
 				case eCommand.BROKER:
-					InstantiatePopup("Broker", eEventAction.BROKER);
-					InstantiatePopup("Quest", eEventAction.QUEST);
-
+					action = new BrokerAction();
+					character.CanAction[(int)commandType] = false;
+					isActStart = true;
+					break;
+				case eCommand.QUEST:
+					action = new QuestAction();
+					character.CanAction[(int)commandType] = false;
+					isActStart = true;
+					break;
+				case eCommand.ABILITY:
+					action = new AbilityAction();
+					character.CanAction[(int)commandType] = false;
+					isActStart = true;
 					break;
 			}
 
@@ -208,7 +217,7 @@ namespace ToBeFree
 			popup.nameLabel.text = name;
 			popup.actionType = actionType;
 
-			if (actionType == (actionType & (eEventAction.MOVE | eEventAction.MOVE_BUS | eEventAction.BROKER | eEventAction.QUEST)))
+			if (actionType == (actionType & (eEventAction.MOVE | eEventAction.MOVE_BUS )))
 			{
 				popup.requiredTimeButtons[1].gameObject.SetActive(false);
 				popup.requiredTimeButtons[2].gameObject.SetActive(false);
@@ -225,17 +234,8 @@ namespace ToBeFree
 		}
 
 		public void ClickCommandRequiredTime(eEventAction actionType, string requiredTime)
-		{
-			if (actionType == eEventAction.BROKER)
-			{
-				action = new BrokerAction();
-			}
-			else if (actionType == eEventAction.QUEST)
-			{
-				action = new QuestAction();
-			}
-			
-			int iRequiredTime = int.Parse(requiredTime) - 1;
+		{			
+			int iRequiredTime = int.Parse(requiredTime);
 
 			action.RequiredTime = iRequiredTime;
 			action.ActionName = actionType;
@@ -405,7 +405,7 @@ namespace ToBeFree
 
 #if UNITY_EDITOR
 			// for test
-			character.Stat.Agility = 0;
+			//character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 2;
 			//character.Stat.Satiety = 1;
 #endif
@@ -618,6 +618,7 @@ namespace ToBeFree
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);
 
 			TimeTable.Instance.DayIsGone();
+
 			while(state == GameState.Night)
 			{
 				yield return null;
@@ -650,13 +651,13 @@ namespace ToBeFree
 			// 하루 끝 이벤트
 			if (character.CheckSpecialEvent() && character.IsDetention == false)
 			{
-				yield return TimeTable.Instance.SpendTime(0, eSpendTime.RAND);
+				yield return TimeTable.Instance.SpendTime(1, eSpendTime.RAND);
 				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
 				yield return TimeTable.Instance.SpendRemainTime();
 			}
 			else
 			{
-				yield return TimeTable.Instance.SpendTime(0, eSpendTime.END);
+				yield return TimeTable.Instance.SpendTime(1, eSpendTime.END);
 			}
 
 			character.Reset();

@@ -36,6 +36,10 @@ public class UICommand : MonoBehaviour {
 			{
 				bool hasBroker = PieceManager.Instance.GetNumberOfPiece(eSubjectType.BROKER, GameManager.Instance.Character.CurCity) > 0;
 
+				this.GetComponent<UIButton>().isEnabled = hasBroker;
+			}
+			else if (this.name == "QUEST")
+			{
 				QuestPiece piece = PieceManager.Instance.Find(eSubjectType.QUEST, GameManager.Instance.Character.CurCity) as QuestPiece;
 				bool hasAndCanDoQuest = false;
 				if (piece == null)
@@ -48,7 +52,7 @@ public class UICommand : MonoBehaviour {
 					hasAndCanDoQuest = quest.CheckCondition(GameManager.Instance.Character);
 				}
 
-				this.GetComponent<UIButton>().isEnabled = (hasBroker | hasAndCanDoQuest);
+				this.GetComponent<UIButton>().isEnabled = hasAndCanDoQuest;
 			}
 			else if(this.name == "WORK")
 			{

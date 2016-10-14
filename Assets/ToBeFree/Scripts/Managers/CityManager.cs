@@ -43,7 +43,7 @@ namespace ToBeFree
 			}
 
 			currMoveTime = 0f;
-			totalMoveTime = 1f;
+			totalMoveTime = 6f;
 		}
 
 		public City GetRand()
@@ -368,7 +368,7 @@ namespace ToBeFree
 				currMoveTime += Time.deltaTime;
 				currTimeCounter += Time.deltaTime;
 
-				character.position = BezierCurve.GetPoint(curPoint, point, currMoveTime);
+				character.position = BezierCurve.GetPoint(curPoint, point, currMoveTime / totalMoveTime);
 				yield return GameManager.Instance.MoveDirectingCam(character.position, character.position, Time.deltaTime);
 
 				

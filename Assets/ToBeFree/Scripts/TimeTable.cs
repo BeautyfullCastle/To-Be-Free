@@ -34,7 +34,7 @@ namespace ToBeFree
 		public void DayIsGone()
 		{
 			++day;
-
+			Hour = 6;
 			NotifyEveryday();
 
 			if (day % week == 0)
@@ -48,7 +48,7 @@ namespace ToBeFree
 
 		public IEnumerator SpendTime(int requiredTime, eSpendTime timer)
 		{
-			totalHour = (requiredTime+1) * 6;
+			totalHour = (requiredTime) * 6;
 			usedHour = 0;
 			int randHour = UnityEngine.Random.Range(0, totalHour);
 			int remainHour = totalHour - randHour;

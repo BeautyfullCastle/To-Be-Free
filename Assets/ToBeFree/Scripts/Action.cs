@@ -7,7 +7,7 @@ namespace ToBeFree
 {
 	public enum eCommand
 	{
-		MOVE, WORK, REST, SHOP, BROKER, ESCAPE, SPECIAL, INVESTIGATION,
+		MOVE, WORK, REST, SHOP, BROKER, QUEST, SPECIAL, INVESTIGATION, ABILITY,
 		NULL
 	}
 
@@ -107,7 +107,7 @@ namespace ToBeFree
 				EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
-				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime;
+				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime - 1;
 
 				if(actionName == eEventAction.HIDE)
 				{
@@ -123,7 +123,7 @@ namespace ToBeFree
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			character.AP += requiredTime + 1;
+			character.AP += requiredTime;
 		}
 	}
 
@@ -179,7 +179,7 @@ namespace ToBeFree
 				}
 			}
 
-			character.AP += requiredTime + 1;
+			character.AP += requiredTime;
 		}
 	}
 
@@ -295,6 +295,8 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
+			character.AP += requiredTime;
+
 			Debug.Log("character quest activated.");
 		}
 	}
@@ -335,7 +337,7 @@ namespace ToBeFree
 					{
 						character.CaughtPolice = police;
 						CityManager.Instance.FindNearestPath(character.CurCity, CityManager.Instance.Find("TUMEN"));
-						yield return TimeTable.Instance.SpendTime(character.RemainAP - 1, eSpendTime.END);
+						yield return TimeTable.Instance.SpendTime(character.RemainAP, eSpendTime.END);
 						character.AP = character.TotalAP;						
 						break;
 					}
@@ -451,7 +453,7 @@ namespace ToBeFree
 				character.Stat.TempDiceNum += 2;
 			}
 
-			character.Stat.TempDiceNum += requiredTime;
+			character.Stat.TempDiceNum += requiredTime - 1;
 
 			// 스페셜 이벤트 처리
 			if (character.CheckSpecialEvent())
@@ -678,7 +680,7 @@ namespace ToBeFree
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			character.AP += requiredTime + 1;
+			character.AP += requiredTime;
 		}
 	}
 
@@ -709,6 +711,35 @@ namespace ToBeFree
 			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+
+			character.AP += requiredTime;
+		}
+	}
+
+	public class AbilityAction : Action
+	{
+		public AbilityAction()
+		{
+			startTime = eStartTime.ABILITY;
+			actionName = eEventAction.ABILITY;
+		}
+
+		public override IEnumerator Activate(Character character)
+		{
+			Debug.LogWarning("AbilityAction activated.");
+			NGUIDebug.Log("AbilityAction action");
+
+			yield return base.Activate(character);
+
+			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+
+			yield return EventManager.Instance.DoCommand(actionName, character);
+
+			yield return TimeTable.Instance.SpendRemainTime();
+
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+
+			character.AP += requiredTime;
 		}
 	}
 }

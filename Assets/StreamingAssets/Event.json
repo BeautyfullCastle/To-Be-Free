@@ -134,10 +134,10 @@
 			"index": 13,
 			"actionType": "WORK_END",
 			"difficulty": "EASY",
-			"script": "특수이벤트 일 끝",
-			"resultIndex": 13,
+			"script": "일을 마치고 일당을 받으려고 하는데 월급을 주지 않았습니다.",
+			"resultIndex": "",
 			"selectIndexList": [
-				-99
+				"undefined"
 			]
 		},
 		{
@@ -276,6 +276,16 @@
 			"difficulty": "EASY",
 			"script": "브로커 정보 퀘스트 결과 이벤트",
 			"resultIndex": 27,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 28,
+			"actionType": "ABILITY",
+			"difficulty": "EASY",
+			"script": "캐릭터0의 능력발동",
+			"resultIndex": 28,
 			"selectIndexList": [
 				-99
 			]
