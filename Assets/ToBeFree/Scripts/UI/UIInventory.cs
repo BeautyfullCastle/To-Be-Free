@@ -44,6 +44,10 @@ namespace ToBeFree
 			UIItem itemScript = gObjItem.GetComponent<UIItem>();
 			itemScript.SetInfo(item);
 			itemScript.belong = UIItem.eBelong.INVEN;
+			if(item.Buff.Duration == eDuration.EQUIP)
+			{
+				gObjItem.GetComponent<UIDragDropItem>().enabled = false;
+			}
 
 			// 이제 그리드와 스크롤뷰를 재정렬 시킵시다.
 			grid.Reposition();

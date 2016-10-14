@@ -28,6 +28,14 @@ namespace ToBeFree {
 
 			basicItems[0].SetInfo(ItemManager.Instance.GetByIndex(0));
 			basicItems[1].SetInfo(ItemManager.Instance.GetByIndex(63));
+
+			foreach(UIItem basic in basicItems)
+			{
+				if(GameManager.Instance.Character.Stat.Money >= basic.Item.Price)
+				{
+					basic.GetComponent<UIButton>().isEnabled = true;
+				}
+			}
 			
 			foreach (UIGrid grid in grids)
 			{
@@ -81,7 +89,7 @@ namespace ToBeFree {
 			{
 				if(item.name == uiItem.name)
 				{
-					StartCoroutine(GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character));
+					GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character);
 					if (uiItem != basicItems[0])
 					{
 						uiItem.transform.GetComponent<UIButton>().isEnabled = false;
@@ -150,7 +158,7 @@ namespace ToBeFree {
 					continue;
 				}	
 
-				uiItem.transform.GetComponent<UIButton>().isEnabled = ((GameManager.Instance.Character.Stat.Money > uiItem.Item.Price) && (GameManager.Instance.Character.Inven.Exist(uiItem.Item) == false));
+				uiItem.transform.GetComponent<UIButton>().isEnabled = ((GameManager.Instance.Character.Stat.Money >= uiItem.Item.Price) && (GameManager.Instance.Character.Inven.Exist(uiItem.Item) == false));
 			}
 		}
 

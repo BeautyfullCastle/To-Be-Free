@@ -45,7 +45,7 @@ namespace ToBeFree
 
 		void OnPress(bool pressed)
 		{
-			if(belong != eBelong.INVEN)
+			if(belong == eBelong.SHOP)
 			{
 				return;
 			}
@@ -95,11 +95,6 @@ namespace ToBeFree
 			this.Item = item;
 			itemName.text = item.Name;
 			itemPrice.text = item.Price.ToString();
-
-			if (item.Buff.StartTime != eStartTime.NOW)
-			{
-				GetComponent<UIButton>().isEnabled = false;
-			}
 		}
 
 		public Item Item

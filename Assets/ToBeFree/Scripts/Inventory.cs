@@ -16,33 +16,26 @@ namespace ToBeFree
 			list = new List<Item>();
 		}
 
-		public IEnumerator BuyItem(Item item, int discountNum, Character character)
+		public void BuyItem(Item item, int discountNum, Character character)
 		{
 			if (list.Count >= maxSlots)
 			{
 				NGUIDebug.Log("There is no more space in the inventory.");
-				yield break;
+				return;
 			}
 
 			int price = Mathf.Max(item.Price - discountNum, 1, item.Price);
 			if (character.Stat.Money < price)
 			{
 				NGUIDebug.Log("Shop : Money is not enough to buy.");
-				yield break;
+				return;
 			}
 
-			yield return AddItem(item, character);
+			AddItem(item, character);
 			character.Stat.Money -= price;
 		}
 
-		public IEnumerator AddItem(Item item, Character character)
-		{
-			AddingItem(item, character);
-
-			yield return null;
-		}
-
-		public void AddingItem(Item item, Character character)
+		public void AddItem(Item item, Character character)
 		{
 			if (list.Count >= maxSlots)
 			{
@@ -52,7 +45,7 @@ namespace ToBeFree
 			{
 				list.Add(new Item(item));
 				GameObject.FindObjectOfType<UIInventory>().AddItem(item);
-				
+
 				NGUIDebug.Log(item.Name);
 			}
 		}

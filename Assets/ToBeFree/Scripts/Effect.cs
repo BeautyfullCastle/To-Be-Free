@@ -312,7 +312,7 @@ namespace ToBeFree
 						{
 							throw new System.Exception("item is null");
 						}
-						yield return character.Inven.AddItem(item, character);
+						character.Inven.AddItem(item, character);
 					}
 					if (verbType == eVerbType.DEL)
 					{

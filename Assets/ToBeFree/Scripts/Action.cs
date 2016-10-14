@@ -319,6 +319,9 @@ namespace ToBeFree
 			Debug.LogWarning("policesInThisCity.Count : " + policesInThisCity.Count);
 			for (int i = 0; i < policesInThisCity.Count; ++i)
 			{
+				if (character.IsDetention)
+					break;
+
 				if (character.CheckSpecialEvent())
 				{
 					actionName = eEventAction.INSPECT_SPECIAL;
@@ -337,9 +340,10 @@ namespace ToBeFree
 					{
 						character.CaughtPolice = police;
 						CityManager.Instance.FindNearestPath(character.CurCity, CityManager.Instance.Find("TUMEN"));
-						yield return TimeTable.Instance.SpendTime(character.RemainAP, eSpendTime.END);
-						character.AP = character.TotalAP;						
-						break;
+						int remainAP = character.RemainAP;
+						character.AP = character.TotalAP;
+						character.IsDetention = true;
+						yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 					}
 				}
 			}
@@ -673,7 +677,7 @@ namespace ToBeFree
 					else if (item is Item)
 					{
 						Item addingItem = item as Item;
-						yield return character.Inven.AddItem(addingItem, character);
+						character.Inven.AddItem(addingItem, character);
 					}
 				}
 			}

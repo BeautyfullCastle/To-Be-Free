@@ -415,7 +415,7 @@ namespace ToBeFree
 			yield return null;
 
 			// Exit
-			NextState();
+			yield return NextState();
 		}
 		
 		IEnumerator StartWeekState()
@@ -437,7 +437,7 @@ namespace ToBeFree
 			yield return null;
 
 			// Exit
-			NextState();
+			yield return NextState();
 		}
 
 		IEnumerator StartDayState()
@@ -500,7 +500,7 @@ namespace ToBeFree
 			}
 
 			// Exit
-			NextState();
+			yield return NextState();
 		}
 
 		IEnumerator ActState()
@@ -551,7 +551,7 @@ namespace ToBeFree
 			}
 			
 			// Exit
-			NextState();
+			yield return NextState();
 		}
 
 		IEnumerator DetentionState()
@@ -565,7 +565,7 @@ namespace ToBeFree
 			this.State = GameState.Night;
 
 			// Exit
-			NextState();
+			yield return NextState();
 		}
 
 		IEnumerator NightState()
@@ -625,17 +625,17 @@ namespace ToBeFree
 			}
 
 			// Exit
-			NextState();
+			yield return NextState();
 		}
 
 		#endregion
 
-		protected void NextState()
+		protected IEnumerator NextState()
 		{
 			string methodName = State.ToString() + "State";
 			System.Reflection.MethodInfo info = GetType().GetMethod(methodName,
 				System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-			StartCoroutine((IEnumerator)info.Invoke(this, null));
+			yield return ((IEnumerator)info.Invoke(this, null));
 		}
 
 		private IEnumerator Instance_NotifyEveryNight()

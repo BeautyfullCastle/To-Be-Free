@@ -2,7 +2,7 @@
 	"dataList": [
 		{
 			"index": 0,
-			"subjectType": "NULL",
+			"subjectType": "ITEM",
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
@@ -10,13 +10,13 @@
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "EASY",
-			"script": "한 남자가 다가와 브로커에 대한 정보를 알고 있는 사람을 알고 있다고 알려줍니다.\\n'내가 한 브로커에 대한 정보를 알고 있는 사람을 알고 있지, 다만 얼마 있지는 않은 모양이야\\n그리고 떠날때 정보를 알고 있는 이와 같이 떠난다고 하더군'\\n당신의 그의 말을 듣고 브로커정보를 알고 있는 이를 찾아가려 합니다.",
-			"failureScript": "브로커정보를 알고 있는이가 다른 정보를 알고 있는 이와 같이 떠났습니다.",
+			"script": "간단한 배달일을 해주면 돈을 주겠다는 조선어로 되어 있는 게시판을 글을 보고 그 장소를 찾아갔습니다.\\n그 장소에 한 남자가 간단한 일이라며 봉투에 쌓인 수상한 물건을 전달했습니다.\\n'이 물건을 목적지까지 시간내에 전달만 해주면 돼. 돈은 그곳에서 줄꺼야'\\n당신은 수상한 물건을 받았습니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				10
+				-99
 			],
 			"failureEffectValueList": [
-				1
+				-99
 			],
 			"eventIndex": -99,
 			"duration": 2,
@@ -25,46 +25,46 @@
 		},
 		{
 			"index": 1,
-			"subjectType": "MONEY",
+			"subjectType": "NULL",
 			"objectType": "NULL",
-			"comparisonOperator": ">",
-			"compareAmount": 4,
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
 			"actionType": "QUEST",
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "지역 공안담당관이 지역에 공안을 늘리려고 한다는 이야기를 들었습니다.\\n돈을 약간 주면 공안을 추가시키지 않을 겁니다.",
-			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 늘렸습니다.",
+			"script": "급하게 일손이 필요한 일이라며 돈을 많이 준다는 일을 발견했습니다. 확실히 보통 일보다 보수가 큰 편입니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				22
+				-99
 			],
 			"failureEffectValueList": [
-				1
+				-99
 			],
-			"eventIndex": 26,
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 추가를 막기",
 			"conditionScript": "돈 5위안"
 		},
 		{
 			"index": 2,
-			"subjectType": "MONEY",
+			"subjectType": "NULL",
 			"objectType": "NULL",
-			"comparisonOperator": ">",
-			"compareAmount": 4,
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
 			"actionType": "QUEST",
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "지역 공안담당관이 지역에 공안을 재배치 한다는 이야기를 들었습니다.\\n돈을 약간 주면 공안을 재배치시키지 않을 겁니다.",
-			"failureScript": "지역담당관이 근처 지역에 공안을 재배치 했습니다.",
+			"script": "근처에 여러가지 물건을 공짜로 나눠준다는 이야기를 들었습니다. 해당하는 장소에 간다면 물건을 받을 수 있을 겁니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				13
+				-99
 			],
 			"failureEffectValueList": [
-				1
+				-99
 			],
-			"eventIndex": 26,
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "뇌물을 이용해 공안 재배치를 막기",
 			"conditionScript": "돈 5위안"
@@ -79,13 +79,13 @@
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "브로커가 곧 이동한다는 정보를 받았습니다. \\n브로커가 이동하기 전에 브로커에게 접선해야 합니다.",
-			"failureScript": "시간이 되어 브로커가 이동했습니다.",
+			"script": "근처에 큰 쓰레기장이 있다는 이야기를 들었습니다. 쓰레기장에서 잘하면 좋은 물건을 찾을 수 있을 겁니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				64
+				-99
 			],
 			"failureEffectValueList": [
-				1
+				-99
 			],
 			"eventIndex": -99,
 			"duration": 2,
@@ -102,13 +102,13 @@
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "브로커가 곧 한국으로 돌아간다는 정보를 받았습니다. \\n브로커가 한국으로 이동하기 전에 접선해야 합니다.",
-			"failureScript": "시간이 되어 브로커가 한국으로 돌아갔습니다.",
+			"script": "근처에 무료급식소가 생겼다는 이야기를 들었습니다. 급식소에 가면 밥을 무료로 먹을 수 있을 겁니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				69
+				-99
 			],
 			"failureEffectValueList": [
-				1
+				-99
 			],
 			"eventIndex": -99,
 			"duration": 2,
@@ -121,17 +121,17 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"actionType": "QUEST",
+			"actionType": "QUEST_BROKERINFO",
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "브로커가 곧 한국으로 돌아간다는 정보를 받았습니다. \\n브로커가 한국으로 이동하기 전에 접선해야 합니다.",
-			"failureScript": "시간이 되어 브로커가 한국으로 돌아갔습니다.",
+			"script": "브로커에 대한 정보를 안다는 사람을 소문 끝에 찾았습니다.\\n'지금은 위험하니 안전한 시간에 다시 이야기하지'\\n그는 약속시간을 알려주었습니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				67
+				-99
 			],
 			"failureEffectValueList": [
-				1
+				-99
 			],
 			"eventIndex": -99,
 			"duration": 2,
@@ -140,23 +140,23 @@
 		},
 		{
 			"index": 6,
-			"subjectType": "MONEY",
+			"subjectType": "NULL",
 			"objectType": "NULL",
-			"comparisonOperator": ">",
-			"compareAmount": 4,
-			"actionType": "QUEST",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"actionType": "QUEST_BROKERINFO",
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "어쩌다보니 도박판에 끼었습니다. 도박판에서 많은 돈을 잃어 빚을 지게 되었습니다.\\n'조금의 말미를 줄테니 돈을 가져오게 아니면 큰 보복을 해주지'",
-			"failureScript": "시간이 되어 사채업자가 나타났습니다.\\n'돈을 가지고 오지 못하다니 그럼 대가를 받아야지'\\n그들이 당신의 다리를 가격했습니다.",
+			"script": "브로커에 대한 정보를 안다는 사람을 소문 끝에 찾았습니다.\\n'여기는 위험하니 안전한 곳에서 이야기하지'\\n그는 곧 이 곳에서 이동한다고 이야기하며, 약속장소 및 시간을 알려주었습니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				56
+				-99
 			],
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 26,
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "돈을 줘서 도박 빚 갚기",
 			"conditionScript": "돈 5위안"
@@ -167,40 +167,40 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"actionType": "QUEST",
+			"actionType": "QUEST_BROKERINFO",
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "브로커가 있다고 들은 식당을 조사했지만 브로커는 없었습니다. 한 남자 다가와 이야기합니다.\\n'보아하니 탈북자로군 공안에 신고하지 않는 대신 내 대신 일을 좀 해달라고'\\n아무래도 거절하긴 힘들어보입니다.",
-			"failureScript": "시간내에 일을 해결하지 못해 그가 공안에 신고했습니다.\\n공안이 당신을 찾아내 쫓아옵니다.",
+			"script": "소문을 통해서 브로커에 대한 정보를 알고 있다는 사람이 있다는 곳을 알아 낼 수 있었습니다.\\n그 곳을 조사해보면 브로커에 대한 정보를 알고 있는 사람을 볼수 있을지도 모릅니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				55
+				-99
 			],
 			"failureEffectValueList": [
-				92
+				-99
 			],
-			"eventIndex": 26,
+			"eventIndex": -99,
 			"duration": 2,
 			"uiName": "일을 통해 공안 신고 막기",
 			"conditionScript": "NULL"
 		},
 		{
 			"index": 8,
-			"subjectType": "NULL",
+			"subjectType": "MONEY",
 			"objectType": "NULL",
-			"comparisonOperator": "NULL",
-			"compareAmount": -99,
-			"actionType": "QUEST",
+			"comparisonOperator": ">",
+			"compareAmount": 4,
+			"actionType": "QUEST_BROKERINFO",
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "브로커에 대한 정보를 알고 있는 사람이 곧 이곳을 떠난다고 합니다.\\n당신은 그가 멀리 떠나기 전에 그를 만나려 해봅니다.",
-			"failureScript": "브로커 정보를 알고 있는 사람이 멀리 떠났습니다.",
+			"script": "주변에 브로커에 대한 정보를 알려준다는 곳을 알아냈습니다. 다만 브로커에 대한 정보를 알려주는데 돈을 요구한다고 합니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				4
+				-99
 			],
 			"failureEffectValueList": [
-				2
+				-99
 			],
 			"eventIndex": -99,
 			"duration": 2,
@@ -213,180 +213,19 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"actionType": "QUEST",
+			"actionType": "QUEST_BROKERINFO",
 			"region": "ALL",
 			"stat": "ALL",
 			"difficulty": "NORMAL",
-			"script": "브로커에 대한 정보를 알고 있는 사람이 곧 남한으로 떠난다고 합니다.\\n당신은 그가 멀리 떠나기 전에 그를 만나려 해봅니다.",
-			"failureScript": "브로커 정보를 알고 있는 사람이 남한으로 떠났습니다.",
+			"script": "소문을 통해서 브로커에 대한 정보를 알고 있다는 사람이 있다는 곳을 알아 낼 수 있었습니다.\\n그 곳을 조사해보면 브로커에 대한 정보를 알고 있는 사람을 볼수 있을지도 모릅니다.",
+			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
-				8
+				-99
 			],
 			"failureEffectValueList": [
 				-99
 			],
 			"eventIndex": -99,
-			"duration": 2,
-			"uiName": "시간이 되면 브로커정보 삭제",
-			"conditionScript": "NULL"
-		},
-		{
-			"index": 10,
-			"subjectType": "MONEY",
-			"objectType": "NULL",
-			"comparisonOperator": ">",
-			"compareAmount": 4,
-			"actionType": "QUEST",
-			"region": "ALL",
-			"stat": "ALL",
-			"difficulty": "NORMAL",
-			"script": "어쩌다보니 도박판에 끼었습니다. 도박판에서 많은 돈을 잃어 빚을 지게 되었습니다.\\n'조금의 말미를 줄테니 돈을 가져오게 아니면 큰 보복을 해주지'",
-			"failureScript": "시간이 되어 사채업자가 나타났습니다.\\n'돈을 가지고 오지 못하다니 돈대신 다른걸 받아가도록 하지'\\n그들이 돈 대신 아이템을 받아갔습니다.",
-			"failureEffectIndexList": [
-				40
-			],
-			"failureEffectValueList": [
-				1
-			],
-			"eventIndex": 26,
-			"duration": 2,
-			"uiName": "돈을 줘서 도박 빚 갚기",
-			"conditionScript": "돈 5위안"
-		},
-		{
-			"index": 11,
-			"subjectType": "ITEM",
-			"objectType": "NULL",
-			"comparisonOperator": "NULL",
-			"compareAmount": 63,
-			"actionType": "QUEST",
-			"region": "ALL",
-			"stat": "ALL",
-			"difficulty": "NORMAL",
-			"script": "브로커가 있다고 들은 식당을 조사했지만 브로커는 없었습니다. 한 남자 다가와 이야기합니다.\\n'보아하니 탈북자로군 공안에 신고하지 않는 대신 내 대신 배달일을 좀 해달라고\\n물건을 상점에서 구입해서 전달해주면 된다고'\\n아무래도 거절하긴 힘들어보입니다.",
-			"failureScript": "시간내에 일을 해결하지 못해 그가 공안에 신고했습니다.\\n공안이 당신을 찾아내 쫓아옵니다.",
-			"failureEffectIndexList": [
-				55
-			],
-			"failureEffectValueList": [
-				92
-			],
-			"eventIndex": 26,
-			"duration": 2,
-			"uiName": "아이템 배달로 공안 신고 막기",
-			"conditionScript": "NULL"
-		},
-		{
-			"index": 12,
-			"subjectType": "NULL",
-			"objectType": "NULL",
-			"comparisonOperator": "NULL",
-			"compareAmount": -99,
-			"actionType": "QUEST",
-			"region": "ALL",
-			"stat": "ALL",
-			"difficulty": "EASY",
-			"script": "이봐 좋은 판을 알고 있는데 올텐가?'\\n근처에서 큰 도박판이 벌어진다는 것을 알았습니다.\\n도박을 해서 돈을 벌수 있을 것 같습니다.",
-			"failureScript": "도박판이 끝났다는 이야기가 들립니다.",
-			"failureEffectIndexList": [
-				-99
-			],
-			"failureEffectValueList": [
-				-99
-			],
-			"eventIndex": 26,
-			"duration": 2,
-			"uiName": "도박으로 돈 획득",
-			"conditionScript": "NULL"
-		},
-		{
-			"index": 13,
-			"subjectType": "INFO",
-			"objectType": "NULL",
-			"comparisonOperator": ">",
-			"compareAmount": 0,
-			"actionType": "QUEST",
-			"region": "ALL",
-			"stat": "ALL",
-			"difficulty": "EASY",
-			"script": "한 남자 다가와 이야기합니다.\\n'보아하니 탈북자로군 혹시 브로커에 대한 정보를 알고 있나? 브로커정보를 알려주면 큰 값을 처주지 하며 몇일 뒤 사람이 없는 곳에서 만나자고 제안했습니다.'",
-			"failureScript": "그가 독자적으로 브로커정보를 안 것 같습니다.",
-			"failureEffectIndexList": [
-				10
-			],
-			"failureEffectValueList": [
-				1
-			],
-			"eventIndex": 26,
-			"duration": 2,
-			"uiName": "브로커정보를 팔아 돈 획득",
-			"conditionScript": "브로커정보 1"
-		},
-		{
-			"index": 14,
-			"subjectType": "MONEY",
-			"objectType": "NULL",
-			"comparisonOperator": ">",
-			"compareAmount": 4,
-			"actionType": "QUEST",
-			"region": "ALL",
-			"stat": "ALL",
-			"difficulty": "NORMAL",
-			"script": "지역 공안담당관이 지역에 공안을 늘리려고 한다는 이야기를 들었습니다.\\n돈을 약간 주면 공안을 추가시키지 않을 겁니다.",
-			"failureScript": "지역담당관이 근처 지역에 공안을 추가로 늘렸습니다.",
-			"failureEffectIndexList": [
-				23
-			],
-			"failureEffectValueList": [
-				1
-			],
-			"eventIndex": 26,
-			"duration": 2,
-			"uiName": "뇌물을 이용해 공안 추가를 막기",
-			"conditionScript": "돈 5위안"
-		},
-		{
-			"index": 15,
-			"subjectType": "NULL",
-			"objectType": "NULL",
-			"comparisonOperator": "NULL",
-			"compareAmount": -99,
-			"actionType": "QUEST",
-			"region": "NULL",
-			"stat": "NULL",
-			"difficulty": "EASY",
-			"script": "그곳에 있는 사장에게 말을 했으니 찾아가서 일을 하면 돈은 넉넉하게 줄껄쎄\\n'다만 급하게 사람이 필요한 일이니 빨리 찾아가게'",
-			"failureScript": "사장이 말한 기한이 끝났습니다.",
-			"failureEffectIndexList": [
-				-99
-			],
-			"failureEffectValueList": [
-				-99
-			],
-			"eventIndex": 26,
-			"duration": 2,
-			"uiName": "일을 해서 돈 획득",
-			"conditionScript": "NULL"
-		},
-		{
-			"index": 16,
-			"subjectType": "NULL",
-			"objectType": "NULL",
-			"comparisonOperator": "NULL",
-			"compareAmount": -99,
-			"actionType": "QUEST_BROKERINFO",
-			"region": "NULL",
-			"stat": "NULL",
-			"difficulty": "EASY",
-			"script": "브로커 정보 퀘스트를 받습니다.",
-			"failureScript": "브로커 정보 획득 기간 종료",
-			"failureEffectIndexList": [
-				-99
-			],
-			"failureEffectValueList": [
-				-99
-			],
-			"eventIndex": 27,
 			"duration": 2,
 			"uiName": "시간이 되면 브로커정보 삭제",
 			"conditionScript": "NULL"
