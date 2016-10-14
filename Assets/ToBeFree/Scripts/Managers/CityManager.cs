@@ -287,6 +287,9 @@ namespace ToBeFree
 
 		public City GetNearestCity(City curCity)
 		{
+			if (neareastPath == null)
+				return null;
+
 			if(neareastPath.Count <=0)
 			{
 				return null;

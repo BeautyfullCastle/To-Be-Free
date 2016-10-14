@@ -334,6 +334,9 @@ namespace ToBeFree
 					if (EventManager.Instance.TestResult == false)
 					{
 						character.CaughtPolice = police;
+						CityManager.Instance.FindNearestPath(character.CurCity, CityManager.Instance.Find("TUMEN"));
+						yield return TimeTable.Instance.SpendTime(character.RemainAP - 1, eSpendTime.END);
+						character.AP = character.TotalAP;						
 						break;
 					}
 				}
@@ -362,23 +365,37 @@ namespace ToBeFree
 			}
 			/* 밤단계 때 
 			 * 단둥 또는 투먼시에 도착하지 않았으면 공안체크로 탈출 시도 이벤트
-			 * 단둥 또는 투먼시에 도착하면 다음날부터 밤단계에 수용소이벤트 출력
+			 * 단둥 또는 투먼시에 도착하면 밤단계에 수용소이벤트 출력
 			 * - 수용소이벤트 실패 시 북송 게임오버
 			 * */
 			else if (GameManager.Instance.State == GameManager.GameState.Night)
 			{
+				bool isLastCity = (character.CurCity.Name == "DANDONG" || character.CurCity.Name == "TUMEN");
+
 				if (character.CheckSpecialEvent())
 				{
-					actionName = eEventAction.DETENTION_SPECIAL;
-					yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+					if (isLastCity)
+					{
+						actionName = eEventAction.CAMP_SPECIAL;
+					}
+					else
+					{
+						actionName = eEventAction.DETENTION_SPECIAL;
+					}
 					yield return EventManager.Instance.DoCommand(actionName, character);
-					yield return TimeTable.Instance.SpendRemainTime();
 				}
 				else
 				{
-					actionName = eEventAction.DETENTION;
-					yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
-					yield return character.CaughtPolice.Fight(actionName, character);
+					if(isLastCity)
+					{
+						actionName = eEventAction.CAMP;
+						yield return EventManager.Instance.DoCommand(actionName, character);
+					}
+					else
+					{
+						actionName = eEventAction.DETENTION;
+						yield return character.CaughtPolice.Fight(actionName, character);
+					}
 				}
 			}
 

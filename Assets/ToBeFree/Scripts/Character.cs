@@ -143,12 +143,7 @@ namespace ToBeFree
 				// if no more left cities, have to call the event about escape from the camp.
 				else
 				{
-					eEventAction action = eEventAction.CAMP;
-					if(CheckSpecialEvent())
-					{
-						action = eEventAction.CAMP_SPECIAL;
-					}
-					yield return EventManager.Instance.DoCommand(action, this);
+					
 					break;
 
 					//if(testResult == true)
