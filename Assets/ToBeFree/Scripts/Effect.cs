@@ -17,7 +17,8 @@ namespace ToBeFree
 		BROKER,
 		MENTAL,
 		NULL,
-		ACTION
+		ACTION,
+		RESULT
 	}
 
 	public enum eVerbType
@@ -441,6 +442,14 @@ namespace ToBeFree
 						//QuestPiece piece = PieceManager.Instance.Find(quest);
 						//QuestManager.Instance.ActivateResultEffects(quest.Event_.Result.Success.EffectAmounts, character);
 						//PieceManager.Instance.Delete(piece);
+					}
+					break;
+				case eSubjectType.RESULT:
+					if(verbType == eVerbType.LOAD)
+					{
+						Result result = ResultManager.Instance.List[amount];
+						EventManager.Instance.CalculateTestResult(result.TestStat, character);
+						yield return EventManager.Instance.TreatResult(result, character);
 					}
 					break;
 				case eSubjectType.ABNORMAL:
