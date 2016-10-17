@@ -219,12 +219,14 @@ namespace ToBeFree
 					PutCityInNeighbors(neighbor, cities, distance);
 				}
 			}
-			
 		}
 		
-		public void FindNearestPath(City curCity, City destCity)
+		public void FindNearestPath(List<City> path1, List<City> path2)
 		{
-			neareastPath = CalcPath(curCity, destCity);
+			if (path1.Count < path2.Count)
+				neareastPath = path1;
+			else
+				neareastPath = path2;
 		}
 		
 		private void CalcNeareastPath(City curCity, City destination, List<City> neareastPath, int farDistance, List<City> visited)
