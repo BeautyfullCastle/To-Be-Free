@@ -203,9 +203,6 @@ namespace ToBeFree
 
 			if (character.CheckSpecialEvent())
 			{
-				// TODO : have to add bus action
-				actionName = eEventAction.MOVE;
-
 				yield return EventManager.Instance.DoCommand(actionName, character);
 				
 				EffectAmount[] effects = null;
@@ -240,8 +237,13 @@ namespace ToBeFree
 
 			if (dontMove == false)
 			{
-				List<City> path = CityManager.Instance.CalcPath(character.CurCity, character.NextCity);
+				List<City> path = CityManager.Instance.CalcPath(character.CurCity, character.NextCity, actionName);
 				
+				if(actionName == eEventAction.MOVE_BUS)
+				{
+					character.Stat.Money -= 4;
+				}
+
 				foreach (City city in path)
 				{
 					// 집중 단속 기간이면 공안 단속 들어감
@@ -339,8 +341,8 @@ namespace ToBeFree
 					if (EventManager.Instance.TestResult == false)
 					{
 						character.CaughtPolice = police;
-						List<City> pathToTumen = CityManager.Instance.CalcPath(character.CurCity, CityManager.Instance.Find("TUMEN"));
-						List<City> pathToDandong = CityManager.Instance.CalcPath(character.CurCity, CityManager.Instance.Find("DANDONG"));
+						List<City> pathToTumen = CityManager.Instance.CalcPath(character.CurCity, CityManager.Instance.Find("TUMEN"), eEventAction.MOVE);
+						List<City> pathToDandong = CityManager.Instance.CalcPath(character.CurCity, CityManager.Instance.Find("DANDONG"), eEventAction.MOVE);
 
 						CityManager.Instance.FindNearestPath(pathToTumen, pathToDandong);
 						int remainAP = character.RemainAP;

@@ -130,7 +130,7 @@ namespace ToBeFree
 					{
 						if (objectType == eObjectType.CLOSE)
 						{
-							yield return character.MoveTo(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType));
+							yield return character.MoveTo(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eEventAction.MOVE));
 						}
 						// can't move after move event( in mongolia )
 						if (objectType == eObjectType.CANCEL)
@@ -176,13 +176,13 @@ namespace ToBeFree
 						{
 							piece = PieceManager.Instance.FindRand(subjectType);
 							startCity = piece.City;
-							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
+							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eEventAction.MOVE);
 						}
 						if (objectType == eObjectType.FAR_CLOSE)
 						{
 							piece = PieceManager.Instance.GetLast(subjectType);
 							startCity = piece.City;
-							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
+							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eEventAction.MOVE);
 						}
 						if (objectType == eObjectType.CLOSE_FAR)
 						{
@@ -192,7 +192,7 @@ namespace ToBeFree
 							System.Random r = new System.Random();
 							int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
 
-							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance, subjectType);
+							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance, subjectType, eEventAction.MOVE);
 						}
 						yield return PieceManager.Instance.Move(piece, endCity);
 					}
@@ -222,7 +222,7 @@ namespace ToBeFree
 						}
 						if (objectType == eObjectType.CLOSE)
 						{
-							City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType);
+							City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eEventAction.MOVE);
 							yield return PieceManager.Instance.Add(new Piece(city, subjectType));
 						}
 						if(objectType == eObjectType.VIEWRANGE)
@@ -431,8 +431,6 @@ namespace ToBeFree
 					// load quest
 					if(verbType == eVerbType.LOAD)
 					{
-						int distance = 2;
-						City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, subjectType);
 						Quest selectedQuest = QuestManager.Instance.List[amount];
 						yield return QuestManager.Instance.Load(selectedQuest, character);
 					}

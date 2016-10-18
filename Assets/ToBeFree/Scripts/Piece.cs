@@ -47,7 +47,7 @@ namespace ToBeFree
 
 		public IEnumerator MoveCity(City destCity)
 		{
-			List<City> path = CityManager.Instance.CalcPath(city, destCity);
+			List<City> path = CityManager.Instance.CalcPath(city, destCity, eEventAction.MOVE);
 
 			foreach (City nextCity in path)
 			{
@@ -114,7 +114,6 @@ namespace ToBeFree
 			cityList.RemoveAll(x => x.Type == eNodeType.MOUNTAIN);
 			
 			yield return MoveCity(cityList[UnityEngine.Random.Range(0, cityList.Count)]);
-			
 		}
 
 		public bool IsMaxStat()

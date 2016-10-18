@@ -191,4 +191,9 @@ public class BezierCurveList : MonoBehaviour {
 			return dic;
 		}
 	}
+
+	public List<BezierCurve> FindCurves(BezierPoint bezierPoint)
+	{
+		return list.FindAll(curve => Array.Exists<BezierPoint>(curve.points, point => point == bezierPoint));
+	}
 }

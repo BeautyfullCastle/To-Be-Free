@@ -53,8 +53,8 @@ public class BezierCurveEditor : Editor
 				BezierPoint newPoint = pointObject.GetComponent<BezierPoint>();
 				
 				newPoint.curve = curve;
-				newPoint.handle1 = Vector3.right*0.1f;
-				newPoint.handle2 = -Vector3.right*0.1f;
+				newPoint.handle1 = Vector3.right*0.5f;
+				newPoint.handle2 = -Vector3.right*0.5f;
 				
 				pointsProp.InsertArrayElementAtIndex(pointsProp.arraySize);
 				pointsProp.GetArrayElementAtIndex(pointsProp.arraySize - 1).objectReferenceValue = newPoint;

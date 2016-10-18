@@ -232,7 +232,7 @@
 		},
 		{
 			"index": 23,
-			"actionType": "CAMP_SPECIAL",
+			"actionType": "CAMP",
 			"difficulty": "EASY",
 			"script": "특수이벤트 수용소",
 			"resultIndex": 23,

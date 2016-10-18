@@ -136,8 +136,14 @@ namespace ToBeFree
 					action = new Move();
 
 					InstantiatePopup("Normal Move", eEventAction.MOVE);
-					InstantiatePopup("Bus", eEventAction.MOVE_BUS);
-					
+					UICommandPopup busPopup = InstantiatePopup("Bus", eEventAction.MOVE_BUS);
+
+					bool buttonEnabled = (character.CurCity.Type == eNodeType.BIGCITY) && (character.Stat.Money >= 4);
+					foreach (UIButton button in busPopup.requiredTimeButtons)
+					{
+						button.isEnabled = buttonEnabled;
+					}
+
 					break;
 
 				case eCommand.WORK:
@@ -260,7 +266,7 @@ namespace ToBeFree
 				}
 
 				// set the cities enabled and twinkle only you can go.
-				List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP);
+				List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP, actionType);
 				foreach (City city in cities)
 				{
 					IconCity iconCity = Array.Find<IconCity>(iconCities, x => x.City == city);

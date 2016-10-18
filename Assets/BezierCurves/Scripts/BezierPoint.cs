@@ -3,6 +3,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 #endregion
 
@@ -96,7 +97,9 @@ public class BezierPoint : MonoBehaviour{
 			_handle1 = value;
 			if(handleStyle == HandleStyle.None) handleStyle = HandleStyle.Broken;
 			else if(handleStyle == HandleStyle.Connected) _handle2 = -value;
-			_curve.SetDirty();
+
+			foreach (BezierCurve curve in curves)
+				curve.SetDirty();
 		}
 	}
 
@@ -128,7 +131,9 @@ public class BezierPoint : MonoBehaviour{
 			_handle2 = value;
 			if(handleStyle == HandleStyle.None) handleStyle = HandleStyle.Broken;
 			else if(handleStyle == HandleStyle.Connected) _handle1 = -value;
-			_curve.SetDirty();
+
+			foreach (BezierCurve curve in curves)
+				curve.SetDirty();
 		}		
 	}
 	
@@ -152,19 +157,29 @@ public class BezierPoint : MonoBehaviour{
 	/// 	- Used to determine if this point has moved since the last frame
 	/// </summary>
 	private Vector3 lastPosition;
-	
+
 	#endregion
-	
+
 	#region MonoBehaviourFunctions
-	
+
+	private List<BezierCurve> curves;
+
 	void Update()
 	{
-		if (curve == null) return;
-
-		if(!_curve.dirty && transform.position != lastPosition)
+		if(curves == null)
 		{
-			_curve.SetDirty();
-			lastPosition = transform.position;
+			curves = GameObject.Find("ENTIREWAY").GetComponent<BezierCurveList>().FindCurves(this);
+		}
+		
+		foreach (BezierCurve curve in curves)
+		{
+			if (curve == null) return;
+
+			if (!curve.dirty && transform.position != lastPosition)
+			{
+				curve.SetDirty();
+				lastPosition = transform.position;
+			}
 		}
 	}
 	
