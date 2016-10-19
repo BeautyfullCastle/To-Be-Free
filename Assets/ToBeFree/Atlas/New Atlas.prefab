@@ -44,7 +44,7 @@ MonoBehaviour:
   mSprites:
   - name: 00
     x: 659
-    y: 620
+    y: 1644
     width: 1109
     height: 404
     borderLeft: 0
@@ -56,8 +56,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 15
   - name: 01
-    x: 0
-    y: 17
+    x: 491
+    y: 1041
     width: 84
     height: 109
     borderLeft: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 4
   - name: 02
-    x: 170
-    y: 18
+    x: 491
+    y: 822
     width: 84
     height: 108
     borderLeft: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 3
   - name: 03
-    x: 255
-    y: 18
+    x: 491
+    y: 713
     width: 84
     height: 108
     borderLeft: 0
@@ -95,8 +95,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 3
   - name: 04
-    x: 85
-    y: 17
+    x: 491
+    y: 931
     width: 84
     height: 109
     borderLeft: 0
@@ -108,8 +108,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 4
   - name: 05
-    x: 340
-    y: 20
+    x: 576
+    y: 1044
     width: 81
     height: 106
     borderLeft: 0
@@ -121,8 +121,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 6
   - name: 06
-    x: 1769
-    y: 919
+    x: 576
+    y: 716
     width: 81
     height: 105
     borderLeft: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 7
   - name: 07
-    x: 422
-    y: 20
+    x: 576
+    y: 934
     width: 81
     height: 106
     borderLeft: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 7
   - name: 08
-    x: 504
-    y: 20
+    x: 576
+    y: 824
     width: 81
     height: 106
     borderLeft: 0
@@ -160,8 +160,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 7
   - name: 09
-    x: 659
-    y: 161
+    x: 1641
+    y: 1185
     width: 363
     height: 458
     borderLeft: 0
@@ -173,8 +173,8 @@ MonoBehaviour:
     paddingTop: 18
     paddingBottom: 7
   - name: bbang
-    x: 1851
-    y: 957
+    x: 491
+    y: 593
     width: 88
     height: 67
     borderLeft: 0
@@ -185,9 +185,35 @@ MonoBehaviour:
     paddingRight: 5
     paddingTop: 8
     paddingBottom: 5
+  - name: bigcity
+    x: 1150
+    y: 1154
+    width: 490
+    height: 489
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 6
+    paddingBottom: 5
+  - name: mountain
+    x: 0
+    y: 171
+    width: 490
+    height: 489
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 6
+    paddingBottom: 5
   - name: note
     x: 0
-    y: 127
+    y: 1151
     width: 658
     height: 897
     borderLeft: 0
@@ -198,9 +224,35 @@ MonoBehaviour:
     paddingRight: 163
     paddingTop: 63
     paddingBottom: 64
+  - name: small
+    x: 659
+    y: 1154
+    width: 490
+    height: 489
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 5
+    paddingBottom: 6
+  - name: walk
+    x: 0
+    y: 661
+    width: 490
+    height: 489
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 6
+    paddingBottom: 5
   - name: white
-    x: 586
-    y: 94
+    x: 491
+    y: 680
     width: 32
     height: 32
     borderLeft: 0
