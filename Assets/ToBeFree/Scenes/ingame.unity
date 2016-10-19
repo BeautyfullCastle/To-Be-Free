@@ -1385,7 +1385,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 38
+  mWidth: 40
   mHeight: 10
   mDepth: 2
   autoResizeBoxCollider: 1
@@ -2268,7 +2268,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 28
+  mWidth: 30
   mHeight: 10
   mDepth: 2
   autoResizeBoxCollider: 1
@@ -3497,7 +3497,7 @@ Prefab:
     - target: {fileID: 114000013820980038, guid: ca974e8a683f9d74e9b1d7fb2d2645a2,
         type: 2}
       propertyPath: mWidth
-      value: 56
+      value: 52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca974e8a683f9d74e9b1d7fb2d2645a2, type: 2}
@@ -8029,7 +8029,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -236.39929, y: 76, z: 422, w: 298}
+  mClipRange: {x: -236.25647, y: 76.45575, z: 422, w: 298}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 5
   mSortingOrder: 0
@@ -10334,7 +10334,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 318.6006, y: -370, z: 9588, w: 9560}
+  mClipRange: {x: 318.7434, y: -369.54395, z: 9588, w: 9560}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 2
   mSortingOrder: 0
@@ -10422,7 +10422,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -519.3993, y: -39, z: 490, w: 76}
+  mClipRange: {x: -519.2565, y: -38.54425, z: 490, w: 76}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 0
   mSortingOrder: 0
@@ -15365,6 +15365,11 @@ Prefab:
       propertyPath: m_Name
       value: WORK
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013820980038, guid: ca974e8a683f9d74e9b1d7fb2d2645a2,
+        type: 2}
+      propertyPath: mWidth
+      value: 22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca974e8a683f9d74e9b1d7fb2d2645a2, type: 2}
   m_IsPrefabParent: 0
@@ -17606,7 +17611,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 981774371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.598579, y: 1.5985793, z: 1.598579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -18815,7 +18820,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 48
+  mWidth: 50
   mHeight: 16
   mDepth: 2
   autoResizeBoxCollider: 1
@@ -20024,7 +20029,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 4
+  mWidth: 6
   mHeight: 8
   mDepth: 5
   autoResizeBoxCollider: 1
@@ -20527,7 +20532,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 62
+  mWidth: 68
   mHeight: 10
   mDepth: 2
   autoResizeBoxCollider: 1
@@ -22265,7 +22270,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 4
+  mWidth: 6
   mHeight: 8
   mDepth: 5
   autoResizeBoxCollider: 1
@@ -22685,6 +22690,11 @@ Prefab:
     - target: {fileID: 495090, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
+        type: 2}
+      propertyPath: mWidth
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -25207,7 +25217,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 4
+  mWidth: 6
   mHeight: 8
   mDepth: 5
   autoResizeBoxCollider: 1
@@ -26447,7 +26457,7 @@ Prefab:
     - target: {fileID: 114000013820980038, guid: ca974e8a683f9d74e9b1d7fb2d2645a2,
         type: 2}
       propertyPath: mWidth
-      value: 28
+      value: 26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca974e8a683f9d74e9b1d7fb2d2645a2, type: 2}
@@ -27383,7 +27393,7 @@ Prefab:
     - target: {fileID: 114000013820980038, guid: ca974e8a683f9d74e9b1d7fb2d2645a2,
         type: 2}
       propertyPath: mWidth
-      value: 32
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca974e8a683f9d74e9b1d7fb2d2645a2, type: 2}
@@ -29681,7 +29691,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 4
+  mWidth: 6
   mHeight: 8
   mDepth: 5
   autoResizeBoxCollider: 1
@@ -33125,7 +33135,7 @@ Prefab:
     - target: {fileID: 114000013820980038, guid: ca974e8a683f9d74e9b1d7fb2d2645a2,
         type: 2}
       propertyPath: mWidth
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca974e8a683f9d74e9b1d7fb2d2645a2, type: 2}
@@ -34103,6 +34113,11 @@ Prefab:
       propertyPath: mGradientTop.b
       value: 0.625
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013820980038, guid: ca974e8a683f9d74e9b1d7fb2d2645a2,
+        type: 2}
+      propertyPath: mWidth
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca974e8a683f9d74e9b1d7fb2d2645a2, type: 2}
   m_IsPrefabParent: 0
@@ -34357,7 +34372,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 28
+  mWidth: 30
   mHeight: 10
   mDepth: 2
   autoResizeBoxCollider: 1
@@ -39499,6 +39514,11 @@ Prefab:
         type: 2}
       propertyPath: m_Size.y
       value: 89
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013820980038, guid: ca974e8a683f9d74e9b1d7fb2d2645a2,
+        type: 2}
+      propertyPath: mWidth
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca974e8a683f9d74e9b1d7fb2d2645a2, type: 2}

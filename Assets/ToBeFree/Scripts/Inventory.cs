@@ -50,6 +50,11 @@ namespace ToBeFree
 			}
 		}
 
+		public List<Item> FindAll(ItemTag tag)
+		{
+			return list.FindAll(x => x.Tag == tag);
+		}
+
 		public bool Exist(Item item)
 		{
 			return list.Exists(x => x.Name == item.Name);

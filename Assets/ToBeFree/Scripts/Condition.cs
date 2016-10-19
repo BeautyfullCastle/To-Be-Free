@@ -34,6 +34,10 @@ namespace ToBeFree
 			{
 				left = character.Stat.Satiety;
 			}
+			else if(subjectType == eSubjectType.FOOD)
+			{
+				left = character.Inven.FindAll(EnumConvert<ItemTag>.ToEnum(subjectType.ToString())).Count;
+			}
 			else if(subjectType == eSubjectType.NULL)
 			{
 				return true;
