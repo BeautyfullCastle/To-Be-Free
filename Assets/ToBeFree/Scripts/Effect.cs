@@ -18,7 +18,8 @@ namespace ToBeFree
 		MENTAL,
 		NULL,
 		ACTION,
-		RESULT
+		RESULT,
+		FOOD
 	}
 
 	public enum eVerbType
