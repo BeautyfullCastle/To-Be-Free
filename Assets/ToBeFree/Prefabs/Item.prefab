@@ -158,7 +158,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
-  mSpriteName: white
+  mSpriteName: bbang
   mFillCenter: 1
 --- !u!114 &11432908
 MonoBehaviour:
@@ -213,7 +213,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 100
   mHeight: 100
@@ -281,7 +281,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 20
   mHeight: 22
