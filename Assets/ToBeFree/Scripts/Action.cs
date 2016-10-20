@@ -548,8 +548,10 @@ namespace ToBeFree
 					Effect moneyEffect = new Effect(eSubjectType.MONEY, eVerbType.ADD, eObjectType.SPECIFIC);
 					EffectAmount moneyEffectAmount = new EffectAmount(moneyEffect, money);
 
+					Quest quest = QuestManager.Instance.FindRand(eQuestActionType.QUEST);
+					int questIndex = QuestManager.Instance.IndexOf(quest);
 					Effect questEffect = new Effect(eSubjectType.QUEST, eVerbType.LOAD);
-					EffectAmount questEffectAmount = new EffectAmount(questEffect, UnityEngine.Random.Range(0, QuestManager.Instance.List.Length));
+					EffectAmount questEffectAmount = new EffectAmount(questEffect, questIndex);
 
 					Effect itemEffect = new Effect(eSubjectType.ITEM, eVerbType.ADD, eObjectType.ALL);					
 					EffectAmount itemEffectAmount = new EffectAmount(itemEffect, -99);

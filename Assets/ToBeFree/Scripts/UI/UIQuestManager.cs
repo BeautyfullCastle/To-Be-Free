@@ -13,17 +13,17 @@ namespace ToBeFree
         public void Awake()
         {
             QuestPiece.AddQuest += AddQuest;
-            TimeTable.Instance.NotifyEveryWeek += Instance_NotifyEveryWeek;
+            TimeTable.Instance.NotifyEveryday += Instance_NotifyEveryDay;
         }
 
-        private void Instance_NotifyEveryWeek()
+        private void Instance_NotifyEveryDay()
         {
             Debug.Log("UIQuestManager : notify every week");
             List<UIQuest> questsToRemove = new List<UIQuest>();
             foreach(UIQuest uiQuest in uiQuests)
             {
-                uiQuest.QuestPiece.WeekIsGone();
-                uiQuest.duration.text = uiQuest.QuestPiece.PastWeeks.ToString() + "/" + uiQuest.QuestPiece.CurQuest.Duration.ToString();
+                uiQuest.QuestPiece.DayIsGone();
+                uiQuest.pastDays.text = uiQuest.QuestPiece.PastDays.ToString() + "/" + uiQuest.QuestPiece.CurQuest.Duration.ToString();
                 if (uiQuest.QuestPiece.CheckDuration())
                 {
                     questsToRemove.Add(uiQuest);
@@ -48,7 +48,7 @@ namespace ToBeFree
             {
                 cityName = questPiece.City.Name;
             }
-            uiQuest.SetLabels(questPiece.CurQuest.UiName, questPiece.PastWeeks.ToString() + "/" + questPiece.CurQuest.Duration.ToString(),
+            uiQuest.SetLabels(questPiece.CurQuest.UiName, questPiece.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString(),
                 questPiece.CurQuest.UiConditionScript, cityName);
 
             uiQuests.Add(uiQuest);

@@ -9,7 +9,7 @@ namespace ToBeFree
 	
 	public enum eRegion
 	{
-		NULL, RANDOM, CITY
+		NULL, RANDOM, CITY, CURRENT
 	}
 
 	public class Quest
@@ -21,7 +21,7 @@ namespace ToBeFree
 		private readonly Condition condition;
 		private readonly eQuestActionType actionType;
 		private readonly eRegion region;
-		private readonly int amount;
+		private readonly string cityName;
 		private readonly eDifficulty difficulty;
 		private readonly string script;
 		private readonly ResultScriptAndEffects failureEffects;
@@ -29,10 +29,11 @@ namespace ToBeFree
 		private readonly int duration;
 		private readonly string uiName;
 		private readonly string uiConditionScript;
-		
+
+		private int pastDays;
 
 		public Quest(eSubjectType subjectType, eObjectType objectType, string comparisonOperator,
-			int compareAmount, eQuestActionType actionType, eRegion region, int amount, eDifficulty difficulty,
+			int compareAmount, eQuestActionType actionType, eRegion region, string cityName, eDifficulty difficulty,
 			string script, ResultScriptAndEffects failureEffects, Event event_, int duration, string uiName, string uiConditionScript)
 		{
 			this.subjectType = subjectType;
@@ -42,7 +43,7 @@ namespace ToBeFree
 			this.condition = new Condition(subjectType, comparisonOperator, compareAmount);
 			this.actionType = actionType;
 			this.region = region;
-			this.amount = amount;
+			this.cityName = cityName;
 			this.difficulty = difficulty;
 			this.script = script;
 			this.failureEffects = failureEffects;
@@ -51,7 +52,6 @@ namespace ToBeFree
 			this.uiName = uiName;
 			this.uiConditionScript = uiConditionScript;
 		}
-		
 
 		public int Duration
 		{
@@ -117,11 +117,24 @@ namespace ToBeFree
 			}
 		}
 
-		public int Amount
+		public string CityName
 		{
 			get
 			{
-				return amount;
+				return cityName;
+			}
+		}
+
+		public int PastDays
+		{
+			get
+			{
+				return pastDays;
+			}
+
+			set
+			{
+				pastDays = value;
 			}
 		}
 
@@ -132,7 +145,7 @@ namespace ToBeFree
 
 		public bool CheckCondition(Character character)
 		{
-			return condition.CheckCondition(character);
+			return condition.CheckCondition(character, this);
 		}
 	}
 }

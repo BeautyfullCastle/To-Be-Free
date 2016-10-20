@@ -15,6 +15,20 @@ namespace ToBeFree
 			this.amount = amount;
 		}
 
+		public bool CheckCondition(Character character, Quest quest)
+		{
+			int left = -99;
+			if (subjectType == eSubjectType.DDAY)
+			{
+				left = quest.PastDays;
+				return Compare(left, amount, comparisonOperator);
+			}
+			else
+			{
+				return CheckCondition(character);
+			}
+		}
+
 		public bool CheckCondition(Character character)
 		{
 			int left = -99;

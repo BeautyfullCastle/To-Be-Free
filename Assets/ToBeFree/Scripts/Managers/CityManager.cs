@@ -243,7 +243,11 @@ namespace ToBeFree
 		
 		public void FindNearestPath(List<City> path1, List<City> path2)
 		{
-			if (path1.Count < path2.Count)
+			if (path1 == null)
+				neareastPath = path2;
+			else if (path2 == null)
+				neareastPath = path1;
+			else if (path1.Count < path2.Count)
 				neareastPath = path1;
 			else
 				neareastPath = path2;
@@ -432,6 +436,14 @@ namespace ToBeFree
 			get
 			{
 				return everyCity;
+			}
+		}
+
+		public List<City> List
+		{
+			get
+			{
+				return list[(int)eWay.ENTIRE];
 			}
 		}
 	}

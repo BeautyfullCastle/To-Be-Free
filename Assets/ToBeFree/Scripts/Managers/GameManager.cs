@@ -67,7 +67,10 @@ namespace ToBeFree
 
 			this.State = GameState.Init;
 			commands = commandUIObj.GetComponentsInChildren<UICommand>();
-			commandUIObj.SetActive(false);
+			foreach(UICommand command in commands)
+			{
+				command.GetComponent<UIButton>().isEnabled = false;
+			}
 			shopUIObj.SetActive(false);
 
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
@@ -513,9 +516,7 @@ namespace ToBeFree
 		{
 			// Enter
 			yield return (ShowStateLabel("Act State", 0.5f));
-
-			commandUIObj.SetActive(true);
-			foreach(UICommand command in commands)
+			foreach (UICommand command in commands)
 			{
 				command.SetActiveCommands();
 			}
@@ -525,7 +526,10 @@ namespace ToBeFree
 			{
 				yield return null;
 			}
-			commandUIObj.SetActive(false);
+			foreach (UICommand command in commands)
+			{
+				command.GetComponent<UIButton>().isEnabled = false;
+			}
 			isActStart = false;
 			
 			// 공안 이벤트
@@ -579,9 +583,6 @@ namespace ToBeFree
 			// Enter
 			yield return (ShowStateLabel("Night State", 0.5f));
 
-			// after daytime // Temporary
-			yield return BuffManager.Instance.CheckDuration(character);
-
 			yield return Instance_NotifyEveryNight();
 
 			#region editor test
@@ -625,7 +626,10 @@ namespace ToBeFree
 
 			TimeTable.Instance.DayIsGone();
 
-			while(state == GameState.Night)
+			// after daytime // Temporary
+			yield return BuffManager.Instance.CheckDuration(character);
+
+			while (state == GameState.Night)
 			{
 				yield return null;
 			}

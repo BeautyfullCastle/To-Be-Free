@@ -64,7 +64,7 @@ namespace ToBeFree
 
 				Quest quest = new Quest(EnumConvert<eSubjectType>.ToEnum(data.subjectType), EnumConvert<eObjectType>.ToEnum(data.objectType),
 					data.comparisonOperator, data.compareAmount, EnumConvert<eQuestActionType>.ToEnum(data.actionType), 
-					EnumConvert<eRegion>.ToEnum(data.region), data.amount, EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, 
+					EnumConvert<eRegion>.ToEnum(data.region), data.cityName, EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, 
 					failureResultEffects, event_, data.duration, data.uiName, data.uiConditionScript);
 
 				if(list[data.index] != null)
@@ -109,12 +109,17 @@ namespace ToBeFree
 			
 			if(selectedQuest.Region == eRegion.CITY)
 			{
-				//city = CityManager.Instance.
-
+				city = CityManager.Instance.Find(selectedQuest.CityName);
+			}
+			else if(selectedQuest.Region == eRegion.RANDOM)
+			{
+				city = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.QUEST);
+			}
+			else if(selectedQuest.Region == eRegion.CURRENT)
+			{
+				city = character.CurCity;
 			}
 
-			int distance = 2;
-			city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.QUEST);
 			QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
 			GameManager.Instance.uiEventManager.OpenUI();
 			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);

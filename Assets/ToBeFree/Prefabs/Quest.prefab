@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questName: {fileID: 11429710}
-  duration: {fileID: 11415324}
+  pastDays: {fileID: 11415324}
   condition: {fileID: 11487484}
   city: {fileID: 11459038}
 --- !u!114 &11487484

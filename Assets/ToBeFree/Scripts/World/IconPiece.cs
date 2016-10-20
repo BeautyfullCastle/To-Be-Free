@@ -27,12 +27,16 @@ public class IconPiece : MonoBehaviour
 		
 		if (subjectType == eSubjectType.POLICE)
 		{
-			this.transform.localPosition = new Vector3(transform.localPosition.x - 30, transform.localPosition.y + 30);
+			//this.transform.localPosition = new Vector3(transform.localPosition.x - 30, transform.localPosition.y + 30);
 		}
 		else if(subjectType == eSubjectType.QUEST)
 		{
-			this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 30);
-			this.GetComponent<UISprite>().spriteName = "Orc Armor - Boots";
+			//this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 30);
+			this.GetComponent<UISprite>().spriteName = "quest";
+		}
+		else if(subjectType == eSubjectType.BROKER)
+		{
+			this.GetComponent<UISprite>().spriteName = "broker";
 		}
 	}
 

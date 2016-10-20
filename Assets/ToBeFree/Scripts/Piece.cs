@@ -201,7 +201,7 @@ namespace ToBeFree
 		private Quest quest;
 		private Character character;
 
-		private int pastWeeks;
+		private int pastDays;
 
 		public delegate void AddQuestHandler(QuestPiece piece);
 		public static event AddQuestHandler AddQuest;
@@ -210,15 +210,15 @@ namespace ToBeFree
 		{
 			this.quest = quest;
 			this.character = character;
-			
-			//TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
+			pastDays = 0;
 
 			AddQuest(this);
 		}
 
-		public void WeekIsGone()
+		public void DayIsGone()
 		{
-			pastWeeks++;
+			pastDays++;
+			quest.PastDays++;
 		}
 
 		public IEnumerator TreatPastQuests(Character character)
@@ -246,7 +246,7 @@ namespace ToBeFree
 
 		public override bool CheckDuration()
 		{
-			return pastWeeks >= quest.Duration;
+			return pastDays >= quest.Duration;
 		}
 
 		public Quest CurQuest
@@ -257,11 +257,11 @@ namespace ToBeFree
 			}
 		}
 
-		public int PastWeeks
+		public int PastDays
 		{
 			get
 			{
-				return pastWeeks;
+				return pastDays;
 			}
 		}
 	}

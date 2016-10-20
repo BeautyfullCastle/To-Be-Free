@@ -8,7 +8,7 @@
 			"compareAmount": -99,
 			"actionType": "QUEST",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "간단한 배달일을 해주면 돈을 주겠다는 조선어로 되어 있는 게시판을 글을 보고 그 장소를 찾아갔습니다.\\n그 장소에 한 남자가 간단한 일이라며 봉투에 쌓인 수상한 물건을 전달했습니다.\\n'이 물건을 목적지까지 3일내에 전달만 해주면 돼. 돈은 그곳에서 줄 꺼야'\\n당신은 수상한 물건을 받았습니다.",
 			"failureScript": "의뢰의 기한이 지나버렸습니다. 당신은 수상한 물건을 전달하지 않고 버렸습니다.",
@@ -19,9 +19,9 @@
 				-99
 			],
 			"eventIndex": 92,
-			"duration": 3,
+			"duration": 4,
 			"uiName": "수상한 물건 전달",
-			"conditionScript": "돈 5위안"
+			"uiConditionScript": "돈 5위안"
 		},
 		{
 			"index": 1,
@@ -31,7 +31,7 @@
 			"compareAmount": -99,
 			"actionType": "QUEST",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "급하게 일손이 필요한 일이라며 돈을 많이 준다는 일을 발견했습니다. 확실히 보통 일보다 보수가 큰 편입니다.",
 			"failureScript": "급하게 일손이 필요한 일은 이제 끝났습니다.",
@@ -42,19 +42,19 @@
 				-99
 			],
 			"eventIndex": 93,
-			"duration": 3,
+			"duration": 4,
 			"uiName": "일당이 큰 곳에서 일하기",
-			"conditionScript": "돈 7위안"
+			"uiConditionScript": "돈 7위안"
 		},
 		{
 			"index": 2,
 			"subjectType": "DDAY",
 			"objectType": "NULL",
-			"comparisonOperator": ">",
+			"comparisonOperator": ">=",
 			"compareAmount": 3,
 			"actionType": "QUEST",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "근처에 3일 뒤 여러가지 물건을 공짜로 나눠준다는 이야기를 들었습니다. 해당하는 장소에 간다면 물건을 받을 수 있을 겁니다.",
 			"failureScript": "물건을 공짜로 나누어 준다는 이벤트 기한이 끝났습니다.",
@@ -65,9 +65,9 @@
 				-99
 			],
 			"eventIndex": 94,
-			"duration": 3,
+			"duration": 4,
 			"uiName": "3일 뒤 공짜 아이템 획득",
-			"conditionScript": "아이템"
+			"uiConditionScript": "아이템"
 		},
 		{
 			"index": 3,
@@ -77,7 +77,7 @@
 			"compareAmount": -99,
 			"actionType": "QUEST",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "근처에 큰 쓰레기장이 있다는 이야기를 들었습니다. 쓰레기장에서 잘하면 좋은 물건을 찾을 수 있을 겁니다.",
 			"failureScript": "퀘스트 실패",
@@ -90,7 +90,7 @@
 			"eventIndex": 95,
 			"duration": 1000,
 			"uiName": "쓰레기장에서 물건 찾기",
-			"conditionScript": "아이템"
+			"uiConditionScript": "아이템"
 		},
 		{
 			"index": 4,
@@ -100,7 +100,7 @@
 			"compareAmount": -99,
 			"actionType": "QUEST",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "근처에 무료급식소가 생겼다는 이야기를 들었습니다. 급식소에 가면 밥을 무료로 먹을 수 있을 겁니다.",
 			"failureScript": "퀘스트 실패",
@@ -113,17 +113,17 @@
 			"eventIndex": 96,
 			"duration": 1000,
 			"uiName": "소문의 무료 급식소 방문",
-			"conditionScript": "식량"
+			"uiConditionScript": "식량"
 		},
 		{
 			"index": 5,
 			"subjectType": "DDAY",
 			"objectType": "NULL",
-			"comparisonOperator": ">",
+			"comparisonOperator": ">=",
 			"compareAmount": 1,
 			"actionType": "QUEST_BROKERINFO",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "브로커에 대한 정보를 안다는 사람을 소문 끝에 찾았습니다.\\n'지금은 위험하니 내일 다시 이야기하지'\\n그는 약속시간과 장소를 알려주었습니다.",
 			"failureScript": "정보원과의 약속시간에 맞춰 가지 못했습니다.",
@@ -134,19 +134,19 @@
 				-99
 			],
 			"eventIndex": 96,
-			"duration": 1,
+			"duration": 2,
 			"uiName": "내일 정보원 만나기",
-			"conditionScript": "정보"
+			"uiConditionScript": "정보"
 		},
 		{
 			"index": 6,
 			"subjectType": "DDAY",
 			"objectType": "NULL",
-			"comparisonOperator": ">",
+			"comparisonOperator": ">=",
 			"compareAmount": 3,
 			"actionType": "QUEST_BROKERINFO",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "브로커에 대한 정보를 안다는 사람을 소문 끝에 찾았습니다.\\n'여기는 위험하니 안전한 곳에서 이야기하지'\\n그는 곧 이 곳에서 이동한다고 이야기하며, 3일 뒤에 만나기로 했습니다. 약속장소 및 시간을 알려주었습니다.",
 			"failureScript": "정보원과의 약속시간에 맞춰 가지 못했습니다.",
@@ -157,9 +157,9 @@
 				-99
 			],
 			"eventIndex": 96,
-			"duration": 3,
+			"duration": 4,
 			"uiName": "3일 뒤 정보원 만나기",
-			"conditionScript": "정보"
+			"uiConditionScript": "정보"
 		},
 		{
 			"index": 7,
@@ -169,7 +169,7 @@
 			"compareAmount": -99,
 			"actionType": "QUEST_BROKERINFO",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "소문을 통해서 브로커에 대한 정보를 알고 있다는 사람이 있다는 곳을 알아 낼 수 있었습니다.\\n그 곳을 조사해보면 브로커에 대한 정보를 알고 있는 사람을 볼 수 있을지도 모릅니다.",
 			"failureScript": "퀘스트 실패",
@@ -182,17 +182,17 @@
 			"eventIndex": 97,
 			"duration": 1000,
 			"uiName": "소문의 장소에서 정보원 찾기",
-			"conditionScript": "정보"
+			"uiConditionScript": "정보"
 		},
 		{
 			"index": 8,
 			"subjectType": "MONEY",
 			"objectType": "NULL",
-			"comparisonOperator": ">",
+			"comparisonOperator": ">=",
 			"compareAmount": 3,
 			"actionType": "QUEST_BROKERINFO",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "주변에 브로커에 대한 정보를 알려준다는 곳을 알아냈습니다. 다만 브로커에 대한 정보를 알려주는데 돈을 요구한다고 합니다. 돈을 미리 준비해서 가야 할 듯 합니다.",
 			"failureScript": "퀘스트 실패",
@@ -205,7 +205,7 @@
 			"eventIndex": 98,
 			"duration": 1000,
 			"uiName": "4위안으로 정보 사기",
-			"conditionScript": "정보"
+			"uiConditionScript": "정보"
 		},
 		{
 			"index": 9,
@@ -215,7 +215,7 @@
 			"compareAmount": -99,
 			"actionType": "QUEST_BROKERINFO",
 			"region": "RANDOM",
-			"amount": 2,
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "소문을 통해서 브로커에 대한 정보를 알고 있다는 사람이 있다는 곳을 알아 낼 수 있었습니다.\\n그 곳을 조사해보면 브로커에 대한 정보를 알고 있는 사람을 볼 수 있을지도 모릅니다.",
 			"failureScript": "장소",
@@ -228,7 +228,7 @@
 			"eventIndex": 99,
 			"duration": 1000,
 			"uiName": "소문의 장소에서 정보원 찾기",
-			"conditionScript": "정보"
+			"uiConditionScript": "정보"
 		},
 		{
 			"index": 10,
@@ -237,8 +237,8 @@
 			"comparisonOperator": ">",
 			"compareAmount": 19,
 			"actionType": "NULL",
-			"region": "RANDOM",
-			"amount": 0,
+			"region": "CURRENT",
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "남자는 계속해서 조건을 이야기를 했습니다.\\n'탈북자를 탈출 시키는 것은 매우 힘든 일이네. 공안에게 언제 걸릴지 알 수도 없고, 그래서 우리는 철저한 선불제라서 말이야. 20위안을 주면 바로 일에 착수하지 어떤가?'\\n당신은 금액을 듣고 놀랐지만 돈을 주지 않으면 남한으로 갈 수 없다는 것을 알고 있습니다.",
 			"failureScript": "퀘스트 실패",
@@ -251,7 +251,7 @@
 			"eventIndex": 87,
 			"duration": 1000,
 			"uiName": "돈 20위안 내기",
-			"conditionScript": "남한으로 가는 길"
+			"uiConditionScript": "남한으로 가는 길"
 		},
 		{
 			"index": 11,
@@ -261,7 +261,7 @@
 			"compareAmount": -99,
 			"actionType": "NULL",
 			"region": "CITY",
-			"amount": 31,
+			"cityName": "TONGLIAO",
 			"difficulty": "NORMAL",
 			"script": "나는 준비를 할 테니. 당신은 몽골에 가까운 퉁라오로 오게. 퉁라오에서 사막을 건너는 방법을 알려주지'\\n당신은 알겠다고 하고 자리를 떠납니다.",
 			"failureScript": "퀘스트 실패",
@@ -274,7 +274,7 @@
 			"eventIndex": 90,
 			"duration": 1000,
 			"uiName": "퉁라오에 가기",
-			"conditionScript": "남한으로 가는 길"
+			"uiConditionScript": "남한으로 가는 길"
 		},
 		{
 			"index": 12,
@@ -284,7 +284,7 @@
 			"compareAmount": 6,
 			"actionType": "NULL",
 			"region": "CITY",
-			"amount": 31,
+			"cityName": "TONGLIAO",
 			"difficulty": "NORMAL",
 			"script": "’저희는 돈은 필요 없습니다. 돈을 목적으로 움직이고 있지 않거든요. 다만 남한으로 가는 것이 쉬운 일이 아닙니다. 사막을 건너서 몽골로 가야합니다. 몽골로 가면 남한으로 보내줄 겁니다. 사막을 건너는 건 힘든 일이니 물자를 두둑하게 챙겨야 합니다. 저는 일에 착수 하겠습니다. 선생님께서는 사막에 건널때 필요한 식량을 챙겨서 몽골 근처 퉁라오로 오시면 됩니다.'\\n당신은 알겠다고 말하고 브로커와 헤어졌습니다.",
 			"failureScript": "퀘스트 실패",
@@ -297,7 +297,7 @@
 			"eventIndex": 88,
 			"duration": 1000,
 			"uiName": "6개의 식량을 가지고 퉁라오에가기",
-			"conditionScript": "남한으로 가는 길"
+			"uiConditionScript": "남한으로 가는 길"
 		},
 		{
 			"index": 13,
@@ -306,8 +306,8 @@
 			"comparisonOperator": ">",
 			"compareAmount": 9,
 			"actionType": "NULL",
-			"region": "RANDOM",
-			"amount": 0,
+			"region": "CURRENT",
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "일단 돈이 필요합니다. 남한으로 가시려면 사막을 건너 몽골로 가셔야 합니다. 사막을 건너기 위해서 물자를 준비해야합니다. 물자와 사막까지 가는 비용이 필요합니다. 하지만 탈북자분들이 돈이 없다는 사실을 알고 있습니다. 그래서 보수금제도 하고 있습니다. 당장은 10위안만 주시면 되고, 나중에 남한에 가시면 정착금이 나오는데 성공 보수금으로 그 돈을 주시면 됩니다. 10위안 주실수 있으신가요?'\\n아무래도 돈이 필요한 것 같습니다.",
 			"failureScript": "퀘스트 실패",
@@ -320,17 +320,17 @@
 			"eventIndex": 89,
 			"duration": 1000,
 			"uiName": "돈 10위안 내기",
-			"conditionScript": "남한으로 가는 길"
+			"uiConditionScript": "남한으로 가는 길"
 		},
 		{
 			"index": 14,
 			"subjectType": "DDAY",
 			"objectType": "NULL",
-			"comparisonOperator": ">",
+			"comparisonOperator": ">=",
 			"compareAmount": 5,
 			"actionType": "NULL",
-			"region": "RANDOM",
-			"amount": 0,
+			"region": "CURRENT",
+			"cityName": "NULL",
 			"difficulty": "NORMAL",
 			"script": "5일 뒤에 여기로 오십시요. 5일 뒤면 모든 물자를 마련 해 두겠습니다. 다만 절대로 늦으시면 안됩니다.저희는 당신만 탈북시키는게 아닙니다. 늦으면 그냥 출발하니 명심하십시요'\\n늦지않게 5일 뒤에 오면 될 것 같습니다.",
 			"failureScript": "브로커가 출발한다는 시간이 지났습니다. 브로커가 출발해 버렸습니다.",
@@ -341,9 +341,9 @@
 				-99
 			],
 			"eventIndex": 91,
-			"duration": 5,
+			"duration": 6,
 			"uiName": "정확히 5일뒤에 재방문",
-			"conditionScript": "남한으로 가는 길"
+			"uiConditionScript": "남한으로 가는 길"
 		}
 	]
 }

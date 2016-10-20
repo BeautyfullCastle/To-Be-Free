@@ -198,9 +198,22 @@ MonoBehaviour:
     paddingRight: 5
     paddingTop: 6
     paddingBottom: 5
-  - name: gong
+  - name: broker
     x: 659
-    y: 830
+    y: 598
+    width: 238
+    height: 231
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 19
+    paddingBottom: 11
+  - name: gong
+    x: 1769
+    y: 1725
     width: 238
     height: 323
     borderLeft: 0
@@ -212,8 +225,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 15
   - name: kim
-    x: 1769
-    y: 1725
+    x: 659
+    y: 830
     width: 238
     height: 323
     borderLeft: 0
@@ -250,6 +263,19 @@ MonoBehaviour:
     paddingRight: 163
     paddingTop: 63
     paddingBottom: 64
+  - name: quest
+    x: 659
+    y: 366
+    width: 238
+    height: 231
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 19
+    paddingBottom: 11
   - name: small
     x: 659
     y: 1154

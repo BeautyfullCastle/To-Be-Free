@@ -39411,7 +39411,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2003942516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -727, y: -41, z: 0}
+  m_LocalPosition: {x: -668, y: -41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -39430,7 +39430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrangement: 1
   sorting: 2
-  pivot: 3
+  pivot: 1
   maxPerLine: 0
   cellWidth: 70
   cellHeight: 70

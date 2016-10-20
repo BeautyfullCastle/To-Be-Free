@@ -59,7 +59,8 @@ public class UICommand : MonoBehaviour {
 			}
 			else if(this.name == "WORK")
 			{
-				this.GetComponent<UIButton>().isEnabled = !(GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.MOUNTAIN);
+				this.GetComponent<UIButton>().isEnabled = !(GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.MOUNTAIN
+															|| GameManager.Instance.Character.CurCity.Type == ToBeFree.eNodeType.TOWN);
 			}
 			else if (this.name == "SHOP")
 			{
