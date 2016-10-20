@@ -51,12 +51,20 @@ namespace ToBeFree
 				Event event_ = null;
 				if (data.eventIndex != -99)
 				{
-					event_ = EventManager.Instance.List[data.eventIndex];
+					try {
+						event_ = EventManager.Instance.List[data.eventIndex];
+					} catch (UnityException e)
+					{
+						if(e == null)
+						{
+							Debug.LogError(e.Message);
+						}
+					}
 				}
 
 				Quest quest = new Quest(EnumConvert<eSubjectType>.ToEnum(data.subjectType), EnumConvert<eObjectType>.ToEnum(data.objectType),
 					data.comparisonOperator, data.compareAmount, EnumConvert<eQuestActionType>.ToEnum(data.actionType), 
-					EnumConvert<eTestStat>.ToEnum(data.stat), EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, 
+					EnumConvert<eRegion>.ToEnum(data.region), data.amount, EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, 
 					failureResultEffects, event_, data.duration, data.uiName, data.uiConditionScript);
 
 				if(list[data.index] != null)
@@ -98,11 +106,15 @@ namespace ToBeFree
 		public IEnumerator Load(Quest selectedQuest, Character character)
 		{
 			City city = null;
-			int distance = 2;
-			if (selectedQuest.ActionType == eQuestActionType.QUEST || selectedQuest.ActionType == eQuestActionType.QUEST_BROKERINFO)
+			
+			if(selectedQuest.Region == eRegion.CITY)
 			{
-				city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.QUEST);
+				//city = CityManager.Instance.
+
 			}
+
+			int distance = 2;
+			city = CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.QUEST);
 			QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
 			GameManager.Instance.uiEventManager.OpenUI();
 			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);

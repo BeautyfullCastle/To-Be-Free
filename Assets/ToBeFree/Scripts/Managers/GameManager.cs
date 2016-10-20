@@ -416,7 +416,7 @@ namespace ToBeFree
 			//character.Stat.Satiety = 1;
 #endif
 
-			this.State = GameState.StartWeek;
+			this.State = GameState.StartDay;
 
 			yield return null;
 

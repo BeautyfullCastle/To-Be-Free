@@ -26,15 +26,15 @@ namespace ToBeFree
 		private Transform brokerOffset;
 
 		private City city;
-		
+
 		public void Init()
 		{
-			city = new City(gameObject.name, type, this);						
+			city = new City(gameObject.name, type, this);
 		}
 
 		public void InitNeighbors()
 		{
-			if(GetComponent<BezierPoint>() == null)
+			if (GetComponent<BezierPoint>() == null)
 			{
 				Debug.LogError("No BezierPoint in " + this.name);
 				return;
@@ -49,7 +49,7 @@ namespace ToBeFree
 					continue;
 				}
 				List<BezierPoint> points = curveList.Dic[GetComponent<BezierPoint>()];
-				
+
 				foreach (BezierPoint point in points)
 				{
 					neighbors.Add(point.GetComponent<IconCity>().City);
@@ -74,29 +74,40 @@ namespace ToBeFree
 
 		void Start()
 		{
-			if (this.gameObject.name == eNodeType.SMALLCITY.ToString())
+			int smallSize = 60;
+			int bigSize = 120;
+			UISprite sprite = GetComponent<UISprite>();
+			sprite.color = Color.white;
+			if (this.gameObject.name == eNodeType.SMALLCITY.ToString() || this.gameObject.name == eNodeType.TOWN.ToString()
+				|| this.gameObject.name == eNodeType.MOUNTAIN.ToString() )
 			{
-				GetComponent<UISprite>().color = new Color(1, 1, 0.5f);
+				sprite.width = smallSize;
+				sprite.height = smallSize;
 				type = EnumConvert<eNodeType>.ToEnum(this.gameObject.name);
-				nameLabel.text = type.ToString();
-			}
-			else if (this.gameObject.name == eNodeType.TOWN.ToString())
-			{
-				GetComponent<UISprite>().color = new Color(1, 0.8f, 1f);
-				type = EnumConvert<eNodeType>.ToEnum(this.gameObject.name);
-				nameLabel.text = type.ToString();
-			}
-			else if (this.gameObject.name == eNodeType.MOUNTAIN.ToString())
-			{
-				GetComponent<UISprite>().color = new Color(0.5f, 1, 0.5f);
-				type = EnumConvert<eNodeType>.ToEnum(this.gameObject.name);
-				nameLabel.text = type.ToString();
+				nameLabel.enabled = false;
+
+				if(this.gameObject.name == eNodeType.SMALLCITY.ToString())
+				{
+					sprite.spriteName = "small";
+				}
+				else if (this.gameObject.name == eNodeType.TOWN.ToString())
+				{
+					sprite.spriteName = "walk";
+				}
+				else if (this.gameObject.name == eNodeType.MOUNTAIN.ToString())
+				{
+					sprite.spriteName = "mountain";
+				}
 			}
 			else
 			{
-				GetComponent<UISprite>().color = Color.white;
+				sprite.width = bigSize;
+				sprite.height = bigSize;
 				type = eNodeType.BIGCITY;
 				nameLabel.text = gameObject.name;
+				nameLabel.color = Color.white;
+				sprite.spriteName = "bigcity";
+				
 			}
 		}
 

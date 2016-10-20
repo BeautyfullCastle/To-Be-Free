@@ -2,7 +2,7 @@
 	"dataList": [
 		{
 			"index": 0,
-			"name": "음식과 물",
+			"name": "쌀국수",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -12,71 +12,60 @@
 			"amountList": [
 				1
 			],
-			"price": 1,
-			"tag": "NULL"
+			"price": 2,
+			"tag": "FOOD",
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
 		},
 		{
 			"index": 1,
-			"name": "라운드백",
-			"startTime": "NOW",
+			"name": "딤섬",
+			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
 			"effectIndexList": [
-				34
+				26
 			],
 			"amountList": [
 				2
 			],
 			"price": 4,
-			"tag": "NULL"
+			"tag": "FOOD",
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
 		},
 		{
 			"index": 2,
-			"name": "소형 배낭",
-			"startTime": "NOW",
+			"name": "꿔바로우",
+			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
 			"effectIndexList": [
-				34
+				26
+			],
+			"amountList": [
+				3
+			],
+			"price": 6,
+			"tag": "FOOD",
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+		},
+		{
+			"index": 3,
+			"name": "북경오리요리",
+			"startTime": "REST",
+			"duration": "ONCE",
+			"restore": "false",
+			"effectIndexList": [
+				26
 			],
 			"amountList": [
 				4
 			],
-			"price": 6,
-			"tag": "NULL"
-		},
-		{
-			"index": 3,
-			"name": "배낭",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				34
-			],
-			"amountList": [
-				6
-			],
 			"price": 8,
-			"tag": "NULL"
+			"tag": "FOOD",
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
 		},
 		{
 			"index": 4,
-			"name": "등산가방",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				34
-			],
-			"amountList": [
-				8
-			],
-			"price": 10,
-			"tag": "NULL"
-		},
-		{
-			"index": 5,
 			"name": "따뜻한 우유",
 			"startTime": "REST",
 			"duration": "ONCE",
@@ -87,41 +76,12 @@
 			"amountList": [
 				1
 			],
-			"price": 1,
-			"tag": "NULL"
-		},
-		{
-			"index": 6,
-			"name": "향초",
-			"startTime": "REST",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				1
-			],
-			"amountList": [
-				1
-			],
-			"price": 1,
-			"tag": "NULL"
-		},
-		{
-			"index": 7,
-			"name": "종이 안대",
-			"startTime": "REST",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				2
-			],
-			"amountList": [
-				1
-			],
 			"price": 2,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "휴식 때 먹어 체력을 1회복시킨다."
 		},
 		{
-			"index": 8,
+			"index": 5,
 			"name": "따뜻한 고급우유",
 			"startTime": "REST",
 			"duration": "ONCE",
@@ -132,42 +92,13 @@
 			"amountList": [
 				2
 			],
-			"price": 3,
-			"tag": "NULL"
+			"price": 4,
+			"tag": "NULL",
+			"script": "휴식 때 먹어 체력을 2회복시킨다."
 		},
 		{
-			"index": 9,
-			"name": "고급 향초",
-			"startTime": "REST",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				1
-			],
-			"amountList": [
-				2
-			],
-			"price": 3,
-			"tag": "NULL"
-		},
-		{
-			"index": 10,
-			"name": "고급 종이 안대",
-			"startTime": "REST",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				2
-			],
-			"amountList": [
-				2
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 11,
-			"name": "베게",
+			"index": 6,
+			"name": "목베게",
 			"startTime": "REST",
 			"duration": "EQUIP",
 			"restore": "false",
@@ -178,40 +109,11 @@
 				1
 			],
 			"price": 4,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "휴식 때 체력을 1회복시킨다."
 		},
 		{
-			"index": 12,
-			"name": "이불",
-			"startTime": "REST",
-			"duration": "EQUIP",
-			"restore": "false",
-			"effectIndexList": [
-				1
-			],
-			"amountList": [
-				1
-			],
-			"price": 4,
-			"tag": "NULL"
-		},
-		{
-			"index": 13,
-			"name": "침낭",
-			"startTime": "REST",
-			"duration": "EQUIP",
-			"restore": "false",
-			"effectIndexList": [
-				2
-			],
-			"amountList": [
-				1
-			],
-			"price": 6,
-			"tag": "NULL"
-		},
-		{
-			"index": 14,
+			"index": 7,
 			"name": "상처약",
 			"startTime": "NOW",
 			"duration": "ONCE",
@@ -222,41 +124,12 @@
 			"amountList": [
 				1
 			],
-			"price": 2,
-			"tag": "NULL"
-		},
-		{
-			"index": 15,
-			"name": "고량주",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				1
-			],
-			"amountList": [
-				1
-			],
-			"price": 2,
-			"tag": "NULL"
-		},
-		{
-			"index": 16,
-			"name": "오리요리",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				2
-			],
-			"amountList": [
-				1
-			],
 			"price": 3,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "언제든지 사용하는 즉시 1체력을 회복한다."
 		},
 		{
-			"index": 17,
+			"index": 8,
 			"name": "고급 상처약",
 			"startTime": "NOW",
 			"duration": "ONCE",
@@ -267,75 +140,12 @@
 			"amountList": [
 				2
 			],
-			"price": 4,
-			"tag": "NULL"
-		},
-		{
-			"index": 18,
-			"name": "고급 고량주",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				1
-			],
-			"amountList": [
-				2
-			],
-			"price": 4,
-			"tag": "NULL"
-		},
-		{
-			"index": 19,
-			"name": "북경오리요리",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				2
-			],
-			"amountList": [
-				2
-			],
 			"price": 6,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "언제든지 사용하는 즉시 2체력을 회복한다."
 		},
 		{
-			"index": 20,
-			"name": "담배",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				0,
-				1
-			],
-			"amountList": [
-				1,
-				-1
-			],
-			"price": 1,
-			"tag": "NULL"
-		},
-		{
-			"index": 21,
-			"name": "기괴한 곤충 요리",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				0,
-				1
-			],
-			"amountList": [
-				1,
-				-1
-			],
-			"price": 1,
-			"tag": "NULL"
-		},
-		{
-			"index": 22,
+			"index": 9,
 			"name": "작업용 장갑",
 			"startTime": "TEST",
 			"duration": "EQUIP",
@@ -347,10 +157,11 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "힘을 1올립니다."
 		},
 		{
-			"index": 23,
+			"index": 10,
 			"name": "공구벨트",
 			"startTime": "TEST",
 			"duration": "EQUIP",
@@ -362,10 +173,11 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "힘을 1올립니다.\\n벨트가 있으면 2,3번의 일도 한번에 할 수 있죠."
 		},
 		{
-			"index": 24,
+			"index": 11,
 			"name": "작업용 조끼",
 			"startTime": "TEST",
 			"duration": "EQUIP",
@@ -377,10 +189,11 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "힘을 1올립니다."
 		},
 		{
-			"index": 25,
+			"index": 12,
 			"name": "1회용 목장갑",
 			"startTime": "TEST",
 			"duration": "ONCE",
@@ -392,10 +205,11 @@
 				1
 			],
 			"price": 2,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "검사할 때 사용하면 힘을 1올립니다."
 		},
 		{
-			"index": 26,
+			"index": 13,
 			"name": "1회용 코팅장갑",
 			"startTime": "TEST",
 			"duration": "ONCE",
@@ -404,13 +218,14 @@
 				27
 			],
 			"amountList": [
-				2
+				1
 			],
 			"price": 2,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "검사할 때 사용하면 힘을 1올립니다."
 		},
 		{
-			"index": 27,
+			"index": 14,
 			"name": "얇은 복장",
 			"startTime": "TEST",
 			"duration": "EQUIP",
@@ -422,10 +237,11 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "민첩을 1올립니다."
 		},
 		{
-			"index": 28,
+			"index": 15,
 			"name": "운동화",
 			"startTime": "TEST",
 			"duration": "EQUIP",
@@ -437,10 +253,11 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "민첩을 1올립니다."
 		},
 		{
-			"index": 29,
+			"index": 16,
 			"name": "편안한 의복",
 			"startTime": "TEST",
 			"duration": "EQUIP",
@@ -452,73 +269,92 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "민첩을 1올립니다."
 		},
 		{
-			"index": 30,
-			"name": "비싸보이는 시계",
+			"index": 17,
+			"name": "이온음료",
 			"startTime": "TEST",
-			"duration": "EQUIP",
+			"duration": "ONCE",
 			"restore": "true",
 			"effectIndexList": [
-				30
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 31,
-			"name": "깔끔한 복장",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				30
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 32,
-			"name": "헤어 컷",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				30
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 33,
-			"name": "불편한 구두",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				30,
 				28
 			],
 			"amountList": [
-				1,
-				-1
+				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "검사할 때 사용하면 민첩을 1올립니다."
 		},
 		{
-			"index": 34,
-			"name": "가그린",
+			"index": 18,
+			"name": "깨끗한 물",
+			"startTime": "TEST",
+			"duration": "ONCE",
+			"restore": "true",
+			"effectIndexList": [
+				28
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL",
+			"script": "검사할 때 사용하면 민첩을 1올립니다."
+		},
+		{
+			"index": 19,
+			"name": "손목시계",
+			"startTime": "TEST",
+			"duration": "EQUIP",
+			"restore": "true",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL",
+			"script": "재주를 1올립니다."
+		},
+		{
+			"index": 20,
+			"name": "깔끔한 의복",
+			"startTime": "TEST",
+			"duration": "EQUIP",
+			"restore": "true",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL",
+			"script": "재주를 1올립니다."
+		},
+		{
+			"index": 21,
+			"name": "중국어 사전",
+			"startTime": "TEST",
+			"duration": "EQUIP",
+			"restore": "true",
+			"effectIndexList": [
+				30
+			],
+			"amountList": [
+				1
+			],
+			"price": 5,
+			"tag": "NULL",
+			"script": "재주를 1올립니다."
+		},
+		{
+			"index": 22,
+			"name": "구강청정제",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -528,12 +364,13 @@
 			"amountList": [
 				1
 			],
-			"price": 2,
-			"tag": "NULL"
+			"price": 5,
+			"tag": "NULL",
+			"script": "검사할 때 사용하면 재주을 1올립니다."
 		},
 		{
-			"index": 35,
-			"name": "향수",
+			"index": 23,
+			"name": "껌",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -541,14 +378,15 @@
 				30
 			],
 			"amountList": [
-				2
+				1
 			],
-			"price": 2,
-			"tag": "NULL"
+			"price": 5,
+			"tag": "NULL",
+			"script": "검사할 때 사용하면 재주을 1올립니다."
 		},
 		{
-			"index": 36,
-			"name": "십자가",
+			"index": 24,
+			"name": "안경",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -559,11 +397,12 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "집중을 1올립니다."
 		},
 		{
-			"index": 37,
-			"name": "염불",
+			"index": 25,
+			"name": "책",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -574,11 +413,12 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "집중을 1올립니다."
 		},
 		{
-			"index": 38,
-			"name": "코란",
+			"index": 26,
+			"name": "이어플러그",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -589,10 +429,11 @@
 				1
 			],
 			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "집중을 1올립니다."
 		},
 		{
-			"index": 39,
+			"index": 27,
 			"name": "커피",
 			"startTime": "TEST",
 			"duration": "ONCE",
@@ -604,10 +445,11 @@
 				1
 			],
 			"price": 2,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "검사할 때 사용하면 집중을 1올립니다."
 		},
 		{
-			"index": 40,
+			"index": 28,
 			"name": "에너지 드링크",
 			"startTime": "TEST",
 			"duration": "ONCE",
@@ -616,133 +458,14 @@
 				31
 			],
 			"amountList": [
-				2
-			],
-			"price": 2,
-			"tag": "NULL"
-		},
-		{
-			"index": 41,
-			"name": "안경",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				30
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 42,
-			"name": "망원경",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				30
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 43,
-			"name": "돋보기",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				30
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 44,
-			"name": "복주머니",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				32
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 45,
-			"name": "복조리",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				32
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 46,
-			"name": "네잎클로버",
-			"startTime": "TEST",
-			"duration": "EQUIP",
-			"restore": "true",
-			"effectIndexList": [
-				32
-			],
-			"amountList": [
-				1
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 47,
-			"name": "행운의 동전",
-			"startTime": "TEST",
-			"duration": "ONCE",
-			"restore": "true",
-			"effectIndexList": [
-				32
-			],
-			"amountList": [
 				1
 			],
 			"price": 2,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "검사할 때 사용하면 집중을 1올립니다."
 		},
 		{
-			"index": 48,
-			"name": "행운의 부적",
-			"startTime": "TEST",
-			"duration": "ONCE",
-			"restore": "true",
-			"effectIndexList": [
-				32
-			],
-			"amountList": [
-				2
-			],
-			"price": 2,
-			"tag": "NULL"
-		},
-		{
-			"index": 49,
+			"index": 29,
 			"name": "뇌물 제공-1",
 			"startTime": "NOW",
 			"duration": "ONCE",
@@ -754,10 +477,11 @@
 				1
 			],
 			"price": 8,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "얻는 즉시 가장 가까운 곳의 공안 제거"
 		},
 		{
-			"index": 50,
+			"index": 30,
 			"name": "뇌물 제공-2",
 			"startTime": "NOW",
 			"duration": "ONCE",
@@ -769,55 +493,11 @@
 				1
 			],
 			"price": 6,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "얻는 즉시 랜덤 공안말 제거"
 		},
 		{
-			"index": 51,
-			"name": "소문흘리기-1",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				7
-			],
-			"amountList": [
-				0
-			],
-			"price": 5,
-			"tag": "NULL"
-		},
-		{
-			"index": 52,
-			"name": "소문흘리기-2",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				3
-			],
-			"amountList": [
-				0
-			],
-			"price": 7,
-			"tag": "NULL"
-		},
-		{
-			"index": 53,
-			"name": "소문흘리기-3",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				6
-			],
-			"amountList": [
-				0
-			],
-			"price": 6,
-			"tag": "NULL"
-		},
-		{
-			"index": 54,
+			"index": 31,
 			"name": "레몬에이드",
 			"startTime": "NOW",
 			"duration": "ONCE",
@@ -829,10 +509,11 @@
 				6
 			],
 			"price": 4,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "얻는 즉시 상쾌함상태를 얻는다."
 		},
 		{
-			"index": 55,
+			"index": 32,
 			"name": "초콜릿",
 			"startTime": "NOW",
 			"duration": "ONCE",
@@ -844,25 +525,11 @@
 				8
 			],
 			"price": 4,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "얻는 즉시 집중상태를 얻는다."
 		},
 		{
-			"index": 56,
-			"name": "푸짐한 식사",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				56
-			],
-			"amountList": [
-				7
-			],
-			"price": 2,
-			"tag": "NULL"
-		},
-		{
-			"index": 57,
+			"index": 33,
 			"name": "붕대",
 			"startTime": "NOW",
 			"duration": "ONCE",
@@ -874,11 +541,12 @@
 				1
 			],
 			"price": 4,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "얻은 즉시 다리부상상태를 치유한다."
 		},
 		{
-			"index": 58,
-			"name": "파스",
+			"index": 34,
+			"name": "불안장애약",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -889,25 +557,11 @@
 				2
 			],
 			"price": 4,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "얻은 즉시 불안상태를 한다."
 		},
 		{
-			"index": 59,
-			"name": "위장약",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				57
-			],
-			"amountList": [
-				3
-			],
-			"price": 4,
-			"tag": "NULL"
-		},
-		{
-			"index": 60,
+			"index": 35,
 			"name": "피로회복제",
 			"startTime": "NOW",
 			"duration": "ONCE",
@@ -919,82 +573,8 @@
 				4
 			],
 			"price": 4,
-			"tag": "NULL"
-		},
-		{
-			"index": 61,
-			"name": "불안장애약",
-			"startTime": "NOW",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				57
-			],
-			"amountList": [
-				5
-			],
-			"price": 4,
-			"tag": "NULL"
-		},
-		{
-			"index": 62,
-			"name": "대중교통표",
-			"startTime": "MOVE",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				47
-			],
-			"amountList": [
-				0
-			],
-			"price": 3,
-			"tag": "NULL"
-		},
-		{
-			"index": 63,
-			"name": "정체불명의 물건",
-			"startTime": "QUEST",
-			"duration": "EQUIP",
-			"restore": "false",
-			"effectIndexList": [
-				-99
-			],
-			"amountList": [
-				-99
-			],
-			"price": 3,
-			"tag": "NULL"
-		},
-		{
-			"index": 64,
-			"name": "건빵",
-			"startTime": "REST",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				26
-			],
-			"amountList": [
-				2
-			],
-			"price": 3,
-			"tag": "NULL"
-		},
-		{
-			"index": 65,
-			"name": "육포",
-			"startTime": "REST",
-			"duration": "ONCE",
-			"restore": "false",
-			"effectIndexList": [
-				26
-			],
-			"amountList": [
-				3
-			],
-			"price": 5,
-			"tag": "NULL"
+			"tag": "NULL",
+			"script": "얻은 즉시 피곤함상태를 치유한다."
 		}
 	]
 }

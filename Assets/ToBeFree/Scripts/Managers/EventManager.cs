@@ -209,7 +209,7 @@ namespace ToBeFree
 			UIChanged(eUIEventLabelType.EVENT, currEvent.Script);
 			
 			// deal with select part
-			if(currEvent.Result == null)
+			if(currEvent.HasSelect)
 			{
 				Select[] selectList = new Select[currEvent.SelectIndexList.Length];
 				for (int i = 0; i < currEvent.SelectIndexList.Length; ++i)
@@ -258,7 +258,7 @@ namespace ToBeFree
 			List<Event> findedEvents = new List<Event>();
 			foreach (Event elem in list)
 			{
-				if( (elem.ActionType & actionType) == elem.ActionType)
+				if( (elem.ActionType & actionType) == actionType)
 				{
 					findedEvents.Add(elem);
 				}

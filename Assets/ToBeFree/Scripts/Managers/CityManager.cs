@@ -55,7 +55,7 @@ namespace ToBeFree
 		public Item SetCityItem()
 		{
 			Item item = ItemManager.Instance.GetRand();
-			while (true)
+			//while (true)
 			{
 				if (cityItems.Contains(item))
 				{
@@ -64,8 +64,9 @@ namespace ToBeFree
 				else
 				{
 					cityItems.Add(item);
-					return item;
+					
 				}
+				return item;
 			}
 		}
 

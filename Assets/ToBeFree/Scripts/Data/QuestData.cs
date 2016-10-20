@@ -10,7 +10,7 @@ public class QuestData : IData
     public int compareAmount;
     public string actionType;
     public string region;
-    public string stat;
+    public int amount;
     public string difficulty;
     public string script;
     public string failureScript;

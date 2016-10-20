@@ -4,8 +4,12 @@ namespace ToBeFree
 {
 	public enum eQuestActionType
 	{
-		QUEST,
-		QUEST_BROKERINFO
+		NULL, QUEST, QUEST_BROKERINFO
+	}
+	
+	public enum eRegion
+	{
+		NULL, RANDOM, CITY
 	}
 
 	public class Quest
@@ -16,7 +20,8 @@ namespace ToBeFree
 		private readonly int compareAmount;
 		private readonly Condition condition;
 		private readonly eQuestActionType actionType;
-		private readonly eTestStat stat;
+		private readonly eRegion region;
+		private readonly int amount;
 		private readonly eDifficulty difficulty;
 		private readonly string script;
 		private readonly ResultScriptAndEffects failureEffects;
@@ -27,7 +32,7 @@ namespace ToBeFree
 		
 
 		public Quest(eSubjectType subjectType, eObjectType objectType, string comparisonOperator,
-			int compareAmount, eQuestActionType actionType, eTestStat stat, eDifficulty difficulty,
+			int compareAmount, eQuestActionType actionType, eRegion region, int amount, eDifficulty difficulty,
 			string script, ResultScriptAndEffects failureEffects, Event event_, int duration, string uiName, string uiConditionScript)
 		{
 			this.subjectType = subjectType;
@@ -36,7 +41,8 @@ namespace ToBeFree
 			this.compareAmount = compareAmount;
 			this.condition = new Condition(subjectType, comparisonOperator, compareAmount);
 			this.actionType = actionType;
-			this.stat = stat;
+			this.region = region;
+			this.amount = amount;
 			this.difficulty = difficulty;
 			this.script = script;
 			this.failureEffects = failureEffects;
@@ -100,6 +106,22 @@ namespace ToBeFree
 			get
 			{
 				return actionType;
+			}
+		}
+
+		public eRegion Region
+		{
+			get
+			{
+				return region;
+			}
+		}
+
+		public int Amount
+		{
+			get
+			{
+				return amount;
 			}
 		}
 

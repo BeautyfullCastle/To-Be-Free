@@ -298,7 +298,7 @@
 			"index": 49,
 			"subjectType": "COMMAND",
 			"verbType": "DEACTIVE",
-			"objectType": "SPECIAL"
+			"objectType": "INVESTIGATION"
 		},
 		{
 			"index": 50,
@@ -467,6 +467,18 @@
 			"subjectType": "POLICE",
 			"verbType": "REVEAL",
 			"objectType": "CRACKDOWN_PROBABILITY"
+		},
+		{
+			"index": 78,
+			"subjectType": "RESULT",
+			"verbType": "LOAD",
+			"objectType": "NULL"
+		},
+		{
+			"index": 79,
+			"subjectType": "QUEST",
+			"verbType": "DEL",
+			"objectType": "NULL"
 		}
 	]
 }

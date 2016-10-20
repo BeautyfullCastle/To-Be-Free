@@ -52,7 +52,7 @@
 			"stack": "FALSE",
 			"startTime": "NOW",
 			"duration": "DAY_TEST",
-			"script": "성공한 주사위눈을 5, 6으로 바꿉니다.\\n획득 다음날 밤부터 매일밤 주사위 하나라를 굴려서 4이하가 나오면 사라집니다. ",
+			"script": "성공한 주사위 눈을 5, 6으로 바꿉니다.\\n획득 다음날 밤부터 매일 밤 주사위 하나라를 굴려서 4이하가 나오면 사라집니다. ",
 			"isBody": "MENTAL",
 			"isPositive": "POSITIVE"
 		},
@@ -66,7 +66,7 @@
 			"stack": "false",
 			"startTime": "TEST",
 			"duration": "DAY_TEST",
-			"script": "모든 능력치를 1올립니다.\\n획득 다음날 밤부터 매일밤 주사위 하나라를 굴려서 4이하가 나오면 사라집니다. ",
+			"script": "모든 능력치를 1올립니다.\\n획득 다음날 밤부터 매일 밤 주사위 하나라를 굴려서 4이하가 나오면 사라집니다. ",
 			"isBody": "MENTAL",
 			"isPositive": "POSITIVE"
 		},
@@ -128,7 +128,7 @@
 		},
 		{
 			"index": 9,
-			"name": "Decrease Observation",
+			"name": "Decrease Concentration",
 			"spawnCondition": "EVENT",
 			"effectIndex": 29,
 			"amount": -1,
@@ -142,7 +142,7 @@
 		},
 		{
 			"index": 10,
-			"name": "Decrease Bargain",
+			"name": "Decrease Talent",
 			"spawnCondition": "EVENT",
 			"effectIndex": 30,
 			"amount": -1,
@@ -192,7 +192,7 @@
 			"stack": "false",
 			"startTime": "DAY",
 			"duration": "DAY",
-			"script": "일 하루동안 사용불가",
+			"script": "일행동 하루동안 사용불가",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		},
@@ -206,7 +206,7 @@
 			"stack": "false",
 			"startTime": "DAY",
 			"duration": "DAY",
-			"script": "이동 하루동안 사용불가",
+			"script": "이동행동 하루동안 사용불가",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		},
@@ -220,13 +220,13 @@
 			"stack": "false",
 			"startTime": "DAY",
 			"duration": "DAY",
-			"script": "휴식 하루동안 사용불가",
+			"script": "휴식행동 하루동안 사용불가",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		},
 		{
 			"index": 16,
-			"name": "Deactive Special",
+			"name": "Deactive Investigation",
 			"spawnCondition": "EVENT",
 			"effectIndex": 49,
 			"amount": 1,
@@ -234,7 +234,7 @@
 			"stack": "false",
 			"startTime": "DAY",
 			"duration": "DAY",
-			"script": " 특수행동(브로커, 퀘스트) 하루동안 사용불가",
+			"script": "조사행동 하루동안 사용불가",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		},
@@ -248,7 +248,7 @@
 			"stack": "false",
 			"startTime": "DAY",
 			"duration": "DAY",
-			"script": "상점 하루동안 사용불가",
+			"script": "상점행동 하루동안 사용불가",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		}

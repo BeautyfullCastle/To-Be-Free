@@ -72,7 +72,8 @@ namespace ToBeFree
 		}
 
 		public IEnumerator MoveEveryPolice()
-		{	if (isCrackDown)
+		{
+			if (isCrackDown)
 			{
 				List<Piece> pieces = PieceManager.Instance.FindAll(eSubjectType.POLICE);
 				foreach (Piece piece in pieces)

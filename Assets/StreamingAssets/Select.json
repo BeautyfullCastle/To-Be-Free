@@ -6,9 +6,9 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"script": "따라간다",
+			"script": "설득해본다.",
 			"linkType": "EVENT",
-			"linkIndex": 15
+			"linkIndex": 29
 		},
 		{
 			"index": 1,
@@ -16,19 +16,19 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"script": "무시한다",
+			"script": "포기한다.",
 			"linkType": "RESULT",
-			"linkIndex": 15
+			"linkIndex": 17
 		},
 		{
 			"index": 2,
-			"subjectType": "NULL",
+			"subjectType": "INFO",
 			"objectType": "NULL",
-			"comparisonOperator": "NULL",
-			"compareAmount": -99,
-			"script": "몰래 과일을 먹는다.",
-			"linkType": "EVENT",
-			"linkIndex": 22
+			"comparisonOperator": ">",
+			"compareAmount": 0,
+			"script": "브로커 정보를 모른다고 한다.",
+			"linkType": "RESULT",
+			"linkIndex": 18
 		},
 		{
 			"index": 3,
@@ -36,19 +36,19 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"script": "몰래 과일을 먹는다.",
-			"linkType": "EVENT",
-			"linkIndex": 26
+			"script": "브로커정보를 알려주지 않는다.",
+			"linkType": "RESULT",
+			"linkIndex": 19
 		},
 		{
 			"index": 4,
-			"subjectType": "NULL",
+			"subjectType": "INFO",
 			"objectType": "NULL",
-			"comparisonOperator": "NULL",
-			"compareAmount": -99,
-			"script": "그냥 지나쳐간다.",
+			"comparisonOperator": ">",
+			"compareAmount": 0,
+			"script": "브로커 정보를 알려준다.",
 			"linkType": "RESULT",
-			"linkIndex": 22
+			"linkIndex": 20
 		},
 		{
 			"index": 5,
@@ -56,9 +56,9 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"script": "안에 무엇이 있는지 파본다.",
-			"linkType": "EVENT",
-			"linkIndex": 28
+			"script": "브로커 정보를 모른다고 한다.",
+			"linkType": "RESULT",
+			"linkIndex": 21
 		},
 		{
 			"index": 6,
@@ -66,9 +66,9 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"script": "그냥 지나쳐간다.",
-			"linkType": "RESULT",
-			"linkIndex": 27
+			"script": "제안을 받아드린다.",
+			"linkType": "EVENT",
+			"linkIndex": 38
 		},
 		{
 			"index": 7,
@@ -76,29 +76,659 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"script": "설득을 해본다",
-			"linkType": "EVENT",
-			"linkIndex": 47
+			"script": "믿을 수 없으니 무시한다.",
+			"linkType": "RESULT",
+			"linkIndex": 22
 		},
 		{
 			"index": 8,
+			"subjectType": "MONEY",
+			"objectType": "NULL",
+			"comparisonOperator": ">",
+			"compareAmount": 5,
+			"script": "6위안을 준다.",
+			"linkType": "RESULT",
+			"linkIndex": 110
+		},
+		{
+			"index": 9,
 			"subjectType": "NULL",
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"script": "포기한다",
-			"linkType": "RESULT",
-			"linkIndex": 46
+			"script": "너무 비싸다며 협상해본다.",
+			"linkType": "EVENT",
+			"linkIndex": 41
 		},
 		{
-			"index": 9,
+			"index": 10,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "액수가 너무 크다. 포기한다.",
+			"linkType": "RESULT",
+			"linkIndex": 24
+		},
+		{
+			"index": 11,
 			"subjectType": "MONEY",
 			"objectType": "NULL",
 			"comparisonOperator": ">",
-			"compareAmount": 2,
-			"script": "돈(3위안)을 준다",
+			"compareAmount": 1,
+			"script": "2위안을 준다.",
 			"linkType": "RESULT",
-			"linkIndex": 47
+			"linkIndex": 23
+		},
+		{
+			"index": 12,
+			"subjectType": "MONEY",
+			"objectType": "NULL",
+			"comparisonOperator": ">",
+			"compareAmount": 3,
+			"script": "4위안을 준다.",
+			"linkType": "RESULT",
+			"linkIndex": 109
+		},
+		{
+			"index": 13,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "도망친다.",
+			"linkType": "RESULT",
+			"linkIndex": 25
+		},
+		{
+			"index": 14,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "숨는다.",
+			"linkType": "RESULT",
+			"linkIndex": 30
+		},
+		{
+			"index": 15,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "신청한다.",
+			"linkType": "EVENT",
+			"linkIndex": 48
+		},
+		{
+			"index": 16,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "신청하지 않는다.",
+			"linkType": "RESULT",
+			"linkIndex": 32
+		},
+		{
+			"index": 17,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "어떻게든 중국인과 의사소통하기 위해서 노력한다.",
+			"linkType": "RESULT",
+			"linkIndex": 33
+		},
+		{
+			"index": 18,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "중국어를 못한다고 하고 무시한다.",
+			"linkType": "RESULT",
+			"linkIndex": 34
+		},
+		{
+			"index": 19,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "표지판을 찾아본다.",
+			"linkType": "EVENT",
+			"linkIndex": 51
+		},
+		{
+			"index": 20,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "모르는 길이지만 걸어간다",
+			"linkType": "RESULT",
+			"linkIndex": 35
+		},
+		{
+			"index": 21,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "무시하고 간다.",
+			"linkType": "EVENT",
+			"linkIndex": 53
+		},
+		{
+			"index": 22,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "휴식 후 이동한다.",
+			"linkType": "EVENT",
+			"linkIndex": 54
+		},
+		{
+			"index": 23,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "몰래 과일을 먹는다.",
+			"linkType": "EVENT",
+			"linkIndex": 56
+		},
+		{
+			"index": 24,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "그냥 간다.",
+			"linkType": "EVENT",
+			"linkIndex": 57
+		},
+		{
+			"index": 25,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "도와준다.",
+			"linkType": "EVENT",
+			"linkIndex": 60
+		},
+		{
+			"index": 26,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "도와주다가 위험할 수 있으니 무시한다.",
+			"linkType": "RESULT",
+			"linkIndex": 26
+		},
+		{
+			"index": 27,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "설득해본다.",
+			"linkType": "EVENT",
+			"linkIndex": 64
+		},
+		{
+			"index": 28,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "포기한다.",
+			"linkType": "RESULT",
+			"linkIndex": 27
+		},
+		{
+			"index": 29,
+			"subjectType": "MONEY",
+			"objectType": "NULL",
+			"comparisonOperator": ">",
+			"compareAmount": 3,
+			"script": "4위안을 준다.",
+			"linkType": "RESULT",
+			"linkIndex": 45
+		},
+		{
+			"index": 30,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "이야기를 듣는다.",
+			"linkType": "EVENT",
+			"linkIndex": 67
+		},
+		{
+			"index": 31,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "낌새가 이상하다 도망친다.",
+			"linkType": "RESULT",
+			"linkIndex": 49
+		},
+		{
+			"index": 32,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "급하게 문을 막고 이야기를 해본다.",
+			"linkType": "EVENT",
+			"linkIndex": 70
+		},
+		{
+			"index": 33,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "돌아간다",
+			"linkType": "RESULT",
+			"linkIndex": 50
+		},
+		{
+			"index": 34,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "계속 조사한다.",
+			"linkType": "EVENT",
+			"linkIndex": 11
+		},
+		{
+			"index": 35,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "위험하니 오늘은 그만한다.",
+			"linkType": "RESULT",
+			"linkIndex": 107
+		},
+		{
+			"index": 36,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "해당지역에 공안의 숫자를 알려 달라고 한다.",
+			"linkType": "RESULT",
+			"linkIndex": 12
+		},
+		{
+			"index": 37,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "언제 탈북자 집중단속을 하는지 알려 달라고 한다.",
+			"linkType": "RESULT",
+			"linkIndex": 13
+		},
+		{
+			"index": 38,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "주변에 중국어를 할 줄 아는 사람에게 물어본다.",
+			"linkType": "EVENT",
+			"linkIndex": 16
+		},
+		{
+			"index": 39,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "잘 모르겠으니 포기한다.",
+			"linkType": "RESULT",
+			"linkIndex": 16
+		},
+		{
+			"index": 40,
+			"subjectType": "ITEM",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": 21,
+			"script": "사전을 보고 해석해본다.",
+			"linkType": "RESULT",
+			"linkIndex": 15
+		},
+		{
+			"index": 41,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "버섯을 먹는다.",
+			"linkType": "RESULT",
+			"linkIndex": 51
+		},
+		{
+			"index": 42,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "위험하니 먹지 않는다.",
+			"linkType": "RESULT",
+			"linkIndex": 52
+		},
+		{
+			"index": 43,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "아직 식량을 찾지 못했으니 더 조사해본다.",
+			"linkType": "EVENT",
+			"linkIndex": 19
+		},
+		{
+			"index": 44,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "위험하니 그냥 안전한 곳으로 이동한다.",
+			"linkType": "RESULT",
+			"linkIndex": 53
+		},
+		{
+			"index": 45,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "밥을 먹을 수 있는지 물어본다.",
+			"linkType": "RESULT",
+			"linkIndex": 54
+		},
+		{
+			"index": 46,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "브로커에 대한 정보를 묻는다.",
+			"linkType": "RESULT",
+			"linkIndex": 55
+		},
+		{
+			"index": 47,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "가방을 뒤진다.",
+			"linkType": "RESULT",
+			"linkIndex": 56
+		},
+		{
+			"index": 48,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "가방을 뒤로 한 채 다른 곳을 조사했습니다.",
+			"linkType": "RESULT",
+			"linkIndex": 57
+		},
+		{
+			"index": 49,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "음식을 먹는다.",
+			"linkType": "RESULT",
+			"linkIndex": 58
+		},
+		{
+			"index": 50,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "더러운 음식은 먹지 않는다.",
+			"linkType": "RESULT",
+			"linkIndex": 59
+		},
+		{
+			"index": 51,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "쉼터를 가본다.",
+			"linkType": "EVENT",
+			"linkIndex": 25
+		},
+		{
+			"index": 52,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "그냥 이 곳에서 휴식한다.",
+			"linkType": "RESULT",
+			"linkIndex": 62
+		},
+		{
+			"index": 53,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "사람이 많으면 위험할 수 있으니 다른 곳으로 이동한다.",
+			"linkType": "RESULT",
+			"linkIndex": 63
+		},
+		{
+			"index": 54,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "움직이면 휴식을 취할 수 없으니 그 자리에서 휴식을 취합니다.",
+			"linkType": "EVENT",
+			"linkIndex": 27
+		},
+		{
+			"index": 55,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "지금이라도 이동한다.",
+			"linkType": "RESULT",
+			"linkIndex": 64
+		},
+		{
+			"index": 56,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "무시하고 가만히 휴식을 취한다.",
+			"linkType": "RESULT",
+			"linkIndex": 65
+		},
+		{
+			"index": 57,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "탈북자에게 다가가 숨는 곳을 알려준다.",
+			"linkType": "EVENT",
+			"linkIndex": 33
+		},
+		{
+			"index": 58,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "도와주려다 자신도 위험해진다. 가만히 있는다.",
+			"linkType": "RESULT",
+			"linkIndex": 68
+		},
+		{
+			"index": 59,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "숨는 장소를 이동한다.",
+			"linkType": "EVENT",
+			"linkIndex": 39
+		},
+		{
+			"index": 60,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "장소 이동은 위험하다. 이 장소에 있는다.",
+			"linkType": "EVENT",
+			"linkIndex": 40
+		},
+		{
+			"index": 61,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "손짓을 이해하려고 노력한다.",
+			"linkType": "EVENT",
+			"linkIndex": 65
+		},
+		{
+			"index": 62,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "빠르게 도망간다.",
+			"linkType": "EVENT",
+			"linkIndex": 71
+		},
+		{
+			"index": 63,
+			"subjectType": "MONEY",
+			"objectType": "NULL",
+			"comparisonOperator": ">",
+			"compareAmount": 7,
+			"script": "8위안을 준다.",
+			"linkType": "RESULT",
+			"linkIndex": 82
+		},
+		{
+			"index": 64,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "돈이 없다 사정해본다.",
+			"linkType": "RESULT",
+			"linkIndex": 83
+		},
+		{
+			"index": 65,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "위험을 감수하고 기차에서 뛰어내린다.",
+			"linkType": "EVENT",
+			"linkIndex": 73
+		},
+		{
+			"index": 66,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "너무 위험하니 그만둔다.",
+			"linkType": "RESULT",
+			"linkIndex": 85
+		},
+		{
+			"index": 67,
+			"subjectType": "MONEY",
+			"objectType": "NULL",
+			"comparisonOperator": ">",
+			"compareAmount": 7,
+			"script": "8위안을 준다.",
+			"linkType": "RESULT",
+			"linkIndex": 86
+		},
+		{
+			"index": 68,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "돈이 없다 사정해본다.",
+			"linkType": "RESULT",
+			"linkIndex": 87
+		},
+		{
+			"index": 69,
+			"subjectType": "FOOD",
+			"objectType": "NULL",
+			"comparisonOperator": ">",
+			"compareAmount": 0,
+			"script": "식량을 준다.",
+			"linkType": "RESULT",
+			"linkIndex": 94
+		},
+		{
+			"index": 70,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "식량이 없다고 사정한다.",
+			"linkType": "RESULT",
+			"linkIndex": 95
+		},
+		{
+			"index": 71,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "신경 쓰이니 일어나서 확인해본다.",
+			"linkType": "EVENT",
+			"linkIndex": 86
+		},
+		{
+			"index": 72,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"script": "피곤하니 계속 잠을 청한다.",
+			"linkType": "RESULT",
+			"linkIndex": 106
 		}
 	]
 }

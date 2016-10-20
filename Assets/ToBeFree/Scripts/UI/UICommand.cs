@@ -13,6 +13,9 @@ public class UICommand : MonoBehaviour {
 
 		skippedDay = 10;
 
+		EventDelegate.Parameter param = new EventDelegate.Parameter(this, gameObject.name);
+		NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), this.GetComponent<UIButton>(), "ClickCommand", new EventDelegate.Parameter[] { param });
+
 	}
 
 	public void SetActiveCommands()
