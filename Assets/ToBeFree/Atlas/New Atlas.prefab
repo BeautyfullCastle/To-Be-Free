@@ -186,8 +186,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 5
   - name: bigcity
-    x: 1150
-    y: 1154
+    x: 0
+    y: 661
     width: 490
     height: 489
     borderLeft: 0
@@ -198,6 +198,32 @@ MonoBehaviour:
     paddingRight: 5
     paddingTop: 6
     paddingBottom: 5
+  - name: gong
+    x: 659
+    y: 830
+    width: 238
+    height: 323
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 8
+    paddingTop: 9
+    paddingBottom: 15
+  - name: kim
+    x: 1769
+    y: 1725
+    width: 238
+    height: 323
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 8
+    paddingTop: 9
+    paddingBottom: 15
   - name: mountain
     x: 0
     y: 171
@@ -238,8 +264,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 6
   - name: walk
-    x: 0
-    y: 661
+    x: 1150
+    y: 1154
     width: 490
     height: 489
     borderLeft: 0
