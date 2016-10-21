@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -18,8 +19,19 @@ namespace ToBeFree
 			this.pastDays.text = pastDays;
 			this.condition.text = condition;
 			this.city.text = city;
+
+			TimeTable.Instance.NotifyEveryday += DayIsGone;
 		}
-		
+
+		private void OnDisable()
+		{
+			TimeTable.Instance.NotifyEveryday -= DayIsGone;
+		}
+
+		private void DayIsGone()
+		{
+			pastDays.text = questPiece.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString();
+		}
 
 		public QuestPiece QuestPiece
 		{

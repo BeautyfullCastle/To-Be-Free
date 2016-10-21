@@ -100,7 +100,6 @@ namespace ToBeFree
 		public IEnumerator ActivateQuest(Quest quest, bool testResult, Character character)
 		{
 			yield return EventManager.Instance.ActivateEvent(quest.Event_, character);
-			
 		}
 
 		public IEnumerator Load(Quest selectedQuest, Character character)
@@ -113,7 +112,7 @@ namespace ToBeFree
 			}
 			else if(selectedQuest.Region == eRegion.RANDOM)
 			{
-				city = CityManager.Instance.FindRandCityByDistance(character.CurCity, 2, eSubjectType.QUEST);
+				city = CityManager.Instance.FindRand(eSubjectType.QUEST);
 			}
 			else if(selectedQuest.Region == eRegion.CURRENT)
 			{
@@ -125,7 +124,7 @@ namespace ToBeFree
 			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);
 			yield return EventManager.Instance.WaitUntilFinish();
 
-			yield return PieceManager.Instance.Add(questPiece);
+			PieceManager.Instance.Add(questPiece);
 		}
 	}
 }

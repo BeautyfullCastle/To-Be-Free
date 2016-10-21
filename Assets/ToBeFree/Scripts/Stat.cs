@@ -228,9 +228,8 @@ namespace ToBeFree
 				infoNum = value;
 				if(infoNum >= 3)
 				{
-					City cityOfBroker = CityManager.Instance.FindRandCityByDistance(GameManager.Instance.Character.CurCity, 2, eSubjectType.BROKER);
-					Piece broker = new Piece(cityOfBroker, eSubjectType.BROKER);
-					GameManager.Instance.StartCoroutine(PieceManager.Instance.Add(broker));
+					Broker broker = new Broker(CityManager.Instance.FindRand(eSubjectType.BROKER), eSubjectType.BROKER);
+					PieceManager.Instance.Add(broker);
 					infoNum = 0;
 				}
 

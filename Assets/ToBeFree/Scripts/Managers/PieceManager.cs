@@ -95,28 +95,39 @@ namespace ToBeFree
 				Debug.LogError("piece is null");
 				return;
 			}
+
 			list.Remove(piece);
 			DeletePiece(piece);
 		}
-		
-		// ********* Add ***********
-		public IEnumerator Add(Piece piece)
+
+		public void Add(eSubjectType subjectType)
 		{
-			if(piece.City == null)
+			Piece piece = null;
+			City city = CityManager.Instance.FindRand(subjectType);
+			if(subjectType == eSubjectType.POLICE)
 			{
-				yield break;
+				piece = new Police(city, subjectType);
+			}
+			else if(subjectType == eSubjectType.BROKER)
+			{
+				piece = new Broker(city, subjectType);
+			}
+			else
+			{
+				Debug.LogError("Can't Add this piece type : " + subjectType.ToString());
+			}
+		}
+
+		// ********* Add ***********
+		public void Add(Piece piece)
+		{
+			if (piece.City == null)
+			{
+				return;
 			}
 			list.Add(piece);
 			AddPiece(piece);
-
-			if (!(piece is Police))
-			{
-				yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { piece.City.IconCity.transform }, 1f);
-			}
-			yield return null;
 		}
-		
-		
 
 		public int GetNumberOfPiece(eSubjectType pieceType, City city)
 		{

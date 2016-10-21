@@ -291,7 +291,7 @@ namespace ToBeFree
 
 			if (Input.GetKeyDown(KeyCode.KeypadMinus))
 			{
-				if(Time.timeScale <= 3f)
+				if(Time.timeScale <= 5f)
 					Time.timeScale += .2f;
 
 				NGUIDebug.Log("Time Scale : " + Time.timeScale);
@@ -406,7 +406,7 @@ namespace ToBeFree
 			List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
 			foreach (City city in bigCityList)
 			{
-				yield return PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
+				PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
 				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 			}
 
@@ -691,14 +691,6 @@ namespace ToBeFree
 
 			yield return AbnormalConditionManager.Instance.ActiveByCondition();
 
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
-		}
-
-		private IEnumerator Instance_NotifyEveryWeek()
-		{
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
-			
-
 			//check current quest's end time and apply the result
 			List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
 			if (questPieces != null && questPieces.Count > 0)
@@ -710,65 +702,16 @@ namespace ToBeFree
 				}
 			}
 
-			yield return CrackDown.Instance.Check();
-			//yield return PutPieces();
-
-			// activate global event
-			//yield return EventManager.Instance.DoCommand(eEventAction.GLOBAL, character);
-
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.WEEK, character);
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
 		}
 
-		private IEnumerator PutPieces()
+		private IEnumerator Instance_NotifyEveryWeek()
 		{
-			yield return ShowStateLabel("Put Pieces", 0.5f);
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
 
-			// put pieces in one of random cities (police, information, quest)
-			int distance = 2;
-			List<Transform> pieceCityTransformList = new List<Transform>();
-			// 1 random quest
-			Quest selectedQuest = QuestManager.Instance.FindRand();
-			if(CityManager.Instance == null)
-			{
-				Debug.LogError("CityManager.Instance is null");
-			}
-			
-			yield return QuestManager.Instance.Load(selectedQuest, character);
+			yield return CrackDown.Instance.Check();
 
-			if (selectedQuest.ActionType == eQuestActionType.QUEST)
-			{
-				QuestPiece piece = PieceManager.Instance.Find(selectedQuest);
-				pieceCityTransformList.Add(GameObject.Find(piece.City.Name).transform);
-			}
-
-			// 2 polices
-			Police randPolice = new Police(CityManager.Instance.FindRand(eSubjectType.POLICE), eSubjectType.POLICE);
-			yield return PieceManager.Instance.Add(randPolice);
-			pieceCityTransformList.Add(GameObject.Find(randPolice.City.Name).transform);
-			//Police randPoliceByDistance = new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.POLICE), eSubjectType.POLICE);
-			//PieceManager.Instance.Add(randPoliceByDistance);
-			//pieceCityTransformList.Add(GameObject.Find(randPoliceByDistance.City.Name).transform);
-
-			// 2 informations
-			Information randInfo = new Information(CityManager.Instance.FindRand(eSubjectType.INFO), eSubjectType.INFO);
-			yield return PieceManager.Instance.Add(randInfo);
-			pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name).transform);
-			//Information randInfoByDistance = new Information(CityManager.Instance.FindRandCityByDistance(character.CurCity, distance, eSubjectType.INFO), eSubjectType.INFO);
-			//PieceManager.Instance.Add(randInfoByDistance);
-			//pieceCityTransformList.Add(GameObject.Find(randInfoByDistance.City.Name).transform);
-
-			yield return MoveDirectingCam(pieceCityTransformList, 0.5f);
-
-			// temporary
-			//PieceManager.Instance.Add(new Police(CityManager.Instance.FindRandCityByDistance(character.CurCity, 0), eSubjectType.POLICE));
-			
-			//Information randInfo2 = new Information(CityManager.Instance.FindRand(), eSubjectType.INFO);
-			//yield return PieceManager.Instance.Move(randInfo, CityManager.Instance.FindRand());
-			//pieceCityTransformList.Add(GameObject.Find(randInfo.City.Name).transform);
-
-			//Piece infoPiece = PieceManager.Instance.GetFirst(eSubjectType.INFO);
-			//Piece infoLast = PieceManager.Instance.GetLast(eSubjectType.INFO);
-
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.WEEK, character);
 		}
 
 		public IEnumerator ShowStateLabel(string text, float duration)

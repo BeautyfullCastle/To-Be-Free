@@ -213,6 +213,8 @@ namespace ToBeFree
 			pastDays = 0;
 
 			AddQuest(this);
+
+			TimeTable.Instance.NotifyEveryday += DayIsGone;
 		}
 
 		public void DayIsGone()
@@ -228,19 +230,23 @@ namespace ToBeFree
 				GameManager.Instance.OpenEventUI();
 
 				GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT, CurQuest.FailureEffects.Script);
-
-				string effectScript = string.Empty;
-				foreach(EffectAmount effectAmount in CurQuest.FailureEffects.EffectAmounts)
+				
+				if(CurQuest.FailureEffects.EffectAmounts != null)
 				{
-					effectScript += effectAmount.ToString();
+					string effectScript = string.Empty;
+					foreach (EffectAmount effectAmount in CurQuest.FailureEffects.EffectAmounts)
+					{
+						if (effectAmount == null)
+							continue;
+
+						effectScript += effectAmount.ToString();
+					}
+					GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT_EFFECT, effectScript);
 				}
-				GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT_EFFECT, effectScript);
 
 				yield return EventManager.Instance.WaitUntilFinish();
 
 				GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(this.CurQuest);
-
-				yield return null;
 			}
 		}
 

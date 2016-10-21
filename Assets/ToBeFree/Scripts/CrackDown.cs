@@ -51,7 +51,7 @@ namespace ToBeFree
 					{
 						Police police = new Police(CityManager.Instance.GetRand(), eSubjectType.POLICE);
 						NGUIDebug.Log("Police Time : Added Police");
-						yield return PieceManager.Instance.Add(police);
+						PieceManager.Instance.Add(police);
 					}
 					// add one police's stat
 					else if (randIndex == 1)

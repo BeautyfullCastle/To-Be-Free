@@ -174,28 +174,6 @@ namespace ToBeFree
 							startCity = piece.City;
 							endCity = CityManager.Instance.FindRand(subjectType);
 						}
-						if (objectType == eObjectType.RAND_CLOSE)
-						{
-							piece = PieceManager.Instance.FindRand(subjectType);
-							startCity = piece.City;
-							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eEventAction.MOVE);
-						}
-						if (objectType == eObjectType.FAR_CLOSE)
-						{
-							piece = PieceManager.Instance.GetLast(subjectType);
-							startCity = piece.City;
-							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eEventAction.MOVE);
-						}
-						if (objectType == eObjectType.CLOSE_FAR)
-						{
-							piece = PieceManager.Instance.GetFirst(subjectType);
-							startCity = piece.City;
-
-							System.Random r = new System.Random();
-							int randDistance = r.Next(piece.City.Distance, piece.City.Distance + amount);
-
-							endCity = CityManager.Instance.FindRandCityByDistance(character.CurCity, randDistance, subjectType, eEventAction.MOVE);
-						}
 						yield return PieceManager.Instance.Move(piece, endCity);
 					}
 					if (verbType == eVerbType.DEL)
@@ -205,27 +183,13 @@ namespace ToBeFree
 						{
 							piece = PieceManager.Instance.FindRand(subjectType);
 						}
-						if (objectType == eObjectType.FAR)
-						{
-							piece = PieceManager.Instance.GetLast(subjectType);
-						}
-						if (objectType == eObjectType.CLOSE)
-						{
-							piece = PieceManager.Instance.GetFirst(subjectType);
-						}
 						PieceManager.Instance.Delete(piece);
 					}
 					if (verbType == eVerbType.ADD)
 					{
-						if (objectType == eObjectType.RAND)
+						if (objectType == eObjectType.RAND || objectType == eObjectType.CLOSE)
 						{
-							City city = CityManager.Instance.FindRand(subjectType);
-							yield return PieceManager.Instance.Add(new Piece(city, subjectType));
-						}
-						if (objectType == eObjectType.CLOSE)
-						{
-							City city = CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eEventAction.MOVE);
-							yield return PieceManager.Instance.Add(new Piece(city, subjectType));
+							PieceManager.Instance.Add(subjectType);
 						}
 						if(objectType == eObjectType.VIEWRANGE)
 						{

@@ -108,6 +108,9 @@ namespace ToBeFree
 
 		public override string ToString()
 		{
+			if (effect == null)
+				return string.Empty;
+
 			return effect.ToString() + " : " + amount.ToString();
 		}
 

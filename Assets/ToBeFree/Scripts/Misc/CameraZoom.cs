@@ -20,7 +20,7 @@ public class CameraZoom : MonoBehaviour {
 
 		if (wheelAmount != 0)
 		{
-			cam.orthographicSize += wheelAmount * zoomAmount;
+			cam.orthographicSize -= wheelAmount * zoomAmount;
 			if (cam.orthographicSize < minSize)
 			{
 				cam.orthographicSize = minSize;

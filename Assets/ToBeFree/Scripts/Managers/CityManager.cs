@@ -120,11 +120,14 @@ namespace ToBeFree
 		public City FindRand(eSubjectType pieceType)
 		{
 			HashSet<City> hashSet = new HashSet<City>(list[(int)eWay.NORMAL]);
-			//hashSet.ExceptWith(list.FindAll(x => x.Type == eNodeType.NULL));
-
+			
 			if (pieceType != eSubjectType.POLICE)
 			{
 				hashSet.ExceptWith(list[(int)eWay.NORMAL].FindAll(x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0));
+				if (pieceType == eSubjectType.BROKER)
+				{
+					hashSet.ExceptWith(list[(int)eWay.NORMAL].FindAll(x => x.Type == eNodeType.SMALLCITY || x.Type == eNodeType.TOWN || x.Type == eNodeType.MOUNTAIN));
+				}
 			}
 
 			if (hashSet.Count <= 0)
@@ -165,6 +168,10 @@ namespace ToBeFree
 			if (pieceType != eSubjectType.POLICE)
 			{
 				cityList.RemoveAll(x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0);
+				if(pieceType == eSubjectType.BROKER)
+				{
+					cityList.RemoveAll(x => x.Type == eNodeType.SMALLCITY || x.Type == eNodeType.TOWN || x.Type == eNodeType.MOUNTAIN);
+				}
 			}
 
 			if(cityList.Count <= 0)
@@ -439,11 +446,11 @@ namespace ToBeFree
 			}
 		}
 
-		public List<City> List
+		public List<City>[] List
 		{
 			get
 			{
-				return list[(int)eWay.ENTIRE];
+				return list;
 			}
 		}
 	}
