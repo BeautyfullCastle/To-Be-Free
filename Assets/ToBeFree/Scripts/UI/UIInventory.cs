@@ -47,7 +47,8 @@ namespace ToBeFree
 
 			if(item.Buff.StartTime != eStartTime.NOW)
 			{
-				gObjItem.GetComponent<UIButton>().isEnabled = false;
+				itemScript.enabled = false;
+				gObjItem.GetComponent<UIDragDropItem>().enabled = false;
 			}
 			if(item.Buff.Duration == eDuration.EQUIP)
 			{

@@ -37,6 +37,9 @@ namespace ToBeFree
 			if (this.Item == null)
 				return;
 
+			if (this.enabled == false)
+				return;
+
 			if (belong == eBelong.SHOP)
 			{
 				transform.GetComponentInParent<UIShop>().OnClick(this);
@@ -45,7 +48,10 @@ namespace ToBeFree
 
 		void OnPress(bool pressed)
 		{
-			if(belong == eBelong.SHOP)
+			if (this.enabled == false)
+				return;
+
+			if (belong == eBelong.SHOP)
 			{
 				return;
 			}

@@ -106,7 +106,6 @@ namespace ToBeFree
 			
 			for (int i = 0; i < items.Count; ++i)
 			{
-				
 				// 장비템은 알아서 사용됨
 				if (items[i].Buff.Duration == eDuration.EQUIP)
 				{
@@ -129,7 +128,7 @@ namespace ToBeFree
 
 			foreach(UIItem uiItem in uiItems)
 			{
-				uiItem.GetComponent<UIButton>().isEnabled = isEnabled;
+				uiItem.GetComponent<UIDragDropItem>().enabled = isEnabled;
 			}
 		}
 

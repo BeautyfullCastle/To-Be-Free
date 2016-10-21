@@ -7743,6 +7743,27 @@ Prefab:
       propertyPath: mWidth
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
+        type: 2}
+      propertyPath: aspectRatio
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411594, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411594, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411594, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411594, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
   m_IsPrefabParent: 0
@@ -12760,6 +12781,11 @@ Prefab:
         type: 2}
       propertyPath: mWidth
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
+        type: 2}
+      propertyPath: aspectRatio
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -28860,6 +28886,11 @@ Prefab:
       propertyPath: mWidth
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
+        type: 2}
+      propertyPath: aspectRatio
+      value: 1.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
   m_IsPrefabParent: 0
@@ -29421,7 +29452,7 @@ Prefab:
     - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
         type: 2}
       propertyPath: aspectRatio
-      value: 1.125
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
