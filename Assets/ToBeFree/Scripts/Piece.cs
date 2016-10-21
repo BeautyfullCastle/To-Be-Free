@@ -247,6 +247,7 @@ namespace ToBeFree
 				yield return EventManager.Instance.WaitUntilFinish();
 
 				GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(this.CurQuest);
+				PieceManager.Instance.Delete(this);
 			}
 		}
 

@@ -580,9 +580,21 @@ namespace ToBeFree
 
 		IEnumerator NightState()
 		{
+			// 하루 끝 이벤트
+			if (character.CheckSpecialEvent() && character.IsDetention == false)
+			{
+				yield return TimeTable.Instance.SpendTime(1, eSpendTime.RAND);
+				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
+				yield return TimeTable.Instance.SpendRemainTime();
+			}
+			else
+			{
+				yield return TimeTable.Instance.SpendTime(1, eSpendTime.END);
+			}
+
 			// Enter
 			yield return (ShowStateLabel("Night State", 0.5f));
-
+			
 			yield return Instance_NotifyEveryNight();
 
 			#region editor test
@@ -656,18 +668,6 @@ namespace ToBeFree
 			if(character.IsDetention == true && action is DetentionAction)
 			{
 				yield return action.Activate(character);
-			}
-			
-			// 하루 끝 이벤트
-			if (character.CheckSpecialEvent() && character.IsDetention == false)
-			{
-				yield return TimeTable.Instance.SpendTime(1, eSpendTime.RAND);
-				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
-				yield return TimeTable.Instance.SpendRemainTime();
-			}
-			else
-			{
-				yield return TimeTable.Instance.SpendTime(1, eSpendTime.END);
 			}
 
 			character.Reset();

@@ -71,7 +71,7 @@ namespace ToBeFree
 
 		void OnTooltip(bool show)
 		{
-			Item item = show ? this.item : null;            
+			Item item = show ? this.item : null;
 			if (item==null)
 			{
 				UITooltip.Hide();
@@ -79,11 +79,7 @@ namespace ToBeFree
 			}
 			
 			string description = this.itemName.text + "\\n";
-
-			foreach(EffectAmount effectAmount in this.item.Buff.EffectAmountList)
-			{
-				description += effectAmount.ToString() + "\\n";
-			}
+			description += this.item.Script;
 			UITooltip.Show(description);
 		}
 

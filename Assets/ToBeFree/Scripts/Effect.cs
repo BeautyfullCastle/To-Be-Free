@@ -67,8 +67,8 @@ namespace ToBeFree
 		private eObjectType objectType;
 		private int prevAmount;
 		
-		public delegate void SkipEventHandler(eCommand commandType);
-		public static event SkipEventHandler SkipEvent;
+		public delegate void DeactiveEventHandler(eCommand commandType, bool deactive);
+		public static event DeactiveEventHandler DeactiveEvent;
 
 		public Effect(eSubjectType subjectType, eVerbType verbType = eVerbType.NONE, eObjectType objectType = eObjectType.NONE)
 		{
@@ -333,7 +333,7 @@ namespace ToBeFree
 					if (verbType == eVerbType.DEACTIVE)
 					{
 						// other commands.
-						SkipEvent(EnumConvert<eCommand>.ToEnum(objectType.ToString()));
+						DeactiveEvent(EnumConvert<eCommand>.ToEnum(objectType.ToString()), true);
 					}
 					break;
 					
@@ -480,6 +480,13 @@ namespace ToBeFree
 						{
 							character.Stat.ViewRange = prevAmount;
 						}
+					}
+					break;
+				case eSubjectType.COMMAND:
+					if (verbType == eVerbType.DEACTIVE)
+					{
+						// other commands.
+						DeactiveEvent(EnumConvert<eCommand>.ToEnum(objectType.ToString()), false);
 					}
 					break;
 			}

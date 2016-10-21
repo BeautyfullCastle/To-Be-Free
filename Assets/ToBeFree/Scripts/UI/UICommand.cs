@@ -4,23 +4,21 @@ using ToBeFree;
 
 public class UICommand : MonoBehaviour {
 	public eCommand commandType;
-	private int skippedDay;
+	private bool deactive;
 
 	// Use this for initialization
 	void Awake () {
-		Effect.SkipEvent += Effect_SkipEvent;
-		TimeTable.Instance.NotifyEveryday += Instance_NotifyEveryday;
+		Effect.DeactiveEvent += DeactiveEvent;
 
-		skippedDay = 10;
+		deactive = false;
 
-		EventDelegate.Parameter param = new EventDelegate.Parameter(this, gameObject.name);
+		EventDelegate.Parameter param = new EventDelegate.Parameter(this, "name");
 		NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), this.GetComponent<UIButton>(), "ClickCommand", new EventDelegate.Parameter[] { param });
-
 	}
 
 	public void SetActiveCommands()
 	{
-		if (skippedDay < 2)
+		if (deactive == true)
 		{
 			this.GetComponent<UIButton>().isEnabled = false;
 		}
@@ -70,17 +68,11 @@ public class UICommand : MonoBehaviour {
 		}
 	}
 
-	private void Instance_NotifyEveryday()
-	{
-		skippedDay++;
-	}
-
-	private void Effect_SkipEvent(eCommand commandType)
+	private void DeactiveEvent(eCommand commandType, bool deactive)
 	{
 		if(this.commandType == commandType)
 		{
-			skippedDay = 0;
-			this.gameObject.SetActive(false);
+			this.deactive = deactive;
 		}
 	}
 

@@ -111,11 +111,11 @@ namespace ToBeFree
 
 		public bool CheckDuration()
 		{
-			if(Duration == eDuration.DAY && this.AliveDays >= 1)
+			if(Duration == eDuration.DAY && this.AliveDays >= 2)
 			{
 				return true;
 			}
-			else if (Duration == eDuration.DAY_TEST && this.AliveDays >= 1)
+			else if (Duration == eDuration.DAY_TEST && this.AliveDays >= 2)
 			{
 				return true;
 			}

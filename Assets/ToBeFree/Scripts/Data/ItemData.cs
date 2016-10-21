@@ -12,4 +12,5 @@ public class ItemData : IData
     public int[] amountList;
     public int price;
     public string tag;
+	public string script;
 }

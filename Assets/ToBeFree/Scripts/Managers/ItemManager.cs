@@ -46,7 +46,7 @@ namespace ToBeFree
 				Buff buff = new Buff(data.name, effectAmountList, bool.Parse(data.restore),
 										EnumConvert<eStartTime>.ToEnum(data.startTime), EnumConvert<eDuration>.ToEnum(data.duration));
 
-				Item item = new Item(data.name, buff, data.price, EnumConvert<ItemTag>.ToEnum(data.tag));
+				Item item = new Item(data.name, buff, data.price, EnumConvert<ItemTag>.ToEnum(data.tag), data.script);
 
 				if (list[data.index] != null)
 				{
