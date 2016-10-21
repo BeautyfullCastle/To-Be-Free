@@ -265,7 +265,7 @@ namespace ToBeFree
 			}
 			if (findedEvents.Count == 0)
 			{
-				Debug.LogError("Events for " + actionType + " are not exist.");
+				Debug.LogError("Events for " + actionType.ToString() + " are not exist.");
 				return null;
 			}
 			return findedEvents;

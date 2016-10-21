@@ -56,6 +56,11 @@ namespace ToBeFree
 			}
 		}
 
+		public Item[] FindAll(ItemTag tag)
+		{
+			return Array.FindAll<Item>(list, x => x.Tag == tag);
+		}
+
 		public Item GetRand()
 		{
 			System.Random r = new System.Random();

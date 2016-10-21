@@ -44,6 +44,11 @@ namespace ToBeFree
 			UIItem itemScript = gObjItem.GetComponent<UIItem>();
 			itemScript.SetInfo(item);
 			itemScript.belong = UIItem.eBelong.INVEN;
+
+			if(item.Buff.StartTime != eStartTime.NOW)
+			{
+				gObjItem.GetComponent<UIButton>().isEnabled = false;
+			}
 			if(item.Buff.Duration == eDuration.EQUIP)
 			{
 				gObjItem.GetComponent<UIDragDropItem>().enabled = false;

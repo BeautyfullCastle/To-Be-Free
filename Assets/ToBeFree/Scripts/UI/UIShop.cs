@@ -26,9 +26,12 @@ namespace ToBeFree {
 		{
 			grids = GetComponentsInChildren<UIGrid>();
 
-			basicItems[0].SetInfo(ItemManager.Instance.GetByIndex(0));
-			basicItems[1].SetInfo(ItemManager.Instance.GetByIndex(63));
-
+			Item[] basicItemList = ItemManager.Instance.FindAll(ItemTag.FOOD);
+			for(int i=0; i<basicItemList.Length; ++i)
+			{
+				basicItems[i].SetInfo(basicItemList[i]);
+			}
+			
 			foreach(UIItem basic in basicItems)
 			{
 				if(GameManager.Instance.Character.Stat.Money >= basic.Item.Price)
