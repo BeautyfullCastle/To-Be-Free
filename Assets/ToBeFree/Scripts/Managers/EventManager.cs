@@ -187,10 +187,14 @@ namespace ToBeFree
 			*/
 			
 			List<Event> findedEvents = SelectEventsByAction(actionType);
-			
+			if(findedEvents == null)
+			{
+				return null;
+			}
+
 			System.Random r = new System.Random();
 			int randVal = r.Next(0, findedEvents.Count - 1);
-
+			
 			return findedEvents[randVal];
 		}
 
@@ -265,7 +269,7 @@ namespace ToBeFree
 			}
 			if (findedEvents.Count == 0)
 			{
-				Debug.LogError("Events for " + actionType.ToString() + " are not exist.");
+				Debug.LogError("Events for " + EnumConvert<eEventAction>.ToString(actionType) + " are not exist.");
 				return null;
 			}
 			return findedEvents;

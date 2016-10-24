@@ -5,10 +5,10 @@
 			"stat": "STRENGTH",
 			"successScript": "일당을 받고 일을 무사히 마쳤습니다.",
 			"successEffectIndexList": [
-				-99
+				44
 			],
 			"successEffectValueList": [
-				-99
+				3
 			],
 			"failureScript": "일을 했지만 실수를 했고 일당을 지급받지 못했습니다.",
 			"failureEffectIndexList": [
@@ -226,7 +226,7 @@
 			"successEffectValueList": [
 				-99
 			],
-			"failureScript": "특수이벤트 일 중 실패",
+			"failureScript": "NULL",
 			"failureEffectIndexList": [
 				-99
 			],
@@ -244,7 +244,7 @@
 			"successEffectValueList": [
 				-99
 			],
-			"failureScript": "당신은 말을 했지만 오히려 사장의 화만 돋구었습니다. 사장이 공안을 불렀습니다.",
+			"failureScript": "NULL",
 			"failureEffectIndexList": [
 				-99
 			],
@@ -1632,7 +1632,7 @@
 				78
 			],
 			"successEffectValueList": [
-				89
+				90
 			],
 			"failureScript": "집중해서 작업을 하지 못했습니다. 결국 힘이 빠졌고 창살은 멀쩡합니다. 탈출은 힘들어 보입니다.",
 			"failureEffectIndexList": [
@@ -2211,6 +2211,42 @@
 			"successEffectValueList": [
 				-4,
 				1
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 122,
+			"stat": "NULL",
+			"successScript": "주인이 없다고 몰래 과일을 먹는 것은 양심에 어긋나는 행동입니다. 과수원 지나쳐 갔습니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
+		},
+		{
+			"index": 123,
+			"stat": "NULL",
+			"successScript": "짐승과 마주치면 위험하니 이대로 돌아갑니다.",
+			"successEffectIndexList": [
+				-99
+			],
+			"successEffectValueList": [
+				-99
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [

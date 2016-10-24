@@ -7746,7 +7746,7 @@ Prefab:
     - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
         type: 2}
       propertyPath: aspectRatio
-      value: 1.25
+      value: 1.125
       objectReference: {fileID: 0}
     - target: {fileID: 11411594, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
       propertyPath: mColor.r
@@ -7763,6 +7763,14 @@ Prefab:
     - target: {fileID: 11411594, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
       propertyPath: mColor.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -12785,7 +12793,15 @@ Prefab:
     - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
         type: 2}
       propertyPath: aspectRatio
-      value: 1.25
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -13007,6 +13023,14 @@ Prefab:
         type: 2}
       propertyPath: aspectRatio
       value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -22316,6 +22340,14 @@ Prefab:
       propertyPath: aspectRatio
       value: 1.125
       objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
   m_IsPrefabParent: 0
@@ -23507,6 +23539,14 @@ Prefab:
         type: 2}
       propertyPath: aspectRatio
       value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -25715,6 +25755,14 @@ Prefab:
         type: 2}
       propertyPath: aspectRatio
       value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -27988,6 +28036,14 @@ Prefab:
       propertyPath: aspectRatio
       value: 1.125
       objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
   m_IsPrefabParent: 0
@@ -28889,7 +28945,15 @@ Prefab:
     - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
         type: 2}
       propertyPath: aspectRatio
-      value: 1.25
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -29452,7 +29516,15 @@ Prefab:
     - target: {fileID: 114000010514088584, guid: a2c2031bd6281424698082fde8e1a86f,
         type: 2}
       propertyPath: aspectRatio
-      value: 1.25
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
@@ -31511,6 +31583,14 @@ Prefab:
         type: 2}
       propertyPath: aspectRatio
       value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: mWidth
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438572, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}
+      propertyPath: aspectRatio
+      value: 1.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2c2031bd6281424698082fde8e1a86f, type: 2}

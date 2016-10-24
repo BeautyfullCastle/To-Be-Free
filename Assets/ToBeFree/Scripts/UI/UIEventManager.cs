@@ -89,13 +89,14 @@ namespace ToBeFree
 			{
 				return;
 			}
-			else if(selectList[int.Parse(index)] == null)
+			Select select = selectList[int.Parse(index)];
+			if (select == null)
 			{
 				return;
 			}
 
 			ClearAll();
-			SelectManager.Instance.SelectedIndex = int.Parse(index);
+			SelectManager.Instance.CurrentSelect = select;
 		}
 
 		public void OnClickOK()

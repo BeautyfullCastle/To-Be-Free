@@ -106,7 +106,7 @@ namespace ToBeFree
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
 				EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
-
+				
 				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime - 1;
 
 				if(actionName == eEventAction.HIDE)
@@ -142,7 +142,13 @@ namespace ToBeFree
 			
 			if (character.CheckSpecialEvent())
 			{
-				actionName = eEventAction.WORK_START | eEventAction.WORK_END;
+				int randActionType = UnityEngine.Random.Range(0, 1);
+				if (randActionType == 0) {
+					actionName = eEventAction.WORK_START;
+				}
+				else {
+					actionName = eEventAction.WORK_END;
+				}
 
 				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
 
@@ -174,6 +180,13 @@ namespace ToBeFree
 					if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
 					{
 						character.Stat.Money += character.CurCity.CalcRandWorkingMoney();
+						character.Stat.Money += EventManager.Instance.TestSuccessNum;
+						GameManager.Instance.OpenEventUI();
+						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, 
+							"도시 추가금 : " + character.CurCity.CalcRandWorkingMoney()
+							+ "\n주사위 성공 개수 추가금 : " + EventManager.Instance.TestSuccessNum);
+
+						yield return EventManager.Instance.WaitUntilFinish();
 						break;
 					}
 				}
@@ -543,8 +556,7 @@ namespace ToBeFree
 				// 도시 조사 : 돈, 퀘스트, 아이템 중 1, 2, 3 (중복 없음)
 				else if (ActionName == eEventAction.INVESTIGATION_CITY)
 				{
-					
-					int money = 1;
+					int money = 2;
 					Effect moneyEffect = new Effect(eSubjectType.MONEY, eVerbType.ADD, eObjectType.SPECIFIC);
 					EffectAmount moneyEffectAmount = new EffectAmount(moneyEffect, money);
 
