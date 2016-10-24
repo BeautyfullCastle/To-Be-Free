@@ -15,10 +15,20 @@ namespace ToBeFree
 
 		private Item item;
 
+		private Color defaultColor;
+		private Color hover;
+		private Color pressed;
+		private Color disabledColor;
+
 		void Awake()
 		{
 			itemName = transform.FindChild("Name").GetComponent<UILabel>();
 			itemPrice = transform.FindChild("Price").GetComponent<UILabel>();
+
+			defaultColor = this.GetComponent<UIButton>().defaultColor;
+			hover = this.GetComponent<UIButton>().hover;
+			pressed = this.GetComponent<UIButton>().pressed;
+			disabledColor = this.GetComponent<UIButton>().disabledColor;
 		}
 		void Start()
 		{
@@ -97,6 +107,22 @@ namespace ToBeFree
 			this.Item = item;
 			itemName.text = item.Name;
 			itemPrice.text = item.Price.ToString();
+		}
+
+		void OnEnable()
+		{
+			this.GetComponent<UIButton>().defaultColor = defaultColor;
+			this.GetComponent<UIButton>().hover = hover;
+			this.GetComponent<UIButton>().pressed = pressed;
+			this.GetComponent<UIButton>().disabledColor = disabledColor;
+		}
+
+		void OnDisable()
+		{
+			this.GetComponent<UIButton>().defaultColor = Color.gray;
+			this.GetComponent<UIButton>().hover = Color.gray;
+			this.GetComponent<UIButton>().pressed = Color.gray;
+			this.GetComponent<UIButton>().disabledColor = Color.gray;
 		}
 
 		public Item Item

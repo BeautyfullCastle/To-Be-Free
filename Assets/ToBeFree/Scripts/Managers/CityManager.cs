@@ -54,20 +54,19 @@ namespace ToBeFree
 
 		public Item SetCityItem()
 		{
-			Item item = ItemManager.Instance.GetRand();
-			//while (true)
+			List<Item> list = new List<Item>(ItemManager.Instance.List);
+			list.RemoveAll(x => x.Tag == ItemTag.FOOD);
+			Item item = list[UnityEngine.Random.Range(0, list.Count - 1)];
+
+			if (cityItems.Contains(item))
 			{
-				if (cityItems.Contains(item))
-				{
-					item = ItemManager.Instance.GetRand();
-				}
-				else
-				{
-					cityItems.Add(item);
-					
-				}
-				return item;
+				item = ItemManager.Instance.GetRand();
 			}
+			else
+			{
+				cityItems.Add(item);
+			}
+			return item;
 		}
 
 		public void InitList()

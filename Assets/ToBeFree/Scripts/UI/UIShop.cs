@@ -20,6 +20,10 @@ namespace ToBeFree {
 
 		private int discountNum;
 		
+		void Awake()
+		{
+			this.gameObject.SetActive(false);
+		}
 		
 		// Use this for initialization
 		void Start()
@@ -95,7 +99,7 @@ namespace ToBeFree {
 						uiItem.enabled = false;
 						if (uiItem.Item.Buff.StartTime != eStartTime.NOW)
 							uiItem.GetComponent<UIDragDropItem>().enabled = false;
-					}	
+					}
 					break;
 				}
 			}
@@ -105,6 +109,10 @@ namespace ToBeFree {
 
 		public void CheckItems()
 		{
+			if(GameManager.Instance.Character.CurCity.Item == null)
+			{
+				return;
+			}
 			if (GameManager.Instance.Character.Inven.Exist(GameManager.Instance.Character.CurCity.Item))
 			{
 				cityItems[0].enabled = false;

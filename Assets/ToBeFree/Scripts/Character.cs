@@ -37,10 +37,9 @@ namespace ToBeFree
 		public static event MoveCityHandler MoveCity = delegate { };
 		
 		// Todo : skill
-
 		public Character(string name, string script, Stat stat, string startCityName, Inventory inven)
 		{
-			this.name = name;
+			this.name = name;			
 			this.script = script;
 			this.stat = stat;
 			this.iconCharacter = GameObject.FindObjectOfType<IconCharacter>();
@@ -54,6 +53,8 @@ namespace ToBeFree
 			isActionSkip = false;
 
 			SetCanAction(true);
+
+			GameObject.Find("Character Name").GetComponent<UILabel>().text = this.name;
 		}
 
 		private void SetCanAction(bool canAction)
@@ -329,6 +330,14 @@ namespace ToBeFree
 			get
 			{
 				return totalAP;
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return name;
 			}
 		}
 	}
