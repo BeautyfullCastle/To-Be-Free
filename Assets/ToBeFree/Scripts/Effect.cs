@@ -478,7 +478,7 @@ namespace ToBeFree
 					{
 						if (objectType == eObjectType.VIEWRANGE)
 						{
-							character.Stat.ViewRange = prevAmount;
+							character.Stat.ViewRange = 1;
 						}
 					}
 					break;
