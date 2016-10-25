@@ -285,7 +285,7 @@ namespace ToBeFree
 		public void SetViewRange()
 		{
 			Character character = GameManager.Instance.Character;
-			List<City> cityList = CityManager.Instance.FindCitiesByDistance(character.CurCity, ViewRange, eEventAction.MOVE, false);
+			List<City> cityList = CityManager.Instance.FindCitiesByDistance(character.CurCity, ViewRange, eWay.ENTIREWAY, false);
 			foreach (Piece piece in PieceManager.Instance.FindAll(eSubjectType.POLICE))
 			{
 				Police police = piece as Police;

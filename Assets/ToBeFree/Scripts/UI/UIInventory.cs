@@ -48,11 +48,10 @@ namespace ToBeFree
 			if(item.Buff.StartTime != eStartTime.NOW)
 			{
 				itemScript.enabled = false;
-				gObjItem.GetComponent<UIDragDropItem>().enabled = false;
 			}
 			if(item.Buff.Duration == eDuration.EQUIP)
 			{
-				gObjItem.GetComponent<UIDragDropItem>().enabled = false;
+				itemScript.enabled = false;
 			}
 
 			// 이제 그리드와 스크롤뷰를 재정렬 시킵시다.

@@ -80,6 +80,7 @@ namespace ToBeFree
 			for (int i=0; i<selectList.Length; ++i)
 			{
 				selectLabels[i].text = selectList[i].Script;
+				selectLabels[i].GetComponent<UIButton>().isEnabled = selectList[i].CheckCondition(GameManager.Instance.Character);
 			}
 		}
 		

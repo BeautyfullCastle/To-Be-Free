@@ -40,9 +40,12 @@ namespace ToBeFree
 				return;
 			}
 
-			List<City> neighbors = new List<City>();
+			List<City>[] neighbors = new List<City>[(int)eWay.ENTIREWAY + 1];
 			foreach (BezierCurveList curveList in CityManager.Instance.Curves)
 			{
+				int way = (int)EnumConvert<eWay>.ToEnum(curveList.name);
+				neighbors[way] = new List<City>();
+
 				if (curveList.Dic.ContainsKey(GetComponent<BezierPoint>()) == false)
 				{
 					//Debug.LogError("Not contains this point " + this.name + this.transform.parent.name);
@@ -50,10 +53,11 @@ namespace ToBeFree
 				}
 				List<BezierPoint> points = curveList.Dic[GetComponent<BezierPoint>()];
 
+				
 				foreach (BezierPoint point in points)
 				{
-					neighbors.Add(point.GetComponent<IconCity>().City);
-				}
+					neighbors[way].Add(point.GetComponent<IconCity>().City);
+				}				
 			}
 			city.InitNeighbors(neighbors);
 		}

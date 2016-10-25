@@ -125,11 +125,6 @@ namespace ToBeFree
 			Stat.SetViewRange();
 		}
 		
-		public void PrintMovableCity()
-		{
-			curCity.PrintNeighbors();
-		}
-		
 		public IEnumerator HaulIn()
 		{
 			for(int i=0; i<caughtPolice.Movement; ++i)
@@ -140,22 +135,6 @@ namespace ToBeFree
 				{
 					yield return MoveTo(city);
 					yield return this.caughtPolice.MoveCity(city);
-				}
-				// if no more left cities, have to call the event about escape from the camp.
-				else
-				{
-					
-					break;
-
-					//if(testResult == true)
-					//{
-					//	yield return AbnormalConditionManager.Instance.Find("Detention").DeActivate(this);
-					//}
-					//else
-					//{
-					//	// game over
-					//	yield return GameManager.Instance.ShowStateLabel("Game Over!", 1f);
-					//}
 				}
 			}
 			

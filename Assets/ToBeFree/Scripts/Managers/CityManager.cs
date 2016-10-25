@@ -8,7 +8,7 @@ namespace ToBeFree
 {
 	public enum eWay
 	{
-		NORMAL, MOUNTAIN, HIGH, ENTIRE
+		NORMALWAY = 0, MOUNTAINWAY = 1, HIGHWAY = 2, ENTIREWAY = 3
 	}
 
 	public class CityManager : Singleton<CityManager>
@@ -21,7 +21,7 @@ namespace ToBeFree
 
 		private List<City> neareastPath;
 
-		private BezierCurveList[] curves = new BezierCurveList[(int)eWay.ENTIRE + 1];
+		private BezierCurveList[] curves = new BezierCurveList[(int)eWay.ENTIREWAY + 1];
 
 		private List<Item> cityItems = new List<Item>();
 
@@ -32,11 +32,11 @@ namespace ToBeFree
 		{
 			engList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/English/City.json").dataList;
 			korList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/Korean/City.json").dataList;
-			
-			curves[(int)eWay.NORMAL] = GameObject.Find(eWay.NORMAL.ToString()+"WAY").GetComponent<BezierCurveList>();
-			curves[(int)eWay.MOUNTAIN] = GameObject.Find(eWay.MOUNTAIN.ToString() + "WAY").GetComponent<BezierCurveList>();
-			curves[(int)eWay.HIGH] = GameObject.Find(eWay.HIGH.ToString() + "WAY").GetComponent<BezierCurveList>();
-			curves[(int)eWay.ENTIRE] = GameObject.Find(eWay.ENTIRE.ToString() + "WAY").GetComponent<BezierCurveList>();
+
+			curves[(int)eWay.MOUNTAINWAY] = GameObject.Find(eWay.MOUNTAINWAY.ToString()).GetComponent<BezierCurveList>();
+			curves[(int)eWay.NORMALWAY] = GameObject.Find(eWay.NORMALWAY.ToString()).GetComponent<BezierCurveList>();
+			curves[(int)eWay.HIGHWAY] = GameObject.Find(eWay.HIGHWAY.ToString()).GetComponent<BezierCurveList>();
+			curves[(int)eWay.ENTIREWAY] = GameObject.Find(eWay.ENTIREWAY.ToString()).GetComponent<BezierCurveList>();
 
 			foreach (BezierCurveList curve in curves)
 			{
@@ -71,7 +71,7 @@ namespace ToBeFree
 
 		public void InitList()
 		{
-			list = new List<City>[(int)eWay.ENTIRE + 1];
+			list = new List<City>[(int)eWay.ENTIREWAY + 1];
 
 			// 중복 제거한 City List 생성
 			for(int i=0; i<curves.Length; ++i)
@@ -118,14 +118,14 @@ namespace ToBeFree
 
 		public City FindRand(eSubjectType pieceType)
 		{
-			HashSet<City> hashSet = new HashSet<City>(list[(int)eWay.NORMAL]);
+			HashSet<City> hashSet = new HashSet<City>(list[(int)eWay.NORMALWAY]);
 			
 			if (pieceType != eSubjectType.POLICE)
 			{
-				hashSet.ExceptWith(list[(int)eWay.NORMAL].FindAll(x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0));
+				hashSet.ExceptWith(list[(int)eWay.NORMALWAY].FindAll(x => PieceManager.Instance.GetNumberOfPiece(pieceType, x) > 0));
 				if (pieceType == eSubjectType.BROKER)
 				{
-					hashSet.ExceptWith(list[(int)eWay.NORMAL].FindAll(x => x.Type == eNodeType.SMALLCITY || x.Type == eNodeType.TOWN || x.Type == eNodeType.MOUNTAIN));
+					hashSet.ExceptWith(list[(int)eWay.NORMALWAY].FindAll(x => x.Type == eNodeType.SMALLCITY || x.Type == eNodeType.TOWN || x.Type == eNodeType.MOUNTAIN));
 				}
 			}
 
@@ -144,7 +144,7 @@ namespace ToBeFree
 		public List<City> FindCitiesByType(eNodeType size)
 		{
 			List<City> cityList = new List<City>();
-			foreach (City city in list[(int)eWay.NORMAL])
+			foreach (City city in list[(int)eWay.NORMALWAY])
 			{
 				if (city.Type == size)
 				{
@@ -154,13 +154,13 @@ namespace ToBeFree
 			return cityList;
 		}
 
-		public City FindRandCityByDistance(City curCity, int distance, eSubjectType pieceType, eEventAction actionType = eEventAction.MOVE)
+		public City FindRandCityByDistance(City curCity, int distance, eSubjectType pieceType, eWay way)
 		{
 			System.Random r = new System.Random();
 
 			ResetCitiesDistance();
 			// put a police in random cities by distance.
-			List<City> cityList = CityManager.Instance.FindCitiesByDistance(curCity, distance, actionType);
+			List<City> cityList = CityManager.Instance.FindCitiesByDistance(curCity, distance, way);
 
 			cityList.RemoveAll(x => x.Type == eNodeType.NULL);
 
@@ -183,29 +183,14 @@ namespace ToBeFree
 			return cityList[randCityIndex];
 		}
 
-		public List<City> FindCitiesByDistance(City curCity, int distance, eEventAction actionType = eEventAction.MOVE, bool removeCurCity = true)
+		public List<City> FindCitiesByDistance(City curCity, int distance, eWay kindOfWay, bool removeCurCity = true)
 		{
 			ResetCitiesDistance();
 
 			List<City> cities = new List<City>();
-			List<City> way = null;
-			if (actionType == eEventAction.MOVE)
-			{
-				List<City> newWay = list[(int)eWay.NORMAL];
-				newWay.AddRange(list[(int)eWay.MOUNTAIN]);
-				HashSet<City> hashSet = new HashSet<City>(newWay);
-				way = new List<City>(hashSet);
-			}
-			else if(actionType == eEventAction.MOVE_BUS)
-			{
-				way = list[(int)eWay.HIGH];
-			}
-			
-			if (!cities.Contains(curCity))
-			{
-				cities.Add(curCity);
-			}
-			PutCityInNeighbors(curCity, cities, way, distance);
+			cities.Add(curCity);
+
+			PutCityInNeighbors(curCity, cities, kindOfWay, distance);
 
 			if(removeCurCity)
 			{
@@ -215,19 +200,15 @@ namespace ToBeFree
 			return cities;
 		}
 
-		private void PutCityInNeighbors(City city, List<City> cities, List<City> way, int distance)
+		private void PutCityInNeighbors(City city, List<City> cities, eWay kindOfWay, int distance)
 		{
 			if(cities.Count-1 >= everyCity.Count)
 			{
 				return;
 			}
 
-			foreach (City neighbor in city.Neighbors)
+			foreach (City neighbor in city.Neighbors[(int)kindOfWay])
 			{
-				if (!way.Contains(neighbor))
-				{
-					continue;
-				}
 					
 				if (!cities.Contains(neighbor))
 				{
@@ -242,79 +223,19 @@ namespace ToBeFree
 					if (neighbor.Distance > distance)
 						continue;
 					cities.Add(neighbor);
-					PutCityInNeighbors(neighbor, cities, way, distance);
+					PutCityInNeighbors(neighbor, cities, kindOfWay, distance);
 				}
 			}
 		}
 		
 		public void FindNearestPath(List<City> path1, List<City> path2)
 		{
-			if (path1 == null)
-				neareastPath = path2;
-			else if (path2 == null)
-				neareastPath = path1;
+			if (path1 == null || path2 == null)
+				neareastPath = null;
 			else if (path1.Count < path2.Count)
 				neareastPath = path1;
 			else
 				neareastPath = path2;
-		}
-		
-		private void CalcNeareastPath(City curCity, City destination, List<City> neareastPath, int farDistance, List<City> visited)
-		{
-			foreach(City neighbor in curCity.Neighbors)
-			{
-				if(visited.Contains(neighbor))
-				{
-					continue;
-				}
-				if(neighbor.Distance <= farDistance)
-				{
-					continue;
-				}
-
-				if (neareastPath.Count <= neighbor.Distance)
-					neareastPath.Add(neighbor);
-				else
-					neareastPath[neighbor.Distance] = neighbor;
-
-				farDistance = neighbor.Distance;
-				visited.Add(neighbor);
-				if(destination == neighbor)
-				{
-					break;
-				}
-				CalcNeareastPath(neighbor, destination, neareastPath, farDistance, visited);
-			}
-			
-			if (neareastPath.Contains(destination))
-			{
-				return;
-			}
-				
-			// remove leaf city and restart from last city of leaf.
-			neareastPath.RemoveAt(neareastPath.Count - 1);
-			City lastCity = neareastPath[neareastPath.Count - 1];
-			farDistance = lastCity.Distance;
-			CalcNeareastPath(lastCity, destination, neareastPath, farDistance, visited);
-		}
-
-		private void CalcDist(City city, List<City> path, int i)
-		{
-			foreach (City neighbor in city.Neighbors)
-			{
-				if(path.Exists(x => x == neighbor))
-				{
-					continue;
-				}
-				neighbor.Distance = city.Distance + 1;
-				path.Add(neighbor);
-			}
-			++i;
-			if(path.Count <= i)
-			{
-				return;
-			}
-			CalcDist(path[i], path, i);
 		}
 
 		public City GetNearestCity(City curCity)
@@ -342,14 +263,14 @@ namespace ToBeFree
 			List<BezierPoint> path = null;
 			if (currCityType == eNodeType.MOUNTAIN || destCityType == eNodeType.MOUNTAIN)
 			{
-				path = curves[(int)eWay.ENTIRE].GetPath(currentPoint, destinationPoint);
+				path = curves[(int)eWay.ENTIREWAY].GetPath(currentPoint, destinationPoint);
 			}
 			else
 			{
 				if(actionType == eEventAction.MOVE)
-					path = curves[(int)eWay.NORMAL].GetPath(currentPoint, destinationPoint);
+					path = curves[(int)eWay.NORMALWAY].GetPath(currentPoint, destinationPoint);
 				else if(actionType == eEventAction.MOVE_BUS)
-					path = curves[(int)eWay.HIGH].GetPath(currentPoint, destinationPoint);
+					path = curves[(int)eWay.HIGHWAY].GetPath(currentPoint, destinationPoint);
 			}
 
 			if (path == null)
@@ -405,8 +326,6 @@ namespace ToBeFree
 
 				character.position = BezierCurve.GetPoint(curPoint, point, currMoveTime / totalMoveTime);
 				yield return GameManager.Instance.MoveDirectingCam(character.position, character.position, Time.deltaTime);
-
-				
 			}
 
 			yield return null;

@@ -18,6 +18,8 @@ namespace ToBeFree
         private eSelectLinkType linkType;
         private int linkIndex;
 
+		private Condition condition;
+
         public Select(eSubjectType subjectType, eObjectType objectType, string comparisonOperator, int compareAmount, string script, eSelectLinkType linkType, int linkIndex)
         {
             this.subjectType = subjectType;
@@ -27,15 +29,13 @@ namespace ToBeFree
             this.script = script;
             this.linkType = linkType;
             this.linkIndex = linkIndex;
+
+			this.condition = new Condition(subjectType, comparisonOperator, compareAmount);
         }
 
         public bool CheckCondition(Character character)
         {
-            if(subjectType == eSubjectType.MONEY)
-            {
-                return Compare(character.Stat.Money, compareAmount, comparisonOperator);
-            }
-            throw new Exception("subject type is not right.");
+			return condition.CheckCondition(character);
         }
 
         private bool Compare(int left, int right, string comparisonOp)

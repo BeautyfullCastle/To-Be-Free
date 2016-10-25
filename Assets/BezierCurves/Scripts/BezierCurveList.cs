@@ -17,6 +17,7 @@ public class BezierCurveList : MonoBehaviour {
 
 	public void Init()
 	{
+		list.Clear();
 		foreach (BezierCurve curve in GetComponentsInChildren<BezierCurve>())
 		{
 			if (list.Contains(curve))

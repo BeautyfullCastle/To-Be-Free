@@ -132,7 +132,7 @@ namespace ToBeFree
 					{
 						if (objectType == eObjectType.CLOSE)
 						{
-							yield return character.MoveTo(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eEventAction.MOVE));
+							yield return character.MoveTo(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eWay.ENTIREWAY));
 						}
 						// can't move after move event( in mongolia )
 						if (objectType == eObjectType.CANCEL)

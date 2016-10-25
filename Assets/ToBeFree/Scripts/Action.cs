@@ -531,8 +531,8 @@ namespace ToBeFree
 				{
 					Quest quest = QuestManager.Instance.FindRand(eQuestActionType.QUEST_BROKERINFO);
 					int questIndex = QuestManager.Instance.IndexOf(quest);
-					EffectAmount brokerInfoQuest = new EffectAmount(new Effect(eSubjectType.QUEST, eVerbType.LOAD), questIndex);
-					EffectAmount brokerInfo = new EffectAmount(new Effect(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.INFO), 1);
+					EffectAmount brokerInfoQuest = new EffectAmount(EffectManager.Instance.Find(eSubjectType.QUEST, eVerbType.LOAD), questIndex);
+					EffectAmount brokerInfo = new EffectAmount(EffectManager.Instance.Find(eSubjectType.CHARACTER, eVerbType.ADD, eObjectType.INFO), 1);
 
 					//하나성공: 브로커정보 퀘스트 받음
 					if (testSuccessNum == 1)
@@ -557,15 +557,15 @@ namespace ToBeFree
 				else if (ActionName == eEventAction.INVESTIGATION_CITY)
 				{
 					int money = 2;
-					Effect moneyEffect = new Effect(eSubjectType.MONEY, eVerbType.ADD, eObjectType.SPECIFIC);
+					Effect moneyEffect = EffectManager.Instance.Find(eSubjectType.MONEY, eVerbType.ADD, eObjectType.SPECIFIC);
 					EffectAmount moneyEffectAmount = new EffectAmount(moneyEffect, money);
 
 					Quest quest = QuestManager.Instance.FindRand(eQuestActionType.QUEST);
 					int questIndex = QuestManager.Instance.IndexOf(quest);
-					Effect questEffect = new Effect(eSubjectType.QUEST, eVerbType.LOAD);
+					Effect questEffect = EffectManager.Instance.Find(eSubjectType.QUEST, eVerbType.LOAD);
 					EffectAmount questEffectAmount = new EffectAmount(questEffect, questIndex);
 
-					Effect itemEffect = new Effect(eSubjectType.ITEM, eVerbType.ADD, eObjectType.ALL);					
+					Effect itemEffect = EffectManager.Instance.Find(eSubjectType.ITEM, eVerbType.ADD, eObjectType.ALL);					
 					EffectAmount itemEffectAmount = new EffectAmount(itemEffect, -99);
 					
 					list.Add(moneyEffectAmount);
@@ -592,8 +592,8 @@ namespace ToBeFree
 				else if (ActionName == eEventAction.INVESTIGATION_POLICE)
 				{
 					AbnormalCondition addViewRange = AbnormalConditionManager.Instance.Find("Add View Range");
-					EffectAmount revealPosition = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.NUMBER), 1);
-					EffectAmount getProbability = new EffectAmount(new Effect(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.CRACKDOWN_PROBABILITY), 1);
+					EffectAmount revealPosition = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.NUMBER), 1);
+					EffectAmount getProbability = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.CRACKDOWN_PROBABILITY), 1);
 					
 					list.Add(addViewRange);
 					list.Add(revealPosition);

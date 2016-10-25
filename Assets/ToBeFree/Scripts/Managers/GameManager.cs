@@ -268,8 +268,13 @@ namespace ToBeFree
 					c.SetEnable(false);
 				}
 
+				eWay way = eWay.ENTIREWAY;
+				if(actionType == eEventAction.MOVE_BUS)
+				{
+					way = eWay.HIGHWAY;
+				}
 				// set the cities enabled and twinkle only you can go.
-				List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP, actionType);
+				List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, character.RemainAP, way);
 				foreach (City city in cities)
 				{
 					IconCity iconCity = Array.Find<IconCity>(iconCities, x => x.City == city);

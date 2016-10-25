@@ -94,9 +94,9 @@ namespace ToBeFree {
 				if(item.name == uiItem.name)
 				{
 					GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character);
-					if (uiItem != basicItems[0])
+					if (!basicItems.Contains(uiItem))
 					{
-						uiItem.enabled = false;
+						uiItem.GetComponent<UIDragDropItem>().enabled = true;
 						if (uiItem.Item.Buff.StartTime != eStartTime.NOW)
 							uiItem.GetComponent<UIDragDropItem>().enabled = false;
 					}

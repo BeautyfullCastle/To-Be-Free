@@ -10,7 +10,7 @@ namespace ToBeFree
 		private Item item;
 		private int workingMoneyMin;
 		private int workingMoneyMax;
-		private List<City> neighbors;
+		private List<City>[] neighbors;
 
 		private int distanceFromCharacter;
 		private eNodeType type;
@@ -58,18 +58,9 @@ namespace ToBeFree
 		{
 		}
 
-		public void InitNeighbors(List<City> neighbors)
+		public void InitNeighbors(List<City>[] neighbors)
 		{
 			this.neighbors = neighbors;
-		}
-
-		public void PrintNeighbors()
-		{
-			Debug.Log("Print " + this.name + "'s neighbors under below :");
-			for (int i = 0; i < Neighbors.Count; ++i)
-			{
-				Neighbors[i].Print();
-			}
 		}
 
 		public int CalcRandWorkingMoney()
@@ -89,7 +80,7 @@ namespace ToBeFree
 			set { name = value; }
 		}
 
-		public List<City> Neighbors
+		public List<City>[] Neighbors
 		{
 			get
 			{

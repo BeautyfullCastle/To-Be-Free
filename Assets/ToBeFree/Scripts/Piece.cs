@@ -108,7 +108,7 @@ namespace ToBeFree
 		public IEnumerator Move()
 		{
 			// city list can move.
-			List<City> cityList = CityManager.Instance.FindCitiesByDistance(city, movement);
+			List<City> cityList = CityManager.Instance.FindCitiesByDistance(city, movement, eWay.NORMALWAY);
 			
 			// police can't go to the mountain.
 			cityList.RemoveAll(x => x.Type == eNodeType.MOUNTAIN);
