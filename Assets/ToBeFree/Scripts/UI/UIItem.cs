@@ -30,6 +30,7 @@ namespace ToBeFree
 			pressed = this.GetComponent<UIButton>().pressed;
 			disabledColor = this.GetComponent<UIButton>().disabledColor;
 		}
+
 		void Start()
 		{
 			if(belong == eBelong.SHOP)
@@ -39,6 +40,11 @@ namespace ToBeFree
 			else
 			{
 				itemPrice.enabled = false;
+
+				if (item.Buff.StartTime != eStartTime.NOW || item.Buff.Duration == eDuration.EQUIP)
+				{
+					this.enabled = false;
+				}
 			}
 		}
 		
@@ -58,9 +64,6 @@ namespace ToBeFree
 
 		void OnPress(bool pressed)
 		{
-			if (this.enabled == false)
-				return;
-
 			if (belong == eBelong.SHOP)
 			{
 				return;

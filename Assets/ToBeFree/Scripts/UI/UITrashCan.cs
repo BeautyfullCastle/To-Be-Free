@@ -33,10 +33,12 @@ namespace ToBeFree
 													 droppedItemPrefab);
 			// 드롭된 게임오브젝트는 삭제한다.
 			if(gameObject.name == "TrashCan")
-				StartCoroutine(GameManager.Instance.Character.Inven.Delete(dropped.GetComponent<UIItem>().Item, GameManager.Instance.Character));
+				StartCoroutine(GameManager.Instance.Character.Inven.Delete(droppedItem.Item, GameManager.Instance.Character));
 			else
-				StartCoroutine(GameManager.Instance.Character.Inven.UseItem(dropped.GetComponent<UIItem>().Item, GameManager.Instance.Character));
-			
+			{
+				if(droppedItem.enabled)
+					StartCoroutine(GameManager.Instance.Character.Inven.UseItem(droppedItem.Item, GameManager.Instance.Character));
+			}
 
 			shop.CheckItems();
 		}

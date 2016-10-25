@@ -45,15 +45,6 @@ namespace ToBeFree
 			itemScript.SetInfo(item);
 			itemScript.belong = UIItem.eBelong.INVEN;
 
-			if(item.Buff.StartTime != eStartTime.NOW)
-			{
-				itemScript.enabled = false;
-			}
-			if(item.Buff.Duration == eDuration.EQUIP)
-			{
-				itemScript.enabled = false;
-			}
-
 			// 이제 그리드와 스크롤뷰를 재정렬 시킵시다.
 			grid.Reposition();
 			// 그리고 관리를 위해 만든걸 리스트에 넣어둡시다.

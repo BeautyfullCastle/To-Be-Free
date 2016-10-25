@@ -128,7 +128,7 @@ namespace ToBeFree
 
 			foreach(UIItem uiItem in uiItems)
 			{
-				uiItem.GetComponent<UIDragDropItem>().enabled = isEnabled;
+				uiItem.GetComponent<UIItem>().enabled = isEnabled;
 			}
 		}
 
