@@ -90,7 +90,10 @@ namespace ToBeFree
 				type = EnumConvert<eNodeType>.ToEnum(this.gameObject.name);
 				nameLabel.enabled = false;
 
-				if(this.gameObject.name == eNodeType.SMALLCITY.ToString())
+				questOffset.localPosition = new Vector3(-25f, -40f, 0f);
+				brokerOffset.localPosition = new Vector3(25f, -40f, 0f);
+
+				if (this.gameObject.name == eNodeType.SMALLCITY.ToString())
 				{
 					sprite.spriteName = "small";
 				}

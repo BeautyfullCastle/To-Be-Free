@@ -112,7 +112,7 @@ namespace ToBeFree
 			}
 			else if(selectedQuest.Region == eRegion.RANDOM)
 			{
-				city = CityManager.Instance.FindRand(eSubjectType.QUEST);
+				city = CityManager.Instance.FindRandCityByDistance(character.CurCity, 3, eSubjectType.QUEST, eWay.NORMALWAY);
 			}
 			else if(selectedQuest.Region == eRegion.CURRENT)
 			{
