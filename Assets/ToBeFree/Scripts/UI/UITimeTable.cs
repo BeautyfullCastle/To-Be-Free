@@ -8,17 +8,30 @@ namespace ToBeFree
 	{
 		public UILabel dayLabel;
 		public UILabel hourLabel;
+		public Transform hourhand;
+		public UISprite lightSprite;
 
-		// Use this for initialization
+		private float angle;
+		
 		void Start()
 		{
 			TimeTable.Instance.NotifyEveryHour += Instance_NotifyEveryHour;
 			TimeTable.Instance.NotifyEveryday += OnDayChange;
+			angle = hourhand.localRotation.eulerAngles.z;
 		}
 
 		private void Instance_NotifyEveryHour()
 		{
-			hourLabel.text = TimeTable.Instance.Hour.ToString() + ":00";
+			int hour = TimeTable.Instance.Hour;
+			hourLabel.text = hour.ToString() + ":00";
+
+			if (6 <= hour && hour < 18)
+				lightSprite.alpha = 0;
+			else
+				lightSprite.alpha = 0.5f;
+
+			hour -= 6;
+			hourhand.localRotation = Quaternion.AngleAxis(angle + hour*-15f, Vector3.forward);
 		}
 
 		private void OnDayChange()
