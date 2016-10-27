@@ -165,15 +165,29 @@ namespace ToBeFree
 			}
 
 			GameManager.Instance.uiEventManager.OpenUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+			
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT, "Let's Fight to escape from the police.");
+			yield return EventManager.Instance.WaitUntilFinish();
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
 
-			int characterSuccessNum = DiceTester.Instance.Test(character.Stat.Agility);
-			int policeSuccessNum = DiceTester.Instance.Test(this.Power);
+			GameManager.Instance.uiEventManager.OpenUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Your turn. Roll the dice!");
+			yield return EventManager.Instance.WaitUntilFinish();
+			yield return DiceTester.Instance.Test(character.Stat.Agility);
+			int characterSuccessNum = DiceTester.Instance.ResultNum;
+
+			GameManager.Instance.uiEventManager.OpenUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Police turn. Roll the dice!");
+			yield return EventManager.Instance.WaitUntilFinish();
+			yield return DiceTester.Instance.Test(this.Power);
+			int policeSuccessNum = DiceTester.Instance.ResultNum;
 			EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+			GameManager.Instance.uiEventManager.OpenUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Result");
 
 			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM,
 				EventManager.Instance.TestResult.ToString() + ", " + characterSuccessNum.ToString() + " : " + policeSuccessNum.ToString());

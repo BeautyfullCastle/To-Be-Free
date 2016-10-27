@@ -67,6 +67,9 @@
     <Compile Include="Assets\BezierCurves\Scripts\BezierCurveList.cs" />
     <Compile Include="Assets\BezierCurves\Scripts\BezierPoint.cs" />
     <Compile Include="Assets\BezierCurves\Scripts\MoveOnBeziers.cs" />
+    <Compile Include="Assets\Dice\Plugins\Dice.cs" />
+    <Compile Include="Assets\Dice\Plugins\Die.cs" />
+    <Compile Include="Assets\Dice\scenes\Demo\AppDemo.cs" />
     <Compile Include="Assets\DrawLine.cs" />
     <Compile Include="Assets\ETC\Scripts\MonoBehaviourExtended.cs" />
     <Compile Include="Assets\ETC\Scripts\MonoSingleTon.cs" />

@@ -104,7 +104,7 @@ namespace ToBeFree
 
 				// deal with result
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-				EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+				yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 				
 				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime - 1;
@@ -513,10 +513,10 @@ namespace ToBeFree
 				Debug.Log(selectedEvent.ActionType + " is activated.");
 
 				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
-
+				
 				// deal with result
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-				EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+				yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
 				int testSuccessNum = EventManager.Instance.TestSuccessNum;
@@ -618,26 +618,23 @@ namespace ToBeFree
 				//식량아이템 얻기 차는량이 하나 또는 둘 또는 셋
 				else if (ActionName ==  eEventAction.GATHERING)
 				{
-					Item food1 = ItemManager.Instance.List[0];
-					Item food2 = ItemManager.Instance.List[64];
-					Item food3 = ItemManager.Instance.List[65];
+					Item[] foods = ItemManager.Instance.FindAll(ItemTag.FOOD);
 
 					if (testSuccessNum >= 1)
 					{
-						list.Add(food1);
+						list.Add(foods[0]);
 						if (testSuccessNum >= 2)
 						{
-							list.Add(food2);
+							list.Add(foods[1]);
 							if (testSuccessNum >= 3)
 							{
-								list.Add(food3);
+								list.Add(foods[2]);
 							}
 						}
 						int rand = UnityEngine.Random.Range(0, list.Count);
 						finalList.Add(list[rand]);
 					}
 				}
-
 
 				string resultEffectScript = string.Empty;
 				string resultScript = ActionName.ToString() + " Result";

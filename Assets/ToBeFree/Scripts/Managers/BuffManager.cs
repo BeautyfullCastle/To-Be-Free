@@ -106,15 +106,17 @@ namespace ToBeFree
 					if(buff.Duration == eDuration.DAY_TEST)
 					{
 						GameManager.Instance.uiEventManager.OpenUI();
-						
-						bool testResult = (DiceTester.Instance.Test(1) <= 4);
-
 						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "DAY_TEST for " + buff.Name);
-						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testResult.ToString());
-
 						yield return EventManager.Instance.WaitUntilFinish();
 
-						if(testResult)
+						yield return DiceTester.Instance.Test(1);
+						bool testResult = (DiceTester.Instance.ResultNum <= 4);
+
+						GameManager.Instance.uiEventManager.OpenUI();
+						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, DiceTester.Instance.ResultNum.ToString());
+						yield return EventManager.Instance.WaitUntilFinish();
+
+						if (testResult)
 						{
 							buffsToDelete.Add(buff);
 						}

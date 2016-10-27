@@ -55,7 +55,7 @@ namespace ToBeFree
 			if(select.LinkType == eSelectLinkType.RESULT)
 			{
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
-				EventManager.Instance.CalculateTestResult(select.Result.TestStat, GameManager.Instance.Character);
+				yield return EventManager.Instance.CalculateTestResult(select.Result.TestStat, GameManager.Instance.Character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);                
 				yield return EventManager.Instance.TreatResult(select.Result, GameManager.Instance.Character);
 			}

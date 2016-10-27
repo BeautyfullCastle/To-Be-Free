@@ -78,11 +78,16 @@ namespace ToBeFree
 
 		public IEnumerator SpendRemainTime()
 		{
-			while (usedHour < totalHour)
+			while (true)
 			{
 				yield return new WaitForSeconds(1f);
 				Hour++;
 				usedHour++;
+
+				if (usedHour >= totalHour)
+				{
+					yield break;
+				}
 			}
 		}
 

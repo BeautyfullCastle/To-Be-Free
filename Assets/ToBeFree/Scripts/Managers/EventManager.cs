@@ -85,7 +85,7 @@ namespace ToBeFree
 			}
 		}
 
-		public void CalculateTestResult(eTestStat testStat, Character character)
+		public IEnumerator CalculateTestResult(eTestStat testStat, Character character)
 		{
 			if (testStat == eTestStat.ALL || testStat == eTestStat.NULL)
 			{
@@ -94,10 +94,17 @@ namespace ToBeFree
 			}
 			else
 			{
-				testSuccessNum = DiceTester.Instance.Test(character.GetDiceNum(testStat));
+				UIChanged(eUIEventLabelType.RESULT, "Let's Roll the dice for the test.");
+				yield return EventManager.Instance.WaitUntilFinish();
+
+				GameManager.Instance.OpenEventUI();
+				UIChanged(eUIEventLabelType.EVENT, "Dice Test Result");
+				yield return DiceTester.Instance.Test(character.GetDiceNum(testStat));
+				testSuccessNum = DiceTester.Instance.ResultNum;
 				TestResult = testSuccessNum > 0;
-				UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
+				UIChanged(eUIEventLabelType.DICENUM, "Succeeded Dice Num : " + testSuccessNum.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
 			}
+			yield return null;
 		}
 
 		public IEnumerator TreatResult(Result result, Character character)
@@ -228,7 +235,7 @@ namespace ToBeFree
 			else
 			{
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-				CalculateTestResult(currEvent.Result.TestStat, character);
+				yield return CalculateTestResult(currEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
 				yield return TreatResult(currEvent.Result, character);

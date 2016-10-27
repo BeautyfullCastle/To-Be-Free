@@ -26,6 +26,7 @@ namespace ToBeFree
 		public IconCity[] iconCities;
 		public UIGrid commandPopupGrid;
 		public GameObject IconPieceObj;
+		public GameObject diceObj;
 
 		private Character character;
 		private Action action;
@@ -194,21 +195,25 @@ namespace ToBeFree
 				case eCommand.SHOP:
 					action = new EnterToShop();
 					character.CanAction[(int)commandType] = false;
+					action.RequiredTime = 1;
 					isActStart = true;
 					break;
 				case eCommand.BROKER:
 					action = new BrokerAction();
 					character.CanAction[(int)commandType] = false;
+					action.RequiredTime = 1;
 					isActStart = true;
 					break;
 				case eCommand.QUEST:
 					action = new QuestAction();
 					character.CanAction[(int)commandType] = false;
+					action.RequiredTime = 1;
 					isActStart = true;
 					break;
 				case eCommand.ABILITY:
 					action = new AbilityAction();
 					character.CanAction[(int)commandType] = false;
+					action.RequiredTime = 1;
 					isActStart = true;
 					break;
 			}
@@ -288,16 +293,16 @@ namespace ToBeFree
 		{
 			if(Input.GetKeyDown(KeyCode.KeypadPlus))
 			{
-				if(Time.timeScale >= 0f)
-					Time.timeScale -= .2f;
+				if(Time.timeScale > 0f)
+					Time.timeScale -= 1f;
 
 				NGUIDebug.Log("Time Scale : " + Time.timeScale);
 			}
 
 			if (Input.GetKeyDown(KeyCode.KeypadMinus))
 			{
-				if(Time.timeScale <= 5f)
-					Time.timeScale += .2f;
+				if(Time.timeScale < 10f)
+					Time.timeScale += 1f;
 
 				NGUIDebug.Log("Time Scale : " + Time.timeScale);
 			}

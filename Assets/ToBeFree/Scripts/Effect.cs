@@ -412,7 +412,7 @@ namespace ToBeFree
 					if(verbType == eVerbType.LOAD)
 					{
 						Result result = ResultManager.Instance.List[amount];
-						EventManager.Instance.CalculateTestResult(result.TestStat, character);
+						yield return EventManager.Instance.CalculateTestResult(result.TestStat, character);
 						yield return EventManager.Instance.TreatResult(result, character);
 					}
 					break;
