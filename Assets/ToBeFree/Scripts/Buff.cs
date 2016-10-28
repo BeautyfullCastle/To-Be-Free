@@ -13,6 +13,7 @@ namespace ToBeFree
 	public class Buff
 	{
 		private readonly string name;
+		private readonly string script;
 		private readonly EffectAmount[] effectAmountList;
 		private readonly bool isRestore;
 		private readonly eStartTime startTime;
@@ -21,17 +22,18 @@ namespace ToBeFree
 		private int aliveDays;
 
 		
-		public Buff(string name, EffectAmount[] effectAmountList, bool isRestore,
+		public Buff(string name, string script, EffectAmount[] effectAmountList, bool isRestore,
 			eStartTime startTime, eDuration duration)
 		{
 			this.name = name;
+			this.script = script;
 			this.effectAmountList = effectAmountList;
 			this.isRestore = isRestore;
 			this.startTime = startTime;
 			this.duration = duration;
 		}
 
-		public Buff(Buff buff) : this(buff.name, buff.effectAmountList, buff.isRestore,
+		public Buff(Buff buff) : this(buff.name, buff.script, buff.effectAmountList, buff.isRestore,
 			buff.startTime, buff.duration)
 		{
 			aliveDays = 0;
@@ -106,6 +108,14 @@ namespace ToBeFree
 			set
 			{
 				aliveDays = value;
+			}
+		}
+
+		public string Script
+		{
+			get
+			{
+				return script;
 			}
 		}
 

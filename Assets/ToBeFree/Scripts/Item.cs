@@ -25,21 +25,19 @@ namespace ToBeFree
 		private string name;
 		private ItemTag tag;
 		private int price;
-		private string script;
 		private int maximumStackableQuantity;
 
-		public Item(string name, Buff buff, int price, ItemTag tag, string script, int maximumStackableQuantity=1)
+		public Item(string name, Buff buff, int price, ItemTag tag, int maximumStackableQuantity=1)
 		{
 			this.name = name;
 			this.tag = tag;
 			this.buff = buff;
 			this.price = price;
-			this.script = script;
 			this.maximumStackableQuantity = maximumStackableQuantity;
 		}
 
 		public Item(Item item)
-			: this(item.name, item.buff, item.price, item.tag, item.script, item.maximumStackableQuantity) { }
+			: this(item.name, item.buff, item.price, item.tag, item.maximumStackableQuantity) { }
 		
 		public Item DeepCopy()
 		{
@@ -76,14 +74,6 @@ namespace ToBeFree
 			get
 			{
 				return tag;
-			}
-		}
-
-		public string Script
-		{
-			get
-			{
-				return script;
 			}
 		}
 	}

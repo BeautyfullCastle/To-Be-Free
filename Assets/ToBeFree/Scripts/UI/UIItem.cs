@@ -98,7 +98,7 @@ namespace ToBeFree
 			}
 			
 			string description = this.itemName.text + "\\n";
-			description += this.item.Script;
+			description += this.item.Buff.Script;
 			UITooltip.Show(description);
 		}
 
