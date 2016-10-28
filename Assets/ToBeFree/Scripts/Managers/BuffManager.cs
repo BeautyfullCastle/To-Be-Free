@@ -109,14 +109,14 @@ namespace ToBeFree
 						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "DAY_TEST for " + buff.Name);
 						yield return EventManager.Instance.WaitUntilFinish();
 
-						yield return DiceTester.Instance.Test(1);
-						bool testResult = (DiceTester.Instance.ResultNum <= 4);
+						int resultNum = 0;
+						yield return DiceTester.Instance.Test(1, x => resultNum = x);
 
 						GameManager.Instance.uiEventManager.OpenUI();
-						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, DiceTester.Instance.ResultNum.ToString());
+						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, resultNum.ToString());
 						yield return EventManager.Instance.WaitUntilFinish();
 
-						if (testResult)
+						if (resultNum > 0)
 						{
 							buffsToDelete.Add(buff);
 						}

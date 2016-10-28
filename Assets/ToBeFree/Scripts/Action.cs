@@ -522,8 +522,6 @@ namespace ToBeFree
 				int testSuccessNum = EventManager.Instance.TestSuccessNum;
 				character.Stat.TempDiceNum = 0;
 
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSuccessNum.ToString());
-
 				ArrayList list = new ArrayList(3);
 				ArrayList finalList = new ArrayList();
 

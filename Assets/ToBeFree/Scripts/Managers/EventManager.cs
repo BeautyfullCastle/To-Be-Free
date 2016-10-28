@@ -99,8 +99,7 @@ namespace ToBeFree
 
 				GameManager.Instance.OpenEventUI();
 				UIChanged(eUIEventLabelType.EVENT, "Dice Test Result");
-				yield return DiceTester.Instance.Test(character.GetDiceNum(testStat));
-				testSuccessNum = DiceTester.Instance.ResultNum;
+				yield return DiceTester.Instance.Test(character.GetDiceNum(testStat), x => testSuccessNum = x);
 				TestResult = testSuccessNum > 0;
 				UIChanged(eUIEventLabelType.DICENUM, "Succeeded Dice Num : " + testSuccessNum.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
 			}

@@ -19,7 +19,7 @@ namespace ToBeFree
 			diceObj = GameManager.Instance.diceObj;
 		}
 
-		public IEnumerator Test(int diceNum)
+		public IEnumerator Test(int diceNum, System.Action<int> setResultNum)
 		{
 			if(diceObj == null)
 			{
@@ -38,7 +38,7 @@ namespace ToBeFree
 			}
 
 			resultNum = Dice.GetSuccessNum(MinSuccessNum);
-
+			setResultNum(resultNum);
 			diceObj.SetActive(false);
 		}
 
@@ -52,14 +52,6 @@ namespace ToBeFree
 			set
 			{
 				minSuccessNum = value;
-			}
-		}
-
-		public int ResultNum
-		{
-			get
-			{
-				return resultNum;
 			}
 		}
 	}
