@@ -20,6 +20,11 @@ namespace ToBeFree
 		
 		private UILabel[] allLabel;
 		private Select[] selectList;
+		
+		private void Awake()
+		{
+			this.gameObject.SetActive(true);
+		}
 
 		public void Start()
 		{
@@ -109,6 +114,9 @@ namespace ToBeFree
 
 		public void ClearAll()
 		{
+			if (allLabel == null)
+				return;
+
 			for (int i = 0; i < allLabel.Length; ++i)
 			{
 				allLabel[i].text = string.Empty;
