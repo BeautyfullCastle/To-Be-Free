@@ -34,7 +34,7 @@ public class BezierCurveList : MonoBehaviour {
 		dic.Clear();
 		foreach (BezierCurve curve in list)
 		{
-			foreach (BezierPoint point in curve.points)
+			foreach (BezierPoint point in curve.Points)
 			{
 				if (dic.ContainsKey(point))
 				{
@@ -46,10 +46,10 @@ public class BezierCurveList : MonoBehaviour {
 
 		foreach (BezierCurve curve in list)
 		{
-			foreach (BezierPoint point in curve.points)
+			foreach (BezierPoint point in curve.Points)
 			{
 				int i = curve.GetPointIndex(point);
-				int lastI = curve.points.Length - 1;
+				int lastI = curve.Points.Length - 1;
 
 				BezierPoint leftP = null;
 				BezierPoint rightP = null;
@@ -195,6 +195,6 @@ public class BezierCurveList : MonoBehaviour {
 
 	public List<BezierCurve> FindCurves(BezierPoint bezierPoint)
 	{
-		return list.FindAll(curve => Array.Exists<BezierPoint>(curve.points, point => point == bezierPoint));
+		return list.FindAll(curve => Array.Exists<BezierPoint>(curve.Points, point => point == bezierPoint));
 	}
 }

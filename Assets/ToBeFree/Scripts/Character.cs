@@ -43,7 +43,8 @@ namespace ToBeFree
 			this.script = script;
 			this.stat = stat;
 			this.iconCharacter = GameObject.FindObjectOfType<IconCharacter>();
-			this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
+			if(GameObject.Find(startCityName))
+				this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
 			this.inven = inven;
 
 			CantCure = false;

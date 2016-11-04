@@ -14,7 +14,8 @@ using System.Collections.Generic;
 /// </summary>
 [ExecuteInEditMode]
 [Serializable]
-public class BezierCurve : MonoBehaviour {
+public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
+{
 	
 	#region PublicVariables
 	
@@ -72,7 +73,6 @@ public class BezierCurve : MonoBehaviour {
 	public BezierPoint this[int index]
 	{
 		get { return points[index]; }
-		set { this[index] = value; }
 	}
 	
 	/// <summary>
@@ -112,16 +112,29 @@ public class BezierCurve : MonoBehaviour {
 			return _length;
 		}
 	}
-	
+
+	public BezierPoint[] Points
+	{
+		get
+		{
+			return points;
+		}
+
+		set
+		{
+			points = value;
+		}
+	}
+
 	#endregion
-	
+
 	#region PrivateVariables
-	
+
 	/// <summary> 
 	/// 	- Array of point objects that make up this curve
 	///		- Populated through editor
 	/// </summary>
-	public BezierPoint[] points = new BezierPoint[0];
+	[SerializeField] private BezierPoint[] points = new BezierPoint[0];
 	
 	#endregion
 	
@@ -303,8 +316,6 @@ public class BezierCurve : MonoBehaviour {
 	/// </param>
 	public static void DrawCurve(BezierPoint p1, BezierPoint p2, int resolution)
 	{
-		if (p1 == null || p2 == null) return;
-
 		int limit = resolution+1;
 		float _res = resolution;
 		Vector3 lastPoint = p1.position;
@@ -314,7 +325,7 @@ public class BezierCurve : MonoBehaviour {
 			currentPoint = GetPoint(p1, p2, i/_res);
 			Gizmos.DrawLine(lastPoint, currentPoint);
 			lastPoint = currentPoint;
-		}		
+		}
 	}	
 
 	/// <summary>
@@ -335,19 +346,17 @@ public class BezierCurve : MonoBehaviour {
 	/// </param>
 	public static Vector3 GetPoint(BezierPoint p1, BezierPoint p2, float t)
 	{
-		if (p1 == null || p2 == null) return Vector3.zero;
-
-		if(p1.handle2 != Vector3.zero)
+		foreach(BezierHandle h1 in p1.handle)
 		{
-			if(p2.handle1 != Vector3.zero) return GetCubicCurvePoint(p1.position, p1.globalHandle2, p2.globalHandle1, p2.position, t);
-			else return GetQuadraticCurvePoint(p1.position, p1.globalHandle2, p2.position, t);
+			foreach(BezierHandle h2 in p2.handle)
+			{
+				if (h1.curve != h2.curve)
+					continue;
+				
+				return GetCubicCurvePoint(p1.position, h1.globalHandle2, h2.globalHandle1, p2.position, t);				
+			}
 		}
-		
-		else
-		{
-			if(p2.handle1 != Vector3.zero) return GetQuadraticCurvePoint(p1.position, p2.globalHandle1, p2.position, t);
-			else return GetLinearPoint(p1.position, p2.position, t);
-		}	
+		return Vector3.zero;
 	}
 
 	/// <summary>
@@ -512,9 +521,16 @@ public class BezierCurve : MonoBehaviour {
 		
 		return total;
 	}
-	
+
+	void ISerializationCallbackReceiver.OnBeforeSerialize()
+	{
+	}
+	void ISerializationCallbackReceiver.OnAfterDeserialize()
+	{
+	}
+
 	#endregion
-	
+
 	/* needs testing
 	public Vector3 GetPointAtDistance(float distance)
 	{
