@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System;
+using System.Collections.Generic;
 
 [CustomEditor(typeof(BezierCurve))]
-public class BezierCurveEditor : Editor 
+public class BezierCurveEditor : Editor, ISerializationCallbackReceiver
 {	
 	BezierCurve curve;
 	SerializedProperty resolutionProp;
@@ -30,34 +32,21 @@ public class BezierCurveEditor : Editor
 		EditorGUILayout.PropertyField(resolutionProp);
 		EditorGUILayout.PropertyField(closeProp);
 		EditorGUILayout.PropertyField(colorProp);
-		
+
+		EditorGUILayout.PropertyField(pointsProp, showPoints);
+
 		showPoints = EditorGUILayout.Foldout(showPoints, "Points");
-		
-		if(showPoints)
+
+		if (showPoints)
 		{
-			int pointCount = pointsProp.arraySize;
-			
-			for(int i = 0; i < pointCount; i++)
+			for (int i = 0; i < curve.pointCount; i++)
 			{
 				DrawPointInspector(curve[i], i);
 			}
-			
-			if(GUILayout.Button("Add Point"))
-			{
-				Undo.RegisterSceneUndo("Add Point");
 
-				GameObject pointObject = Instantiate(Resources.Load("City", typeof(GameObject))) as GameObject; //new GameObject("Point "+pointsProp.arraySize);
-				pointObject.transform.parent = curve.transform;
-				pointObject.transform.localPosition = Vector3.zero;
-				pointObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-				BezierPoint newPoint = pointObject.GetComponent<BezierPoint>();
-				
-				newPoint.curve = curve;
-				newPoint.handle1 = Vector3.right*0.5f;
-				newPoint.handle2 = -Vector3.right*0.5f;
-				
-				pointsProp.InsertArrayElementAtIndex(pointsProp.arraySize);
-				pointsProp.GetArrayElementAtIndex(pointsProp.arraySize - 1).objectReferenceValue = newPoint;
+			if (GUILayout.Button("Add Point"))
+			{
+				AddPoint();
 			}
 		}
 		
@@ -65,9 +54,52 @@ public class BezierCurveEditor : Editor
 		{
 			serializedObject.ApplyModifiedProperties();
 			EditorUtility.SetDirty(target);
+
+			CheckPointsModified();
 		}
 	}
-	
+
+	private void AddPoint()
+	{
+		Undo.RegisterSceneUndo("Add Point");
+
+		GameObject pointObject = new GameObject("Point " + curve.pointCount);
+		pointObject.transform.parent = curve.transform;
+		pointObject.transform.localPosition = Vector3.zero;
+		BezierPoint newPoint = pointObject.AddComponent<BezierPoint>();
+		newPoint.curve = curve;
+
+		//pointsProp.InsertArrayElementAtIndex(pointsProp.arraySize);
+		//pointsProp.GetArrayElementAtIndex(pointsProp.arraySize - 1).objectReferenceValue = newPoint;
+
+		newPoint.AddHandleObj();
+	}
+
+	BezierPoint[] prevPoints = null;
+	// points element가 바뀔 때만 처리
+	private void CheckPointsModified()
+	{
+		if (prevPoints == null)
+		{
+			prevPoints = (BezierPoint[])curve.Points.Clone();
+			return;
+		}
+
+		if(curve.Points.Length == prevPoints.Length)
+		{
+			for (int i = 0; i < curve.Points.Length; ++i)
+			{
+				if (curve.Points[i] == prevPoints[i])
+					continue;
+
+				//curve.Points[i].curve = curve;
+				//curve.Points[i].AddHandleObj();
+			}
+		}
+
+		prevPoints = (BezierPoint[])curve.Points.Clone();
+	}
+
 	void OnSceneGUI()
 	{
 		for(int i = 0; i < curve.pointCount; i++)
@@ -78,13 +110,10 @@ public class BezierCurveEditor : Editor
 	
 	void DrawPointInspector(BezierPoint point, int index)
 	{
-		if (point == null) return;
+		if (point == null)
+			return;
 
 		SerializedObject serObj = new SerializedObject(point);
-		
-		SerializedProperty handleStyleProp = serObj.FindProperty("handleStyle");
-		SerializedProperty handle1Prop = serObj.FindProperty("_handle1");
-		SerializedProperty handle2Prop = serObj.FindProperty("_handle2");
 		
 		EditorGUILayout.BeginHorizontal();
 		
@@ -93,10 +122,11 @@ public class BezierCurveEditor : Editor
 			Undo.RegisterSceneUndo("Remove Point");
 			pointsProp.MoveArrayElement(curve.GetPointIndex(point), curve.pointCount - 1);
 			pointsProp.arraySize--;
+			//curve.Points[index].handle.c;
 			DestroyImmediate(point.gameObject);
 			return;
 		}
-
+		
 		EditorGUILayout.ObjectField(point.gameObject, typeof(GameObject), true);
 		
 		if(index != 0 && GUILayout.Button(@"/\", GUILayout.Width(25)))
@@ -106,7 +136,7 @@ public class BezierCurveEditor : Editor
 			pointsProp.GetArrayElementAtIndex(index).objectReferenceValue = other;
 		}
 		
-		if(index != pointsProp.arraySize - 1 && GUILayout.Button(@"\/", GUILayout.Width(25)))
+		if(index != curve.pointCount - 1 && GUILayout.Button(@"\/", GUILayout.Width(25)))
 		{
 			UnityEngine.Object other = pointsProp.GetArrayElementAtIndex(index + 1).objectReferenceValue;
 			pointsProp.GetArrayElementAtIndex(index + 1).objectReferenceValue = point;
@@ -116,39 +146,6 @@ public class BezierCurveEditor : Editor
 		EditorGUILayout.EndHorizontal();
 		
 		EditorGUI.indentLevel++;
-		EditorGUI.indentLevel++;
-		
-		int newType = (int)((object)EditorGUILayout.EnumPopup("Handle Type", (BezierPoint.HandleStyle)handleStyleProp.enumValueIndex));
-		
-		if(newType != handleStyleProp.enumValueIndex)
-		{
-			handleStyleProp.enumValueIndex = newType;
-			if(newType == 0)
-			{
-				if(handle1Prop.vector3Value != Vector3.zero) handle2Prop.vector3Value = -handle1Prop.vector3Value;
-				else if(handle2Prop.vector3Value != Vector3.zero) handle1Prop.vector3Value = -handle2Prop.vector3Value;
-				else
-				{
-					handle1Prop.vector3Value = new Vector3(0.1f, 0, 0);	
-					handle2Prop.vector3Value = new Vector3(-0.1f, 0, 0);	
-				}
-			}
-			
-			else if(newType == 1)
-			{
-				if(handle1Prop.vector3Value == Vector3.zero && handle2Prop.vector3Value == Vector3.zero)
-				{
-					handle1Prop.vector3Value = new Vector3(0.1f, 0, 0);	
-					handle2Prop.vector3Value = new Vector3(-0.1f, 0, 0);
-				}
-			}
-			
-			else if(newType == 2)
-			{
-				handle1Prop.vector3Value = Vector3.zero;	
-				handle2Prop.vector3Value = Vector3.zero;	
-			}
-		}
 		
 		Vector3 newPointPos = EditorGUILayout.Vector3Field("Position : ", point.transform.localPosition);
 		if(newPointPos != point.transform.localPosition)
@@ -157,33 +154,7 @@ public class BezierCurveEditor : Editor
 			point.transform.localPosition = newPointPos;
 		}
 		
-		if(handleStyleProp.enumValueIndex == 0)
-		{			
-			Vector3 newPosition;
-			
-			newPosition = EditorGUILayout.Vector3Field("Handle 1", handle1Prop.vector3Value);
-			if(newPosition != handle1Prop.vector3Value)
-			{
-				handle1Prop.vector3Value = newPosition;
-				handle2Prop.vector3Value = -newPosition;
-			}
-			
-			newPosition = EditorGUILayout.Vector3Field("Handle 2", handle2Prop.vector3Value);
-			if(newPosition != handle2Prop.vector3Value)
-			{
-				handle1Prop.vector3Value = -newPosition;
-				handle2Prop.vector3Value = newPosition;				
-			}
-		}
-		
-		else if(handleStyleProp.enumValueIndex == 1)
-		{
-			EditorGUILayout.PropertyField(handle1Prop);
-			EditorGUILayout.PropertyField(handle2Prop);			
-		}
-		
 		EditorGUI.indentLevel--;
-		EditorGUI.indentLevel--;	
 		
 		if(GUI.changed)
 		{
@@ -193,9 +164,7 @@ public class BezierCurveEditor : Editor
 	}
 	
 	static void DrawPointSceneGUI(BezierPoint point)
-	{
-		if (point == null) return;
-
+	{	
 		Handles.Label(point.position + new Vector3(0, HandleUtility.GetHandleSize(point.position) * 0.4f, 0), point.gameObject.name);
 		
 		Handles.color = Color.green;
@@ -206,65 +175,68 @@ public class BezierCurveEditor : Editor
 			Undo.RegisterUndo(point.transform, "Move Point");
 			point.transform.position = newPosition;
 		}
-		
-		if(point.handleStyle != BezierPoint.HandleStyle.None)
+
+		if (point.Handles != null)
 		{
-			Handles.color = Color.cyan;
-			Vector3 newGlobal1 = Handles.FreeMoveHandle(point.globalHandle1, point.transform.rotation, HandleUtility.GetHandleSize(point.globalHandle1)*0.075f, Vector3.zero, Handles.CircleCap);
-			if(point.globalHandle1 != newGlobal1)
+			foreach (BezierHandle handle in point.Handles)
 			{
-				Undo.RegisterUndo(point, "Move Handle");
-				point.globalHandle1 = newGlobal1;
-				if(point.handleStyle == BezierPoint.HandleStyle.Connected) point.globalHandle2 = -(newGlobal1 - point.position) + point.position;
+				DrawHandleSceneGUI(handle, point);
 			}
-			
-			Vector3 newGlobal2 = Handles.FreeMoveHandle(point.globalHandle2, point.transform.rotation, HandleUtility.GetHandleSize(point.globalHandle2)*0.075f, Vector3.zero, Handles.CircleCap);
-			if(point.globalHandle2 != newGlobal2)
-			{
-				Undo.RegisterUndo(point, "Move Handle");
-				point.globalHandle2 = newGlobal2;
-				if(point.handleStyle == BezierPoint.HandleStyle.Connected) point.globalHandle1 = -(newGlobal2 - point.position) + point.position;
-			}
-			
-			Handles.color = Color.yellow;
-			Handles.DrawLine(point.position, point.globalHandle1);
-			Handles.DrawLine(point.position, point.globalHandle2);
 		}
 	}
-	
+
+	public static void DrawHandleSceneGUI(BezierHandle handle, BezierPoint point)
+	{
+		if (handle == null || point == null)
+			return;
+
+		Handles.color = Color.cyan;
+		Vector3 newGlobal1 = Handles.FreeMoveHandle(handle.globalHandle1, Quaternion.Euler(Vector3.zero), HandleUtility.GetHandleSize(handle.globalHandle1) * 0.075f, Vector3.zero, Handles.CircleCap);
+		if (handle.globalHandle1 != newGlobal1)
+		{
+			Undo.RegisterUndo(handle, "Move Handle 1");
+			handle.globalHandle1 = newGlobal1;
+		}
+
+		Vector3 newGlobal2 = Handles.FreeMoveHandle(handle.globalHandle2, Quaternion.Euler(Vector3.zero), HandleUtility.GetHandleSize(handle.globalHandle2) * 0.075f, Vector3.zero, Handles.CircleCap);
+		if (handle.globalHandle2 != newGlobal2)
+		{
+			Undo.RegisterUndo(handle, "Move Handle 2");
+			handle.globalHandle2 = newGlobal2;
+		}
+
+		Handles.color = Color.yellow;
+		Handles.DrawLine(point.position, handle.globalHandle1);
+		Handles.DrawLine(point.position, handle.globalHandle2);
+	}
+
 	public static void DrawOtherPoints(BezierCurve curve, BezierPoint caller)
 	{
-		if (curve == null) return;
+		if (curve == null)
+			return;
 
 		foreach(BezierPoint p in curve.GetAnchorPoints())
 		{
-			if(p != caller) DrawPointSceneGUI(p);
+			//if(p != caller)
+				DrawPointSceneGUI(p);
 		}
 	}
-	
-	[MenuItem("GameObject/Create Other/Bezier Curve")]
-	public static void CreateCurve(MenuCommand command)
+
+	public static void DrawOtherHandles(BezierPoint point, BezierHandle caller)
 	{
-		GameObject curveObject = new GameObject("BezierCurve");
-		Undo.RegisterUndo(curveObject, "Undo Create Curve");
-		BezierCurve curve = curveObject.AddComponent<BezierCurve>();
-		
-		BezierPoint p1 = curve.AddPointAt(Vector3.forward * 0.5f);
-		p1.handleStyle = BezierPoint.HandleStyle.Connected;
-		p1.handle1 = new Vector3(-0.28f, 0, 0);
-		
-		BezierPoint p2 = curve.AddPointAt(Vector3.right * 0.5f);
-		p2.handleStyle = BezierPoint.HandleStyle.Connected;
-		p2.handle1 = new Vector3(0, 0, 0.28f);
-		
-		BezierPoint p3 = curve.AddPointAt(-Vector3.forward * 0.5f);
-		p3.handleStyle = BezierPoint.HandleStyle.Connected;
-		p3.handle1 = new Vector3(0.28f, 0, 0);		
-		
-		BezierPoint p4 = curve.AddPointAt(-Vector3.right * 0.5f);
-		p4.handleStyle = BezierPoint.HandleStyle.Connected;
-		p4.handle1 = new Vector3(0, 0, -0.28f);
-		
-		curve.close = true;
+		foreach (BezierHandle h in point.GetAnchorHandles())
+		{
+			if (h != caller) DrawHandleSceneGUI(h, point);
+		}
+	}
+
+	void ISerializationCallbackReceiver.OnBeforeSerialize()
+	{
+		//throw new NotImplementedException();
+	}
+
+	void ISerializationCallbackReceiver.OnAfterDeserialize()
+	{
+		//throw new NotImplementedException();
 	}
 }

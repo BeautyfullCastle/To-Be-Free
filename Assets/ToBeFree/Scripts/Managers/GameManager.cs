@@ -445,9 +445,6 @@ namespace ToBeFree
 
 			yield return (Instance_NotifyEveryWeek());
 
-			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[67], character);
-			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[67], character);
-
 			action = null;
 			yield return null;
 
@@ -492,13 +489,6 @@ namespace ToBeFree
 			- 행동 3
 			- 끝 1
 			*/
-
-			// 집중 단속 시 모든 공안 이동력만큼 움직이기
-			yield return CrackDown.Instance.MoveEveryPolice();
-
-			// 스페셜 이벤트 확률 증가
-			character.AddSpecialEventProbability();
-
 
 			// 하루 시작 이벤트
 			if (character.IsDetention == false)
@@ -655,6 +645,12 @@ namespace ToBeFree
 			{
 				yield return null;
 			}
+
+			// 집중 단속 시 모든 공안 이동력만큼 움직이기
+			yield return CrackDown.Instance.MoveEveryPolice();
+
+			// 스페셜 이벤트 확률 증가
+			character.AddSpecialEventProbability();
 
 			// Exit
 			yield return NextState();

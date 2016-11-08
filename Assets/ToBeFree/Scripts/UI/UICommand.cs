@@ -3,14 +3,19 @@ using System.Collections;
 using ToBeFree;
 
 public class UICommand : MonoBehaviour {
-	public eCommand commandType;
 	private bool deactive;
+	private UILabel nameLabel;
 
 	// Use this for initialization
 	void Awake () {
 		Effect.DeactiveEvent += DeactiveEvent;
 
 		deactive = false;
+
+		nameLabel = this.transform.GetComponentInChildren<UILabel>();
+		nameLabel.text = this.gameObject.name;
+
+		this.GetComponent<UISprite>().spriteName = this.gameObject.name;
 
 		EventDelegate.Parameter param = new EventDelegate.Parameter(this, "name");
 		NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), this.GetComponent<UIButton>(), "ClickCommand", new EventDelegate.Parameter[] { param });
@@ -70,7 +75,7 @@ public class UICommand : MonoBehaviour {
 
 	private void DeactiveEvent(eCommand commandType, bool deactive)
 	{
-		if(this.commandType == commandType)
+		if(this.gameObject.name == commandType.ToString())
 		{
 			this.deactive = deactive;
 		}

@@ -60,20 +60,6 @@ public class AppDemo : MonoBehaviour
 			Dice.Roll(diceNum.ToString() + a[0], galleryDie, spawnPoint.transform.position, Force());
 		}
 	}
-	
-	// handle GUI
-	void OnGUI()
-	{
-		// display rolling message on bottom
-		GUI.Box(new Rect((Screen.width - 520) / 2, Screen.height - 40, 520, 25), "");
-		GUI.Label(new Rect(((Screen.width - 520) / 2) + 10, Screen.height - 38, 520, 22), "Click with the left (all die types) or right (gallery die) mouse button in the center to roll.");
-		if (Dice.Count("") > 0)
-		{
-			// we have rolling dice so display rolling status
-			GUI.Box(new Rect(10, Screen.height - 75, Screen.width - 20, 30), "");
-			GUI.Label(new Rect(20, Screen.height - 70, Screen.width, 20), Dice.AsString(""));
-		}
-	}
 
 	// check if a point is within a rectangle
 	private bool PointInRect(Vector2 p, Rect r)

@@ -79,7 +79,7 @@ namespace ToBeFree
 				HashSet<City> hashSet = new HashSet<City>();
 				foreach (BezierCurve curve in curves[i].List)
 				{
-					foreach (BezierPoint point in curve.points)
+					foreach (BezierPoint point in curve.Points)
 					{
 						hashSet.Add(point.GetComponent<IconCity>().City);
 					}
@@ -93,6 +93,9 @@ namespace ToBeFree
 			{
 				foreach(City city in cities)
 				{
+					if (city == null)
+						continue;
+
 					if(everyCity.Contains(city))
 					{
 						continue;

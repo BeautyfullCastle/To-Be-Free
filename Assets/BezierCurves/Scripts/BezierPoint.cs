@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ToBeFree;
 
 #endregion
 
@@ -13,28 +14,27 @@ using System.Collections.Generic;
 /// 	- Handles adding/removing self from curve point lists
 /// 	- Calls SetDirty() on curve when edited 
 /// </summary>
-[Serializable]
+[ExecuteInEditMode]
+[Serializable] 
 public class BezierPoint : MonoBehaviour{
-	
-	#region PublicEnumerations
-	
-	/// <summary>
-	/// 	- Enumeration describing the relationship between a point's handles
-	/// 	- Connected : The point's handles are mirrored across the point
-	/// 	- Broken : Each handle moves independently of the other
-	/// 	- None : This point has no handles (both handles are located ON the point)
-	/// </summary>
-	public enum HandleStyle
+
+	private IconCity iconCity;
+	public IconCity IconCity
 	{
-		Connected,
-		Broken,
-		None,
+		get { return this.iconCity; }
+		set { this.iconCity = value; }
 	}
-	
-	#endregion
-	
+	/// <summary>
+	/// Gets or sets a value indicating whether this <see cref="BezierCurve"/> is dirty.
+	/// </summary>
+	/// <value>
+	/// <c>true</c> if dirty; otherwise, <c>false</c>.
+	/// </value>
+	public bool dirty { get; private set; }
+
+
 	#region PublicProperties
-	
+
 	/// <summary>
 	///		- Curve this point belongs to
 	/// 	- Changing this value will automatically remove this point from the current curve and add it to the new one
@@ -52,10 +52,7 @@ public class BezierPoint : MonoBehaviour{
 		}
 	}
 
-	/// <summary>
-	/// 	- Value describing the relationship between this point's handles
-	/// </summary>
-	public HandleStyle handleStyle;
+	
 	
 	/// <summary>
 	/// 	- Shortcut to transform.position
@@ -80,108 +77,147 @@ public class BezierPoint : MonoBehaviour{
 		get { return transform.localPosition; }
 		set { transform.localPosition = value; }
 	}
-	
-	/// <summary>
-	/// 	- Local position of the first handle
-	/// 	- Setting this value will cause the curve to become dirty
-	/// 	- This handle effects the curve generated from this point and the point proceeding it in curve.points
-	/// </summary>
-	[SerializeField] 
-	private Vector3 _handle1;
-	public Vector3 handle1
-	{
-		get { return _handle1; }
-		set 
-		{ 
-			if(_handle1 == value) return;
-			_handle1 = value;
-			if(handleStyle == HandleStyle.None) handleStyle = HandleStyle.Broken;
-			else if(handleStyle == HandleStyle.Connected) _handle2 = -value;
 
-			foreach (BezierCurve curve in curves)
-				curve.SetDirty();
+	[SerializeField]
+	private BezierHandle[] handles;
+	public BezierHandle[] Handles
+	{
+		get { return handles; }
+		set
+		{
+			if (handles == value) return;
+			handles = value;
+			_curve.SetDirty();
 		}
 	}
 
-	/// <summary>
-	///		- Global position of the first handle
-	///		- Ultimately stored in the 'handle1' variable
-	/// 	- Setting this value will cause the curve to become dirty
-	/// 	- This handle effects the curve generated from this point and the point proceeding it in curve.points
-	/// </summary>
-	public Vector3 globalHandle1
-	{
-		get{return 	transform.TransformPoint(handle1);}
-		set{handle1 = transform.InverseTransformPoint(value);}
-	}
-	
-	/// <summary>
-	/// 	- Local position of the second handle
-	///  	- Setting this value will cause the curve to become dirty
-	///		- This handle effects the curve generated from this point and the point coming after it in curve.points
-	/// </summary>
-	[SerializeField] 
-	private Vector3 _handle2;
-	public Vector3 handle2
-	{
-		get { return _handle2; }
-		set 
-		{ 
-			if(_handle2 == value) return;
-			_handle2 = value;
-			if(handleStyle == HandleStyle.None) handleStyle = HandleStyle.Broken;
-			else if(handleStyle == HandleStyle.Connected) _handle1 = -value;
-
-			foreach (BezierCurve curve in curves)
-				curve.SetDirty();
-		}		
-	}
-	
-	/// <summary>
-	///		- Global position of the second handle
-	///		- Ultimately stored in the 'handle2' variable
-	///		- Setting this value will cause the curve to become dirty
-	///		- This handle effects the curve generated from this point and the point coming after it in curve.points 
-	/// </summary>
-	public Vector3 globalHandle2
-	{
-		get{return 	transform.TransformPoint(handle2);}
-		set{handle2 = transform.InverseTransformPoint(value);}
-	}
-	
 	#endregion
-	
+
+	/// <summary>
+	///		- set internally
+	///		- gets point corresponding to "index" in "points" array
+	///		- does not allow direct set
+	/// </summary>
+	/// <param name='index'>
+	/// 	- the index
+	/// </param>
+	public BezierHandle this[int index]
+	{
+		get { return Handles[index]; }
+	}
+
+	/// <summary>
+	/// 	- number of points stored in 'points' variable
+	///		- set internally
+	///		- does not include "handles"
+	/// </summary>
+	/// <value>
+	/// 	- The point count
+	/// </value>
+	public int handleCount
+	{
+		get { return Handles.Length; }
+	}
+
+	/// <summary>
+	/// 	- Get the index of the given point in this curve
+	/// </summary>
+	/// <returns>
+	/// 	- The index, or -1 if the point is not found
+	/// </returns>
+	/// <param name='point'>
+	/// 	- Point to search for
+	/// </param>
+	public int GetHandleIndex(BezierHandle point)
+	{
+		int result = -1;
+		for (int i = 0; i < Handles.Length; i++)
+		{
+			if (Handles[i] == point)
+			{
+				result = i;
+				break;
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// 	- Gets a copy of the bezier point array used to define this curve
+	/// </summary>
+	/// <returns>
+	/// 	- The cloned array of points
+	/// </returns>
+	public BezierHandle[] GetAnchorHandles()
+	{
+		return (BezierHandle[])Handles.Clone();
+	}
+
+	/// <summary>
+	/// 	- Removes the given point from the curve ("points" array)
+	/// </summary>
+	/// <param name='handle'>
+	/// 	- The point to remove
+	/// </param>
+	public void RemoveHandle(BezierHandle handle)
+	{
+		List<BezierHandle> tempArray = new List<BezierHandle>(this.Handles);
+		tempArray.Remove(handle);
+		this.Handles = tempArray.ToArray();
+		dirty = false;
+	}
+
+	/// <summary>
+	/// 	- Adds the given point to the end of the curve ("points" array)
+	/// </summary>
+	/// <param name='handle'>
+	/// 	- The point to add.
+	/// </param>
+	public void AddHandle(BezierHandle handle)
+	{
+		List<BezierHandle> tempArray = new List<BezierHandle>(this.Handles);
+		tempArray.Add(handle);
+		this.Handles = tempArray.ToArray();
+		dirty = true;
+	}
+
+	public void AddHandleObj()
+	{
+		GameObject handleObject = new GameObject("Handle");
+		handleObject.transform.parent = this.transform;
+		handleObject.transform.localPosition = Vector3.zero;
+		BezierHandle newHandle = handleObject.AddComponent<BezierHandle>();
+		newHandle.point = this;
+		newHandle.curve = this.curve;
+		//this.AddHandle(newHandle);
+	}
+
 	#region PrivateVariables
-	
+
 	/// <summary>
 	/// 	- Used to determine if this point has moved since the last frame
 	/// </summary>
 	private Vector3 lastPosition;
-
+	
 	#endregion
-
+	
 	#region MonoBehaviourFunctions
-
-	private List<BezierCurve> curves;
-
+	
 	void Update()
 	{
-		if(curves == null)
+		if(curve == null)
 		{
-			curves = GameObject.Find("ENTIREWAY").GetComponent<BezierCurveList>().FindCurves(this);
+			this.enabled = false;
+			return;
 		}
-		
-		foreach (BezierCurve curve in curves)
-		{
-			if (curve == null) return;
 
-			if (!curve.dirty && transform.position != lastPosition)
-			{
-				curve.SetDirty();
-				lastPosition = transform.position;
-			}
+		if(!_curve.dirty && transform.position != lastPosition)
+		{
+			_curve.SetDirty();
+			lastPosition = transform.position;
 		}
 	}
-	
+
 	#endregion
 }

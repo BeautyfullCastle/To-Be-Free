@@ -29,7 +29,7 @@ namespace ToBeFree
 
 		private bool[] canAction = new bool[10];
 
-		private int specialEventProbability = 0;
+		private float specialEventProbability = 0f;
 
 		private Police caughtPolice;
 
@@ -43,7 +43,8 @@ namespace ToBeFree
 			this.script = script;
 			this.stat = stat;
 			this.iconCharacter = GameObject.FindObjectOfType<IconCharacter>();
-			this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
+			if(GameObject.Find(startCityName))
+				this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
 			this.inven = inven;
 
 			CantCure = false;
@@ -142,21 +143,19 @@ namespace ToBeFree
 
 		public void AddSpecialEventProbability()
 		{
-			specialEventProbability += 20;
-			if (specialEventProbability > 100)
+			specialEventProbability += 4.7f;
+			if (specialEventProbability > 100f)
 			{
-				specialEventProbability = 100;
+				specialEventProbability = 100f;
 			}
 		}
 
 		public bool CheckSpecialEvent()
 		{
-			System.Random r = new System.Random();
-
-			bool hasSpecialEvent = specialEventProbability > r.Next(0, 100);
+			bool hasSpecialEvent = specialEventProbability > UnityEngine.Random.Range(0f, 100f);
 			if (hasSpecialEvent)
 			{
-				specialEventProbability = 0;
+				specialEventProbability = 0f;
 			}
 			return hasSpecialEvent;
 		}

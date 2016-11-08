@@ -47,118 +47,14 @@ MonoBehaviour:
     y: 1644
     width: 1109
     height: 404
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
+    borderLeft: 1
+    borderRight: 1
+    borderTop: 1
+    borderBottom: 1
     paddingLeft: 33
     paddingRight: 17
     paddingTop: 2
     paddingBottom: 15
-  - name: 01
-    x: 491
-    y: 1041
-    width: 84
-    height: 109
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 5
-    paddingRight: 9
-    paddingTop: 2
-    paddingBottom: 4
-  - name: 02
-    x: 491
-    y: 822
-    width: 84
-    height: 108
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 6
-    paddingRight: 8
-    paddingTop: 4
-    paddingBottom: 3
-  - name: 03
-    x: 491
-    y: 713
-    width: 84
-    height: 108
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 6
-    paddingRight: 8
-    paddingTop: 4
-    paddingBottom: 3
-  - name: 04
-    x: 491
-    y: 931
-    width: 84
-    height: 109
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 5
-    paddingRight: 9
-    paddingTop: 2
-    paddingBottom: 4
-  - name: 05
-    x: 576
-    y: 1044
-    width: 81
-    height: 106
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 7
-    paddingRight: 10
-    paddingTop: 3
-    paddingBottom: 6
-  - name: 06
-    x: 576
-    y: 716
-    width: 81
-    height: 105
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 7
-    paddingRight: 10
-    paddingTop: 3
-    paddingBottom: 7
-  - name: 07
-    x: 576
-    y: 934
-    width: 81
-    height: 106
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 8
-    paddingRight: 9
-    paddingTop: 2
-    paddingBottom: 7
-  - name: 08
-    x: 576
-    y: 824
-    width: 81
-    height: 106
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 8
-    paddingRight: 9
-    paddingTop: 2
-    paddingBottom: 7
   - name: 09
     x: 1641
     y: 1185
@@ -171,6 +67,19 @@ MonoBehaviour:
     paddingLeft: 3
     paddingRight: 7
     paddingTop: 18
+    paddingBottom: 7
+  - name: ABILITY
+    x: 576
+    y: 1044
+    width: 81
+    height: 106
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 9
+    paddingTop: 2
     paddingBottom: 7
   - name: bbang
     x: 491
@@ -211,6 +120,19 @@ MonoBehaviour:
     paddingRight: 11
     paddingTop: 19
     paddingBottom: 11
+  - name: BROKER
+    x: 576
+    y: 934
+    width: 81
+    height: 106
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 9
+    paddingTop: 2
+    paddingBottom: 7
   - name: Clock_Background
     x: 659
     y: 160
@@ -250,6 +172,19 @@ MonoBehaviour:
     paddingRight: 33
     paddingTop: 99
     paddingBottom: 94
+  - name: INVESTIGATION
+    x: 491
+    y: 822
+    width: 84
+    height: 108
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 3
   - name: kim
     x: 659
     y: 830
@@ -276,6 +211,19 @@ MonoBehaviour:
     paddingRight: 5
     paddingTop: 6
     paddingBottom: 5
+  - name: MOVE
+    x: 491
+    y: 1041
+    width: 84
+    height: 109
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 9
+    paddingTop: 2
+    paddingBottom: 4
   - name: note
     x: 0
     y: 1151
@@ -302,6 +250,45 @@ MonoBehaviour:
     paddingRight: 11
     paddingTop: 19
     paddingBottom: 11
+  - name: QUEST
+    x: 576
+    y: 716
+    width: 81
+    height: 105
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 10
+    paddingTop: 3
+    paddingBottom: 7
+  - name: REST
+    x: 491
+    y: 713
+    width: 84
+    height: 108
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 3
+  - name: SHOP
+    x: 576
+    y: 824
+    width: 81
+    height: 106
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 10
+    paddingTop: 3
+    paddingBottom: 6
   - name: small
     x: 659
     y: 1154
@@ -341,6 +328,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: WORK
+    x: 491
+    y: 931
+    width: 84
+    height: 109
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 9
+    paddingTop: 2
+    paddingBottom: 4
   mPixelSize: 1
   mReplacement: {fileID: 0}
   mCoordinates: 0
