@@ -1,0 +1,17 @@
+diff a/Assets/BezierCurves/Scripts/BezierCurve.cs b/Assets/BezierCurves/Scripts/BezierCurve.cs	(rejected hunks)
+@@ -360,6 +360,15 @@
+ 				if (h1.curve.pointCount != h2.curve.pointCount)
+ 					continue;
+ 
++=======
++		foreach(BezierHandle h1 in p1.handle)
++		{
++			foreach(BezierHandle h2 in p2.handle)
++			{
++				if (h1.curve != h2.curve)
++					continue;
++				
++>>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
+ 				return GetCubicCurvePoint(p1.position, h1.globalHandle2, h2.globalHandle1, p2.position, t);				
+ 			}
+ 		}

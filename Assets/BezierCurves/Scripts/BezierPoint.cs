@@ -77,7 +77,6 @@ public class BezierPoint : MonoBehaviour{
 		get { return transform.localPosition; }
 		set { transform.localPosition = value; }
 	}
-<<<<<<< HEAD
 
 	[SerializeField]
 	private BezierHandle[] handles;
@@ -88,18 +87,6 @@ public class BezierPoint : MonoBehaviour{
 		{
 			if (handles == value) return;
 			handles = value;
-=======
-	
-	[SerializeField]
-	private BezierHandle[] _handle = new BezierHandle[0];
-	public BezierHandle[] handle
-	{
-		get { return _handle; }
-		set
-		{
-			if (_handle == value) return;
-			_handle = value;
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 			_curve.SetDirty();
 		}
 	}
@@ -116,11 +103,7 @@ public class BezierPoint : MonoBehaviour{
 	/// </param>
 	public BezierHandle this[int index]
 	{
-<<<<<<< HEAD
 		get { return Handles[index]; }
-=======
-		get { return handle[index]; }
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 	}
 
 	/// <summary>
@@ -133,11 +116,7 @@ public class BezierPoint : MonoBehaviour{
 	/// </value>
 	public int handleCount
 	{
-<<<<<<< HEAD
 		get { return Handles.Length; }
-=======
-		get { return handle.Length; }
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 	}
 
 	/// <summary>
@@ -152,15 +131,9 @@ public class BezierPoint : MonoBehaviour{
 	public int GetHandleIndex(BezierHandle point)
 	{
 		int result = -1;
-<<<<<<< HEAD
 		for (int i = 0; i < Handles.Length; i++)
 		{
 			if (Handles[i] == point)
-=======
-		for (int i = 0; i < handle.Length; i++)
-		{
-			if (handle[i] == point)
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 			{
 				result = i;
 				break;
@@ -178,11 +151,7 @@ public class BezierPoint : MonoBehaviour{
 	/// </returns>
 	public BezierHandle[] GetAnchorHandles()
 	{
-<<<<<<< HEAD
 		return (BezierHandle[])Handles.Clone();
-=======
-		return (BezierHandle[])handle.Clone();
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 	}
 
 	/// <summary>
@@ -193,15 +162,9 @@ public class BezierPoint : MonoBehaviour{
 	/// </param>
 	public void RemoveHandle(BezierHandle handle)
 	{
-<<<<<<< HEAD
 		List<BezierHandle> tempArray = new List<BezierHandle>(this.Handles);
 		tempArray.Remove(handle);
 		this.Handles = tempArray.ToArray();
-=======
-		List<BezierHandle> tempArray = new List<BezierHandle>(this.handle);
-		tempArray.Remove(handle);
-		this.handle = tempArray.ToArray();
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 		dirty = false;
 	}
 
@@ -213,15 +176,9 @@ public class BezierPoint : MonoBehaviour{
 	/// </param>
 	public void AddHandle(BezierHandle handle)
 	{
-<<<<<<< HEAD
 		List<BezierHandle> tempArray = new List<BezierHandle>(this.Handles);
 		tempArray.Add(handle);
 		this.Handles = tempArray.ToArray();
-=======
-		List<BezierHandle> tempArray = new List<BezierHandle>(this.handle);
-		tempArray.Add(handle);
-		this.handle = tempArray.ToArray();
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 		dirty = true;
 	}
 

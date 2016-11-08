@@ -60,8 +60,6 @@ MonoBehaviour:
     y: 1185
     width: 363
     height: 458
-<<<<<<< HEAD
-=======
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -70,21 +68,6 @@ MonoBehaviour:
     paddingRight: 7
     paddingTop: 18
     paddingBottom: 7
-  - name: ABILITY
-    x: 576
-    y: 934
-    width: 81
-    height: 106
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 7
-    paddingTop: 18
-    paddingBottom: 7
-<<<<<<< HEAD
   - name: ABILITY
     x: 576
     y: 1044
@@ -98,8 +81,6 @@ MonoBehaviour:
     paddingRight: 9
     paddingTop: 2
     paddingBottom: 7
-=======
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
   - name: bbang
     x: 491
     y: 593
@@ -141,11 +122,7 @@ MonoBehaviour:
     paddingBottom: 11
   - name: BROKER
     x: 576
-<<<<<<< HEAD
     y: 934
-=======
-    y: 1044
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
     width: 81
     height: 106
     borderLeft: 0
@@ -197,11 +174,7 @@ MonoBehaviour:
     paddingBottom: 94
   - name: INVESTIGATION
     x: 491
-<<<<<<< HEAD
     y: 822
-=======
-    y: 713
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
     width: 84
     height: 108
     borderLeft: 0
@@ -292,11 +265,7 @@ MonoBehaviour:
     paddingBottom: 7
   - name: REST
     x: 491
-<<<<<<< HEAD
     y: 713
-=======
-    y: 822
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
     width: 84
     height: 108
     borderLeft: 0

@@ -176,15 +176,9 @@ public class BezierCurveEditor : Editor, ISerializationCallbackReceiver
 			point.transform.position = newPosition;
 		}
 
-<<<<<<< HEAD
 		if (point.Handles != null)
 		{
 			foreach (BezierHandle handle in point.Handles)
-=======
-		if (point.handle.Length > 0)
-		{
-			foreach (BezierHandle handle in point.handle)
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 			{
 				DrawHandleSceneGUI(handle, point);
 			}

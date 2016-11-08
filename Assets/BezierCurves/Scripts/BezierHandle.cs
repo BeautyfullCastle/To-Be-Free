@@ -33,17 +33,12 @@ public class BezierHandle : MonoBehaviour
 		get { return _curve; }
 		set
 		{
-<<<<<<< HEAD
             if (_curve)
                 _curve.SetDirty();
             _curve = value;
             if (_curve)
                 _curve.SetDirty();
         }
-=======
-			_curve = value;
-		}
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 	}
 
 	/// <summary>

@@ -346,29 +346,28 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 	/// </param>
 	public static Vector3 GetPoint(BezierPoint p1, BezierPoint p2, float t)
 	{
-<<<<<<< HEAD
 		if (p1 == null || p2 == null)
 			return Vector3.zero;
 
+        if (p1.Handles == null || p2.Handles == null)
+            return Vector3.zero;
+
 		foreach(BezierHandle h1 in p1.Handles)
 		{
+            if (h1 == null)
+                continue;
+
 			foreach(BezierHandle h2 in p2.Handles)
 			{
+                if (h2 == null)
+                    continue;
+
 				if (h1.curve != h2.curve)
 					continue;
 
 				if (h1.curve.pointCount != h2.curve.pointCount)
 					continue;
 
-=======
-		foreach(BezierHandle h1 in p1.handle)
-		{
-			foreach(BezierHandle h2 in p2.handle)
-			{
-				if (h1.curve != h2.curve)
-					continue;
-				
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 				return GetCubicCurvePoint(p1.position, h1.globalHandle2, h2.globalHandle1, p2.position, t);				
 			}
 		}

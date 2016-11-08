@@ -8,33 +8,23 @@ using System;
 public class BezierPointEditor : Editor {
 	
 	BezierPoint point;
-<<<<<<< HEAD
 
     SerializedProperty curveProp;
     SerializedProperty handleProp;
-=======
-	
-	SerializedProperty handleProp;
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 
 	private static bool showPoints = true;
 
 	void OnEnable(){
 		point = (BezierPoint)target;
 
-<<<<<<< HEAD
         curveProp = serializedObject.FindProperty("_curve");
 		handleProp = serializedObject.FindProperty("handles");
-=======
-		handleProp = serializedObject.FindProperty("_handle");
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 	}	
 	
 	public override void OnInspectorGUI ()
 	{
 		serializedObject.Update();
 
-<<<<<<< HEAD
         EditorGUILayout.PropertyField(curveProp);
         EditorGUILayout.PropertyField(handleProp, true);
 
@@ -43,13 +33,6 @@ public class BezierPointEditor : Editor {
 		if (showPoints)
 		{
 			int handleCount = point.handleCount;
-=======
-		showPoints = EditorGUILayout.Foldout(showPoints, "Handles");
-
-		if (showPoints)
-		{
-			int handleCount = handleProp.arraySize;
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 
 			for (int i = 0; i < handleCount; i++)
 			{
@@ -69,14 +52,6 @@ public class BezierPointEditor : Editor {
 		}
 	}
 
-<<<<<<< HEAD
-=======
-	static public void AddHandle(BezierPoint point)
-	{
-		//this.point
-	}
-
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 	private void addHandle()
 	{ 
 		Undo.RegisterSceneUndo("Add Handle");
@@ -97,12 +72,9 @@ public class BezierPointEditor : Editor {
 
 	void DrawHandleInspector(BezierHandle handle, int index)
 	{
-<<<<<<< HEAD
         if (handle == null)
             return;
 
-=======
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 		SerializedObject serObj = new SerializedObject(handle);
 
 		EditorGUILayout.BeginHorizontal();
@@ -110,15 +82,9 @@ public class BezierPointEditor : Editor {
 		if (GUILayout.Button("X", GUILayout.Width(20)))
 		{
 			Undo.RegisterSceneUndo("Remove Handle");
-<<<<<<< HEAD
             point.RemoveHandle(handle);
             DestroyImmediate(handle.gameObject);
             
-=======
-			handleProp.MoveArrayElement(point.GetHandleIndex(handle), point.handleCount - 1);
-			handleProp.arraySize--;
-			DestroyImmediate(handle.gameObject);
->>>>>>> 175d4de0bdeeceaab19e9805181feb089cc2b45b
 			return;
 		}
 
