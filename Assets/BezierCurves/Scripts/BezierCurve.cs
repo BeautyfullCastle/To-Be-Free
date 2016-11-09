@@ -145,7 +145,8 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 		
 		if(points.Length > 1){
 			for(int i = 0; i < points.Length - 1; i++){
-				DrawCurve(points[i], points[i+1], resolution);
+				//DrawCurve(points[i], points[i+1], resolution);
+				DrawCurve(points[i+1], points[i], resolution);
 			}
 			
 			if (close) DrawCurve(points[points.Length - 1], points[0], resolution);
@@ -349,18 +350,18 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 		if (p1 == null || p2 == null)
 			return Vector3.zero;
 
-        if (p1.Handles == null || p2.Handles == null)
-            return Vector3.zero;
+		if (p1.Handles == null || p2.Handles == null)
+			return Vector3.zero;
 
 		foreach(BezierHandle h1 in p1.Handles)
 		{
-            if (h1 == null)
-                continue;
+			if (h1 == null)
+				continue;
 
 			foreach(BezierHandle h2 in p2.Handles)
 			{
-                if (h2 == null)
-                    continue;
+				if (h2 == null)
+					continue;
 
 				if (h1.curve != h2.curve)
 					continue;
@@ -368,7 +369,24 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 				if (h1.curve.pointCount != h2.curve.pointCount)
 					continue;
 
-				return GetCubicCurvePoint(p1.position, h1.globalHandle2, h2.globalHandle1, p2.position, t);				
+				BezierPoint point1 = p1;
+				BezierPoint point2 = p2;
+				BezierPoint tempPoint = null;
+				BezierHandle handle1 = h1;
+				BezierHandle handle2 = h2;
+				BezierHandle tempHandle = null;
+				if(p1.curve.GetPointIndex(p1) > p1.curve.GetPointIndex(p2))
+				{
+					tempPoint = point1;
+					point1 = point2;
+					point2 = tempPoint;
+
+					tempHandle = handle1;
+					handle1 = handle2;
+					handle2 = tempHandle;
+					t = 1f - t;
+				}
+				return GetCubicCurvePoint(point1.position, handle1.globalHandle2, handle2.globalHandle1, point2.position, t);				
 			}
 		}
 		return Vector3.zero;
