@@ -6,6 +6,14 @@ using System;
 public class AudioControl : MonoBehaviour {
 	public AudioMixerGroup masterGroup;
 
+	void Start()
+	{
+		SetsfxVolume(.5f);
+		SetMusicVolume(.5f);
+		SetMasterVolume(false);
+		this.gameObject.SetActive(false);
+	}
+
 	public void SetsfxVolume (float volume) {
 		volume = ChangeSliderValueToDecibel(volume);
 		masterGroup.audioMixer.SetFloat("sfxVolume", volume);
