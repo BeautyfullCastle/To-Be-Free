@@ -104,6 +104,12 @@ public class BezierCurveEditor : Editor, ISerializationCallbackReceiver
 	{
 		for(int i = 0; i < curve.pointCount; i++)
 		{
+			if (curve[i] == null)
+			{
+				Debug.LogError(curve.name + " curve's " + "some point is null.");
+				curve.gameObject.SetActive(false);
+				continue;
+			}
 			DrawPointSceneGUI(curve[i]);
 		}
 	}
@@ -164,7 +170,13 @@ public class BezierCurveEditor : Editor, ISerializationCallbackReceiver
 	}
 	
 	static void DrawPointSceneGUI(BezierPoint point)
-	{	
+	{
+		if (point == null)
+		{
+			Debug.LogError("some point is null.");
+			return;
+		}
+
 		Handles.Label(point.position + new Vector3(0, HandleUtility.GetHandleSize(point.position) * 0.4f, 0), point.gameObject.name);
 		
 		Handles.color = Color.green;
@@ -217,8 +229,14 @@ public class BezierCurveEditor : Editor, ISerializationCallbackReceiver
 
 		foreach(BezierPoint p in curve.GetAnchorPoints())
 		{
-			//if(p != caller)
-				DrawPointSceneGUI(p);
+			if (p == null)
+			{
+				Debug.LogError(curve.name + " curve's " + "some point is null.");
+				curve.gameObject.SetActive(false);
+				continue;
+			}
+
+			DrawPointSceneGUI(p);
 		}
 	}
 

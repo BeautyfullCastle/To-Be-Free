@@ -36,6 +36,12 @@ public class BezierCurveList : MonoBehaviour {
 		{
 			foreach (BezierPoint point in curve.Points)
 			{
+				if (point == null)
+				{
+					Debug.LogError(curve.name + " curve's " + "some point is null.");
+					continue;
+				}	
+
 				if (dic.ContainsKey(point))
 				{
 					continue;
@@ -48,6 +54,12 @@ public class BezierCurveList : MonoBehaviour {
 		{
 			foreach (BezierPoint point in curve.Points)
 			{
+				if (point == null)
+				{
+					Debug.LogError(curve.name + " curve's " + "some point is null.");
+					continue;
+				}
+
 				int i = curve.GetPointIndex(point);
 				int lastI = curve.Points.Length - 1;
 
