@@ -72,7 +72,6 @@ namespace ToBeFree
 			{
 				command.GetComponent<UIButton>().isEnabled = false;
 			}
-			shopUIObj.SetActive(false);
 
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
@@ -403,10 +402,13 @@ namespace ToBeFree
 			character = CharacterManager.Instance.List[0];
 			character.Stat.RefreshUI();
 			GameObject.FindObjectOfType<UIInventory>().Change(character.Inven);
+
+			shopUIObj.GetComponent<UIShop>().Init();
+
 			//yield return character.MoveTo(character.CurCity);
 
 			//CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.KUNMING), CityManager.Instance.Find(eCity.DANDONG));
-			
+
 
 			inspectAction = new Inspect();
 

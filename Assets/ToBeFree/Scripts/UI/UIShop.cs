@@ -20,14 +20,8 @@ namespace ToBeFree {
 
 		private int discountNum;
 		
-		void Awake()
-		{
-			this.gameObject.SetActive(false);
-		}
-		
-		// Use this for initialization
-		void Start()
-		{
+		public void Init()
+		{	
 			grids = GetComponentsInChildren<UIGrid>();
 
 			Item[] basicItemList = ItemManager.Instance.FindAll(ItemTag.FOOD);
@@ -50,6 +44,8 @@ namespace ToBeFree {
 			}
 
 			discountNum = 0;
+
+			this.gameObject.SetActive(false);
 		}
 		
 		void OnEnable()
