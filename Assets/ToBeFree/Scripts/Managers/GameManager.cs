@@ -422,6 +422,8 @@ namespace ToBeFree
 				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 			}
 
+			character.Stat.SetViewRange();
+
 			yield return null;
 
 #if UNITY_EDITOR
