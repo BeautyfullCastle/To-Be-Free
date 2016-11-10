@@ -110,7 +110,6 @@ namespace ToBeFree
 			{
 				sprite.width = bigSize;
 				sprite.height = bigSize;
-				type = eNodeType.BIGCITY;
 				nameLabel.text = gameObject.name;
 				nameLabel.color = Color.white;
 				sprite.spriteName = "bigcity";

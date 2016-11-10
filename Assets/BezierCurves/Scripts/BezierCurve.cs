@@ -56,9 +56,11 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 		get { return _close; }
 		set
 		{
-			if(_close == value) return;
+			if(_close == value)
+				return;
+
 			_close = value;
-			dirty = true;
+			dirty = true;			
 		}
 	}
 	
@@ -145,11 +147,15 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 		
 		if(points.Length > 1){
 			for(int i = 0; i < points.Length - 1; i++){
-				//DrawCurve(points[i], points[i+1], resolution);
-				DrawCurve(points[i+1], points[i], resolution);
+				DrawCurve(points[i], points[i+1], resolution, Color.white);
+				DrawCurve(points[i+1], points[i], resolution, Color.red);
 			}
-			
-			if (close) DrawCurve(points[points.Length - 1], points[0], resolution);
+
+			if (close)
+			{
+				DrawCurve(points[points.Length - 1], points[0], resolution, Color.black);
+				DrawCurve(points[0], points[points.Length - 1], resolution, Color.blue);
+			}
 		}
 	}
 	
@@ -315,7 +321,7 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 	/// <param name='resolution'>
 	/// 	- The number of segments along the curve to draw
 	/// </param>
-	public static void DrawCurve(BezierPoint p1, BezierPoint p2, int resolution)
+	public static void DrawCurve(BezierPoint p1, BezierPoint p2, int resolution, Color color)
 	{
 		int limit = resolution+1;
 		float _res = resolution;
@@ -325,6 +331,7 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 		for(int i = 1; i < limit; i++){
 			currentPoint = GetPoint(p1, p2, i/_res);
 			Gizmos.DrawLine(lastPoint, currentPoint);
+			Gizmos.color = color;
 			lastPoint = currentPoint;
 		}
 	}	
@@ -369,24 +376,51 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 				if (h1.curve.pointCount != h2.curve.pointCount)
 					continue;
 
-				BezierPoint point1 = p1;
-				BezierPoint point2 = p2;
-				BezierPoint tempPoint = null;
-				BezierHandle handle1 = h1;
-				BezierHandle handle2 = h2;
-				BezierHandle tempHandle = null;
-				if(p1.curve.GetPointIndex(p1) > p1.curve.GetPointIndex(p2))
+				Vector3 point1 = p1.position;
+				Vector3 point2 = p2.position;
+				Vector3 tempPoint = Vector3.zero;
+				Vector3 globalHandle1 = h1.globalHandle2;
+				Vector3 globalHandle2 = h2.globalHandle1;
+
+				BezierCurve curve = h1.curve;
+				if(curve == null)
+				{
+					Debug.LogError(h1.gameObject.name + "'s curve NULL error");
+					break;
+				}
+				int p1Index = curve.GetPointIndex(p1);
+				int p2Index = curve.GetPointIndex(p2);
+				if (p1Index == -1 || p2Index == -1)
+				{
+					Debug.LogError(curve.gameObject.name + " index error");
+					break;
+				}
+
+				if (curve.close && p1Index == 0 && p2Index == curve.pointCount - 1)
+				{
+					globalHandle1 = h1.globalHandle1;
+					globalHandle2 = h2.globalHandle2;
+				}
+				else if (curve.close && p2Index == 0 && p1Index == curve.pointCount - 1)
 				{
 					tempPoint = point1;
 					point1 = point2;
 					point2 = tempPoint;
 
-					tempHandle = handle1;
-					handle1 = handle2;
-					handle2 = tempHandle;
+					globalHandle1 = h2.globalHandle1;
+					globalHandle2 = h1.globalHandle2;
+				}
+				else if (p1Index > p2Index)
+				{
+					tempPoint = point1;
+					point1 = point2;
+					point2 = tempPoint;
+					
+					globalHandle1 = h2.globalHandle2;
+					globalHandle2 = h1.globalHandle1;
 					t = 1f - t;
 				}
-				return GetCubicCurvePoint(point1.position, handle1.globalHandle2, handle2.globalHandle1, point2.position, t);				
+				return GetCubicCurvePoint(point1, globalHandle1, globalHandle2, point2, t);				
 			}
 		}
 		return Vector3.zero;
