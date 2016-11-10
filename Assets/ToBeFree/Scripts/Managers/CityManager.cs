@@ -157,6 +157,11 @@ namespace ToBeFree
 			return cityList;
 		}
 
+		public List<City> GetCityList(eWay way)
+		{
+			return list[(int)way];
+		}
+
 		public City FindRandCityByDistance(City curCity, int distance, eSubjectType pieceType, eWay way)
 		{
 			System.Random r = new System.Random();

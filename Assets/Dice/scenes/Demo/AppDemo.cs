@@ -57,6 +57,10 @@ public class AppDemo : MonoBehaviour
 			// right mouse button clicked so roll 8 dice of dieType 'gallery die'
 			Dice.Clear();
 			string[] a = galleryDie.Split('-');
+			if(diceNum <= 0)
+			{
+				diceNum = 1;
+			}
 			Dice.Roll(diceNum.ToString() + a[0], galleryDie, spawnPoint.transform.position, Force());
 		}
 	}

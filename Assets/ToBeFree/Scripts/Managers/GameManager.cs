@@ -140,8 +140,9 @@ namespace ToBeFree
 
 					InstantiatePopup("Normal Move", eEventAction.MOVE);
 					UICommandPopup busPopup = InstantiatePopup("Bus", eEventAction.MOVE_BUS);
-
-					bool buttonEnabled = (character.CurCity.Type == eNodeType.BIGCITY) && (character.Stat.Money >= 4);
+					List<City> busCityList = CityManager.Instance.GetCityList(eWay.HIGHWAY);
+					bool isHighway = busCityList.Contains(character.CurCity);						
+					bool buttonEnabled = (isHighway) && (character.Stat.Money >= 4);
 					foreach (UIButton button in busPopup.requiredTimeButtons)
 					{
 						button.isEnabled = buttonEnabled;

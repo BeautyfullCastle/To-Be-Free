@@ -91,7 +91,7 @@ namespace ToBeFree
 		
 		public void OnClick(string index)
 		{
-			if(selectList == null)
+			if(selectList == null || selectList.Length == 0)
 			{
 				return;
 			}
