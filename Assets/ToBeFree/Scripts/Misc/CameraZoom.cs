@@ -7,11 +7,15 @@ public class CameraZoom : MonoBehaviour {
 	public float maxSize = 3.0f;
 
 	private Camera cam;
+
+	[SerializeField]
+	private UIScrollView scrollview;
 	
 	// Use this for initialization
 	void Start ()
 	{
 		cam = this.transform.GetComponent<Camera>();
+		scrollview = this.transform.root.GetComponentInChildren<UIScrollView>();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +33,8 @@ public class CameraZoom : MonoBehaviour {
 			{
 				cam.orthographicSize = maxSize;
 			}
+			
 		}
+		scrollview.RestrictWithinBounds(true);
 	}
 }
