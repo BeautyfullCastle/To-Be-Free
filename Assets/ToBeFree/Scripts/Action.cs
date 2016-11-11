@@ -27,6 +27,10 @@ namespace ToBeFree
 			
 			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
+			// 추가 행동만큼 주사위 +
+			character.Stat.TempDiceNum = 0;
+			character.Stat.TempDiceNum += requiredTime - 1;
+
 			yield return null;
 		}
 
@@ -179,11 +183,13 @@ namespace ToBeFree
 					}
 					if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
 					{
+						character.Stat.Money += successResulteffects[i].Amount;
 						character.Stat.Money += character.CurCity.CalcRandWorkingMoney();
 						character.Stat.Money += EventManager.Instance.TestSuccessNum;
 						GameManager.Instance.OpenEventUI();
 						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, 
-							"도시 추가금 : " + character.CurCity.CalcRandWorkingMoney()
+							"기본급 : " + successResulteffects[i].Amount
+							+ "\n도시 추가금 : " + character.CurCity.CalcRandWorkingMoney()
 							+ "\n주사위 성공 개수 추가금 : " + EventManager.Instance.TestSuccessNum);
 
 						yield return EventManager.Instance.WaitUntilFinish();
@@ -453,9 +459,8 @@ namespace ToBeFree
 			Debug.LogWarning("Info action activated.");
 			NGUIDebug.Log("Info action");
 
-			base.Activate(character);
-
-			character.Stat.TempDiceNum = 0;
+			yield return base.Activate(character);
+			
 			// 도시크기 별 주사위 추가 - 중도시 주사위1, 대도시는 주사위2
 			if(character.CurCity.Type == eNodeType.MIDDLECITY)
 			{
@@ -465,8 +470,7 @@ namespace ToBeFree
 			{
 				character.Stat.TempDiceNum += 2;
 			}
-
-			character.Stat.TempDiceNum += requiredTime - 1;
+			
 
 			// 스페셜 이벤트 처리
 			if (character.CheckSpecialEvent())

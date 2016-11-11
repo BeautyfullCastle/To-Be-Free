@@ -28,6 +28,7 @@ namespace ToBeFree
 		public GameObject IconPieceObj;
 		public GameObject diceObj;
 
+		private TweenAlpha lightSpriteTweenAlpha;
 		private Character character;
 		private Action action;
 		private Action inspectAction;
@@ -72,7 +73,6 @@ namespace ToBeFree
 			{
 				command.GetComponent<UIButton>().isEnabled = false;
 			}
-			shopUIObj.SetActive(false);
 
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
@@ -80,6 +80,7 @@ namespace ToBeFree
 			uiSetting.SetActive(false);
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
+			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
 		}
 
 		private List<IEnumerator> coroutines;
@@ -141,8 +142,9 @@ namespace ToBeFree
 
 					InstantiatePopup("Normal Move", eEventAction.MOVE);
 					UICommandPopup busPopup = InstantiatePopup("Bus", eEventAction.MOVE_BUS);
-
-					bool buttonEnabled = (character.CurCity.Type == eNodeType.BIGCITY) && (character.Stat.Money >= 4);
+					List<City> busCityList = CityManager.Instance.GetCityList(eWay.HIGHWAY);
+					bool isHighway = busCityList.Contains(character.CurCity);						
+					bool buttonEnabled = (isHighway) && (character.Stat.Money >= 4);
 					foreach (UIButton button in busPopup.requiredTimeButtons)
 					{
 						button.isEnabled = buttonEnabled;
@@ -403,10 +405,13 @@ namespace ToBeFree
 			character = CharacterManager.Instance.List[0];
 			character.Stat.RefreshUI();
 			GameObject.FindObjectOfType<UIInventory>().Change(character.Inven);
+
+			shopUIObj.GetComponent<UIShop>().Init();
+
 			//yield return character.MoveTo(character.CurCity);
 
 			//CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.KUNMING), CityManager.Instance.Find(eCity.DANDONG));
-			
+
 
 			inspectAction = new Inspect();
 
@@ -419,6 +424,8 @@ namespace ToBeFree
 				PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
 				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 			}
+
+			character.Stat.SetViewRange();
 
 			yield return null;
 
@@ -580,6 +587,11 @@ namespace ToBeFree
 
 		IEnumerator NightState()
 		{
+			// Enter
+			yield return (ShowStateLabel("Night State", 0.5f));
+
+			lightSpriteTweenAlpha.PlayForward();
+
 			// 하루 끝 이벤트
 			if (character.CheckSpecialEvent() && character.IsDetention == false)
 			{
@@ -591,9 +603,6 @@ namespace ToBeFree
 			{
 				yield return TimeTable.Instance.SpendTime(1, eSpendTime.END);
 			}
-
-			// Enter
-			yield return (ShowStateLabel("Night State", 0.5f));
 			
 			yield return Instance_NotifyEveryNight();
 
@@ -637,6 +646,8 @@ namespace ToBeFree
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);
 
 			TimeTable.Instance.DayIsGone();
+
+			lightSpriteTweenAlpha.PlayReverse();
 
 			// after daytime // Temporary
 			yield return BuffManager.Instance.CheckDuration(character);

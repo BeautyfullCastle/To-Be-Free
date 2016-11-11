@@ -80,7 +80,6 @@ namespace ToBeFree
 
 			OnValueChange(money, eStat.MONEY);
 			OnValueChange(infoNum, eStat.INFO);
-			
 		}
 
 		public int Strength
