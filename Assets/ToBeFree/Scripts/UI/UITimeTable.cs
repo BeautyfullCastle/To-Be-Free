@@ -9,7 +9,6 @@ namespace ToBeFree
 		public UILabel dayLabel;
 		public UILabel hourLabel;
 		public Transform hourhand;
-		public UISprite lightSprite;
 
 		private float angle;
 		
@@ -24,12 +23,7 @@ namespace ToBeFree
 		{
 			int hour = TimeTable.Instance.Hour;
 			hourLabel.text = hour.ToString() + ":00";
-
-			if (6 <= hour && hour < 18)
-				lightSprite.alpha = 0;
-			else
-				lightSprite.alpha = 0.5f;
-
+			
 			hour -= 6;
 			hourhand.localRotation = Quaternion.AngleAxis(angle + hour*-15f, Vector3.forward);
 		}

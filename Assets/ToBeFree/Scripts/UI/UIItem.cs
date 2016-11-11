@@ -33,7 +33,7 @@ namespace ToBeFree
 
 		void Start()
 		{
-			if(belong == eBelong.SHOP)
+			if (belong == eBelong.SHOP)
 			{
 				GetComponent<UIDragDropItem>().enabled = false;
 			}
@@ -47,7 +47,7 @@ namespace ToBeFree
 				}
 			}
 		}
-		
+
 		void OnClick()
 		{
 			if (this.Item == null)
@@ -91,12 +91,12 @@ namespace ToBeFree
 		void OnTooltip(bool show)
 		{
 			Item item = show ? this.item : null;
-			if (item==null)
+			if (item == null)
 			{
 				UITooltip.Hide();
 				return;
 			}
-			
+
 			string description = this.itemName.text + "\\n";
 			description += this.item.Buff.Script;
 			UITooltip.Show(description);
