@@ -44,20 +44,59 @@ MonoBehaviour:
   mSprites:
   - name: 00
     x: 659
-    y: 1644
-    width: 1109
-    height: 404
+    y: 1779
+    width: 1134
+    height: 269
     borderLeft: 1
     borderRight: 1
     borderTop: 1
     borderBottom: 1
-    paddingLeft: 33
-    paddingRight: 17
-    paddingTop: 2
-    paddingBottom: 15
+    paddingLeft: 7
+    paddingRight: 4
+    paddingTop: 5
+    paddingBottom: 3
+  - name: 01
+    x: 659
+    y: 560
+    width: 291
+    height: 339
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 4
+    paddingTop: 11
+    paddingBottom: 4
+  - name: 02
+    x: 659
+    y: 900
+    width: 298
+    height: 388
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 4
+    paddingTop: 3
+    paddingBottom: 1
+  - name: 03
+    x: 491
+    y: 1024
+    width: 137
+    height: 126
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: 09
     x: 1641
-    y: 1185
+    y: 1320
     width: 363
     height: 458
     borderLeft: 0
@@ -70,7 +109,7 @@ MonoBehaviour:
     paddingBottom: 7
   - name: ABILITY
     x: 576
-    y: 1044
+    y: 917
     width: 81
     height: 106
     borderLeft: 0
@@ -83,7 +122,7 @@ MonoBehaviour:
     paddingBottom: 7
   - name: bbang
     x: 491
-    y: 593
+    y: 484
     width: 88
     height: 67
     borderLeft: 0
@@ -108,8 +147,8 @@ MonoBehaviour:
     paddingTop: 6
     paddingBottom: 5
   - name: broker
-    x: 659
-    y: 598
+    x: 1794
+    y: 1817
     width: 238
     height: 231
     borderLeft: 0
@@ -122,7 +161,7 @@ MonoBehaviour:
     paddingBottom: 11
   - name: BROKER
     x: 576
-    y: 934
+    y: 807
     width: 81
     height: 106
     borderLeft: 0
@@ -134,8 +173,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 7
   - name: Clock_Background
-    x: 659
-    y: 160
+    x: 1197
+    y: 1083
     width: 202
     height: 205
     borderLeft: 1
@@ -147,8 +186,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 3
   - name: gong
-    x: 1769
-    y: 1725
+    x: 659
+    y: 236
     width: 238
     height: 323
     borderLeft: 0
@@ -161,7 +200,7 @@ MonoBehaviour:
     paddingBottom: 15
   - name: Hour Hand
     x: 491
-    y: 693
+    y: 675
     width: 79
     height: 19
     borderLeft: 0
@@ -174,7 +213,7 @@ MonoBehaviour:
     paddingBottom: 94
   - name: INVESTIGATION
     x: 491
-    y: 822
+    y: 695
     width: 84
     height: 108
     borderLeft: 0
@@ -186,8 +225,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 3
   - name: kim
-    x: 659
-    y: 830
+    x: 958
+    y: 965
     width: 238
     height: 323
     borderLeft: 0
@@ -213,7 +252,7 @@ MonoBehaviour:
     paddingBottom: 5
   - name: MOVE
     x: 491
-    y: 1041
+    y: 914
     width: 84
     height: 109
     borderLeft: 0
@@ -239,7 +278,7 @@ MonoBehaviour:
     paddingBottom: 64
   - name: quest
     x: 659
-    y: 366
+    y: 4
     width: 238
     height: 231
     borderLeft: 0
@@ -252,7 +291,7 @@ MonoBehaviour:
     paddingBottom: 11
   - name: QUEST
     x: 576
-    y: 716
+    y: 555
     width: 81
     height: 105
     borderLeft: 0
@@ -265,7 +304,7 @@ MonoBehaviour:
     paddingBottom: 7
   - name: REST
     x: 491
-    y: 713
+    y: 552
     width: 84
     height: 108
     borderLeft: 0
@@ -278,7 +317,7 @@ MonoBehaviour:
     paddingBottom: 3
   - name: SHOP
     x: 576
-    y: 824
+    y: 697
     width: 81
     height: 106
     borderLeft: 0
@@ -291,7 +330,7 @@ MonoBehaviour:
     paddingBottom: 6
   - name: small
     x: 659
-    y: 1154
+    y: 1289
     width: 490
     height: 489
     borderLeft: 0
@@ -304,7 +343,7 @@ MonoBehaviour:
     paddingBottom: 6
   - name: walk
     x: 1150
-    y: 1154
+    y: 1289
     width: 490
     height: 489
     borderLeft: 0
@@ -317,7 +356,7 @@ MonoBehaviour:
     paddingBottom: 5
   - name: white
     x: 576
-    y: 683
+    y: 664
     width: 32
     height: 32
     borderLeft: 0
@@ -330,7 +369,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: WORK
     x: 491
-    y: 931
+    y: 804
     width: 84
     height: 109
     borderLeft: 0
