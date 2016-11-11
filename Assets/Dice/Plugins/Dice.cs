@@ -164,9 +164,9 @@ public class Dice : MonoBehaviour {
 				// create the die prefab/gameObject
 				GameObject die = prefab(dieType, spawnPoint, Vector3.zero, Vector3.one, mat);
 				// give it a random rotation
-				die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
+				//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 				// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
-				die.SetActive(false);
+				//die.SetActive(false);
 				// create RollingDie class that will hold things like spawnpoint and force, to be used when activating the die at a later stage
 				RollingDie rDie = new RollingDie(die, dieType, mat, spawnPoint, force);
 				// add RollingDie to allDices

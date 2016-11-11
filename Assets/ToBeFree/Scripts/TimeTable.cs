@@ -111,6 +111,7 @@ namespace ToBeFree
 					hour = 0;
 				else
 					hour = value;
+				AudioManager.Instance.Find("hour").Play();
 				NotifyEveryHour();
 			}
 		}

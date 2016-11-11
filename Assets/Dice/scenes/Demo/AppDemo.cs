@@ -31,6 +31,7 @@ public class AppDemo : MonoBehaviour
 	void Start ()
 	{
 		rectModeSelect =  new Rect(10,10,180,80);
+		Dice.Clear();
 	}
 	
 	// Update is called once per frame
@@ -48,20 +49,34 @@ public class AppDemo : MonoBehaviour
 		return Vector3.Lerp(spawnPoint.transform.position, rollTarget, 1).normalized * (-35 - Random.value * 20);
 	}
 
+	bool mouseDown = false;
 	void UpdateRoll()
 	{
 		spawnPoint = GameObject.Find("spawnPoint");
+		
 		// check if we have to roll dice
 		if (Input.GetMouseButtonDown(0) && !PointInRect(GuiMousePosition(), rectModeSelect))
 		{
-			// right mouse button clicked so roll 8 dice of dieType 'gallery die'
-			Dice.Clear();
-			string[] a = galleryDie.Split('-');
-			if(diceNum <= 0)
+			if(mouseDown == false)
 			{
-				diceNum = 1;
+				Dice.Clear();
+				mouseDown = true;
+			}	
+		}
+		else if(Input.GetMouseButtonUp(0))
+		{
+			if(mouseDown)
+			{
+				string[] a = galleryDie.Split('-');
+				if (diceNum <= 0)
+				{
+					diceNum = 1;
+				}
+
+				Dice.Roll(diceNum.ToString() + a[0], galleryDie, spawnPoint.transform.position, Force());
+				
+				mouseDown = false;
 			}
-			Dice.Roll(diceNum.ToString() + a[0], galleryDie, spawnPoint.transform.position, Force());
 		}
 	}
 
