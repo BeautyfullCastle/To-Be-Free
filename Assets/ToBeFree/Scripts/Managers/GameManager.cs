@@ -28,6 +28,7 @@ namespace ToBeFree
 		public GameObject IconPieceObj;
 		public GameObject diceObj;
 
+		private TweenAlpha lightSpriteTweenAlpha;
 		private Character character;
 		private Action action;
 		private Action inspectAction;
@@ -79,6 +80,7 @@ namespace ToBeFree
 			uiSetting.SetActive(false);
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
+			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
 		}
 
 		private List<IEnumerator> coroutines;
@@ -585,6 +587,11 @@ namespace ToBeFree
 
 		IEnumerator NightState()
 		{
+			// Enter
+			yield return (ShowStateLabel("Night State", 0.5f));
+
+			lightSpriteTweenAlpha.PlayForward();
+
 			// 하루 끝 이벤트
 			if (character.CheckSpecialEvent() && character.IsDetention == false)
 			{
@@ -596,9 +603,6 @@ namespace ToBeFree
 			{
 				yield return TimeTable.Instance.SpendTime(1, eSpendTime.END);
 			}
-
-			// Enter
-			yield return (ShowStateLabel("Night State", 0.5f));
 			
 			yield return Instance_NotifyEveryNight();
 
@@ -642,6 +646,8 @@ namespace ToBeFree
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.DAY, character);
 
 			TimeTable.Instance.DayIsGone();
+
+			lightSpriteTweenAlpha.PlayReverse();
 
 			// after daytime // Temporary
 			yield return BuffManager.Instance.CheckDuration(character);
