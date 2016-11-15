@@ -29,11 +29,13 @@ namespace ToBeFree
 				return;
 
 			// 드롭된 아이템 프리팹의 인스턴스를 생성한다.
-			GameObject newPower = NGUITools.AddChild(this.gameObject,
-													 droppedItemPrefab);
+			//GameObject newPower = NGUITools.AddChild(this.gameObject,
+			//										 droppedItemPrefab);
 			// 드롭된 게임오브젝트는 삭제한다.
 			if(gameObject.name == "TrashCan")
+			{
 				StartCoroutine(GameManager.Instance.Character.Inven.Delete(droppedItem.Item, GameManager.Instance.Character));
+			}
 			else
 			{
 				if(droppedItem.enabled)

@@ -28,7 +28,7 @@ namespace ToBeFree
 		{
 			hour = 6;
 			day = 1;
-			week = 7;
+			week = 3;
 		}
 
 		public void DayIsGone()

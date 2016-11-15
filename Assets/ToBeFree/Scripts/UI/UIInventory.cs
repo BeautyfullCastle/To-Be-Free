@@ -58,8 +58,9 @@ namespace ToBeFree
 			{
 				return;
 			}
-			DestroyImmediate(uiItem.gameObject);
 			items.Remove(uiItem);
+			DestroyImmediate(uiItem.gameObject);
+			
 			grid.Reposition();
 		}
 

@@ -11,12 +11,12 @@ namespace ToBeFree
 		private int resultNum;
 		private GameObject diceObj;
 
-		public DiceTester()
+		public void Init()
 		{
 			minSuccessNum = 5;
 			resultNum = -99;
-
-			diceObj = GameManager.Instance.diceObj;
+			diceObj = GameObject.Find("Dice Tester");
+			diceObj.SetActive(false);
 		}
 
 		public IEnumerator Test(int diceNum, System.Action<int> setResultNum)

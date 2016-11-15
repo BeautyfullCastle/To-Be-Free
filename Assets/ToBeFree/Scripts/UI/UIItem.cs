@@ -50,15 +50,18 @@ namespace ToBeFree
 
 		void OnClick()
 		{
-			if (this.Item == null)
-				return;
-
-			if (this.enabled == false)
-				return;
-
-			if (belong == eBelong.SHOP)
+			if (UICamera.currentTouchID == -2)
 			{
-				transform.GetComponentInParent<UIShop>().OnClick(this);
+				if (this.Item == null)
+					return;
+
+				if (this.enabled == false)
+					return;
+
+				if (belong == eBelong.SHOP)
+				{
+					transform.GetComponentInParent<UIShop>().OnClick(this);
+				}
 			}
 		}
 
@@ -66,6 +69,23 @@ namespace ToBeFree
 		{
 			if (belong == eBelong.SHOP)
 			{
+				return;
+			}
+
+			if(UICamera.currentTouchID == -2 && pressed)
+			{
+				Debug.Log(this.name + " : right click in OnPress()");
+				if (this.Item == null)
+					return;
+
+				if (this.enabled == false)
+					return;
+
+				if (belong == eBelong.INVEN)
+				{
+					StartCoroutine(GameManager.Instance.Character.Inven.UseItem(this.Item, GameManager.Instance.Character));
+					Debug.Log(this.name + " : UseItem()");
+				}
 				return;
 			}
 

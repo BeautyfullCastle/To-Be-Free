@@ -23,25 +23,28 @@ namespace ToBeFree
 		public GameObject shopUIObj;
 		public UIEventManager uiEventManager;
 		public GameObject uiSetting;
-		public IconCity[] iconCities;
 		public UIGrid commandPopupGrid;
 		public GameObject IconPieceObj;
-		public GameObject diceObj;
+
+		[HideInInspector]
+		public IconCity[] iconCities;
+		[HideInInspector]
+		public bool revealPoliceNum = false;
+		[HideInInspector]
+		public IconCity ClickedIconCity = null;
 
 		private TweenAlpha lightSpriteTweenAlpha;
 		private Character character;
 		private Action action;
 		private Action inspectAction;
-
 		private GameState state;
 		private bool activateAbnormal;
 		private UICommand[] commands;
 		private bool moveTest;
 		private bool readyToMove;
-
 		private bool isActStart = false;
-
 		private BezierCurveList curves;
+		private eCommand curCommandType = eCommand.NULL;
 
 		// can't use the constructor
 		private GameManager()
@@ -50,6 +53,7 @@ namespace ToBeFree
 
 		private void Init()
 		{
+			DiceTester.Instance.Init();
 			CityManager.Instance.Init();
 			iconCities = GameObject.FindObjectsOfType<IconCity>();
 			foreach(IconCity iconCity in iconCities)
@@ -82,15 +86,7 @@ namespace ToBeFree
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
 			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
 		}
-
-		private List<IEnumerator> coroutines;
-		public void AddCoroutine(IEnumerator routine)
-		{
-			coroutines.Add(routine);
-		}
-
-		public bool revealPoliceNum = false;
-		public IconCity ClickedIconCity = null;
+		
 		public void ClickCity(IconCity city)
 		{
 			// 캐릭터 도시 이동
@@ -120,8 +116,6 @@ namespace ToBeFree
 
 			ClickedIconCity = city;
 		}
-
-		private eCommand curCommandType = eCommand.NULL;
 
 		public void ClickCommand(string command)
 		{ 
@@ -225,6 +219,12 @@ namespace ToBeFree
 
 		private UICommandPopup InstantiatePopup(string name, eEventAction actionType)
 		{
+			// set the button disabled every city.
+			foreach (IconCity c in iconCities)
+			{
+				c.SetEnable(false);
+			}
+
 			GameObject prefab = Resources.Load("Command Popup") as GameObject;
 			GameObject obj = Instantiate(prefab) as GameObject;
 			obj.transform.SetParent(commandPopupGrid.transform);
@@ -250,7 +250,7 @@ namespace ToBeFree
 		}
 
 		public void ClickCommandRequiredTime(eEventAction actionType, string requiredTime)
-		{			
+		{
 			int iRequiredTime = int.Parse(requiredTime);
 
 			action.RequiredTime = iRequiredTime;
@@ -269,11 +269,7 @@ namespace ToBeFree
 			{
 				readyToMove = true;
 
-				// set the button disabled every city.
-				foreach (IconCity c in iconCities)
-				{
-					c.SetEnable(false);
-				}
+				
 
 				eWay way = eWay.ENTIREWAY;
 				if(actionType == eEventAction.MOVE_BUS)
@@ -382,7 +378,7 @@ namespace ToBeFree
 
 		private void WeekIsGone()
 		{
-			state = GameState.StartWeek;			
+			state = GameState.StartWeek;
 		}
 
 		private void Start()
