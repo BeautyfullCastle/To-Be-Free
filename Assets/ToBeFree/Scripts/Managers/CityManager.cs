@@ -275,10 +275,10 @@ namespace ToBeFree
 			}
 			else
 			{
-				if(actionType == eEventAction.MOVE)
+				//if(actionType == eEventAction.MOVE)
 					path = curves[(int)eWay.NORMALWAY].GetPath(currentPoint, destinationPoint);
-				else if(actionType == eEventAction.MOVE_BUS)
-					path = curves[(int)eWay.HIGHWAY].GetPath(currentPoint, destinationPoint);
+				//else if(actionType == eEventAction.MOVE_BUS)
+				//	path = curves[(int)eWay.HIGHWAY].GetPath(currentPoint, destinationPoint);
 			}
 
 			if (path == null)
