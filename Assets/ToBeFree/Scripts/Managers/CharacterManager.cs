@@ -38,13 +38,12 @@ namespace ToBeFree
 				Stat stat = new Stat(data.HP, data.strength, data.agility, data.concentration, data.talent, data.startMoney);
 				Inventory inven = new Inventory(data.startInven);                
 
-				Character character = new Character(data.name, data.script, stat, data.startCity, inven);
+				Character character = new Character(data.name, data.script, stat, data.startCity, inven, data.eventIndex, data.skillScript, data.abnormalIndex);
 
 				for (int i = 0; i < data.itemIndex.Length; ++i)
 				{
 					Item item = new Item(ItemManager.Instance.List[data.itemIndex[i]]);
 					character.Inven.AddItem(item, character);
-					//GameObject.FindObjectOfType<UIInventory>().AddItem(item);
 				}
 
 				if (List[data.index] != null)

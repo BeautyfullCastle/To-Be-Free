@@ -57,7 +57,8 @@ namespace ToBeFree
 		VIEWRANGE,
 		NUMBER,
 		CRACKDOWN_PROBABILITY,
-		MENTAL, HP_MENTAL, PATIENCE, LUCK // 지워야 되는 것들
+		MENTAL, HP_MENTAL, PATIENCE, LUCK, // 지워야 되는 것들
+		DICE
 	}
 
 	public class Effect
@@ -119,6 +120,10 @@ namespace ToBeFree
 						{
 							prevAmount = character.Stat.ViewRange;
 							character.Stat.ViewRange += amount;
+						}
+						if(ObjectType == eObjectType.DICE)
+						{
+							character.Stat.DiceNumByEffect += amount;
 						}
 					}
 					if (verbType == eVerbType.DEL)
@@ -474,11 +479,15 @@ namespace ToBeFree
 							character.CantMove = false;
 						}
 					}
-					if(verbType == eVerbType.ADD)
+					else if(verbType == eVerbType.ADD)
 					{
 						if (objectType == eObjectType.VIEWRANGE)
 						{
 							character.Stat.ViewRange = 1;
+						}
+						else if (ObjectType == eObjectType.DICE)
+						{
+							character.Stat.DiceNumByEffect = 0;
 						}
 					}
 					break;

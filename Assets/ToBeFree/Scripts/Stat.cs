@@ -40,6 +40,7 @@ namespace ToBeFree
 		private int viewRange;
 
 		private int tempDiceNum;
+		private int diceNumByEffect;
 
 		public delegate void OnValueChangeHandler(int value, eStat stat);
 		static public event OnValueChangeHandler OnValueChange;
@@ -278,6 +279,19 @@ namespace ToBeFree
 			set
 			{
 				tempDiceNum = value;
+			}
+		}
+
+		public int DiceNumByEffect
+		{
+			get
+			{
+				return diceNumByEffect;
+			}
+
+			set
+			{
+				diceNumByEffect = value;
 			}
 		}
 

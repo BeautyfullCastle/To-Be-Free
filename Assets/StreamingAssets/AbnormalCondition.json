@@ -107,8 +107,8 @@
 			"isRestore": "true",
 			"stack": "false",
 			"startTime": "TEST",
-			"duration": "WEEK",
-			"script": "한 주 동안 힘-",
+			"duration": "DAY",
+			"script": "하루 동안 힘-",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		},
@@ -121,7 +121,7 @@
 			"isRestore": "true",
 			"stack": "false",
 			"startTime": "TEST",
-			"duration": "WEEK",
+			"duration": "DAY",
 			"script": "한 주 동안 민첩성-",
 			"isBody": "NULL",
 			"isPositive": "NULL"
@@ -135,7 +135,7 @@
 			"isRestore": "true",
 			"stack": "false",
 			"startTime": "TEST",
-			"duration": "WEEK",
+			"duration": "DAY",
 			"script": "한 주 동안 관찰력-",
 			"isBody": "NULL",
 			"isPositive": "NULL"
@@ -149,7 +149,7 @@
 			"isRestore": "true",
 			"stack": "false",
 			"startTime": "TEST",
-			"duration": "WEEK",
+			"duration": "DAY",
 			"script": "한 주 동안 협상력-",
 			"isBody": "NULL",
 			"isPositive": "NULL"
@@ -177,7 +177,7 @@
 			"isRestore": "true",
 			"stack": "false",
 			"startTime": "TEST",
-			"duration": "WEEK",
+			"duration": "DAY",
 			"script": "한 주 동안 모든 능력치-",
 			"isBody": "NULL",
 			"isPositive": "NULL"
@@ -249,6 +249,34 @@
 			"startTime": "NOW",
 			"duration": "DAY",
 			"script": "상점행동 하루동안 사용불가",
+			"isBody": "NULL",
+			"isPositive": "NULL"
+		},
+		{
+			"index": 18,
+			"name": "Increase Strength",
+			"spawnCondition": "EVENT",
+			"effectIndex": 27,
+			"amount": 1,
+			"isRestore": "true",
+			"stack": "FALSE",
+			"startTime": "TEST",
+			"duration": "DAY",
+			"script": "하루동안 힘을 1증가합니다.",
+			"isBody": "NULL",
+			"isPositive": "NULL"
+		},
+		{
+			"index": 19,
+			"name": "A Good Worker",
+			"spawnCondition": "EVENT",
+			"effectIndex": 80,
+			"amount": 1,
+			"isRestore": "true",
+			"stack": "FALSE",
+			"startTime": "WORK",
+			"duration": "NULL",
+			"script": "이 사람은 훌륭한 일꾼입니다. 일을 할 때 주사위를 하나 추가로 받습니다.",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		}

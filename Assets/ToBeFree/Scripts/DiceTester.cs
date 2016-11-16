@@ -13,7 +13,7 @@ namespace ToBeFree
 
 		public void Init()
 		{
-			minSuccessNum = 5;
+			minSuccessNum = 6;
 			resultNum = -99;
 			diceObj = GameObject.Find("Dice Tester");
 			diceObj.SetActive(false);

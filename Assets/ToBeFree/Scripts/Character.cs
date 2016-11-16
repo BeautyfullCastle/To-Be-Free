@@ -10,6 +10,9 @@ namespace ToBeFree
 		private Stat stat;
 		private string name;
 		private string script;
+		private int eventIndex;
+		private string skillScript;
+		private int abnormalIndex;
 
 		private IconCharacter iconCharacter;
 
@@ -37,15 +40,21 @@ namespace ToBeFree
 		public static event MoveCityHandler MoveCity = delegate { };
 		
 		// Todo : skill
-		public Character(string name, string script, Stat stat, string startCityName, Inventory inven)
+		public Character(string name, string script, Stat stat, string startCityName, Inventory inven, int eventIndex, string skillScript, int abnormalIndex)
 		{
 			this.name = name;			
 			this.script = script;
 			this.stat = stat;
 			this.iconCharacter = GameObject.FindObjectOfType<IconCharacter>();
 			if(GameObject.Find(startCityName))
-				this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
+			{
+				this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;				
+			}
+				
 			this.inven = inven;
+			this.eventIndex = eventIndex;
+			this.skillScript = skillScript;
+			this.abnormalIndex = abnormalIndex;
 
 			CantCure = false;
 			CantMove = false;
@@ -91,7 +100,7 @@ namespace ToBeFree
 					return -1;
 			}
 
-			return diceNum + this.Stat.TempDiceNum;
+			return diceNum + this.Stat.TempDiceNum + this.Stat.DiceNumByEffect;
 		}
 
 		public void Rest()
@@ -104,8 +113,14 @@ namespace ToBeFree
 			AP++;
 		}
 
-		public IEnumerator MoveTo(City city)
+		public IEnumerator MoveTo(City city, bool direct = false)
 		{
+			if (direct)
+			{
+				MoveCity(city.Name);
+				yield break;
+			}
+
 			if (CantMove)
 			{
 				yield break;
@@ -119,6 +134,7 @@ namespace ToBeFree
 					AP++;
 				}
 			}
+
 			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city);
 
 			this.CurCity = city;
@@ -316,6 +332,45 @@ namespace ToBeFree
 			get
 			{
 				return name;
+			}
+		}
+
+		public int EventIndex
+		{
+			get
+			{
+				return eventIndex;
+			}
+
+			set
+			{
+				eventIndex = value;
+			}
+		}
+
+		public string SkillScript
+		{
+			get
+			{
+				return skillScript;
+			}
+
+			set
+			{
+				skillScript = value;
+			}
+		}
+
+		public int AbnormalIndex
+		{
+			get
+			{
+				return abnormalIndex;
+			}
+
+			set
+			{
+				abnormalIndex = value;
 			}
 		}
 	}

@@ -403,10 +403,6 @@
 		{
 			"index": 100,
 			"script": "Event English Language Test 100"
-		},
-		{
-			"index": 101,
-			"script": "Event English Language Test 101"
 		}
 	]
 }

@@ -268,9 +268,7 @@ namespace ToBeFree
 			else
 			{
 				readyToMove = true;
-
 				
-
 				eWay way = eWay.ENTIREWAY;
 				if(actionType == eEventAction.MOVE_BUS)
 				{
@@ -421,7 +419,14 @@ namespace ToBeFree
 				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 			}
 
+			yield return character.MoveTo(character.CurCity, true);
+			// init character's view range.
 			character.Stat.SetViewRange();
+			UICenterOnChild scrollviewCenter = GameObject.FindObjectOfType<UICenterOnChild>();
+			scrollviewCenter.CenterOn(character.CurCity.IconCity.transform);
+			scrollviewCenter.enabled = false;
+			// activate character's passive abnormal condition.
+			yield return AbnormalConditionManager.Instance.List[character.AbnormalIndex].Activate(character);
 
 			yield return null;
 
@@ -752,6 +757,8 @@ namespace ToBeFree
 
 		public IEnumerator MoveDirectingCam(List<Transform> transformList, float duration)
 		{
+			yield break;
+
 			float prevWorldCamSize = worldCam.orthographicSize;
 			worldCam.orthographicSize = 10f;
 			directingCam.enabled = true;
@@ -770,6 +777,8 @@ namespace ToBeFree
 
 		public IEnumerator MoveDirectingCam(Vector3 from, Vector3 to, float duration)
 		{
+			yield break;
+
 			float prevWorldCamSize = worldCam.orthographicSize;
 			worldCam.orthographicSize = 10f;
 			

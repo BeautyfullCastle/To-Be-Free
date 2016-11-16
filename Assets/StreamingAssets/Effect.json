@@ -4,481 +4,568 @@
 			"index": 0,
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
-			"objectType": "HP"
+			"objectType": "HP",
+			"script": "체력회복"
 		},
 		{
 			"index": 1,
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
-			"objectType": "MENTAL"
+			"objectType": "MENTAL",
+			"script": "NULL"
 		},
 		{
 			"index": 2,
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
-			"objectType": "HP_MENTAL"
+			"objectType": "HP_MENTAL",
+			"script": "NULL"
 		},
 		{
 			"index": 3,
 			"subjectType": "INFO",
 			"verbType": "MOVE",
-			"objectType": "FAR_CLOSE"
+			"objectType": "FAR_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 4,
 			"subjectType": "INFO",
 			"verbType": "MOVE",
-			"objectType": "CLOSE_FAR"
+			"objectType": "CLOSE_FAR",
+			"script": "NULL"
 		},
 		{
 			"index": 5,
 			"subjectType": "INFO",
 			"verbType": "MOVE",
-			"objectType": "RAND_RAND"
+			"objectType": "RAND_RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 6,
 			"subjectType": "INFO",
 			"verbType": "MOVE",
-			"objectType": "RAND_CLOSE"
+			"objectType": "RAND_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 7,
 			"subjectType": "INFO",
 			"verbType": "MOVE",
-			"objectType": "CLOSE_CLOSE"
+			"objectType": "CLOSE_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 8,
 			"subjectType": "INFO",
 			"verbType": "DEL",
-			"objectType": "CLOSE"
+			"objectType": "CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 9,
 			"subjectType": "INFO",
 			"verbType": "DEL",
-			"objectType": "FAR"
+			"objectType": "FAR",
+			"script": "NULL"
 		},
 		{
 			"index": 10,
 			"subjectType": "INFO",
 			"verbType": "DEL",
-			"objectType": "RAND"
+			"objectType": "RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 11,
 			"subjectType": "INFO",
 			"verbType": "ADD",
-			"objectType": "CLOSE"
+			"objectType": "CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 12,
 			"subjectType": "INFO",
 			"verbType": "ADD",
-			"objectType": "RAND"
+			"objectType": "RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 13,
 			"subjectType": "POLICE",
 			"verbType": "MOVE",
-			"objectType": "FAR_CLOSE"
+			"objectType": "FAR_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 14,
 			"subjectType": "POLICE",
 			"verbType": "MOVE",
-			"objectType": "CLOSE_FAR"
+			"objectType": "CLOSE_FAR",
+			"script": "NULL"
 		},
 		{
 			"index": 15,
 			"subjectType": "POLICE",
 			"verbType": "MOVE",
-			"objectType": "RAND_RAND"
+			"objectType": "RAND_RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 16,
 			"subjectType": "POLICE",
 			"verbType": "MOVE",
-			"objectType": "RAND_CLOSE"
+			"objectType": "RAND_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 17,
 			"subjectType": "CHARACTER",
 			"verbType": "MOVE",
-			"objectType": "CANCEL"
+			"objectType": "CANCEL",
+			"script": "NULL"
 		},
 		{
 			"index": 18,
 			"subjectType": "POLICE",
 			"verbType": "MOVE",
-			"objectType": "CLOSE_CLOSE"
+			"objectType": "CLOSE_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 19,
 			"subjectType": "POLICE",
 			"verbType": "DEL",
-			"objectType": "CLOSE"
+			"objectType": "CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 20,
 			"subjectType": "POLICE",
 			"verbType": "DEL",
-			"objectType": "FAR"
+			"objectType": "FAR",
+			"script": "NULL"
 		},
 		{
 			"index": 21,
 			"subjectType": "POLICE",
 			"verbType": "DEL",
-			"objectType": "RAND"
+			"objectType": "RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 22,
 			"subjectType": "POLICE",
 			"verbType": "ADD",
-			"objectType": "CLOSE"
+			"objectType": "CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 23,
 			"subjectType": "POLICE",
 			"verbType": "ADD",
-			"objectType": "RAND"
+			"objectType": "RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 24,
 			"subjectType": "CHARACTER",
 			"verbType": "MOVE",
-			"objectType": "CLOSE"
+			"objectType": "CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 25,
 			"subjectType": "DICE",
 			"verbType": "SET",
-			"objectType": "SUCCESSNUM"
+			"objectType": "SUCCESSNUM",
+			"script": "NULL"
 		},
 		{
 			"index": 26,
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
-			"objectType": "FOOD"
+			"objectType": "FOOD",
+			"script": "배고픔 회복"
 		},
 		{
 			"index": 27,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "STRENGTH"
+			"objectType": "STRENGTH",
+			"script": "힘 능력 상승"
 		},
 		{
 			"index": 28,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "AGILITY"
+			"objectType": "AGILITY",
+			"script": "민첩 능력 상승"
 		},
 		{
 			"index": 29,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "CONCENTRATION"
+			"objectType": "CONCENTRATION",
+			"script": "집중 능력 상승"
 		},
 		{
 			"index": 30,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "TALENT"
+			"objectType": "TALENT",
+			"script": "재주 능력 상승"
 		},
 		{
 			"index": 31,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "PATIENCE"
+			"objectType": "PATIENCE",
+			"script": "NULL"
 		},
 		{
 			"index": 32,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "LUCK"
+			"objectType": "LUCK",
+			"script": "NULL"
 		},
 		{
 			"index": 33,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "ALL"
+			"objectType": "ALL",
+			"script": "모든 능력 상승"
 		},
 		{
 			"index": 34,
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
-			"objectType": "INVEN"
+			"objectType": "INVEN",
+			"script": "NULL"
 		},
 		{
 			"index": 35,
 			"subjectType": "ITEM",
 			"verbType": "ADD",
-			"objectType": "ALL"
+			"objectType": "ALL",
+			"script": "물건 획득"
 		},
 		{
 			"index": 36,
 			"subjectType": "ITEM",
 			"verbType": "ADD",
-			"objectType": "TAG"
+			"objectType": "TAG",
+			"script": "NULL"
 		},
 		{
 			"index": 37,
 			"subjectType": "ITEM",
 			"verbType": "ADD",
-			"objectType": "INDEX"
+			"objectType": "INDEX",
+			"script": "물건 획득"
 		},
 		{
 			"index": 38,
 			"subjectType": "ITEM",
 			"verbType": "ADD",
-			"objectType": "SELECT_ALL"
+			"objectType": "SELECT_ALL",
+			"script": "NULL"
 		},
 		{
 			"index": 39,
 			"subjectType": "ITEM",
 			"verbType": "ADD",
-			"objectType": "SELECT_TAG"
+			"objectType": "SELECT_TAG",
+			"script": "NULL"
 		},
 		{
 			"index": 40,
 			"subjectType": "ITEM",
 			"verbType": "DEL",
-			"objectType": "ALL"
+			"objectType": "ALL",
+			"script": "물건 잃어버림"
 		},
 		{
 			"index": 41,
 			"subjectType": "ITEM",
 			"verbType": "DEL",
-			"objectType": "TAG"
+			"objectType": "TAG",
+			"script": "NULL"
 		},
 		{
 			"index": 42,
 			"subjectType": "ITEM",
 			"verbType": "DEL",
-			"objectType": "INDEX"
+			"objectType": "INDEX",
+			"script": "물건 잃어버림"
 		},
 		{
 			"index": 43,
 			"subjectType": "ITEM",
 			"verbType": "DEL",
-			"objectType": "SELECT"
+			"objectType": "SELECT",
+			"script": "NULL"
 		},
 		{
 			"index": 44,
 			"subjectType": "MONEY",
 			"verbType": "ADD",
-			"objectType": "SPECIFIC"
+			"objectType": "SPECIFIC",
+			"script": "돈 획득"
 		},
 		{
 			"index": 45,
 			"subjectType": "MONEY",
 			"verbType": "ADD",
-			"objectType": "RAND_3"
+			"objectType": "RAND_3",
+			"script": "돈 획득"
 		},
 		{
 			"index": 46,
 			"subjectType": "COMMAND",
 			"verbType": "DEACTIVE",
-			"objectType": "WORK"
+			"objectType": "WORK",
+			"script": "NULL"
 		},
 		{
 			"index": 47,
 			"subjectType": "COMMAND",
 			"verbType": "DEACTIVE",
-			"objectType": "MOVE"
+			"objectType": "MOVE",
+			"script": "NULL"
 		},
 		{
 			"index": 48,
 			"subjectType": "COMMAND",
 			"verbType": "DEACTIVE",
-			"objectType": "REST"
+			"objectType": "REST",
+			"script": "NULL"
 		},
 		{
 			"index": 49,
 			"subjectType": "COMMAND",
 			"verbType": "DEACTIVE",
-			"objectType": "INVESTIGATION"
+			"objectType": "INVESTIGATION",
+			"script": "NULL"
 		},
 		{
 			"index": 50,
 			"subjectType": "EVENT",
 			"verbType": "SKIP",
-			"objectType": "WORK"
+			"objectType": "WORK",
+			"script": "NULL"
 		},
 		{
 			"index": 51,
 			"subjectType": "EVENT",
 			"verbType": "SKIP",
-			"objectType": "MOVE"
+			"objectType": "MOVE",
+			"script": "NULL"
 		},
 		{
 			"index": 52,
 			"subjectType": "EVENT",
 			"verbType": "SKIP",
-			"objectType": "INFO"
+			"objectType": "INFO",
+			"script": "NULL"
 		},
 		{
 			"index": 53,
 			"subjectType": "EVENT",
 			"verbType": "SKIP",
-			"objectType": "FOOD"
+			"objectType": "FOOD",
+			"script": "NULL"
 		},
 		{
 			"index": 54,
 			"subjectType": "EVENT",
 			"verbType": "SKIP",
-			"objectType": "REST_CURE"
+			"objectType": "REST_CURE",
+			"script": "NULL"
 		},
 		{
 			"index": 55,
 			"subjectType": "EVENT",
 			"verbType": "LOAD",
-			"objectType": "NULL"
+			"objectType": "NULL",
+			"script": "NULL"
 		},
 		{
 			"index": 56,
 			"subjectType": "ABNORMAL",
 			"verbType": "ADD",
-			"objectType": "NULL"
+			"objectType": "NULL",
+			"script": "상태이상 추가"
 		},
 		{
 			"index": 57,
 			"subjectType": "ABNORMAL",
 			"verbType": "DEL",
-			"objectType": "NULL"
+			"objectType": "NULL",
+			"script": "상태이상 회복"
 		},
 		{
 			"index": 58,
 			"subjectType": "COMMAND",
 			"verbType": "DEACTIVE",
-			"objectType": "SHOP"
+			"objectType": "SHOP",
+			"script": "NULL"
 		},
 		{
 			"index": 59,
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
-			"objectType": "INFO"
+			"objectType": "INFO",
+			"script": "캐릭터가 가진 브로커정보"
 		},
 		{
 			"index": 60,
 			"subjectType": "ROOT",
 			"verbType": "OPEN",
-			"objectType": "SOUTHEAST_ASIA"
+			"objectType": "SOUTHEAST_ASIA",
+			"script": "NULL"
 		},
 		{
 			"index": 61,
 			"subjectType": "ROOT",
 			"verbType": "OPEN",
-			"objectType": "MONGOLIA"
+			"objectType": "MONGOLIA",
+			"script": "NULL"
 		},
 		{
 			"index": 62,
 			"subjectType": "BROKER",
 			"verbType": "MOVE",
-			"objectType": "FAR_CLOSE"
+			"objectType": "FAR_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 63,
 			"subjectType": "BROKER",
 			"verbType": "MOVE",
-			"objectType": "CLOSE_FAR"
+			"objectType": "CLOSE_FAR",
+			"script": "NULL"
 		},
 		{
 			"index": 64,
 			"subjectType": "BROKER",
 			"verbType": "MOVE",
-			"objectType": "RAND_RAND"
+			"objectType": "RAND_RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 65,
 			"subjectType": "BROKER",
 			"verbType": "MOVE",
-			"objectType": "RAND_CLOSE"
+			"objectType": "RAND_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 66,
 			"subjectType": "BROKER",
 			"verbType": "MOVE",
-			"objectType": "CLOSE_CLOSE"
+			"objectType": "CLOSE_CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 67,
 			"subjectType": "BROKER",
 			"verbType": "DEL",
-			"objectType": "CLOSE"
+			"objectType": "CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 68,
 			"subjectType": "BROKER",
 			"verbType": "DEL",
-			"objectType": "FAR"
+			"objectType": "FAR",
+			"script": "NULL"
 		},
 		{
 			"index": 69,
 			"subjectType": "BROKER",
 			"verbType": "DEL",
-			"objectType": "RAND"
+			"objectType": "RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 70,
 			"subjectType": "BROKER",
 			"verbType": "ADD",
-			"objectType": "CLOSE"
+			"objectType": "CLOSE",
+			"script": "NULL"
 		},
 		{
 			"index": 71,
 			"subjectType": "BROKER",
 			"verbType": "ADD",
-			"objectType": "RAND"
+			"objectType": "RAND",
+			"script": "NULL"
 		},
 		{
 			"index": 72,
 			"subjectType": "CHARACTER",
 			"verbType": "IN",
-			"objectType": "DETENTION"
+			"objectType": "DETENTION",
+			"script": "NULL"
 		},
 		{
 			"index": 73,
 			"subjectType": "ACTION",
 			"verbType": "SKIP",
-			"objectType": "ALL"
+			"objectType": "ALL",
+			"script": "NULL"
 		},
 		{
 			"index": 74,
 			"subjectType": "QUEST",
 			"verbType": "LOAD",
-			"objectType": "NULL"
+			"objectType": "NULL",
+			"script": "NULL"
 		},
 		{
 			"index": 75,
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
-			"objectType": "VIEWRANGE"
+			"objectType": "VIEWRANGE",
+			"script": "NULL"
 		},
 		{
 			"index": 76,
 			"subjectType": "POLICE",
 			"verbType": "REVEAL",
-			"objectType": "NUMBER"
+			"objectType": "NUMBER",
+			"script": "선택한 공안 위치 확인"
 		},
 		{
 			"index": 77,
 			"subjectType": "POLICE",
 			"verbType": "REVEAL",
-			"objectType": "CRACKDOWN_PROBABILITY"
+			"objectType": "CRACKDOWN_PROBABILITY",
+			"script": "탈북자 집중단속기간이 나올 확률 확인"
 		},
 		{
 			"index": 78,
 			"subjectType": "RESULT",
 			"verbType": "LOAD",
-			"objectType": "NULL"
+			"objectType": "NULL",
+			"script": "NULL"
 		},
 		{
 			"index": 79,
 			"subjectType": "QUEST",
 			"verbType": "DEL",
-			"objectType": "NULL"
+			"objectType": "NULL",
+			"script": "NULL"
+		},
+		{
+			"index": 80,
+			"subjectType": "DICE",
+			"verbType": "ADD",
+			"objectType": "NULL",
+			"script": "NULL"
 		}
 	]
 }

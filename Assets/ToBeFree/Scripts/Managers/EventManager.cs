@@ -81,7 +81,14 @@ namespace ToBeFree
 		{
 			foreach (Language.EventData data in languageList[(int)language])
 			{
-				list[data.index].Script = data.script;
+				try
+				{
+					list[data.index].Script = data.script;
+				} catch(Exception e)
+				{
+					Debug.LogError(data.index.ToString() + " : " + e);
+				}
+				
 			}
 		}
 

@@ -746,7 +746,7 @@ namespace ToBeFree
 
 			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
 
-			yield return EventManager.Instance.DoCommand(actionName, character);
+			yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[character.EventIndex], character);
 
 			yield return TimeTable.Instance.SpendRemainTime();
 

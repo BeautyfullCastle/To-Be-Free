@@ -43,13 +43,10 @@ namespace ToBeFree
 		{
 			yield return GameManager.Instance.ShowStateLabel(this.name + " is added.", 0.5f);
 
-			if (BuffManager.Instance.Exist(this.buff))
+			if (BuffManager.Instance.Exist(this.buff) && isStack)
 			{
-				if (isStack)
-				{
-					stack++;
-					buff.EffectAmountList[0].Amount += firstAmount;
-				}
+				stack++;
+				buff.EffectAmountList[0].Amount += firstAmount;
 			}
 			else
 			{
