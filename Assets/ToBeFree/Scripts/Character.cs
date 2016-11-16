@@ -63,8 +63,6 @@ namespace ToBeFree
 			isActionSkip = false;
 
 			SetCanAction(true);
-
-			GameObject.Find("Character Name").GetComponent<UILabel>().text = this.name;
 		}
 
 		private void SetCanAction(bool canAction)

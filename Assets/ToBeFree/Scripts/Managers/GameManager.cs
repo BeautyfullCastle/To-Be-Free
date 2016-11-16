@@ -397,6 +397,7 @@ namespace ToBeFree
 			// character init
 			CharacterManager.Instance.Init();
 			character = CharacterManager.Instance.List[0];
+			GameObject.Find("Character Name").GetComponent<UILabel>().text = character.Name;
 			character.Stat.RefreshUI();
 			GameObject.FindObjectOfType<UIInventory>().Change(character.Inven);
 
