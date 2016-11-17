@@ -57,7 +57,7 @@ Material:
       second: 0.01664179
     - first:
         name: _Shininess
-      second: 0.8407463
+      second: 0.03
     m_Colors:
     - first:
         name: _Color
