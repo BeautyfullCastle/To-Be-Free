@@ -79,9 +79,16 @@ namespace ToBeFree
 		void Start()
 		{
 			int smallSize = 60;
+			int middleSize = 85;
 			int bigSize = 120;
+
 			UISprite sprite = GetComponent<UISprite>();
 			sprite.color = Color.white;
+
+			nameLabel.text = gameObject.name;
+			nameLabel.color = Color.white;
+			nameLabel.depth = 4;
+
 			if (this.gameObject.name == eNodeType.SMALLCITY.ToString() || this.gameObject.name == eNodeType.TOWN.ToString()
 				|| this.gameObject.name == eNodeType.MOUNTAIN.ToString() )
 			{
@@ -106,14 +113,19 @@ namespace ToBeFree
 					sprite.spriteName = "mountain";
 				}
 			}
-			else
+			else if (this.type == eNodeType.BIGCITY)
 			{
 				sprite.width = bigSize;
 				sprite.height = bigSize;
-				nameLabel.text = gameObject.name;
-				nameLabel.color = Color.white;
 				sprite.spriteName = "bigcity";
-				
+			}
+			else if (this.type == eNodeType.MIDDLECITY)
+			{
+				sprite.width = middleSize;
+				sprite.height = middleSize;
+				sprite.spriteName = "middle";
+				nameLabel.fontSize = 11;
+				nameLabel.transform.localPosition = new Vector3(0f, -32f);
 			}
 		}
 
