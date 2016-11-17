@@ -97,6 +97,10 @@ namespace ToBeFree
 			}
 
 			list.Remove(piece);
+			if (piece.IconPiece.gameObject != null)
+			{
+				GameManager.DestroyImmediate(piece.IconPiece.gameObject);
+			}	
 			DeletePiece(piece);
 		}
 

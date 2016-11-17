@@ -133,7 +133,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 96,
+			"eventIndex": 97,
 			"duration": 2,
 			"uiName": "내일 정보원 만나기",
 			"uiConditionScript": "정보"
@@ -156,7 +156,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 96,
+			"eventIndex": 97,
 			"duration": 4,
 			"uiName": "3일 뒤 정보원 만나기",
 			"uiConditionScript": "정보"
@@ -179,7 +179,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 97,
+			"eventIndex": 98,
 			"duration": 1000,
 			"uiName": "소문의 장소에서 정보원 찾기",
 			"uiConditionScript": "정보"
@@ -202,7 +202,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 98,
+			"eventIndex": 99,
 			"duration": 1000,
 			"uiName": "4위안으로 정보 사기",
 			"uiConditionScript": "정보"
@@ -225,7 +225,7 @@
 			"failureEffectValueList": [
 				-99
 			],
-			"eventIndex": 99,
+			"eventIndex": 100,
 			"duration": 1000,
 			"uiName": "소문의 장소에서 정보원 찾기",
 			"uiConditionScript": "정보"
@@ -263,7 +263,7 @@
 			"region": "CITY",
 			"cityName": "TONGLIAO",
 			"difficulty": "NORMAL",
-			"script": "나는 준비를 할 테니. 당신은 몽골에 가까운 퉁라오로 오게. 퉁라오에서 사막을 건너는 방법을 알려주지'\\n당신은 알겠다고 하고 자리를 떠납니다.",
+			"script": "나는 준비를 할 테니. 당신은 몽골에 가까운 퉁랴오로 오게. 퉁랴오에서 사막을 건너는 방법을 알려주지'\\n당신은 알겠다고 하고 자리를 떠납니다.",
 			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
 				-99
@@ -273,7 +273,7 @@
 			],
 			"eventIndex": 90,
 			"duration": 1000,
-			"uiName": "퉁라오에 가기",
+			"uiName": "퉁랴오에 가기",
 			"uiConditionScript": "남한으로 가는 길"
 		},
 		{
@@ -286,7 +286,7 @@
 			"region": "CITY",
 			"cityName": "TONGLIAO",
 			"difficulty": "NORMAL",
-			"script": "’저희는 돈은 필요 없습니다. 돈을 목적으로 움직이고 있지 않거든요. 다만 남한으로 가는 것이 쉬운 일이 아닙니다. 사막을 건너서 몽골로 가야합니다. 몽골로 가면 남한으로 보내줄 겁니다. 사막을 건너는 건 힘든 일이니 물자를 두둑하게 챙겨야 합니다. 저는 일에 착수 하겠습니다. 선생님께서는 사막에 건널때 필요한 식량을 챙겨서 몽골 근처 퉁라오로 오시면 됩니다.'\\n당신은 알겠다고 말하고 브로커와 헤어졌습니다.",
+			"script": "’저희는 돈은 필요 없습니다. 돈을 목적으로 움직이고 있지 않거든요. 다만 남한으로 가는 것이 쉬운 일이 아닙니다. 사막을 건너서 몽골로 가야합니다. 몽골로 가면 남한으로 보내줄 겁니다. 사막을 건너는 건 힘든 일이니 물자를 두둑하게 챙겨야 합니다. 저는 일에 착수 하겠습니다. 선생님께서는 사막에 건널때 필요한 식량을 챙겨서 몽골 근처 퉁랴오로 오시면 됩니다.'\\n당신은 알겠다고 말하고 브로커와 헤어졌습니다.",
 			"failureScript": "퀘스트 실패",
 			"failureEffectIndexList": [
 				-99
@@ -296,7 +296,7 @@
 			],
 			"eventIndex": 88,
 			"duration": 1000,
-			"uiName": "6개의 식량을 가지고 퉁라오에가기",
+			"uiName": "6개의 식량을 가지고 퉁랴오에가기",
 			"uiConditionScript": "남한으로 가는 길"
 		},
 		{
@@ -344,6 +344,52 @@
 			"duration": 6,
 			"uiName": "정확히 5일뒤에 재방문",
 			"uiConditionScript": "남한으로 가는 길"
+		},
+		{
+			"index": 15,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"actionType": "NULL",
+			"region": "NULL",
+			"cityName": "NULL",
+			"difficulty": "NORMAL",
+			"script": "남한으로 가기 위해서는 남한으로 가는 방법을 알고 있는 브로커를 찾아야 합니다. 브로커에 대한 정보를 찾아서 브로커를 찾아야합니다.",
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			],
+			"eventIndex": -99,
+			"duration": 1000,
+			"uiName": "브로커정보 5개 모으기",
+			"uiConditionScript": "브로커위치"
+		},
+		{
+			"index": 16,
+			"subjectType": "NULL",
+			"objectType": "NULL",
+			"comparisonOperator": "NULL",
+			"compareAmount": -99,
+			"actionType": "NULL",
+			"region": "NULL",
+			"cityName": "NULL",
+			"difficulty": "NORMAL",
+			"script": "당신은 브로커에 대한 정보를 취합해서 브로커가 있는 위치를 찾아내는데 성공했습니다. 브로커를 찾아 남한으로 가는 길을 알아내야 합니다.",
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			],
+			"eventIndex": -99,
+			"duration": 1000,
+			"uiName": "브로커를 찾아가기",
+			"uiConditionScript": "브로커협상"
 		}
 	]
 }

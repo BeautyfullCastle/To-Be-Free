@@ -104,6 +104,16 @@ namespace ToBeFree
 						if (objectType == eObjectType.INFO)
 						{
 							character.Stat.InfoNum++;
+							if (character.Stat.InfoNum >= 5)
+							{
+								// Add broker.
+								Broker broker = new Broker(CityManager.Instance.FindRand(eSubjectType.BROKER), eSubjectType.BROKER);
+								PieceManager.Instance.Add(broker);
+								// Delete first main quest and Load main quest : "Go to the broker"
+								GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(QuestManager.Instance.List[15]);
+								yield return (QuestManager.Instance.Load(QuestManager.Instance.List[16], GameManager.Instance.Character));
+								character.Stat.InfoNum = 0;
+							}
 						}
 						if (objectType == eObjectType.FOOD)
 						{
@@ -405,12 +415,11 @@ namespace ToBeFree
 						Quest selectedQuest = QuestManager.Instance.List[amount];
 						yield return QuestManager.Instance.Load(selectedQuest, character);
 					}
-					if(verbType == eVerbType.SUCCESS)
+					if(verbType == eVerbType.DEL)
 					{
-						//Quest quest = QuestManager.Instance.List[amount];
-						//QuestPiece piece = PieceManager.Instance.Find(quest);
-						//QuestManager.Instance.ActivateResultEffects(quest.Event_.Result.Success.EffectAmounts, character);
-						//PieceManager.Instance.Delete(piece);
+						Quest quest = QuestManager.Instance.List[amount];
+
+						GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
 					}
 					break;
 				case eSubjectType.RESULT:

@@ -429,13 +429,17 @@ namespace ToBeFree
 			// activate character's passive abnormal condition.
 			yield return AbnormalConditionManager.Instance.List[character.AbnormalIndex].Activate(character);
 
+			// load first main quest.
+			yield return QuestManager.Instance.Load(QuestManager.Instance.List[15], character);
+
 			yield return null;
 
 #if UNITY_EDITOR
 			// for test
 			//character.Stat.Agility = 0;
-			//character.Stat.InfoNum = 2;
+			//character.Stat.InfoNum = 4;
 			//character.Stat.Satiety = 1;
+			//yield return QuestManager.Instance.Load(QuestManager.Instance.List[0], character);
 #endif
 
 			this.State = GameState.StartDay;

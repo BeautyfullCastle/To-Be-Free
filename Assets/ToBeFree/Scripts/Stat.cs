@@ -226,13 +226,7 @@ namespace ToBeFree
 					return;
 				}
 				infoNum = value;
-				if(infoNum >= 3)
-				{
-					Broker broker = new Broker(CityManager.Instance.FindRand(eSubjectType.BROKER), eSubjectType.BROKER);
-					PieceManager.Instance.Add(broker);
-					infoNum = 0;
-				}
-
+				
 				OnValueChange(InfoNum, eStat.INFO);
 
 			}

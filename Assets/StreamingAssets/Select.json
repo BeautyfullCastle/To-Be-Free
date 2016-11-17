@@ -247,8 +247,8 @@
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
 			"script": "그냥 간다.",
-			"linkType": "EVENT",
-			"linkIndex": 57
+			"linkType": "RESULT",
+			"linkIndex": 122
 		},
 		{
 			"index": 25,
@@ -448,7 +448,7 @@
 			"compareAmount": -99,
 			"script": "위험하니 그냥 안전한 곳으로 이동한다.",
 			"linkType": "RESULT",
-			"linkIndex": 53
+			"linkIndex": 123
 		},
 		{
 			"index": 45,
@@ -628,7 +628,7 @@
 			"compareAmount": -99,
 			"script": "빠르게 도망간다.",
 			"linkType": "EVENT",
-			"linkIndex": 71
+			"linkIndex": 57
 		},
 		{
 			"index": 63,

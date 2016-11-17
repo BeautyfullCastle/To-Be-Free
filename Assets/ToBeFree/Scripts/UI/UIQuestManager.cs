@@ -13,6 +13,7 @@ namespace ToBeFree
 		public void Awake()
 		{
 			QuestPiece.AddQuest += AddQuest;
+			grid.onCustomSort = Sort;
 		}
 
 		public void AddQuest(QuestPiece questPiece)
@@ -44,14 +45,23 @@ namespace ToBeFree
 		{
 			uiQuests.Remove(uiQuest);
 
-			if (uiQuest.QuestPiece.IconPiece.gameObject != null)
-				DestroyImmediate(uiQuest.QuestPiece.IconPiece.gameObject);
+			if(uiQuest.QuestPiece != null)
+			{
+				PieceManager.Instance.Delete(uiQuest.QuestPiece);
+			}
 
 			if (uiQuest.gameObject != null)
 			{
 				DestroyImmediate(uiQuest.gameObject);
 			}
 			
+		}
+
+		static private int Sort(Transform a, Transform b)
+		{
+			int aActionType = (int)a.GetComponent<UIQuest>().QuestPiece.CurQuest.ActionType;
+			int bActionType = (int)b.GetComponent<UIQuest>().QuestPiece.CurQuest.ActionType;
+			return aActionType.CompareTo(bActionType);
 		}
 	}
 }

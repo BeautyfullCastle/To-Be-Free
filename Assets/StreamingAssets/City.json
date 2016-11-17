@@ -727,6 +727,22 @@
 			"neighborList": [
 				35
 			]
+		},
+		{
+			"index": 42,
+			"name": "FENGCHENG",
+			"size": "MIDDLE",
+			"area": "JILINSHENG",
+			"itemIndexList": [
+				20
+			],
+			"workingMoneyRange": [
+				4,
+				20
+			],
+			"neighborList": [
+				35
+			]
 		}
 	]
 }

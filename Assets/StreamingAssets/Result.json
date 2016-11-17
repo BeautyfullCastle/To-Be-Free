@@ -507,12 +507,14 @@
 		{
 			"index": 28,
 			"stat": "NULL",
-			"successScript": "캐릭터0의 능력 발동 결과",
+			"successScript": "하루동안 힘이 2증가했습니다. 다만 힘을 쓰느라 배고픔이 1감소했습니다.",
 			"successEffectIndexList": [
-				-99
+				26,
+				56
 			],
 			"successEffectValueList": [
-				-99
+				-1,
+				18
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -1301,10 +1303,12 @@
 			"stat": "NULL",
 			"successScript": "브로커는 바로 이야기를 시작했습니다.\\n'단도직입적으로 말하지 내가 남한으로 가는 길을 알고 있지 하지만 한가지 조건이 있지'",
 			"successEffectIndexList": [
-				74
+				74,
+				79
 			],
 			"successEffectValueList": [
-				10
+				10,
+				16
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -1319,10 +1323,12 @@
 			"stat": "NULL",
 			"successScript": "잘 오셨습니다. 저는 탈북 전문가 홍창식입니다. 저는 국제 인권단체 쪽에서 활동하고 있습니다.'\\n당신은 자기소개 후 브로커의 말을 들었습니다.",
 			"successEffectIndexList": [
-				74
+				74,
+				79
 			],
 			"successEffectValueList": [
-				12
+				12,
+				16
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -1337,10 +1343,12 @@
 			"stat": "NULL",
 			"successScript": "안녕하세요. 저는 탈북 전문가 김인식입니다. 남한으로 가는 길을 알려드릴 수 있습니다만, 단 몇 가지 준비하실 것이 있습니다.'",
 			"successEffectIndexList": [
-				74
+				74,
+				79
 			],
 			"successEffectValueList": [
-				13
+				13,
+				16
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [

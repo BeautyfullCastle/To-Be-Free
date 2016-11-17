@@ -18,7 +18,12 @@ namespace ToBeFree
 			GameObject pieceObj = GameObject.Instantiate(GameManager.Instance.IconPieceObj, GameManager.Instance.IconPieceObj.transform.parent) as GameObject;
 			iconPiece = pieceObj.GetComponent<IconPiece>();
 			iconPiece.Init(subjectType);
-			city.IconCity.PutPiece(iconPiece);
+
+			if (city != null)
+			{
+				city.IconCity.PutPiece(iconPiece);
+			}
+			
 		}
 
 		public City City
@@ -262,7 +267,7 @@ namespace ToBeFree
 				yield return EventManager.Instance.WaitUntilFinish();
 
 				GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(this.CurQuest);
-				PieceManager.Instance.Delete(this);
+				//PieceManager.Instance.Delete(this);
 			}
 		}
 

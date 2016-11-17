@@ -97,33 +97,36 @@ namespace ToBeFree
 			EventManager.Instance.ActivateResultEffects(effectAmounts, character);
 		}
 
-		public IEnumerator ActivateQuest(Quest quest, bool testResult, Character character)
+		public IEnumerator ActivateQuest(Quest quest, Character character)
 		{
 			yield return EventManager.Instance.ActivateEvent(quest.Event_, character);
 		}
 
 		public IEnumerator Load(Quest selectedQuest, Character character)
 		{
-			City city = null;
-			
-			if(selectedQuest.Region == eRegion.CITY)
-			{
-				city = CityManager.Instance.Find(selectedQuest.CityName);
-			}
-			else if(selectedQuest.Region == eRegion.RANDOM)
-			{
-				city = CityManager.Instance.FindRandCityByDistance(character.CurCity, 3, eSubjectType.QUEST, eWay.NORMALWAY);
-			}
-			else if(selectedQuest.Region == eRegion.CURRENT)
-			{
-				city = character.CurCity;
-			}
-
-			QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
 			GameManager.Instance.uiEventManager.OpenUI();
 			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);
 			yield return EventManager.Instance.WaitUntilFinish();
 
+			City city = null;
+
+			if (selectedQuest.Region != eRegion.NULL)
+			{
+				if (selectedQuest.Region == eRegion.CITY)
+				{
+					city = CityManager.Instance.Find(selectedQuest.CityName);
+				}
+				else if (selectedQuest.Region == eRegion.RANDOM)
+				{
+					city = CityManager.Instance.FindRandCityByDistance(character.CurCity, 3, eSubjectType.QUEST, eWay.NORMALWAY);
+				}
+				else if (selectedQuest.Region == eRegion.CURRENT)
+				{
+					city = character.CurCity;
+				}
+				
+			}
+			QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
 			PieceManager.Instance.Add(questPiece);
 		}
 	}

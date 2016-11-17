@@ -304,13 +304,13 @@ namespace ToBeFree
 			EventManager.Instance.TestResult = quest.CheckCondition(character);
 			if (EventManager.Instance.TestResult)
 			{
-				yield return QuestManager.Instance.ActivateQuest(quest, true, character);
+				yield return QuestManager.Instance.ActivateQuest(quest, character);
 			}
 
 			// have to check TestResult again cause of Dice Test of activated quest.
 			if (EventManager.Instance.TestResult == true)
 			{
-				PieceManager.Instance.Delete(questPiece);
+				//PieceManager.Instance.Delete(questPiece);
 				GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
 			}
 

@@ -149,8 +149,8 @@
 			"script": "공안에 대한 정보를 알고 있다는 사람을 만났습니다. 그는 많은 것을 알고 있다고 정보를 알려주겠다고 합니다.",
 			"resultIndex": -99,
 			"selectIndexList": [
-				35,
-				36
+				36,
+				37
 			]
 		},
 		{
@@ -236,7 +236,8 @@
 			"script": "조사를 하다가 멀쩡해 보이는 음식이 쓰레기통에 있는 것을 발견했습니다. 이 음식을 먹을 지 고민해봅니다.",
 			"resultIndex": -99,
 			"selectIndexList": [
-				-99
+				49,
+				50
 			]
 		},
 		{
@@ -296,7 +297,7 @@
 			"index": 28,
 			"actionType": "ABILITY",
 			"difficulty": "NORMAL",
-			"script": "캐릭터0의 능력 발동",
+			"script": "김철수는 일을 하기 위해서 크게 집중했다.",
 			"resultIndex": 28,
 			"selectIndexList": [
 				-99
@@ -404,7 +405,9 @@
 			"script": "당신은 제안을 받아드렸습니다. 그는 6위안을 주면 정보를 알려주겠다고 합니다.",
 			"resultIndex": -99,
 			"selectIndexList": [
-				8
+				8,
+				9,
+				10
 			]
 		},
 		{
@@ -455,7 +458,7 @@
 			"resultIndex": -99,
 			"selectIndexList": [
 				11,
-				42
+				10
 			]
 		},
 		{
@@ -466,7 +469,7 @@
 			"resultIndex": -99,
 			"selectIndexList": [
 				12,
-				42
+				10
 			]
 		},
 		{
@@ -599,8 +602,8 @@
 			"index": 57,
 			"actionType": "NULL",
 			"difficulty": "NORMAL",
-			"script": "주인이 없다고 몰래 과일을 먹는 것은 양심에 어긋나는 행동입니다. 과수원 지나쳐 갔습니다.",
-			"resultIndex": -99,
+			"script": "이미 공안에게 들켰으니 빠르게 도망칩니다. 얼마지나지 않아 공안의 소리가 커집니다. 아무래도 주변에 탈북자가 있다는 사실을 들킨 것 같습니다. 더 빠르게 달아납니다.",
+			"resultIndex": 80,
 			"selectIndexList": [
 				-99
 			]
@@ -920,7 +923,7 @@
 			"index": 88,
 			"actionType": "NULL",
 			"difficulty": "NORMAL",
-			"script": "당신은 퉁라오의 약속한 장소에 가서 브로커에게 식량을 충분히 챙겼다고 식량을 보여줬습니다.",
+			"script": "당신은 퉁랴오의 약속한 장소에 가서 브로커에게 식량을 충분히 챙겼다고 식량을 보여줬습니다.",
 			"resultIndex": 75,
 			"selectIndexList": [
 				-99
@@ -940,7 +943,7 @@
 			"index": 90,
 			"actionType": "NULL",
 			"difficulty": "NORMAL",
-			"script": "당신은 퉁라오의 약속한 장소에서 브로커를 찾았습니다.",
+			"script": "당신은 퉁랴오의 약속한 장소에서 브로커를 찾았습니다.",
 			"resultIndex": 77,
 			"selectIndexList": [
 				-99
