@@ -409,6 +409,7 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 
 					globalHandle1 = h2.globalHandle1;
 					globalHandle2 = h1.globalHandle2;
+					t = 1f - t;
 				}
 				else if (p1Index > p2Index)
 				{

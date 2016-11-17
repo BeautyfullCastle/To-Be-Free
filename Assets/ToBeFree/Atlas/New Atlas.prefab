@@ -44,17 +44,17 @@ MonoBehaviour:
   mSprites:
   - name: 00
     x: 659
-    y: 1779
-    width: 1134
-    height: 269
+    y: 1644
+    width: 1109
+    height: 404
     borderLeft: 1
     borderRight: 1
     borderTop: 1
     borderBottom: 1
-    paddingLeft: 7
-    paddingRight: 4
-    paddingTop: 5
-    paddingBottom: 3
+    paddingLeft: 33
+    paddingRight: 17
+    paddingTop: 2
+    paddingBottom: 15
   - name: 01
     x: 364
     y: 811
@@ -82,8 +82,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 1
   - name: 03
-    x: 1790
-    y: 1652
+    x: 1769
+    y: 1646
     width: 137
     height: 126
     borderLeft: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
     paddingBottom: 7
   - name: ABILITY
     x: 538
-    y: 261
+    y: 476
     width: 81
     height: 106
     borderLeft: 0
@@ -121,8 +121,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 7
   - name: bbang
-    x: 1450
-    y: 1505
+    x: 538
+    y: 87
     width: 88
     height: 67
     borderLeft: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 5
   - name: bigcity
-    x: 1653
-    y: 1640
+    x: 1616
+    y: 1505
     width: 136
     height: 138
     borderLeft: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 2
   - name: broker
-    x: 1794
-    y: 1817
+    x: 935
+    y: 1412
     width: 238
     height: 231
     borderLeft: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
     paddingBottom: 11
   - name: BROKER
     x: 538
-    y: 154
+    y: 369
     width: 81
     height: 106
     borderLeft: 0
@@ -173,8 +173,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 7
   - name: Clock_Background
-    x: 1450
-    y: 1573
+    x: 1413
+    y: 1438
     width: 202
     height: 205
     borderLeft: 1
@@ -212,8 +212,8 @@ MonoBehaviour:
     paddingTop: 99
     paddingBottom: 94
   - name: INVESTIGATION
-    x: 538
-    y: 583
+    x: 534
+    y: 702
     width: 84
     height: 108
     borderLeft: 0
@@ -238,21 +238,21 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 15
   - name: middle
-    x: 364
-    y: 699
-    width: 112
-    height: 111
+    x: 1616
+    y: 1373
+    width: 129
+    height: 131
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 16
-    paddingRight: 15
-    paddingTop: 3
-    paddingBottom: 29
+    paddingLeft: 8
+    paddingRight: 6
+    paddingTop: 7
+    paddingBottom: 5
   - name: mountain
-    x: 659
-    y: 1503
+    x: 0
+    y: 27
     width: 275
     height: 275
     borderLeft: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
     paddingTop: 12
     paddingBottom: 13
   - name: MOVE
-    x: 477
+    x: 364
     y: 701
     width: 84
     height: 109
@@ -290,8 +290,8 @@ MonoBehaviour:
     paddingTop: 63
     paddingBottom: 64
   - name: quest
-    x: 1211
-    y: 1547
+    x: 1174
+    y: 1412
     width: 238
     height: 231
     borderLeft: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
     paddingBottom: 11
   - name: QUEST
     x: 538
-    y: 368
+    y: 155
     width: 81
     height: 105
     borderLeft: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
     paddingBottom: 7
   - name: REST
     x: 538
-    y: 474
+    y: 583
     width: 84
     height: 108
     borderLeft: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
     paddingBottom: 3
   - name: SHOP
     x: 538
-    y: 47
+    y: 261
     width: 81
     height: 106
     borderLeft: 0
@@ -342,8 +342,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 6
   - name: small
-    x: 0
-    y: 27
+    x: 1769
+    y: 1773
     width: 275
     height: 275
     borderLeft: 0
@@ -355,8 +355,8 @@ MonoBehaviour:
     paddingTop: 12
     paddingBottom: 13
   - name: walk
-    x: 935
-    y: 1503
+    x: 659
+    y: 1368
     width: 275
     height: 275
     borderLeft: 0
@@ -368,8 +368,8 @@ MonoBehaviour:
     paddingTop: 12
     paddingBottom: 13
   - name: white
-    x: 623
-    y: 659
+    x: 619
+    y: 778
     width: 32
     height: 32
     borderLeft: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: WORK
-    x: 562
+    x: 449
     y: 701
     width: 84
     height: 109
