@@ -29,6 +29,9 @@ namespace ToBeFree
 
 		public IEnumerator Check()
 		{
+			TipManager.Instance.Show(eTipTiming.PoliceTurn);
+			yield return GameManager.Instance.ShowStateLabel("Police Turn", 2f);
+
 			if(isCrackDown)
 			{
 				isCrackDown = false;
@@ -41,6 +44,7 @@ namespace ToBeFree
 					isCrackDown = true;
 					crackDownEffect.enabled = true;
 					probability = 0;
+					TipManager.Instance.Show(eTipTiming.Crackdown);
 				}
 				else
 				{

@@ -15,17 +15,3 @@ public class ResultData : IData
     public int[] failureEffectIndexList;
     public int[] failureEffectValueList;
 }
-
-public class ResultDataList
-{
-    public ResultData[] dataList;
-
-    public ResultDataList(string file)
-    {
-        StreamReader reader = new StreamReader(file);
-        string json = reader.ReadToEnd();
-
-        var dataList = JsonUtility.FromJson<ResultDataList>(json);
-        this.dataList = dataList.dataList;
-    }
-}

@@ -296,7 +296,12 @@ namespace ToBeFree
 			foreach (Piece piece in PieceManager.Instance.FindAll(eSubjectType.POLICE))
 			{
 				Police police = piece as Police;
-				police.IconPiece.gameObject.SetActive(cityList.Exists(x => x == police.City));
+				bool isExist = cityList.Exists(x => x == police.City);
+				police.IconPiece.gameObject.SetActive(isExist);
+				if(isExist)
+				{
+					TipManager.Instance.Show(eTipTiming.PoliceAppeared);
+				}
 			}
 		}
 

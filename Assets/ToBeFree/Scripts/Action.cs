@@ -333,7 +333,7 @@ namespace ToBeFree
 		public override IEnumerator Activate(Character character)
 		{
 			Debug.LogWarning("Inpect action activated.");
-			
+			TipManager.Instance.Show(eTipTiming.Inspect);
 			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
 			List<Piece> policesInThisCity = PieceManager.Instance.FindAll(eSubjectType.POLICE).FindAll(x=>x.City == character.CurCity);
@@ -388,6 +388,7 @@ namespace ToBeFree
 		{
 			yield return base.Activate(character);
 
+			TipManager.Instance.Show(eTipTiming.Detention);
 			// ActState : 체포상태에서 체포된 공안의 이동력만큼 이동
 			if (GameManager.Instance.State == GameManager.GameState.Detention)
 			{
@@ -405,6 +406,7 @@ namespace ToBeFree
 
 				if (isLastCity)
 				{
+					TipManager.Instance.Show(eTipTiming.Camp);
 					actionName = eEventAction.CAMP;
 					yield return EventManager.Instance.DoCommand(actionName, character);
 				}

@@ -53,11 +53,11 @@ namespace ToBeFree
 				{
 					try {
 						event_ = EventManager.Instance.List[data.eventIndex];
-					} catch (UnityException e)
+					} catch (Exception e)
 					{
 						if(e == null)
 						{
-							Debug.LogError(e.Message);
+							Debug.LogError(data.eventIndex + " : " + e.Message);
 						}
 					}
 				}

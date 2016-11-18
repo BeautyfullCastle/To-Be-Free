@@ -137,6 +137,19 @@ namespace ToBeFree
 
 			this.CurCity = city;
 
+			if(city.Type == eNodeType.BIGCITY)
+			{
+				TipManager.Instance.Show(eTipTiming.BigCity);
+			}
+			else if(city.Type == eNodeType.TOWN)
+			{
+				TipManager.Instance.Show(eTipTiming.Street);
+			}
+			else if(city.Type == eNodeType.MOUNTAIN)
+			{
+				TipManager.Instance.Show(eTipTiming.Mountain);
+			}
+
 			Stat.SetViewRange();
 		}
 		
@@ -370,6 +383,24 @@ namespace ToBeFree
 			{
 				abnormalIndex = value;
 			}
+		}
+
+		public IEnumerator Init()
+		{
+			GameObject.Find("Character Name").GetComponent<UILabel>().text = this.Name;
+			this.Stat.RefreshUI();
+			this.Stat.SetViewRange();
+
+			GameObject.FindObjectOfType<UIInventory>().Change(this.Inven);
+			
+			UICenterOnChild scrollviewCenter = GameObject.FindObjectOfType<UICenterOnChild>();
+			scrollviewCenter.CenterOn(this.CurCity.IconCity.transform);
+			scrollviewCenter.enabled = false;
+			
+			// activate character's passive abnormal condition.
+			yield return AbnormalConditionManager.Instance.List[this.AbnormalIndex].Activate(this);
+
+			yield return this.MoveTo(this.CurCity, true);
 		}
 	}
 }

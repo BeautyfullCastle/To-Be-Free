@@ -25,6 +25,7 @@ namespace ToBeFree
 		public GameObject uiSetting;
 		public UIGrid commandPopupGrid;
 		public GameObject IconPieceObj;
+		public GameObject TipUIObj;
 
 		[HideInInspector]
 		public IconCity[] iconCities;
@@ -53,6 +54,8 @@ namespace ToBeFree
 
 		private void Init()
 		{
+			TipManager.Instance.Init();
+
 			DiceTester.Instance.Init();
 			CityManager.Instance.Init();
 			iconCities = GameObject.FindObjectsOfType<IconCity>();
@@ -85,6 +88,8 @@ namespace ToBeFree
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
 			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
+			TipUIObj = GameObject.Find("Tip");
+			TipUIObj.SetActive(false);
 		}
 		
 		public void ClickCity(IconCity city)
@@ -133,7 +138,7 @@ namespace ToBeFree
 			{
 				case eCommand.MOVE:
 					action = new Move();
-
+					TipManager.Instance.Show(eTipTiming.Move);
 					InstantiatePopup("Normal Move", eEventAction.MOVE);
 					UICommandPopup busPopup = InstantiatePopup("Bus", eEventAction.MOVE_BUS);
 					List<City> busCityList = CityManager.Instance.GetCityList(eWay.HIGHWAY);
@@ -148,20 +153,20 @@ namespace ToBeFree
 
 				case eCommand.WORK:
 					action = new Work();
-
+					TipManager.Instance.Show(eTipTiming.Work);
 					InstantiatePopup("Normal Work", eEventAction.WORK);
 
 					break;
 				case eCommand.REST:
 					action = new Rest();
-
+					TipManager.Instance.Show(eTipTiming.Rest);
 					InstantiatePopup("Normal Rest", eEventAction.REST);
 					InstantiatePopup("Hide Rest", eEventAction.HIDE);
 
 					break;
 				case eCommand.INVESTIGATION:
 					action = new Investigation();
-
+					TipManager.Instance.Show(eTipTiming.Investigation);
 					UICommandPopup[] investigationPopups = new UICommandPopup[3];
 					UICommandPopup gatheringPopup = null;
 
@@ -190,6 +195,7 @@ namespace ToBeFree
 					break;
 				case eCommand.SHOP:
 					action = new EnterToShop();
+					TipManager.Instance.Show(eTipTiming.Shop);
 					character.CanAction[(int)commandType] = false;
 					action.RequiredTime = 1;
 					isActStart = true;
@@ -396,17 +402,11 @@ namespace ToBeFree
 
 			// character init
 			CharacterManager.Instance.Init();
-			character = CharacterManager.Instance.List[0];
-			GameObject.Find("Character Name").GetComponent<UILabel>().text = character.Name;
-			character.Stat.RefreshUI();
-			GameObject.FindObjectOfType<UIInventory>().Change(character.Inven);
+			character = CharacterManager.Instance.List[1];
+			yield return character.Init();
+			
 
 			shopUIObj.GetComponent<UIShop>().Init();
-
-			//yield return character.MoveTo(character.CurCity);
-
-			//CityManager.Instance.FindNearestPathToStartCity(CityManager.Instance.Find(eCity.KUNMING), CityManager.Instance.Find(eCity.DANDONG));
-
 
 			inspectAction = new Inspect();
 
@@ -419,15 +419,6 @@ namespace ToBeFree
 				PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
 				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 			}
-
-			yield return character.MoveTo(character.CurCity, true);
-			// init character's view range.
-			character.Stat.SetViewRange();
-			UICenterOnChild scrollviewCenter = GameObject.FindObjectOfType<UICenterOnChild>();
-			scrollviewCenter.CenterOn(character.CurCity.IconCity.transform);
-			scrollviewCenter.enabled = false;
-			// activate character's passive abnormal condition.
-			yield return AbnormalConditionManager.Instance.List[character.AbnormalIndex].Activate(character);
 
 			// load first main quest.
 			yield return QuestManager.Instance.Load(QuestManager.Instance.List[15], character);
@@ -529,6 +520,7 @@ namespace ToBeFree
 		{
 			// Enter
 			yield return (ShowStateLabel("Act State", 0.5f));
+			TipManager.Instance.Show(eTipTiming.Act);
 			foreach (UICommand command in commands)
 			{
 				command.SetActiveCommands();

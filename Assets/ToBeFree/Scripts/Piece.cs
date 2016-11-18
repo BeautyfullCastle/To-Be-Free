@@ -117,6 +117,8 @@ namespace ToBeFree
 			
 			// police can't go to the mountain.
 			cityList.RemoveAll(x => x.Type == eNodeType.MOUNTAIN);
+
+			TipManager.Instance.Show(eTipTiming.PoliceMove);
 			
 			yield return MoveCity(cityList[UnityEngine.Random.Range(0, cityList.Count)]);
 		}

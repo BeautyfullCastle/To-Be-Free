@@ -89,6 +89,8 @@ namespace ToBeFree
 				return;
 			}
 
+			TipManager.Instance.Show(eTipTiming.GrabItem);
+
 			// 아이템을 누르고 있는 동안은 충돌체를 비활성화한다.
 			GetComponent<Collider2D>().enabled = !pressed;
 
