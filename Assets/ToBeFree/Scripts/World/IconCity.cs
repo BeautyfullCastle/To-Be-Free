@@ -70,10 +70,12 @@ namespace ToBeFree
 			questOffset = this.transform.FindChild("Quest Offset");
 			brokerOffset = this.transform.FindChild("Broker Offset");
 
-			LanguageSelection.selectLanguageForUI += ChangeLanguage;
+			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			EventDelegate.Parameter param = new EventDelegate.Parameter(this, string.Empty);
 			NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), this.GetComponent<UIButton>(), "ClickCity", new EventDelegate.Parameter[] { param });
+
+
 		}
 
 		void Start()
@@ -171,7 +173,7 @@ namespace ToBeFree
 			Language.CityData[] list = null;
 			if (language == eLanguage.KOREAN)
 			{
-				list = CityManager.Instance.KorList;				
+				list = CityManager.Instance.KorList;
 			}
 			else if (language == eLanguage.ENGLISH)
 			{

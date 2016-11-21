@@ -1,0 +1,354 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"key": "UI_Move",
+			"script": "Move"
+		},
+		{
+			"index": 1,
+			"key": "UI_Work",
+			"script": "Work"
+		},
+		{
+			"index": 2,
+			"key": "UI_Inquiry",
+			"script": "Inquiry"
+		},
+		{
+			"index": 3,
+			"key": "UI_Rest",
+			"script": "Rest"
+		},
+		{
+			"index": 4,
+			"key": "UI_Shop",
+			"script": "Shop"
+		},
+		{
+			"index": 5,
+			"key": "UI_Broker",
+			"script": "Broker"
+		},
+		{
+			"index": 6,
+			"key": "UI_Quest",
+			"script": "Quest"
+		},
+		{
+			"index": 7,
+			"key": "UI_Abilty",
+			"script": "Abilty"
+		},
+		{
+			"index": 8,
+			"key": "UI_CityInquiry",
+			"script": "City Inquiry"
+		},
+		{
+			"index": 9,
+			"key": "UI_BrokerInquiry",
+			"script": "Broker Inquiry"
+		},
+		{
+			"index": 10,
+			"key": "UI_PoliceInquiry",
+			"script": "Police Inquiry"
+		},
+		{
+			"index": 11,
+			"key": "UI_GatheringInquiry",
+			"script": "Gathering Inquiry"
+		},
+		{
+			"index": 12,
+			"key": "UI_HideRest",
+			"script": "Hide Rest"
+		},
+		{
+			"index": 13,
+			"key": "UI_Walking",
+			"script": "Walking"
+		},
+		{
+			"index": 14,
+			"key": "UI_Bus",
+			"script": "Bus"
+		},
+		{
+			"index": 15,
+			"key": "UI_HP",
+			"script": "HP"
+		},
+		{
+			"index": 16,
+			"key": "UI_Satiety",
+			"script": "Satiety"
+		},
+		{
+			"index": 17,
+			"key": "UI_Money",
+			"script": "Money"
+		},
+		{
+			"index": 18,
+			"key": "UI_Info",
+			"script": "Info"
+		},
+		{
+			"index": 19,
+			"key": "UI_Strength",
+			"script": "Strength"
+		},
+		{
+			"index": 20,
+			"key": "UI_Agility",
+			"script": "Agility"
+		},
+		{
+			"index": 21,
+			"key": "UI_Talent",
+			"script": "Talent"
+		},
+		{
+			"index": 22,
+			"key": "UI_Focus",
+			"script": "Focus"
+		},
+		{
+			"index": 23,
+			"key": "UI_Day",
+			"script": "Day"
+		},
+		{
+			"index": 24,
+			"key": "UI_Setting",
+			"script": "Setting"
+		},
+		{
+			"index": 25,
+			"key": "UI_Resolution",
+			"script": "Resolution"
+		},
+		{
+			"index": 26,
+			"key": "UI_FullScreen",
+			"script": "Full Screen"
+		},
+		{
+			"index": 27,
+			"key": "UI_MusicVolume",
+			"script": "Music Volume"
+		},
+		{
+			"index": 28,
+			"key": "UI_EffectVolume",
+			"script": "Effect Volume"
+		},
+		{
+			"index": 29,
+			"key": "UI_Mute",
+			"script": "Mute"
+		},
+		{
+			"index": 30,
+			"key": "UI_Language",
+			"script": "Language"
+		},
+		{
+			"index": 31,
+			"key": "Event_Start_Working",
+			"script": "Start Working"
+		},
+		{
+			"index": 32,
+			"key": "Event_Start_CityInvestigation",
+			"script": "Start City"
+		},
+		{
+			"index": 33,
+			"key": "Event_Start_PoliceInvestigation",
+			"script": "Start_Police"
+		},
+		{
+			"index": 34,
+			"key": "Event_Start_BrokerInfoInvestigation",
+			"script": "Start_BrokerInfo"
+		},
+		{
+			"index": 35,
+			"key": "Event_Start_Gathering",
+			"script": "Start_Gathering"
+		},
+		{
+			"index": 36,
+			"key": "Event_Start_Rest",
+			"script": "Start_Rest"
+		},
+		{
+			"index": 37,
+			"key": "Event_Start_Broker",
+			"script": "Start_Broker"
+		},
+		{
+			"index": 38,
+			"key": "Event_Start_Walking",
+			"script": "Start_Walking"
+		},
+		{
+			"index": 39,
+			"key": "Event_Start_Bus",
+			"script": "Start_Bus"
+		},
+		{
+			"index": 40,
+			"key": "Event_Start_Ability",
+			"script": "Start_Ability"
+		},
+		{
+			"index": 41,
+			"key": "UI_Police_Turn",
+			"script": "Police_Turn"
+		},
+		{
+			"index": 42,
+			"key": "UI_Your_Turn",
+			"script": "Your_Turn"
+		},
+		{
+			"index": 43,
+			"key": "Event_Police_Add",
+			"script": "Police_Add"
+		},
+		{
+			"index": 44,
+			"key": "Event_Police_AddStat",
+			"script": "Police_Up"
+		},
+		{
+			"index": 45,
+			"key": "Event_Police_Move",
+			"script": "Police_Move"
+		},
+		{
+			"index": 46,
+			"key": "Event_Police_CrackDown",
+			"script": "Polive_Crack"
+		},
+		{
+			"index": 47,
+			"key": "UI_Road",
+			"script": "Road"
+		},
+		{
+			"index": 48,
+			"key": "UI_SmallTown",
+			"script": "small town"
+		},
+		{
+			"index": 49,
+			"key": "UI_MiddleCity",
+			"script": "mid city"
+		},
+		{
+			"index": 50,
+			"key": "UI_BigCity",
+			"script": "big city"
+		},
+		{
+			"index": 51,
+			"key": "UI_Mountain",
+			"script": "mountain"
+		},
+		{
+			"index": 52,
+			"key": "UI_RequiredTime",
+			"script": "Time"
+		},
+		{
+			"index": 53,
+			"key": "Over_Move",
+			"script": "Over_Move"
+		},
+		{
+			"index": 54,
+			"key": "Over_Work",
+			"script": "Over_Work"
+		},
+		{
+			"index": 55,
+			"key": "Over_Inquiry",
+			"script": "Over_Inquiry"
+		},
+		{
+			"index": 56,
+			"key": "Over_Rest",
+			"script": "Over_Rest"
+		},
+		{
+			"index": 57,
+			"key": "Over_Shop",
+			"script": "Over_Shop"
+		},
+		{
+			"index": 58,
+			"key": "Over_Abilty",
+			"script": "Over_Abilty"
+		},
+		{
+			"index": 59,
+			"key": "Over_Quest",
+			"script": "Over_Quest"
+		},
+		{
+			"index": 60,
+			"key": "Over_Broker",
+			"script": "Over_Broker"
+		},
+		{
+			"index": 61,
+			"key": "Popup_Walking",
+			"script": "Popup_Walking"
+		},
+		{
+			"index": 62,
+			"key": "Popup_Bus_Move",
+			"script": "Popup_Bus_Move"
+		},
+		{
+			"index": 63,
+			"key": "Popup_City_Inquiry",
+			"script": "Popup_City_Inquiry"
+		},
+		{
+			"index": 64,
+			"key": "Popup_Broker_Inquiry",
+			"script": "Popup_Broker_Inquiry"
+		},
+		{
+			"index": 65,
+			"key": "Popup_Police_Inquiry",
+			"script": "Popup_Police_Inquiry"
+		},
+		{
+			"index": 66,
+			"key": "Popup_Gathering_Inquiry",
+			"script": "Popup_Gathering_Inquiry"
+		},
+		{
+			"index": 67,
+			"key": "Popup_Hide_Rest",
+			"script": "Popup_Hide_Rest"
+		},
+		{
+			"index": 68,
+			"key": "Popup_Work",
+			"script": "Popup_Work"
+		},
+		{
+			"index": 69,
+			"key": "Popup_Rest",
+			"script": "Popup_Rest"
+		}
+	]
+}

@@ -3,16 +3,20 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-    public class LanguageSelection : MonoBehaviour
-    {
-        public delegate void selectLanguageHandler(eLanguage language);
-        static public event selectLanguageHandler selectLanguageForManager;
-        static public event selectLanguageHandler selectLanguageForUI;
+	public class LanguageSelection : MonoBehaviour
+	{
+		public delegate void selectLanguageHandler(eLanguage language);
+		static public event selectLanguageHandler selectLanguage;
 
-        public void SelectLanguage(string language)
-        {
-            selectLanguageForManager(EnumConvert<eLanguage>.ToEnum(language));
-            selectLanguageForUI(EnumConvert<eLanguage>.ToEnum(language));
-        }
-    }
+		//void Awake()
+		//{
+		//	SelectLanguage("KOREAN");
+		//}
+
+		public void SelectLanguage(string language)
+		{
+			LanguageManager.Instance.LanguageSelection_selectLanguageForUI(EnumConvert<eLanguage>.ToEnum(language));
+			selectLanguage(EnumConvert<eLanguage>.ToEnum(language));
+		}
+	}
 }

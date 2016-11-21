@@ -1,0 +1,354 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"key": "UI_Move",
+			"script": "이동"
+		},
+		{
+			"index": 1,
+			"key": "UI_Work",
+			"script": "일"
+		},
+		{
+			"index": 2,
+			"key": "UI_Inquiry",
+			"script": "조사"
+		},
+		{
+			"index": 3,
+			"key": "UI_Rest",
+			"script": "휴식"
+		},
+		{
+			"index": 4,
+			"key": "UI_Shop",
+			"script": "상점"
+		},
+		{
+			"index": 5,
+			"key": "UI_Broker",
+			"script": "브로커"
+		},
+		{
+			"index": 6,
+			"key": "UI_Quest",
+			"script": "의뢰"
+		},
+		{
+			"index": 7,
+			"key": "UI_Abilty",
+			"script": "능력"
+		},
+		{
+			"index": 8,
+			"key": "UI_CityInquiry",
+			"script": "도시 조사"
+		},
+		{
+			"index": 9,
+			"key": "UI_BrokerInquiry",
+			"script": "브로커 조사"
+		},
+		{
+			"index": 10,
+			"key": "UI_PoliceInquiry",
+			"script": "공안 조사"
+		},
+		{
+			"index": 11,
+			"key": "UI_GatheringInquiry",
+			"script": "채집 조사"
+		},
+		{
+			"index": 12,
+			"key": "UI_HideRest",
+			"script": "숨기 휴식"
+		},
+		{
+			"index": 13,
+			"key": "UI_Walking",
+			"script": "도보 이동"
+		},
+		{
+			"index": 14,
+			"key": "UI_Bus",
+			"script": "버스 이동"
+		},
+		{
+			"index": 15,
+			"key": "UI_HP",
+			"script": "체력"
+		},
+		{
+			"index": 16,
+			"key": "UI_Satiety",
+			"script": "배고픔"
+		},
+		{
+			"index": 17,
+			"key": "UI_Money",
+			"script": "돈"
+		},
+		{
+			"index": 18,
+			"key": "UI_Info",
+			"script": "정보"
+		},
+		{
+			"index": 19,
+			"key": "UI_Strength",
+			"script": "힘"
+		},
+		{
+			"index": 20,
+			"key": "UI_Agility",
+			"script": "민첩"
+		},
+		{
+			"index": 21,
+			"key": "UI_Talent",
+			"script": "재주"
+		},
+		{
+			"index": 22,
+			"key": "UI_Focus",
+			"script": "집중"
+		},
+		{
+			"index": 23,
+			"key": "UI_Day",
+			"script": "일"
+		},
+		{
+			"index": 24,
+			"key": "UI_Setting",
+			"script": "설정"
+		},
+		{
+			"index": 25,
+			"key": "UI_Resolution",
+			"script": "해상도"
+		},
+		{
+			"index": 26,
+			"key": "UI_FullScreen",
+			"script": "전체 화면"
+		},
+		{
+			"index": 27,
+			"key": "UI_MusicVolume",
+			"script": "배경음"
+		},
+		{
+			"index": 28,
+			"key": "UI_EffectVolume",
+			"script": "효과음"
+		},
+		{
+			"index": 29,
+			"key": "UI_Mute",
+			"script": "음소거"
+		},
+		{
+			"index": 30,
+			"key": "UI_Language",
+			"script": "언어"
+		},
+		{
+			"index": 31,
+			"key": "Event_Start_Working",
+			"script": "당신은 게시판의 일거리를 찾아서 일을 시작했습니다."
+		},
+		{
+			"index": 32,
+			"key": "Event_Start_CityInvestigation",
+			"script": "당신은 도시의 다양한 정보조사를 시작했습니다."
+		},
+		{
+			"index": 33,
+			"key": "Event_Start_PoliceInvestigation",
+			"script": "당신은 공안에 대한 정보조사를 시작했습니다."
+		},
+		{
+			"index": 34,
+			"key": "Event_Start_BrokerInfoInvestigation",
+			"script": "당신은 브로커에 대한 정보조사를 시작했습니다."
+		},
+		{
+			"index": 35,
+			"key": "Event_Start_Gathering",
+			"script": "당신은 산에서 식량을 채집하기 시작했습니다."
+		},
+		{
+			"index": 36,
+			"key": "Event_Start_Rest",
+			"script": "당신은 한적한 곳에서 휴식을 취하기 시작했습니다."
+		},
+		{
+			"index": 37,
+			"key": "Event_Start_Broker",
+			"script": "당신은 브로커가 있다는 장소에서, 브로커를 찾습니다."
+		},
+		{
+			"index": 38,
+			"key": "Event_Start_Walking",
+			"script": "당신은 목적지까지 걸어서 이동합니다."
+		},
+		{
+			"index": 39,
+			"key": "Event_Start_Bus",
+			"script": "당신은 목적지까지 버스를 타고 이동합니다."
+		},
+		{
+			"index": 40,
+			"key": "Event_Start_Ability",
+			"script": "당신은 집중해서 능력을 사용합니다."
+		},
+		{
+			"index": 41,
+			"key": "UI_Police_Turn",
+			"script": "공안의 차례"
+		},
+		{
+			"index": 42,
+			"key": "UI_Your_Turn",
+			"script": "당신의 차례"
+		},
+		{
+			"index": 43,
+			"key": "Event_Police_Add",
+			"script": "어딘가에서 새로운 공안이 추가 되었습니다."
+		},
+		{
+			"index": 44,
+			"key": "Event_Police_AddStat",
+			"script": "어딘가에서 기존의 공안에 새로운 병력이 추가 되었습니다."
+		},
+		{
+			"index": 45,
+			"key": "Event_Police_Move",
+			"script": "어딘가에서 공안이 이동했습니다."
+		},
+		{
+			"index": 46,
+			"key": "Event_Police_CrackDown",
+			"script": "공안이 탈북자 집중단속기간을 선언했습니다. 다음 공안 차례까지 탈북자들을 집중 단속합니다."
+		},
+		{
+			"index": 47,
+			"key": "UI_Road",
+			"script": "길"
+		},
+		{
+			"index": 48,
+			"key": "UI_SmallTown",
+			"script": "소도시"
+		},
+		{
+			"index": 49,
+			"key": "UI_MiddleCity",
+			"script": "중도시"
+		},
+		{
+			"index": 50,
+			"key": "UI_BigCity",
+			"script": "대도시"
+		},
+		{
+			"index": 51,
+			"key": "UI_Mountain",
+			"script": "산"
+		},
+		{
+			"index": 52,
+			"key": "UI_RequiredTime",
+			"script": "소요 시간"
+		},
+		{
+			"index": 53,
+			"key": "Over_Move",
+			"script": "다른 곳으로 이동합니다."
+		},
+		{
+			"index": 54,
+			"key": "Over_Work",
+			"script": "힘을 이용해서 돈을 법니다."
+		},
+		{
+			"index": 55,
+			"key": "Over_Inquiry",
+			"script": "재주를 이용해서 각종 정보를 획득 합니다."
+		},
+		{
+			"index": 56,
+			"key": "Over_Rest",
+			"script": "집중해서 밥을 먹고 상태이상과 HP를 회복합니다."
+		},
+		{
+			"index": 57,
+			"key": "Over_Shop",
+			"script": "돈을 사용해서 물건을 구입합니다."
+		},
+		{
+			"index": 58,
+			"key": "Over_Abilty",
+			"script": "캐릭터의 능력을 사용합니다."
+		},
+		{
+			"index": 59,
+			"key": "Over_Quest",
+			"script": "받은 의뢰를 해결합니다."
+		},
+		{
+			"index": 60,
+			"key": "Over_Broker",
+			"script": "브로커를 만납니다."
+		},
+		{
+			"index": 61,
+			"key": "Popup_Walking",
+			"script": "걸어서 이동합니다."
+		},
+		{
+			"index": 62,
+			"key": "Popup_Bus_Move",
+			"script": "4위안을 내고 다음 정류장이 있는 도시로 이동합니다."
+		},
+		{
+			"index": 63,
+			"key": "Popup_City_Inquiry",
+			"script": "도시의 정보를 조사합니다. 도시의 의뢰, 물건, 돈을 얻을 수 있습니다."
+		},
+		{
+			"index": 64,
+			"key": "Popup_Broker_Inquiry",
+			"script": "브로커 정보를 조사합니다. 브로커에 대한 의뢰, 정보를 얻을 수 있습니다."
+		},
+		{
+			"index": 65,
+			"key": "Popup_Police_Inquiry",
+			"script": "공안에 대한 정보를 조사합니다.\\n 도시에 대한 공안의 수, 집중단속 확률, 시야증가를 얻을 수 있습니다."
+		},
+		{
+			"index": 66,
+			"key": "Popup_Gathering_Inquiry",
+			"script": "산에서 재주를 이용해서 식량을 찾아봅니다."
+		},
+		{
+			"index": 67,
+			"key": "Popup_Hide_Rest",
+			"script": "공안을 피해서 휴식합니다.\\n 주사위 2개가 줄어듭니다."
+		},
+		{
+			"index": 68,
+			"key": "Popup_Work",
+			"script": "힘을 이용해서 돈을 법니다."
+		},
+		{
+			"index": 69,
+			"key": "Popup_Rest",
+			"script": "집중해서 밥을 먹고 상태이상과 HP를 회복합니다."
+		}
+	]
+}

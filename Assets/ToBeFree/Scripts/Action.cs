@@ -72,6 +72,11 @@ namespace ToBeFree
 		{
 			Debug.Log("Rest Action Activated.");
 
+			GameManager.Instance.OpenEventUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
+				LanguageManager.Instance.Find(eLanguageKey.Event_Start_Rest));
+			yield return EventManager.Instance.WaitUntilFinish();
+
 			yield return base.Activate(character);
 			
 			if (character.CheckSpecialEvent())
@@ -142,6 +147,12 @@ namespace ToBeFree
 		public override IEnumerator Activate(Character character)
 		{
 			Debug.LogWarning("Work action activated.");
+
+			GameManager.Instance.OpenEventUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
+				LanguageManager.Instance.Find(eLanguageKey.Event_Start_Working));
+			yield return EventManager.Instance.WaitUntilFinish();
+
 			yield return base.Activate(character);
 			
 			if (character.CheckSpecialEvent())
@@ -216,6 +227,20 @@ namespace ToBeFree
 		public override IEnumerator Activate(Character character)
 		{
 			Debug.LogWarning("Move action Activated.");
+
+			string event_start_script = string.Empty;
+			if (actionName == eEventAction.MOVE_BUS)
+			{
+				event_start_script = LanguageManager.Instance.Find(eLanguageKey.Event_Start_Bus);
+			}
+			else if (actionName == eEventAction.MOVE)
+			{
+				event_start_script = LanguageManager.Instance.Find(eLanguageKey.Event_Start_Walking);
+			}
+			GameManager.Instance.OpenEventUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, event_start_script);
+			yield return EventManager.Instance.WaitUntilFinish();
+
 			yield return base.Activate(character);
 
 			bool dontMove = false;
@@ -458,8 +483,27 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			Debug.LogWarning("Info action activated.");
-			NGUIDebug.Log("Info action");
+			string event_start_script = string.Empty;
+			if (actionName == eEventAction.INVESTIGATION_BROKER)
+			{
+				event_start_script = LanguageManager.Instance.Find(eLanguageKey.Event_Start_BrokerInfoInvestigation);
+			}
+			else if (actionName == eEventAction.INVESTIGATION_CITY)
+			{
+				event_start_script = LanguageManager.Instance.Find(eLanguageKey.Event_Start_CityInvestigation);
+			}
+			else if (actionName == eEventAction.INVESTIGATION_POLICE)
+			{
+				event_start_script = LanguageManager.Instance.Find(eLanguageKey.Event_Start_PoliceInvestigation);
+			}
+			else if (actionName == eEventAction.GATHERING)
+			{
+				event_start_script = LanguageManager.Instance.Find(eLanguageKey.Event_Start_Gathering);
+			}
+			GameManager.Instance.OpenEventUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, event_start_script);
+			yield return EventManager.Instance.WaitUntilFinish();
+
 
 			yield return base.Activate(character);
 			
@@ -473,7 +517,6 @@ namespace ToBeFree
 				character.Stat.TempDiceNum += 2;
 			}
 			
-
 			// 스페셜 이벤트 처리
 			if (character.CheckSpecialEvent())
 			{
@@ -709,8 +752,12 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			Debug.LogWarning("BrokerAction activated.");
 			NGUIDebug.Log("BrokerAction action");
+
+			GameManager.Instance.OpenEventUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
+				LanguageManager.Instance.Find(eLanguageKey.Event_Start_Broker));
+			yield return EventManager.Instance.WaitUntilFinish();
 
 			yield return base.Activate(character);
 
@@ -741,8 +788,12 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			Debug.LogWarning("AbilityAction activated.");
 			NGUIDebug.Log("AbilityAction action");
+
+			GameManager.Instance.OpenEventUI();
+			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
+				LanguageManager.Instance.Find(eLanguageKey.Event_Start_Ability));
+			yield return EventManager.Instance.WaitUntilFinish();
 
 			yield return base.Activate(character);
 

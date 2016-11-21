@@ -41,6 +41,11 @@ namespace ToBeFree
 			{
 				if (RaiseAndCheckProbability())
 				{
+					GameManager.Instance.OpenEventUI();
+					GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
+						LanguageManager.Instance.Find(eLanguageKey.Event_Police_CrackDown));
+					yield return EventManager.Instance.WaitUntilFinish();
+
 					isCrackDown = true;
 					crackDownEffect.enabled = true;
 					probability = 0;
@@ -53,22 +58,34 @@ namespace ToBeFree
 					// add one more police
 					if (randIndex == 0)
 					{
+						GameManager.Instance.OpenEventUI();
+						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
+							LanguageManager.Instance.Find(eLanguageKey.Event_Police_Add));
+						yield return EventManager.Instance.WaitUntilFinish();
+
 						Police police = new Police(CityManager.Instance.GetRand(), eSubjectType.POLICE);
-						NGUIDebug.Log("Police Time : Added Police");
 						PieceManager.Instance.Add(police);
 					}
 					// add one police's stat
 					else if (randIndex == 1)
 					{
+						GameManager.Instance.OpenEventUI();
+						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
+							LanguageManager.Instance.Find(eLanguageKey.Event_Police_AddStat));
+						yield return EventManager.Instance.WaitUntilFinish();
+
 						Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
-						NGUIDebug.Log("Police Time : Added Police's STAT in " + police.City.Name);
 						yield return police.AddStat(isCrackDown);
 					}
 					// move one police
 					else if (randIndex == 2)
 					{
+						GameManager.Instance.OpenEventUI();
+						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
+							LanguageManager.Instance.Find(eLanguageKey.Event_Police_Move));
+						yield return EventManager.Instance.WaitUntilFinish();
+
 						Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
-						NGUIDebug.Log("Police Time : Moved Police from " + police.City.Name);
 						yield return police.Move();
 					}
 				}

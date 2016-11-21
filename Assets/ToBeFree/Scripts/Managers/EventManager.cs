@@ -51,7 +51,7 @@ namespace ToBeFree
 			languageList.Add(engList);
 			languageList.Add(korList);
 
-			LanguageSelection.selectLanguageForManager += ChangeLanguage;
+			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			ParseData();
 		}

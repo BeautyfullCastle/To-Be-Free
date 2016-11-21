@@ -25,7 +25,7 @@ namespace ToBeFree
 			string cityName = string.Empty;
 			if(questPiece.City != null)
 			{
-				cityName = questPiece.City.Name;
+				cityName = questPiece.City.IconCity.nameLabel.text;
 			}
 			uiQuest.SetLabels(questPiece.CurQuest.UiName, questPiece.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString(),
 				questPiece.CurQuest.UiConditionScript, cityName);

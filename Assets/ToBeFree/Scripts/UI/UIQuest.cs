@@ -18,14 +18,28 @@ namespace ToBeFree
 			this.questName.text = questName;
 			this.pastDays.text = pastDays;
 			this.condition.text = condition;
+			
 			this.city.text = city;
 
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
+			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
+		}
+
+		private void LanguageSelection_selectLanguage(eLanguage language)
+		{
+			if(questPiece.City == null)
+			{
+				this.city.text = string.Empty;
+				return;
+			}
+			
+			this.city.text = questPiece.City.IconCity.nameLabel.text;
 		}
 
 		private void OnDisable()
 		{
 			TimeTable.Instance.NotifyEveryday -= DayIsGone;
+			LanguageSelection.selectLanguage -= LanguageSelection_selectLanguage;
 		}
 
 		private void DayIsGone()

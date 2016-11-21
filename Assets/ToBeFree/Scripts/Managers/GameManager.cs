@@ -23,6 +23,7 @@ namespace ToBeFree
 		public GameObject shopUIObj;
 		public UIEventManager uiEventManager;
 		public GameObject uiSetting;
+		public LanguageSelection languageSelection;
 		public UIGrid commandPopupGrid;
 		public GameObject IconPieceObj;
 		public GameObject TipUIObj;
@@ -55,7 +56,6 @@ namespace ToBeFree
 		private void Init()
 		{
 			TipManager.Instance.Init();
-
 			DiceTester.Instance.Init();
 			CityManager.Instance.Init();
 			iconCities = GameObject.FindObjectsOfType<IconCity>();
@@ -69,7 +69,9 @@ namespace ToBeFree
 			{
 				iconCity.InitNeighbors();
 			}
-			
+
+			LanguageManager.Instance.Init();
+
 			EventManager.Instance.Init();
 			ResultManager.Instance.Init();
 			QuestManager.Instance.Init();

@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using ToBeFree;
+using System.Collections.Generic;
 
-public class UICommand : MonoBehaviour {
+public class UICommand : MonoBehaviour
+{
+	[SerializeField]
+	private eCommand commandType;
 	private bool deactive;
 	private UILabel nameLabel;
+	private string tooltip;
 
 	// Use this for initialization
 	void Awake () {
 		Effect.DeactiveEvent += DeactiveEvent;
+		ToBeFree.LanguageSelection.selectLanguage += ChangeLanguage;
 
 		deactive = false;
 
@@ -75,10 +81,68 @@ public class UICommand : MonoBehaviour {
 
 	private void DeactiveEvent(eCommand commandType, bool deactive)
 	{
-		if(this.gameObject.name == commandType.ToString())
+		if(this.commandType == commandType)
 		{
 			this.deactive = deactive;
 		}
 	}
 
+	public void ChangeLanguage(eLanguage language)
+	{
+		eLanguageKey nameKey = eLanguageKey.UI_Move;
+		eLanguageKey tooltipKey = eLanguageKey.Over_Move;
+		if (commandType == eCommand.MOVE)
+		{
+			nameKey = eLanguageKey.UI_Move;
+			tooltipKey = eLanguageKey.Over_Move;
+		}
+		else if (commandType == eCommand.WORK)
+		{
+			nameKey = eLanguageKey.UI_Work;
+			tooltipKey = eLanguageKey.Over_Work;
+		}
+		else if (commandType == eCommand.INVESTIGATION)
+		{
+			nameKey = eLanguageKey.UI_Inquiry;
+			tooltipKey = eLanguageKey.Over_Inquiry;
+		}
+		else if (commandType == eCommand.REST)
+		{
+			nameKey = eLanguageKey.UI_Rest;
+			tooltipKey = eLanguageKey.Over_Rest;
+		}
+		else if (commandType == eCommand.SHOP)
+		{
+			nameKey = eLanguageKey.UI_Shop;
+			tooltipKey = eLanguageKey.Over_Shop;
+		}
+		else if (commandType == eCommand.BROKER)
+		{
+			nameKey = eLanguageKey.UI_Broker;
+			tooltipKey = eLanguageKey.Over_Broker;
+		}
+		else if(commandType == eCommand.QUEST)
+		{
+			nameKey = eLanguageKey.UI_Quest;
+			tooltipKey = eLanguageKey.Over_Quest;
+		}
+		else if(commandType == eCommand.ABILITY)
+		{
+			nameKey = eLanguageKey.UI_Abilty;
+			tooltipKey = eLanguageKey.Over_Abilty;
+		}
+		nameLabel.text = LanguageManager.Instance.Find(nameKey);
+		tooltip = LanguageManager.Instance.Find(tooltipKey);
+	}
+
+	void OnTooltip(bool show)
+	{
+		if (tooltip == string.Empty || show == false)
+		{
+			UITooltip.Hide();
+			return;
+		}
+
+		UITooltip.Show(tooltip);
+	}
 }
