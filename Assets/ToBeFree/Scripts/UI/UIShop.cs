@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System;
 
-namespace ToBeFree {
+namespace ToBeFree
+{
 	public class UIShop : MonoBehaviour {
 		
 		// 우리가 만든 SampleItem을 복사해서 만들기 위해 선언합니다.

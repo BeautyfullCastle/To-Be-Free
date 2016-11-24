@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace ToBeFree {
-    public class UIStat : MonoBehaviour {
+namespace ToBeFree
+{
+	public class UIStat : MonoBehaviour {
         public eStat stat;
         private UILabel label;
 

@@ -12,8 +12,16 @@ namespace ToBeFree
 		NULL, RANDOM, CITY, CURRENT
 	}
 
+	[Serializable]
+	public class QuestSaveData
+	{
+		public int index;
+		public int pastDays;
+	}
+
 	public class Quest
 	{
+		private readonly int index;
 		private readonly eSubjectType subjectType;
 		private readonly eObjectType objectType;
 		private readonly string comparisonOperator;
@@ -32,10 +40,11 @@ namespace ToBeFree
 
 		private int pastDays;
 
-		public Quest(eSubjectType subjectType, eObjectType objectType, string comparisonOperator,
+		public Quest(int index, eSubjectType subjectType, eObjectType objectType, string comparisonOperator,
 			int compareAmount, eQuestActionType actionType, eRegion region, string cityName, eDifficulty difficulty,
 			string script, ResultScriptAndEffects failureEffects, Event event_, int duration, string uiName, string uiConditionScript)
 		{
+			this.index = index;
 			this.subjectType = subjectType;
 			this.objectType = objectType;
 			this.comparisonOperator = comparisonOperator;
@@ -51,6 +60,16 @@ namespace ToBeFree
 			this.duration = duration;
 			this.uiName = uiName;
 			this.uiConditionScript = uiConditionScript;
+		}
+
+		public void TreatPastQuest(Character character)
+		{
+			QuestManager.Instance.ActivateResultEffects(failureEffects.EffectAmounts, character);
+		}
+
+		public bool CheckCondition(Character character)
+		{
+			return condition.CheckCondition(character, this);
 		}
 
 		public int Duration
@@ -138,14 +157,12 @@ namespace ToBeFree
 			}
 		}
 
-		public void TreatPastQuest(Character character)
+		public int Index
 		{
-			QuestManager.Instance.ActivateResultEffects(failureEffects.EffectAmounts, character);
-		}
-
-		public bool CheckCondition(Character character)
-		{
-			return condition.CheckCondition(character, this);
+			get
+			{
+				return index;
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System;
 
-namespace ToBeFree {
+namespace ToBeFree
+{
 	public class UICommandPopup : MonoBehaviour {
 		public UILabel nameLabel;
 		public UILabel explainLabel;

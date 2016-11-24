@@ -19,6 +19,53 @@ namespace ToBeFree
 			list = new List<Piece>();
 		}
 
+		public void Save(List<PieceSaveData> pieceList)
+		{
+			for(int i=0; i<list.Count; ++i)
+			{
+				PieceSaveData data = new PieceSaveData();
+				data.type = list[i].SubjectType.ToString();
+				data.cityIndex = list[i].City.Index;
+				if (list[i].SubjectType == eSubjectType.POLICE)
+				{
+					Police policePiece = list[i] as Police;
+					data.power = policePiece.Power;
+					data.movement = policePiece.Movement;
+				}
+				else if(list[i].SubjectType == eSubjectType.QUEST)
+				{
+					QuestPiece questPiece = list[i] as QuestPiece;
+					data.questIndex = questPiece.CurQuest.Index;
+				}
+
+				pieceList.Add(data);
+			}
+		}
+
+		public void Load(List<PieceSaveData> pieceList)
+		{
+			for (int i = 0; i < pieceList.Count; ++i)
+			{
+				eSubjectType type = EnumConvert<eSubjectType>.ToEnum(pieceList[i].type);
+				City city = CityManager.Instance.EveryCity[pieceList[i].cityIndex];
+				if (type == eSubjectType.POLICE)
+				{
+					Police police = new Police(city, type, pieceList[i].power, pieceList[i].movement);
+					list.Add(police);
+				}				
+				else if (type == eSubjectType.QUEST)
+				{
+					QuestPiece piece = new QuestPiece(QuestManager.Instance.List[pieceList[i].questIndex], city, type);
+					list.Add(piece);
+				}
+				else if(type == eSubjectType.BROKER)
+				{
+					Broker broker = new Broker(city, type);
+					list.Add(broker);
+				}
+			}
+		}
+
 		public QuestPiece Find(Quest quest)
 		{
 			foreach (Piece piece in list)

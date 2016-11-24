@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace ToBeFree
 {
-    public class IconCharacter : MonoBehaviour
+	public class IconCharacter : MonoBehaviour
     {
         public Transform Cities;
 

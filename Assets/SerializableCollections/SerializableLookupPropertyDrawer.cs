@@ -1,15 +1,12 @@
 ﻿#if UNITY_EDITOR
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityObject = UnityEngine.Object;
 
 namespace SerializableCollections
 {
-    public abstract class SerializableLookupPropertyDrawer : PropertyDrawer
+	public abstract class SerializableLookupPropertyDrawer : PropertyDrawer
     {
         bool foldout;
         System.Reflection.BindingFlags reflectionFlags = System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance;

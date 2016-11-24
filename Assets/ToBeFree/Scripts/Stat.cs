@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace ToBeFree
 {
-
 	public enum eStat
 	{
 		HP, TOTALHP, SATIETY, MONEY, INFO, STRENGTH, AGILITY, CONCENTRATION, TALENT, NULL,
@@ -14,6 +13,61 @@ namespace ToBeFree
 	public enum eTestStat
 	{
 		STRENGTH, AGILITY, CONCENTRATION, TALENT, ALL, NULL
+	}
+
+	[Serializable]
+	public class StatSaveData
+	{
+		public int hp;
+		public int totalHP;
+
+		public int satiety;
+		public int totalSatiety;
+		
+		public int strength; // 일
+		public int agility; // 공안
+		public int concentration; // 휴식
+		public int talent; // 조사
+		
+		public int prevStrength;
+		public int prevAgility;
+		public int prevConcentration;
+		public int prevTalent;
+		
+		public int money;
+		
+		public int infoNum;
+		public int viewRange;
+		
+		public int tempDiceNum;
+		public int diceNumByEffect;
+
+		public StatSaveData(Stat stat)
+		{
+			hp = stat.HP;
+			totalHP = stat.TotalHP;
+
+			satiety = stat.Satiety;
+			totalSatiety = stat.TotalSatiety;
+
+			strength = stat.Strength;
+			agility = stat.Agility;
+			concentration = stat.Concentration;
+			talent = stat.Talent;
+
+			prevStrength = stat.PrevStrength;
+			prevAgility = stat.PrevAgility;
+			prevConcentration = stat.PrevConcentration;
+			prevTalent = stat.PrevTalent;
+
+			money = stat.Money;
+
+			infoNum = stat.InfoNum;
+			viewRange = stat.ViewRange;
+
+			tempDiceNum = stat.TempDiceNum;
+			diceNumByEffect = stat.DiceNumByEffect;
+		}
 	}
 
 	public class Stat
@@ -41,6 +95,7 @@ namespace ToBeFree
 
 		private int tempDiceNum;
 		private int diceNumByEffect;
+		private StatSaveData stat;
 
 		public delegate void OnValueChangeHandler(int value, eStat stat);
 		static public event OnValueChangeHandler OnValueChange;
@@ -64,6 +119,33 @@ namespace ToBeFree
 			this.talent    = talent;
 
 			this.money = startMoney;
+		}
+
+		public Stat(StatSaveData data)
+		{
+			hp = data.hp;
+			totalHP = data.totalHP;
+
+			satiety = data.satiety;
+			totalSatiety = data.totalSatiety;
+
+			strength = data.strength;
+			agility = data.agility;
+			concentration = data.concentration;
+			talent = data.talent;
+
+			prevStrength = data.prevStrength;
+			prevAgility = data.prevAgility;
+			prevConcentration = data.prevConcentration;
+			prevTalent = data.prevTalent;
+
+			money = data.money;
+
+			infoNum = data.infoNum;
+			viewRange = data.viewRange;
+
+			tempDiceNum = data.tempDiceNum;
+			diceNumByEffect = data.diceNumByEffect;
 		}
 
 		public void RefreshUI()
@@ -269,7 +351,6 @@ namespace ToBeFree
 			{
 				return tempDiceNum;
 			}
-
 			set
 			{
 				tempDiceNum = value;
@@ -282,10 +363,41 @@ namespace ToBeFree
 			{
 				return diceNumByEffect;
 			}
-
 			set
 			{
 				diceNumByEffect = value;
+			}
+		}
+
+		public int PrevStrength
+		{
+			get
+			{
+				return prevStrength;
+			}
+		}
+
+		public int PrevAgility
+		{
+			get
+			{
+				return prevAgility;
+			}
+		}
+
+		public int PrevConcentration
+		{
+			get
+			{
+				return prevConcentration;
+			}
+		}
+
+		public int PrevTalent
+		{
+			get
+			{
+				return prevTalent;
 			}
 		}
 

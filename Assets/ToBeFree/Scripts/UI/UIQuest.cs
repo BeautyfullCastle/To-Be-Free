@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ToBeFree
 {
@@ -44,7 +43,7 @@ namespace ToBeFree
 
 		private void DayIsGone()
 		{
-			pastDays.text = questPiece.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString();
+			pastDays.text = questPiece.CurQuest.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString();
 		}
 
 		public QuestPiece QuestPiece

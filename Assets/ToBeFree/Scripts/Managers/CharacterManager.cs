@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -38,7 +36,7 @@ namespace ToBeFree
 				Stat stat = new Stat(data.HP, data.strength, data.agility, data.concentration, data.talent, data.startMoney);
 				Inventory inven = new Inventory(data.startInven);                
 
-				Character character = new Character(data.name, data.script, stat, data.startCity, inven, data.eventIndex, data.skillScript, data.abnormalIndex);
+				Character character = new Character(data.index, data.name, data.script, stat, data.startCity, inven, data.eventIndex, data.skillScript, data.abnormalIndex);
 
 				for (int i = 0; i < data.itemIndex.Length; ++i)
 				{

@@ -1,9 +1,8 @@
 using System;
-using UnityEngine;
 
 namespace ToBeFree
 {
-    public enum eSelectLinkType
+	public enum eSelectLinkType
     {
         EVENT, RESULT
     }

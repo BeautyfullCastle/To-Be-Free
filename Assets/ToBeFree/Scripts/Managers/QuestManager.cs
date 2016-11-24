@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -62,7 +61,7 @@ namespace ToBeFree
 					}
 				}
 
-				Quest quest = new Quest(EnumConvert<eSubjectType>.ToEnum(data.subjectType), EnumConvert<eObjectType>.ToEnum(data.objectType),
+				Quest quest = new Quest(data.index, EnumConvert<eSubjectType>.ToEnum(data.subjectType), EnumConvert<eObjectType>.ToEnum(data.objectType),
 					data.comparisonOperator, data.compareAmount, EnumConvert<eQuestActionType>.ToEnum(data.actionType), 
 					EnumConvert<eRegion>.ToEnum(data.region), data.cityName, EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, 
 					failureResultEffects, event_, data.duration, data.uiName, data.uiConditionScript);
@@ -124,9 +123,8 @@ namespace ToBeFree
 				{
 					city = character.CurCity;
 				}
-				
 			}
-			QuestPiece questPiece = new QuestPiece(selectedQuest, character, city, eSubjectType.QUEST);
+			QuestPiece questPiece = new QuestPiece(selectedQuest, city, eSubjectType.QUEST);
 			PieceManager.Instance.Add(questPiece);
 		}
 	}

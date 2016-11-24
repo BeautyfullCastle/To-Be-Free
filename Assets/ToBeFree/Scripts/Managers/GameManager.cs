@@ -344,6 +344,7 @@ namespace ToBeFree
 				moveTest = true;                
 			}
 			
+			
 #endif
 			// 0. parse data
 
@@ -405,6 +406,13 @@ namespace ToBeFree
 			// character init
 			CharacterManager.Instance.Init();
 			character = CharacterManager.Instance.List[1];
+			bool isLoad = true;
+			if(isLoad)
+			{
+				SaveLoadManager.Instance.Init();
+				PieceManager.Instance.Load(SaveLoadManager.Instance.data.pieceList);
+				character.Load(SaveLoadManager.Instance.data.character);
+			}
 			yield return character.Init();
 			
 
@@ -413,15 +421,22 @@ namespace ToBeFree
 			inspectAction = new Inspect();
 
 			yield return (ShowStateLabel("Adding Polices to Big cities.", 0.5f));
-			
-			//add polices in big cities.
-			List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
-			foreach (City city in bigCityList)
-			{
-				PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
-				NGUIDebug.Log("Add Big city : " + city.Name.ToString());
-			}
 
+			if(isLoad)
+			{
+				
+			}
+			else
+			{
+				//add polices in big cities.
+				List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
+				foreach (City city in bigCityList)
+				{
+					PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
+					NGUIDebug.Log("Add Big city : " + city.Name.ToString());
+				}
+			}
+			
 			// load first main quest.
 			yield return QuestManager.Instance.Load(QuestManager.Instance.List[15], character);
 
@@ -438,6 +453,8 @@ namespace ToBeFree
 			this.State = GameState.StartDay;
 
 			yield return null;
+
+			SaveLoadManager.Instance.Init();
 
 			// Exit
 			yield return NextState();

@@ -2,8 +2,6 @@
 using System.Collections;
 using System.IO;
 using System.Xml;
-using System.Text;
-using System;
 
 public class ParsingTest : MonoBehaviour
 {

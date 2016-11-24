@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace ToBeFree
 {
@@ -18,17 +18,25 @@ namespace ToBeFree
 		DAY_TEST
 	}
 
+	[Serializable]
+	public class ItemSaveData
+	{
+		public int index;
+		public int buffAliveDays;
+	}
+
 	public class Item
 	{
-		private Buff buff;
+		private readonly int index;
+		private readonly string name;
+		private readonly Buff buff;
+		private readonly ItemTag tag;
+		private readonly int price;
+		private readonly int maximumStackableQuantity;
 
-		private string name;
-		private ItemTag tag;
-		private int price;
-		private int maximumStackableQuantity;
-
-		public Item(string name, Buff buff, int price, ItemTag tag, int maximumStackableQuantity=1)
+		public Item(int index, string name, Buff buff, int price, ItemTag tag, int maximumStackableQuantity=1)
 		{
+			this.index = index;
 			this.name = name;
 			this.tag = tag;
 			this.buff = buff;
@@ -37,21 +45,23 @@ namespace ToBeFree
 		}
 
 		public Item(Item item)
-			: this(item.name, item.buff, item.price, item.tag, item.maximumStackableQuantity) { }
+			: this(item.index, item.name, item.buff, item.price, item.tag, item.maximumStackableQuantity) { }
 		
-		public Item DeepCopy()
+		public string Name
 		{
-			Item item = (Item)this.MemberwiseClone();
-			item.name = this.name;
-			item.buff = this.buff;
-			item.maximumStackableQuantity = this.maximumStackableQuantity;
-
-			return item;
+			get
+			{
+				return name;
+			}
 		}
-		
-		public string Name { get { return name; } }
-		
-		public int MaximumStackableQuantity { get; private set; }
+
+		public int MaximumStackableQuantity
+		{
+			get
+			{
+				return maximumStackableQuantity;
+			}
+		}
 
 		public Buff Buff
 		{
@@ -74,6 +84,14 @@ namespace ToBeFree
 			get
 			{
 				return tag;
+			}
+		}
+
+		public int Index
+		{
+			get
+			{
+				return index;
 			}
 		}
 	}

@@ -6,6 +6,7 @@ namespace ToBeFree
 {
 	public class City
 	{
+		private int index;
 		private string name;
 		private Item item;
 		private int workingMoneyMin;
@@ -73,7 +74,7 @@ namespace ToBeFree
 		{
 			Debug.Log(this.name);
 		}
-		
+
 		public string Name
 		{
 			get { return name; }
@@ -130,6 +131,18 @@ namespace ToBeFree
 			get
 			{
 				return iconCity;
+			}
+		}
+
+		public int Index
+		{
+			get
+			{
+				return index;
+			}
+			set
+			{
+				index = value;
 			}
 		}
 	}

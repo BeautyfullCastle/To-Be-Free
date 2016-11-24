@@ -1,15 +1,12 @@
 ﻿#if UNITY_EDITOR
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityObject = UnityEngine.Object;
 
 namespace SerializableCollections
 {
-    public abstract class SerializableDictionaryPropertyDrawer : PropertyDrawer
+	public abstract class SerializableDictionaryPropertyDrawer : PropertyDrawer
     {
         bool foldout;
 

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ToBeFree;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ToBeFree
 {
-    public class ResultManager : Singleton<ResultManager>
+	public class ResultManager : Singleton<ResultManager>
     {
         private Result[] list;
         private ResultData[] dataList;

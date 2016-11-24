@@ -5,8 +5,22 @@ using UnityEngine;
 
 namespace ToBeFree
 {
+	[Serializable]
+	public class CharacterSaveData
+	{
+		public int index;
+		public StatSaveData stat;
+		public List<ItemSaveData> inventory;
+		public float specialEventProbability = 0f;
+		public int caughtPolicePieceIndex;
+		public int curCityIndex;
+		public bool isDetention;
+		public bool isActionSkip;
+	}
+
 	public class Character
 	{
+		private readonly int index;
 		private Stat stat;
 		private string name;
 		private string script;
@@ -25,8 +39,7 @@ namespace ToBeFree
 
 		private bool isDetention;
 		private bool isActionSkip;
-
-		private float moveTime;
+		
 		private int ap;
 		readonly private int totalAP = 3;
 
@@ -40,15 +53,16 @@ namespace ToBeFree
 		public static event MoveCityHandler MoveCity = delegate { };
 		
 		// Todo : skill
-		public Character(string name, string script, Stat stat, string startCityName, Inventory inven, int eventIndex, string skillScript, int abnormalIndex)
+		public Character(int index, string name, string script, Stat stat, string startCityName, Inventory inven, int eventIndex, string skillScript, int abnormalIndex)
 		{
-			this.name = name;			
+			this.index = index;
+			this.name = name;
 			this.script = script;
 			this.stat = stat;
 			this.iconCharacter = GameObject.FindObjectOfType<IconCharacter>();
 			if(GameObject.Find(startCityName))
 			{
-				this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;				
+				this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
 			}
 				
 			this.inven = inven;
@@ -63,6 +77,45 @@ namespace ToBeFree
 			isActionSkip = false;
 
 			SetCanAction(true);
+		}
+
+		public void Save(CharacterSaveData data)
+		{
+			data.index = this.index;
+			data.stat = new StatSaveData(this.stat);
+			data.inventory = new List<ItemSaveData>(inven.list.Count);
+			for(int i=0; i < inven.list.Count; ++i)
+			{
+				data.inventory[i] = new ItemSaveData();
+				data.inventory[i].index = inven.list[i].Index;
+				data.inventory[i].buffAliveDays = inven.list[i].Buff.AliveDays;
+			}
+			data.specialEventProbability = this.specialEventProbability;
+			data.caughtPolicePieceIndex = PieceManager.Instance.List.IndexOf(this.caughtPolice);
+			data.curCityIndex = this.curCity.Index;
+			data.isDetention = this.isDetention;
+			data.isActionSkip = this.isActionSkip;
+
+			SaveLoadManager.Instance.data.character = data;
+		}
+
+		public void Load(CharacterSaveData data)
+		{
+			this.stat = new Stat(data.stat);
+			this.inven = new Inventory(data.inventory);
+			
+			this.specialEventProbability = data.specialEventProbability;
+			if(data.caughtPolicePieceIndex == -1)
+			{
+				this.caughtPolice = null;
+			}
+			else
+			{
+				this.caughtPolice = PieceManager.Instance.List[data.caughtPolicePieceIndex] as Police;
+			}
+			this.curCity = CityManager.Instance.EveryCity[data.curCityIndex];
+			this.isDetention = data.isDetention;
+			this.isActionSkip = data.isActionSkip;
 		}
 
 		private void SetCanAction(bool canAction)
@@ -191,6 +244,24 @@ namespace ToBeFree
 		{
 			ap = 0;
 			SetCanAction(true);
+		}
+
+		public IEnumerator Init()
+		{
+			GameObject.Find("Character Name").GetComponent<UILabel>().text = this.Name;
+			this.Stat.RefreshUI();
+			this.Stat.SetViewRange();
+
+			GameObject.FindObjectOfType<UIInventory>().Change(this.Inven);
+			
+			UICenterOnChild scrollviewCenter = GameObject.FindObjectOfType<UICenterOnChild>();
+			scrollviewCenter.CenterOn(this.CurCity.IconCity.transform);
+			scrollviewCenter.enabled = false;
+			
+			// activate character's passive abnormal condition.
+			yield return AbnormalConditionManager.Instance.List[this.AbnormalIndex].Activate(this);
+
+			yield return this.MoveTo(this.CurCity, true);
 		}
 
 		public Stat Stat
@@ -385,22 +456,25 @@ namespace ToBeFree
 			}
 		}
 
-		public IEnumerator Init()
+		public int Index
 		{
-			GameObject.Find("Character Name").GetComponent<UILabel>().text = this.Name;
-			this.Stat.RefreshUI();
-			this.Stat.SetViewRange();
+			get
+			{
+				return index;
+			}
+		}
 
-			GameObject.FindObjectOfType<UIInventory>().Change(this.Inven);
-			
-			UICenterOnChild scrollviewCenter = GameObject.FindObjectOfType<UICenterOnChild>();
-			scrollviewCenter.CenterOn(this.CurCity.IconCity.transform);
-			scrollviewCenter.enabled = false;
-			
-			// activate character's passive abnormal condition.
-			yield return AbnormalConditionManager.Instance.List[this.AbnormalIndex].Activate(this);
+		public float SpecialEventProbability
+		{
+			get
+			{
+				return specialEventProbability;
+			}
 
-			yield return this.MoveTo(this.CurCity, true);
+			set
+			{
+				specialEventProbability = value;
+			}
 		}
 	}
 }

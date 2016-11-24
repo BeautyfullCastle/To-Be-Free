@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
-using System.Collections;
-using System;
 
 public class AudioControl : MonoBehaviour {
 	public AudioMixerGroup masterGroup;

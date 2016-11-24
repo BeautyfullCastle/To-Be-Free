@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Language;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 
@@ -89,6 +87,7 @@ namespace ToBeFree
 			
 			// initialize everyCity
 			everyCity = new List<City>();
+			int curIndex = 0;
 			foreach(List<City> cities in list)
 			{
 				foreach(City city in cities)
@@ -101,6 +100,7 @@ namespace ToBeFree
 						continue;
 					}
 					city.Distance = 0;
+					city.Index = curIndex++;
 					everyCity.Add(city);
 				}
 			}

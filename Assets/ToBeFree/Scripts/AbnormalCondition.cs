@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using UnityEngine;
 
 namespace ToBeFree
 {
@@ -14,20 +13,30 @@ namespace ToBeFree
 		POSITIVE, NEGATIVE, NULL
 	}
 
+	[Serializable]
+	public class AbnormalConditionSaveData
+	{
+		public int index;
+		public int stack;
+		public int buffAliveDays;
+	}
+
 	public class AbnormalCondition
 	{
+		protected readonly int index;
 		private readonly string name;
-		readonly protected Buff buff;
-		readonly protected Condition spawnCondition;
+		protected readonly Buff buff;
+		protected readonly Condition spawnCondition;
 		protected int stack;
 		protected bool isStack;
-		readonly protected eBodyMental isBody; // body or mental
-		readonly protected ePositiveNegative isPositive;
+		protected readonly eBodyMental isBody; // body or mental
+		protected readonly ePositiveNegative isPositive;
 
 		protected int firstAmount;
 
-		public AbnormalCondition(string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive)
+		public AbnormalCondition(int index, string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive)
 		{
+			this.index = index;
 			this.name = name;
 			this.buff = new Buff(buff);
 			this.spawnCondition = spawnCondition;
@@ -43,10 +52,13 @@ namespace ToBeFree
 		{
 			yield return GameManager.Instance.ShowStateLabel(this.name + " is added.", 0.5f);
 
-			if (BuffManager.Instance.Exist(this.buff) && isStack)
+			if (BuffManager.Instance.Exist(this.buff))
 			{
-				stack++;
-				buff.EffectAmountList[0].Amount += firstAmount;
+				if(isStack)
+				{
+					stack++;
+					buff.EffectAmountList[0].Amount += firstAmount;
+				}
 			}
 			else
 			{
@@ -98,7 +110,7 @@ namespace ToBeFree
 
 	public class Hunger : AbnormalCondition
 	{
-		public Hunger(string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive) : base(name, buff, spawnCondition, isStack, isBody, isPositive)
+		public Hunger(int index, string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive) : base(index, name, buff, spawnCondition, isStack, isBody, isPositive)
 		{
 			Stat.OnValueChange += Stat_OnValueChange;
 		}
@@ -118,7 +130,7 @@ namespace ToBeFree
 
 	public class Detention : AbnormalCondition
 	{
-		public Detention(string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive) : base(name, buff, spawnCondition, isStack, isBody, isPositive)
+		public Detention(int index, string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive) : base(index, name, buff, spawnCondition, isStack, isBody, isPositive)
 		{
 
 		}

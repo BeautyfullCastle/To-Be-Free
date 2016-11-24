@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace ToBeFree
 {
-    public class UIBuffManager : MonoBehaviour
+	public class UIBuffManager : MonoBehaviour
     {
         private List<UIBuff> buffs = new List<UIBuff>();
         // 우리가 만든 SampleItem을 복사해서 만들기 위해 선언합니다.

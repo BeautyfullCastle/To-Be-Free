@@ -5,6 +5,18 @@ using UnityEngine;
 
 namespace ToBeFree
 {
+	[Serializable]
+	public class PieceSaveData
+	{
+		public string type;
+		public int cityIndex;
+		// for Police
+		public int power;
+		public int movement;
+		// for Quest
+		public int questIndex;
+	}
+
 	public class Piece
 	{
 		protected City city;
@@ -71,7 +83,7 @@ namespace ToBeFree
 			return false;
 		}
 	}
-
+	
 	public class Police : Piece
 	{
 		private int power;
@@ -84,6 +96,16 @@ namespace ToBeFree
 
 			Power = UnityEngine.Random.Range(1, 4);
 			Movement = UnityEngine.Random.Range(1, 4);
+
+			iconPiece.Init(subjectType, Power, Movement);
+		}
+
+		public Police(City city, eSubjectType subjectType, int power, int movement) : this(city, subjectType)
+		{
+			max = 5;
+
+			Power = power;
+			Movement = movement;
 
 			iconPiece.Init(subjectType, Power, Movement);
 		}
@@ -221,18 +243,13 @@ namespace ToBeFree
 	public class QuestPiece : Piece
 	{
 		private Quest quest;
-		private Character character;
-
-		private int pastDays;
-
+		
 		public delegate void AddQuestHandler(QuestPiece piece);
 		public static event AddQuestHandler AddQuest;
 
-		public QuestPiece(Quest quest, Character character, City city, eSubjectType subjectType) : base(city, subjectType)
+		public QuestPiece(Quest quest, City city, eSubjectType subjectType) : base(city, subjectType)
 		{
 			this.quest = quest;
-			this.character = character;
-			pastDays = 0;
 
 			AddQuest(this);
 
@@ -241,7 +258,6 @@ namespace ToBeFree
 
 		public void DayIsGone()
 		{
-			pastDays++;
 			quest.PastDays++;
 		}
 
@@ -275,7 +291,7 @@ namespace ToBeFree
 
 		public override bool CheckDuration()
 		{
-			return pastDays >= quest.Duration;
+			return CurQuest.PastDays >= quest.Duration;
 		}
 
 		public Quest CurQuest
@@ -283,14 +299,6 @@ namespace ToBeFree
 			get
 			{
 				return quest;
-			}
-		}
-
-		public int PastDays
-		{
-			get
-			{
-				return pastDays;
 			}
 		}
 	}

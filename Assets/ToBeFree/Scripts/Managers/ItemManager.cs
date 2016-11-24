@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -46,7 +45,7 @@ namespace ToBeFree
 				Buff buff = new Buff(data.name, data.script, effectAmountList, bool.Parse(data.restore),
 										EnumConvert<eStartTime>.ToEnum(data.startTime), EnumConvert<eDuration>.ToEnum(data.duration));
 
-				Item item = new Item(data.name, buff, data.price, EnumConvert<ItemTag>.ToEnum(data.tag));
+				Item item = new Item(data.index, data.name, buff, data.price, EnumConvert<ItemTag>.ToEnum(data.tag));
 
 				if (list[data.index] != null)
 				{

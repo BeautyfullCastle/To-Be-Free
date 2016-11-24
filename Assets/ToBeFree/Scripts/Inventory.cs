@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +8,22 @@ namespace ToBeFree
 	{
 		private int maxSlots;
 		public List<Item> list;
-		
+
 		public Inventory(int maxSlots)
 		{
 			this.maxSlots = maxSlots;
 			list = new List<Item>();
+		}
+
+		public Inventory(List<ItemSaveData> dataList)
+		{
+			list = new List<Item>(dataList.Count);
+			
+			for (int i = 0; i < list.Count; ++i)
+			{
+				list[i] = new Item(ItemManager.Instance.List[dataList[i].index]);
+				list[i].Buff.AliveDays = dataList[i].buffAliveDays;
+			}
 		}
 
 		public void BuyItem(Item item, int discountNum, Character character)

@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using ToBeFree;
-using System.Collections.Generic;
 
 public class UICommand : MonoBehaviour
 {

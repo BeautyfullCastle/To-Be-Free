@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CameraZoom : MonoBehaviour {
 	public float zoomAmount = 10.0f;
