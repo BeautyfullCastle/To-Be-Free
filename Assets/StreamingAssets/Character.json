@@ -16,9 +16,9 @@
 				0,
 				0
 			],
-			"eventindex": 28,
-			"skillscript": "집중해서 일하기\\n험한일을 오래한 그는 집중해서 하룻동안 힘을 1올립니다. 대신 힘들게 일한 만큼 배고픔이 1감소합니다.",
-			"abnormal": 19
+			"eventIndex": 28,
+			"skillScript": "집중해서 일하기\\n험한일을 오래한 그는 집중해서 하룻동안 힘을 1올립니다. 대신 힘들게 일한 만큼 배고픔이 1감소합니다.",
+			"abnormalIndex": 19
 		},
 		{
 			"index": 1,
@@ -36,9 +36,9 @@
 				0,
 				0
 			],
-			"eventindex": 28,
-			"skillscript": "오랫동안 무역업을 해온 그는 ",
-			"abnormal": 19
+			"eventIndex": 28,
+			"skillScript": "오랫동안 무역업을 해온 그는 ",
+			"abnormalIndex": 19
 		}
 	]
 }

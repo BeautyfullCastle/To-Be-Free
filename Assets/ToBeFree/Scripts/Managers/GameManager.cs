@@ -40,13 +40,17 @@ namespace ToBeFree
 		private Action action;
 		private Action inspectAction;
 		private GameState state;
-		private bool activateAbnormal;
+		private BezierCurveList curves;
 		private UICommand[] commands;
-		private bool moveTest;
+		
 		private bool readyToMove;
 		private bool isActStart = false;
-		private BezierCurveList curves;
+		
 		private eCommand curCommandType = eCommand.NULL;
+
+		// for test
+		private bool activateAbnormal;
+		private bool moveTest;
 
 		// can't use the constructor
 		private GameManager()
@@ -75,6 +79,7 @@ namespace ToBeFree
 			EventManager.Instance.Init();
 			ResultManager.Instance.Init();
 			QuestManager.Instance.Init();
+			AbnormalConditionManager.Instance.Init();
 
 			this.State = GameState.Init;
 			commands = commandUIObj.GetComponentsInChildren<UICommand>();
@@ -343,8 +348,12 @@ namespace ToBeFree
 			{
 				moveTest = true;                
 			}
-			
-			
+
+			if(Input.GetKeyDown(KeyCode.S))
+			{
+				SaveLoadManager.Instance.Save();
+			}
+
 #endif
 			// 0. parse data
 
@@ -371,11 +380,6 @@ namespace ToBeFree
 
 			// 6. end week
 
-		}
-
-		public GameObject FindGameObject(string name)
-		{
-			return GameObject.Find(name);
 		}
 
 		private void DayIsGone()
@@ -405,13 +409,22 @@ namespace ToBeFree
 
 			// character init
 			CharacterManager.Instance.Init();
-			character = CharacterManager.Instance.List[1];
-			bool isLoad = true;
+			
+			bool isLoad = false;
 			if(isLoad)
 			{
 				SaveLoadManager.Instance.Init();
+
+				character = CharacterManager.Instance.Load(SaveLoadManager.Instance.data.character);
+
+				AbnormalConditionManager.Instance.Load(SaveLoadManager.Instance.data.abnormalList);
+				QuestManager.Instance.Load(SaveLoadManager.Instance.data.questList);
 				PieceManager.Instance.Load(SaveLoadManager.Instance.data.pieceList);
-				character.Load(SaveLoadManager.Instance.data.character);
+				yield return BuffManager.Instance.Load(SaveLoadManager.Instance.data.buffList);
+			}
+			else
+			{
+				character = CharacterManager.Instance.List[1];
 			}
 			yield return character.Init();
 			
@@ -454,8 +467,6 @@ namespace ToBeFree
 
 			yield return null;
 
-			SaveLoadManager.Instance.Init();
-
 			// Exit
 			yield return NextState();
 		}
@@ -481,6 +492,8 @@ namespace ToBeFree
 
 		IEnumerator StartDayState()
 		{
+			SaveLoadManager.Instance.Save();
+
 			// Enter
 			yield return (ShowStateLabel("Start Day State", 0.5f));
 			

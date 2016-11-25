@@ -355,9 +355,9 @@ namespace ToBeFree
 					{
 						if (objectType == eObjectType.SUCCESSNUM)
 						{
-							if (!(amount == 4 || amount == 6))
+							if (!(amount == 5 || amount == 6))
 							{
-								throw new System.Exception("Input Dice success num is not 4 or 6.");
+								throw new System.Exception("Input Dice success num is not 5 or 6.");
 							}
 							Debug.Log("Effect " + subjectType + " " + verbType + " " + amount + " activated.");
 							prevAmount = DiceTester.Instance.MinSuccessNum;

@@ -48,9 +48,6 @@ namespace ToBeFree
 		private float specialEventProbability = 0f;
 
 		private Police caughtPolice;
-
-		public delegate void MoveCityHandler(string cityName);
-		public static event MoveCityHandler MoveCity = delegate { };
 		
 		// Todo : skill
 		public Character(int index, string name, string script, Stat stat, string startCityName, Inventory inven, int eventIndex, string skillScript, int abnormalIndex)
@@ -77,45 +74,6 @@ namespace ToBeFree
 			isActionSkip = false;
 
 			SetCanAction(true);
-		}
-
-		public void Save(CharacterSaveData data)
-		{
-			data.index = this.index;
-			data.stat = new StatSaveData(this.stat);
-			data.inventory = new List<ItemSaveData>(inven.list.Count);
-			for(int i=0; i < inven.list.Count; ++i)
-			{
-				data.inventory[i] = new ItemSaveData();
-				data.inventory[i].index = inven.list[i].Index;
-				data.inventory[i].buffAliveDays = inven.list[i].Buff.AliveDays;
-			}
-			data.specialEventProbability = this.specialEventProbability;
-			data.caughtPolicePieceIndex = PieceManager.Instance.List.IndexOf(this.caughtPolice);
-			data.curCityIndex = this.curCity.Index;
-			data.isDetention = this.isDetention;
-			data.isActionSkip = this.isActionSkip;
-
-			SaveLoadManager.Instance.data.character = data;
-		}
-
-		public void Load(CharacterSaveData data)
-		{
-			this.stat = new Stat(data.stat);
-			this.inven = new Inventory(data.inventory);
-			
-			this.specialEventProbability = data.specialEventProbability;
-			if(data.caughtPolicePieceIndex == -1)
-			{
-				this.caughtPolice = null;
-			}
-			else
-			{
-				this.caughtPolice = PieceManager.Instance.List[data.caughtPolicePieceIndex] as Police;
-			}
-			this.curCity = CityManager.Instance.EveryCity[data.curCityIndex];
-			this.isDetention = data.isDetention;
-			this.isActionSkip = data.isActionSkip;
 		}
 
 		private void SetCanAction(bool canAction)
@@ -168,7 +126,7 @@ namespace ToBeFree
 		{
 			if (direct)
 			{
-				MoveCity(city.Name);
+				iconCharacter.MoveCity(city.IconCity);
 				yield break;
 			}
 
@@ -296,6 +254,10 @@ namespace ToBeFree
 			get
 			{
 				return inven;
+			}
+			set
+			{
+				inven = value;
 			}
 		}
 

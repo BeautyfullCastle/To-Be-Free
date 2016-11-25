@@ -15,6 +15,12 @@ namespace ToBeFree
 	[Serializable]
 	public class QuestSaveData
 	{
+		public QuestSaveData(int index, int pastDays)
+		{
+			this.index = index;
+			this.pastDays = pastDays;
+		}
+
 		public int index;
 		public int pastDays;
 	}

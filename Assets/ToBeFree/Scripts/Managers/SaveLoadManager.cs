@@ -19,10 +19,16 @@ namespace ToBeFree
 			{
 				character = new CharacterSaveData();
 				pieceList = new List<PieceSaveData>();
+				buffList = new List<BuffSaveData>();
+				abnormalList = new List<AbnormalConditionSaveData>();
+				questList = new List<QuestSaveData>();
 			}
 
 			public CharacterSaveData character;
 			public List<PieceSaveData> pieceList;
+			public List<BuffSaveData> buffList;
+			public List<AbnormalConditionSaveData> abnormalList;
+			public List<QuestSaveData> questList;
 		}
 
 		public void Init()
@@ -36,7 +42,10 @@ namespace ToBeFree
 			// write
 			data = new Data();
 			PieceManager.Instance.Save(data.pieceList);
-			GameManager.Instance.Character.Save(data.character);
+			BuffManager.Instance.Save(data.buffList);
+			AbnormalConditionManager.Instance.Save(data.abnormalList);
+			QuestManager.Instance.Save(data.questList);
+			CharacterManager.Instance.Save(data.character);
 			//JsonData jsonData = JsonMapper.ToJson(data);
 			//Debug.Log(jsonData);
 			string s = JsonUtility.ToJson(data);
@@ -53,6 +62,8 @@ namespace ToBeFree
 
 			data = JsonUtility.FromJson<Data>(json);
 			Debug.Log(data.character.index);
+
+			reader.Close();
 		}
 	}
 }

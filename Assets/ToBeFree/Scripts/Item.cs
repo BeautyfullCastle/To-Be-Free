@@ -21,8 +21,11 @@ namespace ToBeFree
 	[Serializable]
 	public class ItemSaveData
 	{
+		public ItemSaveData(int index)
+		{
+			this.index = index;
+		}
 		public int index;
-		public int buffAliveDays;
 	}
 
 	public class Item

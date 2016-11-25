@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -50,6 +51,48 @@ namespace ToBeFree
 				}
 				List[data.index] = character;
 			}
+		}
+
+		public void Save(CharacterSaveData data)
+		{
+			Character character = GameManager.Instance.Character;
+			data.index = character.Index;
+			data.stat = new StatSaveData(character.Stat);
+			data.inventory = new List<ItemSaveData>();
+			for (int i = 0; i < character.Inven.list.Count; ++i)
+			{
+				Item item = character.Inven.list[i];
+				data.inventory.Add(new ItemSaveData(item.Index));
+			}
+			data.specialEventProbability = character.SpecialEventProbability;
+			data.caughtPolicePieceIndex = PieceManager.Instance.List.IndexOf(character.CaughtPolice);
+			data.curCityIndex = character.CurCity.Index;
+			data.isDetention = character.IsDetention;
+			data.isActionSkip = character.IsActionSkip;
+
+			SaveLoadManager.Instance.data.character = data;
+		}
+
+		public Character Load(CharacterSaveData data)
+		{
+			Character character = this.list[data.index];
+			character.Stat = new Stat(data.stat);
+			character.Inven = new Inventory(data.inventory);
+
+			character.SpecialEventProbability = data.specialEventProbability;
+			if (data.caughtPolicePieceIndex == -1)
+			{
+				character.CaughtPolice = null;
+			}
+			else
+			{
+				character.CaughtPolice = PieceManager.Instance.List[data.caughtPolicePieceIndex] as Police;
+			}
+			character.CurCity = CityManager.Instance.EveryCity[data.curCityIndex];
+			character.IsDetention = data.isDetention;
+			character.IsActionSkip = data.isActionSkip;
+
+			return character;
 		}
 	}
 }

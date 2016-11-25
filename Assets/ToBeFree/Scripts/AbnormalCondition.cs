@@ -16,23 +16,30 @@ namespace ToBeFree
 	[Serializable]
 	public class AbnormalConditionSaveData
 	{
+		public AbnormalConditionSaveData(int index, int stack, int amount)
+		{
+			this.index = index;
+			this.stack = stack;
+			this.amount = amount;
+		}
+
 		public int index;
 		public int stack;
-		public int buffAliveDays;
+		public int amount;
 	}
 
 	public class AbnormalCondition
 	{
-		protected readonly int index;
+		private readonly int index;
 		private readonly string name;
 		protected readonly Buff buff;
 		protected readonly Condition spawnCondition;
-		protected int stack;
+		private int stack;
 		protected bool isStack;
 		protected readonly eBodyMental isBody; // body or mental
 		protected readonly ePositiveNegative isPositive;
 
-		protected int firstAmount;
+		private int firstAmount;
 
 		public AbnormalCondition(int index, string name, Buff buff, Condition spawnCondition, bool isStack, eBodyMental isBody, ePositiveNegative isPositive)
 		{
@@ -104,6 +111,39 @@ namespace ToBeFree
 			get
 			{
 				return name;
+			}
+		}
+
+		public int Stack
+		{
+			get
+			{
+				return stack;
+			}
+
+			set
+			{
+				stack = value;
+			}
+		}
+
+		public int Amount
+		{
+			get
+			{
+				return buff.EffectAmountList[0].Amount;
+			}
+			set
+			{
+				buff.EffectAmountList[0].Amount = value;
+			}
+		}
+
+		public int Index
+		{
+			get
+			{
+				return index;
 			}
 		}
 	}

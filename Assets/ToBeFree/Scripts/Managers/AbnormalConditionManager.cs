@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
 {
 	public class AbnormalConditionManager : Singleton<AbnormalConditionManager>
 	{
-		private readonly AbnormalCondition[] list;
-		private readonly AbnormalConditionData[] dataList;
+		private AbnormalCondition[] list;
+		private AbnormalConditionData[] dataList;
 		private readonly string file = Application.streamingAssetsPath + "/AbnormalCondition.json";
 
 		public AbnormalCondition[] List
@@ -18,7 +19,7 @@ namespace ToBeFree
 			}
 		}
 
-		public AbnormalConditionManager()
+		public void Init()
 		{
 			DataList<AbnormalConditionData> cDataList = new DataList<AbnormalConditionData>(file);
 			dataList = cDataList.dataList;
@@ -71,6 +72,24 @@ namespace ToBeFree
 					throw new Exception("AbnormalCondition data.index " + data.index + " is duplicated.");
 				}
 				list[data.index] = abnormalCondition;
+			}
+		}
+
+		public void Save(List<AbnormalConditionSaveData> abnormalList)
+		{
+			for(int i = 0; i < list.Length; ++i)
+			{
+				AbnormalConditionSaveData data = new AbnormalConditionSaveData(i, list[i].Stack, list[i].Amount);
+				abnormalList.Add(data);
+			}
+		}
+
+		public void Load(List<AbnormalConditionSaveData> abnormalList)
+		{
+			for (int i = 0; i < abnormalList.Count; ++i)
+			{
+				list[i].Stack = abnormalList[i].stack;
+				list[i].Amount = abnormalList[i].amount;
 			}
 		}
 

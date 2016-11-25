@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ToBeFree
@@ -6,6 +7,21 @@ namespace ToBeFree
 	public enum eBuff
 	{
 		NAME, AMOUNT, STACK
+	}
+
+	[Serializable]
+	public class BuffSaveData
+	{
+		public BuffSaveData(int index, int abnormalIndex, int aliveDays)
+		{
+			this.index = index;
+			this.abnormalIndex = abnormalIndex;
+			this.aliveDays = aliveDays;
+		}
+
+		public int index;
+		public int abnormalIndex;
+		public int aliveDays;
 	}
 
 	public class Buff

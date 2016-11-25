@@ -22,7 +22,6 @@ namespace ToBeFree
 			for (int i = 0; i < list.Count; ++i)
 			{
 				list[i] = new Item(ItemManager.Instance.List[dataList[i].index]);
-				list[i].Buff.AliveDays = dataList[i].buffAliveDays;
 			}
 		}
 

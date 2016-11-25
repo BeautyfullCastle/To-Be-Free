@@ -7,7 +7,6 @@ namespace ToBeFree
 	public class BuffManager : Singleton<BuffManager>
 	{
 		private List<Buff> buffList;
-		private Stat prevStat;
 
 		public delegate void UpdateListHandler(Buff buff);
 		static public event UpdateListHandler AddedBuff;
@@ -18,6 +17,24 @@ namespace ToBeFree
 			buffList = new List<Buff>();
 
 			TimeTable.Instance.NotifyEveryday += Instance_NotifyEveryday;
+		}
+		
+		public void Save(List<BuffSaveData> dataList)
+		{
+			for(int i=0; i<buffList.Count; ++i)
+			{
+				BuffSaveData data = new BuffSaveData(i, AbnormalConditionManager.Instance.Find(buffList[i].Name).Index, buffList[i].AliveDays);
+				dataList.Add(data);
+			}
+		}
+
+		public IEnumerator Load(List<BuffSaveData> dataList)
+		{
+			for(int i=0; i<dataList.Count; ++i)
+			{
+				Buff buff = AbnormalConditionManager.Instance.List[dataList[i].abnormalIndex].Buff;
+				yield return this.Add(buff);
+			}
 		}
 
 		private void Instance_NotifyEveryday()
@@ -41,13 +58,12 @@ namespace ToBeFree
 			}
 			buffList.Add(buff);
 			//AddedBuff(buff);
-			GameManager.Instance.FindGameObject("BuffManager").GetComponent<UIBuffManager>().AddBuff(buff);
+			GameObject.Find("BuffManager").GetComponent<UIBuffManager>().AddBuff(buff);
 			Debug.Log(buff.Name + " is added to buff list.");
 
 			yield return ActivateEffectByStartTime(eStartTime.NOW, GameManager.Instance.Character);
 
 			yield return null;
-
 		}
 
 		public IEnumerator Delete(Buff buff, Character character)

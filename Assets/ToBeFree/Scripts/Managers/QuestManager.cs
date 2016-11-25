@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -73,7 +74,24 @@ namespace ToBeFree
 				list[data.index] = quest;
 			}
 		}
-		
+
+		public void Save(List<QuestSaveData> questList)
+		{
+			for(int i=0; i<list.Length; ++i)
+			{
+				QuestSaveData data = new QuestSaveData(i, list[i].PastDays);
+				questList.Add(data);
+			}
+		}
+
+		public void Load(List<QuestSaveData> questList)
+		{
+			for (int i = 0; i < questList.Count; ++i)
+			{
+				list[i].PastDays = questList[i].pastDays;
+			}
+		}
+
 		public Quest FindRand()
 		{
 			int index = UnityEngine.Random.Range(0, list.Length);
