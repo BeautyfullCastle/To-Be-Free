@@ -92,6 +92,7 @@ namespace ToBeFree
 
 		private int infoNum;
 		private int viewRange;
+		private int preViewRange;
 
 		private int tempDiceNum;
 		private int diceNumByEffect;
@@ -398,6 +399,19 @@ namespace ToBeFree
 			get
 			{
 				return prevTalent;
+			}
+		}
+
+		public int PreViewRange
+		{
+			get
+			{
+				return preViewRange;
+			}
+
+			set
+			{
+				preViewRange = value;
 			}
 		}
 

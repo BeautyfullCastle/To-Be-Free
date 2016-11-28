@@ -730,7 +730,7 @@ namespace ToBeFree
 					else if (item is Item)
 					{
 						Item addingItem = item as Item;
-						character.Inven.AddItem(addingItem, character);
+						character.Inven.AddItem(addingItem);
 					}
 				}
 			}

@@ -42,7 +42,7 @@ namespace ToBeFree
 				for (int i = 0; i < data.itemIndex.Length; ++i)
 				{
 					Item item = new Item(ItemManager.Instance.List[data.itemIndex[i]]);
-					character.Inven.AddItem(item, character);
+					character.Inven.AddItem(item);
 				}
 
 				if (List[data.index] != null)

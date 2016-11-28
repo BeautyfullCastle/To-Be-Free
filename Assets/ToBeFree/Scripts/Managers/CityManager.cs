@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using System;
 
 namespace ToBeFree
 {
@@ -45,6 +46,21 @@ namespace ToBeFree
 			totalMoveTime = 6f;
 		}
 
+		public void Save(List<CitySaveData> cityList)
+		{
+			for(int i=0; i<everyCity.Count; ++i)
+			{
+				if (everyCity[i].Type == eNodeType.BIGCITY || everyCity[i].Type == eNodeType.MIDDLECITY)
+				{
+					CitySaveData data = new CitySaveData(i, everyCity[i].Item.Index);
+					if (i >= cityList.Count)
+						cityList.Add(data);
+					else
+						cityList[i] = data;
+				}
+			}
+		}
+
 		public City GetRand()
 		{
 			return everyCity[UnityEngine.Random.Range(0, list.Length)];
@@ -54,16 +70,19 @@ namespace ToBeFree
 		{
 			List<Item> list = new List<Item>(ItemManager.Instance.List);
 			list.RemoveAll(x => x.Tag == ItemTag.FOOD);
-			Item item = list[UnityEngine.Random.Range(0, list.Count - 1)];
+			list.RemoveAll(x => cityItems.Contains(x));
 
-			if (cityItems.Contains(item))
+			Item item = null;
+			if(list.Count > 0)
 			{
-				item = ItemManager.Instance.GetRand();
-			}
+				item = list[UnityEngine.Random.Range(0, list.Count - 1)];
+			}			
 			else
 			{
-				cityItems.Add(item);
+				item = cityItems[UnityEngine.Random.Range(0, cityItems.Count - 1)];
 			}
+			cityItems.Add(item);
+
 			return item;
 		}
 

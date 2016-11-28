@@ -92,77 +92,7 @@ namespace ToBeFree
 			switch (subjectType)
 			{
 				case eSubjectType.CHARACTER:
-					if (verbType == eVerbType.ADD)
-					{
-						if (objectType == eObjectType.HP)
-						{
-							Debug.Log("Cure HP");
-							character.Stat.HP += amount;
-						}
-						if (objectType == eObjectType.INFO)
-						{
-							character.Stat.InfoNum++;
-							if (character.Stat.InfoNum >= 5)
-							{
-								// Add broker.
-								Broker broker = new Broker(CityManager.Instance.FindRand(eSubjectType.BROKER), eSubjectType.BROKER);
-								PieceManager.Instance.Add(broker);
-								// Delete first main quest and Load main quest : "Go to the broker"
-								GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(QuestManager.Instance.List[15]);
-								yield return (QuestManager.Instance.Load(QuestManager.Instance.List[16], GameManager.Instance.Character));
-								character.Stat.InfoNum = 0;
-							}
-						}
-						if (objectType == eObjectType.FOOD)
-						{
-							character.Stat.Satiety += amount;
-						}
-						if (objectType == eObjectType.INVEN)
-						{
-							for (int i = 0; i < amount; ++i)
-							{
-								character.Inven.AddSlot();
-							}
-						}
-						if(objectType == eObjectType.VIEWRANGE)
-						{
-							prevAmount = character.Stat.ViewRange;
-							character.Stat.ViewRange += amount;
-						}
-						if(ObjectType == eObjectType.DICE)
-						{
-							character.Stat.DiceNumByEffect += amount;
-						}
-					}
-					if (verbType == eVerbType.DEL)
-					{
-						if (objectType == eObjectType.INFO)
-						{
-							character.Stat.InfoNum--;
-						}
-					}
-					if (verbType == eVerbType.MOVE)
-					{
-						if (objectType == eObjectType.CLOSE)
-						{
-							yield return character.MoveTo(CityManager.Instance.FindRandCityByDistance(character.CurCity, amount, subjectType, eWay.ENTIREWAY));
-						}
-						// can't move after move event( in mongolia )
-						if (objectType == eObjectType.CANCEL)
-						{
-							character.CantMove = true;
-						}
-					}
-					if(verbType == eVerbType.IN)
-					{
-						if (objectType == eObjectType.DETENTION)
-						{
-							if (character.IsDetention == false)
-							{
-								character.IsDetention = true;
-							}
-						}
-					}
+					yield return character.Activate(verbType, objectType, amount);
 					break;
 					
 				case eSubjectType.STAT:
@@ -172,154 +102,59 @@ namespace ToBeFree
 						character.Stat.Set(objectType, amount);
 					}
 					break;
-					
-				case eSubjectType.INFO:
+
 				case eSubjectType.POLICE:
-				case eSubjectType.BROKER:
-					if (verbType == eVerbType.MOVE)
-					{
-						Piece piece = null;
-						City startCity = null;
-						City endCity = null;
-						if (objectType == eObjectType.RAND_RAND)
-						{
-							piece = PieceManager.Instance.FindRand(subjectType);
-							startCity = piece.City;
-							endCity = CityManager.Instance.FindRand(subjectType);
-						}
-						yield return PieceManager.Instance.Move(piece, endCity);
-					}
-					if (verbType == eVerbType.DEL)
-					{
-						Piece piece = null;
-						if (objectType == eObjectType.RAND)
-						{
-							piece = PieceManager.Instance.FindRand(subjectType);
-						}
-						PieceManager.Instance.Delete(piece);
-					}
-					if (verbType == eVerbType.ADD)
-					{
-						if (objectType == eObjectType.RAND || objectType == eObjectType.CLOSE)
-						{
-							PieceManager.Instance.Add(subjectType);
-						}
-						if(objectType == eObjectType.VIEWRANGE)
-						{
-							// add one random police's stat
-							if (subjectType == eSubjectType.POLICE)
-							{
-								Police police = PieceManager.Instance.FindRand(subjectType) as Police;
-								yield return police.AddStat(CrackDown.Instance.IsCrackDown);
-							}
-						}
-					}
 					if (verbType == eVerbType.REVEAL)
 					{
-						if (subjectType == eSubjectType.POLICE)
+						// reveal number of polices in this position
+						if (objectType == eObjectType.NUMBER)
 						{
-							// reveal number of polices in this position
-							if (objectType == eObjectType.NUMBER)
+							GameManager.Instance.uiEventManager.OpenUI();
+							GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Please Click the city that you want to see the number of polices : ");
+							yield return EventManager.Instance.WaitUntilFinish();
+
+							foreach (IconCity c in GameManager.Instance.iconCities)
 							{
-								GameManager.Instance.uiEventManager.OpenUI();
-								GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Please Click the city that you want to see the number of polices : ");
-								yield return EventManager.Instance.WaitUntilFinish();
-
-								foreach (IconCity c in GameManager.Instance.iconCities)
-								{
-									c.SetEnable(true);
-								}
-
-								GameManager.Instance.revealPoliceNum = false;
-								while (GameManager.Instance.revealPoliceNum == false)
-								{
-									yield return null;
-								}
-
-								City city = GameManager.Instance.ClickedIconCity.City;
-								int policeNumInClickedCity = PieceManager.Instance.FindAll(eSubjectType.POLICE, city).Count;
-
-								GameManager.Instance.uiEventManager.OpenUI();
-								GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "The number of polices in " + city.Name + " : " + policeNumInClickedCity);
-								yield return EventManager.Instance.WaitUntilFinish();
-								
+								c.SetEnable(true);
 							}
-							// reveal police's crackdown probability
-							if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
+
+							GameManager.Instance.revealPoliceNum = false;
+							while (GameManager.Instance.revealPoliceNum == false)
 							{
-								GameManager.Instance.uiEventManager.OpenUI();
-								GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Crackdown Probability is " + CrackDown.Instance.Probability);
-								yield return EventManager.Instance.WaitUntilFinish();
+								yield return null;
 							}
+
+							City city = GameManager.Instance.ClickedIconCity.City;
+							int policeNumInClickedCity = PieceManager.Instance.FindAll(eSubjectType.POLICE, city).Count;
+
+							GameManager.Instance.uiEventManager.OpenUI();
+							GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "The number of polices in " + city.Name + " : " + policeNumInClickedCity);
+							yield return EventManager.Instance.WaitUntilFinish();
+
 						}
-						
+						// reveal police's crackdown probability
+						if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
+						{
+							GameManager.Instance.uiEventManager.OpenUI();
+							GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Crackdown Probability is " + CrackDown.Instance.Probability);
+							yield return EventManager.Instance.WaitUntilFinish();
+						}
 					}
 					break;
 					
 				case eSubjectType.ITEM:
+					Item item = ItemManager.Instance.GetByType(objectType, amount);
+					if (item == null)
+					{
+						throw new System.Exception("item is null");
+					}
+
 					if (verbType == eVerbType.ADD)
 					{
-						Item item = null;
-						if (objectType == eObjectType.ALL)
-						{
-							item = ItemManager.Instance.GetRand();
-						}
-						else if (objectType == eObjectType.TAG)
-						{
-							item = ItemManager.Instance.GetTagRand(amount);
-						}
-						else if (objectType == eObjectType.INDEX)
-						{
-							// Item item = invenManager.get(amount);
-							ItemManager.Instance.GetByIndex(amount);
-						}
-						else if (objectType == eObjectType.SELECT_ALL)
-						{
-							// 임시
-							item = ItemManager.Instance.GetRand();
-						}
-						else if (objectType == eObjectType.SELECT_TAG)
-						{
-							// 임시
-							item = ItemManager.Instance.GetRand();
-						}
-						else
-						{
-							throw new System.Exception("detail type is not right.");
-						}
-
-						if (item == null)
-						{
-							throw new System.Exception("item is null");
-						}
-						character.Inven.AddItem(item, character);
+						character.Inven.AddItem(item);
 					}
-					if (verbType == eVerbType.DEL)
+					else if (verbType == eVerbType.DEL)
 					{
-						Item item = null;
-						if (objectType == eObjectType.ALL)
-						{
-							item = character.Inven.GetRand();
-						}
-						else if (objectType == eObjectType.TAG)
-						{
-							item = character.Inven.GetTagRand(amount);
-						}
-						else if (objectType == eObjectType.INDEX)
-						{
-							item = ItemManager.Instance.GetByIndex(amount);
-						}
-						else if (objectType == eObjectType.SELECT) { }
-						else
-						{
-							Debug.LogError("detail type is not right.");
-						}
-
-						if (item == null)
-						{
-							Debug.LogError("item is null");
-							yield break;
-						}
 						yield return character.Inven.Delete(item, character);
 					}
 					break;
@@ -332,7 +167,7 @@ namespace ToBeFree
 							character.Stat.Money += amount;
 						}
 						// can add more : RAND ?
-						if (objectType == eObjectType.RAND_3)
+						else if (objectType == eObjectType.RAND_3)
 						{
 							int middleMoney = 3;
 							System.Random r = new System.Random();
@@ -355,12 +190,6 @@ namespace ToBeFree
 					{
 						if (objectType == eObjectType.SUCCESSNUM)
 						{
-							if (!(amount == 5 || amount == 6))
-							{
-								throw new System.Exception("Input Dice success num is not 5 or 6.");
-							}
-							Debug.Log("Effect " + subjectType + " " + verbType + " " + amount + " activated.");
-							prevAmount = DiceTester.Instance.MinSuccessNum;
 							DiceTester.Instance.MinSuccessNum = amount;
 						}
 					}
@@ -398,45 +227,60 @@ namespace ToBeFree
 							character.CantCure = true;
 						}
 					}
-					if (verbType == eVerbType.LOAD)
+					else if (verbType == eVerbType.LOAD)
 					{
-						if (amount < EventManager.Instance.List.Length)
+						if (amount > EventManager.Instance.List.Length)
 						{
-							yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[amount], character);
+							Debug.LogError("Event index " + amount + " is larger than events' length.");
+							yield break;
 						}
+						yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[amount], character);
 					}
 					break;
 				case eSubjectType.QUEST:
-					// load quest
-					if(verbType == eVerbType.LOAD)
+					if(amount > QuestManager.Instance.List.Length)
 					{
-						Quest selectedQuest = QuestManager.Instance.List[amount];
-						yield return QuestManager.Instance.Load(selectedQuest, character);
+						Debug.LogError("Quest index " + amount + " is larger than events' length.");
+						yield break;
 					}
-					if(verbType == eVerbType.DEL)
-					{
-						Quest quest = QuestManager.Instance.List[amount];
 
-						GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
+					Quest quest = QuestManager.Instance.List[amount];
+					if (verbType == eVerbType.LOAD)
+					{
+						yield return QuestManager.Instance.Load(quest, character);
+					}
+					else if(verbType == eVerbType.DEL)
+					{
+						GameObject.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
 					}
 					break;
 				case eSubjectType.RESULT:
 					if(verbType == eVerbType.LOAD)
 					{
+						if (amount > ResultManager.Instance.List.Length)
+						{
+							Debug.LogError("Result index " + amount + " is larger than events' length.");
+							yield break;
+						}
 						Result result = ResultManager.Instance.List[amount];
 						yield return EventManager.Instance.CalculateTestResult(result.TestStat, character);
 						yield return EventManager.Instance.TreatResult(result, character);
 					}
 					break;
 				case eSubjectType.ABNORMAL:
+					if (amount > AbnormalConditionManager.Instance.List.Length)
+					{
+						Debug.LogError("AbnormalCondition index " + amount + " is larger than events' length.");
+						yield break;
+					}
+
+					AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
 					if (verbType == eVerbType.ADD)
 					{
-						AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
 						yield return abnormalCondition.Activate(character);
 					}
-					if (verbType == eVerbType.DEL)
+					else if (verbType == eVerbType.DEL)
 					{
-						AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
 						yield return abnormalCondition.DeActivate(character);
 					}
 					break;
@@ -454,8 +298,7 @@ namespace ToBeFree
 				case eSubjectType.DICE:
 					if (objectType == eObjectType.SUCCESSNUM)
 					{
-						Debug.Log("Effect " + subjectType + " " + verbType + " " + prevAmount + " deactivated.");
-						DiceTester.Instance.MinSuccessNum = prevAmount;
+						DiceTester.Instance.MinSuccessNum = DiceTester.Instance.PrevMinSuccessNum;
 					}
 					break;
 				case eSubjectType.STAT:
@@ -479,24 +322,7 @@ namespace ToBeFree
 					}
 					break;
 				case eSubjectType.CHARACTER:
-					if (verbType == eVerbType.MOVE)
-					{
-						if (objectType == eObjectType.CANCEL)
-						{
-							character.CantMove = false;
-						}
-					}
-					else if(verbType == eVerbType.ADD)
-					{
-						if (objectType == eObjectType.VIEWRANGE)
-						{
-							character.Stat.ViewRange = 1;
-						}
-						else if (ObjectType == eObjectType.DICE)
-						{
-							character.Stat.DiceNumByEffect = 0;
-						}
-					}
+					yield return character.Deactivate(verbType, objectType);
 					break;
 				case eSubjectType.COMMAND:
 					if (verbType == eVerbType.DEACTIVE)

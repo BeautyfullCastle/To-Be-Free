@@ -51,6 +51,7 @@ namespace ToBeFree
 		// for test
 		private bool activateAbnormal;
 		private bool moveTest;
+		private bool isNew;
 
 		// can't use the constructor
 		private GameManager()
@@ -97,6 +98,8 @@ namespace ToBeFree
 			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
 			TipUIObj = GameObject.Find("Tip");
 			TipUIObj.SetActive(false);
+
+			inspectAction = new Inspect();
 		}
 		
 		public void ClickCity(IconCity city)
@@ -405,13 +408,14 @@ namespace ToBeFree
 			// Enter
 			yield return (ShowStateLabel("Init State", 0.5f));
 
+			this.isNew = true;
+
 			Init();
 
 			// character init
 			CharacterManager.Instance.Init();
 			
-			bool isLoad = false;
-			if(isLoad)
+			if(IsNew == false)
 			{
 				SaveLoadManager.Instance.Init();
 
@@ -426,20 +430,13 @@ namespace ToBeFree
 			{
 				character = CharacterManager.Instance.List[1];
 			}
+
 			yield return character.Init();
-			
-
 			shopUIObj.GetComponent<UIShop>().Init();
-
-			inspectAction = new Inspect();
 
 			yield return (ShowStateLabel("Adding Polices to Big cities.", 0.5f));
 
-			if(isLoad)
-			{
-				
-			}
-			else
+			if(IsNew)
 			{
 				//add polices in big cities.
 				List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
@@ -448,11 +445,11 @@ namespace ToBeFree
 					PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
 					NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 				}
+
+				// load first main quest.
+				yield return QuestManager.Instance.Load(QuestManager.Instance.List[15], character);
 			}
 			
-			// load first main quest.
-			yield return QuestManager.Instance.Load(QuestManager.Instance.List[15], character);
-
 			yield return null;
 
 #if UNITY_EDITOR
@@ -492,8 +489,6 @@ namespace ToBeFree
 
 		IEnumerator StartDayState()
 		{
-			SaveLoadManager.Instance.Save();
-
 			// Enter
 			yield return (ShowStateLabel("Start Day State", 0.5f));
 			
@@ -693,6 +688,8 @@ namespace ToBeFree
 			// ½ºÆä¼È ÀÌº¥Æ® È®·ü Áõ°¡
 			character.AddSpecialEventProbability();
 
+			SaveLoadManager.Instance.Save();
+
 			// Exit
 			yield return NextState();
 		}
@@ -855,6 +852,14 @@ namespace ToBeFree
 			private set
 			{
 				state = value;
+			}
+		}
+
+		public bool IsNew
+		{
+			get
+			{
+				return isNew;
 			}
 		}
 	}

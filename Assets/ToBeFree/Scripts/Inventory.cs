@@ -40,11 +40,11 @@ namespace ToBeFree
 				return;
 			}
 
-			AddItem(item, character);
+			AddItem(item);
 			character.Stat.Money -= price;
 		}
 
-		public void AddItem(Item item, Character character)
+		public void AddItem(Item item)
 		{
 			if (list.Count >= maxSlots)
 			{
@@ -71,6 +71,11 @@ namespace ToBeFree
 
 		public IEnumerator Delete(Item item, Character character)
 		{
+			if(Exist(item) == false)
+			{
+				Debug.LogError("Item " + item.Name + "is not exist in this inventory.");
+				yield break;
+			}
 			Item findedItem = list.Find(x => (x.Name == item.Name));
 			list.Remove(findedItem);
 			GameObject.FindObjectOfType<UIInventory>().DeleteItem(findedItem);

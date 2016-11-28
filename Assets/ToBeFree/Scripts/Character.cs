@@ -112,6 +112,105 @@ namespace ToBeFree
 			return diceNum + this.Stat.TempDiceNum + this.Stat.DiceNumByEffect;
 		}
 
+		public IEnumerator Activate(eVerbType verbType, eObjectType objectType, int amount)
+		{
+			if (verbType == eVerbType.ADD)
+			{
+				if (objectType == eObjectType.HP)
+				{
+					Debug.Log("Cure HP");
+					Stat.HP += amount;
+				}
+				else if (objectType == eObjectType.INFO)
+				{
+					Stat.InfoNum++;
+					if (Stat.InfoNum >= 5)
+					{
+						// Add broker.
+						Broker broker = new Broker(CityManager.Instance.FindRand(eSubjectType.BROKER), eSubjectType.BROKER);
+						PieceManager.Instance.Add(broker);
+						// Delete first main quest and Load main quest : "Go to the broker"
+						GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(QuestManager.Instance.List[15]);
+						yield return (QuestManager.Instance.Load(QuestManager.Instance.List[16], GameManager.Instance.Character));
+						Stat.InfoNum = 0;
+					}
+				}
+				else if (objectType == eObjectType.FOOD)
+				{
+					Stat.Satiety += amount;
+				}
+				else if (objectType == eObjectType.INVEN)
+				{
+					for (int i = 0; i < amount; ++i)
+					{
+						Inven.AddSlot();
+					}
+				}
+				else if (objectType == eObjectType.VIEWRANGE)
+				{
+					Stat.PreViewRange = Stat.ViewRange;
+					Stat.ViewRange += amount;
+				}
+				else if (objectType == eObjectType.DICE)
+				{
+					Stat.DiceNumByEffect += amount;
+				}
+			}
+			else if (verbType == eVerbType.DEL)
+			{
+				if (objectType == eObjectType.INFO)
+				{
+					Stat.InfoNum--;
+				}
+			}
+			else if (verbType == eVerbType.MOVE)
+			{
+				if (objectType == eObjectType.CLOSE)
+				{
+					yield return MoveTo(CityManager.Instance.FindRandCityByDistance(CurCity, amount, eSubjectType.CHARACTER, eWay.ENTIREWAY));
+				}
+				// can't move after move event( in mongolia )
+				else if (objectType == eObjectType.CANCEL)
+				{
+					CantMove = true;
+				}
+			}
+			else if (verbType == eVerbType.IN)
+			{
+				if (objectType == eObjectType.DETENTION)
+				{
+					if (IsDetention == false)
+					{
+						IsDetention = true;
+					}
+				}
+			}
+		}
+
+		public IEnumerator Deactivate(eVerbType verbType, eObjectType objectType)
+		{
+			if (verbType == eVerbType.MOVE)
+			{
+				if (objectType == eObjectType.CANCEL)
+				{
+					CantMove = false;
+				}
+			}
+			else if (verbType == eVerbType.ADD)
+			{
+				if (objectType == eObjectType.VIEWRANGE)
+				{
+					Stat.ViewRange = Stat.PreViewRange;
+				}
+				else if (objectType == eObjectType.DICE)
+				{
+					Stat.DiceNumByEffect = 0;
+				}
+			}
+
+			yield return null;
+		}
+
 		public void Rest()
 		{
 			if(CantCure)

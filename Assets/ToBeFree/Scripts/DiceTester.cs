@@ -6,6 +6,7 @@ namespace ToBeFree
 	public class DiceTester : Singleton<DiceTester>
 	{
 		private int minSuccessNum;
+		private int prevMinSuccessNum;
 		private int resultNum;
 		private GameObject diceObj;
 
@@ -49,7 +50,20 @@ namespace ToBeFree
 
 			set
 			{
+				if (!(value == 5 || value == 6))
+				{
+					throw new System.Exception("Input Dice success num is not 5 or 6.");
+				}
+				prevMinSuccessNum = value;
 				minSuccessNum = value;
+			}
+		}
+
+		public int PrevMinSuccessNum
+		{
+			get
+			{
+				return prevMinSuccessNum;
 			}
 		}
 	}

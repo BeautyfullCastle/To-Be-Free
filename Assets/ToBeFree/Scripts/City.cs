@@ -4,6 +4,19 @@ using UnityEngine;
 
 namespace ToBeFree
 {
+	[Serializable]
+	public class CitySaveData
+	{
+		public CitySaveData(int index, int itemIndex)
+		{
+			this.index = index;
+			this.itemIndex = itemIndex;
+		}
+
+		public int index;
+		public int itemIndex;
+	}
+
 	public class City
 	{
 		private int index;
@@ -16,11 +29,7 @@ namespace ToBeFree
 		private int distanceFromCharacter;
 		private eNodeType type;
 		private IconCity iconCity;
-
-		public City()
-		{
-			Item = null;
-		}
+		
 
 		public City(string name, eNodeType type, IconCity iconCity)
 		{
@@ -51,7 +60,14 @@ namespace ToBeFree
 
 			if (this.Type == eNodeType.BIGCITY || this.Type == eNodeType.MIDDLECITY)
 			{
-				item = CityManager.Instance.SetCityItem();
+				if(GameManager.Instance.IsNew)
+				{
+					item = CityManager.Instance.SetCityItem();
+				}
+				else
+				{
+					item = ItemManager.Instance.List[SaveLoadManager.Instance.data.cityList[this.index].itemIndex];
+				}
 			}
 		}
 
@@ -106,10 +122,6 @@ namespace ToBeFree
 			get
 			{
 				return item;
-			}
-			private set
-			{
-				item = value;
 			}
 		}
 

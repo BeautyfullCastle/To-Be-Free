@@ -90,5 +90,24 @@ namespace ToBeFree
 				return list;
 			}
 		}
+
+		public Item GetByType(eObjectType objectType, int amount)
+		{
+			Item item = null;
+			if (objectType == eObjectType.TAG)
+			{
+				item = ItemManager.Instance.GetTagRand(amount);
+			}
+			else if (objectType == eObjectType.INDEX)
+			{
+				ItemManager.Instance.GetByIndex(amount);
+			}
+			else
+			{
+				item = ItemManager.Instance.GetRand();
+			}
+
+			return item;
+		}
 	}
 }

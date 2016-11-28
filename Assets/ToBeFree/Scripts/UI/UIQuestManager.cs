@@ -8,7 +8,7 @@ namespace ToBeFree
 		public GameObject QuestPref;
 		public UIGrid grid;
 
-		private List<UIQuest> uiQuests = new List<UIQuest>();
+		private List<UIQuest> uiQuestList = new List<UIQuest>();
 
 		public void Awake()
 		{
@@ -30,20 +30,23 @@ namespace ToBeFree
 			uiQuest.SetLabels(questPiece.CurQuest.UiName, questPiece.CurQuest.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString(),
 				questPiece.CurQuest.UiConditionScript, cityName);
 
-			uiQuests.Add(uiQuest);
+			uiQuestList.Add(uiQuest);
 			grid.Reposition();
 		}
 
 		public void DeleteQuest(Quest quest)
 		{
-			UIQuest uiQuest = uiQuests.Find(x => x.QuestPiece.CurQuest.UiName == quest.UiName);
-			if (uiQuest)
-				DeleteUIQuest(uiQuest);
+			UIQuest uiQuest = uiQuestList.Find(x => x.QuestPiece.CurQuest.UiName == quest.UiName);
+			if (uiQuest == null)
+			{
+				Debug.LogError(quest.UiName + " quest is not exist in this list.");
+			}
+			this.DeleteUIQuest(uiQuest);
 		}
 
 		private void DeleteUIQuest(UIQuest uiQuest)
 		{
-			uiQuests.Remove(uiQuest);
+			uiQuestList.Remove(uiQuest);
 
 			if(uiQuest.QuestPiece != null)
 			{
@@ -54,7 +57,6 @@ namespace ToBeFree
 			{
 				DestroyImmediate(uiQuest.gameObject);
 			}
-			
 		}
 
 		static private int Sort(Transform a, Transform b)

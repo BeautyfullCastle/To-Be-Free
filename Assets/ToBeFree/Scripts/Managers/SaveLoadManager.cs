@@ -22,6 +22,7 @@ namespace ToBeFree
 				buffList = new List<BuffSaveData>();
 				abnormalList = new List<AbnormalConditionSaveData>();
 				questList = new List<QuestSaveData>();
+				cityList = new List<CitySaveData>();
 			}
 
 			public CharacterSaveData character;
@@ -29,6 +30,7 @@ namespace ToBeFree
 			public List<BuffSaveData> buffList;
 			public List<AbnormalConditionSaveData> abnormalList;
 			public List<QuestSaveData> questList;
+			public List<CitySaveData> cityList;
 		}
 
 		public void Init()
@@ -45,7 +47,9 @@ namespace ToBeFree
 			BuffManager.Instance.Save(data.buffList);
 			AbnormalConditionManager.Instance.Save(data.abnormalList);
 			QuestManager.Instance.Save(data.questList);
+			CityManager.Instance.Save(data.cityList);
 			CharacterManager.Instance.Save(data.character);
+			
 			//JsonData jsonData = JsonMapper.ToJson(data);
 			//Debug.Log(jsonData);
 			string s = JsonUtility.ToJson(data);
