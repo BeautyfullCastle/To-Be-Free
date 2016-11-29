@@ -42,7 +42,7 @@ namespace ToBeFree
 				for (int i = 0; i < data.itemIndex.Length; ++i)
 				{
 					Item item = new Item(ItemManager.Instance.List[data.itemIndex[i]]);
-					character.Inven.AddItem(item);
+					character.Inven.list.Add(item);
 				}
 
 				if (List[data.index] != null)
@@ -59,6 +59,7 @@ namespace ToBeFree
 			data.index = character.Index;
 			data.stat = new StatSaveData(character.Stat);
 			data.inventory = new List<ItemSaveData>();
+			data.maxSlot = character.Inven.MaxSlot;
 			for (int i = 0; i < character.Inven.list.Count; ++i)
 			{
 				Item item = character.Inven.list[i];
@@ -77,7 +78,7 @@ namespace ToBeFree
 		{
 			Character character = this.list[data.index];
 			character.Stat = new Stat(data.stat);
-			character.Inven = new Inventory(data.inventory);
+			character.Inven = new Inventory(data.inventory, data.maxSlot);
 
 			character.SpecialEventProbability = data.specialEventProbability;
 			if (data.caughtPolicePieceIndex == -1)

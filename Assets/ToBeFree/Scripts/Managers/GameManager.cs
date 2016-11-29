@@ -51,6 +51,8 @@ namespace ToBeFree
 		// for test
 		private bool activateAbnormal;
 		private bool moveTest;
+
+		[SerializeField]
 		private bool isNew;
 
 		// can't use the constructor
@@ -408,7 +410,7 @@ namespace ToBeFree
 			// Enter
 			yield return (ShowStateLabel("Init State", 0.5f));
 
-			this.isNew = true;
+			//this.isNew = false;
 
 			Init();
 
@@ -424,7 +426,10 @@ namespace ToBeFree
 				AbnormalConditionManager.Instance.Load(SaveLoadManager.Instance.data.abnormalList);
 				QuestManager.Instance.Load(SaveLoadManager.Instance.data.questList);
 				PieceManager.Instance.Load(SaveLoadManager.Instance.data.pieceList);
+				CityManager.Instance.Load(SaveLoadManager.Instance.data.cityList);
 				yield return BuffManager.Instance.Load(SaveLoadManager.Instance.data.buffList);
+
+				TimeTable.Instance.Load(SaveLoadManager.Instance.data.time);
 			}
 			else
 			{

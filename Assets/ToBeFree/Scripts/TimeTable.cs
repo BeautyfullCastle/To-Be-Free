@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ToBeFree
@@ -6,6 +7,12 @@ namespace ToBeFree
 	public enum eSpendTime
 	{
 		RAND, END
+	}
+
+	[Serializable]
+	public class TimeSaveData
+	{
+		public int day;
 	}
 
 	public class TimeTable : Singleton<TimeTable>
@@ -20,22 +27,31 @@ namespace ToBeFree
 
 		public delegate void TimeEventHandler();
 
-		public event TimeEventHandler NotifyEveryHour;
-		public event TimeEventHandler NotifyEveryday;
-		public event TimeEventHandler NotifyEveryWeek;
+		public event TimeEventHandler NotifyEveryHour = delegate { };
+		public event TimeEventHandler NotifyEveryday = delegate { };
+		public event TimeEventHandler NotifyEveryWeek = delegate { };
 
 		public TimeTable()
 		{
-			hour = 6;
-			day = 1;
+			Hour = 6;
+			Day = 1;
 			week = 3;
+		}
+
+		public void Save(TimeSaveData data)
+		{
+			data.day = this.Day;
+		}
+
+		public void Load(TimeSaveData data)
+		{
+			this.Day = data.day;
 		}
 
 		public void DayIsGone()
 		{
-			++day;
+			++Day;
 			Hour = 6;
-			NotifyEveryday();
 
 			if (day % week == 0)
 			{
@@ -96,6 +112,11 @@ namespace ToBeFree
 			get
 			{
 				return day;
+			}
+			private set
+			{
+				day = value;
+				NotifyEveryday();
 			}
 		}
 

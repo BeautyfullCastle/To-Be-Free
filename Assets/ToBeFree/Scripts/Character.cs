@@ -11,6 +11,7 @@ namespace ToBeFree
 		public int index;
 		public StatSaveData stat;
 		public List<ItemSaveData> inventory;
+		public int maxSlot;
 		public float specialEventProbability = 0f;
 		public int caughtPolicePieceIndex;
 		public int curCityIndex;
@@ -309,7 +310,7 @@ namespace ToBeFree
 			this.Stat.RefreshUI();
 			this.Stat.SetViewRange();
 
-			GameObject.FindObjectOfType<UIInventory>().Change(this.Inven);
+			GameObject.FindObjectOfType<UIInventory>().Init(this.Inven);
 			
 			UICenterOnChild scrollviewCenter = GameObject.FindObjectOfType<UICenterOnChild>();
 			scrollviewCenter.CenterOn(this.CurCity.IconCity.transform);

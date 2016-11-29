@@ -58,23 +58,13 @@ namespace ToBeFree
 				this.workingMoneyMax = 0;
 			}
 
-			if (this.Type == eNodeType.BIGCITY || this.Type == eNodeType.MIDDLECITY)
-			{
-				if(GameManager.Instance.IsNew)
-				{
-					item = CityManager.Instance.SetCityItem();
-				}
-				else
-				{
-					item = ItemManager.Instance.List[SaveLoadManager.Instance.data.cityList[this.index].itemIndex];
-				}
-			}
+			item = CityManager.Instance.SetCityItem();
 		}
 
 		public City(City curCity) : this(curCity.name, curCity.Type, curCity.iconCity)
 		{
 		}
-
+		
 		public void InitNeighbors(List<City>[] neighbors)
 		{
 			this.neighbors = neighbors;
@@ -95,6 +85,14 @@ namespace ToBeFree
 		{
 			get { return name; }
 			set { name = value; }
+		}
+
+		public void Load(CitySaveData data)
+		{
+			if (this.Type == eNodeType.BIGCITY || this.Type == eNodeType.MIDDLECITY)
+			{
+				this.item = ItemManager.Instance.List[data.itemIndex];
+			}
 		}
 
 		public List<City>[] Neighbors

@@ -61,6 +61,14 @@ namespace ToBeFree
 			}
 		}
 
+		public void Load(List<CitySaveData> cityList)
+		{
+			for (int i = 0; i < cityList.Count; ++i)
+			{
+				everyCity[i].Load(cityList[i]);
+			}
+		}
+
 		public City GetRand()
 		{
 			return everyCity[UnityEngine.Random.Range(0, list.Length)];

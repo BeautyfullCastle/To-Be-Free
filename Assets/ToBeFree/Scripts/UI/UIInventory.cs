@@ -16,19 +16,8 @@ namespace ToBeFree
 			items = new List<UIItem>();
 		}
 
-		public void Change(Inventory inven)
+		public void Init(Inventory inven)
 		{
-			if (items != null && items.Count > 0)
-			{
-				foreach (UIItem item in items)
-				{
-					DestroyImmediate(item.gameObject);
-				}
-				grid.Reposition();
-				items.Clear();
-				items.TrimExcess();
-			}
-
 			foreach(Item item in inven.list)
 			{
 				AddItem(item);

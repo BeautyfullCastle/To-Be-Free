@@ -6,28 +6,28 @@ namespace ToBeFree
 {
 	public class Inventory
 	{
-		private int maxSlots;
+		private int maxSlot;
 		public List<Item> list;
 
 		public Inventory(int maxSlots)
 		{
-			this.maxSlots = maxSlots;
+			this.maxSlot = maxSlots;
 			list = new List<Item>();
 		}
 
-		public Inventory(List<ItemSaveData> dataList)
+		public Inventory(List<ItemSaveData> dataList, int maxSlot)
 		{
+			this.maxSlot = maxSlot;
 			list = new List<Item>(dataList.Count);
-			
-			for (int i = 0; i < list.Count; ++i)
+			for (int i = 0; i < dataList.Count; ++i)
 			{
-				list[i] = new Item(ItemManager.Instance.List[dataList[i].index]);
+				this.list.Add(new Item(ItemManager.Instance.List[dataList[i].index]));
 			}
 		}
-
+		
 		public void BuyItem(Item item, int discountNum, Character character)
 		{
-			if (list.Count >= maxSlots)
+			if (list.Count >= maxSlot)
 			{
 				NGUIDebug.Log("There is no more space in the inventory.");
 				return;
@@ -46,7 +46,7 @@ namespace ToBeFree
 
 		public void AddItem(Item item)
 		{
-			if (list.Count >= maxSlots)
+			if (list.Count >= maxSlot)
 			{
 				NGUIDebug.Log("There is no more space in the inventory.");
 			}
@@ -111,7 +111,7 @@ namespace ToBeFree
 
 		public void AddSlot()
 		{
-			this.maxSlots++;
+			this.maxSlot++;
 		}
 
 		public IEnumerator CheckItem(eStartTime startTime, bool isActive, Character character)
@@ -158,6 +158,19 @@ namespace ToBeFree
 		public IEnumerator DeactvieItems(Item item, Character character)
 		{
 			yield return item.Buff.DeactivateEffect(character);
+		}
+
+		public int MaxSlot
+		{
+			get
+			{
+				return maxSlot;
+			}
+
+			set
+			{
+				maxSlot = value;
+			}
 		}
 	}
 }

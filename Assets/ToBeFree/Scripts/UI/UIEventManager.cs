@@ -89,7 +89,8 @@ namespace ToBeFree
 		
 		public void OnClick(string index)
 		{
-			if(selectList == null || selectList.Length == 0)
+			int iIndex = int.Parse(index);
+			if(selectList == null || iIndex > selectList.Length-1)
 			{
 				return;
 			}
@@ -119,6 +120,7 @@ namespace ToBeFree
 			{
 				allLabel[i].text = string.Empty;
 			}
+			selectList = null;
 		}
 	}
 }
