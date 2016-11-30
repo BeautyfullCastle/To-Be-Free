@@ -16,6 +16,11 @@ namespace ToBeFree
 			grid.onCustomSort = Sort;
 		}
 
+		public void OnDisable()
+		{
+			Clear();
+		}
+
 		public void AddQuest(QuestPiece questPiece)
 		{
 			Debug.Log("UIQuestManager : AddQuest");
@@ -40,8 +45,25 @@ namespace ToBeFree
 			if (uiQuest == null)
 			{
 				Debug.LogError(quest.UiName + " quest is not exist in this list.");
+				return;
 			}
 			this.DeleteUIQuest(uiQuest);
+		}
+
+		private void Clear()
+		{
+			if (uiQuestList.Count == 0)
+				return;
+
+			foreach(UIQuest uiQuest in uiQuestList)
+			{
+				if (uiQuest.gameObject != null)
+				{
+					DestroyImmediate(uiQuest.gameObject);
+				}
+			}
+			uiQuestList.Clear();
+			grid.Reposition();
 		}
 
 		private void DeleteUIQuest(UIQuest uiQuest)

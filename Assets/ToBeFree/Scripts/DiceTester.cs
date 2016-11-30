@@ -14,7 +14,7 @@ namespace ToBeFree
 		{
 			minSuccessNum = 6;
 			resultNum = -99;
-			diceObj = GameObject.Find("Dice Tester");
+			diceObj = GameManager.Instance.diceObj;
 			diceObj.SetActive(false);
 		}
 

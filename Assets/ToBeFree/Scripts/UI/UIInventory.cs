@@ -24,6 +24,19 @@ namespace ToBeFree
 			}
 		}
 
+		void OnDisable()
+		{
+			if (items.Count == 0)
+				return;
+
+			foreach (UIItem uiItem in items)
+			{
+				DestroyImmediate(uiItem.gameObject);
+			}
+			items.Clear();
+			grid.Reposition();
+		}
+
 		public void AddItem(Item item)
 		{
 			GameObject gObjItem = NGUITools.AddChild(grid.gameObject, objSampleItem);

@@ -10,13 +10,19 @@ namespace ToBeFree
 		private float angle;
 		private string strDay;
 		
-		void Start()
+		void Awake()
 		{
 			TimeTable.Instance.NotifyEveryHour += Instance_NotifyEveryHour;
 			TimeTable.Instance.NotifyEveryday += OnDayChange;
 			angle = hourhand.localRotation.eulerAngles.z;
 			strDay = "Day";
 			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
+		}
+
+		void OnDisable()
+		{
+			ChangeDay(1);
+			ChangeHour(6);
 		}
 
 		private void LanguageSelection_selectLanguage(eLanguage language)
@@ -26,14 +32,23 @@ namespace ToBeFree
 
 		private void Instance_NotifyEveryHour()
 		{
-			int hour = TimeTable.Instance.Hour;
+			ChangeHour(TimeTable.Instance.Hour);
+		}
+
+		private void ChangeHour(int hour)
+		{
 			hour -= 6;
-			hourhand.localRotation = Quaternion.AngleAxis(angle + hour*-15f, Vector3.forward);
+			hourhand.localRotation = Quaternion.AngleAxis(angle + hour * -15f, Vector3.forward);
 		}
 
 		private void OnDayChange()
 		{
-			dayLabel.text = TimeTable.Instance.Day.ToString() + " " + strDay;
+			ChangeDay(TimeTable.Instance.Day);
+		}
+
+		private void ChangeDay(int day)
+		{
+			dayLabel.text = day.ToString() + " " + strDay;
 		}
 
 	}

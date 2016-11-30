@@ -252,13 +252,6 @@ namespace ToBeFree
 			this.quest = quest;
 
 			AddQuest(this);
-
-			TimeTable.Instance.NotifyEveryday += DayIsGone;
-		}
-
-		public void DayIsGone()
-		{
-			quest.PastDays++;
 		}
 
 		public IEnumerator TreatPastQuests(Character character)

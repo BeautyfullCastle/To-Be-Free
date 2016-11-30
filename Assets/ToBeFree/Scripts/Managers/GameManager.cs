@@ -7,9 +7,14 @@ namespace ToBeFree
 {
 	public class GameManager : MonoSingleton<GameManager>
 	{
+		public enum eSceneState
+		{
+			Main=0, CharacterSelect, InGame
+		}
+
 		public enum GameState
 		{
-			Init, StartWeek, Detention, Mongolia, Escape,
+			Main = 0, CharacterSelect, InGame, Init, StartWeek, Detention, Mongolia, Escape,
 			StartDay,
 			Act,
 			Night,
@@ -19,14 +24,20 @@ namespace ToBeFree
 		public UILabel stateLabel;
 		public Camera directingCam;
 		public Camera worldCam;
+		public UICamera uiCamera;
+		public GameObject worldObj;
 		public GameObject commandUIObj;
 		public GameObject shopUIObj;
 		public UIEventManager uiEventManager;
-		public GameObject uiSetting;
+		public GameObject optionObj;
 		public LanguageSelection languageSelection;
 		public UIGrid commandPopupGrid;
 		public GameObject IconPieceObj;
 		public GameObject TipUIObj;
+		public GameObject diceObj;
+		public GameObject menuObj;
+
+		public GameObject[] scenes;
 
 		[HideInInspector]
 		public IconCity[] iconCities;
@@ -94,11 +105,11 @@ namespace ToBeFree
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
 			
-			uiSetting.SetActive(false);
+			optionObj.SetActive(false);
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
 			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
-			TipUIObj = GameObject.Find("Tip");
+			//TipUIObj = GameObject.Find("Tip");
 			TipUIObj.SetActive(false);
 
 			inspectAction = new Inspect();
@@ -328,11 +339,11 @@ namespace ToBeFree
 
 			if(Input.GetKeyDown(KeyCode.Escape))
 			{
-				uiSetting.SetActive(!uiSetting.activeSelf);
-				int mask = 32; // UI Layer Num : 2 ^ 5
-				if (uiSetting.activeSelf)
-					mask = 256; // Setting Layer Num : 2 ^ 8
-				GameObject.Find("UI Camera").GetComponent<UICamera>().eventReceiverMask = mask;
+				SwitchMenu(false);
+				if (optionObj.activeSelf)
+				{
+					SwitchMenu(true);
+				}
 			}
 
 #if UNITY_EDITOR
@@ -387,6 +398,24 @@ namespace ToBeFree
 
 		}
 
+		private void SwitchMenu(bool isOption)
+		{
+			GameObject obj = null;
+			if(isOption)
+			{
+				obj = optionObj;
+			}
+			else
+			{
+				obj = menuObj;
+			}
+			obj.SetActive(!obj.activeSelf);
+			int mask = 32; // UI Layer Num : 2 ^ 5
+			if (menuObj.activeSelf || optionObj.activeSelf)
+				mask = 256; // Setting Layer Num : 2 ^ 8
+			uiCamera.eventReceiverMask = mask;
+		}
+
 		private void DayIsGone()
 		{
 			state = GameState.StartDay;
@@ -399,7 +428,7 @@ namespace ToBeFree
 
 		private void Start()
 		{
-			this.StartCoroutine(InitState());
+			this.StartCoroutine(MainState());
 		}
 
 		#region State Routine
@@ -472,7 +501,116 @@ namespace ToBeFree
 			// Exit
 			yield return NextState();
 		}
-		
+
+		IEnumerator MainState()
+		{
+			// Enter
+			this.ChangeScene(eSceneState.Main);
+			yield return null;
+
+			// Excute
+			while(this.state == GameState.Main)
+			{
+				yield return new WaitForSecondsRealtime(0.2f);
+			}
+
+			worldObj.SetActive(true);
+			// Exit
+			yield return NextState();
+		}
+
+		IEnumerator CharacterSelectState()
+		{
+			// Enter
+			this.ChangeScene(eSceneState.CharacterSelect);
+			yield return null;
+
+			// Excute
+			while (this.state == GameState.CharacterSelect)
+			{
+				yield return new WaitForSecondsRealtime(0.2f);
+			}
+
+			// Exit
+			yield return NextState();
+		}
+
+		IEnumerator InGameState()
+		{
+			// Enter
+			this.ChangeScene(eSceneState.InGame);
+			yield return null;
+
+			// Excute
+			this.state = GameState.Init;
+
+			// Exit
+			yield return NextState();
+		}
+
+		public void SelectMenuButton(string buttonName)
+		{
+			buttonName = buttonName.ToUpper();
+			if(buttonName == "NEW")
+			{
+				this.isNew = true;
+				this.state = GameState.CharacterSelect;
+			}
+			else if(buttonName == "CONTINUE")
+			{
+				this.isNew = false;
+				this.state = GameState.InGame;
+			}
+			else if(buttonName == "MENU")
+			{
+				SwitchMenu(false);
+			}
+			else if(buttonName == "OPTION")
+			{
+				SwitchMenu(false);
+				SwitchMenu(true);
+			}
+			else if(buttonName == "MAIN")
+			{
+				ResetUI();
+				SwitchMenu(false);
+				worldObj.SetActive(false);
+				ChangeScene(eSceneState.Main);
+				this.state = GameState.Main;
+				StopAllCoroutines();
+				StartCoroutine(NextState());
+			}
+			else if(buttonName == "CHARACTER")
+			{
+				this.state = GameState.InGame;
+			}
+		}
+
+		private void ResetUI()
+		{
+			TimeTable.Instance.Reset();
+			CrackDown.Instance.Reset();
+			BuffManager.Instance.Reset();
+			PieceManager.Instance.Reset();
+
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+		}
+
+		private void SwitchOption()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void ChangeScene(eSceneState sceneState)
+		{
+			int iSceneState = (int)sceneState;
+			for(int i=0; i<scenes.Length; ++i)
+			{
+				scenes[i].SetActive(i == iSceneState);
+			}
+		}
+
 		IEnumerator StartWeekState()
 		{
 			// Enter

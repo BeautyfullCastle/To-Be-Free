@@ -13,10 +13,18 @@ namespace ToBeFree
 
 		public CrackDown()
 		{
+			Reset();
+		}
+
+		public void Reset()
+		{
 			probability = 0;
 			increasingProbability = 20;
 			isCrackDown = false;
-			crackDownEffect = GameObject.Find("CrackDown Effect").GetComponent<UISprite>();
+			if(crackDownEffect == null)
+			{
+				crackDownEffect = GameObject.Find("CrackDown Effect").GetComponent<UISprite>();
+			}
 		}
 
 		private bool RaiseAndCheckProbability()

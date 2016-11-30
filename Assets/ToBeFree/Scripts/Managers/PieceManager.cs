@@ -19,6 +19,18 @@ namespace ToBeFree
 			list = new List<Piece>();
 		}
 
+		public void Reset()
+		{
+			foreach(Piece piece in list)
+			{
+				if (piece.IconPiece == null)
+					continue;
+
+				GameObject.Destroy(piece.IconPiece.gameObject);
+			}
+			list.Clear();
+		}
+
 		public void Save(List<PieceSaveData> pieceList)
 		{
 			for(int i=0; i<list.Count; ++i)

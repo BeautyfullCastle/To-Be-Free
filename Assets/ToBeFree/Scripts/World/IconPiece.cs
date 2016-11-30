@@ -19,6 +19,11 @@ public class IconPiece : MonoBehaviour
 		numberLabel.gameObject.SetActive(false);
 	}
 
+	void OnDisable()
+	{
+		//Destroy(this.gameObject, 0.1f);
+	}
+
 	public void Init(eSubjectType subjectType)
 	{
 		this.subjectType = subjectType;

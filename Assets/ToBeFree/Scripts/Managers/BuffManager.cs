@@ -18,6 +18,11 @@ namespace ToBeFree
 
 			TimeTable.Instance.NotifyEveryday += Instance_NotifyEveryday;
 		}
+
+		public void Reset()
+		{
+			buffList.Clear();
+		}
 		
 		public void Save(List<BuffSaveData> dataList)
 		{
@@ -132,7 +137,7 @@ namespace ToBeFree
 						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, resultNum.ToString());
 						yield return EventManager.Instance.WaitUntilFinish();
 
-						if (resultNum > 0)
+						if (resultNum <= 4)
 						{
 							buffsToDelete.Add(buff);
 						}

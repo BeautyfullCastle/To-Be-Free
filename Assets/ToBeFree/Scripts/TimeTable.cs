@@ -20,7 +20,7 @@ namespace ToBeFree
 
 		private int hour;
 		private int day;
-		private readonly int week;
+		private int week;
 
 		int totalHour;
 		int usedHour;
@@ -32,6 +32,11 @@ namespace ToBeFree
 		public event TimeEventHandler NotifyEveryWeek = delegate { };
 
 		public TimeTable()
+		{
+			Reset();
+		}
+
+		public void Reset()
 		{
 			Hour = 6;
 			Day = 1;
