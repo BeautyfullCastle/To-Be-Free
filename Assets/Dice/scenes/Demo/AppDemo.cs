@@ -1,80 +1,96 @@
+
+using System;
 /**
- * Copyright (c) 2010-2015, WyrmTale Games and Game Components
- * All rights reserved.
- * http://www.wyrmtale.com
- *
- * THIS SOFTWARE IS PROVIDED BY WYRMTALE GAMES AND GAME COMPONENTS 'AS IS' AND ANY
- * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL WYRMTALE GAMES AND GAME COMPONENTS BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+* Copyright (c) 2010-2015, WyrmTale Games and Game Components
+* All rights reserved.
+* http://www.wyrmtale.com
+*
+* THIS SOFTWARE IS PROVIDED BY WYRMTALE GAMES AND GAME COMPONENTS 'AS IS' AND ANY
+* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+* DISCLAIMED. IN NO EVENT SHALL WYRMTALE GAMES AND GAME COMPONENTS BE LIABLE FOR ANY
+* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
+* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 using UnityEngine;
 
 // Demo application script
 public class AppDemo : MonoBehaviour
 {
-	public int diceNum = 0;
+	public Dice[] dices = null;
 
-	// initial/starting die in the gallery
-	private string galleryDie = "d6-red";
-	
+	[HideInInspector]
+	public bool mouseDown = false;
+		
 	private Rect rectModeSelect;
-	
-	// Use this for initialization
-	void Start ()
+
+	public void Init(int characterDiceNum, int policeDiceNum = 0)
 	{
-		rectModeSelect =  new Rect(10,10,180,80);
-		Dice.Clear();
+		dices[0].Clear();
+		dices[1].Clear();
+
+		if (characterDiceNum <= 0)
+			characterDiceNum = 1;
+		
+		dices[0].Init(characterDiceNum);
+		dices[1].Init(policeDiceNum);
+
+		bool isPolice = policeDiceNum > 0;
+		dices[1].gameObject.SetActive(isPolice);
 	}
-	
+
+	void Awake()
+	{
+		rectModeSelect = new Rect(10, 10, 180, 80);
+
+		foreach (Dice dice in dices)
+		{
+			dice.Clear();
+		}
+
+		this.gameObject.SetActive(false);
+	}
+
+	void OnDisable()
+	{
+		foreach (Dice dice in dices)
+		{
+			dice.Clear();
+		}
+		mouseDown = false;
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
 		// rolling mode to update the dice rolling
 		UpdateRoll();
 	}
-
-	// dertermine random rolling force
-	private GameObject spawnPoint = null;
-	private Vector3 Force()
-	{
-		Vector3 rollTarget = Vector3.zero + new Vector3(2 + 7 * Random.value, .5F + 4 * Random.value, -2 - 3 * Random.value);
-		return Vector3.Lerp(spawnPoint.transform.position, rollTarget, 1).normalized * (-35 - Random.value * 20);
-	}
-
-	bool mouseDown = false;
+	
 	void UpdateRoll()
 	{
-		spawnPoint = GameObject.Find("spawnPoint");
-		
-		// check if we have to roll dice
+		//check if we have to roll dice
 		if (Input.GetMouseButtonDown(0) && !PointInRect(GuiMousePosition(), rectModeSelect))
 		{
-			if(mouseDown == false)
+			if (mouseDown == false)
 			{
-				Dice.Clear();
 				mouseDown = true;
-			}	
+			}
 		}
-		else if(Input.GetMouseButtonUp(0))
+		else if (Input.GetMouseButtonUp(0))
 		{
 			if(mouseDown)
 			{
-				string[] a = galleryDie.Split('-');
-				if (diceNum <= 0)
+				foreach (Dice dice in dices)
 				{
-					diceNum = 1;
+					dice.rolling = true;
+					dice.Freeze(false);
 				}
-
-				Dice.Roll(diceNum.ToString() + a[0], galleryDie, spawnPoint.transform.position, Force());
 				
-				mouseDown = false;
 			}
 		}
 	}

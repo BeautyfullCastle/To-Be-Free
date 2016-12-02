@@ -200,19 +200,11 @@ namespace ToBeFree
 			yield return EventManager.Instance.WaitUntilFinish();
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-
-			GameManager.Instance.uiEventManager.OpenUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Your turn. Roll the dice!");
-			yield return EventManager.Instance.WaitUntilFinish();
-			int characterSuccessNum = 0;
-			yield return DiceTester.Instance.Test(character.Stat.Agility, x => characterSuccessNum = x);
 			
-
-			GameManager.Instance.uiEventManager.OpenUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Police turn. Roll the dice!");
-			yield return EventManager.Instance.WaitUntilFinish();
+			int characterSuccessNum = 0;
 			int policeSuccessNum = 0;
-			yield return DiceTester.Instance.Test(this.Power, x => policeSuccessNum = x);			
+			yield return DiceTester.Instance.Test(character.Stat.Agility, this.Power, (x, x2) => { characterSuccessNum = x; policeSuccessNum = x2; } );
+			
 			EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 

@@ -13,7 +13,7 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */ 
+ */
 using UnityEngine;
 using System.Collections;
 
@@ -21,18 +21,18 @@ using System.Collections;
 /// This dice dupporting class has some 'static' methods to help you throwning dice
 ///  and getting the rolling dice count, value or rolling state (asString)
 /// </summary>
-public class Dice : MonoBehaviour {	
-	
+public class Dice : MonoBehaviour {
+
 	//------------------------------------------------------------------------------------------------------------------------------
 	// public attributes
 	//------------------------------------------------------------------------------------------------------------------------------
-	
+
 	// rollSpeed determines how many seconds pass between rolling the single dice
 	public float rollSpeed = 0.25F;
 	
 	// rolling = true when there are dice still rolling, rolling is checked using rigidBody.velocity and rigidBody.angularVelocity
-	public static bool rolling = true;
-
+	public bool rolling = true;
+	
 	//------------------------------------------------------------------------------------------------------------------------------
 	// protected and private attributes
 	//------------------------------------------------------------------------------------------------------------------------------
@@ -41,23 +41,59 @@ public class Dice : MonoBehaviour {
 	protected float rollTime = 0;
 	
 	// material cache
-	private static ArrayList matNames = new ArrayList();
-	private static ArrayList materials = new ArrayList();
+	private ArrayList matNames = new ArrayList();
+	private ArrayList materials = new ArrayList();
+
 	// reference to the dice that have to be rolled
-	private static ArrayList rollQueue = new ArrayList();
+	private ArrayList rollQueue = new ArrayList();
+	
 	// reference to all dice, created by Dice.Roll
-	private static ArrayList allDice = new ArrayList();
+	private ArrayList allDice = new ArrayList();
 	// reference to the dice that are rolling
-	private static ArrayList rollingDice = new ArrayList();
+	private ArrayList rollingDice = new ArrayList();
+	
+	private Transform spawnPoint = null;
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// public methods
 	//------------------------------------------------------------------------------------------------------------------------------	
-		
+
+	void Awake()
+	{
+		spawnPoint = this.transform.FindChild("spawnPoint");
+	}
+	
+	public void Freeze(bool isFreeze)
+	{
+		foreach (var dice in allDice)
+		{
+			RollingDie rollingDie = dice as RollingDie;
+
+			rollingDie.SetGravity(!isFreeze);
+						
+			if(isFreeze)
+				rollingDie.force = Vector3.zero;
+			else
+				rollingDie.force = Force();
+			
+		}
+	}
+
+	public bool IsHitToGround()
+	{
+		foreach (var dice in allDice)
+		{
+			RollingDie rollingDie = dice as RollingDie;
+			if (rollingDie.localHit == false)
+				return false;
+		}
+		return true;
+	}
+
 	/// <summary>
 	/// This method will create/instance a prefab at a specific position with a specific rotation and a specific scale and assign a material
 	/// </summary>
-	public static GameObject prefab(string name, Vector3 position, Vector3 rotation, Vector3 scale, string mat) 
+	public GameObject prefab(string name, Vector3 position, Vector3 rotation, Vector3 scale, string mat)
 	{		
 		// load the prefab from Resources
 		Object pf = Resources.Load("Prefabs/" + name);
@@ -84,109 +120,59 @@ public class Dice : MonoBehaviour {
 	/// <summary>
 	/// This method will perform a quick lookup for a 'cached' material. If not found, the material will be loaded from the Resources
 	/// </summary>
-	public static Material material(string matName)
+	public Material material(string matName)
 	{
-		Material mat = null;
-		// check if material is cached
-		int idx = matNames.IndexOf(matName);
-		if (idx<0)
-		{
-			//  not cached so load it from Resources
-			string[] a = matName.Split('-');
-			if (a.Length>1)
-			{
-				a[0] = a[0].ToLower();
-				if (a[0].IndexOf("d")==0)
-					mat = (Material) Resources.Load("Materials/"+a[0]+"/"+matName);
-			}			
-			if (mat==null) mat = (Material) Resources.Load("Materials/"+matName);
-			if (mat!=null)
-			{
-				// add material to cache
-				matNames.Add(matName);
-				materials.Add(mat);
-			}
-		}
-		else
-			mat = (Material) materials[idx];
+		Material mat = (Material) Resources.Load("Materials/"+matName);
 		// return material - null if not found
 		return mat;
 	}
-	
-	/// <summary>
-	/// Log a text to the console
-	/// </summary>
-	public static void debug(string txt)
-	{
-		Debug.Log(txt);
-	}		
-	
+
 	/// <summary>
 	/// Roll one or more dice with a specific material from a spawnPoint and give it a specific force.
 	/// format dice 			: 	({count}){die type}	, exmpl.  d6, 4d4, 12d8 , 1d20
 	/// possible die types 	:	d4, d6, d8 , d10, d12, d20
 	/// </summary>
-	public static void Roll(string dice, string mat, Vector3 spawnPoint, Vector3 force)
+	public void Init(int diceNum)
 	{
-		rolling = true;
-		// sotring dice to lowercase for comparing purposes
-		dice = dice.ToLower();
-		int count = 1;
 		string dieType = "d6";
-		
-		// 'd' must be present for a valid 'dice' specification
-		int p = dice.IndexOf("d");
-		if (p>=0)
+		string mat = "red";
+
+		// instantiate the dice
+		for (int d = 0; d < diceNum; d++)
 		{
-			// check if dice starts with d, if true a single die is rolled.
-			// dice must have a count because dice does not start with 'd'
-			if (p>0)
-			{
-				// extract count
-				string[] a = dice.Split('d');
-				count = System.Convert.ToInt32(a[0]);
-				// get die type
-				if (a.Length>1)
-					dieType = "d"+a[1];
-				else
-					dieType = "d6";
-			}
-			else
-				dieType = dice;
-			
-			// instantiate the dice
-			for (int d=0; d<count; d++)
-			{
-				// randomize spawnPoint variation
-				spawnPoint.x = spawnPoint.x - 1 + Random.value * 2;
-				spawnPoint.y = spawnPoint.y - 1 + Random.value * 2;
-				spawnPoint.y = spawnPoint.y - 1 + Random.value * 2;
-				// create the die prefab/gameObject
-				GameObject die = prefab(dieType, spawnPoint, Vector3.zero, Vector3.one, mat);
-				// give it a random rotation
-				//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
-				// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
-				//die.SetActive(false);
-				// create RollingDie class that will hold things like spawnpoint and force, to be used when activating the die at a later stage
-				RollingDie rDie = new RollingDie(die, dieType, mat, spawnPoint, force);
-				// add RollingDie to allDices
-				allDice.Add(rDie);
-				// add RollingDie to the rolling queue
-				rollQueue.Add(rDie);
-			}
+			// randomize spawnPoint variation
+			float x = this.spawnPoint.position.x + (d * 4f);
+			//spawnPoint.x = spawnPoint.x - 1 + Random.value * 2;
+			//spawnPoint.y = spawnPoint.y - 1 + Random.value * 2;
+			//spawnPoint.y = spawnPoint.y - 1 + Random.value * 2;
+			// create the die prefab/gameObject
+			GameObject die = prefab(dieType, this.spawnPoint.position, Vector3.zero, Vector3.one, mat);
+			// give it a random rotation
+			//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
+			// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
+			//die.SetActive(false);
+			// create RollingDie class that will hold things like spawnpoint and force, to be used when activating the die at a later stage
+			RollingDie rDie = new RollingDie(die, dieType, mat, new Vector3(x, spawnPoint.position.y, spawnPoint.position.z));
+			// add RollingDie to allDices
+			allDice.Add(rDie);
+			// add RollingDie to the rolling queue
+			rollQueue.Add(rDie);
 		}
+
+		this.Freeze(true);
 	}
+
 
 	/// <summary>
 	/// Get value of all ( dieType = "" ) dice or dieType specific dice.
 	/// </summary>
-	public static int Value(string dieType)
+	public int Value(string dieType)
 	{
 		int v = 0;
 		// loop all dice
 		for (int d = 0; d < allDice.Count; d++)
 		{
-			RollingDie rDie = (RollingDie) allDice[d];
+			RollingDie rDie = (RollingDie)allDice[d];
 			// check the type
 			if (rDie.name == dieType || dieType == "")
 				v += rDie.die.value;
@@ -197,7 +183,7 @@ public class Dice : MonoBehaviour {
 	/// <summary>
 	/// Get number of all ( dieType = "" ) dice or dieType specific dice.
 	/// </summary>
-	public static int Count(string dieType)
+	public int Count(string dieType)
 	{
 		int v = 0;
 		// loop all dice
@@ -214,7 +200,7 @@ public class Dice : MonoBehaviour {
 	/// <summary>
 	/// Get rolling status of all ( dieType = "" ) dice or dieType specific dice.
 	/// </summary>
-	public static string AsString(string dieType)
+	public string AsString(string dieType)
 	{
 		// count the dice
 		string v = ""+Count(dieType);
@@ -255,7 +241,7 @@ public class Dice : MonoBehaviour {
 	/// <summary>
 	/// Clears all currently rolling dice
 	/// </summary>
-	public static void Clear()
+	public void Clear()
 	{
 		for (int d=0; d<allDice.Count; d++)
 			GameObject.Destroy(((RollingDie)allDice[d]).gameObject);
@@ -267,7 +253,7 @@ public class Dice : MonoBehaviour {
 		rolling = false;
 	}
 
-	public static int GetSuccessNum(int standard)
+	public int GetSuccessNum(int standard)
 	{
 		if(rolling || allDice.Count == 0)
 		{
@@ -277,7 +263,10 @@ public class Dice : MonoBehaviour {
 		int successNum = 0;
 		foreach(RollingDie die in allDice)
 		{
-			if(die.die.value >= standard)
+			if (die.value == 0)
+				return -99;
+
+			if(die.value >= standard)
 			{
 				successNum++;
 			}
@@ -314,12 +303,15 @@ public class Dice : MonoBehaviour {
 				rollTime = 0;
 			}
 			else
+			{
 				if (rollQueue.Count == 0)
 				{
 					// roll queue is empty so if no dice are rolling we can set the rolling attribute to false
 					if (!IsRolling())
 						rolling = false;
 				}
+			}
+				
 		}
 	}
 
@@ -341,6 +333,13 @@ public class Dice : MonoBehaviour {
 		}
 		// return false if we have no rolling dice 
 		return (rollingDice.Count > 0);
+	}
+
+	// dertermine random rolling force	
+	private Vector3 Force()
+	{
+		Vector3 rollTarget = Vector3.zero + new Vector3(2 + 7 * Random.value, .5F + 4 * Random.value, -2 - 3 * Random.value);
+		return Vector3.Lerp(spawnPoint.position, rollTarget, 1).normalized * (-35 - Random.value * 20);
 	}
 }
 
@@ -367,6 +366,14 @@ class RollingDie
 		}
 	}
 
+	public bool localHit
+	{
+		get
+		{
+			return die.localHit;
+		}
+	}
+
 	public int value
 	{
 		get
@@ -376,25 +383,24 @@ class RollingDie
 	}
 
 	// constructor
-	public RollingDie(GameObject gameObject, string name, string mat, Vector3 spawnPoint, Vector3 force)
+	public RollingDie(GameObject gameObject, string name, string mat, Vector3 spawnPoint)
 	{
 		this.gameObject = gameObject;
 		this.name = name;
 		this.mat = mat;
 		this.spawnPoint = spawnPoint;
-		this.force = force;
+
 		// get Die script of current gameObject
 		die = gameObject.GetComponent<Die>();
 	}
 
-	// ReRoll this specific die
-	public void ReRoll()
+	public void SetGravity(bool useGravity)
 	{
-		if (name != "")
-		{
-			GameObject.Destroy(gameObject);
-			Dice.Roll(name, mat, spawnPoint, force);
-		}
+		die.GetComponent<Rigidbody>().useGravity = useGravity;
+		if (useGravity)
+			die.GetComponent<Collider>().enabled = true;
+		else
+			die.GetComponent<Collider>().enabled = false;
 	}
 }
 

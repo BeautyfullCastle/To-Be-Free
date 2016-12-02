@@ -47,7 +47,7 @@ public class Die : MonoBehaviour {
 	}
 
 	// calculate the normalized hit vector and should always return true
-	private bool localHit
+	public bool localHit
 	{
 		get
 		{

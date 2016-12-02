@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ToBeFree
@@ -25,19 +26,48 @@ namespace ToBeFree
 				diceObj = GameObject.Find("Dice Tester");
 				yield break;
 			}
+			
+			AppDemo demo = diceObj.GetComponent<AppDemo>();
+			demo.Init(diceNum);
+			int resultNum = 0;
 
 			diceObj.SetActive(true);
-			diceObj.GetComponent<AppDemo>().diceNum = diceNum;
-			resultNum = -99;
-			Dice.Clear();
-			
-			while (Dice.GetSuccessNum(MinSuccessNum) == -99)
+
+			Dice dice = demo.dices[0];
+			while (dice.IsHitToGround() == false || dice.GetSuccessNum(MinSuccessNum) == -99 || demo.mouseDown == false)
 			{
-				yield return new WaitForSecondsRealtime(0.1f);
+				yield return new WaitForSecondsRealtime(1f);
+			}
+			resultNum = dice.GetSuccessNum(MinSuccessNum);
+			
+			setResultNum(resultNum);
+			diceObj.SetActive(false);
+		}
+
+		public IEnumerator Test(int characterDiceNum, int policeDiceNum, System.Action<int, int> setResultNum)
+		{
+			if (diceObj == null)
+			{
+				diceObj = GameObject.Find("Dice Tester");
+				yield break;
 			}
 
-			resultNum = Dice.GetSuccessNum(MinSuccessNum);
-			setResultNum(resultNum);
+			AppDemo demo = diceObj.GetComponent<AppDemo>();
+			demo.Init(characterDiceNum, policeDiceNum);
+			int[] resultNums = { 0, 0 };
+
+			diceObj.SetActive(true);
+			
+			for (int i = 0; i < demo.dices.Length; ++i)
+			{
+				while (demo.dices[i].IsHitToGround() == false || demo.dices[i].GetSuccessNum(MinSuccessNum) == -99 || demo.mouseDown == false)
+				{
+					yield return new WaitForSecondsRealtime(1f);
+				}
+				resultNums[i] = demo.dices[i].GetSuccessNum(MinSuccessNum);
+			}
+
+			setResultNum(resultNums[0], resultNums[1]);
 			diceObj.SetActive(false);
 		}
 
@@ -66,5 +96,6 @@ namespace ToBeFree
 				return prevMinSuccessNum;
 			}
 		}
+
 	}
 }
