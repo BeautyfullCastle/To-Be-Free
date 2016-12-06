@@ -52,6 +52,10 @@ namespace ToBeFree
 		public void OnChanged(eUIEventLabelType type, string text)
 		{
 			gameObject.SetActive(true);
+
+			eventScript.text += ("\n" + text);
+			return;
+
 			switch (type)
 			{
 				case eUIEventLabelType.EVENT:

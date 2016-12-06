@@ -5,8 +5,10 @@ namespace ToBeFree
 	public class UITimeTable : MonoBehaviour
 	{
 		public UILabel dayLabel;
+		public UILabel dDayLabel;
+		public UILabel crackdownLabel;
 		public Transform hourhand;
-
+		
 		private float angle;
 		private string strDay;
 		
@@ -16,6 +18,7 @@ namespace ToBeFree
 			TimeTable.Instance.NotifyEveryday += OnDayChange;
 			angle = hourhand.localRotation.eulerAngles.z;
 			strDay = "Day";
+			crackdownLabel.enabled = false;
 			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
 		}
 
@@ -49,6 +52,8 @@ namespace ToBeFree
 		private void ChangeDay(int day)
 		{
 			dayLabel.text = day.ToString() + " " + strDay;
+			int dday = TimeTable.Instance.Week - (day % TimeTable.Instance.Week);
+			dDayLabel.text = "D - " + dday;
 		}
 
 	}

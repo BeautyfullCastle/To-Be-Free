@@ -52,7 +52,7 @@ public class Die : MonoBehaviour {
 		get
 		{
 			// create a Ray from straight above this Die , moving downwards
-			Ray ray = new Ray(transform.position + (new Vector3(0, 2, 0) * transform.localScale.magnitude), Vector3.up * -1);
+			Ray ray = new Ray(transform.position + (new Vector3(0, 0, -2) * transform.localScale.magnitude), Vector3.forward);
 			RaycastHit hit = new RaycastHit();
 			// cast the ray and validate it against this die's collider
 			if (GetComponent<Collider>().Raycast(ray, out hit, 3 * transform.localScale.magnitude))

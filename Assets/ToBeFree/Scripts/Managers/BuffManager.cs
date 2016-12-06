@@ -88,8 +88,6 @@ namespace ToBeFree
 		{
 			yield return character.Inven.CheckItem(startTime, true, character);
 
-			yield return GameManager.Instance.ShowStateLabel("Activate Effect : " + startTime.ToString(), 0.5f);
-			
 			foreach (Buff buff in buffList)
 			{
 				if (buff.StartTime == startTime)
@@ -103,8 +101,6 @@ namespace ToBeFree
 		{
 			yield return character.Inven.CheckItem(startTime, false, character);
 
-			yield return GameManager.Instance.ShowStateLabel("DeActivate Effect : " + startTime.ToString(), 0.5f);
-
 			foreach (Buff buff in buffList)
 			{
 				if (buff.StartTime == startTime)
@@ -116,8 +112,6 @@ namespace ToBeFree
 
 		public IEnumerator CheckDuration(Character character)
 		{
-			yield return GameManager.Instance.ShowStateLabel("Check Buff's duration", 0.5f);
-
 			List<Buff> buffsToDelete = new List<Buff>();
 			foreach (Buff buff in buffList)
 			{

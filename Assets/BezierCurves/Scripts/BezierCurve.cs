@@ -141,6 +141,7 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 	
 	#region UnityFunctions
 	
+	/*
 	void OnDrawGizmos () {
 		Gizmos.color = drawColor;
 		
@@ -157,7 +158,8 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 			}
 		}
 	}
-	
+	*/
+
 	void Awake(){
 		dirty = true;
 	}

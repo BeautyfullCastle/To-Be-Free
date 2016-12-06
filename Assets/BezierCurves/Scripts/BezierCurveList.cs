@@ -107,11 +107,7 @@ public class BezierCurveList : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-		//Awake();
-	}
-
+	/*
 	void OnDrawGizmos()
 	{
 		if (this.enabled == false)
@@ -131,6 +127,7 @@ public class BezierCurveList : MonoBehaviour {
 		s += points[points.Count - 1].gameObject.name;
 		//Debug.Log(s);
 	}
+	*/
 
 	public List<BezierPoint> GetPath(BezierPoint p1, BezierPoint p2)
 	{

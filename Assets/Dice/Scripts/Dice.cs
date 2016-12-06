@@ -52,17 +52,16 @@ public class Dice : MonoBehaviour {
 	// reference to the dice that are rolling
 	private ArrayList rollingDice = new ArrayList();
 	
+	[SerializeField]
 	private Transform spawnPoint = null;
+
+	private float positionX;
+	private float positionY;
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// public methods
 	//------------------------------------------------------------------------------------------------------------------------------	
 
-	void Awake()
-	{
-		spawnPoint = this.transform.FindChild("spawnPoint");
-	}
-	
 	public void Freeze(bool isFreeze)
 	{
 		foreach (var dice in allDice)
@@ -134,34 +133,46 @@ public class Dice : MonoBehaviour {
 	/// </summary>
 	public void Init(int diceNum)
 	{
-		string dieType = "d6";
-		string mat = "red";
+		if(spawnPoint == null)
+		{
+			spawnPoint = this.transform.FindChild("spawnPoint");
+		}
+
+		positionX = this.spawnPoint.position.x;
+		positionY = this.spawnPoint.position.y;
 
 		// instantiate the dice
 		for (int d = 0; d < diceNum; d++)
 		{
-			// randomize spawnPoint variation
-			float x = this.spawnPoint.position.x + (d * 4f);
-			//spawnPoint.x = spawnPoint.x - 1 + Random.value * 2;
-			//spawnPoint.y = spawnPoint.y - 1 + Random.value * 2;
-			//spawnPoint.y = spawnPoint.y - 1 + Random.value * 2;
-			// create the die prefab/gameObject
-			GameObject die = prefab(dieType, this.spawnPoint.position, Vector3.zero, Vector3.one, mat);
-			// give it a random rotation
-			//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
-			// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
-			//die.SetActive(false);
-			// create RollingDie class that will hold things like spawnpoint and force, to be used when activating the die at a later stage
-			RollingDie rDie = new RollingDie(die, dieType, mat, new Vector3(x, spawnPoint.position.y, spawnPoint.position.z));
-			// add RollingDie to allDices
-			allDice.Add(rDie);
-			// add RollingDie to the rolling queue
-			rollQueue.Add(rDie);
+			AddDie();
 		}
 
-		this.Freeze(true);
+		//this.Freeze(true);
 	}
 
+	public void AddDie()
+	{
+		string dieType = "d6";
+		string mat = "red";
+
+		// create the die prefab/gameObject
+		GameObject die = prefab(dieType, new Vector3(positionX, spawnPoint.position.y, spawnPoint.position.z), new Vector3(0f, 0f, -90f), new Vector3(0.03f, 0.03f, 0.03f), mat);
+		positionX += 0.07f;
+		positionY += 0.07f * (allDice.Count % 5);
+		// give it a random rotation
+		//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
+		// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
+		//die.SetActive(false);
+		// create RollingDie class that will hold things like spawnpoint and force, to be used when activating the die at a later stage
+		RollingDie rDie = new RollingDie(die, dieType, mat);
+		// add RollingDie to allDices
+		allDice.Add(rDie);
+		// add RollingDie to the rolling queue
+		rollQueue.Add(rDie);
+
+		rDie.SetGravity(false);
+		rDie.force = Vector3.zero;
+	}
 
 	/// <summary>
 	/// Get value of all ( dieType = "" ) dice or dieType specific dice.
@@ -294,7 +305,7 @@ public class Dice : MonoBehaviour {
 				// apply the force impuls
 				die.GetComponent<Rigidbody>().AddForce((Vector3) rDie.force, ForceMode.Impulse);
 				// apply a random torque
-				die.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value * die.transform.localScale.magnitude, -50 * Random.value * die.transform.localScale.magnitude, -50 * Random.value * die.transform.localScale.magnitude), ForceMode.Impulse);
+				die.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
 				// add die to rollingDice
 				rollingDice.Add(rDie);
 				// remove the die from the queue
@@ -338,8 +349,10 @@ public class Dice : MonoBehaviour {
 	// dertermine random rolling force	
 	private Vector3 Force()
 	{
+		float force = 3f;
+		return new Vector3(Random.Range(0.5f, 1f) * force, Random.Range(0.5f, 1f) * force, -force);
 		Vector3 rollTarget = Vector3.zero + new Vector3(2 + 7 * Random.value, .5F + 4 * Random.value, -2 - 3 * Random.value);
-		return Vector3.Lerp(spawnPoint.position, rollTarget, 1).normalized * (-35 - Random.value * 20);
+		return Vector3.Lerp(spawnPoint.position, rollTarget, 1).normalized * (-35 - Random.value * 5);
 	}
 }
 
@@ -354,7 +367,6 @@ class RollingDie
 
 	public string name = "";				// dieType
 	public string mat;						// die material (asString)
-	public Vector3 spawnPoint;			// die spawnPoiunt
 	public Vector3 force;					// die initial force impuls
 
 	// rolling attribute specifies if this die is still rolling
@@ -383,12 +395,11 @@ class RollingDie
 	}
 
 	// constructor
-	public RollingDie(GameObject gameObject, string name, string mat, Vector3 spawnPoint)
+	public RollingDie(GameObject gameObject, string name, string mat)
 	{
 		this.gameObject = gameObject;
 		this.name = name;
 		this.mat = mat;
-		this.spawnPoint = spawnPoint;
 
 		// get Die script of current gameObject
 		die = gameObject.GetComponent<Die>();
@@ -397,10 +408,7 @@ class RollingDie
 	public void SetGravity(bool useGravity)
 	{
 		die.GetComponent<Rigidbody>().useGravity = useGravity;
-		if (useGravity)
-			die.GetComponent<Collider>().enabled = true;
-		else
-			die.GetComponent<Collider>().enabled = false;
+		//die.GetComponent<Rigidbody>().isKinematic = !useGravity;
+		//die.GetComponent<Collider>().enabled = useGravity;
 	}
 }
-

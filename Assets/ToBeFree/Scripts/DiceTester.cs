@@ -33,6 +33,8 @@ namespace ToBeFree
 
 			diceObj.SetActive(true);
 
+			yield return new WaitForSecondsRealtime(1f);
+
 			Dice dice = demo.dices[0];
 			while (dice.IsHitToGround() == false || dice.GetSuccessNum(MinSuccessNum) == -99 || demo.mouseDown == false)
 			{
@@ -53,19 +55,28 @@ namespace ToBeFree
 			}
 
 			AppDemo demo = diceObj.GetComponent<AppDemo>();
+			diceObj.SetActive(true);
 			demo.Init(characterDiceNum, policeDiceNum);
 			int[] resultNums = { 0, 0 };
 
-			diceObj.SetActive(true);
-			
+			while (demo.mouseDown == false)
+			{
+				yield return new WaitForSecondsRealtime(0.1f);
+			}
+
+			yield return new WaitForSecondsRealtime(2f);
+
 			for (int i = 0; i < demo.dices.Length; ++i)
 			{
-				while (demo.dices[i].IsHitToGround() == false || demo.dices[i].GetSuccessNum(MinSuccessNum) == -99 || demo.mouseDown == false)
+				while (demo.dices[i].IsHitToGround() == false || demo.dices[i].rolling)
 				{
 					yield return new WaitForSecondsRealtime(1f);
+					continue;
 				}
 				resultNums[i] = demo.dices[i].GetSuccessNum(MinSuccessNum);
 			}
+
+			yield return new WaitForSecondsRealtime(2f);
 
 			setResultNum(resultNums[0], resultNums[1]);
 			diceObj.SetActive(false);

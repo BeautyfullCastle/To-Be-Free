@@ -57,8 +57,6 @@ namespace ToBeFree
 
 		public virtual IEnumerator Activate(Character character)
 		{
-			yield return GameManager.Instance.ShowStateLabel(this.name + " is added.", 0.5f);
-
 			if (BuffManager.Instance.Exist(this.buff))
 			{
 				if(isStack)
@@ -75,8 +73,6 @@ namespace ToBeFree
 
 		public virtual IEnumerator DeActivate(Character character)
 		{
-			yield return GameManager.Instance.ShowStateLabel(this.name + " is deleted.", 0.5f);
-
 			yield return BuffManager.Instance.Delete(this.buff, character);
 
 			this.stack = 1;

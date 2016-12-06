@@ -93,8 +93,6 @@ namespace ToBeFree
 			}
 			else
 			{
-				yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
-
 				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
 				Event selectedEvent = EventManager.Instance.Find(actionName);
@@ -376,8 +374,6 @@ namespace ToBeFree
 				{
 					actionName = eEventAction.INSPECT;
 
-					yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
-
 					Police police = policesInThisCity[i] as Police;
 					yield return police.Fight(actionName, character);
 
@@ -545,8 +541,6 @@ namespace ToBeFree
 			// 일반 조사
 			else
 			{
-				yield return GameManager.Instance.ShowStateLabel(actionName.ToString() + " command activated.", 0.5f);
-
 				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
 				Event selectedEvent = EventManager.Instance.Find(actionName);

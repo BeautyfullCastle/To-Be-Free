@@ -1,22 +1,26 @@
 ﻿using UnityEngine;
 using ToBeFree;
+using System;
+using System.Collections;
 
 public class IconPiece : MonoBehaviour
 {
 	public eSubjectType subjectType;
+	[HideInInspector]
+	public TweenAlpha exclamationAlpha;
+
 	private UILabel powerLabel;
 	private UILabel movementLabel;
-	private UILabel numberLabel;
+	
 
 	public void Awake()
 	{
 		powerLabel = this.transform.FindChild("Power").GetComponent<UILabel>();
 		movementLabel = this.transform.FindChild("Movement").GetComponent<UILabel>();
-		numberLabel = this.transform.FindChild("Number").GetComponent<UILabel>();
+		exclamationAlpha = this.transform.FindChild("Exclamation").GetComponent<TweenAlpha>();
 
 		powerLabel.gameObject.SetActive(false);
 		movementLabel.gameObject.SetActive(false);
-		numberLabel.gameObject.SetActive(false);
 	}
 
 	void OnDisable()
@@ -55,12 +59,24 @@ public class IconPiece : MonoBehaviour
 
 			movementLabel.gameObject.SetActive(true);
 			Movement = movement;
-
-			numberLabel.gameObject.SetActive(true);
-			Number = 1;
-
+			
 			GameManager.Instance.Character.Stat.SetViewRange();
+
+			PlayExclamation();
 		}
+	}
+
+	public void PlayExclamation()
+	{
+		if (this.gameObject.activeSelf)
+			StartCoroutine(TweenExclamation());
+	}
+
+	private IEnumerator TweenExclamation()
+	{
+		exclamationAlpha.PlayForward();
+		yield return new WaitForSeconds(exclamationAlpha.duration);
+		exclamationAlpha.PlayReverse();
 	}
 
 	public int Power
@@ -84,18 +100,6 @@ public class IconPiece : MonoBehaviour
 		set
 		{
 			movementLabel.text = value.ToString();
-		}
-	}
-
-	public int Number
-	{
-		get
-		{
-			return int.Parse(numberLabel.text);
-		}
-		set
-		{
-			numberLabel.text = value.ToString();
 		}
 	}
 }

@@ -98,7 +98,6 @@ namespace ToBeFree
 				case eSubjectType.STAT:
 					if (verbType == eVerbType.ADD)
 					{
-						yield return GameManager.Instance.ShowStateLabel(this.ToString() + " : " + amount, 1f);
 						character.Stat.Set(objectType, amount);
 					}
 					break;
@@ -304,7 +303,6 @@ namespace ToBeFree
 				case eSubjectType.STAT:
 					if (verbType == eVerbType.ADD)
 					{
-						yield return GameManager.Instance.ShowStateLabel(this.ToString() + " Restore", 1f);
 						character.Stat.Restore(objectType);
 					}
 					break;

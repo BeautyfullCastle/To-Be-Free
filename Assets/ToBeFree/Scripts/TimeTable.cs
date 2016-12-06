@@ -141,5 +141,13 @@ namespace ToBeFree
 				NotifyEveryHour();
 			}
 		}
+
+		public int Week
+		{
+			get
+			{
+				return week;
+			}
+		}
 	}
 }

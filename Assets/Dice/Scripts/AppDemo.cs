@@ -63,36 +63,15 @@ public class AppDemo : MonoBehaviour
 		}
 		mouseDown = false;
 	}
-
-	// Update is called once per frame
-	void Update ()
-	{
-		// rolling mode to update the dice rolling
-		UpdateRoll();
-	}
 	
-	void UpdateRoll()
+	public void OnButtonClick()
 	{
-		//check if we have to roll dice
-		if (Input.GetMouseButtonDown(0) && !PointInRect(GuiMousePosition(), rectModeSelect))
+		foreach (Dice dice in dices)
 		{
-			if (mouseDown == false)
-			{
-				mouseDown = true;
-			}
+			dice.rolling = true;
+			dice.Freeze(false);
 		}
-		else if (Input.GetMouseButtonUp(0))
-		{
-			if(mouseDown)
-			{
-				foreach (Dice dice in dices)
-				{
-					dice.rolling = true;
-					dice.Freeze(false);
-				}
-				
-			}
-		}
+		mouseDown = true;
 	}
 
 	// check if a point is within a rectangle
@@ -108,5 +87,10 @@ public class AppDemo : MonoBehaviour
 		Vector3 vp = Camera.main.ScreenToViewportPoint(new Vector3(mp.x, mp.y, 0));
 		mp = new Vector2(vp.x * Camera.main.pixelWidth, (1 - vp.y) * Camera.main.pixelHeight);
 		return mp;
+	}
+
+	public void AddDie()
+	{
+		dices[0].AddDie();
 	}
 }

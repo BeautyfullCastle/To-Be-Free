@@ -129,6 +129,8 @@ namespace ToBeFree
 					Movement++;
 				}
 			}
+
+			this.iconPiece.PlayExclamation();
 			yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { iconPiece.transform }, 1f);
 		}
 
@@ -139,6 +141,8 @@ namespace ToBeFree
 			
 			// police can't go to the mountain.
 			cityList.RemoveAll(x => x.Type == eNodeType.MOUNTAIN);
+
+			this.iconPiece.PlayExclamation();
 
 			TipManager.Instance.Show(eTipTiming.PoliceMove);
 			

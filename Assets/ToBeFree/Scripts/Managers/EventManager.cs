@@ -157,8 +157,6 @@ namespace ToBeFree
 	
 		public IEnumerator DoCommand(eEventAction actionType, Character character)
 		{
-			yield return GameManager.Instance.ShowStateLabel(actionType.ToString() + " command activated.", 0.5f);
-
 			selectedEvent = Find(actionType);
 			if (selectedEvent == null)
 			{

@@ -111,6 +111,7 @@ namespace ToBeFree
 			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
 			//TipUIObj = GameObject.Find("Tip");
 			TipUIObj.SetActive(false);
+			//worldObj.SetActive(false);
 
 			inspectAction = new Inspect();
 		}
@@ -437,10 +438,6 @@ namespace ToBeFree
 		IEnumerator InitState()
 		{
 			// Enter
-			yield return (ShowStateLabel("Init State", 0.5f));
-
-			//this.isNew = false;
-
 			Init();
 
 			// character init
@@ -467,8 +464,6 @@ namespace ToBeFree
 
 			yield return character.Init();
 			shopUIObj.GetComponent<UIShop>().Init();
-
-			yield return (ShowStateLabel("Adding Polices to Big cities.", 0.5f));
 
 			if(IsNew)
 			{
@@ -614,10 +609,9 @@ namespace ToBeFree
 		IEnumerator StartWeekState()
 		{
 			// Enter
-			yield return (ShowStateLabel("Start Week State", 0.5f));
-			
-
 			yield return (Instance_NotifyEveryWeek());
+
+			yield return GameManager.Instance.ShowStateLabel("Your Turn", 2f);
 
 			action = null;
 			yield return null;
@@ -633,8 +627,6 @@ namespace ToBeFree
 		IEnumerator StartDayState()
 		{
 			// Enter
-			yield return (ShowStateLabel("Start Day State", 0.5f));
-			
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.DAY, character);
 
 #if UNITY_EDITOR
@@ -642,8 +634,19 @@ namespace ToBeFree
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[26], character);
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.List[1], character);
+			//character.Stat.ViewRange = 100;
+			//character.Stat.SetViewRange();
+
 			//Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
-			//yield return police.Move();
+
+			//UICenterOnChild scrollviewCenter = GameObject.FindObjectOfType<UICenterOnChild>();
+			//scrollviewCenter.enabled = true;
+			//scrollviewCenter.CenterOn(police.IconPiece.transform);
+			//scrollviewCenter.enabled = false;
+			
+			//yield return police.AddStat(false);
+
+			
 #endif
 			/*
 			 * 행동 시
@@ -689,7 +692,6 @@ namespace ToBeFree
 		IEnumerator ActState()
 		{
 			// Enter
-			yield return (ShowStateLabel("Act State", 0.5f));
 			TipManager.Instance.Show(eTipTiming.Act);
 			foreach (UICommand command in commands)
 			{
@@ -742,8 +744,6 @@ namespace ToBeFree
 		IEnumerator DetentionState()
 		{
 			// Enter
-			yield return (ShowStateLabel("Detention State", 0.5f));
-
 			action = new DetentionAction();
 			yield return action.Activate(character);
 			
@@ -756,8 +756,6 @@ namespace ToBeFree
 		IEnumerator NightState()
 		{
 			// Enter
-			yield return (ShowStateLabel("Night State", 0.5f));
-
 			lightSpriteTweenAlpha.PlayForward();
 
 			// 하루 끝 이벤트
@@ -862,7 +860,7 @@ namespace ToBeFree
 
 			if (character.IsFull)
 			{
-				yield return GameManager.Instance.ShowStateLabel("Skip Food", 0.5f);
+				Debug.Log("character is full.");
 			}
 			else
 			{
