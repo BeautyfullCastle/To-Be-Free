@@ -319,7 +319,7 @@ namespace ToBeFree
 			return cityList;
 		}
 
-		public IEnumerator MoveTo(Transform character, City curCity, City city)
+		public IEnumerator MoveTo(Transform character, City curCity, City city, int ap = 0)
 		{
 			if (curCity ==null || city == null)
 			{
@@ -332,10 +332,10 @@ namespace ToBeFree
 				yield break;
 			}
 
-			yield return MoveTo(character, curIconCity.GetComponent<BezierPoint>(), iconcity.GetComponent<BezierPoint>());
+			yield return MoveTo(character, curIconCity.GetComponent<BezierPoint>(), iconcity.GetComponent<BezierPoint>(), ap);
 		}
 
-		public IEnumerator MoveTo(Transform character, BezierPoint curPoint, BezierPoint point)
+		public IEnumerator MoveTo(Transform character, BezierPoint curPoint, BezierPoint point, int ap = 0)
 		{
 			if (curPoint == null || point == null)
 			{
@@ -343,13 +343,14 @@ namespace ToBeFree
 			}
 
 			currMoveTime = 0f;
-			float currTimeCounter = totalMoveTime;
+			float currTimeCounter = 1f;
+			totalMoveTime = 6 * ap;
 
-			while (currMoveTime < totalMoveTime)
+			while (currMoveTime <= totalMoveTime)
 			{
 				if (character.gameObject.name == "Character")
 				{
-					if (currTimeCounter >= (totalMoveTime / 6))
+					if (currTimeCounter >= 1f)
 					{
 						TimeTable.Instance.Hour++;
 						currTimeCounter = 0f;

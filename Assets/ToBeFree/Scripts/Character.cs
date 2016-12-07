@@ -244,7 +244,7 @@ namespace ToBeFree
 				}
 			}
 
-			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city);
+			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city, AP);
 
 			this.CurCity = city;
 
