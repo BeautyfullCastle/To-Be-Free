@@ -125,7 +125,7 @@ namespace ToBeFree
 						yield return EventManager.Instance.WaitUntilFinish();
 
 						int resultNum = 0;
-						yield return DiceTester.Instance.Test(1, (x) => resultNum = x);
+						yield return DiceTester.Instance.Test(eTestStat.NULL, 1, (x) => resultNum = x);
 						GameManager.Instance.uiEventManager.OpenUI();
 						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, resultNum.ToString());
 						yield return EventManager.Instance.WaitUntilFinish();

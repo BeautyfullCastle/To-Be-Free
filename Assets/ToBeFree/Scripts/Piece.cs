@@ -207,7 +207,7 @@ namespace ToBeFree
 			
 			int characterSuccessNum = 0;
 			int policeSuccessNum = 0;
-			yield return DiceTester.Instance.Test(character.Stat.Agility, this.Power, (x, x2) => { characterSuccessNum = x; policeSuccessNum = x2; } );
+			yield return DiceTester.Instance.Test(eTestStat.AGILITY, character.Stat.Agility, this.Power, (x, x2) => { characterSuccessNum = x; policeSuccessNum = x2; } );
 			
 			EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);

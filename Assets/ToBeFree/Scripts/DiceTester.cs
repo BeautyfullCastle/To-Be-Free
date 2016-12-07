@@ -19,7 +19,7 @@ namespace ToBeFree
 			diceObj.SetActive(false);
 		}
 
-		public IEnumerator Test(int diceNum, System.Action<int> setResultNum)
+		public IEnumerator Test(eTestStat stat, int diceNum, System.Action<int> setResultNum)
 		{
 			if(diceObj == null)
 			{
@@ -28,15 +28,22 @@ namespace ToBeFree
 			}
 			
 			AppDemo demo = diceObj.GetComponent<AppDemo>();
-			demo.Init(diceNum);
+			demo.Init(stat, diceNum);
 			int resultNum = 0;
 
 			diceObj.SetActive(true);
 
-			yield return new WaitForSecondsRealtime(1f);
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
+
+			while(demo.mouseDown == false)
+			{
+				yield return new WaitForSecondsRealtime(1f);
+			}
+			
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
 
 			Dice dice = demo.dices[0];
-			while (dice.IsHitToGround() == false || dice.GetSuccessNum(MinSuccessNum) == -99 || demo.mouseDown == false)
+			while (dice.IsHitToGround() == false || dice.GetSuccessNum(MinSuccessNum) == -99)
 			{
 				yield return new WaitForSecondsRealtime(1f);
 			}
@@ -46,7 +53,7 @@ namespace ToBeFree
 			diceObj.SetActive(false);
 		}
 
-		public IEnumerator Test(int characterDiceNum, int policeDiceNum, System.Action<int, int> setResultNum)
+		public IEnumerator Test(eTestStat stat, int characterDiceNum, int policeDiceNum, System.Action<int, int> setResultNum)
 		{
 			if (diceObj == null)
 			{
@@ -56,7 +63,7 @@ namespace ToBeFree
 
 			AppDemo demo = diceObj.GetComponent<AppDemo>();
 			diceObj.SetActive(true);
-			demo.Init(characterDiceNum, policeDiceNum);
+			demo.Init(stat, characterDiceNum, policeDiceNum);
 			int[] resultNums = { 0, 0 };
 
 			while (demo.mouseDown == false)

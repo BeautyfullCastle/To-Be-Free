@@ -1,5 +1,6 @@
 
 using System;
+using ToBeFree;
 /**
 * Copyright (c) 2010-2015, WyrmTale Games and Game Components
 * All rights reserved.
@@ -25,34 +26,42 @@ public class AppDemo : MonoBehaviour
 
 	[HideInInspector]
 	public bool mouseDown = false;
-		
-	private Rect rectModeSelect;
 
-	public void Init(int characterDiceNum, int policeDiceNum = 0)
+	private eTestStat stat;
+
+	public void Init(eTestStat stat, int characterDiceNum, int policeDiceNum = 0)
 	{
-		dices[0].Clear();
-		dices[1].Clear();
+		//dices[0].Clear();
+		//dices[1].Clear();
 
 		if (characterDiceNum <= 0)
 			characterDiceNum = 1;
-		
-		dices[0].Init(characterDiceNum);
-		dices[1].Init(policeDiceNum);
 
 		bool isPolice = policeDiceNum > 0;
+		dices[0].SetPosition(isPolice);
 		dices[1].gameObject.SetActive(isPolice);
+
+		dices[0].Init(characterDiceNum, GameManager.Instance.Character.Name, stat);
+		dices[1].Init(policeDiceNum, "Police");
+
+		
+
+		this.stat = stat;
 	}
 
 	void Awake()
 	{
-		rectModeSelect = new Rect(10, 10, 180, 80);
-
 		foreach (Dice dice in dices)
 		{
 			dice.Clear();
 		}
 
 		this.gameObject.SetActive(false);
+	}
+
+	void OnEnable()
+	{
+		Stat.OnValueChange += Stat_OnValueChange;
 	}
 
 	void OnDisable()
@@ -62,6 +71,7 @@ public class AppDemo : MonoBehaviour
 			dice.Clear();
 		}
 		mouseDown = false;
+		Stat.OnValueChange -= Stat_OnValueChange;
 	}
 	
 	public void OnButtonClick()
@@ -92,5 +102,13 @@ public class AppDemo : MonoBehaviour
 	public void AddDie()
 	{
 		dices[0].AddDie();
+	}
+
+	private void Stat_OnValueChange(int value, eStat stat)
+	{
+		if (this.stat.ToString() == stat.ToString() && value >= 1)
+		{
+			AddDie();
+		}
 	}
 }

@@ -16,6 +16,7 @@
  */
 using UnityEngine;
 using System.Collections;
+using ToBeFree;
 
 /// <summary>
 /// This dice dupporting class has some 'static' methods to help you throwning dice
@@ -54,9 +55,16 @@ public class Dice : MonoBehaviour {
 	
 	[SerializeField]
 	private Transform spawnPoint = null;
+	[SerializeField]
+	private UILabel nameLabel;
+	[SerializeField]
+	private UILabel statLabel;
+	[SerializeField]
+	private UILabel diceNumLabel;
 
 	private float positionX;
 	private float positionY;
+	
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// public methods
@@ -74,7 +82,6 @@ public class Dice : MonoBehaviour {
 				rollingDie.force = Vector3.zero;
 			else
 				rollingDie.force = Force();
-			
 		}
 	}
 
@@ -131,7 +138,7 @@ public class Dice : MonoBehaviour {
 	/// format dice 			: 	({count}){die type}	, exmpl.  d6, 4d4, 12d8 , 1d20
 	/// possible die types 	:	d4, d6, d8 , d10, d12, d20
 	/// </summary>
-	public void Init(int diceNum)
+	public void Init(int diceNum, string name, eTestStat stat = eTestStat.NULL)
 	{
 		if(spawnPoint == null)
 		{
@@ -147,7 +154,9 @@ public class Dice : MonoBehaviour {
 			AddDie();
 		}
 
-		//this.Freeze(true);
+		this.nameLabel.text = name;
+		this.statLabel.text = stat.ToString();
+		this.diceNumLabel.text = diceNum.ToString();
 	}
 
 	public void AddDie()
@@ -306,6 +315,7 @@ public class Dice : MonoBehaviour {
 				die.GetComponent<Rigidbody>().AddForce((Vector3) rDie.force, ForceMode.Impulse);
 				// apply a random torque
 				die.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
+				die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 				// add die to rollingDice
 				rollingDice.Add(rDie);
 				// remove the die from the queue
@@ -353,6 +363,17 @@ public class Dice : MonoBehaviour {
 		return new Vector3(Random.Range(0.5f, 1f) * force, Random.Range(0.5f, 1f) * force, -force);
 		Vector3 rollTarget = Vector3.zero + new Vector3(2 + 7 * Random.value, .5F + 4 * Random.value, -2 - 3 * Random.value);
 		return Vector3.Lerp(spawnPoint.position, rollTarget, 1).normalized * (-35 - Random.value * 5);
+	}
+
+	public void SetPosition(bool isPolice)
+	{
+		Vector3 position = Vector3.zero;
+		if (isPolice==false)
+		{
+			position = new Vector3(400f, 0f, 0f);
+		}
+
+		this.transform.localPosition = position;
 	}
 }
 

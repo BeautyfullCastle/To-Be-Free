@@ -643,8 +643,10 @@ namespace ToBeFree
 			//scrollviewCenter.enabled = true;
 			//scrollviewCenter.CenterOn(police.IconPiece.transform);
 			//scrollviewCenter.enabled = false;
-			
+
 			//yield return police.AddStat(false);
+
+			character.Inven.AddItem(ItemManager.Instance.List[12]);
 
 			
 #endif
