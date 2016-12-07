@@ -164,7 +164,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 3
   mWidth: 87
   mHeight: 32
@@ -182,7 +182,7 @@ MonoBehaviour:
   mAlignment: 2
   mEncoding: 1
   mMaxLineCount: 0
-  mEffectStyle: 2
+  mEffectStyle: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
