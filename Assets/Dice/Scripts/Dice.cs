@@ -31,9 +31,6 @@ public class Dice : MonoBehaviour {
 	// rollSpeed determines how many seconds pass between rolling the single dice
 	public float rollSpeed = 0.25F;
 	
-	// rolling = true when there are dice still rolling, rolling is checked using rigidBody.velocity and rigidBody.angularVelocity
-	public bool rolling = true;
-	
 	//------------------------------------------------------------------------------------------------------------------------------
 	// protected and private attributes
 	//------------------------------------------------------------------------------------------------------------------------------
@@ -88,17 +85,6 @@ public class Dice : MonoBehaviour {
 				//rollingDie.gameObject.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 			}
 		}
-	}
-
-	public bool IsHitToGround()
-	{
-		foreach (var dice in allDice)
-		{
-			RollingDie rollingDie = dice as RollingDie;
-			if (rollingDie.localHit == false)
-				return false;
-		}
-		return true;
 	}
 
 	/// <summary>
@@ -171,13 +157,7 @@ public class Dice : MonoBehaviour {
 
 		// create the die prefab/gameObject
 		GameObject die = prefab(dieType, new Vector3(positionX, positionY, spawnPoint.position.z), new Vector3(0f, 0f, -90f), new Vector3(0.3f, 0.3f, 0.3f), mat);
-		positionX += 0.15f;
-		if(allDice.Count % 3 == 0)
-		{
-			positionX = this.spawnPoint.position.x;
-			positionY += 0.15f;
-		}
-			
+	
 		// give it a random rotation
 		//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 		// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
@@ -188,6 +168,13 @@ public class Dice : MonoBehaviour {
 		allDice.Add(rDie);
 		// add RollingDie to the rolling queue
 		//rollQueue.Add(rDie);
+
+		positionX += 0.15f;
+		if (allDice.Count % 3 == 0)
+		{
+			positionX = this.spawnPoint.position.x;
+			positionY += 0.15f;
+		}
 
 		rDie.SetGravity(false);
 		rDie.force = Vector3.zero;
@@ -279,17 +266,10 @@ public class Dice : MonoBehaviour {
 		allDice.Clear();
 		rollingDice.Clear();
 		rollQueue.Clear();
-
-		rolling = false;
 	}
 
 	public int GetSuccessNum(int standard)
 	{
-		if(rolling || allDice.Count == 0)
-		{
-			return -99;
-		}
-
 		int successNum = 0;
 		foreach(RollingDie die in allDice)
 		{
@@ -303,67 +283,19 @@ public class Dice : MonoBehaviour {
 		}
 		return successNum;
 	}
-
-	/// <summary>
-	/// Update is called once per frame
-	/// </summary>
-	void Update()
-	{
-		if (rolling)
-		{
-			// there are dice rolling so increment rolling time
-			rollTime += Time.deltaTime;
-			// check rollTime against rollSpeed to determine if a die should be activated ( if one available in the rolling  queue )
-			if (rollQueue.Count > 0 && rollTime > rollSpeed)
-			{
-				// get die from rolling queue
-				RollingDie rDie = (RollingDie)rollQueue[0];
-				GameObject die = rDie.gameObject;
-				// activate the gameObject
-				die.SetActive(true);
-				// apply the force impuls
-				//die.GetComponent<Rigidbody>().AddForce((Vector3) rDie.force, ForceMode.Impulse);
-				// apply a random torque
-				//die.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
-				//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
-				// add die to rollingDice
-				rollingDice.Add(rDie);
-				// remove the die from the queue
-				rollQueue.RemoveAt(0);
-				// reset rollTime so we can check when the next die has to be rolled
-				rollTime = 0;
-			}
-			else
-			{
-				if (rollQueue.Count == 0)
-				{
-					// roll queue is empty so if no dice are rolling we can set the rolling attribute to false
-					if (!IsRolling())
-						rolling = false;
-				}
-			}
-				
-		}
-	}
-
+	
 	/// <summary>
 	/// Check if there all dice have stopped rolling
 	/// </summary>
-	private bool IsRolling()
+	public bool IsRolling()
 	{
-		int d = 0;
-		// loop rollingDice
-		while (d < rollingDice.Count)
+		foreach(var dice in allDice)
 		{
-			// if rolling die no longer rolling , remove it from rollingDice
-			RollingDie rDie = (RollingDie)rollingDice[d];
-			if (!rDie.rolling)
-				rollingDice.Remove(rDie);
-			else
-				d++;
+			RollingDie rollingDie = dice as RollingDie;
+			if (rollingDie.rolling)
+				return true;
 		}
-		// return false if we have no rolling dice 
-		return (rollingDice.Count > 0);
+		return false;
 	}
 
 	// dertermine random rolling force	

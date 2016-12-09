@@ -78,7 +78,6 @@ public class AppDemo : MonoBehaviour
 	{
 		foreach (Dice dice in dices)
 		{
-			dice.rolling = true;
 			dice.Freeze(false);
 		}
 		mouseDown = true;

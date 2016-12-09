@@ -36211,7 +36211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollSpeed: 0.1
-  rolling: 1
   spawnPoint: {fileID: 2058491039}
   nameLabel: {fileID: 1590054033}
   statLabel: {fileID: 601693724}
@@ -46553,6 +46552,7 @@ GameObject:
   - 114: {fileID: 1162925740}
   - 114: {fileID: 1162925742}
   - 61: {fileID: 1162925739}
+  - 114: {fileID: 1162925743}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -46611,11 +46611,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 1162925742}
-    mMethodName: OnButtonClick
-    mParameters: []
-    oneShot: 0
+  onClick: []
 --- !u!114 &1162925741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46682,6 +46678,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   demo: {fileID: 1917152438}
   bar: {fileID: 1558318426}
+--- !u!114 &1162925743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162925737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e862f287df53bb64db191162f851a296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverOver: []
+  onHoverOut: []
+  onPress:
+  - mTarget: {fileID: 1162925742}
+    mMethodName: OnPress
+    mParameters: []
+    oneShot: 0
+  onRelease:
+  - mTarget: {fileID: 1162925742}
+    mMethodName: OnRelease
+    mParameters: []
+    oneShot: 0
+  onSelect: []
+  onDeselect: []
+  onClick: []
+  onDoubleClick: []
+  onDragStart: []
+  onDragEnd: []
+  onDragOver: []
+  onDragOut: []
+  onDrag: []
 --- !u!1001 &1163835704
 Prefab:
   m_ObjectHideFlags: 0
@@ -64729,7 +64757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollSpeed: 0.1
-  rolling: 1
   spawnPoint: {fileID: 588558548}
   nameLabel: {fileID: 1065118996}
   statLabel: {fileID: 37613081}

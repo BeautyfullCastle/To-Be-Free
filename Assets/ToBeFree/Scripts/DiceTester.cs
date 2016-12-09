@@ -40,10 +40,10 @@ namespace ToBeFree
 				yield return new WaitForSecondsRealtime(1f);
 			}
 			
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);			
 
 			Dice dice = demo.dices[0];
-			while (dice.IsHitToGround() == false || dice.GetSuccessNum(MinSuccessNum) == -99)
+			while (dice.IsRolling())
 			{
 				yield return new WaitForSecondsRealtime(1f);
 			}
@@ -54,6 +54,8 @@ namespace ToBeFree
 			
 			setResultNum(resultNum);
 			diceObj.SetActive(false);
+
+			GameManager.Instance.Character.Stat.Restore(EnumConvert<eObjectType>.ToEnum(stat.ToString()));
 		}
 
 		public IEnumerator Test(eTestStat stat, int characterDiceNum, int policeDiceNum, System.Action<int, int> setResultNum)
@@ -69,16 +71,20 @@ namespace ToBeFree
 			demo.Init(stat, characterDiceNum, policeDiceNum);
 			int[] resultNums = { 0, 0 };
 
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
+
 			while (demo.mouseDown == false)
 			{
 				yield return new WaitForSecondsRealtime(0.1f);
 			}
 
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
+
 			yield return new WaitForSecondsRealtime(2f);
 
 			for (int i = 0; i < demo.dices.Length; ++i)
 			{
-				while (demo.dices[i].IsHitToGround() == false || demo.dices[i].rolling)
+				while (demo.dices[i].IsRolling())
 				{
 					yield return new WaitForSecondsRealtime(1f);
 					continue;
@@ -90,6 +96,8 @@ namespace ToBeFree
 
 			setResultNum(resultNums[0], resultNums[1]);
 			diceObj.SetActive(false);
+
+			GameManager.Instance.Character.Stat.Restore(EnumConvert<eObjectType>.ToEnum(stat.ToString()));
 		}
 
 		public int MinSuccessNum

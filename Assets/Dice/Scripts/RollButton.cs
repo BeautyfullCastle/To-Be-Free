@@ -9,26 +9,24 @@ public class RollButton : MonoBehaviour {
 
 	private bool bClick = false;
 	private float speed = 0.1f;
-
-	public void OnButtonClick()
+	
+	public void OnPress()
 	{
-		bClick = !bClick;
+		bClick = true;
+		AudioManager.Instance.Find("dice_hand").Play();
+	}
 
-		if(bClick == true)
+	public void OnRelease()
+	{
+		bClick = false;
+		if (bar.value >= 0.7f && bar.value <= 0.9f)
 		{
-			AudioManager.Instance.Find("dice_hand").Play();
+			demo.AddDie();
 		}
-		else
-		{
-			if(bar.value >= 0.7f && bar.value <= 0.9f)
-			{
-				demo.AddDie();
-			}
-			demo.OnButtonClick();
-			AudioManager.Instance.Find("dice_hand").Stop();
-			AudioManager.Instance.Find("dice_full").Play();
-			this.GetComponent<BoxCollider2D>().enabled = false;
-		}
+		demo.OnButtonClick();
+		AudioManager.Instance.Find("dice_hand").Stop();
+		AudioManager.Instance.Find("dice_full").Play();
+		this.GetComponent<BoxCollider2D>().enabled = false;
 	}
 
 	void OnEnable()
