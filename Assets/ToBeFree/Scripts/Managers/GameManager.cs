@@ -478,6 +478,8 @@ namespace ToBeFree
 				// load first main quest.
 				yield return QuestManager.Instance.Load(QuestManager.Instance.List[15], character);
 			}
+
+			character.Stat.SetViewRange();
 			
 			yield return null;
 

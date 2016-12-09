@@ -185,6 +185,7 @@ namespace ToBeFree
 			{
 				GameManager.Instance.uiEventManager.okButton.isEnabled = false;
 				isFinish = true;
+				AudioManager.Instance.Find("through_page").Play();
 			}
 		}
 

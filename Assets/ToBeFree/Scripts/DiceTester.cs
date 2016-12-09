@@ -48,7 +48,8 @@ namespace ToBeFree
 				yield return new WaitForSecondsRealtime(1f);
 			}
 
-			yield return new WaitForSecondsRealtime(5f);
+			yield return new WaitForSecondsRealtime(2f);
+
 			resultNum = dice.GetSuccessNum(MinSuccessNum);
 			
 			setResultNum(resultNum);

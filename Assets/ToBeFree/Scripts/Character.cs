@@ -235,16 +235,18 @@ namespace ToBeFree
 				yield break;
 			}
 
+			bool isMountain = false;
 			if(isDetention == false)
 			{
 				AP++;
 				if(curCity.Type == eNodeType.MOUNTAIN || city.Type == eNodeType.MOUNTAIN)
 				{
 					AP++;
+					isMountain = true;
 				}
 			}
 
-			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city, AP);
+			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city, isMountain);
 
 			this.CurCity = city;
 

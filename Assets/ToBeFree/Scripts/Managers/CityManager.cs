@@ -319,7 +319,7 @@ namespace ToBeFree
 			return cityList;
 		}
 
-		public IEnumerator MoveTo(Transform character, City curCity, City city, int ap = 0)
+		public IEnumerator MoveTo(Transform character, City curCity, City city, bool isMountain = false)
 		{
 			if (curCity ==null || city == null)
 			{
@@ -332,10 +332,10 @@ namespace ToBeFree
 				yield break;
 			}
 
-			yield return MoveTo(character, curIconCity.GetComponent<BezierPoint>(), iconcity.GetComponent<BezierPoint>(), ap);
+			yield return MoveTo(character, curIconCity.GetComponent<BezierPoint>(), iconcity.GetComponent<BezierPoint>(), isMountain);
 		}
 
-		public IEnumerator MoveTo(Transform character, BezierPoint curPoint, BezierPoint point, int ap = 0)
+		public IEnumerator MoveTo(Transform character, BezierPoint curPoint, BezierPoint point, bool isMountain = false)
 		{
 			if (curPoint == null || point == null)
 			{
@@ -344,8 +344,12 @@ namespace ToBeFree
 
 			currMoveTime = 0f;
 			float currTimeCounter = 1f;
+			int ap = 1;
+			if (isMountain)
+			{
+				ap = 2;
+			}
 			totalMoveTime = 6 * ap;
-
 			while (currMoveTime <= totalMoveTime)
 			{
 				if (character.gameObject.name == "Character")
@@ -355,6 +359,10 @@ namespace ToBeFree
 						TimeTable.Instance.Hour++;
 						currTimeCounter = 0f;
 					}
+				}
+				else
+				{
+					yield return new WaitForEndOfFrame();
 				}
 
 				currMoveTime += Time.deltaTime;

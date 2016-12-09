@@ -42,6 +42,7 @@ namespace ToBeFree
 
 			AddItem(item);
 			character.Stat.Money -= price;
+			AudioManager.Instance.Find("buy_item").Play();
 		}
 
 		public void AddItem(Item item)
@@ -151,6 +152,7 @@ namespace ToBeFree
 			yield return item.Buff.ActivateEffect(character);
 			if (item.Buff.Duration == eDuration.ONCE)
 			{
+				AudioManager.Instance.Find("use_item").Play();
 				yield return Delete(item, character);
 			}
 		}
