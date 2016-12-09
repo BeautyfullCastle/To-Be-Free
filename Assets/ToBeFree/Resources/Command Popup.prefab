@@ -39,6 +39,7 @@ GameObject:
   - 114: {fileID: 114000013928828560}
   - 114: {fileID: 114000010451592602}
   - 61: {fileID: 61000011548838150}
+  - 114: {fileID: 114000014044470608}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -57,6 +58,7 @@ GameObject:
   - 114: {fileID: 114000013789166534}
   - 114: {fileID: 114000012032264312}
   - 61: {fileID: 61000013369971748}
+  - 114: {fileID: 114000011756848532}
   m_Layer: 5
   m_Name: 3
   m_TagString: Untagged
@@ -459,6 +461,18 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
+--- !u!114 &114000011756848532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011205806212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4cf8f0484bb36c45b6d08ad7ac71802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receiver: {fileID: 114000014279836166}
 --- !u!114 &114000011838801562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -944,6 +958,18 @@ MonoBehaviour:
   mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
   mSpriteName: 25
   mFillCenter: 1
+--- !u!114 &114000014044470608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010827485630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4cf8f0484bb36c45b6d08ad7ac71802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receiver: {fileID: 114000013923434890}
 --- !u!114 &114000014279836166
 MonoBehaviour:
   m_ObjectHideFlags: 1

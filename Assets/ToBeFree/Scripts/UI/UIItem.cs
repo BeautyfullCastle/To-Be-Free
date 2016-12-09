@@ -10,6 +10,7 @@ namespace ToBeFree
 
 		public UILabel itemName;
 		public UILabel itemPrice;
+		public UILabel explanation;
 
 		private Item item;
 
@@ -22,7 +23,7 @@ namespace ToBeFree
 		{
 			itemName = transform.FindChild("Name").GetComponent<UILabel>();
 			itemPrice = transform.FindChild("Price").GetComponent<UILabel>();
-
+			
 			defaultColor = this.GetComponent<UIButton>().defaultColor;
 			hover = this.GetComponent<UIButton>().hover;
 			pressed = this.GetComponent<UIButton>().pressed;
@@ -108,19 +109,19 @@ namespace ToBeFree
 			}
 		}
 
-		void OnTooltip(bool show)
-		{
-			Item item = show ? this.item : null;
-			if (item == null)
-			{
-				UITooltip.Hide();
-				return;
-			}
+		//void OnTooltip(bool show)
+		//{
+		//	Item item = show ? this.item : null;
+		//	if (item == null)
+		//	{
+		//		UITooltip.Hide();
+		//		return;
+		//	}
 
-			string description = this.itemName.text + "\\n";
-			description += this.item.Buff.Script;
-			UITooltip.Show(description);
-		}
+		//	string description = this.itemName.text + "\\n";
+		//	description += this.item.Buff.Script;
+		//	UITooltip.Show(description);
+		//}
 
 		public void SetInfo(Item item)
 		{
@@ -130,6 +131,8 @@ namespace ToBeFree
 			this.Item = item;
 			itemName.text = item.Name;
 			itemPrice.text = item.Price.ToString();
+			if(explanation)
+				explanation.text = this.item.Buff.Script;
 		}
 
 		void OnEnable()
