@@ -81,7 +81,12 @@ public class Dice : MonoBehaviour {
 			if(isFreeze)
 				rollingDie.force = Vector3.zero;
 			else
-				rollingDie.force = Force();
+			{
+				rollingDie.gameObject.GetComponent<Rigidbody>().AddForce(Force(), ForceMode.Impulse);
+				// apply a random torque
+				rollingDie.gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
+				//rollingDie.gameObject.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
+			}
 		}
 	}
 
@@ -165,9 +170,14 @@ public class Dice : MonoBehaviour {
 		string mat = "red";
 
 		// create the die prefab/gameObject
-		GameObject die = prefab(dieType, new Vector3(positionX, spawnPoint.position.y, spawnPoint.position.z), new Vector3(0f, 0f, -90f), new Vector3(0.03f, 0.03f, 0.03f), mat);
-		positionX += 0.07f;
-		positionY += 0.07f * (allDice.Count % 5);
+		GameObject die = prefab(dieType, new Vector3(positionX, positionY, spawnPoint.position.z), new Vector3(0f, 0f, -90f), new Vector3(0.3f, 0.3f, 0.3f), mat);
+		positionX += 0.15f;
+		if(allDice.Count % 3 == 0)
+		{
+			positionX = this.spawnPoint.position.x;
+			positionY += 0.15f;
+		}
+			
 		// give it a random rotation
 		//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 		// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
@@ -177,7 +187,7 @@ public class Dice : MonoBehaviour {
 		// add RollingDie to allDices
 		allDice.Add(rDie);
 		// add RollingDie to the rolling queue
-		rollQueue.Add(rDie);
+		//rollQueue.Add(rDie);
 
 		rDie.SetGravity(false);
 		rDie.force = Vector3.zero;
@@ -312,10 +322,10 @@ public class Dice : MonoBehaviour {
 				// activate the gameObject
 				die.SetActive(true);
 				// apply the force impuls
-				die.GetComponent<Rigidbody>().AddForce((Vector3) rDie.force, ForceMode.Impulse);
+				//die.GetComponent<Rigidbody>().AddForce((Vector3) rDie.force, ForceMode.Impulse);
 				// apply a random torque
-				die.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
-				die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
+				//die.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
+				//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 				// add die to rollingDice
 				rollingDice.Add(rDie);
 				// remove the die from the queue
@@ -359,8 +369,8 @@ public class Dice : MonoBehaviour {
 	// dertermine random rolling force	
 	private Vector3 Force()
 	{
-		float force = 3f;
-		return new Vector3(Random.Range(0.5f, 1f) * force, Random.Range(0.5f, 1f) * force, -force);
+		float force = 1.5f;
+		return new Vector3(Random.Range(-0.2f, 0.2f) * force, Random.Range(-0.2f, 0.2f) * force, -force * 2);
 		Vector3 rollTarget = Vector3.zero + new Vector3(2 + 7 * Random.value, .5F + 4 * Random.value, -2 - 3 * Random.value);
 		return Vector3.Lerp(spawnPoint.position, rollTarget, 1).normalized * (-35 - Random.value * 5);
 	}
