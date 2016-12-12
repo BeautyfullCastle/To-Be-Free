@@ -43,6 +43,10 @@ namespace ToBeFree
 
 		private void DayIsGone()
 		{
+			if(questPiece.CurQuest.Duration == 1000)
+			{
+				return;
+			}
 			questPiece.CurQuest.PastDays++;
 			pastDays.text = questPiece.CurQuest.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString();
 		}

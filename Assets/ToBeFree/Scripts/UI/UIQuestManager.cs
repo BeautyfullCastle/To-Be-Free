@@ -32,8 +32,14 @@ namespace ToBeFree
 			{
 				cityName = questPiece.City.IconCity.nameLabel.text;
 			}
-			uiQuest.SetLabels(questPiece.CurQuest.UiName, questPiece.CurQuest.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString(),
-				questPiece.CurQuest.UiConditionScript, cityName);
+
+			string pastDays = questPiece.CurQuest.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString();
+			if (questPiece.CurQuest.Duration == 1000)
+			{
+				pastDays = "Infinity";
+			}
+			
+			uiQuest.SetLabels(questPiece.CurQuest.UiName, pastDays, questPiece.CurQuest.UiConditionScript, cityName);
 
 			uiQuestList.Add(uiQuest);
 			grid.Reposition();
