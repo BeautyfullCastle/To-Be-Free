@@ -17,6 +17,7 @@
 using UnityEngine;
 using System.Collections;
 using ToBeFree;
+using System.Collections.Generic;
 
 /// <summary>
 /// This dice dupporting class has some 'static' methods to help you throwning dice
@@ -56,6 +57,7 @@ public class Dice : MonoBehaviour {
 	private UILabel nameLabel;
 	[SerializeField]
 	private UILabel statLabel;
+	
 	[SerializeField]
 	private UILabel diceNumLabel;
 
@@ -316,6 +318,58 @@ public class Dice : MonoBehaviour {
 		}
 
 		this.transform.localPosition = position;
+	}
+
+	public IEnumerator StartEffect(int minSuccessNum)
+	{
+		foreach (var dice in allDice)
+		{
+			RollingDie rollingDie = dice as RollingDie;
+			if(rollingDie.value >= minSuccessNum)
+			{
+				rollingDie.die.GetComponentInChildren<Light>().enabled = true;
+				yield return new WaitForSeconds(1f);
+			}
+		}
+	}
+
+	public IEnumerator StartEffect(Dice dice, int minSuccessNum)
+	{
+		List<Die> dieList1 = new List<Die>();
+		foreach (var die in this.allDice)
+		{
+			RollingDie rollingDie = die as RollingDie;
+			if (rollingDie.value >= minSuccessNum)
+			{
+				dieList1.Add(rollingDie.die);
+			}
+		}
+
+		List<Die> dieList2 = new List<Die>();
+		foreach (var die in dice.allDice)
+		{
+			RollingDie rollingDie = die as RollingDie;
+			if (rollingDie.value >= minSuccessNum)
+			{
+				dieList2.Add(rollingDie.die);
+			}
+		}
+
+		int count = dieList1.Count;
+		if (count < dieList2.Count)
+		{
+			count = dieList2.Count;
+		}
+
+		for (int i = 0; i < count; ++i)
+		{
+			if(i < dieList1.Count)
+				dieList1[i].GetComponentInChildren<Light>().enabled = true;
+			if (i < dieList2.Count)
+				dieList2[i].GetComponentInChildren<Light>().enabled = true;
+
+			yield return new WaitForSeconds(1f);
+		}
 	}
 }
 

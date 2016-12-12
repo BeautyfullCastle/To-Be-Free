@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace ToBeFree
@@ -48,6 +47,8 @@ namespace ToBeFree
 				yield return new WaitForSecondsRealtime(1f);
 			}
 
+			yield return dice.StartEffect(MinSuccessNum);
+
 			yield return new WaitForSecondsRealtime(2f);
 
 			resultNum = dice.GetSuccessNum(MinSuccessNum);
@@ -91,6 +92,8 @@ namespace ToBeFree
 				}
 				resultNums[i] = demo.dices[i].GetSuccessNum(MinSuccessNum);
 			}
+
+			yield return demo.dices[0].StartEffect(demo.dices[1], minSuccessNum);
 
 			yield return new WaitForSecondsRealtime(2f);
 

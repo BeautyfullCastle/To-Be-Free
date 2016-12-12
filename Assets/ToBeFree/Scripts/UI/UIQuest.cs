@@ -11,7 +11,6 @@ namespace ToBeFree
 
 		private QuestPiece questPiece;
 		
-
 		public void SetLabels(string questName, string pastDays, string condition, string city)
 		{
 			this.questName.text = questName;
