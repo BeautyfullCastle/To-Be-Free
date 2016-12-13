@@ -310,7 +310,6 @@ namespace ToBeFree
 				{
 					IconCity iconCity = Array.Find<IconCity>(iconCities, x => x.City == city);
 					iconCity.SetEnable(true);
-					Debug.Log("City you can go : " + city.Name);
 				}
 			}
 		}

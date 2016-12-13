@@ -155,13 +155,13 @@ namespace ToBeFree
 			// set the city anabled and twinkle.
 			if (isEnable)
 			{
+				GetComponent<TweenAlpha>().ResetToBeginning();
 				GetComponent<TweenAlpha>().enabled = true;
 				GetComponent<UIButton>().isEnabled = true;
 			}
 			// set the button disabled.
 			else
 			{
-				GetComponent<TweenAlpha>().value = 1;
 				GetComponent<TweenAlpha>().enabled = false;
 				GetComponent<UIButton>().isEnabled = false;
 			}
