@@ -36,8 +36,9 @@ namespace ToBeFree
 			return null;
 		}
 
-		private void Init() {
-			if (dic.Count != 0)
+		private void Init()
+		{
+			if (dic != null)
 				return;
 
 			dic = new AudioSerializableDictionary();

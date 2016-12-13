@@ -323,11 +323,12 @@ public class Dice : MonoBehaviour {
 
 	public IEnumerator StartEffect(int minSuccessNum)
 	{
-		foreach (Die die in allDice.Cast<Die>())
+		foreach (RollingDie rollingDie in allDice.Cast<RollingDie>())
 		{
-			if (die.value >= minSuccessNum)
+			if (rollingDie.value >= minSuccessNum)
 			{
-				die.GetComponentInChildren<Light>().enabled = true;
+				rollingDie.die.GetComponentInChildren<Light>().enabled = true;
+				AudioManager.Instance.Find("success").Play();
 				yield return new WaitForSeconds(1f);
 			}
 		}
@@ -336,20 +337,20 @@ public class Dice : MonoBehaviour {
 	public IEnumerator StartEffect(Dice dice, int minSuccessNum)
 	{
 		List<Die> dieList1 = new List<Die>();
-		foreach (Die die in allDice.Cast<Die>())
+		foreach (RollingDie rollingDie in allDice.Cast<RollingDie>())
 		{
-			if (die.value >= minSuccessNum)
+			if (rollingDie.value >= minSuccessNum)
 			{
-				dieList1.Add(die);
+				dieList1.Add(rollingDie.die);
 			}
 		}
 
 		List<Die> dieList2 = new List<Die>();
-		foreach (var die in dice.allDice.Cast<Die>())
+		foreach (RollingDie rollingDie in dice.allDice.Cast<RollingDie>())
 		{
-			if (die.value >= minSuccessNum)
+			if (rollingDie.value >= minSuccessNum)
 			{
-				dieList2.Add(die);
+				dieList2.Add(rollingDie.die);
 			}
 		}
 
@@ -366,6 +367,7 @@ public class Dice : MonoBehaviour {
 			if (i < dieList2.Count)
 				dieList2[i].GetComponentInChildren<Light>().enabled = true;
 
+			AudioManager.Instance.Find("success").Play();
 			yield return new WaitForSeconds(1f);
 		}
 	}	
