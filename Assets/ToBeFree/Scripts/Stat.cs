@@ -419,6 +419,8 @@ namespace ToBeFree
 		{
 			Character character = GameManager.Instance.Character;
 			List<City> cityList = CityManager.Instance.FindCitiesByDistance(character.CurCity, ViewRange, eWay.ENTIREWAY, false);
+
+			// Set polices appreared
 			foreach (Piece piece in PieceManager.Instance.FindAll(eSubjectType.POLICE))
 			{
 				Police police = piece as Police;
@@ -428,6 +430,17 @@ namespace ToBeFree
 				{
 					TipManager.Instance.Show(eTipTiming.PoliceAppeared);
 				}
+			}
+
+			// Set icon cities brighthen in view range.
+			foreach(IconCity iconCity in GameManager.Instance.iconCities)
+			{
+				iconCity.GetComponent<UIButton>().defaultColor = Color.gray;
+			}
+
+			foreach(City city in cityList)
+			{
+				city.IconCity.GetComponent<UIButton>().defaultColor = Color.white;
 			}
 		}
 

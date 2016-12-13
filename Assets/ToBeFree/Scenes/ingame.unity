@@ -8027,7 +8027,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: mWidth
-      value: 50
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: mDepth
@@ -8039,7 +8039,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: aspectRatio
-      value: 2.5
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_LocalPosition.x
@@ -9832,7 +9832,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 126, y: 30}
+  m_Size: {x: 128, y: 30}
 --- !u!114 &200440305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9863,13 +9863,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 126
+  mWidth: 128
   mHeight: 30
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.2
+  aspectRatio: 4.266667
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
   mFont: {fileID: 0}
@@ -21187,12 +21187,12 @@ MonoBehaviour:
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
   mWidth: 328
-  mHeight: 30
+  mHeight: 60
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 10.933333
+  aspectRatio: 5.4666667
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
   mFont: {fileID: 0}
@@ -30738,7 +30738,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -278.30774, y: -384.45306, z: 252, w: 428}
+  mClipRange: {x: -277.99994, y: -385, z: 252, w: 428}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 7
   mSortingOrder: 0
@@ -35678,7 +35678,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 909450112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.598579, y: 1.5985793, z: 1.598579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -47484,7 +47484,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -704.3078, y: 443.54694, z: 1918.0001, w: 1050}
+  mClipRange: {x: -704, y: 443, z: 1918, w: 1050}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 5
   mSortingOrder: 0
@@ -52946,13 +52946,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 172
+  mWidth: 166
   mHeight: 34
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.0588236
+  aspectRatio: 4.882353
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
   mFont: {fileID: 0}
@@ -53651,7 +53651,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: mWidth
-      value: 50
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: mDepth
@@ -53663,7 +53663,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: aspectRatio
-      value: 2.5
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 8b0d1c50c984d704f94ef3e458f797fa, type: 2}
       propertyPath: m_LocalPosition.x
@@ -70831,13 +70831,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 12
+  mWidth: 10
   mHeight: 20
   mDepth: 5
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.6
+  aspectRatio: 0.5
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
   mFont: {fileID: 0}
@@ -73533,6 +73533,18 @@ Prefab:
       propertyPath: handles.Array.data[6]
       value: 
       objectReference: {fileID: 2124354191}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405792, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
+      propertyPath: mColor.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02e1b05a02ffc646b37236a56f3f3cc, type: 2}
   m_IsPrefabParent: 0
@@ -75023,7 +75035,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -0.25646973, y: 0.45593262, z: 1600, w: 900}
+  mClipRange: {x: 0, y: 0, z: 1600.0001, w: 900}
   mClipSoftness: {x: 0, y: 0}
   mDepth: 2
   mSortingOrder: 0

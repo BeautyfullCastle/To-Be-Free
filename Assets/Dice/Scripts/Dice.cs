@@ -18,6 +18,7 @@ using UnityEngine;
 using System.Collections;
 using ToBeFree;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// This dice dupporting class has some 'static' methods to help you throwning dice
@@ -322,12 +323,11 @@ public class Dice : MonoBehaviour {
 
 	public IEnumerator StartEffect(int minSuccessNum)
 	{
-		foreach (var dice in allDice)
+		foreach (Die die in allDice.Cast<Die>())
 		{
-			RollingDie rollingDie = dice as RollingDie;
-			if(rollingDie.value >= minSuccessNum)
+			if (die.value >= minSuccessNum)
 			{
-				rollingDie.die.GetComponentInChildren<Light>().enabled = true;
+				die.GetComponentInChildren<Light>().enabled = true;
 				yield return new WaitForSeconds(1f);
 			}
 		}
@@ -336,22 +336,20 @@ public class Dice : MonoBehaviour {
 	public IEnumerator StartEffect(Dice dice, int minSuccessNum)
 	{
 		List<Die> dieList1 = new List<Die>();
-		foreach (var die in this.allDice)
+		foreach (Die die in allDice.Cast<Die>())
 		{
-			RollingDie rollingDie = die as RollingDie;
-			if (rollingDie.value >= minSuccessNum)
+			if (die.value >= minSuccessNum)
 			{
-				dieList1.Add(rollingDie.die);
+				dieList1.Add(die);
 			}
 		}
 
 		List<Die> dieList2 = new List<Die>();
-		foreach (var die in dice.allDice)
+		foreach (var die in dice.allDice.Cast<Die>())
 		{
-			RollingDie rollingDie = die as RollingDie;
-			if (rollingDie.value >= minSuccessNum)
+			if (die.value >= minSuccessNum)
 			{
-				dieList2.Add(rollingDie.die);
+				dieList2.Add(die);
 			}
 		}
 
@@ -370,7 +368,7 @@ public class Dice : MonoBehaviour {
 
 			yield return new WaitForSeconds(1f);
 		}
-	}
+	}	
 }
 
 /// <summary>

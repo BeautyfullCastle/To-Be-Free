@@ -7,13 +7,11 @@ namespace ToBeFree
 	{
 		private int minSuccessNum;
 		private int prevMinSuccessNum;
-		private int resultNum;
 		private GameObject diceObj;
 
 		public void Init()
 		{
 			minSuccessNum = 6;
-			resultNum = -99;
 			diceObj = GameManager.Instance.diceObj;
 			diceObj.SetActive(false);
 		}
