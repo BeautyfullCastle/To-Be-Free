@@ -108,9 +108,7 @@ namespace ToBeFree
 						// reveal number of polices in this position
 						if (objectType == eObjectType.NUMBER)
 						{
-							GameManager.Instance.uiEventManager.OpenUI();
-							GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Please Click the city that you want to see the number of polices : ");
-							yield return EventManager.Instance.WaitUntilFinish();
+							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_RevealNumber));
 
 							foreach (IconCity c in GameManager.Instance.iconCities)
 							{
@@ -125,18 +123,13 @@ namespace ToBeFree
 
 							City city = GameManager.Instance.ClickedIconCity.City;
 							int policeNumInClickedCity = PieceManager.Instance.FindAll(eSubjectType.POLICE, city).Count;
-
-							GameManager.Instance.uiEventManager.OpenUI();
-							GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "The number of polices in " + city.Name + " : " + policeNumInClickedCity);
-							yield return EventManager.Instance.WaitUntilFinish();
-
+							
+							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_PoliceNumber) + " : " + policeNumInClickedCity);
 						}
 						// reveal police's crackdown probability
-						if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
+						else if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
 						{
-							GameManager.Instance.uiEventManager.OpenUI();
-							GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Crackdown Probability is " + CrackDown.Instance.Probability);
-							yield return EventManager.Instance.WaitUntilFinish();
+							// 결과 창에 확률이 보임.
 						}
 					}
 					break;

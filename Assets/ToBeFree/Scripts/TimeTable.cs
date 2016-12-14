@@ -17,13 +17,14 @@ namespace ToBeFree
 
 	public class TimeTable : Singleton<TimeTable>
 	{
-
 		private int hour;
 		private int day;
 		private int week;
 
-		int totalHour;
-		int usedHour;
+		private readonly int moveTimePerAction;
+
+		private int totalHour;
+		private int usedHour;
 
 		public delegate void TimeEventHandler();
 
@@ -33,6 +34,7 @@ namespace ToBeFree
 
 		public TimeTable()
 		{
+			moveTimePerAction = 6;
 			Reset();
 		}
 
@@ -147,6 +149,14 @@ namespace ToBeFree
 			get
 			{
 				return week;
+			}
+		}
+
+		public int MoveTimePerAction
+		{
+			get
+			{
+				return moveTimePerAction;
 			}
 		}
 	}

@@ -1,19 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace ToBeFree
 {
-	public enum eUIEventLabelType
-	{
-		EVENT, RESULT, RESULT_EFFECT, DICENUM
-	}
-
 	public class UIEventManager : MonoBehaviour
 	{
 		public UILabel eventScript;
-		public UILabel resultScript;
 		public UILabel[] selectLabels;
-		public UILabel resultEffectScript;
-		public UILabel diceNum;
 		public UIButton okButton;
 		
 		private UILabel[] allLabel;
@@ -26,56 +19,37 @@ namespace ToBeFree
 
 		public void Start()
 		{
-			allLabel = new UILabel[7];
+			allLabel = new UILabel[4];
 			allLabel[0] = eventScript;
-			allLabel[1] = resultScript;
-			allLabel[2] = resultEffectScript;
-			allLabel[3] = diceNum;
-			allLabel[4] = selectLabels[0];
-			allLabel[5] = selectLabels[1];
-			allLabel[6] = selectLabels[2];
-
-			EventManager.UIChanged += OnChanged;
-			EventManager.SelectUIChanged += OnSelectUIChanged;
-			EventManager.UIOpen += OpenUI;
+			allLabel[1] = selectLabels[0];
+			allLabel[2] = selectLabels[1];
+			allLabel[3] = selectLabels[2];
 
 			ClearAll();
 			gameObject.SetActive(false);
 		}
 
-		public void OpenUI()
+		public IEnumerator OnChanged(string text, bool isNew = true, bool waitOk = true)
 		{
-			gameObject.SetActive(true);
-			ClearAll();
-		}
-
-		public void OnChanged(eUIEventLabelType type, string text)
-		{
-			gameObject.SetActive(true);
-
-			eventScript.text += ("\n" + text);
-			return;
-
-			switch (type)
+			if(isNew)
 			{
-				case eUIEventLabelType.EVENT:
-					eventScript.text = text;
-					break;
-				case eUIEventLabelType.RESULT:
-					resultScript.text = text;
-					break;
-				case eUIEventLabelType.RESULT_EFFECT:
-					resultEffectScript.text = text;
-					break;
-				case eUIEventLabelType.DICENUM:
-					diceNum.text = text;
-					break;
-				default:
-					break;
+				gameObject.SetActive(true);
+				ClearAll();
+
+				eventScript.text = text;
 			}
+			else
+			{
+				eventScript.text += ("\n" + text);
+			}
+
+			if (waitOk)
+				yield return EventManager.Instance.WaitUntilFinish();
+			else
+				yield return null;
 		}
 
-		public void OnSelectUIChanged(Select[] selectList)
+		public IEnumerator OnSelectUIChanged(Select[] selectList)
 		{
 			this.selectList = selectList;
 
@@ -89,6 +63,8 @@ namespace ToBeFree
 				selectLabels[i].text = selectList[i].Script;
 				selectLabels[i].GetComponent<UIButton>().isEnabled = selectList[i].CheckCondition(GameManager.Instance.Character);
 			}
+
+			yield return SelectManager.Instance.WaitForSelect();
 		}
 		
 		public void OnClick(string index)

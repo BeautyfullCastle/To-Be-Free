@@ -69,12 +69,7 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			Debug.Log("Rest Action Activated.");
-
-			GameManager.Instance.OpenEventUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
-				LanguageManager.Instance.Find(eLanguageKey.Event_Start_Rest));
-			yield return EventManager.Instance.WaitUntilFinish();
+			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Rest));
 
 			yield return base.Activate(character);
 			
@@ -102,11 +97,7 @@ namespace ToBeFree
 					yield break;
 				}
 
-				GameManager.Instance.OpenEventUI();
-
-				Debug.Log(selectedEvent.ActionType + " is activated.");
-
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+				yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
 
 				// deal with result
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
@@ -120,11 +111,7 @@ namespace ToBeFree
 					testSuccessNum -= 2;
 				}
 
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, testSuccessNum.ToString());
-
 				yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, testSuccessNum);
-
-				Debug.Log("DoCommand Finished.");
 			}
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
@@ -144,12 +131,9 @@ namespace ToBeFree
 		public override IEnumerator Activate(Character character)
 		{
 			Debug.LogWarning("Work action activated.");
-
-			GameManager.Instance.OpenEventUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
-				LanguageManager.Instance.Find(eLanguageKey.Event_Start_Working));
-			yield return EventManager.Instance.WaitUntilFinish();
-
+			
+			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Working));
+			
 			yield return base.Activate(character);
 			
 			if (character.CheckSpecialEvent())
@@ -174,38 +158,56 @@ namespace ToBeFree
 
 				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
-				yield return EventManager.Instance.DoCommand(actionName, character);
-			}
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
-			
-			// if effect is money and event is succeeded,
-			if (EventManager.Instance.TestResult)
-			{
-				EffectAmount[] successResulteffects = EventManager.Instance.CurrResult.Success.EffectAmounts;
-
-				for (int i = 0; i < successResulteffects.Length; ++i)
+				Event selectedEvent = EventManager.Instance.Find(actionName);
+				if (selectedEvent == null)
 				{
-					if (successResulteffects[i].Effect == null)
-					{
-						continue;
-					}
-					if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
-					{
-						character.Stat.Money += successResulteffects[i].Amount;
-						character.Stat.Money += character.CurCity.CalcRandWorkingMoney();
-						character.Stat.Money += EventManager.Instance.TestSuccessNum;
-						GameManager.Instance.OpenEventUI();
-						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, 
-							"기본급 : " + successResulteffects[i].Amount
-							+ "\n도시 추가금 : " + character.CurCity.CalcRandWorkingMoney()
-							+ "\n주사위 성공 개수 추가금 : " + EventManager.Instance.TestSuccessNum);
+					Debug.LogError("selectedEvent is null");
+					yield break;
+				}
 
-						yield return EventManager.Instance.WaitUntilFinish();
-						break;
+				yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
+
+				// deal with result
+				yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+
+				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character, true, false);
+
+				// if effect is money and event is succeeded,
+				if (EventManager.Instance.TestResult)
+				{
+					EffectAmount[] successResulteffects = EventManager.Instance.CurrResult.Success.EffectAmounts;
+
+					for (int i = 0; i < successResulteffects.Length; ++i)
+					{
+						if (successResulteffects[i].Effect == null)
+						{
+							continue;
+						}
+						if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
+						{
+							int earnedMoney = successResulteffects[i].Amount;
+							int randWorkingMoneyOfCity = character.CurCity.CalcRandWorkingMoney();
+							earnedMoney += randWorkingMoneyOfCity;
+							earnedMoney += EventManager.Instance.TestSuccessNum;
+							yield return GameManager.Instance.uiEventManager.OnChanged(
+								LanguageManager.Instance.Find(eLanguageKey.Event_WoringMoneyPerCity) + " : " + randWorkingMoneyOfCity
+								+ "\n" + LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + " : " + EventManager.Instance.TestSuccessNum
+								+ "\n" + LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + " : " + earnedMoney,
+								false, true);
+
+							character.Stat.Money += earnedMoney;
+							break;
+						}
 					}
+				}
+				else
+				{
+					yield return EventManager.Instance.WaitUntilFinish();
 				}
 			}
 
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+			
 			character.AP += requiredTime;
 		}
 	}
@@ -234,9 +236,8 @@ namespace ToBeFree
 			{
 				event_start_script = LanguageManager.Instance.Find(eLanguageKey.Event_Start_Walking);
 			}
-			GameManager.Instance.OpenEventUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, event_start_script);
-			yield return EventManager.Instance.WaitUntilFinish();
+
+			yield return GameManager.Instance.uiEventManager.OnChanged(event_start_script);
 
 			yield return base.Activate(character);
 
@@ -276,30 +277,61 @@ namespace ToBeFree
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 			}
 
-			if (dontMove == false)
+			if (dontMove)
 			{
-				List<City> path = CityManager.Instance.CalcPath(character.CurCity, character.NextCity, actionName);
-				
-				if(actionName == eEventAction.MOVE_BUS)
-				{
-					character.Stat.Money -= 4;
-				}
-
-				foreach (City city in path)
-				{
-					// 집중 단속 기간이면 공안 단속 들어감
-					if(CrackDown.Instance.IsCrackDown)
-					{
-						yield return inspectAction.Activate(character);
-					}
-
-					if (character.IsDetention == false)
-					{
-						yield return character.MoveTo(city);
-					}
-				}
+				yield break;
 			}
-			//Debug.LogWarning("character is moved to " + character.CurCity.Name);	
+
+			List<City> path = CityManager.Instance.CalcPath(character.CurCity, character.NextCity, actionName);
+
+			if (path == null)
+			{
+				yield break;
+			}
+			else if (path.Count == 0)
+			{
+				yield break;
+			}
+
+			int moveTimePerCity = TimeTable.Instance.MoveTimePerAction;
+
+			if (actionName == eEventAction.MOVE_BUS)
+			{
+				character.Stat.Money -= 4;
+				// 도시별 이동 시간 = 기본 이동 시간 / 이동하는 도시 개수
+				moveTimePerCity = TimeTable.Instance.MoveTimePerAction / path.Count;
+				// 얼마나 이동하든 ap는 1만 사용
+				character.AP++;
+			}
+
+			foreach (City city in path)
+			{
+				// 집중 단속 기간이면 공안 단속 들어감
+				if (CrackDown.Instance.IsCrackDown)
+				{
+					yield return inspectAction.Activate(character);
+
+					// 공안 단속 후 구금되면 더 이상 이동하지 않음.
+					if (character.IsDetention)
+					{
+						break;
+					}
+				}
+				
+				if (actionName == eEventAction.MOVE)
+				{
+					character.AP++;
+					moveTimePerCity = TimeTable.Instance.MoveTimePerAction;
+					// 산이 껴 있으면 ap와 moveTime을 두 배로 사용.
+					if (character.CurCity.Type == eNodeType.MOUNTAIN || city.Type == eNodeType.MOUNTAIN)
+					{
+						character.AP++;
+						moveTimePerCity += TimeTable.Instance.MoveTimePerAction;
+					}
+				}
+
+				yield return character.MoveTo(city, moveTimePerCity);
+			}
 		}
 	}
 
@@ -454,17 +486,11 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			Debug.LogWarning("Enter to Shop action activated.");
-
 			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
 			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
-			NGUIDebug.Log("Enter To Shop action");
 			GameManager.Instance.shopUIObj.SetActive(true);
-			//GameManager.Instance.shopUIObj.GetComponent<UIShop>().DiscountNum = testSucceedDiceNum;
-			yield return EventManager.Instance.WaitUntilFinish();
-			
 		}
 	}
 
@@ -495,10 +521,7 @@ namespace ToBeFree
 			{
 				event_start_script = LanguageManager.Instance.Find(eLanguageKey.Event_Start_Gathering);
 			}
-			GameManager.Instance.OpenEventUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, event_start_script);
-			yield return EventManager.Instance.WaitUntilFinish();
-
+			yield return GameManager.Instance.uiEventManager.OnChanged(event_start_script);
 
 			yield return base.Activate(character);
 			
@@ -549,12 +572,8 @@ namespace ToBeFree
 					Debug.LogError("selectedEvent is null");
 					yield break;
 				}
-
-				GameManager.Instance.OpenEventUI();
-
-				Debug.Log(selectedEvent.ActionType + " is activated.");
-
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
+				
+				yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script, true, false);
 				
 				// deal with result
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
@@ -700,10 +719,7 @@ namespace ToBeFree
 						resultEffectScript += "Item : " + addingItem.Name + "\n";
 					}
 				}
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT, resultScript);
-				GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT_EFFECT, resultEffectScript);
-
-				yield return EventManager.Instance.WaitUntilFinish();
+				yield return GameManager.Instance.uiEventManager.OnChanged(resultScript + "\n" + resultEffectScript, false, true);
 
 				foreach (var item in finalList)
 				{
@@ -747,10 +763,7 @@ namespace ToBeFree
 		{
 			NGUIDebug.Log("BrokerAction action");
 
-			GameManager.Instance.OpenEventUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
-				LanguageManager.Instance.Find(eLanguageKey.Event_Start_Broker));
-			yield return EventManager.Instance.WaitUntilFinish();
+			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Broker));
 
 			yield return base.Activate(character);
 
@@ -783,10 +796,7 @@ namespace ToBeFree
 		{
 			NGUIDebug.Log("AbilityAction action");
 
-			GameManager.Instance.OpenEventUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
-				LanguageManager.Instance.Find(eLanguageKey.Event_Start_Ability));
-			yield return EventManager.Instance.WaitUntilFinish();
+			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Ability));
 
 			yield return base.Activate(character);
 

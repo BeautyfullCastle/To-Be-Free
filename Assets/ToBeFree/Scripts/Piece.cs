@@ -196,28 +196,15 @@ namespace ToBeFree
 				Debug.LogError("selectedEvent is null");
 				yield break;
 			}
-
-			GameManager.Instance.uiEventManager.OpenUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedEvent.Script);
 			
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.RESULT, "Let's Fight to escape from the police.");
-			yield return EventManager.Instance.WaitUntilFinish();
-
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
+			yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
 			
 			int characterSuccessNum = 0;
 			int policeSuccessNum = 0;
 			yield return DiceTester.Instance.Test(eTestStat.AGILITY, character.Stat.Agility, this.Power, (x, x2) => { characterSuccessNum = x; policeSuccessNum = x2; } );
 			
 			EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
-
-			GameManager.Instance.uiEventManager.OpenUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "Result");
-
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM,
-				EventManager.Instance.TestResult.ToString() + ", " + characterSuccessNum.ToString() + " : " + policeSuccessNum.ToString());
-
+			
 			yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
 		}
 	}
@@ -254,13 +241,11 @@ namespace ToBeFree
 		{
 			if(CheckDuration())
 			{
-				GameManager.Instance.OpenEventUI();
+				yield return GameManager.Instance.uiEventManager.OnChanged(CurQuest.FailureEffects.Script, true, false);
 
-				GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT, CurQuest.FailureEffects.Script);
-				
-				if(CurQuest.FailureEffects.EffectAmounts != null)
-				{
-					string effectScript = string.Empty;
+				string effectScript = string.Empty;
+				if (CurQuest.FailureEffects.EffectAmounts != null)
+				{	
 					foreach (EffectAmount effectAmount in CurQuest.FailureEffects.EffectAmounts)
 					{
 						if (effectAmount == null)
@@ -268,13 +253,11 @@ namespace ToBeFree
 
 						effectScript += effectAmount.ToString();
 					}
-					GameManager.FindObjectOfType<UIEventManager>().OnChanged(eUIEventLabelType.RESULT_EFFECT, effectScript);
 				}
 
-				yield return EventManager.Instance.WaitUntilFinish();
+				yield return GameManager.Instance.uiEventManager.OnChanged(effectScript, false, true);
 
 				GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(this.CurQuest);
-				//PieceManager.Instance.Delete(this);
 			}
 		}
 

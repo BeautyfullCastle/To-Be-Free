@@ -50,10 +50,7 @@ namespace ToBeFree
 			{
 				if (RaiseAndCheckProbability())
 				{
-					GameManager.Instance.OpenEventUI();
-					GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
-						LanguageManager.Instance.Find(eLanguageKey.Event_Police_CrackDown));
-					yield return EventManager.Instance.WaitUntilFinish();
+					yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_CrackDown));
 
 					isCrackDown = true;
 					crackDownEffect.enabled = true;
@@ -68,10 +65,7 @@ namespace ToBeFree
 					// add one more police
 					if (randIndex == 0)
 					{
-						GameManager.Instance.OpenEventUI();
-						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
-							LanguageManager.Instance.Find(eLanguageKey.Event_Police_Add));
-						yield return EventManager.Instance.WaitUntilFinish();
+						yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_Add));
 
 						Police police = new Police(CityManager.Instance.GetRand(), eSubjectType.POLICE);
 						PieceManager.Instance.Add(police);
@@ -79,10 +73,7 @@ namespace ToBeFree
 					// add one police's stat
 					else if (randIndex == 1)
 					{
-						GameManager.Instance.OpenEventUI();
-						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
-							LanguageManager.Instance.Find(eLanguageKey.Event_Police_AddStat));
-						yield return EventManager.Instance.WaitUntilFinish();
+						yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_AddStat));
 
 						Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
 						yield return police.AddStat(isCrackDown);
@@ -90,10 +81,7 @@ namespace ToBeFree
 					// move one police
 					else if (randIndex == 2)
 					{
-						GameManager.Instance.OpenEventUI();
-						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT,
-							LanguageManager.Instance.Find(eLanguageKey.Event_Police_Move));
-						yield return EventManager.Instance.WaitUntilFinish();
+						yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_Move));
 
 						Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
 						yield return police.Move();

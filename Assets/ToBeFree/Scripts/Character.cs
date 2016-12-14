@@ -222,7 +222,7 @@ namespace ToBeFree
 			AP++;
 		}
 
-		public IEnumerator MoveTo(City city, bool direct = false)
+		public IEnumerator MoveTo(City city, int moveTimePerCity = 0, bool direct = false)
 		{
 			if (direct)
 			{
@@ -235,32 +235,27 @@ namespace ToBeFree
 				yield break;
 			}
 
-			bool isMountain = false;
-			if(isDetention == false)
-			{
-				AP++;
-				if(curCity.Type == eNodeType.MOUNTAIN || city.Type == eNodeType.MOUNTAIN)
-				{
-					AP++;
-					isMountain = true;
-				}
-			}
-
-			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city, isMountain);
+			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city, moveTimePerCity);
 
 			this.CurCity = city;
 
+			eTipTiming tipTiming = eTipTiming.NULL;
 			if(city.Type == eNodeType.BIGCITY)
 			{
-				TipManager.Instance.Show(eTipTiming.BigCity);
+				tipTiming = eTipTiming.BigCity;
 			}
 			else if(city.Type == eNodeType.TOWN)
 			{
-				TipManager.Instance.Show(eTipTiming.Street);
+				tipTiming = eTipTiming.Street;
 			}
 			else if(city.Type == eNodeType.MOUNTAIN)
 			{
-				TipManager.Instance.Show(eTipTiming.Mountain);
+				tipTiming = eTipTiming.Mountain;
+			}
+
+			if (tipTiming != eTipTiming.NULL)
+			{
+				TipManager.Instance.Show(tipTiming);
 			}
 
 			Stat.SetViewRange();
@@ -321,7 +316,7 @@ namespace ToBeFree
 			// activate character's passive abnormal condition.
 			yield return AbnormalConditionManager.Instance.List[this.AbnormalIndex].Activate(this);
 
-			yield return this.MoveTo(this.CurCity, true);
+			yield return this.MoveTo(this.CurCity, 0, true);
 		}
 
 		public Stat Stat

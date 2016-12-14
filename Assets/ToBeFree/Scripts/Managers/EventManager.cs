@@ -19,15 +19,7 @@ namespace ToBeFree
 		private Language.EventData[] engList;
 		private Language.EventData[] korList;
 		private List<Language.EventData[]> languageList;
-
-		public delegate void UIChangedHandler(eUIEventLabelType type, string text);
-		public static event UIChangedHandler UIChanged = delegate { };
-
-		public delegate void SelectUIChangedHandler(Select[] select);
-		public static event SelectUIChangedHandler SelectUIChanged = delegate { };
-
-		public delegate void UIOpenHandler();
-		public static UIOpenHandler UIOpen = delegate { };
+		
 		private bool isFinish;
 		private Event selectedEvent;
 
@@ -97,23 +89,16 @@ namespace ToBeFree
 			if (testStat == eTestStat.ALL || testStat == eTestStat.NULL)
 			{
 				TestResult = true;
-				UIChanged(eUIEventLabelType.DICENUM, TestResult.ToString());
 			}
 			else
 			{
-				UIChanged(eUIEventLabelType.RESULT, "Let's Roll the dice for the test.");
-				yield return EventManager.Instance.WaitUntilFinish();
-
-				GameManager.Instance.OpenEventUI();
-				UIChanged(eUIEventLabelType.EVENT, "Dice Test Result");
 				yield return DiceTester.Instance.Test(testStat, character.GetDiceNum(testStat), (x) => testSuccessNum = x);
 				TestResult = testSuccessNum > 0;
-				UIChanged(eUIEventLabelType.DICENUM, "Succeeded Dice Num : " + testSuccessNum.ToString() + " : " + EnumConvert<eTestStat>.ToString(testStat));
 			}
 			yield return null;
 		}
 
-		public IEnumerator TreatResult(Result result, Character character)
+		public IEnumerator TreatResult(Result result, Character character, bool isNew = true, bool waitOk = true)
 		{
 			string resultScript = string.Empty;
 			string resultEffect = string.Empty;
@@ -139,10 +124,7 @@ namespace ToBeFree
 			}
 
 			this.CurrResult = result;
-			UIChanged(eUIEventLabelType.RESULT, resultScript);
-			UIChanged(eUIEventLabelType.RESULT_EFFECT, resultEffect);
-
-			yield return WaitUntilFinish();
+			yield return GameManager.Instance.uiEventManager.OnChanged(resultScript + "\n" + resultEffect, isNew, waitOk);
 
 			for (int i = 0; i < resultScriptAndEffects.EffectAmounts.Length; ++i)
 			{
@@ -165,8 +147,6 @@ namespace ToBeFree
 			}
 
 			yield return ActivateEvent(selectedEvent, character);
-		   
-			Debug.Log("DoCommand Finished.");
 		}
 
 		public IEnumerator WaitUntilFinish()
@@ -218,11 +198,7 @@ namespace ToBeFree
 				yield break;
 			}
 
-			GameManager.Instance.OpenEventUI();
-
-			Debug.Log(currEvent.ActionType + " is activated.");
-
-			UIChanged(eUIEventLabelType.EVENT, currEvent.Script);
+			yield return GameManager.Instance.uiEventManager.OnChanged(currEvent.Script, true, false);
 			
 			// deal with select part
 			if(currEvent.HasSelect)
@@ -233,16 +209,13 @@ namespace ToBeFree
 					Select select = SelectManager.Instance.List[currEvent.SelectIndexList[i]];
 					selectList[i] = select;
 				}
-				SelectUIChanged(selectList);
-				yield return SelectManager.Instance.WaitForSelect();
+				yield return GameManager.Instance.uiEventManager.OnSelectUIChanged(selectList);
+				
 			}
 			// deal with result
 			else
 			{
-				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
 				yield return CalculateTestResult(currEvent.Result.TestStat, character);
-				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
-
 				yield return TreatResult(currEvent.Result, character);
 			}
 		}

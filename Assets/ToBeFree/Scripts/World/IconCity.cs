@@ -73,8 +73,6 @@ namespace ToBeFree
 
 			EventDelegate.Parameter param = new EventDelegate.Parameter(this, string.Empty);
 			NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), this.GetComponent<UIButton>(), "ClickCity", new EventDelegate.Parameter[] { param });
-
-
 		}
 
 		void Start()

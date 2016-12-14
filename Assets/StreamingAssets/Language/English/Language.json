@@ -349,6 +349,31 @@
 			"index": 69,
 			"key": "Popup_Rest",
 			"script": "Popup_Rest"
+		},
+		{
+			"index": 70,
+			"key": "Event_PoliceRevealNumber",
+			"script": "Event_PoliceRevealNumber"
+		},
+		{
+			"index": 71,
+			"key": "Event_PoliceNumber",
+			"script": "Event_PoliceNumber"
+		},
+		{
+			"index": 72,
+			"key": "Event_SucceedDiceNumber",
+			"script": "Event_SucceedDiceNumber"
+		},
+		{
+			"index": 73,
+			"key": "Event_WoringMoneyPerCity",
+			"script": "Event_WoringMoneyPerCity"
+		},
+		{
+			"index": 74,
+			"key": "Event_TotalMoney",
+			"script": "Event_TotalMoney"
 		}
 	]
 }

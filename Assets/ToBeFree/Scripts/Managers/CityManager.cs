@@ -319,7 +319,7 @@ namespace ToBeFree
 			return cityList;
 		}
 
-		public IEnumerator MoveTo(Transform character, City curCity, City city, bool isMountain = false)
+		public IEnumerator MoveTo(Transform character, City curCity, City city, int moveTimePerCity = 0)
 		{
 			if (curCity ==null || city == null)
 			{
@@ -332,10 +332,10 @@ namespace ToBeFree
 				yield break;
 			}
 
-			yield return MoveTo(character, curIconCity.GetComponent<BezierPoint>(), iconcity.GetComponent<BezierPoint>(), isMountain);
+			yield return MoveTo(character, curIconCity.GetComponent<BezierPoint>(), iconcity.GetComponent<BezierPoint>(), moveTimePerCity);
 		}
 
-		public IEnumerator MoveTo(Transform character, BezierPoint curPoint, BezierPoint point, bool isMountain = false)
+		public IEnumerator MoveTo(Transform character, BezierPoint curPoint, BezierPoint point, int moveTimePerCity = 0)
 		{
 			if (curPoint == null || point == null)
 			{
@@ -344,13 +344,7 @@ namespace ToBeFree
 
 			currMoveTime = 0f;
 			float currTimeCounter = 1f;
-			int ap = 1;
-			if (isMountain)
-			{
-				ap = 2;
-			}
-			totalMoveTime = 6 * ap;
-			while (currMoveTime <= totalMoveTime)
+			while (currMoveTime <= moveTimePerCity)
 			{
 				if (character.gameObject.name == "Character")
 				{
@@ -368,7 +362,7 @@ namespace ToBeFree
 				currMoveTime += Time.deltaTime;
 				currTimeCounter += Time.deltaTime;
 
-				character.position = BezierCurve.GetPoint(curPoint, point, currMoveTime / totalMoveTime);
+				character.position = BezierCurve.GetPoint(curPoint, point, currMoveTime / moveTimePerCity);
 				yield return GameManager.Instance.MoveDirectingCam(character.position, character.position, Time.deltaTime);
 			}
 

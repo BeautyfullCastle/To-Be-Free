@@ -120,15 +120,8 @@ namespace ToBeFree
 					// DAY_TEST는 매일밤 주사위 하나 굴려서 4 이하면 사라짐.
 					if(buff.Duration == eDuration.DAY_TEST)
 					{
-						GameManager.Instance.uiEventManager.OpenUI();
-						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, "DAY_TEST for " + buff.Name);
-						yield return EventManager.Instance.WaitUntilFinish();
-
 						int resultNum = 0;
 						yield return DiceTester.Instance.Test(eTestStat.NULL, 1, (x) => resultNum = x);
-						GameManager.Instance.uiEventManager.OpenUI();
-						GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.DICENUM, resultNum.ToString());
-						yield return EventManager.Instance.WaitUntilFinish();
 
 						if (resultNum <= 4)
 						{
@@ -174,12 +167,9 @@ namespace ToBeFree
 						}
 					}
 				}
-
 				character.Stat.HP += testSuccessNum;
 			}
-
-			yield return EventManager.Instance.WaitUntilFinish();
-			
+			yield return null;
 		}
 
 		public bool Contains(Buff buff)

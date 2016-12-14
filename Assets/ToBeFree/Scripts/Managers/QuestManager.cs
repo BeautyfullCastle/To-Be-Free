@@ -121,9 +121,7 @@ namespace ToBeFree
 
 		public IEnumerator Load(Quest selectedQuest, Character character)
 		{
-			GameManager.Instance.uiEventManager.OpenUI();
-			GameManager.Instance.uiEventManager.OnChanged(eUIEventLabelType.EVENT, selectedQuest.Script);
-			yield return EventManager.Instance.WaitUntilFinish();
+			yield return GameManager.Instance.uiEventManager.OnChanged(selectedQuest.Script);
 
 			City city = null;
 

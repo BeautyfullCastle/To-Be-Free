@@ -21,7 +21,12 @@ namespace ToBeFree
 		Event_Start_Gathering, Event_Start_Rest, Event_Start_Broker, Event_Start_Walking, Event_Start_Bus, Event_Start_Ability,		
 		Over_Move, Over_Work, Over_Inquiry, Over_Rest, Over_Shop, Over_Abilty, Over_Quest, Over_Broker,
 		Popup_Walking, Popup_Bus_Move, Popup_City_Inquiry, Popup_Broker_Inquiry, Popup_Police_Inquiry, Popup_Gathering_Inquiry,
-		Popup_Hide_Rest, Popup_Rest, Popup_Work
+		Popup_Hide_Rest, Popup_Rest, Popup_Work,
+		Event_Police_RevealNumber,
+		Event_PoliceNumber,
+		Event_WoringMoneyPerCity,
+		Event_SucceedDiceNumber,
+		Event_TotalMoney
 	}
 
 	public class LanguageManager : Singleton<LanguageManager>

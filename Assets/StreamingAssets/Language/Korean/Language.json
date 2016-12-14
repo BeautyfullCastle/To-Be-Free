@@ -349,6 +349,31 @@
 			"index": 69,
 			"key": "Popup_Rest",
 			"script": "집중해서 밥을 먹고 상태이상과 HP를 회복합니다."
+		},
+		{
+			"index": 70,
+			"key": "Event_PoliceRevealNumber",
+			"script": "공안의 수를 알고 싶은 도시를 선택하십시요"
+		},
+		{
+			"index": 71,
+			"key": "Event_PoliceNumber",
+			"script": "해당 도시의 공안의 수"
+		},
+		{
+			"index": 72,
+			"key": "Event_SucceedDiceNumber",
+			"script": "주사위 성공 추가 급여"
+		},
+		{
+			"index": 73,
+			"key": "Event_WoringMoneyPerCity",
+			"script": "도시 추가 급여"
+		},
+		{
+			"index": 74,
+			"key": "Event_TotalMoney",
+			"script": "총 획득 급여"
 		}
 	]
 }
