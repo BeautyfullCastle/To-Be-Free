@@ -491,6 +491,8 @@ namespace ToBeFree
 			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
 			GameManager.Instance.shopUIObj.SetActive(true);
+
+			yield return EventManager.Instance.WaitUntilFinish();
 		}
 	}
 
@@ -573,12 +575,12 @@ namespace ToBeFree
 					yield break;
 				}
 				
-				yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script, true, false);
+				yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
 				
 				// deal with result
-				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
 				yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
-				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
+
+				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character, true, false);
 
 				int testSuccessNum = EventManager.Instance.TestSuccessNum;
 				character.Stat.TempDiceNum = 0;
@@ -696,7 +698,6 @@ namespace ToBeFree
 				}
 
 				string resultEffectScript = string.Empty;
-				string resultScript = ActionName.ToString() + " Result";
 				foreach (var item in finalList)
 				{
 					if(item is EffectAmount)
@@ -706,7 +707,7 @@ namespace ToBeFree
 						{
 							continue;
 						}
-						resultEffectScript += effectAmount.ToString() + "\n";
+						resultEffectScript += effectAmount.Effect.ToString() + "\n";
 					}
 					else if(item is AbnormalCondition)
 					{
@@ -719,7 +720,7 @@ namespace ToBeFree
 						resultEffectScript += "Item : " + addingItem.Name + "\n";
 					}
 				}
-				yield return GameManager.Instance.uiEventManager.OnChanged(resultScript + "\n" + resultEffectScript, false, true);
+				yield return GameManager.Instance.uiEventManager.OnChanged("\n" + resultEffectScript, false, true);
 
 				foreach (var item in finalList)
 				{

@@ -64,7 +64,6 @@ namespace ToBeFree
 		private eSubjectType subjectType;
 		private eVerbType verbType;
 		private eObjectType objectType;
-		private int prevAmount;
 		
 		public delegate void DeactiveEventHandler(eCommand commandType, bool deactive);
 		public static event DeactiveEventHandler DeactiveEvent;

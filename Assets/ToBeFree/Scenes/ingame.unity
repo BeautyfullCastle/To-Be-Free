@@ -10432,7 +10432,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 126, y: 30}
+  m_Size: {x: 128, y: 30}
 --- !u!114 &200440305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10469,7 +10469,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.2
+  aspectRatio: 4.266667
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 1a3a4e3539b340a4a834826363ec8133, type: 3}
   mFont: {fileID: 0}
