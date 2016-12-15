@@ -8,14 +8,13 @@ namespace ToBeFree
 		public UILabel requiredTimeLabel;
 		public UIButton[] requiredTimeButtons;
 		public eEventAction actionType;
-
-		private string tooltip;
 		
 		// Use this for initialization
 		void Start()
 		{
 			foreach(UIButton button in requiredTimeButtons)
 			{
+				button.defaultColor = Color.white;
 				EventDelegate.Parameter[] parameters = new EventDelegate.Parameter[] { new EventDelegate.Parameter(this, "actionType"), new EventDelegate.Parameter(button.transform, "name") };
 				NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), button, "ClickCommandRequiredTime", parameters);
 			}

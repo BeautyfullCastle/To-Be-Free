@@ -23,6 +23,8 @@ namespace ToBeFree
 		private Transform questOffset;
 		[SerializeField]
 		private Transform brokerOffset;
+		[SerializeField]
+		private UISprite timerSprite;
 
 		private City city;
 
@@ -56,7 +58,7 @@ namespace ToBeFree
 				foreach (BezierPoint point in points)
 				{
 					neighbors[way].Add(point.GetComponent<IconCity>().City);
-				}				
+				}
 			}
 			city.InitNeighbors(neighbors);
 		}
@@ -68,6 +70,7 @@ namespace ToBeFree
 			grid = this.gameObject.GetComponentInChildren<UIGrid>();
 			questOffset = this.transform.FindChild("Quest Offset");
 			brokerOffset = this.transform.FindChild("Broker Offset");
+			timerSprite = this.transform.FindChild("Timer Sprite").GetComponent<UISprite>();
 
 			LanguageSelection.selectLanguage += ChangeLanguage;
 
@@ -98,6 +101,7 @@ namespace ToBeFree
 
 				questOffset.localPosition = new Vector3(-25f, -40f, 0f);
 				brokerOffset.localPosition = new Vector3(25f, -40f, 0f);
+				timerSprite.transform.localPosition = new Vector3(0, smallSize / 2, 0);
 
 				if (this.gameObject.name == eNodeType.SMALLCITY.ToString())
 				{
@@ -117,6 +121,7 @@ namespace ToBeFree
 				sprite.width = bigSize;
 				sprite.height = bigSize;
 				sprite.spriteName = "bigcity";
+				timerSprite.transform.localPosition = new Vector3(0, bigSize / 2, 0);
 			}
 			else if (this.type == eNodeType.MIDDLECITY)
 			{
@@ -125,6 +130,7 @@ namespace ToBeFree
 				sprite.spriteName = "middle";
 				nameLabel.fontSize = 11;
 				nameLabel.transform.localPosition = new Vector3(0f, -32f);
+				timerSprite.transform.localPosition = new Vector3(0, middleSize / 2, 0);
 			}
 		}
 
@@ -148,20 +154,29 @@ namespace ToBeFree
 			iconPiece.transform.localScale = Vector3.one;
 		}
 
-		public void SetEnable(bool isEnable)
+		public void SetEnable(bool isEnable, int time = -1)
 		{
 			// set the city anabled and twinkle.
 			if (isEnable)
 			{
 				GetComponent<TweenAlpha>().ResetToBeginning();
 				GetComponent<TweenAlpha>().enabled = true;
-				GetComponent<UIButton>().isEnabled = true;
+
+				if (time == -1)
+				{
+					timerSprite.enabled = false;
+				}
+				else
+				{
+					timerSprite.spriteName = "Timer " + time.ToString();
+					timerSprite.enabled = true;
+				}
 			}
 			// set the button disabled.
 			else
 			{
 				GetComponent<TweenAlpha>().enabled = false;
-				GetComponent<UIButton>().isEnabled = false;
+				timerSprite.enabled = false;
 			}
 		}
 		
