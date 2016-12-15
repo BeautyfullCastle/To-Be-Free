@@ -278,7 +278,7 @@ namespace ToBeFree
 
 		public void AddSpecialEventProbability()
 		{
-			specialEventProbability += 4.7f;
+			specialEventProbability += 10f;
 			if (specialEventProbability > 100f)
 			{
 				specialEventProbability = 100f;

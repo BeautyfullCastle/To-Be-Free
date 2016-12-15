@@ -138,9 +138,7 @@ namespace ToBeFree
 			// 도시 아이콘 정상화
 			foreach (IconCity c in iconCities)
 			{
-				c.GetComponent<TweenAlpha>().value = 1;
-				c.GetComponent<TweenAlpha>().enabled = false;
-				c.GetComponent<UIButton>().isEnabled = true;
+				c.SetEnable(false);
 			}
 
 			ClickedIconCity = city;
@@ -199,22 +197,18 @@ namespace ToBeFree
 					investigationPopups[2] = InstantiatePopup("Police Investigation", eEventAction.INVESTIGATION_POLICE);
 					gatheringPopup = InstantiatePopup("Gathering Investigation", eEventAction.GATHERING);
 
-					if(character.CurCity.Type == eNodeType.MOUNTAIN)
+					bool isMountain = (character.CurCity.Type == eNodeType.MOUNTAIN);
+
+					foreach (UICommandPopup popup in investigationPopups)
 					{
-						foreach(UICommandPopup popup in investigationPopups)
+						foreach (UIButton button in popup.requiredTimeButtons)
 						{
-							foreach(UIButton button in popup.requiredTimeButtons)
-							{
-								button.isEnabled = false;
-							}
+							button.isEnabled = !isMountain;
 						}
 					}
-					else
+					foreach (UIButton button in gatheringPopup.requiredTimeButtons)
 					{
-						foreach (UIButton button in gatheringPopup.requiredTimeButtons)
-						{
-							button.isEnabled = false;
-						}
+						button.isEnabled = isMountain;
 					}
 					break;
 				case eCommand.SHOP:
@@ -311,7 +305,7 @@ namespace ToBeFree
 				foreach (City city in cities)
 				{
 					IconCity iconCity = Array.Find<IconCity>(iconCities, x => x.City == city);
-					iconCity.SetEnable(true);
+					iconCity.SetEnable(true, city.Distance);
 				}
 			}
 		}
@@ -649,7 +643,7 @@ namespace ToBeFree
 
 			//yield return police.AddStat(false);
 
-			character.Inven.AddItem(ItemManager.Instance.List[12]);
+			//character.Inven.AddItem(ItemManager.Instance.List[12]);
 
 			
 #endif
