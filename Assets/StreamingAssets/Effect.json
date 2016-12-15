@@ -566,6 +566,13 @@
 			"verbType": "ADD",
 			"objectType": "NULL",
 			"script": "NULL"
+		},
+		{
+			"index": 81,
+			"subjectType": "SCENE",
+			"verbType": "LOAD",
+			"objectType": "NULL",
+			"script": "NULL"
 		}
 	]
 }

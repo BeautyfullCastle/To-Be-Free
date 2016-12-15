@@ -1,0 +1,332 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"script": "Cure Health"
+		},
+		{
+			"index": 1,
+			"script": "NULL"
+		},
+		{
+			"index": 2,
+			"script": "NULL"
+		},
+		{
+			"index": 3,
+			"script": "NULL"
+		},
+		{
+			"index": 4,
+			"script": "NULL"
+		},
+		{
+			"index": 5,
+			"script": "NULL"
+		},
+		{
+			"index": 6,
+			"script": "NULL"
+		},
+		{
+			"index": 7,
+			"script": "NULL"
+		},
+		{
+			"index": 8,
+			"script": "NULL"
+		},
+		{
+			"index": 9,
+			"script": "NULL"
+		},
+		{
+			"index": 10,
+			"script": "NULL"
+		},
+		{
+			"index": 11,
+			"script": "NULL"
+		},
+		{
+			"index": 12,
+			"script": "NULL"
+		},
+		{
+			"index": 13,
+			"script": "NULL"
+		},
+		{
+			"index": 14,
+			"script": "NULL"
+		},
+		{
+			"index": 15,
+			"script": "NULL"
+		},
+		{
+			"index": 16,
+			"script": "NULL"
+		},
+		{
+			"index": 17,
+			"script": "NULL"
+		},
+		{
+			"index": 18,
+			"script": "NULL"
+		},
+		{
+			"index": 19,
+			"script": "NULL"
+		},
+		{
+			"index": 20,
+			"script": "NULL"
+		},
+		{
+			"index": 21,
+			"script": "NULL"
+		},
+		{
+			"index": 22,
+			"script": "NULL"
+		},
+		{
+			"index": 23,
+			"script": "NULL"
+		},
+		{
+			"index": 24,
+			"script": "NULL"
+		},
+		{
+			"index": 25,
+			"script": "NULL"
+		},
+		{
+			"index": 26,
+			"script": "Cure Hungry"
+		},
+		{
+			"index": 27,
+			"script": "Increase Strength"
+		},
+		{
+			"index": 28,
+			"script": "Increase Agility"
+		},
+		{
+			"index": 29,
+			"script": "Increase Focus"
+		},
+		{
+			"index": 30,
+			"script": "Increase Talent"
+		},
+		{
+			"index": 31,
+			"script": "NULL"
+		},
+		{
+			"index": 32,
+			"script": "NULL"
+		},
+		{
+			"index": 33,
+			"script": "Increase Every Ability"
+		},
+		{
+			"index": 34,
+			"script": "NULL"
+		},
+		{
+			"index": 35,
+			"script": "Get Item"
+		},
+		{
+			"index": 36,
+			"script": "NULL"
+		},
+		{
+			"index": 37,
+			"script": "Get Item"
+		},
+		{
+			"index": 38,
+			"script": "NULL"
+		},
+		{
+			"index": 39,
+			"script": "NULL"
+		},
+		{
+			"index": 40,
+			"script": "Lose Item"
+		},
+		{
+			"index": 41,
+			"script": "NULL"
+		},
+		{
+			"index": 42,
+			"script": "Lose Item"
+		},
+		{
+			"index": 43,
+			"script": "NULL"
+		},
+		{
+			"index": 44,
+			"script": "Get Money"
+		},
+		{
+			"index": 45,
+			"script": "Get Money"
+		},
+		{
+			"index": 46,
+			"script": "NULL"
+		},
+		{
+			"index": 47,
+			"script": "NULL"
+		},
+		{
+			"index": 48,
+			"script": "NULL"
+		},
+		{
+			"index": 49,
+			"script": "NULL"
+		},
+		{
+			"index": 50,
+			"script": "NULL"
+		},
+		{
+			"index": 51,
+			"script": "NULL"
+		},
+		{
+			"index": 52,
+			"script": "NULL"
+		},
+		{
+			"index": 53,
+			"script": "NULL"
+		},
+		{
+			"index": 54,
+			"script": "NULL"
+		},
+		{
+			"index": 55,
+			"script": "NULL"
+		},
+		{
+			"index": 56,
+			"script": "Add Abnormal Condition"
+		},
+		{
+			"index": 57,
+			"script": "Cure Abnormal Condition"
+		},
+		{
+			"index": 58,
+			"script": "NULL"
+		},
+		{
+			"index": 59,
+			"script": "Broker Information"
+		},
+		{
+			"index": 60,
+			"script": "NULL"
+		},
+		{
+			"index": 61,
+			"script": "NULL"
+		},
+		{
+			"index": 62,
+			"script": "NULL"
+		},
+		{
+			"index": 63,
+			"script": "NULL"
+		},
+		{
+			"index": 64,
+			"script": "NULL"
+		},
+		{
+			"index": 65,
+			"script": "NULL"
+		},
+		{
+			"index": 66,
+			"script": "NULL"
+		},
+		{
+			"index": 67,
+			"script": "NULL"
+		},
+		{
+			"index": 68,
+			"script": "NULL"
+		},
+		{
+			"index": 69,
+			"script": "NULL"
+		},
+		{
+			"index": 70,
+			"script": "NULL"
+		},
+		{
+			"index": 71,
+			"script": "NULL"
+		},
+		{
+			"index": 72,
+			"script": "NULL"
+		},
+		{
+			"index": 73,
+			"script": "NULL"
+		},
+		{
+			"index": 74,
+			"script": "NULL"
+		},
+		{
+			"index": 75,
+			"script": "NULL"
+		},
+		{
+			"index": 76,
+			"script": "Check Number of Polices in Selected City"
+		},
+		{
+			"index": 77,
+			"script": "Check Crackdown Probability of Defectors"
+		},
+		{
+			"index": 78,
+			"script": "NULL"
+		},
+		{
+			"index": 79,
+			"script": "NULL"
+		},
+		{
+			"index": 80,
+			"script": "NULL"
+		},
+		{
+			"index": 81,
+			"script": "NULL"
+		}
+	]
+}

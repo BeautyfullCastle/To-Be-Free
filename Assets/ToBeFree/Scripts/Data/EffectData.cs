@@ -7,7 +7,8 @@ public class EffectData : IData
     public string subjectType;
     public string verbType;
     public string objectType;
-    
+	public string script;
+
     // Given JSON input:
     // {"name":"Dr Charles","lives":3,"health":0.8}
     // this example will return a PlayerInfo object with

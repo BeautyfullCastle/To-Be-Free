@@ -626,7 +626,7 @@ namespace ToBeFree
 					Effect questEffect = EffectManager.Instance.Find(eSubjectType.QUEST, eVerbType.LOAD);
 					EffectAmount questEffectAmount = new EffectAmount(questEffect, questIndex);
 
-					Effect itemEffect = EffectManager.Instance.Find(eSubjectType.ITEM, eVerbType.ADD, eObjectType.ALL);					
+					Effect itemEffect = EffectManager.Instance.Find(eSubjectType.ITEM, eVerbType.ADD, eObjectType.ALL);
 					EffectAmount itemEffectAmount = new EffectAmount(itemEffect, -99);
 					
 					list.Add(moneyEffectAmount);
@@ -707,17 +707,17 @@ namespace ToBeFree
 						{
 							continue;
 						}
-						resultEffectScript += effectAmount.Effect.ToString() + "\n";
+						resultEffectScript += effectAmount.ToString() + "\n";
 					}
 					else if(item is AbnormalCondition)
 					{
 						AbnormalCondition abnormalCondition = item as AbnormalCondition;
-						resultEffectScript += "Buff : " + abnormalCondition.Name + "\n";
+						resultEffectScript += abnormalCondition.Name + "\n";
 					}
 					else if(item is Item)
 					{
 						Item addingItem = item as Item;
-						resultEffectScript += "Item : " + addingItem.Name + "\n";
+						resultEffectScript += addingItem.Name + "\n";
 					}
 				}
 				yield return GameManager.Instance.uiEventManager.OnChanged("\n" + resultEffectScript, false, true);

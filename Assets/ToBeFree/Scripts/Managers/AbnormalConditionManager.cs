@@ -35,7 +35,7 @@ namespace ToBeFree
 		{
 			foreach (AbnormalConditionData data in dataList)
 			{
-				Effect effect = EffectManager.Instance.List[data.effectIndex];
+				Effect effect = EffectManager.Instance.GetByIndex(data.effectIndex);
 				EffectAmount effectAmount = new EffectAmount(effect, data.amount);
 				EffectAmount[] effectAmountList = new EffectAmount[] { effectAmount };
 				Buff buff = new Buff(data.name, data.script, effectAmountList, bool.Parse(data.isRestore), 

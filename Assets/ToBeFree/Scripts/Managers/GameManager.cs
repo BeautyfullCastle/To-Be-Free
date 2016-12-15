@@ -608,7 +608,7 @@ namespace ToBeFree
 			// Enter
 			yield return (Instance_NotifyEveryWeek());
 
-			yield return GameManager.Instance.ShowStateLabel("Your Turn", 2f);
+			yield return GameManager.Instance.ShowStateLabel(LanguageManager.Instance.Find(eLanguageKey.UI_Your_Turn), 2f);
 
 			action = null;
 			yield return null;

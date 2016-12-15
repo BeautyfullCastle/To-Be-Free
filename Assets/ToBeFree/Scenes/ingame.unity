@@ -18081,7 +18081,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
-  mSpriteName: white
+  mSpriteName: 18
   mFillCenter: 1
 --- !u!1 &411994842
 GameObject:

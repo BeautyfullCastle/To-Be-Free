@@ -3,77 +3,77 @@
 		{
 			"index": 0,
 			"key": "UI_Move",
-			"script": "Move"
+			"script": "MOVE"
 		},
 		{
 			"index": 1,
 			"key": "UI_Work",
-			"script": "Work"
+			"script": "WORK"
 		},
 		{
 			"index": 2,
 			"key": "UI_Inquiry",
-			"script": "Inquiry"
+			"script": "INQUIRY"
 		},
 		{
 			"index": 3,
 			"key": "UI_Rest",
-			"script": "Rest"
+			"script": "REST"
 		},
 		{
 			"index": 4,
 			"key": "UI_Shop",
-			"script": "Shop"
+			"script": "SHOP"
 		},
 		{
 			"index": 5,
 			"key": "UI_Broker",
-			"script": "Broker"
+			"script": "BROKER"
 		},
 		{
 			"index": 6,
 			"key": "UI_Quest",
-			"script": "Quest"
+			"script": "QUEST"
 		},
 		{
 			"index": 7,
 			"key": "UI_Abilty",
-			"script": "Abilty"
+			"script": "ABILITY"
 		},
 		{
 			"index": 8,
 			"key": "UI_CityInquiry",
-			"script": "City Inquiry"
+			"script": "CITY INQUIRY"
 		},
 		{
 			"index": 9,
 			"key": "UI_BrokerInquiry",
-			"script": "Broker Inquiry"
+			"script": "BROKER INQUIRY"
 		},
 		{
 			"index": 10,
 			"key": "UI_PoliceInquiry",
-			"script": "Police Inquiry"
+			"script": "POLICE INQUIRY"
 		},
 		{
 			"index": 11,
 			"key": "UI_GatheringInquiry",
-			"script": "Gathering Inquiry"
+			"script": "GATHERING INQUIRY"
 		},
 		{
 			"index": 12,
 			"key": "UI_HideRest",
-			"script": "Hide Rest"
+			"script": "HIDE REST"
 		},
 		{
 			"index": 13,
 			"key": "UI_Walking",
-			"script": "Walking"
+			"script": "WALKING"
 		},
 		{
 			"index": 14,
 			"key": "UI_Bus",
-			"script": "Bus"
+			"script": "BUS"
 		},
 		{
 			"index": 15,
@@ -83,297 +83,297 @@
 		{
 			"index": 16,
 			"key": "UI_Satiety",
-			"script": "Satiety"
+			"script": "SATIETY"
 		},
 		{
 			"index": 17,
 			"key": "UI_Money",
-			"script": "Money"
+			"script": "MONEY"
 		},
 		{
 			"index": 18,
 			"key": "UI_Info",
-			"script": "Info"
+			"script": "INFO"
 		},
 		{
 			"index": 19,
 			"key": "UI_Strength",
-			"script": "Strength"
+			"script": "STRENGTH"
 		},
 		{
 			"index": 20,
 			"key": "UI_Agility",
-			"script": "Agility"
+			"script": "AGILITY"
 		},
 		{
 			"index": 21,
 			"key": "UI_Talent",
-			"script": "Talent"
+			"script": "TALENT"
 		},
 		{
 			"index": 22,
 			"key": "UI_Focus",
-			"script": "Focus"
+			"script": "FOCUS"
 		},
 		{
 			"index": 23,
 			"key": "UI_Day",
-			"script": "Day"
+			"script": "DAY"
 		},
 		{
 			"index": 24,
 			"key": "UI_Setting",
-			"script": "Setting"
+			"script": "SETTING"
 		},
 		{
 			"index": 25,
 			"key": "UI_Resolution",
-			"script": "Resolution"
+			"script": "RESOLUTION"
 		},
 		{
 			"index": 26,
 			"key": "UI_FullScreen",
-			"script": "Full Screen"
+			"script": "FULL SCREEN"
 		},
 		{
 			"index": 27,
 			"key": "UI_MusicVolume",
-			"script": "Music Volume"
+			"script": "MUSIC VOLUME"
 		},
 		{
 			"index": 28,
 			"key": "UI_EffectVolume",
-			"script": "Effect Volume"
+			"script": "EFFECT VOLUME"
 		},
 		{
 			"index": 29,
 			"key": "UI_Mute",
-			"script": "Mute"
+			"script": "MUTE"
 		},
 		{
 			"index": 30,
 			"key": "UI_Language",
-			"script": "Language"
+			"script": "LANGUAGE"
 		},
 		{
 			"index": 31,
 			"key": "Event_Start_Working",
-			"script": "Start Working"
+			"script": "You started working."
 		},
 		{
 			"index": 32,
 			"key": "Event_Start_CityInvestigation",
-			"script": "Start City"
+			"script": "You started investigating various information of this city."
 		},
 		{
 			"index": 33,
 			"key": "Event_Start_PoliceInvestigation",
-			"script": "Start_Police"
+			"script": "You started investigating various information of polices."
 		},
 		{
 			"index": 34,
 			"key": "Event_Start_BrokerInfoInvestigation",
-			"script": "Start_BrokerInfo"
+			"script": "You started investigating various information of broker."
 		},
 		{
 			"index": 35,
 			"key": "Event_Start_Gathering",
-			"script": "Start_Gathering"
+			"script": "You started gathering some food of this mountain."
 		},
 		{
 			"index": 36,
 			"key": "Event_Start_Rest",
-			"script": "Start_Rest"
+			"script": "You rest in a quiet place."
 		},
 		{
 			"index": 37,
 			"key": "Event_Start_Broker",
-			"script": "Start_Broker"
+			"script": "You're finding broker in this place."
 		},
 		{
 			"index": 38,
 			"key": "Event_Start_Walking",
-			"script": "Start_Walking"
+			"script": "You're walking to the destination."
 		},
 		{
 			"index": 39,
 			"key": "Event_Start_Bus",
-			"script": "Start_Bus"
+			"script": "You get on a bus and move to the destination."
 		},
 		{
 			"index": 40,
 			"key": "Event_Start_Ability",
-			"script": "Start_Ability"
+			"script": "You focus and use ability."
 		},
 		{
 			"index": 41,
 			"key": "UI_Police_Turn",
-			"script": "Police_Turn"
+			"script": "Police Turn"
 		},
 		{
 			"index": 42,
 			"key": "UI_Your_Turn",
-			"script": "Your_Turn"
+			"script": "Your Turn"
 		},
 		{
 			"index": 43,
 			"key": "Event_Police_Add",
-			"script": "Police_Add"
+			"script": "New police is added in somewhere."
 		},
 		{
 			"index": 44,
 			"key": "Event_Police_AddStat",
-			"script": "Police_Up"
+			"script": "Some police is strengthen."
 		},
 		{
 			"index": 45,
 			"key": "Event_Police_Move",
-			"script": "Police_Move"
+			"script": "Some police is moved."
 		},
 		{
 			"index": 46,
 			"key": "Event_Police_CrackDown",
-			"script": "Polive_Crack"
+			"script": "Police center declared crackdown. They'll crack defectors to the next police turn."
 		},
 		{
 			"index": 47,
 			"key": "UI_Road",
-			"script": "Road"
+			"script": "ROAD"
 		},
 		{
 			"index": 48,
 			"key": "UI_SmallTown",
-			"script": "small town"
+			"script": "SMALL TOWN"
 		},
 		{
 			"index": 49,
 			"key": "UI_MiddleCity",
-			"script": "mid city"
+			"script": "MIDDLE CITY"
 		},
 		{
 			"index": 50,
 			"key": "UI_BigCity",
-			"script": "big city"
+			"script": "BIG CITY"
 		},
 		{
 			"index": 51,
 			"key": "UI_Mountain",
-			"script": "mountain"
+			"script": "MOUNTAIN"
 		},
 		{
 			"index": 52,
 			"key": "UI_RequiredTime",
-			"script": "Time"
+			"script": "REQUIRED TIME"
 		},
 		{
 			"index": 53,
 			"key": "Over_Move",
-			"script": "Over_Move"
+			"script": "Move to anther place."
 		},
 		{
 			"index": 54,
 			"key": "Over_Work",
-			"script": "Over_Work"
+			"script": "earn money using strength."
 		},
 		{
 			"index": 55,
 			"key": "Over_Inquiry",
-			"script": "Over_Inquiry"
+			"script": "Get information using talent."
 		},
 		{
 			"index": 56,
 			"key": "Over_Rest",
-			"script": "Over_Rest"
+			"script": "Focus to eating food and cure abnormal condition and HP."
 		},
 		{
 			"index": 57,
 			"key": "Over_Shop",
-			"script": "Over_Shop"
+			"script": "Buy item."
 		},
 		{
 			"index": 58,
 			"key": "Over_Abilty",
-			"script": "Over_Abilty"
+			"script": "Use character ability."
 		},
 		{
 			"index": 59,
 			"key": "Over_Quest",
-			"script": "Over_Quest"
+			"script": "Solve the quest."
 		},
 		{
 			"index": 60,
 			"key": "Over_Broker",
-			"script": "Over_Broker"
+			"script": "Meet broker."
 		},
 		{
 			"index": 61,
 			"key": "Popup_Walking",
-			"script": "Popup_Walking"
+			"script": "Walk."
 		},
 		{
 			"index": 62,
 			"key": "Popup_Bus_Move",
-			"script": "Popup_Bus_Move"
+			"script": "Pay four yuan and go to the next stop you selected."
 		},
 		{
 			"index": 63,
 			"key": "Popup_City_Inquiry",
-			"script": "Popup_City_Inquiry"
+			"script": "Inquiry information of this city. You can get quest, item, or money."
 		},
 		{
 			"index": 64,
 			"key": "Popup_Broker_Inquiry",
-			"script": "Popup_Broker_Inquiry"
+			"script": "Inquiry information of brokers. You can get quest, or information about broker."
 		},
 		{
 			"index": 65,
 			"key": "Popup_Police_Inquiry",
-			"script": "Popup_Police_Inquiry"
+			"script": "Inquiry information of polices. You can get number of polices of selected city, crackdown probablity, or Add View Range buff."
 		},
 		{
 			"index": 66,
 			"key": "Popup_Gathering_Inquiry",
-			"script": "Popup_Gathering_Inquiry"
+			"script": "Try to find some food using talent."
 		},
 		{
 			"index": 67,
 			"key": "Popup_Hide_Rest",
-			"script": "Popup_Hide_Rest"
+			"script": "Hide from police and rest. Decrease two dies of this test."
 		},
 		{
 			"index": 68,
 			"key": "Popup_Work",
-			"script": "Popup_Work"
+			"script": "Earn money using strength."
 		},
 		{
 			"index": 69,
 			"key": "Popup_Rest",
-			"script": "Popup_Rest"
+			"script": "Focus to eating food and cure abnormal condition and HP."
 		},
 		{
 			"index": 70,
 			"key": "Event_PoliceRevealNumber",
-			"script": "Event_PoliceRevealNumber"
+			"script": "Select the city that you want to know the number of polices."
 		},
 		{
 			"index": 71,
 			"key": "Event_PoliceNumber",
-			"script": "Event_PoliceNumber"
+			"script": "Number of polices of this city."
 		},
 		{
 			"index": 72,
 			"key": "Event_SucceedDiceNumber",
-			"script": "Event_SucceedDiceNumber"
+			"script": "Added salary of succeeded dices"
 		},
 		{
 			"index": 73,
 			"key": "Event_WoringMoneyPerCity",
-			"script": "Event_WoringMoneyPerCity"
+			"script": "Added salary of city size."
 		},
 		{
 			"index": 74,
 			"key": "Event_TotalMoney",
-			"script": "Event_TotalMoney"
+			"script": "Total salary."
 		}
 	]
 }

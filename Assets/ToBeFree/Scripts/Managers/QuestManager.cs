@@ -43,7 +43,7 @@ namespace ToBeFree
 			{
 				EffectAmount failureEffect = null;
 				if (data.failureEffectIndexList[0] != -99) {
-					failureEffect = new EffectAmount(EffectManager.Instance.List[data.failureEffectIndexList[0]], data.failureEffectValueList[0]);
+					failureEffect = new EffectAmount(EffectManager.Instance.GetByIndex(data.failureEffectIndexList[0]), data.failureEffectValueList[0]);
 				}
 				EffectAmount[] failureEffects = new EffectAmount[] { failureEffect };
 				ResultScriptAndEffects failureResultEffects = new ResultScriptAndEffects(data.failureScript, failureEffects);

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 namespace ToBeFree
 {
@@ -18,7 +19,8 @@ namespace ToBeFree
 		ACTION,
 		RESULT,
 		DDAY,
-		FOOD
+		FOOD,
+		SCENE
 	}
 
 	public enum eVerbType
@@ -61,29 +63,35 @@ namespace ToBeFree
 
 	public class Effect
 	{
-		private eSubjectType subjectType;
-		private eVerbType verbType;
-		private eObjectType objectType;
+		readonly private int index;
+		readonly private eSubjectType subjectType;
+		readonly private eVerbType verbType;
+		readonly private eObjectType objectType;
+		private string script;
 		
 		public delegate void DeactiveEventHandler(eCommand commandType, bool deactive);
 		public static event DeactiveEventHandler DeactiveEvent;
 
-		public Effect(eSubjectType subjectType, eVerbType verbType = eVerbType.NONE, eObjectType objectType = eObjectType.NONE)
+		public Effect(int index, eSubjectType subjectType, eVerbType verbType, eObjectType objectType, string script)
 		{
+			this.index = index;
 			this.subjectType = subjectType;
 			this.verbType = verbType;
 			this.objectType = objectType;
+			this.script = script;
 		}
 
-		public Effect(Effect effect) : this(effect.subjectType, effect.verbType, effect.objectType)
+		public Effect(Effect effect) : this(effect.index, effect.subjectType, effect.verbType, effect.objectType, effect.script)
 		{
 		}
 		
 		public override string ToString()
 		{
-			return EnumConvert<eSubjectType>.ToString(subjectType)
-				+ " " + EnumConvert<eVerbType>.ToString(verbType)
-				+ " " + EnumConvert<eObjectType>.ToString(ObjectType);
+			if(script == "NULL")
+			{
+				return string.Empty;
+			}
+			return script;
 		}
 
 		public IEnumerator Activate(Character character, int amount)
@@ -128,7 +136,7 @@ namespace ToBeFree
 						// reveal police's crackdown probability
 						else if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
 						{
-							// 결과 창에 확률이 보임.
+							yield return GameManager.Instance.uiEventManager.OnChanged(" : " + amount.ToString());
 						}
 					}
 					break;
@@ -330,5 +338,25 @@ namespace ToBeFree
 		public eVerbType VerbType { get { return verbType; } }
 
 		public eObjectType ObjectType { get { return objectType; } }
+
+		public int Index
+		{
+			get
+			{
+				return index;
+			}
+		}
+
+		public string Script
+		{
+			get
+			{
+				return script;
+			}
+			set
+			{
+				script = value;
+			}
+		}
 	}
 }

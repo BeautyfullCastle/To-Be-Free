@@ -38,7 +38,7 @@ namespace ToBeFree
 					{
 						continue;
 					}
-					EffectAmount effectAmount = new EffectAmount(EffectManager.Instance.List[data.effectIndexList[i]], data.amountList[i]);
+					EffectAmount effectAmount = new EffectAmount(EffectManager.Instance.GetByIndex(data.effectIndexList[i]), data.amountList[i]);
 					effectAmountList[i] = effectAmount;
 				}
 

@@ -350,9 +350,9 @@ MonoBehaviour:
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   duration: 0.2
   dragHighlight: 1
-  hoverSprite: 25
-  pressedSprite: 25
-  disabledSprite: 25
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
@@ -409,7 +409,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
-  mSpriteName: 24
+  mSpriteName: Timer 1
   mFillCenter: 1
 --- !u!114 &114000011295421044
 MonoBehaviour:
@@ -577,9 +577,9 @@ MonoBehaviour:
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   duration: 0.2
   dragHighlight: 1
-  hoverSprite: 26
-  pressedSprite: 26
-  disabledSprite: 26
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
@@ -850,7 +850,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
-  mSpriteName: 26
+  mSpriteName: Timer 3
   mFillCenter: 1
 --- !u!114 &114000013923434890
 MonoBehaviour:
@@ -956,7 +956,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11451638, guid: 793876b808586504fbdc9e467c876cbe, type: 2}
-  mSpriteName: 25
+  mSpriteName: Timer 2
   mFillCenter: 1
 --- !u!114 &114000014044470608
 MonoBehaviour:

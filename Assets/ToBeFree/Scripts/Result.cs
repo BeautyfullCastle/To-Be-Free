@@ -110,7 +110,7 @@ namespace ToBeFree
 			if (effect == null)
 				return string.Empty;
 
-			return effect.ToString() + " : " + amount.ToString();
+			return effect.ToString();
 		}
 
 		public int Amount
