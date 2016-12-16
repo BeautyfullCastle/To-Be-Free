@@ -121,7 +121,7 @@ namespace ToBeFree
 					if(buff.Duration == eDuration.DAY_TEST)
 					{
 						int resultNum = 0;
-						yield return DiceTester.Instance.Test(eTestStat.NULL, 1, (x) => resultNum = x);
+						yield return DiceTester.Instance.Test(eTestStat.NULL, 1, 0, (x, x1) => { resultNum = x; } );
 
 						if (resultNum <= 4)
 						{

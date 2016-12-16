@@ -22,7 +22,7 @@ namespace ToBeFree
 		Over_Move, Over_Work, Over_Inquiry, Over_Rest, Over_Shop, Over_Abilty, Over_Quest, Over_Broker,
 		Popup_Walking, Popup_Bus_Move, Popup_City_Inquiry, Popup_Broker_Inquiry, Popup_Police_Inquiry, Popup_Gathering_Inquiry,
 		Popup_Hide_Rest, Popup_Rest, Popup_Work,
-		Event_Police_RevealNumber,
+		Event_PoliceRevealNumber,
 		Event_PoliceNumber,
 		Event_WoringMoneyPerCity,
 		Event_SucceedDiceNumber,
@@ -63,6 +63,11 @@ namespace ToBeFree
 		public string Find(eLanguageKey key)
 		{
 			LanguageData data = Array.Find<LanguageData>(languageList[(int)currentLanguage], x => x.key == key.ToString());
+			if (data == null)
+			{
+				return string.Empty;
+			}
+
 			return data.script;
 		}
 

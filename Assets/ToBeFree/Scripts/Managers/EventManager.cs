@@ -92,7 +92,7 @@ namespace ToBeFree
 			}
 			else
 			{
-				yield return DiceTester.Instance.Test(testStat, character.GetDiceNum(testStat), (x) => testSuccessNum = x);
+				yield return DiceTester.Instance.Test(testStat, character.GetDiceNum(testStat), 0, (x,x1) => testSuccessNum = x);
 				TestResult = testSuccessNum > 0;
 			}
 			yield return null;

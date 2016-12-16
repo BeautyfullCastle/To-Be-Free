@@ -115,7 +115,7 @@ namespace ToBeFree
 						// reveal number of polices in this position
 						if (objectType == eObjectType.NUMBER)
 						{
-							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_RevealNumber));
+							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_PoliceRevealNumber));
 
 							foreach (IconCity c in GameManager.Instance.iconCities)
 							{
@@ -136,7 +136,7 @@ namespace ToBeFree
 						// reveal police's crackdown probability
 						else if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
 						{
-							yield return GameManager.Instance.uiEventManager.OnChanged(" : " + amount.ToString());
+							yield return GameManager.Instance.uiEventManager.OnChanged(this.ToString() + " : " + CrackDown.Instance.Probability + "%");
 						}
 					}
 					break;
@@ -191,6 +191,10 @@ namespace ToBeFree
 						{
 							DiceTester.Instance.MinSuccessNum = amount;
 						}
+					}
+					else if(verbType == eVerbType.ADD)
+					{
+						DiceTester.Instance.AdditionalDie = amount;
 					}
 					break;
 				case eSubjectType.ACTION:
@@ -295,9 +299,16 @@ namespace ToBeFree
 			switch (subjectType)
 			{
 				case eSubjectType.DICE:
-					if (objectType == eObjectType.SUCCESSNUM)
+					if (verbType == eVerbType.SET)
 					{
-						DiceTester.Instance.MinSuccessNum = DiceTester.Instance.PrevMinSuccessNum;
+						if (objectType == eObjectType.SUCCESSNUM)
+						{
+							DiceTester.Instance.MinSuccessNum = DiceTester.Instance.PrevMinSuccessNum;
+						}
+					}
+					else if (verbType == eVerbType.ADD)
+					{
+						DiceTester.Instance.AdditionalDie = 0;
 					}
 					break;
 				case eSubjectType.STAT:

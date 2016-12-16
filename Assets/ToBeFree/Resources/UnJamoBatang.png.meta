@@ -1,10 +1,6 @@
 fileFormatVersion: 2
 guid: 467993bc5833f2640be0552dfb6ae55b
-<<<<<<< HEAD
-timeCreated: 1481791469
-=======
-timeCreated: 1481786842
->>>>>>> d7f45feb41ba753915eb929b2bade964a03859b3
+timeCreated: 1481869278
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -42,7 +38,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +47,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: -1
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2

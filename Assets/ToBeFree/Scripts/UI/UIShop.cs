@@ -20,21 +20,13 @@ namespace ToBeFree
 		private int discountNum;
 		
 		public void Init()
-		{	
+		{
 			grids = GetComponentsInChildren<UIGrid>();
 
 			Item[] basicItemList = ItemManager.Instance.FindAll(ItemTag.FOOD);
 			for(int i=0; i<basicItemList.Length; ++i)
 			{
 				basicItems[i].SetInfo(basicItemList[i]);
-			}
-			
-			foreach(UIItem basic in basicItems)
-			{
-				if(GameManager.Instance.Character.Stat.Money >= basic.Item.Price)
-				{
-					basic.enabled = true;
-				}
 			}
 			
 			foreach (UIGrid grid in grids)
@@ -47,19 +39,27 @@ namespace ToBeFree
 			this.gameObject.SetActive(false);
 		}
 		
-		void OnEnable()
+		void Start()
 		{
+			// 도시 아이템 세팅
 			cityItems[0].SetInfo(GameManager.Instance.Character.CurCity.Item);
 
+			// 랜덤 아이템 리스트 세팅
 			List<Item> randomItemList = new List<Item>(ItemManager.Instance.List);
-			randomItemList.Remove(basicItems[0].Item);
-			randomItemList.Remove(basicItems[1].Item);
+			// 기본 아이템들 제외
+			foreach (UIItem basicItem in basicItems)
+			{
+				randomItemList.Remove(basicItem.Item);
+			}
+			// 도시 아이템 제외
 			randomItemList.Remove(cityItems[0].Item);
+			// 인벤토리에 있는 아이템들 제외
 			randomItemList.RemoveAll(x => GameManager.Instance.Character.Inven.Exist(x));
 
 			System.Random r = new System.Random();
 			for (int i = 0; i < randomItems.Count; ++i)
 			{
+				// 중도시에서는 랜덤 아이템이 3개만 나오게.
 				if(GameManager.Instance.Character.CurCity.Type==eNodeType.MIDDLECITY)
 				{
 					if(i >= 3)
@@ -84,86 +84,38 @@ namespace ToBeFree
 		// click to buy item
 		public void OnClick(UIItem uiItem)
 		{
-			foreach (UIItem item in items)
-			{
-				if(item.name == uiItem.name)
-				{
-					GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character);
-					if (!basicItems.Contains(uiItem))
-					{
-						uiItem.GetComponent<UIDragDropItem>().enabled = true;
-						if (uiItem.Item.Buff.StartTime != eStartTime.NOW)
-							uiItem.GetComponent<UIDragDropItem>().enabled = false;
-					}
-					break;
-				}
-			}
-
-			CheckItemsPrice();
-		}
-
-		public void CheckItems()
-		{
-			if(GameManager.Instance.Character.CurCity.Item == null)
+			UIItem item = items.Find(x => x.name == uiItem.name);
+			if(item == null)
 			{
 				return;
 			}
-			if (GameManager.Instance.Character.Inven.Exist(GameManager.Instance.Character.CurCity.Item))
-			{
-				cityItems[0].enabled = false;
-			}
-			else
-			{
-				cityItems[0].enabled = true;
-			}
-
-			for(int i=0; i<randomItems.Count; ++i)
-			{
-				if (randomItems[i].Item != null && GameManager.Instance.Character.Inven.Exist(randomItems[i].Item))
-				{
-					randomItems[i].enabled = false;
-				}
-				else
-				{
-					randomItems[i].enabled = true;
-				}
-			}
+			GameManager.Instance.Character.Inven.BuyItem(uiItem.Item, discountNum, GameManager.Instance.Character);
+			
+			CheckAllItems();
 		}
 
-		private void CheckItemsPrice()
+		public void CheckAllItems()
 		{
 			foreach (UIItem uiItem in items)
 			{
 				if (uiItem == null || uiItem.Item == null)
 				{
-					uiItem.enabled = false;
+					uiItem.SetEnable(false);
 					continue;
 				}
-
-				if (uiItem.enabled == false)
-					continue;
-
-				uiItem.enabled = (GameManager.Instance.Character.Stat.Money >= uiItem.Item.Price);
-			}
-		}
-
-		private void CheckAllItems()
-		{
-			foreach (UIItem uiItem in items)
-			{
-				if (uiItem == null || uiItem.Item == null)
+				else if(uiItem.gameObject.activeSelf == false)
 				{
-					uiItem.enabled = false;
 					continue;
 				}
 
+				bool isEnoughMoney = (GameManager.Instance.Character.Stat.Money >= uiItem.Item.Price);
 				if (basicItems.Contains(uiItem))
 				{
-					uiItem.enabled = true;
+					uiItem.SetEnable(isEnoughMoney);
 					continue;
-				}	
+				}
 
-				uiItem.enabled = ((GameManager.Instance.Character.Stat.Money >= uiItem.Item.Price) && (GameManager.Instance.Character.Inven.Exist(uiItem.Item) == false));
+				uiItem.SetEnable(isEnoughMoney && (GameManager.Instance.Character.Inven.Exist(uiItem.Item) == false));
 			}
 		}
 
@@ -171,6 +123,7 @@ namespace ToBeFree
 		{
 			GameManager.Instance.Character.AP++;
 			EventManager.Instance.OnClickOK();
+			items.Clear();
 			this.gameObject.SetActive(false);
 		}
 

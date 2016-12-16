@@ -5,18 +5,22 @@ namespace ToBeFree
 {
 	public class DiceTester : Singleton<DiceTester>
 	{
+		private GameObject diceObj;
+
 		private int minSuccessNum;
 		private int prevMinSuccessNum;
-		private GameObject diceObj;
+		private int additionalDie;
 
 		public void Init()
 		{
 			minSuccessNum = 6;
 			diceObj = GameManager.Instance.diceObj;
 			diceObj.SetActive(false);
+
+			additionalDie = 0;
 		}
 
-		public IEnumerator Test(eTestStat stat, int diceNum, System.Action<int> setResultNum)
+		private IEnumerator Test(eTestStat stat, int diceNum, System.Action<int> setResultNum)
 		{
 			if(diceObj == null)
 			{
@@ -45,7 +49,7 @@ namespace ToBeFree
 				yield return new WaitForSecondsRealtime(1f);
 			}
 
-			yield return dice.StartEffect(MinSuccessNum);
+			//yield return dice.StartEffect(MinSuccessNum);
 
 			yield return new WaitForSecondsRealtime(2f);
 
@@ -53,12 +57,15 @@ namespace ToBeFree
 			
 			setResultNum(resultNum);
 			diceObj.SetActive(false);
-
-			GameManager.Instance.Character.Stat.Restore(EnumConvert<eObjectType>.ToEnum(stat.ToString()));
 		}
 
 		public IEnumerator Test(eTestStat stat, int characterDiceNum, int policeDiceNum, System.Action<int, int> setResultNum)
 		{
+			if(policeDiceNum == 0)
+			{
+				yield return this.Test(stat, characterDiceNum, x => x = 0);
+				yield break;
+			}
 			if (diceObj == null)
 			{
 				diceObj = GameObject.Find("Dice Tester");
@@ -67,7 +74,8 @@ namespace ToBeFree
 
 			AppDemo demo = diceObj.GetComponent<AppDemo>();
 			diceObj.SetActive(true);
-			demo.Init(stat, characterDiceNum, policeDiceNum);
+			
+			demo.Init(stat, characterDiceNum + additionalDie, policeDiceNum);
 			int[] resultNums = { 0, 0 };
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
@@ -83,6 +91,11 @@ namespace ToBeFree
 
 			for (int i = 0; i < demo.dices.Length; ++i)
 			{
+				if(demo.dices[i].gameObject.activeSelf == false)
+				{
+					continue;
+				}
+
 				while (demo.dices[i].IsRolling())
 				{
 					yield return new WaitForSecondsRealtime(1f);
@@ -97,8 +110,6 @@ namespace ToBeFree
 
 			setResultNum(resultNums[0], resultNums[1]);
 			diceObj.SetActive(false);
-
-			GameManager.Instance.Character.Stat.Restore(EnumConvert<eObjectType>.ToEnum(stat.ToString()));
 		}
 
 		public int MinSuccessNum
@@ -127,5 +138,17 @@ namespace ToBeFree
 			}
 		}
 
+		public int AdditionalDie
+		{
+			get
+			{
+				return additionalDie;
+			}
+
+			set
+			{
+				additionalDie = value;
+			}
+		}
 	}
 }

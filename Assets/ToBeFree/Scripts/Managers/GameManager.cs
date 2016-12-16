@@ -484,6 +484,7 @@ namespace ToBeFree
 			//character.Stat.InfoNum = 4;
 			//character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.List[0], character);
+			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 #endif
 
 			this.State = GameState.StartDay;

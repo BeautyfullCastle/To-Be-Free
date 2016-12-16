@@ -41,7 +41,7 @@ namespace ToBeFree
 					StartCoroutine(GameManager.Instance.Character.Inven.UseItem(droppedItem.Item, GameManager.Instance.Character));
 			}
 
-			shop.CheckItems();
+			shop.CheckAllItems();
 		}
 	}
 }

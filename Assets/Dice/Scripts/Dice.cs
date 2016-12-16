@@ -321,7 +321,7 @@ public class Dice : MonoBehaviour {
 		this.transform.localPosition = position;
 	}
 
-	public IEnumerator StartEffect(int minSuccessNum)
+	private IEnumerator StartEffect(int minSuccessNum)
 	{
 		foreach (RollingDie rollingDie in allDice.Cast<RollingDie>())
 		{
@@ -336,6 +336,12 @@ public class Dice : MonoBehaviour {
 
 	public IEnumerator StartEffect(Dice dice, int minSuccessNum)
 	{
+		if(dice.gameObject.activeSelf == false)
+		{
+			yield return this.StartEffect(minSuccessNum);
+			yield break;
+		}
+
 		List<Die> dieList1 = new List<Die>();
 		foreach (RollingDie rollingDie in allDice.Cast<RollingDie>())
 		{

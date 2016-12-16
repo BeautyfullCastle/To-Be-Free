@@ -23,7 +23,7 @@ namespace ToBeFree
 		{
 			itemName = transform.FindChild("Name").GetComponent<UILabel>();
 			itemPrice = transform.FindChild("Price").GetComponent<UILabel>();
-			
+
 			defaultColor = this.GetComponent<UIButton>().defaultColor;
 			hover = this.GetComponent<UIButton>().hover;
 			pressed = this.GetComponent<UIButton>().pressed;
@@ -34,16 +34,13 @@ namespace ToBeFree
 		{
 			if (belong == eBelong.SHOP)
 			{
-				GetComponent<UIDragDropItem>().enabled = false;
+				return;
 			}
-			else
-			{
-				itemPrice.enabled = false;
 
-				if (item.Buff.StartTime != eStartTime.NOW || item.Buff.Duration == eDuration.EQUIP)
-				{
-					this.enabled = false;
-				}
+			itemPrice.enabled = false;
+			if (item.Buff.StartTime != eStartTime.NOW || item.Buff.Duration == eDuration.EQUIP)
+			{
+				this.enabled = false;
 			}
 		}
 
@@ -109,19 +106,25 @@ namespace ToBeFree
 			}
 		}
 
-		//void OnTooltip(bool show)
-		//{
-		//	Item item = show ? this.item : null;
-		//	if (item == null)
-		//	{
-		//		UITooltip.Hide();
-		//		return;
-		//	}
+		void OnTooltip(bool show)
+		{
+			if(this.belong == eBelong.SHOP)
+			{
+				UITooltip.Hide();
+				return;
+			}
 
-		//	string description = this.itemName.text + "\\n";
-		//	description += this.item.Buff.Script;
-		//	UITooltip.Show(description);
-		//}
+			Item item = show ? this.item : null;
+			if (item == null)
+			{
+				UITooltip.Hide();
+				return;
+			}
+
+			string description = this.itemName.text + "\\n";
+			description += this.item.Buff.Script;
+			UITooltip.Show(description);
+		}
 
 		public void SetInfo(Item item)
 		{
@@ -133,6 +136,18 @@ namespace ToBeFree
 			itemPrice.text = item.Price.ToString();
 			if(explanation)
 				explanation.text = this.item.Buff.Script;
+		}
+
+		public void SetEnable(bool isEnable)
+		{
+			this.enabled = isEnable;
+
+			UIButtonEventSynchronizer synchronizer = this.GetComponent<UIButtonEventSynchronizer>();
+			if (synchronizer == null)
+			{
+				return;
+			}
+			synchronizer.enabled = isEnable;
 		}
 
 		void OnEnable()
