@@ -99,10 +99,33 @@ namespace ToBeFree
 				if (col == null || col.GetComponent<UITrashCan>() == null)
 				{
 					// 부모인 Grid를 찾아서
-					UIGrid grid = NGUITools.FindInParents<UIGrid>(gameObject);
+					UIGrid grid = NGUITools.FindInParents<UIGrid>(this.gameObject);
 					// 원래 위치로 돌아온다.
-					if (grid != null) grid.Reposition();
+					if (grid != null)
+						grid.Reposition();
 				}
+			}
+		}
+
+		void OnDrop(GameObject dropped)
+		{
+			UIDragDropItem droppedDragDropItem = dropped.GetComponent<UIDragDropItem>();
+			if (droppedDragDropItem)
+			{
+				int tempCurrIndex = this.transform.GetSiblingIndex();
+				
+				UIInventory uiInventory = GameObject.FindObjectOfType<UIInventory>();
+				//string droppedItemName = dropped.transform.FindChild("Name").GetComponent<UILabel>().text;
+				UIItem droppedUIItem = uiInventory.GetByGridIndex(droppedDragDropItem.currSiblingIndex);
+
+				this.transform.SetSiblingIndex(droppedDragDropItem.currSiblingIndex);
+				droppedUIItem.transform.SetSiblingIndex(tempCurrIndex);
+
+				// 부모인 Grid를 찾아서
+				UIGrid grid = NGUITools.FindInParents<UIGrid>(this.gameObject);
+				// 원래 위치로 돌아온다.
+				if (grid != null)
+					grid.Reposition();
 			}
 		}
 

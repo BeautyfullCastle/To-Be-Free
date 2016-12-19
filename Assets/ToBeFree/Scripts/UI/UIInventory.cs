@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace ToBeFree
 {
@@ -59,15 +60,34 @@ namespace ToBeFree
 			{
 				return;
 			}
+			this.DeleteItem(uiItem);
+		}
+
+		public void DeleteItem(UIItem uiItem)
+		{
+			if (uiItem == null)
+			{
+				return;
+			}
 			items.Remove(uiItem);
 			DestroyImmediate(uiItem.gameObject);
-			
+
 			grid.Reposition();
 		}
 
 		public List<UIItem> FindAll(Item item)
 		{
 			return this.items.FindAll(x => x.Item.Name == item.Name);
+		}
+
+		public UIItem Find(string name)
+		{
+			return this.items.Find(x => x.itemName.text == name);
+		}
+
+		public UIItem GetByGridIndex(int currSiblingIndex)
+		{
+			return this.items.Find(x => x.transform.GetSiblingIndex() == currSiblingIndex);
 		}
 	}
 }

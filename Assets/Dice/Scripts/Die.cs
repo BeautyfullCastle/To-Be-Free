@@ -115,7 +115,7 @@ public class Die : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.name == this.gameObject.name)
+		//if (collision.gameObject.name == this.gameObject.name)
 		{
 			this.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
 		}

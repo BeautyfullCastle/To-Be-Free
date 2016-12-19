@@ -70,19 +70,49 @@ namespace ToBeFree
 			return list.Exists(x => x.Name == item.Name);
 		}
 
-		public IEnumerator Delete(Item item, Character character)
+		public IEnumerator Delete(Item item, Character character, int siblingIndex = -1)
 		{
-			if(Exist(item) == false)
+			if(item == null)
+			{
+				yield break;
+			}
+			else if(Exist(item) == false)
 			{
 				Debug.LogError("Item " + item.Name + "is not exist in this inventory.");
 				yield break;
 			}
-			Item findedItem = list.Find(x => (x.Name == item.Name));
-			list.Remove(findedItem);
-			GameObject.FindObjectOfType<UIInventory>().DeleteItem(findedItem);
 
-			yield return BuffManager.Instance.Delete(item.Buff, character);
-			
+			UIInventory uiInventory = GameObject.FindObjectOfType<UIInventory>();
+			if(uiInventory == null)
+			{
+				yield break;
+			}
+
+			Item findedItem = null;
+			if (siblingIndex == -1)
+			{
+				findedItem = list.Find(x => (x.Name == item.Name));
+				if(findedItem != null)
+				{
+					uiInventory.DeleteItem(findedItem);
+				}
+			}
+			else
+			{
+				UIItem uiItem = uiInventory.GetByGridIndex(siblingIndex);
+				if(uiItem != null)
+				{
+					findedItem = uiItem.Item;
+					uiInventory.DeleteItem(uiItem);
+				}
+			}
+
+			if (findedItem == null)
+				yield break;
+
+			list.Remove(findedItem);
+
+			yield return BuffManager.Instance.Delete(findedItem.Buff, character);
 		}
 		
 		public IEnumerator Delete(Buff buff, Character character)
@@ -92,7 +122,7 @@ namespace ToBeFree
 			if (findedItem != null)
 			{
 				yield return this.Delete(findedItem, character);
-			}            
+			}
 		}
 
 		public Item GetRand()
