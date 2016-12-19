@@ -4,11 +4,15 @@ using ToBeFree;
 
 public class RollButton : MonoBehaviour {
 
+	public float speed = 0.1f;
+	public float minCorrectGage = 0.7f;
+	public float maxCorrectGage = 0.8f;
+
 	public AppDemo demo;
 	public UIProgressBar bar;
 
 	private bool bClick = false;
-	private float speed = 0.1f;
+	
 	
 	public void OnPress()
 	{
@@ -19,7 +23,7 @@ public class RollButton : MonoBehaviour {
 	public void OnRelease()
 	{
 		bClick = false;
-		if (bar.value >= 0.7f && bar.value <= 0.9f)
+		if (bar.value >= minCorrectGage && bar.value <= maxCorrectGage)
 		{
 			demo.AddDie();
 		}
