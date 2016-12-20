@@ -75,6 +75,15 @@ namespace ToBeFree
 			}
 		}
 
+		public AbnormalCondition GetByIndex(int abnormalIndex)
+		{
+			if(abnormalIndex >= list.Length)
+			{
+				return null;
+			}
+			return list[abnormalIndex];
+		}
+
 		public void Save(List<AbnormalConditionSaveData> abnormalList)
 		{
 			for(int i = 0; i < list.Length; ++i)

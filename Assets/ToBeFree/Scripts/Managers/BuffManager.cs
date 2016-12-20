@@ -8,10 +8,6 @@ namespace ToBeFree
 	{
 		private List<Buff> buffList;
 
-		public delegate void UpdateListHandler(Buff buff);
-		static public event UpdateListHandler AddedBuff;
-		static public event UpdateListHandler DeletedBuff;
-
 		public BuffManager()
 		{
 			buffList = new List<Buff>();
@@ -37,8 +33,14 @@ namespace ToBeFree
 		{
 			for(int i=0; i<dataList.Count; ++i)
 			{
-				Buff buff = AbnormalConditionManager.Instance.List[dataList[i].abnormalIndex].Buff;
-				yield return this.Add(buff);
+				AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.GetByIndex(dataList[i].abnormalIndex);
+				if (abnormalCondition == null)
+				{
+					yield break;
+				}
+				
+				Buff buff = abnormalCondition.Buff;
+				yield return this.Add(buff, abnormalCondition.IsStack);
 			}
 		}
 
@@ -55,16 +57,15 @@ namespace ToBeFree
 			return buffList.Exists(x => x == buff);
 		}
 
-		public IEnumerator Add(Buff buff)
+		public IEnumerator Add(Buff buff, bool isStack)
 		{
 			if (buffList == null || buff == null)
 			{
 				yield break;
 			}
 			buffList.Add(buff);
-			//AddedBuff(buff);
-			GameObject.Find("BuffManager").GetComponent<UIBuffManager>().AddBuff(buff);
-			Debug.Log(buff.Name + " is added to buff list.");
+			GameManager.Instance.uiBuffManager.AddBuff(buff, isStack);
+			//Debug.Log(buff.Name + " is added to buff list.");
 
 			yield return ActivateEffectByStartTime(eStartTime.NOW, GameManager.Instance.Character);
 
@@ -77,8 +78,8 @@ namespace ToBeFree
 			{
 				yield break;
 			}
-			
-			DeletedBuff(buff);
+
+			GameManager.Instance.uiBuffManager.DeleteBuff(buff);
 			buffList.Remove(buff);
 
 			yield return null;

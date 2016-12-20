@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -34,7 +35,7 @@ namespace ToBeFree
 		private readonly string name;
 		protected readonly Buff buff;
 		protected readonly Condition spawnCondition;
-		private int stack;
+		protected int stack;
 		protected bool isStack;
 		protected readonly eBodyMental isBody; // body or mental
 		protected readonly ePositiveNegative isPositive;
@@ -63,11 +64,12 @@ namespace ToBeFree
 				{
 					stack++;
 					buff.EffectAmountList[0].Amount += firstAmount;
+					GameManager.Instance.uiBuffManager.Find(this.buff).stackLabel.text = stack.ToString();
 				}
 			}
 			else
 			{
-				yield return BuffManager.Instance.Add(this.buff);
+				yield return BuffManager.Instance.Add(this.buff, this.isStack);
 			}
 		}
 
@@ -140,6 +142,14 @@ namespace ToBeFree
 			get
 			{
 				return index;
+			}
+		}
+
+		public bool IsStack
+		{
+			get
+			{
+				return isStack;
 			}
 		}
 	}

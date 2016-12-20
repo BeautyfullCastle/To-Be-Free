@@ -29,6 +29,7 @@ namespace ToBeFree
 		public GameObject commandUIObj;
 		public GameObject shopUIObj;
 		public UIEventManager uiEventManager;
+		public UIBuffManager uiBuffManager;
 		public GameObject optionObj;
 		public LanguageSelection languageSelection;
 		public UIGrid commandPopupGrid;
