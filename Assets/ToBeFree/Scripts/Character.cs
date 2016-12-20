@@ -269,8 +269,8 @@ namespace ToBeFree
 
 				if (city != null)
 				{
-					yield return MoveTo(city);
 					yield return this.caughtPolice.MoveCity(city);
+					yield return MoveTo(city);
 				}
 			}
 		}
