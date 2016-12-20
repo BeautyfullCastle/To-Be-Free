@@ -52,7 +52,7 @@ namespace ToBeFree
 		private void ChangeDay(int day)
 		{
 			dayLabel.text = day.ToString() + " " + strDay;
-			int dday = TimeTable.Instance.Week - (day % TimeTable.Instance.Week);
+			int dday = TimeTable.Instance.DDay;
 			dDayLabel.text = "D - " + dday;
 		}
 

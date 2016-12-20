@@ -273,12 +273,11 @@ namespace ToBeFree
 					yield return this.caughtPolice.MoveCity(city);
 				}
 			}
-			
 		}
 
 		public void AddSpecialEventProbability()
 		{
-			specialEventProbability += 10f;
+			specialEventProbability += GameManager.Instance.IncreasingSpecialEventProbability;
 			if (specialEventProbability > 100f)
 			{
 				specialEventProbability = 100f;

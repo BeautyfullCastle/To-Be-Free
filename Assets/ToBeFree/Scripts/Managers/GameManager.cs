@@ -20,9 +20,13 @@ namespace ToBeFree
 			Night,
 			NORTHKOREA
 		}
-		
+
+		[SerializeField]
+		private int increasingSpecialEventProbability;
+		[SerializeField]
+		private int policeTurnDays;
+
 		public UILabel stateLabel;
-		public Camera directingCam;
 		public Camera worldCam;
 		public UICamera uiCamera;
 		public GameObject worldObj;
@@ -66,6 +70,9 @@ namespace ToBeFree
 
 		[SerializeField]
 		private bool isNew;
+
+		// don't use.
+		private Camera directingCam;
 
 		// can't use the constructor
 		private GameManager()
@@ -997,6 +1004,22 @@ namespace ToBeFree
 			get
 			{
 				return isNew;
+			}
+		}
+
+		public int IncreasingSpecialEventProbability
+		{
+			get
+			{
+				return increasingSpecialEventProbability;
+			}
+		}
+
+		public int PoliceTurnDays
+		{
+			get
+			{
+				return policeTurnDays;
 			}
 		}
 	}

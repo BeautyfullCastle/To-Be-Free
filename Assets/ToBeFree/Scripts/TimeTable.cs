@@ -19,7 +19,7 @@ namespace ToBeFree
 	{
 		private int hour;
 		private int day;
-		private int week;
+		private int policeTurnDays;
 
 		private readonly int moveTimePerAction;
 
@@ -35,6 +35,8 @@ namespace ToBeFree
 		public TimeTable()
 		{
 			moveTimePerAction = 6;
+			policeTurnDays = GameManager.Instance.PoliceTurnDays;
+
 			Reset();
 		}
 
@@ -42,7 +44,6 @@ namespace ToBeFree
 		{
 			Hour = 6;
 			Day = 1;
-			week = 3;
 		}
 
 		public void Save(TimeSaveData data)
@@ -60,9 +61,8 @@ namespace ToBeFree
 			++Day;
 			Hour = 6;
 
-			if (day % week == 0)
+			if (day % policeTurnDays == 0)
 			{
-				Debug.Log((day / week) + " weeks are gone.");
 				NotifyEveryWeek();
 			}
 
@@ -144,11 +144,11 @@ namespace ToBeFree
 			}
 		}
 
-		public int Week
+		public int DDay
 		{
 			get
 			{
-				return week;
+				return policeTurnDays - (day % policeTurnDays);
 			}
 		}
 
