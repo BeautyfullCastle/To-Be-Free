@@ -29,7 +29,7 @@ namespace ToBeFree
 			if (droppedUIItem.belong != UIItem.eBelong.INVEN)
 				return;
 
-			UIDragDropItem dragdropItem = droppedUIItem.GetComponent<UIDragDropItem>();
+			UIDragDropMyItem dragdropItem = droppedUIItem.GetComponent<UIDragDropMyItem>();
 			if (dragdropItem == null)
 				return;
 

@@ -109,7 +109,7 @@ namespace ToBeFree
 
 		void OnDrop(GameObject dropped)
 		{
-			UIDragDropItem droppedDragDropItem = dropped.GetComponent<UIDragDropItem>();
+			UIDragDropMyItem droppedDragDropItem = dropped.GetComponent<UIDragDropMyItem>();
 			if (droppedDragDropItem)
 			{
 				int tempCurrIndex = this.transform.GetSiblingIndex();
