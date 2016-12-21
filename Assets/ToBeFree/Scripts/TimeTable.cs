@@ -148,6 +148,10 @@ namespace ToBeFree
 		{
 			get
 			{
+				if(policeTurnDays <= 0)
+				{
+					return -1;
+				}
 				return policeTurnDays - (day % policeTurnDays);
 			}
 		}

@@ -2,7 +2,7 @@
 
 namespace ToBeFree
 {
-	public class UIDragDropMyItem : global::UIDragDropMyItem
+	public class UIDragDropMyItem : UIDragDropItem
 	{
 		[HideInInspector]
 		public int currSiblingIndex;

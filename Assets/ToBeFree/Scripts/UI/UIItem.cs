@@ -37,7 +37,16 @@ namespace ToBeFree
 				return;
 			}
 
-			itemPrice.enabled = false;
+			if(itemPrice != null)
+			{
+				itemPrice.enabled = false;
+			}
+			
+			if(item.Buff == null)
+			{
+				return;
+			}
+
 			if (item.Buff.StartTime != eStartTime.NOW || item.Buff.Duration == eDuration.EQUIP)
 			{
 				this.enabled = false;
