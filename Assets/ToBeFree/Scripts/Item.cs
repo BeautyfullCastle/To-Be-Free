@@ -12,7 +12,7 @@ namespace ToBeFree
 
 	public enum eDuration
 	{
-		ONCE, EQUIP, DAY, WEEK,
+		ONCE, EQUIP, DAY, TODAY,
 		NULL,
 		REST_PATIENCE,
 		DAY_TEST

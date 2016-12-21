@@ -205,8 +205,8 @@
 			"isRestore": "TRUE",
 			"stack": "FALSE",
 			"startTime": "NOW",
-			"duration": "DAY",
-			"script": "이동행동 하루동안 사용불가",
+			"duration": "TODAY",
+			"script": "오늘 하루 이동행동 사용불가",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		},
@@ -261,8 +261,8 @@
 			"isRestore": "TRUE",
 			"stack": "FALSE",
 			"startTime": "TEST",
-			"duration": "DAY",
-			"script": "하루동안 힘을 1증가합니다.",
+			"duration": "TODAY",
+			"script": "오늘 하루 힘을 1증가합니다.",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		},

@@ -15,9 +15,9 @@ public class ReplaceFont : MonoBehaviour
 
 		Debug.Log("We found :" + labels.Length + " labels.");
 
-		Font go = Resources.Load("UnJamoBatang") as Font;
+		Font font = Resources.Load("UnJamoBatang") as Font;
 
-		if (go == null)
+		if (font == null)
 			Debug.LogWarning("We failed to load font.");
 		else
 		{
@@ -25,7 +25,8 @@ public class ReplaceFont : MonoBehaviour
 
 			foreach (UILabel l in labels)
 			{
-				l.trueTypeFont = go;
+				l.trueTypeFont = font;
+				l.material = font.material;
 			}
 
 			Debug.Log("success!");
