@@ -28,6 +28,7 @@ namespace ToBeFree
 			hover = this.GetComponent<UIButton>().hover;
 			pressed = this.GetComponent<UIButton>().pressed;
 			disabledColor = this.GetComponent<UIButton>().disabledColor;
+
 		}
 
 		void Start()

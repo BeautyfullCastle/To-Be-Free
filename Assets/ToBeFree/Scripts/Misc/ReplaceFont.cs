@@ -11,7 +11,7 @@ public class ReplaceFont : MonoBehaviour
 	[MenuItem("MyMenu/Replace All Label Fonts")]
 	static void replaceAllFonts()
 	{
-		UILabel[] labels = GameObject.Find("World").GetComponentsInChildren<UILabel>();
+		UILabel[] labels = GameObject.FindObjectsOfType<UILabel>();
 
 		Debug.Log("We found :" + labels.Length + " labels.");
 
