@@ -555,7 +555,7 @@ namespace ToBeFree
 			if(buttonName == "NEW")
 			{
 				this.isNew = true;
-				this.state = GameState.CharacterSelect;
+				this.state = GameState.InGame;
 			}
 			else if(buttonName == "CONTINUE")
 			{

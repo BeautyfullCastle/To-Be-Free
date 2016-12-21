@@ -191,7 +191,12 @@ namespace ToBeFree
 			{
 				list = CityManager.Instance.EngList;
 			}
-			nameLabel.text = Array.Find<Language.CityData>(list, x => x.index == city.Name).name;
+
+			if (list == null || nameLabel == null)
+			{
+				return;
+			}
+			nameLabel.text = Array.Find(list, x => x.index == city.Name).name;
 		}
 		
 		public City City
