@@ -20,7 +20,7 @@ namespace ToBeFree
 		RESULT,
 		DDAY,
 		FOOD,
-		SCENE
+		ENDING
 	}
 
 	public enum eVerbType
@@ -287,7 +287,13 @@ namespace ToBeFree
 						yield return abnormalCondition.DeActivate(character);
 					}
 					break;
-
+				case eSubjectType.ENDING:
+					if(verbType == eVerbType.LOAD)
+					{
+						// (HP=0,) 북송, 해피엔딩
+						yield return GameManager.Instance.endingManager.Start((eEnding)amount);
+					}
+					break;
 				default:
 					break;
 			}

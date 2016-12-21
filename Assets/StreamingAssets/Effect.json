@@ -569,7 +569,7 @@
 		},
 		{
 			"index": 81,
-			"subjectType": "SCENE",
+			"subjectType": "ENDING",
 			"verbType": "LOAD",
 			"objectType": "NULL",
 			"script": "NULL"

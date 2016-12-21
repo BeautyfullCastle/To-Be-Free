@@ -307,10 +307,8 @@ namespace ToBeFree
 			this.Stat.SetViewRange();
 
 			GameObject.FindObjectOfType<UIInventory>().Init(this.Inven);
-			
-			UICenterOnChild scrollviewCenter = GameObject.FindObjectOfType<UICenterOnChild>();
-			scrollviewCenter.CenterOn(this.CurCity.IconCity.transform);
-			scrollviewCenter.enabled = false;
+
+			GameManager.Instance.worldCam.GetComponent<CameraZoom>().Init();
 			
 			// activate character's passive abnormal condition.
 			yield return AbnormalConditionManager.Instance.List[this.AbnormalIndex].Activate(this);

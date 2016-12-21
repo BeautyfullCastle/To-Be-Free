@@ -109,10 +109,10 @@ namespace ToBeFree
 			Satiety = TotalSatiety;
 		}
 
-		public Stat(int hP, int strength, int agility, int concentration, int talent, int startMoney) : this()
+		public Stat(int hp, int strength, int agility, int concentration, int talent, int startMoney) : this()
 		{
-			this.hp         = hP;
-			this.totalHP    = hP;
+			this.hp         = hp;
+			this.totalHP    = hp;
 
 			this.strength   = strength;
 			this.agility    = agility;

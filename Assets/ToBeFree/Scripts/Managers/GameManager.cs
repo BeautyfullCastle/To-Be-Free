@@ -9,7 +9,8 @@ namespace ToBeFree
 	{
 		public enum eSceneState
 		{
-			Main=0, CharacterSelect, InGame
+			Main=0, CharacterSelect, InGame,
+			Ending
 		}
 
 		public enum GameState
@@ -34,6 +35,7 @@ namespace ToBeFree
 		public GameObject shopUIObj;
 		public UIEventManager uiEventManager;
 		public UIBuffManager uiBuffManager;
+		public EndingManager endingManager;
 		public GameObject optionObj;
 		public LanguageSelection languageSelection;
 		public UIGrid commandPopupGrid;
@@ -598,17 +600,17 @@ namespace ToBeFree
 			GC.WaitForPendingFinalizers();
 		}
 
-		private void SwitchOption()
-		{
-			throw new NotImplementedException();
-		}
-
-		private void ChangeScene(eSceneState sceneState)
+		public void ChangeScene(eSceneState sceneState)
 		{
 			int iSceneState = (int)sceneState;
 			for(int i=0; i<scenes.Length; ++i)
 			{
 				scenes[i].SetActive(i == iSceneState);
+			}
+
+			if(sceneState == eSceneState.Main)
+			{
+				this.state = GameState.Main;
 			}
 		}
 
