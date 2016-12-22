@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace ToBeFree
 {
@@ -116,6 +117,14 @@ namespace ToBeFree
 				}
 
 				uiItem.SetEnable(isEnoughMoney && (GameManager.Instance.Character.Inven.Exist(uiItem.Item) == false));
+			}
+		}
+
+		public void Refresh()
+		{
+			foreach(UIItem uiItem in this.items)
+			{
+				uiItem.Refresh();
 			}
 		}
 

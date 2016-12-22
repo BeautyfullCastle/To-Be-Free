@@ -1,0 +1,184 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"name": "FOOD 1",
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+		},
+		{
+			"index": 1,
+			"name": "FOOD 2",
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+		},
+		{
+			"index": 2,
+			"name": "FOOD 3",
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+		},
+		{
+			"index": 3,
+			"name": "FOOD 4",
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+		},
+		{
+			"index": 4,
+			"name": "HOT MILK",
+			"script": "휴식 때 먹어 체력을 1회복시킨다."
+		},
+		{
+			"index": 5,
+			"name": "High quality HOT MILK",
+			"script": "휴식 때 먹어 체력을 2회복시킨다."
+		},
+		{
+			"index": 6,
+			"name": "Pillow",
+			"script": "휴식 때 체력을 1회복시킨다."
+		},
+		{
+			"index": 7,
+			"name": "Vulnerary",
+			"script": "언제든지 사용하는 즉시 1체력을 회복한다."
+		},
+		{
+			"index": 8,
+			"name": "High quality Vulnerary",
+			"script": "언제든지 사용하는 즉시 2체력을 회복한다."
+		},
+		{
+			"index": 9,
+			"name": "Work gloves",
+			"script": "힘을 1올립니다."
+		},
+		{
+			"index": 10,
+			"name": "Tool belt",
+			"script": "힘을 1올립니다.\\n벨트가 있으면 2,3번의 일도 한번에 할 수 있죠."
+		},
+		{
+			"index": 11,
+			"name": "Working Vest",
+			"script": "힘을 1올립니다."
+		},
+		{
+			"index": 12,
+			"name": "Disposable work gloves",
+			"script": "검사할 때 사용하면 힘을 1올립니다."
+		},
+		{
+			"index": 13,
+			"name": "Disposable coated gloves",
+			"script": "검사할 때 사용하면 힘을 1올립니다."
+		},
+		{
+			"index": 14,
+			"name": "Thin Dress",
+			"script": "민첩을 1올립니다."
+		},
+		{
+			"index": 15,
+			"name": "Sports shoes",
+			"script": "민첩을 1올립니다."
+		},
+		{
+			"index": 16,
+			"name": "Comfortable clothing",
+			"script": "민첩을 1올립니다."
+		},
+		{
+			"index": 17,
+			"name": "Ion drinks",
+			"script": "검사할 때 사용하면 민첩을 1올립니다."
+		},
+		{
+			"index": 18,
+			"name": "Clean water",
+			"script": "검사할 때 사용하면 민첩을 1올립니다."
+		},
+		{
+			"index": 19,
+			"name": "Watch",
+			"script": "재주를 1올립니다."
+		},
+		{
+			"index": 20,
+			"name": "Clean clothes",
+			"script": "재주를 1올립니다."
+		},
+		{
+			"index": 21,
+			"name": "Chinese Dictionary",
+			"script": "재주를 1올립니다."
+		},
+		{
+			"index": 22,
+			"name": "Oral cleanser",
+			"script": "검사할 때 사용하면 재주을 1올립니다."
+		},
+		{
+			"index": 23,
+			"name": "Gum",
+			"script": "검사할 때 사용하면 재주을 1올립니다."
+		},
+		{
+			"index": 24,
+			"name": "Glasses",
+			"script": "집중을 1올립니다."
+		},
+		{
+			"index": 25,
+			"name": "book",
+			"script": "집중을 1올립니다."
+		},
+		{
+			"index": 26,
+			"name": "Ear plug",
+			"script": "집중을 1올립니다."
+		},
+		{
+			"index": 27,
+			"name": "Coffee",
+			"script": "검사할 때 사용하면 집중을 1올립니다."
+		},
+		{
+			"index": 28,
+			"name": "Energy drink",
+			"script": "검사할 때 사용하면 집중을 1올립니다."
+		},
+		{
+			"index": 29,
+			"name": "Bribe provision 1",
+			"script": "얻는 즉시 가장 가까운 곳의 공안 제거"
+		},
+		{
+			"index": 30,
+			"name": "Bribe provision 2",
+			"script": "얻는 즉시 랜덤 공안말 제거"
+		},
+		{
+			"index": 31,
+			"name": "Lemonade",
+			"script": "얻는 즉시 상쾌함상태를 얻는다."
+		},
+		{
+			"index": 32,
+			"name": "Chocolate",
+			"script": "얻는 즉시 집중상태를 얻는다."
+		},
+		{
+			"index": 33,
+			"name": "Bandage",
+			"script": "얻은 즉시 다리부상상태를 치유한다."
+		},
+		{
+			"index": 34,
+			"name": "Anxiety disorder drug",
+			"script": "얻은 즉시 불안상태를 한다."
+		},
+		{
+			"index": 35,
+			"name": "Restorative pill",
+			"script": "얻은 즉시 피곤함상태를 치유한다."
+		}
+	]
+}

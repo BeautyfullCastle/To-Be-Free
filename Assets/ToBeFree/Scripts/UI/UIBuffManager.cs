@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace ToBeFree
 {
@@ -54,6 +55,14 @@ namespace ToBeFree
 			DestroyImmediate(uiBuff.gameObject);
 			buffs.Remove(uiBuff);
 			grid.Reposition();
+		}
+
+		public void Refresh()
+		{
+			foreach(UIBuff uiBuff in this.buffs)
+			{
+				uiBuff.Refresh();
+			}
 		}
 	}
 }

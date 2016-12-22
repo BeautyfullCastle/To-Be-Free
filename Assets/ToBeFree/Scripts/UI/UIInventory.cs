@@ -89,5 +89,13 @@ namespace ToBeFree
 		{
 			return this.items.Find(x => x.transform.GetSiblingIndex() == currSiblingIndex);
 		}
+
+		public void Refresh()
+		{
+			foreach(UIItem uiItem in items)
+			{
+				uiItem.Refresh();
+			}
+		}
 	}
 }

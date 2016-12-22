@@ -9,15 +9,12 @@ namespace ToBeFree
 	{
 		private AbnormalCondition[] list;
 		private AbnormalConditionData[] dataList;
-		private readonly string file = Application.streamingAssetsPath + "/AbnormalCondition.json";
+		private const string fileName = "/AbnormalCondition.json";
+		private readonly string file = Application.streamingAssetsPath + fileName;
 
-		public AbnormalCondition[] List
-		{
-			get
-			{
-				return list;
-			}
-		}
+		private Language.AbnormalConditionData[] engList;
+		private Language.AbnormalConditionData[] korList;
+		private List<Language.AbnormalConditionData[]> languageList;
 
 		public void Init()
 		{
@@ -27,6 +24,14 @@ namespace ToBeFree
 				return;
 
 			list = new AbnormalCondition[dataList.Length];
+
+			engList = new DataList<Language.AbnormalConditionData>(Application.streamingAssetsPath + "/Language/English" + fileName).dataList;
+			korList = new DataList<Language.AbnormalConditionData>(Application.streamingAssetsPath + "/Language/Korean" + fileName).dataList;
+			languageList = new List<Language.AbnormalConditionData[]>(2);
+			languageList.Add(engList);
+			languageList.Add(korList);
+
+			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			ParseData();
 		}
@@ -38,7 +43,7 @@ namespace ToBeFree
 				Effect effect = EffectManager.Instance.GetByIndex(data.effectIndex);
 				EffectAmount effectAmount = new EffectAmount(effect, data.amount);
 				EffectAmount[] effectAmountList = new EffectAmount[] { effectAmount };
-				Buff buff = new Buff(data.name, data.script, effectAmountList, bool.Parse(data.isRestore), 
+				Buff buff = new Buff(data.index, data.name, data.script, effectAmountList, bool.Parse(data.isRestore), 
 								EnumConvert<eStartTime>.ToEnum(data.startTime), EnumConvert<eDuration>.ToEnum(data.duration));
 
 				string[] splitedList = data.spawnCondition.Split(' ');
@@ -75,13 +80,35 @@ namespace ToBeFree
 			}
 		}
 
-		public AbnormalCondition GetByIndex(int abnormalIndex)
+		public void ChangeLanguage(eLanguage language)
 		{
-			if(abnormalIndex >= list.Length)
+			foreach (Language.AbnormalConditionData data in languageList[(int)language])
+			{
+				try
+				{
+					list[data.index].Name = data.name;
+					list[data.index].Buff.Script = data.script;
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(data.index.ToString() + " : " + e);
+				}
+			}
+			GameManager.Instance.uiBuffManager.Refresh();
+			GameManager.Instance.uiInventory.Refresh();
+			if (GameManager.Instance.shopUIObj)
+			{
+				GameManager.Instance.shopUIObj.GetComponent<UIShop>().Refresh();
+			}
+		}
+
+		public AbnormalCondition GetByIndex(int index)
+		{
+			if(index < 0 || index >= list.Length)
 			{
 				return null;
 			}
-			return list[abnormalIndex];
+			return list[index];
 		}
 
 		public void Save(List<AbnormalConditionSaveData> abnormalList)

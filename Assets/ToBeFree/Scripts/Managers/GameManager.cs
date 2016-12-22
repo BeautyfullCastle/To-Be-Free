@@ -33,6 +33,7 @@ namespace ToBeFree
 		public GameObject worldObj;
 		public GameObject commandUIObj;
 		public GameObject shopUIObj;
+		public UIInventory uiInventory;
 		public UIEventManager uiEventManager;
 		public UIBuffManager uiBuffManager;
 		public EndingManager endingManager;
@@ -75,6 +76,7 @@ namespace ToBeFree
 
 		// don't use.
 		private Camera directingCam;
+		
 
 		// can't use the constructor
 		private GameManager()
@@ -790,7 +792,7 @@ namespace ToBeFree
 				//foreach(AbnormalCondition ab in AbnormalConditionManager.Instance.List)
 				//    yield return ab.Activate(character);
 
-				yield return AbnormalConditionManager.Instance.List[5].Activate(character);
+				yield return AbnormalConditionManager.Instance.GetByIndex(5).Activate(character);
 				activateAbnormal = false;
 			}
 

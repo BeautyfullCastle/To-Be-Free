@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -6,6 +7,7 @@ namespace ToBeFree
 	{
 		public UILabel nameLabel;
 		public UILabel stackLabel;
+		public UISprite sprite;
 		public string uiScript;
 
 		private Buff buff;
@@ -14,6 +16,7 @@ namespace ToBeFree
 		{
 			this.buff = buff;
 			nameLabel.text = buff.Name;
+			sprite.spriteName = "BUFF_" + buff.Name;
 			uiScript = buff.Script;
 			stackLabel.enabled = isStack;
 			if(stackLabel.enabled)
@@ -31,6 +34,24 @@ namespace ToBeFree
 			}
 			
 			UITooltip.Show(uiScript);
+		}
+
+		public void Refresh()
+		{
+			AbnormalCondition ab = AbnormalConditionManager.Instance.GetByIndex(this.Index);
+			if (ab == null)
+				return;
+
+			this.nameLabel.text = ab.Name;
+			this.uiScript = ab.Buff.Script;
+		}
+
+		public int Index
+		{
+			get
+			{
+				return this.buff.Index;
+			}
 		}
 	}
 }

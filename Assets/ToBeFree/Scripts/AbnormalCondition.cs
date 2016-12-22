@@ -32,7 +32,7 @@ namespace ToBeFree
 	public class AbnormalCondition
 	{
 		private readonly int index;
-		private readonly string name;
+		private string name;
 		protected readonly Buff buff;
 		protected readonly Condition spawnCondition;
 		protected int stack;
@@ -109,6 +109,10 @@ namespace ToBeFree
 			get
 			{
 				return name;
+			}
+			set
+			{
+				name = value;
 			}
 		}
 

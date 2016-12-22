@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -14,7 +15,10 @@ namespace ToBeFree
 		private readonly ItemData[] dataList;
 		private readonly string file = Application.streamingAssetsPath + "/Item.json";
 
-		
+		private Language.ItemData[] engList;
+		private Language.ItemData[] korList;
+		private List<Language.ItemData[]> languageList;
+
 		public ItemManager()
 		{
 			DataList<ItemData> cDataList = new DataList<ItemData>(file);
@@ -23,6 +27,14 @@ namespace ToBeFree
 				return;
 
 			list = new Item[dataList.Length];
+
+			engList = new DataList<Language.ItemData>(Application.streamingAssetsPath + "/Language/English/Item.json").dataList;
+			korList = new DataList<Language.ItemData>(Application.streamingAssetsPath + "/Language/Korean/Item.json").dataList;
+			languageList = new List<Language.ItemData[]>(2);
+			languageList.Add(engList);
+			languageList.Add(korList);
+
+			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			ParseData();
 		}
@@ -42,7 +54,7 @@ namespace ToBeFree
 					effectAmountList[i] = effectAmount;
 				}
 
-				Buff buff = new Buff(data.name, data.script, effectAmountList, bool.Parse(data.restore),
+				Buff buff = new Buff(data.index, data.name, data.script, effectAmountList, bool.Parse(data.restore),
 										EnumConvert<eStartTime>.ToEnum(data.startTime), EnumConvert<eDuration>.ToEnum(data.duration));
 
 				Item item = new Item(data.index, data.name, buff, data.price, EnumConvert<ItemTag>.ToEnum(data.tag));
@@ -52,6 +64,27 @@ namespace ToBeFree
 					throw new Exception("Item data.index " + data.index + " is duplicated.");
 				}
 				list[data.index] = item;
+			}
+		}
+
+		public void ChangeLanguage(eLanguage language)
+		{
+			foreach (Language.ItemData data in languageList[(int)language])
+			{
+				try
+				{
+					list[data.index].Name = data.name;
+					list[data.index].Buff.Script = data.script;
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(data.index.ToString() + " : " + e);
+				}
+			}
+			GameManager.Instance.uiInventory.Refresh();
+			if(GameManager.Instance.shopUIObj)
+			{
+				GameManager.Instance.shopUIObj.GetComponent<UIShop>().Refresh();
 			}
 		}
 
@@ -80,6 +113,9 @@ namespace ToBeFree
 		
 		public Item GetByIndex(int index)
 		{
+			if (index < 0 || index >= list.Length)
+				return null;
+
 			return list[index];
 		}
 

@@ -309,9 +309,13 @@ namespace ToBeFree
 			GameObject.FindObjectOfType<UIInventory>().Init(this.Inven);
 
 			GameManager.Instance.worldCam.GetComponent<CameraZoom>().Init();
-			
+
 			// activate character's passive abnormal condition.
-			yield return AbnormalConditionManager.Instance.List[this.AbnormalIndex].Activate(this);
+			AbnormalCondition ab = AbnormalConditionManager.Instance.GetByIndex(this.AbnormalIndex);
+			if(ab != null)
+			{
+				yield return ab.Activate(this);
+			}
 
 			yield return this.MoveTo(this.CurCity, 0, true);
 		}

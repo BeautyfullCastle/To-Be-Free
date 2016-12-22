@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -11,6 +12,7 @@ namespace ToBeFree
 		public UILabel itemName;
 		public UILabel itemPrice;
 		public UILabel explanation;
+		public UISprite sprite;
 
 		private Item item;
 
@@ -23,6 +25,8 @@ namespace ToBeFree
 		{
 			itemName = transform.FindChild("Name").GetComponent<UILabel>();
 			itemPrice = transform.FindChild("Price").GetComponent<UILabel>();
+
+			sprite = transform.GetComponent<UISprite>();
 
 			defaultColor = this.GetComponent<UIButton>().defaultColor;
 			hover = this.GetComponent<UIButton>().hover;
@@ -117,6 +121,22 @@ namespace ToBeFree
 			}
 		}
 
+		public void Refresh()
+		{
+			if (this.item == null)
+				return;
+
+			Item foundItem = ItemManager.Instance.GetByIndex(this.item.Index);
+			if (foundItem == null)
+				return;
+
+			this.itemName.text = foundItem.Name;
+			if(this.explanation)
+			{
+				this.explanation.text = foundItem.Buff.Script;
+			}
+		}
+
 		void OnDrop(GameObject dropped)
 		{
 			UIDragDropMyItem droppedDragDropItem = dropped.GetComponent<UIDragDropMyItem>();
@@ -167,8 +187,31 @@ namespace ToBeFree
 			this.Item = item;
 			itemName.text = item.Name;
 			itemPrice.text = item.Price.ToString();
-			if(explanation)
+
+			if (explanation)
+			{
 				explanation.text = this.item.Buff.Script;
+			}
+
+			if (sprite == null)
+				return;
+
+			string nameForSprite = item.Name;
+			if (nameForSprite.Contains(1.ToString()) || nameForSprite.Contains(2.ToString())
+				|| nameForSprite.Contains(3.ToString()) || nameForSprite.Contains(4.ToString()))
+			{
+				nameForSprite = item.Name.Substring(0, item.Name.Length - 2);
+			}
+			UISpriteData spriteData = sprite.atlas.GetSprite("ITEM_" + nameForSprite);
+			if(spriteData != null)
+			{
+				sprite.spriteName = spriteData.name;
+				UIButton button = GetComponent<UIButton>();
+				if(button)
+				{
+					button.normalSprite = sprite.spriteName;
+				}
+			}
 		}
 
 		public void SetEnable(bool isEnable)

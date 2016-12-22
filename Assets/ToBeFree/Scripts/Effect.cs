@@ -271,13 +271,10 @@ namespace ToBeFree
 					}
 					break;
 				case eSubjectType.ABNORMAL:
-					if (amount > AbnormalConditionManager.Instance.List.Length)
-					{
-						Debug.LogError("AbnormalCondition index " + amount + " is larger than events' length.");
+					AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.GetByIndex(amount);
+					if (abnormalCondition == null)
 						yield break;
-					}
 
-					AbnormalCondition abnormalCondition = AbnormalConditionManager.Instance.List[amount];
 					if (verbType == eVerbType.ADD)
 					{
 						yield return abnormalCondition.Activate(character);
@@ -291,7 +288,7 @@ namespace ToBeFree
 					if(verbType == eVerbType.LOAD)
 					{
 						// (HP=0,) 북송, 해피엔딩
-						yield return GameManager.Instance.endingManager.Start((eEnding)amount);
+						yield return GameManager.Instance.endingManager.StartEnding((eEnding)amount);
 					}
 					break;
 				default:

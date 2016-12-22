@@ -31,7 +31,7 @@ namespace ToBeFree
 	public class Item
 	{
 		private readonly int index;
-		private readonly string name;
+		private string name;
 		private readonly Buff buff;
 		private readonly ItemTag tag;
 		private readonly int price;
@@ -56,6 +56,10 @@ namespace ToBeFree
 			{
 				return name;
 			}
+			set
+			{
+				name = value;
+			}
 		}
 
 		public int MaximumStackableQuantity
@@ -71,7 +75,7 @@ namespace ToBeFree
 			get
 			{
 				return buff;
-			}            
+			}
 		}
 
 		public int Price

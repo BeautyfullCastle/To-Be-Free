@@ -28,11 +28,11 @@ namespace ToBeFree
 			if(stat == eStat.HP && value <= 0)
 			{
 				GameManager.Instance.ChangeScene(GameManager.eSceneState.Ending);
-				StartCoroutine(this.Start(eEnding.STARVATION));
+				StartCoroutine(this.StartEnding(eEnding.STARVATION));
 			}
 		}
 
-		public IEnumerator Start(eEnding ending)
+		public IEnumerator StartEnding(eEnding ending)
 		{
 			GameManager.Instance.ChangeScene(GameManager.eSceneState.Ending);
 

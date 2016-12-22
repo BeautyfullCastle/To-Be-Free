@@ -2,7 +2,7 @@
 	"dataList": [
 		{
 			"index": 0,
-			"name": "쌀국수",
+			"name": "FOOD 1",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -18,7 +18,7 @@
 		},
 		{
 			"index": 1,
-			"name": "딤섬",
+			"name": "FOOD 2",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -34,7 +34,7 @@
 		},
 		{
 			"index": 2,
-			"name": "꿔바로우",
+			"name": "FOOD 3",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -50,7 +50,7 @@
 		},
 		{
 			"index": 3,
-			"name": "북경오리요리",
+			"name": "FOOD 4",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -66,7 +66,7 @@
 		},
 		{
 			"index": 4,
-			"name": "따뜻한 우유",
+			"name": "HOT MILK",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -82,7 +82,7 @@
 		},
 		{
 			"index": 5,
-			"name": "따뜻한 고급우유",
+			"name": "High quality HOT MILK",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -98,7 +98,7 @@
 		},
 		{
 			"index": 6,
-			"name": "목베게",
+			"name": "Pillow",
 			"startTime": "REST",
 			"duration": "EQUIP",
 			"restore": "false",
@@ -114,7 +114,7 @@
 		},
 		{
 			"index": 7,
-			"name": "상처약",
+			"name": "Vulnerary",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -130,7 +130,7 @@
 		},
 		{
 			"index": 8,
-			"name": "고급 상처약",
+			"name": "High quality Vulnerary",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -146,7 +146,7 @@
 		},
 		{
 			"index": 9,
-			"name": "작업용 장갑",
+			"name": "Work gloves",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -162,7 +162,7 @@
 		},
 		{
 			"index": 10,
-			"name": "공구벨트",
+			"name": "Tool belt",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -178,7 +178,7 @@
 		},
 		{
 			"index": 11,
-			"name": "작업용 조끼",
+			"name": "Working Vest",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -194,7 +194,7 @@
 		},
 		{
 			"index": 12,
-			"name": "1회용 목장갑",
+			"name": "Disposable work gloves",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -210,7 +210,7 @@
 		},
 		{
 			"index": 13,
-			"name": "1회용 코팅장갑",
+			"name": "Disposable coated gloves",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -226,7 +226,7 @@
 		},
 		{
 			"index": 14,
-			"name": "얇은 복장",
+			"name": "Thin Dress",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -242,7 +242,7 @@
 		},
 		{
 			"index": 15,
-			"name": "운동화",
+			"name": "Sports shoes",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -258,7 +258,7 @@
 		},
 		{
 			"index": 16,
-			"name": "편안한 의복",
+			"name": "Comfortable clothing",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -274,7 +274,7 @@
 		},
 		{
 			"index": 17,
-			"name": "이온음료",
+			"name": "Ion drinks",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -290,7 +290,7 @@
 		},
 		{
 			"index": 18,
-			"name": "깨끗한 물",
+			"name": "Clean water",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -306,7 +306,7 @@
 		},
 		{
 			"index": 19,
-			"name": "손목시계",
+			"name": "Watch",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -322,7 +322,7 @@
 		},
 		{
 			"index": 20,
-			"name": "깔끔한 의복",
+			"name": "Clean clothes",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -338,7 +338,7 @@
 		},
 		{
 			"index": 21,
-			"name": "중국어 사전",
+			"name": "Chinese Dictionary",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -354,7 +354,7 @@
 		},
 		{
 			"index": 22,
-			"name": "구강청정제",
+			"name": "Oral cleanser",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -370,7 +370,7 @@
 		},
 		{
 			"index": 23,
-			"name": "껌",
+			"name": "Gum",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -386,7 +386,7 @@
 		},
 		{
 			"index": 24,
-			"name": "안경",
+			"name": "Glasses",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -402,7 +402,7 @@
 		},
 		{
 			"index": 25,
-			"name": "책",
+			"name": "book",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -418,7 +418,7 @@
 		},
 		{
 			"index": 26,
-			"name": "이어플러그",
+			"name": "Ear plug",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -434,7 +434,7 @@
 		},
 		{
 			"index": 27,
-			"name": "커피",
+			"name": "Coffee",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -450,7 +450,7 @@
 		},
 		{
 			"index": 28,
-			"name": "에너지 드링크",
+			"name": "Energy drink",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -466,7 +466,7 @@
 		},
 		{
 			"index": 29,
-			"name": "뇌물 제공-1",
+			"name": "Bribe provision 1",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -482,7 +482,7 @@
 		},
 		{
 			"index": 30,
-			"name": "뇌물 제공-2",
+			"name": "Bribe provision 2",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -498,7 +498,7 @@
 		},
 		{
 			"index": 31,
-			"name": "레몬에이드",
+			"name": "Lemonade",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -514,7 +514,7 @@
 		},
 		{
 			"index": 32,
-			"name": "초콜릿",
+			"name": "Chocolate",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -530,7 +530,7 @@
 		},
 		{
 			"index": 33,
-			"name": "붕대",
+			"name": "Bandage",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -546,7 +546,7 @@
 		},
 		{
 			"index": 34,
-			"name": "불안장애약",
+			"name": "Anxiety disorder drug",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -562,7 +562,7 @@
 		},
 		{
 			"index": 35,
-			"name": "피로회복제",
+			"name": "Restorative pill",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
