@@ -441,10 +441,21 @@ namespace ToBeFree
 			yield return base.Activate(character);
 
 			TipManager.Instance.Show(eTipTiming.Detention);
+
+			bool isLastCity = (character.CurCity.Name == "DANDONG" || character.CurCity.Name == "TUMEN");
+
 			// ActState : 체포상태에서 체포된 공안의 이동력만큼 이동
 			if (GameManager.Instance.State == GameManager.GameState.Detention)
 			{
-				yield return character.HaulIn();
+				// 마지막 도시에 도착하면 밤에 수용소 이벤트를 하고 실패시 그 다음날 아침에 북송 엔딩
+				if(isLastCity)
+				{
+					yield return GameManager.Instance.endingManager.StartEnding(eEnding.REPATRIATE);
+				}
+				else
+				{
+					yield return character.HaulIn();
+				}
 			}
 			/* 밤단계 때 
 			 * 단둥 또는 투먼시에 도착하지 않았으면 공안체크로 탈출 시도 이벤트
@@ -454,8 +465,6 @@ namespace ToBeFree
 			 * */
 			else if (GameManager.Instance.State == GameManager.GameState.Night)
 			{
-				bool isLastCity = (character.CurCity.Name == "DANDONG" || character.CurCity.Name == "TUMEN");
-
 				if (isLastCity)
 				{
 					TipManager.Instance.Show(eTipTiming.Camp);
