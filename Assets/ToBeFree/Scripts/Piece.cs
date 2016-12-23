@@ -257,7 +257,7 @@ namespace ToBeFree
 
 				yield return GameManager.Instance.uiEventManager.OnChanged(effectScript, false, true);
 
-				GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(this.CurQuest);
+				GameManager.Instance.uiQuestManager.DeleteQuest(this.CurQuest);
 			}
 		}
 

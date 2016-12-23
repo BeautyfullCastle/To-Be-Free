@@ -42,7 +42,7 @@ namespace ToBeFree
 		private bool isActionSkip;
 		
 		private int ap;
-		readonly private int totalAP = 3;
+		private readonly int totalAP = 3;
 
 		private bool[] canAction = new bool[10];
 
@@ -134,7 +134,7 @@ namespace ToBeFree
 						Quest firstMainQuest = QuestManager.Instance.GetByIndex(15);
 						if(firstMainQuest != null)
 						{
-							GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(firstMainQuest);
+							GameManager.Instance.uiQuestManager.DeleteQuest(firstMainQuest);
 						}
 
 						Quest mainQuest = QuestManager.Instance.GetByIndex(16);
@@ -312,7 +312,7 @@ namespace ToBeFree
 
 		public IEnumerator Init()
 		{
-			GameObject.Find("Character Name").GetComponent<UILabel>().text = this.Name;
+			GameManager.Instance.uiCharacter.Refresh();
 			this.Stat.RefreshUI();
 			this.Stat.SetViewRange();
 
@@ -485,6 +485,11 @@ namespace ToBeFree
 			{
 				return name;
 			}
+			set
+			{
+				name = value;
+
+			}
 		}
 
 		public int EventIndex
@@ -544,6 +549,20 @@ namespace ToBeFree
 			set
 			{
 				specialEventProbability = value;
+			}
+		}
+
+		public string EngName
+		{
+			get
+			{
+				Language.CharacterData characterData = CharacterManager.Instance.GetLanguageData(eLanguage.ENGLISH);
+				if(characterData == null)
+				{
+					return string.Empty;
+				}
+
+				return characterData.name;
 			}
 		}
 	}

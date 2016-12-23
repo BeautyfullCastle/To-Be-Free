@@ -1,0 +1,16 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"name": "Cheolsoo Kim",
+			"script": "Cheolsoo script",
+			"skillScript": "Cheolsoo skill script"
+		},
+		{
+			"index": 1,
+			"name": "Jeonghui Ahn",
+			"script": "Jeonghui script",
+			"skillScript": "Jeonghui skikll script"
+		}
+	]
+}

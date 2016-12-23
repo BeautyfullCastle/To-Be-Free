@@ -2,7 +2,6 @@
 
 public class ResolutionDetection : MonoBehaviour
 {
-    public GameObject Resolutionlist;
     UIPopupList PopupList;
     UIToggle toggle;
 

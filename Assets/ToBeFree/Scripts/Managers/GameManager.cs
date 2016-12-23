@@ -37,7 +37,8 @@ namespace ToBeFree
 		public UIEventManager uiEventManager;
 		public UIBuffManager uiBuffManager;
 		public UIQuestManager uiQuestManager;
-		public EndingManager endingManager;
+		public UIEndingManager endingManager;
+		public UICharacter uiCharacter;
 		public GameObject optionObj;
 		public LanguageSelection languageSelection;
 		public UIGrid commandPopupGrid;
@@ -466,7 +467,7 @@ namespace ToBeFree
 			}
 			else
 			{
-				character = CharacterManager.Instance.List[1];
+				character = CharacterManager.Instance.GetByIndex(1);
 			}
 
 			yield return character.Init();

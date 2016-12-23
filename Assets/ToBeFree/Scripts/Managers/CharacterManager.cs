@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Language;
 using UnityEngine;
 
 namespace ToBeFree
@@ -8,16 +9,12 @@ namespace ToBeFree
 	{
 		private Character[] list;
 		private CharacterData[] dataList;
-		private string file = Application.streamingAssetsPath + "/Character.json";
-
-		public Character[] List
-		{
-			get
-			{
-				return list;
-			}
-		}
-		
+		private string file = Application.streamingAssetsPath + fileName;
+		private const string fileName = "/Character.json";
+		private Language.CharacterData[] engList;
+		private Language.CharacterData[] korList;
+		private List<Language.CharacterData[]> languageList;
+				
 		public void Init()
 		{
 			DataList<CharacterData> cDataList = new DataList<CharacterData>(file);
@@ -27,6 +24,14 @@ namespace ToBeFree
 
 			list = new Character[dataList.Length];
 
+			engList = new DataList<Language.CharacterData>(Application.streamingAssetsPath + "/Language/English" + fileName).dataList;
+			korList = new DataList<Language.CharacterData>(Application.streamingAssetsPath + "/Language/Korean" + fileName).dataList;
+			languageList = new List<Language.CharacterData[]>(2);
+			languageList.Add(engList);
+			languageList.Add(korList);
+
+			LanguageSelection.selectLanguage += ChangeLanguage;
+
 			ParseData();
 		}
 
@@ -35,7 +40,7 @@ namespace ToBeFree
 			foreach (CharacterData data in dataList)
 			{
 				Stat stat = new Stat(data.HP, data.strength, data.agility, data.concentration, data.talent, data.startMoney);
-				Inventory inven = new Inventory(data.startInven);                
+				Inventory inven = new Inventory(data.startInven);
 
 				Character character = new Character(data.index, data.name, data.script, stat, data.startCity, inven, data.eventIndex, data.skillScript, data.abnormalIndex);
 
@@ -45,12 +50,32 @@ namespace ToBeFree
 					character.Inven.list.Add(item);
 				}
 
-				if (List[data.index] != null)
+				if (list[data.index] != null)
 				{
 					throw new Exception("Character data.index " + data.index + " is duplicated.");
 				}
-				List[data.index] = character;
+				list[data.index] = character;
 			}
+		}
+
+		public void ChangeLanguage(eLanguage language)
+		{
+			foreach (Language.CharacterData data in languageList[(int)language])
+			{
+				try
+				{
+					Character character = GetByIndex(data.index);
+					if (character == null)
+						continue;
+
+					character.Name = data.name;
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(data.index.ToString() + " : " + e);
+				}
+			}
+			GameManager.Instance.uiCharacter.Refresh();
 		}
 
 		public void Save(CharacterSaveData data)
@@ -94,6 +119,36 @@ namespace ToBeFree
 			character.IsActionSkip = data.isActionSkip;
 
 			return character;
+		}
+
+		public Character GetByIndex(int index)
+		{
+			if(index < 0 || index >= list.Length)
+			{
+				return null;
+			}
+			return list[index];
+		}
+
+		public Language.CharacterData GetLanguageData(eLanguage language)
+		{
+			Language.CharacterData[] languageList = null;
+			if(language == eLanguage.ENGLISH)
+			{
+				languageList = engList;
+			}
+			else
+			{
+				languageList = korList;
+			}
+
+			int index = GameManager.Instance.Character.Index;
+			if(index < 0 || index >= languageList.Length)
+			{
+				return null;
+			}
+
+			return languageList[index];
 		}
 	}
 }

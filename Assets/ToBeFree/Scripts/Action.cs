@@ -364,8 +364,7 @@ namespace ToBeFree
 			// have to check TestResult again cause of Dice Test of activated quest.
 			if (EventManager.Instance.TestResult == true)
 			{
-				//PieceManager.Instance.Delete(questPiece);
-				GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(quest);
+				GameManager.Instance.uiQuestManager.DeleteQuest(quest);
 			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
