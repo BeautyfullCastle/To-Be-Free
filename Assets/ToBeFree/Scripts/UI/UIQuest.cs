@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -21,6 +22,16 @@ namespace ToBeFree
 
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
 			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
+		}
+
+		public void Refresh()
+		{
+			Quest quest = QuestManager.Instance.GetByIndex(questPiece.CurQuest.Index);
+			if (quest == null)
+				return;
+
+			this.questName.text = quest.UiName;
+			this.condition.text = quest.UiConditionScript;
 		}
 
 		private void LanguageSelection_selectLanguage(eLanguage language)

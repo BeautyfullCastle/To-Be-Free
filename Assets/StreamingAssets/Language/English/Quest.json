@@ -1,0 +1,123 @@
+{
+	"dataList": [
+		{
+			"index": 0,
+			"script": "Quest Script 0",
+			"failureScript": "Quest Failure Script 0",
+			"uiName": "Deliver weird item",
+			"uiConditionScript": "5 yuan"
+		},
+		{
+			"index": 1,
+			"script": "Quest Script 1",
+			"failureScript": "Quest Failure Script 1",
+			"uiName": "Working at big place",
+			"uiConditionScript": "7 yuan"
+		},
+		{
+			"index": 2,
+			"script": "Quest Script 2",
+			"failureScript": "Quest Failure Script 2",
+			"uiName": "Get free item after 3 days",
+			"uiConditionScript": "Item"
+		},
+		{
+			"index": 3,
+			"script": "Quest Script 3",
+			"failureScript": "Quest Failure Script 3",
+			"uiName": "Find item in a dump",
+			"uiConditionScript": "Item"
+		},
+		{
+			"index": 4,
+			"script": "Quest Script 4",
+			"failureScript": "Quest Failure Script 4",
+			"uiName": "Visit a soup kitchen",
+			"uiConditionScript": "Food"
+		},
+		{
+			"index": 5,
+			"script": "Quest Script 5",
+			"failureScript": "Quest Failure Script 5",
+			"uiName": "Meet the source tomorrow",
+			"uiConditionScript": "Information"
+		},
+		{
+			"index": 6,
+			"script": "Quest Script 6",
+			"failureScript": "Quest Failure Script 6",
+			"uiName": "Meet the source after 3 days",
+			"uiConditionScript": "Information"
+		},
+		{
+			"index": 7,
+			"script": "Quest Script 7",
+			"failureScript": "Quest Failure Script 7",
+			"uiName": "Find source in the spot",
+			"uiConditionScript": "Information"
+		},
+		{
+			"index": 8,
+			"script": "Quest Script 8",
+			"failureScript": "Quest Failure Script 8",
+			"uiName": "Buy Information at 4 yuan",
+			"uiConditionScript": "Information"
+		},
+		{
+			"index": 9,
+			"script": "Quest Script 9",
+			"failureScript": "Quest Failure Script 9",
+			"uiName": "Find source in the spot",
+			"uiConditionScript": "Information"
+		},
+		{
+			"index": 10,
+			"script": "Quest Script 10",
+			"failureScript": "Quest Failure Script 10",
+			"uiName": "Pay 20 yuan",
+			"uiConditionScript": "Way to South Korea"
+		},
+		{
+			"index": 11,
+			"script": "Quest Script 11",
+			"failureScript": "Quest Failure Script 11",
+			"uiName": "Go to Tongliao",
+			"uiConditionScript": "Way to South Korea"
+		},
+		{
+			"index": 12,
+			"script": "Quest Script 12",
+			"failureScript": "Quest Failure Script 12",
+			"uiName": "Go to Tongliao with 6 foods",
+			"uiConditionScript": "Way to South Korea"
+		},
+		{
+			"index": 13,
+			"script": "Quest Script 13",
+			"failureScript": "Quest Failure Script 13",
+			"uiName": "Pay 10 yuan",
+			"uiConditionScript": "Way to South Korea"
+		},
+		{
+			"index": 14,
+			"script": "Quest Script 14",
+			"failureScript": "Quest Failure Script 14",
+			"uiName": "Come again after 5 days",
+			"uiConditionScript": "Way to South Korea"
+		},
+		{
+			"index": 15,
+			"script": "Quest Script 15",
+			"failureScript": "Quest Failure Script 15",
+			"uiName": "Get 5 broker information",
+			"uiConditionScript": "Broker position"
+		},
+		{
+			"index": 16,
+			"script": "Quest Script 16",
+			"failureScript": "Quest Failure Script 16",
+			"uiName": "Meet broker",
+			"uiConditionScript": "Negotiate with broker"
+		}
+	]
+}

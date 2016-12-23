@@ -36,6 +36,7 @@ namespace ToBeFree
 		public UIInventory uiInventory;
 		public UIEventManager uiEventManager;
 		public UIBuffManager uiBuffManager;
+		public UIQuestManager uiQuestManager;
 		public EndingManager endingManager;
 		public GameObject optionObj;
 		public LanguageSelection languageSelection;
@@ -76,7 +77,6 @@ namespace ToBeFree
 
 		// don't use.
 		private Camera directingCam;
-		
 
 		// can't use the constructor
 		private GameManager()
@@ -483,7 +483,11 @@ namespace ToBeFree
 				}
 
 				// load first main quest.
-				yield return QuestManager.Instance.Load(QuestManager.Instance.List[15], character);
+				Quest firstMainQuest = QuestManager.Instance.GetByIndex(15);
+				if(firstMainQuest != null)
+				{
+					yield return QuestManager.Instance.Load(firstMainQuest, character);
+				}
 			}
 
 			character.Stat.SetViewRange();
@@ -495,7 +499,7 @@ namespace ToBeFree
 			//character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 4;
 			//character.Stat.Satiety = 1;
-			//yield return QuestManager.Instance.Load(QuestManager.Instance.List[0], character);
+			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 #endif
 

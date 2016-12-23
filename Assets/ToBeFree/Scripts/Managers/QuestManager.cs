@@ -9,19 +9,15 @@ namespace ToBeFree
 	{
 		private Quest[] list;
 		private QuestData[] dataList;
-		private readonly string file = Application.streamingAssetsPath + "/Quest.json";
-		
-		public Quest[] List
-		{
-			get
-			{
-				return list;
-			}
-		}
+		private const string fileName = "/Quest.json";
+		private readonly string file = Application.streamingAssetsPath + fileName;
+
+		private Language.QuestData[] engList;
+		private Language.QuestData[] korList;
+		private List<Language.QuestData[]> languageList;
 
 		public QuestManager()
 		{
-			
 		}
 
 		public void Init()
@@ -33,6 +29,13 @@ namespace ToBeFree
 
 			list = new Quest[dataList.Length];
 
+			engList = new DataList<Language.QuestData>(Application.streamingAssetsPath + "/Language/English" + fileName).dataList;
+			korList = new DataList<Language.QuestData>(Application.streamingAssetsPath + "/Language/Korean" + fileName).dataList;
+			languageList = new List<Language.QuestData[]>(2);
+			languageList.Add(engList);
+			languageList.Add(korList);
+
+			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			ParseData();
 		}
@@ -75,6 +78,29 @@ namespace ToBeFree
 			}
 		}
 
+		public void ChangeLanguage(eLanguage language)
+		{
+			foreach (Language.QuestData data in languageList[(int)language])
+			{
+				try
+				{
+					Quest quest = this.GetByIndex(data.index);
+					if (quest == null)
+						continue;
+
+					quest.Script = data.script;
+					quest.FailureEffects.Script = data.failureScript;
+					quest.UiName = data.uiName;
+					quest.UiConditionScript = data.uiConditionScript;
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(data.index.ToString() + " : " + e);
+				}
+			}
+			GameManager.Instance.uiQuestManager.Refresh();
+		}
+
 		public void Save(List<QuestSaveData> questList)
 		{
 			for(int i=0; i<list.Length; ++i)
@@ -102,6 +128,15 @@ namespace ToBeFree
 		{
 			Quest[] array = Array.FindAll(list, x => x.ActionType == questActionType);
 			return array[UnityEngine.Random.Range(0, array.Length)];
+		}
+
+		public Quest GetByIndex(int index)
+		{
+			if(index < 0 || index >= list.Length)
+			{
+				return null;
+			}
+			return list[index];
 		}
 
 		public int IndexOf(Quest quest)

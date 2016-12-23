@@ -241,13 +241,12 @@ namespace ToBeFree
 					}
 					break;
 				case eSubjectType.QUEST:
-					if(amount > QuestManager.Instance.List.Length)
+					Quest quest = QuestManager.Instance.GetByIndex(amount);
+					if(quest == null)
 					{
-						Debug.LogError("Quest index " + amount + " is larger than events' length.");
 						yield break;
 					}
 
-					Quest quest = QuestManager.Instance.List[amount];
 					if (verbType == eVerbType.LOAD)
 					{
 						yield return QuestManager.Instance.Load(quest, character);

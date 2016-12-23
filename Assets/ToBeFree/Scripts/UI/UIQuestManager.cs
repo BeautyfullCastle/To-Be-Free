@@ -36,7 +36,7 @@ namespace ToBeFree
 			string pastDays = questPiece.CurQuest.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString();
 			if (questPiece.CurQuest.Duration == 1000)
 			{
-				pastDays = "Infinity";
+				pastDays = "-";
 			}
 			
 			uiQuest.SetLabels(questPiece.CurQuest.UiName, pastDays, questPiece.CurQuest.UiConditionScript, cityName);
@@ -54,6 +54,14 @@ namespace ToBeFree
 				return;
 			}
 			this.DeleteUIQuest(uiQuest);
+		}
+
+		public void Refresh()
+		{
+			foreach(UIQuest uiQuest in uiQuestList)
+			{
+				uiQuest.Refresh();
+			}
 		}
 
 		private void Clear()

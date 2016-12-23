@@ -64,11 +64,18 @@ namespace ToBeFree
 				{
 					Police police = new Police(city, type, pieceList[i].power, pieceList[i].movement);
 					list.Add(police);
-				}				
+				}
 				else if (type == eSubjectType.QUEST)
 				{
-					QuestPiece piece = new QuestPiece(QuestManager.Instance.List[pieceList[i].questIndex], city, type);
-					list.Add(piece);
+					Quest quest = QuestManager.Instance.GetByIndex(pieceList[i].questIndex);
+					if(quest != null)
+					{
+						QuestPiece piece = new QuestPiece(quest, city, type);
+						if(piece != null)
+						{
+							list.Add(piece);
+						}
+					}
 				}
 				else if(type == eSubjectType.BROKER)
 				{

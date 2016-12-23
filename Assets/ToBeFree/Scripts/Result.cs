@@ -52,6 +52,10 @@ namespace ToBeFree
 			{
 				return script;
 			}
+			set
+			{
+				script = value;
+			}
 		}
 
 		public EffectAmount[] EffectAmounts

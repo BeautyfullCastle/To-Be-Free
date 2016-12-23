@@ -131,8 +131,18 @@ namespace ToBeFree
 						Broker broker = new Broker(CityManager.Instance.FindRand(eSubjectType.BROKER), eSubjectType.BROKER);
 						PieceManager.Instance.Add(broker);
 						// Delete first main quest and Load main quest : "Go to the broker"
-						GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(QuestManager.Instance.List[15]);
-						yield return (QuestManager.Instance.Load(QuestManager.Instance.List[16], GameManager.Instance.Character));
+						Quest firstMainQuest = QuestManager.Instance.GetByIndex(15);
+						if(firstMainQuest != null)
+						{
+							GameManager.FindObjectOfType<UIQuestManager>().DeleteQuest(firstMainQuest);
+						}
+
+						Quest mainQuest = QuestManager.Instance.GetByIndex(16);
+						if(mainQuest != null)
+						{
+							yield return (QuestManager.Instance.Load(mainQuest, GameManager.Instance.Character));
+						}
+						
 						Stat.InfoNum = 0;
 					}
 				}

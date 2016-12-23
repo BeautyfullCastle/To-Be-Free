@@ -37,12 +37,12 @@ namespace ToBeFree
 		private readonly eRegion region;
 		private readonly string cityName;
 		private readonly eDifficulty difficulty;
-		private readonly string script;
+		private string script;
 		private readonly ResultScriptAndEffects failureEffects;
 		private readonly Event event_;
 		private readonly int duration;
-		private readonly string uiName;
-		private readonly string uiConditionScript;
+		private string uiName;
+		private string uiConditionScript;
 
 		private int pastDays;
 
@@ -92,6 +92,10 @@ namespace ToBeFree
 			{
 				return script;
 			}
+			set
+			{
+				script = value;
+			}
 		}
 
 		public string UiName
@@ -100,6 +104,10 @@ namespace ToBeFree
 			{
 				return uiName;
 			}
+			set
+			{
+				uiName = value;
+			}
 		}
 
 		public string UiConditionScript
@@ -107,6 +115,10 @@ namespace ToBeFree
 			get
 			{
 				return uiConditionScript;
+			}
+			set
+			{
+				uiConditionScript = value;
 			}
 		}
 
