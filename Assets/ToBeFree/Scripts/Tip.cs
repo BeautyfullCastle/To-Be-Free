@@ -31,5 +31,18 @@
 				return timing;
 			}
 		}
+
+		public string Script
+		{
+			get
+			{
+				return script;
+			}
+
+			set
+			{
+				script = value;
+			}
+		}
 	}
 }

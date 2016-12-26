@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
@@ -13,7 +14,12 @@ namespace ToBeFree
 	{
 		private Tip[] list;
 		private TipData[] dataList;
-		private readonly string file = Application.streamingAssetsPath + "/Tip.json";
+		private const string fileName = "/Tip.json";
+		private readonly string file = Application.streamingAssetsPath + fileName;
+
+		private Language.TipData[] engList;
+		private Language.TipData[] korList;
+		private List<Language.TipData[]> languageList;
 
 		public TipManager()
 		{
@@ -28,6 +34,14 @@ namespace ToBeFree
 				return;
 
 			list = new Tip[dataList.Length];
+
+			engList = new DataList<Language.TipData>(Application.streamingAssetsPath + "/Language/English" + fileName).dataList;
+			korList = new DataList<Language.TipData>(Application.streamingAssetsPath + "/Language/Korean" + fileName).dataList;
+			languageList = new List<Language.TipData[]>(2);
+			languageList.Add(engList);
+			languageList.Add(korList);
+
+			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			ParseData();
 
@@ -45,6 +59,26 @@ namespace ToBeFree
 				}
 				list[data.index] = tip;
 				Debug.Log(data.index + " : " + " : " + data.timing + " : " + data.script);
+			}
+		}
+
+		public void ChangeLanguage(eLanguage language)
+		{
+			foreach (Language.TipData data in languageList[(int)language])
+			{
+				try
+				{
+					if (data.index < 0 || data.index >= list.Length)
+					{
+						continue;
+					}
+
+					list[data.index].Script = data.script;
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(data.index.ToString() + " : " + e);
+				}
 			}
 		}
 
