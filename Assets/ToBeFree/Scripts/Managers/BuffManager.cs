@@ -24,7 +24,7 @@ namespace ToBeFree
 		{
 			for(int i=0; i<buffList.Count; ++i)
 			{
-				BuffSaveData data = new BuffSaveData(i, AbnormalConditionManager.Instance.Find(buffList[i].Name).Index, buffList[i].AliveDays);
+				BuffSaveData data = new BuffSaveData(i, AbnormalConditionManager.Instance.GetByIndex(buffList[i].Index).Index, buffList[i].AliveDays);
 				dataList.Add(data);
 			}
 		}
