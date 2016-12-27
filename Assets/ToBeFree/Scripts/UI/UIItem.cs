@@ -13,6 +13,7 @@ namespace ToBeFree
 		public UILabel itemPrice;
 		public UILabel explanation;
 		public UISprite sprite;
+		public GameObject itemEffectObj;
 
 		private Item item;
 
@@ -20,6 +21,7 @@ namespace ToBeFree
 		private Color hover;
 		private Color pressed;
 		private Color disabledColor;
+		
 
 		void Awake()
 		{
@@ -93,7 +95,11 @@ namespace ToBeFree
 
 				if (belong == eBelong.INVEN)
 				{
+					GameObject effectObj = GameObject.Instantiate(itemEffectObj, this.transform.position, Quaternion.identity, GameManager.Instance.uiInventory.transform) as GameObject;
+					GameObject.Destroy(effectObj, effectObj.GetComponent<ParticleSystem>().duration);
+
 					StartCoroutine(GameManager.Instance.Character.Inven.UseItem(this.Item, GameManager.Instance.Character));
+					
 					Debug.Log(this.name + " : UseItem()");
 				}
 				return;

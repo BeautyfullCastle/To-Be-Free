@@ -23,7 +23,6 @@ namespace ToBeFree
 
 		public TipManager()
 		{
-
 		}
 
 		public void Init()
@@ -44,7 +43,6 @@ namespace ToBeFree
 			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			ParseData();
-
 		}
 
 		private void ParseData()
