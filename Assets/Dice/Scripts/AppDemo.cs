@@ -43,9 +43,7 @@ public class AppDemo : MonoBehaviour
 
 		dices[0].Init(characterDiceNum, GameManager.Instance.Character.Name, stat);
 		dices[1].Init(policeDiceNum, "Police");
-
 		
-
 		this.stat = stat;
 	}
 
@@ -100,7 +98,7 @@ public class AppDemo : MonoBehaviour
 
 	public void AddDie()
 	{
-		dices[0].AddDie();
+		dices[0].AddDie(LayerMask.NameToLayer("Dice1"));
 	}
 
 	private void Stat_OnValueChange(int value, eStat stat)

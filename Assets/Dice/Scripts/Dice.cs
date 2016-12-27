@@ -142,10 +142,15 @@ public class Dice : MonoBehaviour {
 		positionX = this.spawnPoint.position.x;
 		positionY = this.spawnPoint.position.y;
 
+		string layerName = "Dice1";
+		if(name == "Police")
+		{
+			layerName = "Dice2";
+		}
 		// instantiate the dice
 		for (int d = 0; d < diceNum; d++)
 		{
-			AddDie();
+			AddDie(LayerMask.NameToLayer(layerName));
 		}
 
 		this.nameLabel.text = name;
@@ -153,14 +158,14 @@ public class Dice : MonoBehaviour {
 		this.diceNumLabel.text = diceNum.ToString();
 	}
 
-	public void AddDie()
+	public void AddDie(int layer)
 	{
 		string dieType = "d6";
 		string mat = "red";
 
 		// create the die prefab/gameObject
-		GameObject die = prefab(dieType, new Vector3(positionX, positionY, spawnPoint.position.z), new Vector3(0f, 0f, -90f), new Vector3(0.3f, 0.3f, 0.3f), mat);
-	
+		GameObject die = prefab(dieType, new Vector3(positionX, positionY, spawnPoint.position.z), new Vector3(0f, 0f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
+		die.layer = layer;
 		// give it a random rotation
 		//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 		// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
@@ -313,12 +318,20 @@ public class Dice : MonoBehaviour {
 	public void SetPosition(bool isPolice)
 	{
 		Vector3 position = Vector3.zero;
+		float cameraX = 0f;
 		if (isPolice==false)
 		{
 			position = new Vector3(400f, 0f, 0f);
+			cameraX = -400f;
 		}
 
 		this.transform.localPosition = position;
+		Camera diceCam = this.GetComponentInChildren<Camera>();
+		if(diceCam)
+		{
+			Vector3 cameraPosition = diceCam.transform.localPosition;
+			diceCam.transform.localPosition = new Vector3(cameraX, cameraPosition.y, cameraPosition.z);
+		}
 	}
 
 	private IEnumerator StartEffect(int minSuccessNum)

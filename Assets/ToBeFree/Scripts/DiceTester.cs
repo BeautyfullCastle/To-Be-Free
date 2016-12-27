@@ -20,52 +20,8 @@ namespace ToBeFree
 			additionalDie = 0;
 		}
 
-		private IEnumerator Test(eTestStat stat, int diceNum, System.Action<int> setResultNum)
-		{
-			if(diceObj == null)
-			{
-				diceObj = GameObject.Find("Dice Tester");
-				yield break;
-			}
-			
-			AppDemo demo = diceObj.GetComponent<AppDemo>();
-			demo.Init(stat, diceNum);
-			int resultNum = 0;
-
-			diceObj.SetActive(true);
-
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
-
-			while(demo.mouseDown == false)
-			{
-				yield return new WaitForSecondsRealtime(1f);
-			}
-			
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);			
-
-			Dice dice = demo.dices[0];
-			while (dice.IsRolling())
-			{
-				yield return new WaitForSecondsRealtime(1f);
-			}
-
-			//yield return dice.StartEffect(MinSuccessNum);
-
-			yield return new WaitForSecondsRealtime(2f);
-
-			resultNum = dice.GetSuccessNum(MinSuccessNum);
-			
-			setResultNum(resultNum);
-			diceObj.SetActive(false);
-		}
-
 		public IEnumerator Test(eTestStat stat, int characterDiceNum, int policeDiceNum, System.Action<int, int> setResultNum)
 		{
-			//if(policeDiceNum == 0)
-			//{
-			//	yield return this.Test(stat, characterDiceNum, x => x = 0);
-			//	yield break;
-			//}
 			if (diceObj == null)
 			{
 				diceObj = GameObject.Find("Dice Tester");
@@ -87,9 +43,7 @@ namespace ToBeFree
 			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
-
-			//yield return new WaitForSecondsRealtime(2f);
-
+			
 			for (int i = 0; i < demo.dices.Length; ++i)
 			{
 				if(demo.dices[i].gameObject.activeSelf == false)

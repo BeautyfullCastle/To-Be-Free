@@ -115,11 +115,18 @@ public class Die : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		//if (collision.gameObject.name == this.gameObject.name)
+		Rigidbody rigid = this.GetComponent<Rigidbody>();
+		if (rigid == null)
+			return;
+
+		if (rigid.useGravity == false)
+			return;
+
+		if (rigid.velocity.magnitude < 0.1f && this.transform.position.z < -0.1f)
 		{
-			this.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
+			//rigid.AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
+			rigid.AddForce(new Vector3(0.1f, 0.1f, 1f), ForceMode.Impulse);
 		}
-			
 	}
 
 	private Vector3 Force()
