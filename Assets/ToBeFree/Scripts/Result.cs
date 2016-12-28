@@ -114,7 +114,47 @@ namespace ToBeFree
 			if (effect == null)
 				return string.Empty;
 
-			return effect.ToString();
+			// 수치
+			// character add hp, food, info
+			// stat add strength, agility, concentration, talent, all
+			// money add specific, rand_3
+			// 이름
+			// item add, del
+			// abnormal add, del
+			string strAmount = string.Empty;
+			switch(effect.SubjectType)
+			{
+				case eSubjectType.CHARACTER:
+					switch (effect.ObjectType)
+					{
+						case eObjectType.HP:
+						case eObjectType.FOOD:
+						case eObjectType.INFO:
+							strAmount = this.amount.ToString();
+							break;
+					}
+					break;
+				case eSubjectType.STAT:
+				case eSubjectType.MONEY:
+					strAmount = this.amount.ToString();
+					break;
+				case eSubjectType.ITEM:
+					Item item = ItemManager.Instance.GetByIndex(this.amount);
+					if(item != null)
+					{
+						strAmount = item.Name;
+					}
+					break;
+				case eSubjectType.ABNORMAL:
+					AbnormalCondition abnormal = AbnormalConditionManager.Instance.GetByIndex(this.amount);
+					if(abnormal != null)
+					{
+						strAmount = abnormal.Name;
+					}
+					break;
+			}
+			
+			return effect.ToString() + strAmount;
 		}
 
 		public int Amount

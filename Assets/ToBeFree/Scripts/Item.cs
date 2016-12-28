@@ -101,5 +101,13 @@ namespace ToBeFree
 				return index;
 			}
 		}
+
+		public string EngName
+		{
+			get
+			{
+				return ItemManager.Instance.GetEngName(this.index);
+			}
+		}
 	}
 }

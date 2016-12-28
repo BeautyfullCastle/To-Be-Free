@@ -11,7 +11,7 @@ namespace ToBeFree
 		private AbnormalConditionData[] dataList;
 		private const string fileName = "/AbnormalCondition.json";
 		private readonly string file = Application.streamingAssetsPath + fileName;
-
+		
 		private Language.AbnormalConditionData[] engList;
 		private Language.AbnormalConditionData[] korList;
 		private List<Language.AbnormalConditionData[]> languageList;
@@ -87,6 +87,7 @@ namespace ToBeFree
 				try
 				{
 					list[data.index].Name = data.name;
+					list[data.index].Buff.Name = data.name;
 					list[data.index].Buff.Script = data.script;
 				}
 				catch (Exception e)
@@ -109,6 +110,14 @@ namespace ToBeFree
 				return null;
 			}
 			return list[index];
+		}
+
+		public string GetEngName(int index)
+		{
+			if (index < 0 || index >= engList.Length)
+				return string.Empty;
+
+			return engList[index].name;
 		}
 
 		public void Save(List<AbnormalConditionSaveData> abnormalList)

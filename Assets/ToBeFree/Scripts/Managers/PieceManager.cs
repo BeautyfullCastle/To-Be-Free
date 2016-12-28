@@ -197,6 +197,7 @@ namespace ToBeFree
 			}
 			list.Add(piece);
 			AddPiece(piece);
+			GameManager.Instance.Character.Stat.SetViewRange();
 		}
 
 		public int GetNumberOfPiece(eSubjectType pieceType, City city)

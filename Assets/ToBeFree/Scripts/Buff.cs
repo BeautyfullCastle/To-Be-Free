@@ -27,7 +27,7 @@ namespace ToBeFree
 	public class Buff
 	{
 		private readonly int index;
-		private readonly string name;
+		private string name;
 		private string script;
 		private readonly EffectAmount[] effectAmountList;
 		private readonly bool isRestore;
@@ -95,6 +95,10 @@ namespace ToBeFree
 			get
 			{
 				return name;
+			}
+			set
+			{
+				name = value;
 			}
 		}
 

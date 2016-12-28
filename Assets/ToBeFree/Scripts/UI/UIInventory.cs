@@ -23,6 +23,7 @@ namespace ToBeFree
 			{
 				AddItem(item);
 			}
+			this.Refresh();
 		}
 
 		void OnDisable()

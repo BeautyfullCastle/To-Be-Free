@@ -86,6 +86,7 @@ namespace ToBeFree
 
 		private void Init()
 		{
+			ItemManager.Instance.Init();
 			TipManager.Instance.Init();
 			DiceTester.Instance.Init();
 			CityManager.Instance.Init();
@@ -101,19 +102,19 @@ namespace ToBeFree
 				iconCity.InitNeighbors();
 			}
 
-			LanguageManager.Instance.Init();
-
 			EventManager.Instance.Init();
 			ResultManager.Instance.Init();
 			QuestManager.Instance.Init();
 			AbnormalConditionManager.Instance.Init();
-
+			
 			this.State = GameState.Init;
 			commands = commandUIObj.GetComponentsInChildren<UICommand>();
 			foreach(UICommand command in commands)
 			{
 				command.GetComponent<UIButton>().isEnabled = false;
 			}
+
+			
 
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
@@ -122,9 +123,7 @@ namespace ToBeFree
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
 			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
-			//TipUIObj = GameObject.Find("Tip");
 			TipUIObj.SetActive(false);
-			//worldObj.SetActive(false);
 
 			inspectAction = new Inspect();
 		}
@@ -448,10 +447,11 @@ namespace ToBeFree
 			// Enter
 			Init();
 
-			// character init
 			CharacterManager.Instance.Init();
-			
-			if(IsNew == false)
+
+			LanguageManager.Instance.Init();
+
+			if (IsNew == false)
 			{
 				SaveLoadManager.Instance.Init();
 
@@ -482,7 +482,6 @@ namespace ToBeFree
 					PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
 					NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 				}
-
 				// load first main quest.
 				Quest firstMainQuest = QuestManager.Instance.GetByIndex(15);
 				if(firstMainQuest != null)
@@ -490,8 +489,6 @@ namespace ToBeFree
 					yield return QuestManager.Instance.Load(firstMainQuest, character);
 				}
 			}
-
-			character.Stat.SetViewRange();
 			
 			yield return null;
 

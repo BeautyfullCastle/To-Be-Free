@@ -16,7 +16,7 @@ namespace ToBeFree
 		{
 			this.buff = buff;
 			nameLabel.text = buff.Name;
-			sprite.spriteName = "BUFF_" + buff.Name;
+			sprite.spriteName = "BUFF_" + AbnormalConditionManager.Instance.GetEngName(buff.Index);
 			uiScript = buff.Script;
 			stackLabel.enabled = isStack;
 			if(stackLabel.enabled)

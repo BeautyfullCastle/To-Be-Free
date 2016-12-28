@@ -6,12 +6,7 @@ namespace ToBeFree
 	{
 		public delegate void selectLanguageHandler(eLanguage language);
 		static public event selectLanguageHandler selectLanguage;
-
-		//void Awake()
-		//{
-		//	SelectLanguage("KOREAN");
-		//}
-
+		
 		public void SelectLanguage(string language)
 		{
 			LanguageManager.Instance.LanguageSelection_selectLanguageForUI(EnumConvert<eLanguage>.ToEnum(language));

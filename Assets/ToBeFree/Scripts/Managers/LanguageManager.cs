@@ -52,7 +52,7 @@ namespace ToBeFree
 			languageList.Add(engList);
 			languageList.Add(korList);
 
-			GameManager.Instance.languageSelection.SelectLanguage("KOREAN");
+			GameManager.Instance.languageSelection.SelectLanguage(Application.systemLanguage.ToString().ToUpper());
 		}
 
 		public void LanguageSelection_selectLanguageForUI(eLanguage language)

@@ -316,7 +316,7 @@ namespace ToBeFree
 			this.Stat.RefreshUI();
 			this.Stat.SetViewRange();
 
-			GameObject.FindObjectOfType<UIInventory>().Init(this.Inven);
+			GameManager.Instance.uiInventory.Init(this.Inven);
 
 			GameManager.Instance.worldCam.GetComponent<CameraZoom>().Init();
 
@@ -326,6 +326,7 @@ namespace ToBeFree
 			{
 				yield return ab.Activate(this);
 			}
+			GameManager.Instance.uiBuffManager.Refresh();
 
 			yield return this.MoveTo(this.CurCity, 0, true);
 		}

@@ -145,7 +145,7 @@ namespace ToBeFree
 					Item item = ItemManager.Instance.GetByType(objectType, amount);
 					if (item == null)
 					{
-						throw new System.Exception("item is null");
+						throw new System.Exception(objectType.ToString() + " type item '" + amount.ToString() + "' is null");
 					}
 
 					if (verbType == eVerbType.ADD)

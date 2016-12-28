@@ -11,15 +11,16 @@ namespace ToBeFree
 
 	public class ItemManager : Singleton<ItemManager>
 	{
-		private readonly Item[] list;
-		private readonly ItemData[] dataList;
-		private readonly string file = Application.streamingAssetsPath + "/Item.json";
+		private Item[] list;
+		private ItemData[] dataList;
+		private const string fileName = "/Item.json";
+		private readonly string file = Application.streamingAssetsPath + fileName;
 
 		private Language.ItemData[] engList;
 		private Language.ItemData[] korList;
 		private List<Language.ItemData[]> languageList;
 
-		public ItemManager()
+		public void Init()
 		{
 			DataList<ItemData> cDataList = new DataList<ItemData>(file);
 			dataList = cDataList.dataList;
@@ -28,8 +29,8 @@ namespace ToBeFree
 
 			list = new Item[dataList.Length];
 
-			engList = new DataList<Language.ItemData>(Application.streamingAssetsPath + "/Language/English/Item.json").dataList;
-			korList = new DataList<Language.ItemData>(Application.streamingAssetsPath + "/Language/Korean/Item.json").dataList;
+			engList = new DataList<Language.ItemData>(Application.streamingAssetsPath + "/Language/English" + fileName).dataList;
+			korList = new DataList<Language.ItemData>(Application.streamingAssetsPath + "/Language/Korean" + fileName).dataList;
 			languageList = new List<Language.ItemData[]>(2);
 			languageList.Add(engList);
 			languageList.Add(korList);
@@ -67,6 +68,15 @@ namespace ToBeFree
 			}
 		}
 
+		public string GetEngName(int index)
+		{
+			if(index < 0 || index >= engList.Length)
+			{
+				return string.Empty;
+			}
+			return this.engList[index].name;
+		}
+
 		public void ChangeLanguage(eLanguage language)
 		{
 			foreach (Language.ItemData data in languageList[(int)language])
@@ -74,6 +84,7 @@ namespace ToBeFree
 				try
 				{
 					list[data.index].Name = data.name;
+					list[data.index].Buff.Name = data.name;
 					list[data.index].Buff.Script = data.script;
 				}
 				catch (Exception e)

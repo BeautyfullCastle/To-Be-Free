@@ -202,7 +202,7 @@ namespace ToBeFree
 			if (sprite == null)
 				return;
 
-			string nameForSprite = item.Name;
+			string nameForSprite = item.EngName;
 			if (nameForSprite.Contains(1.ToString()) || nameForSprite.Contains(2.ToString())
 				|| nameForSprite.Contains(3.ToString()) || nameForSprite.Contains(4.ToString()))
 			{
