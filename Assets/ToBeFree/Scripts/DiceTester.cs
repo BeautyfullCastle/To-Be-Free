@@ -28,19 +28,21 @@ namespace ToBeFree
 				yield break;
 			}
 
+			diceObj.SetActive(true);
+
 			AppDemo demo = diceObj.GetComponent<AppDemo>();
 			
-			demo.Init(stat, characterDiceNum + additionalDie, policeDiceNum);
+			yield return demo.Init(stat, characterDiceNum + additionalDie, policeDiceNum);
 			int[] resultNums = { 0, 0 };
-
-			diceObj.SetActive(true);
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
 
 			while (demo.mouseDown == false)
 			{
-				yield return new WaitForSecondsRealtime(1f);
+				yield return new WaitForSeconds(1f);
 			}
+
+			yield return new WaitForSeconds(1f);
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
 			
@@ -53,7 +55,7 @@ namespace ToBeFree
 
 				while (demo.dices[i].IsRolling())
 				{
-					yield return new WaitForSecondsRealtime(1f);
+					yield return new WaitForSeconds(1f);
 					continue;
 				}
 				resultNums[i] = demo.dices[i].GetSuccessNum(MinSuccessNum);
@@ -61,7 +63,7 @@ namespace ToBeFree
 
 			yield return demo.dices[0].StartEffect(demo.dices[1], minSuccessNum);
 
-			yield return new WaitForSecondsRealtime(2f);
+			yield return new WaitForSeconds(2f);
 
 			setResultNum(resultNums[0], resultNums[1]);
 			diceObj.SetActive(false);

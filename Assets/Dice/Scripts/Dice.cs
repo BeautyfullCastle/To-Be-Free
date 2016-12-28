@@ -77,11 +77,12 @@ public class Dice : MonoBehaviour {
 			RollingDie rollingDie = dice as RollingDie;
 
 			rollingDie.SetGravity(!isFreeze);
-						
+
 			if(isFreeze)
 				rollingDie.force = Vector3.zero;
 			else
 			{
+				rollingDie.gameObject.GetComponent<Collider>().enabled = true;
 				rollingDie.gameObject.GetComponent<Rigidbody>().AddForce(Force(), ForceMode.Impulse);
 				// apply a random torque
 				rollingDie.gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
@@ -132,7 +133,7 @@ public class Dice : MonoBehaviour {
 	/// format dice 			: 	({count}){die type}	, exmpl.  d6, 4d4, 12d8 , 1d20
 	/// possible die types 	:	d4, d6, d8 , d10, d12, d20
 	/// </summary>
-	public void Init(int diceNum, string name, eTestStat stat = eTestStat.NULL)
+	public IEnumerator Init(int diceNum, string name, eTestStat stat = eTestStat.NULL)
 	{
 		if(spawnPoint == null)
 		{
@@ -142,30 +143,35 @@ public class Dice : MonoBehaviour {
 		positionX = this.spawnPoint.position.x;
 		positionY = this.spawnPoint.position.y;
 
+		this.nameLabel.text = name;
+		this.statLabel.text = stat.ToString();
+		this.diceNumLabel.text = diceNum.ToString();
+
 		string layerName = "Dice1";
 		if(name == "Police")
 		{
 			layerName = "Dice2";
 		}
+
 		// instantiate the dice
 		for (int d = 0; d < diceNum; d++)
 		{
-			AddDie(LayerMask.NameToLayer(layerName));
+			yield return AddDie(LayerMask.NameToLayer(layerName));
 		}
-
-		this.nameLabel.text = name;
-		this.statLabel.text = stat.ToString();
-		this.diceNumLabel.text = diceNum.ToString();
 	}
 
-	public void AddDie(int layer)
+	public IEnumerator AddDie(int layer)
 	{
 		string dieType = "d6";
 		string mat = "red";
 
+		Vector3 startPosition = new Vector3(0, 20f, 0);
+		Vector3 destination = new Vector3(positionX, positionY, spawnPoint.position.z);
+		
 		// create the die prefab/gameObject
-		GameObject die = prefab(dieType, new Vector3(positionX, positionY, spawnPoint.position.z), new Vector3(0f, 0f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
+		GameObject die = prefab(dieType, startPosition, new Vector3(0f, 0f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
 		die.layer = layer;
+		
 		// give it a random rotation
 		//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 		// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
@@ -176,6 +182,14 @@ public class Dice : MonoBehaviour {
 		allDice.Add(rDie);
 		// add RollingDie to the rolling queue
 		//rollQueue.Add(rDie);
+
+		TweenPosition tween = die.AddComponent<TweenPosition>();
+		tween.from = startPosition;
+		tween.to = destination;
+		tween.duration = 2f;
+		tween.PlayForward();
+
+		yield return new WaitForSeconds(tween.duration);
 
 		positionX += 0.15f;
 		if (allDice.Count % 3 == 0)

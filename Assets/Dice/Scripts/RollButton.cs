@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using ToBeFree;
+using System;
 
 public class RollButton : MonoBehaviour {
 
@@ -22,10 +23,16 @@ public class RollButton : MonoBehaviour {
 
 	public void OnRelease()
 	{
+		StartCoroutine(Roll());
+	}
+
+	private IEnumerator Roll()
+	{
 		bClick = false;
+
 		if (bar.value >= minCorrectGage && bar.value <= maxCorrectGage)
 		{
-			demo.AddDie();
+			yield return demo.AddDie();
 		}
 		demo.OnButtonClick();
 		AudioManager.Instance.Find("dice_hand").Stop();

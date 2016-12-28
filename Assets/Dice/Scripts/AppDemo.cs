@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using ToBeFree;
 /**
 * Copyright (c) 2010-2015, WyrmTale Games and Game Components
@@ -29,7 +30,7 @@ public class AppDemo : MonoBehaviour
 
 	private eTestStat stat;
 
-	public void Init(eTestStat stat, int characterDiceNum, int policeDiceNum = 0)
+	public IEnumerator Init(eTestStat stat, int characterDiceNum, int policeDiceNum = 0)
 	{
 		//dices[0].Clear();
 		//dices[1].Clear();
@@ -41,8 +42,8 @@ public class AppDemo : MonoBehaviour
 		dices[0].SetPosition(isPolice);
 		dices[1].gameObject.SetActive(isPolice);
 
-		dices[0].Init(characterDiceNum, GameManager.Instance.Character.Name, stat);
-		dices[1].Init(policeDiceNum, "Police");
+		yield return dices[0].Init(characterDiceNum, GameManager.Instance.Character.Name, stat);
+		yield return dices[1].Init(policeDiceNum, "Police");
 		
 		this.stat = stat;
 	}
@@ -96,16 +97,16 @@ public class AppDemo : MonoBehaviour
 		return mp;
 	}
 
-	public void AddDie()
+	public IEnumerator AddDie()
 	{
-		dices[0].AddDie(LayerMask.NameToLayer("Dice1"));
+		yield return dices[0].AddDie(LayerMask.NameToLayer("Dice1"));
 	}
 
 	private void Stat_OnValueChange(int value, eStat stat)
 	{
 		if (this.stat.ToString() == stat.ToString() && value >= 1)
 		{
-			AddDie();
+			StartCoroutine(AddDie());
 		}
 	}
 }

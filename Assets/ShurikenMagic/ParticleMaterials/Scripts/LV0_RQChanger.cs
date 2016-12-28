@@ -15,18 +15,18 @@ using System.Collections;
 //[ExecuteInEditMode]
 public class LV0_RQChanger : MonoBehaviour
 {
-    public Material _mat; // 파티클 컴퍼넌트에 적용되는 메터리얼. 수동으로 끌어다 넣어줘야함.
-    public int _renderQueue; // 수정을 할 렌더큐값, NGUI 기준 기본 3000, 즉 NGUI 에서 사용하려면 3000 이상을 넣어줘야합니다.
-    public MeshRenderer _meshRender; // 3D 텍스트를 위하여 Mesh Render 수정.
+	public Material _mat; // 파티클 컴퍼넌트에 적용되는 메터리얼. 수동으로 끌어다 넣어줘야함.
+	public int _renderQueue; // 수정을 할 렌더큐값, NGUI 기준 기본 3000, 즉 NGUI 에서 사용하려면 3000 이상을 넣어줘야합니다.
+	public MeshRenderer _meshRender; // 3D 텍스트를 위하여 Mesh Render 수정.
 
-    void Update()
-    {
-        if (_meshRender != null) _mat = _meshRender.materials[0];
-        if (_mat != null) //메터리얼이 정의안되어있으면 실행안됨.
-        {
-                _mat.renderQueue = _renderQueue; // 렌더큐값 업데이트.
+	void Update()
+	{
+		if (_meshRender != null) _mat = _meshRender.materials[0];
+		if (_mat != null) //메터리얼이 정의안되어있으면 실행안됨.
+		{
+				_mat.renderQueue = _renderQueue; // 렌더큐값 업데이트.
 
 				Destroy(this);
-        }
-    }
+		}
+	}
 }
