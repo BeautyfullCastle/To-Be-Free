@@ -169,7 +169,7 @@ public class Dice : MonoBehaviour {
 		Vector3 destination = new Vector3(positionX, positionY, spawnPoint.position.z);
 		
 		// create the die prefab/gameObject
-		GameObject die = prefab(dieType, startPosition, new Vector3(0f, 0f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
+		GameObject die = prefab(dieType, destination, new Vector3(0f, 0f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
 		die.layer = layer;
 		
 		// give it a random rotation
@@ -183,13 +183,15 @@ public class Dice : MonoBehaviour {
 		// add RollingDie to the rolling queue
 		//rollQueue.Add(rDie);
 
-		TweenPosition tween = die.AddComponent<TweenPosition>();
-		tween.from = startPosition;
-		tween.to = destination;
-		tween.duration = 2f;
-		tween.PlayForward();
+		//TweenPosition tween = die.AddComponent<TweenPosition>();
+		//tween.from = startPosition;
+		//tween.to = destination;
+		//tween.duration = 2f;
+		//tween.PlayForward();
 
-		yield return new WaitForSeconds(tween.duration);
+		//yield return new WaitForSeconds(tween.duration);
+		
+		yield return null;
 
 		positionX += 0.15f;
 		if (allDice.Count % 3 == 0)
@@ -323,7 +325,7 @@ public class Dice : MonoBehaviour {
 	// dertermine random rolling force	
 	private Vector3 Force()
 	{
-		float force = 1.5f;
+		float force = 1f;
 		return new Vector3(Random.Range(-0.2f, 0.2f) * force, Random.Range(-0.2f, 0.2f) * force, -force * 2);
 		Vector3 rollTarget = Vector3.zero + new Vector3(2 + 7 * Random.value, .5F + 4 * Random.value, -2 - 3 * Random.value);
 		return Vector3.Lerp(spawnPoint.position, rollTarget, 1).normalized * (-35 - Random.value * 5);

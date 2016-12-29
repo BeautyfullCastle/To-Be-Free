@@ -18,7 +18,9 @@ namespace ToBeFree
 		public eNodeType type = eNodeType.TOWN;
 
 		[SerializeField]
-		private UIGrid grid;
+		private UIGrid policeGrid;
+		[SerializeField]
+		public Transform characterOffset;
 		[SerializeField]
 		private Transform questOffset;
 		[SerializeField]
@@ -67,7 +69,8 @@ namespace ToBeFree
 		{
 			nameLabel.text = this.name;
 
-			grid = this.gameObject.GetComponentInChildren<UIGrid>();
+			policeGrid = this.transform.FindChild("Police Grid").GetComponent<UIGrid>();
+			characterOffset = this.transform.FindChild("Character Offset");
 			questOffset = this.transform.FindChild("Quest Offset");
 			brokerOffset = this.transform.FindChild("Broker Offset");
 			timerSprite = this.transform.FindChild("Timer Sprite").GetComponent<UISprite>();
@@ -99,10 +102,10 @@ namespace ToBeFree
 				type = EnumConvert<eNodeType>.ToEnum(this.gameObject.name);
 				nameLabel.enabled = false;
 
-				questOffset.localPosition = new Vector3(-25f, -40f, 0f);
-				brokerOffset.localPosition = new Vector3(25f, -40f, 0f);
-				timerSprite.transform.localPosition = new Vector3(0, smallSize / 2, 0);
-
+				questOffset.localPosition = new Vector3(-14.8f, -48.6f);
+				brokerOffset.localPosition = new Vector3(18.3f, -48.4f);
+				timerSprite.transform.localPosition = new Vector3(0, 49.6f);
+				
 				if (this.gameObject.name == eNodeType.SMALLCITY.ToString())
 				{
 					sprite.spriteName = "small";
@@ -121,7 +124,9 @@ namespace ToBeFree
 				sprite.width = bigSize;
 				sprite.height = bigSize;
 				sprite.spriteName = "bigcity";
-				timerSprite.transform.localPosition = new Vector3(0, bigSize / 2, 0);
+				questOffset.localPosition = new Vector3(-41.9f, -77.8f);
+				brokerOffset.localPosition = new Vector3(41.9f, -78.2f);
+				timerSprite.transform.localPosition = new Vector3(0, 76.7f);
 			}
 			else if (this.type == eNodeType.MIDDLECITY)
 			{
@@ -130,7 +135,9 @@ namespace ToBeFree
 				sprite.spriteName = "middle";
 				nameLabel.fontSize = 11;
 				nameLabel.transform.localPosition = new Vector3(0f, -32f);
-				timerSprite.transform.localPosition = new Vector3(0, middleSize / 2, 0);
+				questOffset.localPosition = new Vector3(-23.6f, -60.2f);
+				brokerOffset.localPosition = new Vector3(24.8f, -60.5f);
+				timerSprite.transform.localPosition = new Vector3(0, 59.7f);
 			}
 		}
 
@@ -138,8 +145,8 @@ namespace ToBeFree
 		{
 			if(iconPiece.subjectType == eSubjectType.POLICE)
 			{
-				grid.AddChild(iconPiece.transform);
-				grid.enabled = true;
+				policeGrid.AddChild(iconPiece.transform);
+				policeGrid.enabled = true;
 			}
 			else if(iconPiece.subjectType == eSubjectType.QUEST)
 			{

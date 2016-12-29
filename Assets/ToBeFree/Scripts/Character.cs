@@ -246,7 +246,7 @@ namespace ToBeFree
 			}
 
 			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city, moveTimePerCity);
-
+			this.iconCharacter.transform.position = city.IconCity.characterOffset.position;
 			this.CurCity = city;
 
 			eTipTiming tipTiming = eTipTiming.NULL;
