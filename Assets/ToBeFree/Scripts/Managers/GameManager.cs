@@ -496,7 +496,8 @@ namespace ToBeFree
 			// for test
 			//character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 4;
-			//character.Stat.Satiety = 1;
+			character.Stat.HP = 1;
+			character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 #endif
@@ -579,18 +580,23 @@ namespace ToBeFree
 			}
 			else if(buttonName == "MAIN")
 			{
-				ResetUI();
 				SwitchMenu(false);
-				worldObj.SetActive(false);
-				ChangeScene(eSceneState.Main);
-				this.state = GameState.Main;
-				StopAllCoroutines();
-				StartCoroutine(NextState());
+				ChangeToMain();
 			}
 			else if(buttonName == "CHARACTER")
 			{
 				this.state = GameState.InGame;
 			}
+		}
+
+		public void ChangeToMain()
+		{
+			ResetUI();
+			worldObj.SetActive(false);
+			ChangeScene(eSceneState.Main);
+			this.state = GameState.Main;
+			StopAllCoroutines();
+			StartCoroutine(NextState());
 		}
 
 		private void ResetUI()
@@ -610,11 +616,6 @@ namespace ToBeFree
 			for(int i=0; i<scenes.Length; ++i)
 			{
 				scenes[i].SetActive(i == iSceneState);
-			}
-
-			if(sceneState == eSceneState.Main)
-			{
-				this.state = GameState.Main;
 			}
 		}
 

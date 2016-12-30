@@ -41,7 +41,7 @@ namespace ToBeFree
 
 		public UIBuff Find(Buff buff)
 		{
-			return buffs.Find(x => x.nameLabel.text == buff.Name);
+			return buffs.Find(x => x.Index == buff.Index);
 		}
 
 		public void DeleteBuff(Buff buff)

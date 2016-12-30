@@ -49,7 +49,7 @@ namespace ToBeFree
 					break;
 			}
 
-			GameManager.Instance.ChangeScene(GameManager.eSceneState.Main);
+			GameManager.Instance.ChangeToMain();
 		}
 
 		private IEnumerator TurnPages(Texture[] textures)

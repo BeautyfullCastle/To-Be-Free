@@ -63,8 +63,12 @@ namespace ToBeFree
 				if(isStack)
 				{
 					stack++;
-					buff.EffectAmountList[0].Amount += firstAmount;
-					GameManager.Instance.uiBuffManager.Find(this.buff).stackLabel.text = stack.ToString();
+					this.buff.EffectAmountList[0].Amount += firstAmount;
+					UIBuff uiBuff = GameManager.Instance.uiBuffManager.Find(this.buff);
+					if(uiBuff)
+					{
+						uiBuff.stackLabel.text = stack.ToString();
+					}
 				}
 			}
 			else
