@@ -91,7 +91,7 @@ namespace ToBeFree
 		{
 			if (this.Type == eNodeType.BIGCITY || this.Type == eNodeType.MIDDLECITY)
 			{
-				this.item = ItemManager.Instance.List[data.itemIndex];
+				this.item = ItemManager.Instance.GetByIndex(data.itemIndex);
 			}
 		}
 

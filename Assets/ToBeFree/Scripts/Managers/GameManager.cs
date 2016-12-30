@@ -658,7 +658,7 @@ namespace ToBeFree
 
 			//yield return police.AddStat(false);
 
-			character.Inven.AddItem(ItemManager.Instance.List[12]);
+			///character.Inven.AddItem(ItemManager.Instance.GetByIndex(12));
 
 			
 #endif

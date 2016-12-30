@@ -115,7 +115,7 @@ public class Die : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		NGUIDebug.Log(collision.gameObject.name);
+		//NGUIDebug.Log(collision.gameObject.name);
 		Rigidbody rigid = this.GetComponent<Rigidbody>();
 		if (rigid == null)
 			return;

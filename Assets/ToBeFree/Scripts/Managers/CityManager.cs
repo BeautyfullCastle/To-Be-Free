@@ -76,7 +76,7 @@ namespace ToBeFree
 
 		public Item SetCityItem()
 		{
-			List<Item> list = new List<Item>(ItemManager.Instance.List);
+			List<Item> list = ItemManager.Instance.CopyTo();
 			list.RemoveAll(x => x.Tag == ItemTag.FOOD);
 			list.RemoveAll(x => cityItems.Contains(x));
 

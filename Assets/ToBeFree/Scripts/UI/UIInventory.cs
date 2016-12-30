@@ -56,7 +56,7 @@ namespace ToBeFree
 
 		public void DeleteItem(Item item)
 		{
-			UIItem uiItem = items.Find(x => x.itemName.text == item.Name);
+			UIItem uiItem = items.Find(x => x.Item.Index == item.Index);
 			if(uiItem == null)
 			{
 				return;
@@ -78,12 +78,7 @@ namespace ToBeFree
 
 		public List<UIItem> FindAll(Item item)
 		{
-			return this.items.FindAll(x => x.Item.Name == item.Name);
-		}
-
-		public UIItem Find(string name)
-		{
-			return this.items.Find(x => x.itemName.text == name);
+			return this.items.FindAll(x => x.Item.Index == item.Index);
 		}
 
 		public UIItem GetByGridIndex(int currSiblingIndex)

@@ -12,8 +12,13 @@ public class RollButton : MonoBehaviour {
 	public AppDemo demo;
 	public UIProgressBar bar;
 
+	private BoxCollider2D collider;
 	private bool bClick = false;
 	
+	void Awake()
+	{
+		this.collider = this.GetComponent<BoxCollider2D>();
+	}
 	
 	public void OnPress()
 	{
@@ -37,12 +42,15 @@ public class RollButton : MonoBehaviour {
 		demo.OnButtonClick();
 		AudioManager.Instance.Find("dice_hand").Stop();
 		AudioManager.Instance.Find("dice_full").Play();
-		this.GetComponent<BoxCollider2D>().enabled = false;
+		this.SetEnable(false);
 	}
 
-	void OnEnable()
+	public void SetEnable(bool isEnable)
 	{
-		this.GetComponent<BoxCollider2D>().enabled = true;
+		if (this.collider)
+		{
+			collider.enabled = isEnable;
+		}
 	}
 
 	void OnDisable()

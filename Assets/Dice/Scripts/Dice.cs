@@ -165,11 +165,11 @@ public class Dice : MonoBehaviour {
 		string dieType = "d6";
 		string mat = "red";
 
-		Vector3 startPosition = new Vector3(0, 20f, 0);
+		Vector3 startPosition = new Vector3(0.5f, 19.5f);
 		Vector3 destination = new Vector3(positionX, positionY, spawnPoint.position.z);
 		
 		// create the die prefab/gameObject
-		GameObject die = prefab(dieType, destination, new Vector3(0f, 0f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
+		GameObject die = prefab(dieType, startPosition, new Vector3(0f, 0f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
 		die.layer = layer;
 		
 		// give it a random rotation
@@ -183,14 +183,21 @@ public class Dice : MonoBehaviour {
 		// add RollingDie to the rolling queue
 		//rollQueue.Add(rDie);
 
-		//TweenPosition tween = die.AddComponent<TweenPosition>();
-		//tween.from = startPosition;
-		//tween.to = destination;
-		//tween.duration = 2f;
-		//tween.PlayForward();
+		TweenPosition tween = die.AddComponent<TweenPosition>();
+		tween.from = startPosition;
+		tween.to = destination;
+		tween.duration = 0.5f;
+		tween.PlayForward();
 
-		//yield return new WaitForSeconds(tween.duration);
-		
+		Vector3 originScale = die.transform.localScale;
+		TweenScale tweenScale = die.AddComponent<TweenScale>();
+		tweenScale.from = Vector3.zero;
+		tweenScale.to = originScale;
+		tweenScale.duration = tween.duration;
+		tweenScale.PlayForward();
+
+		yield return new WaitForSeconds(tween.duration);
+
 		yield return null;
 
 		positionX += 0.15f;

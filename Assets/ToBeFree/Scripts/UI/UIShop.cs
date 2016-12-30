@@ -46,7 +46,7 @@ namespace ToBeFree
 			cityItems[0].SetInfo(GameManager.Instance.Character.CurCity.Item);
 
 			// 랜덤 아이템 리스트 세팅
-			List<Item> randomItemList = new List<Item>(ItemManager.Instance.List);
+			List<Item> randomItemList = ItemManager.Instance.CopyTo();
 			// 기본 아이템들 제외
 			foreach (UIItem basicItem in basicItems)
 			{

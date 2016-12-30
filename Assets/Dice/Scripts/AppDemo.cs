@@ -25,6 +25,9 @@ public class AppDemo : MonoBehaviour
 {
 	public Dice[] dices = null;
 
+	[SerializeField]
+	private RollButton button;
+
 	[HideInInspector]
 	public bool mouseDown = false;
 
@@ -44,7 +47,8 @@ public class AppDemo : MonoBehaviour
 
 		yield return dices[0].Init(characterDiceNum, GameManager.Instance.Character.Name, stat);
 		yield return dices[1].Init(policeDiceNum, "Police");
-		
+
+		button.SetEnable(true);
 		this.stat = stat;
 	}
 

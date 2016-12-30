@@ -40,6 +40,11 @@ namespace ToBeFree
 			ParseData();
 		}
 
+		public List<Item> CopyTo()
+		{
+			return new List<Item>(this.list);
+		}
+
 		private void ParseData()
 		{
 			foreach (ItemData data in dataList)
@@ -128,14 +133,6 @@ namespace ToBeFree
 				return null;
 
 			return list[index];
-		}
-
-		public Item[] List
-		{
-			get
-			{
-				return list;
-			}
 		}
 
 		public Item GetByType(eObjectType objectType, int amount)

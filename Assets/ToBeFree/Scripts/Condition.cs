@@ -38,7 +38,7 @@ namespace ToBeFree
 			}
 			else if(subjectType == eSubjectType.ITEM)
 			{
-				return character.Inven.Exist(ItemManager.Instance.List[amount]);
+				return character.Inven.Exist(ItemManager.Instance.GetByIndex(amount));
 			}
 			else if(subjectType == eSubjectType.INFO)
 			{

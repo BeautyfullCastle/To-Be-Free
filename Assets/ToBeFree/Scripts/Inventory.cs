@@ -22,7 +22,7 @@ namespace ToBeFree
 			list = new List<Item>(dataList.Count);
 			for (int i = 0; i < dataList.Count; ++i)
 			{
-				this.list.Add(new Item(ItemManager.Instance.List[dataList[i].index]));
+				this.list.Add(new Item(ItemManager.Instance.GetByIndex(dataList[i].index)));
 			}
 		}
 		
@@ -61,59 +61,56 @@ namespace ToBeFree
 			}
 		}
 
+		public bool Exist(Item item)
+		{
+			return list.Exists(x => x.Index == item.Index);
+		}
+
 		public List<Item> FindAll(ItemTag tag)
 		{
 			return list.FindAll(x => x.Tag == tag);
 		}
 
-		public bool Exist(Item item)
+		public Item Find(Item item)
 		{
-			return list.Exists(x => x.Name == item.Name);
+			return list.Find(x => x.Index == item.Index);
 		}
 
 		public IEnumerator Delete(Item item, Character character, int siblingIndex = -1)
 		{
-			if(item == null)
+			if (item == null)
 			{
 				yield break;
 			}
-			else if(Exist(item) == false)
+			Item foundItem = this.Find(item);
+			if(foundItem == null)
 			{
 				Debug.LogError("Item " + item.Name + "is not exist in this inventory.");
 				yield break;
 			}
 
-			UIInventory uiInventory = GameObject.FindObjectOfType<UIInventory>();
+			UIInventory uiInventory = GameManager.Instance.uiInventory;
 			if(uiInventory == null)
 			{
 				yield break;
 			}
-
-			Item findedItem = null;
+			
 			if (siblingIndex == -1)
 			{
-				findedItem = list.Find(x => (x.Name == item.Name));
-				if(findedItem != null)
-				{
-					uiInventory.DeleteItem(findedItem);
-				}
+				uiInventory.DeleteItem(foundItem);
 			}
 			else
 			{
 				UIItem uiItem = uiInventory.GetByGridIndex(siblingIndex);
 				if(uiItem != null)
 				{
-					findedItem = uiItem.Item;
 					uiInventory.DeleteItem(uiItem);
 				}
 			}
+			
+			list.Remove(foundItem);
 
-			if (findedItem == null)
-				yield break;
-
-			list.Remove(findedItem);
-
-			yield return BuffManager.Instance.Delete(findedItem.Buff, character);
+			yield return BuffManager.Instance.Delete(foundItem.Buff, character);
 		}
 		
 		public IEnumerator Delete(Buff buff, Character character)
