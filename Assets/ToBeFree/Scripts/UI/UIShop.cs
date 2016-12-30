@@ -24,11 +24,7 @@ namespace ToBeFree
 		{
 			grids = GetComponentsInChildren<UIGrid>();
 
-			Item[] basicItemList = ItemManager.Instance.FindAll(ItemTag.FOOD);
-			for(int i=0; i<basicItemList.Length; ++i)
-			{
-				basicItems[i].SetInfo(basicItemList[i]);
-			}
+			
 			
 			foreach (UIGrid grid in grids)
 			{
@@ -40,8 +36,15 @@ namespace ToBeFree
 			this.gameObject.SetActive(false);
 		}
 		
-		void Start()
+		void OnEnable()
 		{
+			// 기본 아이템 세팅
+			Item[] basicItemList = ItemManager.Instance.FindAll(ItemTag.FOOD);
+			for (int i = 0; i < basicItemList.Length; ++i)
+			{
+				basicItems[i].SetInfo(basicItemList[i]);
+			}
+
 			// 도시 아이템 세팅
 			cityItems[0].SetInfo(GameManager.Instance.Character.CurCity.Item);
 

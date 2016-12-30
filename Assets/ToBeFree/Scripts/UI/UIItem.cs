@@ -203,11 +203,6 @@ namespace ToBeFree
 				return;
 
 			string nameForSprite = item.EngName;
-			if (nameForSprite.Contains(1.ToString()) || nameForSprite.Contains(2.ToString())
-				|| nameForSprite.Contains(3.ToString()) || nameForSprite.Contains(4.ToString()))
-			{
-				nameForSprite = item.Name.Substring(0, item.Name.Length - 2);
-			}
 			UISpriteData spriteData = sprite.atlas.GetSprite("ITEM_" + nameForSprite);
 			if(spriteData != null)
 			{

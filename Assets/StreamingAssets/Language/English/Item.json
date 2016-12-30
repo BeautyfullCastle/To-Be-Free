@@ -2,22 +2,22 @@
 	"dataList": [
 		{
 			"index": 0,
-			"name": "FOOD 1",
+			"name": "Food 1",
 			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
 		},
 		{
 			"index": 1,
-			"name": "FOOD 2",
+			"name": "Food 2",
 			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
 		},
 		{
 			"index": 2,
-			"name": "FOOD 3",
+			"name": "Food 3",
 			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
 		},
 		{
 			"index": 3,
-			"name": "FOOD 4",
+			"name": "Food 4",
 			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
 		},
 		{
