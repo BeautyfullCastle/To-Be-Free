@@ -37,13 +37,13 @@ namespace ToBeFree
 		public UIEventManager uiEventManager;
 		public UIBuffManager uiBuffManager;
 		public UIQuestManager uiQuestManager;
+		public UITipManager uiTipManager;
 		public UIEndingManager endingManager;
 		public UICharacter uiCharacter;
 		public GameObject optionObj;
 		public LanguageSelection languageSelection;
 		public UIGrid commandPopupGrid;
 		public GameObject IconPieceObj;
-		public GameObject TipUIObj;
 		public GameObject diceObj;
 		public GameObject menuObj;
 
@@ -123,7 +123,6 @@ namespace ToBeFree
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
 			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
-			TipUIObj.SetActive(false);
 
 			inspectAction = new Inspect();
 		}
@@ -480,7 +479,7 @@ namespace ToBeFree
 				foreach (City city in bigCityList)
 				{
 					PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
-					NGUIDebug.Log("Add Big city : " + city.Name.ToString());
+					//NGUIDebug.Log("Add Big city : " + city.Name.ToString());
 				}
 				// load first main quest.
 				Quest firstMainQuest = QuestManager.Instance.GetByIndex(15);
@@ -496,8 +495,8 @@ namespace ToBeFree
 			// for test
 			//character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 4;
-			character.Stat.HP = 1;
-			character.Stat.Satiety = 1;
+			//character.Stat.HP = 1;
+			//character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 #endif

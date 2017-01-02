@@ -7,7 +7,7 @@ namespace ToBeFree
 		public void MoveCity(IconCity iconCity)
 		{
 			this.transform.position = iconCity.characterOffset.position;
-			NGUIDebug.Log("Moved to " + iconCity.name);
+			//NGUIDebug.Log("Moved to " + iconCity.name);
 		}
 	}
 }

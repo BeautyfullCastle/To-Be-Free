@@ -83,7 +83,12 @@ namespace ToBeFree
 		public void Show(eTipTiming timing)
 		{
 			Tip tip = Array.Find<Tip>(list, x => x.Timing == timing);
-			tip.Show();
+
+			if (tip == null)
+				return;
+
+			GameManager.Instance.uiTipManager.Show(tip);
+			
 		}
 	}
 }

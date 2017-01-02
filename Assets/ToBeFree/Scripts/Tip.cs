@@ -14,15 +14,6 @@
 		public Tip(Tip tip) : this(tip.script, tip.timing)
 		{
 		}
-		
-		public void Show()
-		{
-			if(GameManager.Instance.TipUIObj.activeSelf == false)
-			{
-				GameManager.Instance.TipUIObj.SetActive(true);
-			}
-			GameManager.Instance.TipUIObj.GetComponentInChildren<UILabel>().text = script;
-		}
 
 		public eTipTiming Timing
 		{
