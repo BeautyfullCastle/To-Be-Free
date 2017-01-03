@@ -126,7 +126,7 @@ namespace ToBeFree
 
 			inspectAction = new Inspect();
 		}
-		
+
 		public void ClickCity(IconCity city)
 		{
 			// 캐릭터 도시 이동
@@ -438,6 +438,11 @@ namespace ToBeFree
 			state = GameState.StartWeek;
 		}
 
+		private void Awake()
+		{
+			LanguageManager.Instance.Init();
+		}
+
 		private void Start()
 		{
 			this.StartCoroutine(MainState());
@@ -453,7 +458,7 @@ namespace ToBeFree
 
 			CharacterManager.Instance.Init();
 
-			LanguageManager.Instance.Init();
+			
 
 			if (IsNew == false)
 			{
@@ -582,14 +587,14 @@ namespace ToBeFree
 				SwitchMenu(false);
 				SwitchMenu(true);
 			}
-			else if(buttonName == "MAIN")
+			else if(buttonName == "EXIT")
 			{
 				SwitchMenu(false);
 				ChangeToMain();
 			}
-			else if(buttonName == "CHARACTER")
+			else if(buttonName == "EXIT_MAIN")
 			{
-				this.state = GameState.InGame;
+				Application.Quit();
 			}
 		}
 

@@ -374,6 +374,36 @@
 			"index": 74,
 			"key": "Event_TotalMoney",
 			"script": "총 획득 급여"
+		},
+		{
+			"index": 75,
+			"key": "UI_CrackDown",
+			"script": "탈북자 집중단속기간"
+		},
+		{
+			"index": 76,
+			"key": "UI_EXIT",
+			"script": "나가기"
+		},
+		{
+			"index": 77,
+			"key": "UI_New",
+			"script": "새로운 이야기"
+		},
+		{
+			"index": 78,
+			"key": "UI_Continue",
+			"script": "계속하기"
+		},
+		{
+			"index": 79,
+			"key": "UI_Credit",
+			"script": "제작진"
+		},
+		{
+			"index": 80,
+			"key": "UI_EXIT_Main",
+			"script": "종료하기"
 		}
 	]
 }

@@ -78,6 +78,7 @@ namespace ToBeFree
 					Debug.LogError(data.index.ToString() + " : " + e);
 				}
 			}
+			GameManager.Instance.uiTipManager.Refresh();
 		}
 
 		public void Show(eTipTiming timing)

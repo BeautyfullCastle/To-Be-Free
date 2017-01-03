@@ -22,11 +22,8 @@ namespace ToBeFree
 		Over_Move, Over_Work, Over_Inquiry, Over_Rest, Over_Shop, Over_Abilty, Over_Quest, Over_Broker,
 		Popup_Walking, Popup_Bus_Move, Popup_City_Inquiry, Popup_Broker_Inquiry, Popup_Police_Inquiry, Popup_Gathering_Inquiry,
 		Popup_Hide_Rest, Popup_Rest, Popup_Work,
-		Event_PoliceRevealNumber,
-		Event_PoliceNumber,
-		Event_WoringMoneyPerCity,
-		Event_SucceedDiceNumber,
-		Event_TotalMoney
+		Event_PoliceRevealNumber, Event_PoliceNumber, Event_WoringMoneyPerCity, Event_SucceedDiceNumber, Event_TotalMoney,
+		UI_CrackDown, UI_EXIT, UI_New, UI_Continue, UI_Credit, UI_EXIT_Main
 	}
 
 	public class LanguageManager : Singleton<LanguageManager>
@@ -62,6 +59,11 @@ namespace ToBeFree
 
 		public string Find(eLanguageKey key)
 		{
+			if (languageList == null)
+				return string.Empty;
+			if (languageList.Count <= 0)
+				return string.Empty;
+
 			LanguageData data = Array.Find<LanguageData>(languageList[(int)currentLanguage], x => x.key == key.ToString());
 			if (data == null)
 			{
@@ -70,6 +72,5 @@ namespace ToBeFree
 
 			return data.script;
 		}
-
 	}
 }

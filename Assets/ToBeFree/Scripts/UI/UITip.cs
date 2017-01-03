@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -13,9 +14,19 @@ namespace ToBeFree
 		{
 			this.tip = tip;
 
+			SetScriptLabel(tip.Script);
+		}
+		
+		public void Refresh()
+		{
+			this.SetScriptLabel(this.tip.Script);
+		}
+
+		private void SetScriptLabel(string script)
+		{
 			if (this.scriptLabel == null)
 				return;
-			this.scriptLabel.text = tip.Script;
+			this.scriptLabel.text = script;
 		}
 
 		public Tip Tip

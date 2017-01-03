@@ -31,6 +31,7 @@ namespace ToBeFree
 		private void LanguageSelection_selectLanguage(eLanguage language)
 		{
 			strDay = LanguageManager.Instance.Find(eLanguageKey.UI_Day);
+			OnDayChange();
 		}
 
 		private void Instance_NotifyEveryHour()

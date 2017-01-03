@@ -47,5 +47,13 @@ namespace ToBeFree
 			
 			grid.Reposition();
 		}
+
+		public void Refresh()
+		{
+			foreach(UITip uiTip in this.list)
+			{
+				uiTip.Refresh();
+			}
+		}
 	}
 }
