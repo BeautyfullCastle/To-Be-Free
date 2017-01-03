@@ -311,6 +311,11 @@ namespace ToBeFree
 					distance = 1;
 					way = eWay.HIGHWAY;
 				}
+
+				foreach (IconCity iconCity in this.iconCities)
+				{
+					iconCity.SetEnable(false);
+				}
 				// set the cities enabled and twinkle only you can go.
 				List<City> cities = CityManager.Instance.FindCitiesByDistance(Character.CurCity, distance, way);
 				foreach (City city in cities)

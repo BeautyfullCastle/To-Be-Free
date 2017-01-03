@@ -163,27 +163,41 @@ namespace ToBeFree
 
 		public void SetEnable(bool isEnable, int time = -1)
 		{
-			// set the city anabled and twinkle.
+			UIButton uiButton = GetComponent<UIButton>();
+			if (uiButton == null)
+				return;
+
+			TweenAlpha tweenAlpha = GetComponent<TweenAlpha>();
+			if (tweenAlpha == null)
+				return;
+			
+			uiButton.enabled = isEnable;
+			tweenAlpha.enabled = isEnable;
+
 			if (isEnable)
 			{
-				GetComponent<TweenAlpha>().ResetToBeginning();
-				GetComponent<TweenAlpha>().enabled = true;
-
-				if (time == -1)
-				{
-					timerSprite.enabled = false;
-				}
-				else
-				{
-					timerSprite.spriteName = "Timer " + time.ToString();
-					timerSprite.enabled = true;
-				}
+				//uiButton.ResetDefaultColor();
+				tweenAlpha.ResetToBeginning();
 			}
-			// set the button disabled.
 			else
 			{
-				GetComponent<TweenAlpha>().enabled = false;
+				Color color = uiButton.defaultColor;
+				color.a = tweenAlpha.to;
+				uiButton.defaultColor = color;
+			}
+
+			if (timerSprite == null)
+				return;
+
+			timerSprite.enabled = isEnable;
+			if (time == -1)
+			{
 				timerSprite.enabled = false;
+			}
+			else
+			{
+				timerSprite.spriteName = "Timer " + time.ToString();
+				timerSprite.enabled = true;
 			}
 		}
 		
