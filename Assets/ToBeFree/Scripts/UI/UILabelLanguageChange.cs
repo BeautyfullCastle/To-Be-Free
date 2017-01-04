@@ -8,10 +8,11 @@ namespace ToBeFree
 
 		private UILabel label;
 
-		void Start()
+		void OnEnable()
 		{
 			label = this.GetComponent<UILabel>();
 			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
+			LanguageSelection_selectLanguage(LanguageManager.Instance.CurrentLanguage);
 		}
 
 		private void LanguageSelection_selectLanguage(eLanguage language)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -9,8 +10,13 @@ namespace ToBeFree
 		
 		public void SelectLanguage(string language)
 		{
-			LanguageManager.Instance.LanguageSelection_selectLanguageForUI(EnumConvert<eLanguage>.ToEnum(language));
+			LanguageManager.Instance.SelectLanguage(EnumConvert<eLanguage>.ToEnum(language));
 			selectLanguage(EnumConvert<eLanguage>.ToEnum(language));
+		}
+
+		public void Recall()
+		{
+			selectLanguage(LanguageManager.Instance.CurrentLanguage);
 		}
 	}
 }

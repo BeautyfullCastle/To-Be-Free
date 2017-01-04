@@ -34,6 +34,13 @@ namespace ToBeFree
 		private Language.LanguageData[] korList;
 		private List<Language.LanguageData[]> languageList;
 
+		public eLanguage CurrentLanguage
+		{
+			get
+			{
+				return currentLanguage;
+			}
+		}
 
 		public LanguageManager()
 		{
@@ -49,10 +56,11 @@ namespace ToBeFree
 			languageList.Add(engList);
 			languageList.Add(korList);
 
-			GameManager.Instance.languageSelection.SelectLanguage(Application.systemLanguage.ToString().ToUpper());
+			currentLanguage = eLanguage.KOREAN;
+			GameManager.Instance.languageSelection.SelectLanguage(currentLanguage.ToString().ToUpper());
 		}
 
-		public void LanguageSelection_selectLanguageForUI(eLanguage language)
+		public void SelectLanguage(eLanguage language)
 		{
 			currentLanguage = language;
 		}

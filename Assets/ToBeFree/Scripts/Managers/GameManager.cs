@@ -498,7 +498,9 @@ namespace ToBeFree
 					yield return QuestManager.Instance.Load(firstMainQuest, character);
 				}
 			}
-			
+
+			this.languageSelection.Recall();
+
 			yield return null;
 
 #if UNITY_EDITOR
@@ -524,14 +526,16 @@ namespace ToBeFree
 			// Enter
 			this.ChangeScene(eSceneState.Main);
 			yield return null;
-
+			
 			// Excute
-			while(this.state == GameState.Main)
+			while (this.state == GameState.Main)
 			{
 				yield return new WaitForSecondsRealtime(0.2f);
 			}
 
 			worldObj.SetActive(true);
+
+			
 			// Exit
 			yield return NextState();
 		}
