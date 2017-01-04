@@ -150,10 +150,15 @@ namespace ToBeFree
 
 		public IEnumerator Rest_Cure_PatienceTest(Character character, int testSuccessNum)
 		{
+			string script = string.Empty;
+			List<Buff> buffsToDelete = new List<Buff>();
+			int curedHP = 0;
+			
 			if (testSuccessNum > 0)
 			{
 				// 주사위 개수만큼 버프들부터 제거 후 나머지는 HP 회복에 씀
 				List<Buff> buffs = buffList.FindAll(x => x.Duration == eDuration.REST_PATIENCE);
+				
 				if (buffs != null)
 				{
 					for (int i = 0; i < buffs.Count; ++i)
@@ -162,15 +167,25 @@ namespace ToBeFree
 
 						if (testSuccessNum > 0)
 						{
-							yield return buff.DeactivateEffect(character);
-							yield return this.Delete(buff, character);
+							buffsToDelete.Add(buff);
+							
 							testSuccessNum--;
 						}
 					}
 				}
-				character.Stat.HP += testSuccessNum;
+				curedHP = testSuccessNum;
 			}
-			yield return null;
+
+			foreach(Buff buff in buffsToDelete)
+			{
+				script += buff.Name + "\n";
+				yield return buff.DeactivateEffect(character);
+				yield return this.Delete(buff, character);
+			}
+			script += LanguageManager.Instance.Find(eLanguageKey.UI_HP) + " + " + curedHP;
+			character.Stat.HP += curedHP;
+
+			yield return GameManager.Instance.uiEventManager.OnChanged(script, false, true);
 		}
 
 		public bool Contains(Buff buff)

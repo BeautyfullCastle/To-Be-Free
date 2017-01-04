@@ -183,20 +183,22 @@ public class Dice : MonoBehaviour {
 		// add RollingDie to the rolling queue
 		//rollQueue.Add(rDie);
 
-		TweenPosition tween = die.AddComponent<TweenPosition>();
-		tween.from = startPosition;
-		tween.to = destination;
-		tween.duration = 0.5f;
-		tween.PlayForward();
+		TweenPosition tweenPosition = die.AddComponent<TweenPosition>();
+		tweenPosition.from = startPosition;
+		tweenPosition.to = destination;
+		tweenPosition.duration = 0.5f;
+		tweenPosition.ignoreTimeScale = false;
+		tweenPosition.PlayForward();
 
 		Vector3 originScale = die.transform.localScale;
 		TweenScale tweenScale = die.AddComponent<TweenScale>();
 		tweenScale.from = Vector3.zero;
 		tweenScale.to = originScale;
-		tweenScale.duration = tween.duration;
+		tweenScale.duration = tweenPosition.duration;
+		tweenScale.ignoreTimeScale = false;
 		tweenScale.PlayForward();
 
-		yield return new WaitForSeconds(tween.duration);
+		yield return new WaitForSeconds(tweenPosition.duration + 1);
 
 		yield return null;
 
@@ -323,7 +325,7 @@ public class Dice : MonoBehaviour {
 		foreach(var dice in allDice)
 		{
 			RollingDie rollingDie = dice as RollingDie;
-			if (rollingDie.rolling)
+			if (rollingDie.rolling || rollingDie.value == 0)
 				return true;
 		}
 		return false;

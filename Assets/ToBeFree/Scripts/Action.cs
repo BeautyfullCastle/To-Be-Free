@@ -103,7 +103,9 @@ namespace ToBeFree
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
 				yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
-				
+
+				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character, true, false);
+
 				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime - 1;
 
 				if(actionName == eEventAction.HIDE)

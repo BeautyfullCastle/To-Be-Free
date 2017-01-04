@@ -37,6 +37,7 @@ public class Die : MonoBehaviour {
 	private Vector3 localHitNormalized;
 	// hitVector check margin
 	private float validMargin = 0.45F;
+	private bool isOnGround = false;
 
 	// true is die is still rolling
 	public bool rolling
@@ -109,11 +110,11 @@ public class Die : MonoBehaviour {
 	void Update()
 	{
 		// determine the value is the die is not rolling
-		if (!rolling && localHit)
+		if (!rolling && localHit && isOnGround)
 			GetValue();
 	}
 
-	void OnCollisionEnter(Collision collision)
+	void OnCollisionStay(Collision collision)
 	{
 		//NGUIDebug.Log(collision.gameObject.name);
 		Rigidbody rigid = this.GetComponent<Rigidbody>();
@@ -122,11 +123,34 @@ public class Die : MonoBehaviour {
 
 		if (rigid.useGravity == false)
 			return;
-		
-		if (rigid.velocity.magnitude < 0.1f && this.transform.position.z < -0.1f)
+
+		if (this.rolling)
+			return;
+
 		{
-			rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
-			rigid.AddForce(new Vector3(0.1f, 0.1f, 1f), ForceMode.Impulse);
+			
+			if ( this.value <= 0 || this.transform.position.z < -0.1f)
+			{
+				rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
+				rigid.AddForce(new Vector3(0.1f, 0.1f, 1f), ForceMode.Impulse);
+				NGUIDebug.Log("Reroll");
+			}
+		}
+	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.name == "platform")
+		{
+			isOnGround = true;
+		}
+	}
+
+	void OnSollisionExit(Collision collision)
+	{
+		if (collision.gameObject.name == "platform")
+		{
+			isOnGround = false;
 		}
 	}
 
