@@ -36,17 +36,22 @@ namespace ToBeFree
 			for(int i=0; i<list.Count; ++i)
 			{
 				PieceSaveData data = new PieceSaveData();
-				data.type = list[i].SubjectType.ToString();
-				data.cityIndex = list[i].City.Index;
-				if (list[i].SubjectType == eSubjectType.POLICE)
+				Piece piece = list[i];
+				if (piece == null)
 				{
-					Police policePiece = list[i] as Police;
+					continue;
+				}
+				data.type = EnumConvert<eSubjectType>.ToString(piece.SubjectType);
+				data.cityIndex = piece.City.Index;
+				if (piece.SubjectType == eSubjectType.POLICE)
+				{
+					Police policePiece = piece as Police;
 					data.power = policePiece.Power;
 					data.movement = policePiece.Movement;
 				}
-				else if(list[i].SubjectType == eSubjectType.QUEST)
+				else if(piece.SubjectType == eSubjectType.QUEST)
 				{
-					QuestPiece questPiece = list[i] as QuestPiece;
+					QuestPiece questPiece = piece as QuestPiece;
 					data.questIndex = questPiece.CurQuest.Index;
 				}
 
@@ -184,7 +189,7 @@ namespace ToBeFree
 			}
 			else
 			{
-				Debug.LogError("Can't Add this piece type : " + subjectType.ToString());
+				Debug.LogError("Can't Add this piece type : " + EnumConvert<eSubjectType>.ToString(subjectType));
 			}
 		}
 

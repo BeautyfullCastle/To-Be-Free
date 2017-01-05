@@ -31,7 +31,7 @@ public class IconPiece : MonoBehaviour
 	public void Init(eSubjectType subjectType)
 	{
 		this.subjectType = subjectType;
-		this.gameObject.name = subjectType.ToString();
+		this.gameObject.name = EnumConvert<eSubjectType>.ToString(subjectType);
 		
 		if (subjectType == eSubjectType.POLICE)
 		{

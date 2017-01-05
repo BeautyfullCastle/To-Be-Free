@@ -94,8 +94,9 @@ namespace ToBeFree
 			nameLabel.color = Color.white;
 			nameLabel.depth = 4;
 
-			if (this.gameObject.name == eNodeType.SMALLCITY.ToString() || this.gameObject.name == eNodeType.TOWN.ToString()
-				|| this.gameObject.name == eNodeType.MOUNTAIN.ToString() )
+			if (this.gameObject.name == EnumConvert<eNodeType>.ToString(eNodeType.SMALLCITY) 
+				|| this.gameObject.name == EnumConvert<eNodeType>.ToString(eNodeType.TOWN)
+				|| this.gameObject.name == EnumConvert<eNodeType>.ToString(eNodeType.MOUNTAIN) )
 			{
 				sprite.width = smallSize;
 				sprite.height = smallSize;

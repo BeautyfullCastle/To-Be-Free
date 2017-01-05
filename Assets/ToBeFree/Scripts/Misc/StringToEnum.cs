@@ -12,9 +12,4 @@ static public class EnumConvert<T> where T : IConvertible
     {
         return Enum.GetName(typeof(T), enumValue);
     }
-
-    internal static eSubjectType ToEnum(object subjectType)
-    {
-        throw new NotImplementedException();
-    }
 }

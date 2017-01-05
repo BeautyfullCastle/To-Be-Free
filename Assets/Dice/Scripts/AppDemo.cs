@@ -108,7 +108,7 @@ public class AppDemo : MonoBehaviour
 
 	private void Stat_OnValueChange(int value, eStat stat)
 	{
-		if (this.stat.ToString() == stat.ToString() && value >= 1)
+		if (EnumConvert<eTestStat>.ToString(this.stat) == EnumConvert<eStat>.ToString(stat) && value >= 1)
 		{
 			StartCoroutine(AddDie());
 		}

@@ -57,7 +57,7 @@ namespace ToBeFree
 			languageList.Add(korList);
 
 			currentLanguage = eLanguage.KOREAN;
-			GameManager.Instance.languageSelection.SelectLanguage(currentLanguage.ToString().ToUpper());
+			GameManager.Instance.languageSelection.SelectLanguage(EnumConvert<eLanguage>.ToString(currentLanguage).ToUpper());
 		}
 
 		public void SelectLanguage(eLanguage language)
@@ -72,7 +72,7 @@ namespace ToBeFree
 			if (languageList.Count <= 0)
 				return string.Empty;
 
-			LanguageData data = Array.Find<LanguageData>(languageList[(int)currentLanguage], x => x.key == key.ToString());
+			LanguageData data = Array.Find<LanguageData>(languageList[(int)currentLanguage], x => x.key == EnumConvert<eLanguageKey>.ToString(key));
 			if (data == null)
 			{
 				return string.Empty;

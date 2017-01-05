@@ -50,7 +50,7 @@ namespace ToBeFree
 			}
 			else if(subjectType == eSubjectType.FOOD)
 			{
-				left = character.Inven.FindAll(EnumConvert<ItemTag>.ToEnum(subjectType.ToString())).Count;
+				left = character.Inven.FindAll(EnumConvert<ItemTag>.ToEnum(EnumConvert<eSubjectType>.ToString(subjectType))).Count;
 			}
 			else if(subjectType == eSubjectType.NULL)
 			{

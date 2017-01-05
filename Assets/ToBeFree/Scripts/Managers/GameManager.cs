@@ -867,7 +867,7 @@ namespace ToBeFree
 
 		protected IEnumerator NextState()
 		{
-			string methodName = State.ToString() + "State";
+			string methodName = EnumConvert<GameState>.ToString(State) + "State";
 			System.Reflection.MethodInfo info = GetType().GetMethod(methodName,
 				System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 			yield return ((IEnumerator)info.Invoke(this, null));

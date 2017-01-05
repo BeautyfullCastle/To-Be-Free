@@ -32,10 +32,10 @@ namespace ToBeFree
 			engList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/English/City.json").dataList;
 			korList = new DataList<Language.CityData>(Application.streamingAssetsPath + "/Language/Korean/City.json").dataList;
 
-			curves[(int)eWay.MOUNTAINWAY] = GameObject.Find(eWay.MOUNTAINWAY.ToString()).GetComponent<BezierCurveList>();
-			curves[(int)eWay.NORMALWAY] = GameObject.Find(eWay.NORMALWAY.ToString()).GetComponent<BezierCurveList>();
-			curves[(int)eWay.HIGHWAY] = GameObject.Find(eWay.HIGHWAY.ToString()).GetComponent<BezierCurveList>();
-			curves[(int)eWay.ENTIREWAY] = GameObject.Find(eWay.ENTIREWAY.ToString()).GetComponent<BezierCurveList>();
+			curves[(int)eWay.MOUNTAINWAY] = GameObject.Find(EnumConvert<eWay>.ToString(eWay.MOUNTAINWAY)).GetComponent<BezierCurveList>();
+			curves[(int)eWay.NORMALWAY] = GameObject.Find(EnumConvert<eWay>.ToString(eWay.NORMALWAY)).GetComponent<BezierCurveList>();
+			curves[(int)eWay.HIGHWAY] = GameObject.Find(EnumConvert<eWay>.ToString(eWay.HIGHWAY)).GetComponent<BezierCurveList>();
+			curves[(int)eWay.ENTIREWAY] = GameObject.Find(EnumConvert<eWay>.ToString(eWay.ENTIREWAY)).GetComponent<BezierCurveList>();
 
 			foreach (BezierCurveList curve in curves)
 			{

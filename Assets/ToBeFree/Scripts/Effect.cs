@@ -180,7 +180,7 @@ namespace ToBeFree
 					if (verbType == eVerbType.DEACTIVE)
 					{
 						// other commands.
-						DeactiveEvent(EnumConvert<eCommand>.ToEnum(objectType.ToString()), true);
+						DeactiveEvent(EnumConvert<eCommand>.ToEnum(EnumConvert<eObjectType>.ToString(objectType)), true);
 					}
 					break;
 					
@@ -339,7 +339,7 @@ namespace ToBeFree
 					if (verbType == eVerbType.DEACTIVE)
 					{
 						// other commands.
-						DeactiveEvent(EnumConvert<eCommand>.ToEnum(objectType.ToString()), false);
+						DeactiveEvent(EnumConvert<eCommand>.ToEnum(EnumConvert<eObjectType>.ToString(objectType)), false);
 					}
 					break;
 			}
