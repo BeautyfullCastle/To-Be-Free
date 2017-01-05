@@ -538,14 +538,14 @@ namespace ToBeFree
 			yield return base.Activate(character);
 			
 			// 도시크기 별 주사위 추가 - 중도시 주사위1, 대도시는 주사위2
-			if(character.CurCity.Type == eNodeType.MIDDLECITY)
-			{
-				character.Stat.TempDiceNum += 1;
-			}
-			else if (character.CurCity.Type == eNodeType.BIGCITY)
-			{
-				character.Stat.TempDiceNum += 2;
-			}
+			//if(character.CurCity.Type == eNodeType.MIDDLECITY)
+			//{
+			//	character.Stat.TempDiceNum += 1;
+			//}
+			//else if (character.CurCity.Type == eNodeType.BIGCITY)
+			//{
+			//	character.Stat.TempDiceNum += 2;
+			//}
 			
 			// 스페셜 이벤트 처리
 			if (character.CheckSpecialEvent())

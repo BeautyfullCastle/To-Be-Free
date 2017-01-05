@@ -50,7 +50,7 @@ namespace ToBeFree
 		{
 			for(int i=0; i<everyCity.Count; ++i)
 			{
-				if (everyCity[i].Type == eNodeType.BIGCITY || everyCity[i].Type == eNodeType.MIDDLECITY)
+				if (everyCity[i].Type == eNodeType.BIGCITY)// || everyCity[i].Type == eNodeType.MIDDLECITY)
 				{
 					CitySaveData data = new CitySaveData(i, everyCity[i].Item.Index);
 					if (i >= cityList.Count)

@@ -64,14 +64,14 @@ namespace ToBeFree
 			for (int i = 0; i < randomItems.Count; ++i)
 			{
 				// 중도시에서는 랜덤 아이템이 3개만 나오게.
-				if(GameManager.Instance.Character.CurCity.Type==eNodeType.MIDDLECITY)
-				{
-					if(i >= 3)
-					{
-						randomItems[i].gameObject.SetActive(false);
-						continue;
-					}
-				}
+				//if(GameManager.Instance.Character.CurCity.Type==eNodeType.MIDDLECITY)
+				//{
+				//	if(i >= 3)
+				//	{
+				//		randomItems[i].gameObject.SetActive(false);
+				//		continue;
+				//	}
+				//}
 				randomItems[i].gameObject.SetActive(true);
 				int randIndex = r.Next(0, randomItemList.Count - 1);
 				randomItems[i].SetInfo(randomItemList[randIndex]);

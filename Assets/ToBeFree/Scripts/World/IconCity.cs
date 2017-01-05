@@ -7,7 +7,7 @@ namespace ToBeFree
 	[SerializeField]
 	public enum eNodeType
 	{
-		NULL, BIGCITY, MIDDLECITY, SMALLCITY, TOWN, MOUNTAIN
+		NULL, BIGCITY, SMALLCITY, TOWN, MOUNTAIN
 	}
 
 	//[ExecuteInEditMode]
@@ -120,8 +120,9 @@ namespace ToBeFree
 					sprite.spriteName = "mountain";
 				}
 			}
-			else if (this.type == eNodeType.BIGCITY)
+			else// if (this.type == eNodeType.BIGCITY)
 			{
+				this.type = eNodeType.BIGCITY;
 				sprite.width = bigSize;
 				sprite.height = bigSize;
 				sprite.spriteName = "bigcity";
@@ -129,17 +130,17 @@ namespace ToBeFree
 				brokerOffset.localPosition = new Vector3(41.9f, -78.2f);
 				timerSprite.transform.localPosition = new Vector3(0, 76.7f);
 			}
-			else if (this.type == eNodeType.MIDDLECITY)
-			{
-				sprite.width = middleSize;
-				sprite.height = middleSize;
-				sprite.spriteName = "middle";
-				nameLabel.fontSize = 11;
-				nameLabel.transform.localPosition = new Vector3(0f, -32f);
-				questOffset.localPosition = new Vector3(-23.6f, -60.2f);
-				brokerOffset.localPosition = new Vector3(24.8f, -60.5f);
-				timerSprite.transform.localPosition = new Vector3(0, 59.7f);
-			}
+			//else if (this.type == eNodeType.MIDDLECITY)
+			//{
+			//	sprite.width = middleSize;
+			//	sprite.height = middleSize;
+			//	sprite.spriteName = "middle";
+			//	nameLabel.fontSize = 11;
+			//	nameLabel.transform.localPosition = new Vector3(0f, -32f);
+			//	questOffset.localPosition = new Vector3(-23.6f, -60.2f);
+			//	brokerOffset.localPosition = new Vector3(24.8f, -60.5f);
+			//	timerSprite.transform.localPosition = new Vector3(0, 59.7f);
+			//}
 		}
 
 		public void PutPiece(IconPiece iconPiece)

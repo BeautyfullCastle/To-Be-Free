@@ -37,26 +37,26 @@ namespace ToBeFree
 			this.Type = type;
 			this.iconCity = iconCity;
 
-			if (this.Type == eNodeType.BIGCITY)
-			{
-				this.workingMoneyMin = 2;
-				this.workingMoneyMax = 4;
-			}
-			else if (this.Type == eNodeType.MIDDLECITY)
-			{
-				this.workingMoneyMin = 1;
-				this.workingMoneyMax = 3;
-			}
-			else if (this.Type == eNodeType.SMALLCITY)
-			{
-				this.workingMoneyMin = 0;
-				this.workingMoneyMax = 2;
-			}
-			else
-			{
+			//if (this.Type == eNodeType.BIGCITY)
+			//{
+			//	this.workingMoneyMin = 2;
+			//	this.workingMoneyMax = 4;
+			//}
+			//else if (this.Type == eNodeType.MIDDLECITY)
+			//{
+			//	this.workingMoneyMin = 1;
+			//	this.workingMoneyMax = 3;
+			//}
+			//else if (this.Type == eNodeType.SMALLCITY)
+			//{
+			//	this.workingMoneyMin = 0;
+			//	this.workingMoneyMax = 2;
+			//}
+			//else
+			//{
 				this.workingMoneyMin = 0;
 				this.workingMoneyMax = 0;
-			}
+			//}
 
 			item = CityManager.Instance.SetCityItem();
 		}
@@ -89,7 +89,7 @@ namespace ToBeFree
 
 		public void Load(CitySaveData data)
 		{
-			if (this.Type == eNodeType.BIGCITY || this.Type == eNodeType.MIDDLECITY)
+			if (this.Type == eNodeType.BIGCITY)// || this.Type == eNodeType.MIDDLECITY)
 			{
 				this.item = ItemManager.Instance.GetByIndex(data.itemIndex);
 			}

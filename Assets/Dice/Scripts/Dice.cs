@@ -342,7 +342,7 @@ public class Dice : MonoBehaviour {
 
 	public void SetPosition(bool isPolice)
 	{
-		Vector3 position = Vector3.zero;
+		Vector3 position = new Vector3(102f, 0f);
 		float cameraX = 0f;
 		if (isPolice==false)
 		{
