@@ -127,14 +127,11 @@ public class Die : MonoBehaviour {
 		if (this.rolling)
 			return;
 
+		if (this.value <= 0 || this.transform.position.z < -0.1f)
 		{
-			
-			if ( this.value <= 0 || this.transform.position.z < -0.1f)
-			{
-				rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
-				rigid.AddForce(new Vector3(0.1f, 0.1f, 1f), ForceMode.Impulse);
-				NGUIDebug.Log("Reroll");
-			}
+			rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
+			rigid.AddForce(new Vector3(0.1f, 0.1f, 1f), ForceMode.Impulse);
+			//NGUIDebug.Log("Reroll");
 		}
 	}
 

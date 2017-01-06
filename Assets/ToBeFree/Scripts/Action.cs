@@ -101,7 +101,10 @@ namespace ToBeFree
 
 				// deal with result
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
-				yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+				if(selectedEvent.Result != null)
+				{
+					yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+				}
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, character);
 
 				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character, true, false);
@@ -169,8 +172,10 @@ namespace ToBeFree
 
 				yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
 
-				// deal with result
-				yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+				if (selectedEvent.Result != null)
+				{
+					yield return EventManager.Instance.CalculateTestResult(selectedEvent.Result.TestStat, character);
+				}
 
 				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character, true, false);
 

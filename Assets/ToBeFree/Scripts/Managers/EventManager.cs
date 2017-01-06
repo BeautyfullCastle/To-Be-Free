@@ -16,6 +16,7 @@ namespace ToBeFree
 		private EventData[] dataList;
 		private string file;
 
+		private const string fileName = "/Event.json";
 		private Language.EventData[] engList;
 		private Language.EventData[] korList;
 		private List<Language.EventData[]> languageList;
@@ -29,7 +30,7 @@ namespace ToBeFree
 
 		public void Init()
 		{
-			file = Application.streamingAssetsPath + "/Event.json";
+			file = Application.streamingAssetsPath + fileName;
 			DataList<EventData> cDataList = new DataList<EventData>(file);
 			dataList = cDataList.dataList;
 			if (dataList == null)
@@ -37,8 +38,8 @@ namespace ToBeFree
 
 			list = new Event[dataList.Length];
 
-			engList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/English/Event.json").dataList;
-			korList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/Korean/Event.json").dataList;
+			engList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/English" + fileName).dataList;
+			korList = new DataList<Language.EventData>(Application.streamingAssetsPath + "/Language/Korean" + fileName).dataList;
 			languageList = new List<Language.EventData[]>(2);
 			languageList.Add(engList);
 			languageList.Add(korList);
@@ -206,7 +207,10 @@ namespace ToBeFree
 				Select[] selectList = new Select[currEvent.SelectIndexList.Length];
 				for (int i = 0; i < currEvent.SelectIndexList.Length; ++i)
 				{
-					Select select = SelectManager.Instance.List[currEvent.SelectIndexList[i]];
+					Select select = SelectManager.Instance.GetByIndex(currEvent.SelectIndexList[i]);
+					if (select == null)
+						continue;
+
 					selectList[i] = select;
 				}
 				yield return GameManager.Instance.uiEventManager.OnSelectUIChanged(selectList);

@@ -259,12 +259,10 @@ namespace ToBeFree
 				case eSubjectType.RESULT:
 					if(verbType == eVerbType.LOAD)
 					{
-						if (amount > ResultManager.Instance.List.Length)
-						{
-							Debug.LogError("Result index " + amount + " is larger than events' length.");
+						Result result = ResultManager.Instance.GetByIndex(amount);
+						if (result == null)
 							yield break;
-						}
-						Result result = ResultManager.Instance.List[amount];
+
 						yield return EventManager.Instance.CalculateTestResult(result.TestStat, character);
 						yield return EventManager.Instance.TreatResult(result, character);
 					}

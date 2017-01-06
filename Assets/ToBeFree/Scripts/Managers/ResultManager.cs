@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ToBeFree
 {
@@ -6,17 +8,29 @@ namespace ToBeFree
 	{
 		private Result[] list;
 		private ResultData[] dataList;
-		private readonly string file = Application.streamingAssetsPath + "/Result.json";
+		private const string fileName = "/Result.json";
+		private readonly string file = Application.streamingAssetsPath + fileName;
+
+		private Language.ResultData[] engList;
+		private Language.ResultData[] korList;
+		private List<Language.ResultData[]> languageList;
 
 		public void Init()
 		{
 			DataList<ResultData> cDataList = new DataList<ResultData>(file);
-			//ResultDataList cDataList = new ResultDataList(file);
 			dataList = cDataList.dataList;
 			if (dataList == null)
 				return;
 
 			list = new Result[dataList.Length];
+
+			engList = new DataList<Language.ResultData>(Application.streamingAssetsPath + "/Language/English" + fileName).dataList;
+			korList = new DataList<Language.ResultData>(Application.streamingAssetsPath + "/Language/Korean" + fileName).dataList;
+			languageList = new List<Language.ResultData[]>(2);
+			languageList.Add(engList);
+			languageList.Add(korList);
+
+			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			ParseData();
 		}
@@ -35,6 +49,22 @@ namespace ToBeFree
 					continue;
 				}
 				list[data.index] = result;
+			}
+		}
+
+		public void ChangeLanguage(eLanguage language)
+		{
+			foreach (Language.ResultData data in languageList[(int)language])
+			{
+				try
+				{
+					list[data.index].Success.Script = data.successScript;
+					list[data.index].Failure.Script = data.failureScript;
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(data.index.ToString() + " : " + e);
+				}
 			}
 		}
 
@@ -60,12 +90,12 @@ namespace ToBeFree
 			return new ResultScriptAndEffects(script, successResultEffects);
 		}
 
-		public Result[] List
+		public Result GetByIndex(int index)
 		{
-			get
-			{
-				return list;
-			}
+			if (index < 0 || index >= list.Length)
+				return null;
+
+			return list[index];
 		}
 	}
 }

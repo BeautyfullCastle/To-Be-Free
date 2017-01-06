@@ -71,7 +71,7 @@ namespace ToBeFree
 				{
 					return null;
 				}
-				return ResultManager.Instance.List[resultIndex];
+				return ResultManager.Instance.GetByIndex(resultIndex);
 			}
 		}
 

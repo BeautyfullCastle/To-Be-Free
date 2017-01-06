@@ -1,25 +1,39 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToBeFree
 {
 	public class SelectManager : Singleton<SelectManager>
 	{
-		private readonly Select[] list;
-		private readonly SelectData[] dataList;
-		private readonly string file = Application.streamingAssetsPath + "/Select.json";
-		
+		private Select[] list;
+		private SelectData[] dataList;
+		private const string fileName = "/Select.json";
+		private readonly string file = Application.streamingAssetsPath + fileName;
+
+		private Language.SelectData[] engList;
+		private Language.SelectData[] korList;
+		private List<Language.SelectData[]> languageList;
+
 		private Select currentSelect;
 
-		public SelectManager()
+		public void Init()
 		{
 			DataList<SelectData> cDataList = new DataList<SelectData>(file);
-			//SelectDataList cDataList = new SelectDataList(file);
 			dataList = cDataList.dataList;
 			if (dataList == null)
 				return;
 
 			list = new Select[dataList.Length];
+
+			engList = new DataList<Language.SelectData>(Application.streamingAssetsPath + "/Language/English" + fileName).dataList;
+			korList = new DataList<Language.SelectData>(Application.streamingAssetsPath + "/Language/Korean" + fileName).dataList;
+			languageList = new List<Language.SelectData[]>(2);
+			languageList.Add(engList);
+			languageList.Add(korList);
+
+			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			currentSelect = null;
 
@@ -37,7 +51,22 @@ namespace ToBeFree
 				list[data.index] = select;
 			}
 		}
-		
+
+		public void ChangeLanguage(eLanguage language)
+		{
+			foreach (Language.SelectData data in languageList[(int)language])
+			{
+				try
+				{
+					list[data.index].Script = data.script;
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(data.index.ToString() + " : " + e);
+				}
+			}
+		}
+
 		public IEnumerator WaitForSelect()
 		{
 			currentSelect = null;
@@ -62,14 +91,6 @@ namespace ToBeFree
 			currentSelect = null;
 		}
 
-		public Select[] List
-		{
-			get
-			{
-				return list;
-			}
-		}
-
 		public Select CurrentSelect
 		{
 			get
@@ -80,6 +101,14 @@ namespace ToBeFree
 			{
 				currentSelect = value;
 			}
+		}
+
+		public Select GetByIndex(int index)
+		{
+			if (index < 0 || index  >= list.Length)
+				return null;
+
+			return list[index];
 		}
 	}
 }
