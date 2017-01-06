@@ -772,7 +772,10 @@ namespace ToBeFree
 		IEnumerator DetentionState()
 		{
 			// Enter
-			action = new DetentionAction();
+			if (action is DetentionAction == false)
+			{
+				action = new DetentionAction();
+			}
 			yield return action.Activate(character);
 			
 			this.State = GameState.Night;
@@ -878,8 +881,12 @@ namespace ToBeFree
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
 
 			// 구금 상태일 때 밤단계 탈출 시도를 위한.
-			if(character.IsDetention == true && action is DetentionAction)
+			if (character.IsDetention == true)// && action is DetentionAction)
 			{
+				if(action is DetentionAction == false)
+				{
+					action = new DetentionAction();
+				}
 				yield return action.Activate(character);
 			}
 

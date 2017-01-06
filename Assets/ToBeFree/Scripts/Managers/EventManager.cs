@@ -198,7 +198,7 @@ namespace ToBeFree
 				yield break;
 			}
 
-			yield return GameManager.Instance.uiEventManager.OnChanged(currEvent.Script, true, false);
+			yield return GameManager.Instance.uiEventManager.OnChanged(currEvent.Script, true, !currEvent.HasSelect);
 			
 			// deal with select part
 			if(currEvent.HasSelect)
