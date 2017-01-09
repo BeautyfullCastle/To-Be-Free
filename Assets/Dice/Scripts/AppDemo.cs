@@ -46,7 +46,7 @@ public class AppDemo : MonoBehaviour
 		dices[1].gameObject.SetActive(isPolice);
 
 		yield return dices[0].Init(characterDiceNum, GameManager.Instance.Character.Name, stat);
-		yield return dices[1].Init(policeDiceNum, "Police");
+		yield return dices[1].Init(policeDiceNum, "Police", stat);
 
 		button.SetEnable(true);
 		this.stat = stat;

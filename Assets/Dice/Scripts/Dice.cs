@@ -58,7 +58,8 @@ public class Dice : MonoBehaviour {
 	private UILabel nameLabel;
 	[SerializeField]
 	private UILabel statLabel;
-	
+	[SerializeField]
+	private UISprite statSprite;
 	[SerializeField]
 	private UILabel diceNumLabel;
 
@@ -142,9 +143,10 @@ public class Dice : MonoBehaviour {
 
 		positionX = this.spawnPoint.position.x;
 		positionY = this.spawnPoint.position.y;
-
+		
 		this.nameLabel.text = name;
 		this.statLabel.text = stat.ToString();
+		this.statSprite.spriteName = "STAT_" + stat.ToString();
 		this.diceNumLabel.text = diceNum.ToString();
 
 		string layerName = "Dice1";
