@@ -11,7 +11,8 @@ namespace ToBeFree
 
 	public class UIEndingManager : MonoBehaviour
 	{
-		public UITexture page;
+		[SerializeField]
+		private UITexture page;
 
 		// HP=0, 북송, 해피엔딩
 		public Texture[] starvationTextures;
@@ -21,6 +22,7 @@ namespace ToBeFree
 		void Awake()
 		{
 			Stat.OnValueChange += Stat_OnValueChange;
+			this.page = this.GetComponentInChildren<UITexture>();
 		}
 
 		private void Stat_OnValueChange(int value, eStat stat)
@@ -59,7 +61,10 @@ namespace ToBeFree
 				TweenColor.Begin(this.gameObject, 1f, Color.black);
 				yield return new WaitForSeconds(1f);
 
-				page.mainTexture = texture;
+				if(page != null)
+				{
+					page.mainTexture = texture;
+				}
 
 				TweenColor.Begin(this.gameObject, 1f, Color.white);
 				yield return new WaitForSeconds(1f);

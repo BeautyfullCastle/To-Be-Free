@@ -116,8 +116,6 @@ namespace ToBeFree
 				command.GetComponent<UIButton>().isEnabled = false;
 			}
 
-			
-
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
 			
@@ -464,12 +462,13 @@ namespace ToBeFree
 			{
 				SaveLoadManager.Instance.Init();
 
-				character = CharacterManager.Instance.Load(SaveLoadManager.Instance.data.character);
-
 				AbnormalConditionManager.Instance.Load(SaveLoadManager.Instance.data.abnormalList);
 				QuestManager.Instance.Load(SaveLoadManager.Instance.data.questList);
 				PieceManager.Instance.Load(SaveLoadManager.Instance.data.pieceList);
 				CityManager.Instance.Load(SaveLoadManager.Instance.data.cityList);
+
+				character = CharacterManager.Instance.Load(SaveLoadManager.Instance.data.character);
+
 				yield return BuffManager.Instance.Load(SaveLoadManager.Instance.data.buffList);
 
 				TimeTable.Instance.Load(SaveLoadManager.Instance.data.time);
