@@ -27,14 +27,14 @@ namespace ToBeFree
 		{
 			if(stat == eStat.HP && value <= 0)
 			{
-				GameManager.Instance.ChangeScene(GameManager.eSceneState.Ending);
+				this.gameObject.SetActive(true);
 				StartCoroutine(this.StartEnding(eEnding.STARVATION));
 			}
 		}
 
 		public IEnumerator StartEnding(eEnding ending)
 		{
-			GameManager.Instance.ChangeScene(GameManager.eSceneState.Ending);
+			yield return GameManager.Instance.ChangeScene(GameManager.eSceneState.Ending);
 
 			switch(ending)
 			{
@@ -49,7 +49,7 @@ namespace ToBeFree
 					break;
 			}
 
-			GameManager.Instance.ChangeToMain();
+			yield return GameManager.Instance.ChangeToMain();
 		}
 
 		private IEnumerator TurnPages(Texture[] textures)

@@ -9,8 +9,7 @@ namespace ToBeFree
 	{
 		public enum eSceneState
 		{
-			Main=0, CharacterSelect, InGame,
-			Ending
+			Main=0, CharacterSelect, InGame, Ending
 		}
 
 		public enum GameState
@@ -46,6 +45,7 @@ namespace ToBeFree
 		public GameObject IconPieceObj;
 		public GameObject diceObj;
 		public GameObject menuObj;
+		public BlackFader blackFader;
 
 		public GameObject[] scenes;
 
@@ -78,6 +78,7 @@ namespace ToBeFree
 
 		// don't use.
 		private Camera directingCam;
+		
 
 		// can't use the constructor
 		private GameManager()
@@ -103,6 +104,7 @@ namespace ToBeFree
 			}
 
 			EventManager.Instance.Init();
+			SelectManager.Instance.Init();
 			ResultManager.Instance.Init();
 			QuestManager.Instance.Init();
 			AbnormalConditionManager.Instance.Init();
@@ -457,9 +459,7 @@ namespace ToBeFree
 			Init();
 
 			CharacterManager.Instance.Init();
-
 			
-
 			if (IsNew == false)
 			{
 				SaveLoadManager.Instance.Init();
@@ -507,8 +507,8 @@ namespace ToBeFree
 			// for test
 			//character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 4;
-			//character.Stat.HP = 1;
-			//character.Stat.Satiety = 1;
+			character.Stat.HP = 1;
+			character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 #endif
@@ -524,8 +524,7 @@ namespace ToBeFree
 		IEnumerator MainState()
 		{
 			// Enter
-			this.ChangeScene(eSceneState.Main);
-			yield return null;
+			yield return this.ChangeScene(eSceneState.Main);
 			
 			// Excute
 			while (this.state == GameState.Main)
@@ -534,7 +533,6 @@ namespace ToBeFree
 			}
 
 			worldObj.SetActive(true);
-
 			
 			// Exit
 			yield return NextState();
@@ -543,8 +541,7 @@ namespace ToBeFree
 		IEnumerator CharacterSelectState()
 		{
 			// Enter
-			this.ChangeScene(eSceneState.CharacterSelect);
-			yield return null;
+			yield return this.ChangeScene(eSceneState.CharacterSelect);
 
 			// Excute
 			while (this.state == GameState.CharacterSelect)
@@ -559,8 +556,7 @@ namespace ToBeFree
 		IEnumerator InGameState()
 		{
 			// Enter
-			this.ChangeScene(eSceneState.InGame);
-			yield return null;
+			yield return this.ChangeScene(eSceneState.InGame);
 
 			// Excute
 			this.state = GameState.Init;
@@ -594,7 +590,8 @@ namespace ToBeFree
 			else if(buttonName == "EXIT")
 			{
 				SwitchMenu(false);
-				ChangeToMain();
+				StopAllCoroutines();
+				StartCoroutine(ChangeToMain());
 			}
 			else if(buttonName == "EXIT_MAIN")
 			{
@@ -602,14 +599,13 @@ namespace ToBeFree
 			}
 		}
 
-		public void ChangeToMain()
+		public IEnumerator ChangeToMain()
 		{
 			ResetUI();
 			worldObj.SetActive(false);
-			ChangeScene(eSceneState.Main);
 			this.state = GameState.Main;
-			StopAllCoroutines();
-			StartCoroutine(NextState());
+			
+			yield return NextState();
 		}
 
 		private void ResetUI()
@@ -619,17 +615,25 @@ namespace ToBeFree
 			BuffManager.Instance.Reset();
 			PieceManager.Instance.Reset();
 
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
+			//GC.Collect();
+			//GC.WaitForPendingFinalizers();
 		}
 
-		public void ChangeScene(eSceneState sceneState)
+		public IEnumerator ChangeScene(eSceneState sceneState)
 		{
 			int iSceneState = (int)sceneState;
+			if(iSceneState >= scenes.Length)
+			{
+				Debug.LogError("scenes' length longer than sceneState : " + scenes.Length + ", " + iSceneState);
+				yield break;
+			}
+
+			yield return blackFader.Fade(true);
 			for(int i=0; i<scenes.Length; ++i)
 			{
 				scenes[i].SetActive(i == iSceneState);
 			}
+			yield return blackFader.Fade(false);
 		}
 
 		IEnumerator StartWeekState()
