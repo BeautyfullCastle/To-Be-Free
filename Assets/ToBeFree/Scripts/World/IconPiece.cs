@@ -60,7 +60,10 @@ public class IconPiece : MonoBehaviour
 			movementLabel.gameObject.SetActive(true);
 			Movement = movement;
 			
-			GameManager.Instance.Character.Stat.SetViewRange();
+			if(GameManager.Instance.Character != null)
+			{
+				GameManager.Instance.Character.Stat.SetViewRange();
+			}
 
 			PlayExclamation();
 		}
