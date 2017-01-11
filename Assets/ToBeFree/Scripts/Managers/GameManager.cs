@@ -481,7 +481,9 @@ namespace ToBeFree
 			yield return character.Init();
 			shopUIObj.GetComponent<UIShop>().Init();
 
-			if(IsNew)
+			this.languageSelection.Recall();
+
+			if (IsNew)
 			{
 				//add polices in big cities.
 				List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
@@ -497,8 +499,6 @@ namespace ToBeFree
 					yield return QuestManager.Instance.Load(firstMainQuest, character);
 				}
 			}
-
-			this.languageSelection.Recall();
 
 			yield return null;
 
