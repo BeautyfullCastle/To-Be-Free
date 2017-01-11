@@ -36,7 +36,7 @@ public class Die : MonoBehaviour {
 	// normalized (hit)vector from die center to upper side in local space is used to determine what side of a specific die is up/down = value
 	private Vector3 localHitNormalized;
 	// hitVector check margin
-	private float validMargin = 0.45F;
+	private float validMargin = 0.05F;
 	private bool isOnGround = false;
 
 	// true is die is still rolling

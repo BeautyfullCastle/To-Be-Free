@@ -153,6 +153,7 @@ public class Dice : MonoBehaviour {
 		string strStat = this.UppercaseFirst(stat.ToString());
 		strStat = "UI_" + strStat;
 		eLanguageKey key = EnumConvert<eLanguageKey>.ToEnum(strStat);
+
 		if((int)key != 0)
 		{
 			this.statLabel.text = LanguageManager.Instance.Find(key);

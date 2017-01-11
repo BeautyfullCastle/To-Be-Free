@@ -110,7 +110,7 @@
 		},
 		{
 			"index": 6,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "당신은 편한상태로 휴식을 취했습니다.",
 			"successEffectIndexList": [
 				-99
@@ -128,7 +128,7 @@
 		},
 		{
 			"index": 7,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "당신은 공안을 피해서 휴식을 취했습니다.",
 			"successEffectIndexList": [
 				-99
@@ -327,7 +327,7 @@
 		{
 			"index": 18,
 			"stat": "NULL",
-			"successScript": "고맙네 이 은혜는 잊지 않겠네'\\n김봉식은 기뻐하며 자리를 떠났습니다.",
+			"successScript": "고맙네! 이 은혜는 잊지 않겠네!'\\n김봉식은 기뻐하며 자리를 떠났습니다.",
 			"successEffectIndexList": [
 				-99
 			],
@@ -363,7 +363,7 @@
 		{
 			"index": 20,
 			"stat": "NULL",
-			"successScript": "고맙네 이 은혜는 잊지 않겠네, 이건 소소한 보답일세'\\n돈을 조금 주고 떠났습니다.",
+			"successScript": "고맙네! 이 은혜는 잊지 않겠네! 이건 소소한 보답일세'\\n그는 돈을 조금 주고 떠났습니다.",
 			"successEffectIndexList": [
 				44
 			],
@@ -652,7 +652,7 @@
 		},
 		{
 			"index": 36,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "주변에 표지판을 찾았습니다. 표지판을 따라 원래 가려던 길을 정확히 찾아 갑니다.",
 			"successEffectIndexList": [
 				-99
@@ -688,7 +688,7 @@
 		},
 		{
 			"index": 38,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "다행히 잠시 휴식을 취하니 다리가 나아졌습니다. 다시 목적지를 향해 이동합니다.",
 			"successEffectIndexList": [
 				-99
@@ -778,7 +778,7 @@
 		},
 		{
 			"index": 43,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "집중해서 들어보니 어딘가에서 일에 관련된 이야기를 하고 있습니다. 잘하면 돈을 좀 벌 수 있을 것 같습니다.",
 			"successEffectIndexList": [
 				74
@@ -804,7 +804,7 @@
 			"successEffectValueList": [
 				1
 			],
-			"failureScript": "사정은 알겠지만 세상의 이치가 다 그런법이라우 동무 미안하지만 돈이 없으면 알려줄 수가 없네'\\n당신의 설득은 실패했고 그는 브로커정보를 알려주지 않았습니다.",
+			"failureScript": "사정은 알겠지만 세상의 이치가 다 그런법이라네. 미안하지만 돈이 없으면 알려줄 수가 없네'\\n당신의 설득은 실패했고 그는 브로커정보를 알려주지 않았습니다.",
 			"failureEffectIndexList": [
 				-99
 			],
@@ -1112,7 +1112,7 @@
 		},
 		{
 			"index": 61,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "집중해서 길을 찾아 쉼터를 찾아갔습니다. 쉼터는 꽤나 쾌적합니다. 평소보다 편안하게 휴식 했습니다.",
 			"successEffectIndexList": [
 				0
@@ -1282,7 +1282,7 @@
 		},
 		{
 			"index": 70,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "다행히 들키지 않고 공안이 주변을 지나갔습니다. 당신은 안도하며 휴식을 취합니다.",
 			"successEffectIndexList": [
 				0
@@ -1381,10 +1381,12 @@
 			"stat": "NULL",
 			"successScript": "좋습니다. 이정도라면 사막을 건널 수 있을 겁니다.'",
 			"successEffectIndexList": [
-				78
+				78,
+				81
 			],
 			"successEffectValueList": [
-				78
+				78,
+				2
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -1417,10 +1419,12 @@
 			"stat": "NULL",
 			"successScript": "정확히 도착했군 좋소, 모든 준비는 끝났소. 이제는 차를 타고 사막의 시작점으로 갈꺼네. 가방에 생존물자를 넣었네. 사막을 건너다 보면 몽골군이 보일껄세. 일단 몽골군에 투항하면 남한으로 보내줄걸쎄'\\n당신은 브로커가 준비해준 차에 탔습니다.",
 			"successEffectIndexList": [
-				78
+				78,
+				81
 			],
 			"successEffectValueList": [
-				111
+				111,
+				2
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -1435,10 +1439,12 @@
 			"stat": "NULL",
 			"successScript": "모든 준비가 끝났습니다. 이제 사막을 건너면 됩니다. 사막 시작점까지는 제가 데려가 드릴 겁니다. 사막을 건너다 보면 몽골군이 보일 겁니다. 일단 몽골군에 투항하면 남한으로 보내줄 겁니다.'\\n당신은 브로커가 준비해준 차에 탔습니다.",
 			"successEffectIndexList": [
-				78
+				78,
+				81
 			],
 			"successEffectValueList": [
-				111
+				111,
+				2
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -1634,7 +1640,7 @@
 		},
 		{
 			"index": 89,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "열심히 약한 창살을 칼로 더 약하게 만들었습니다. 창살을 이제 때어내고 탈출할 수 있을 것 같습니다. 창살을 빠져나갑니다.",
 			"successEffectIndexList": [
 				78
@@ -1904,7 +1910,7 @@
 		},
 		{
 			"index": 104,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "추웠지만 집중해서 잠을 잤습니다. 비록 추위에 몸이 떨리긴 하지만 피곤하지는 않습니다.",
 			"successEffectIndexList": [
 				-99
@@ -2192,7 +2198,7 @@
 		},
 		{
 			"index": 120,
-			"stat": "CONCENTRATION",
+			"stat": "FOCUS",
 			"successScript": "쪽지를 한참을 들여다본 끝에 그 뜻을 이해할 수 있었습니다. 브로커에 대한 큰 정보였습니다.",
 			"successEffectIndexList": [
 				59
