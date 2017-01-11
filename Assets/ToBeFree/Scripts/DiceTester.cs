@@ -30,12 +30,14 @@ namespace ToBeFree
 
 			diceObj.SetActive(true);
 
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
+
 			AppDemo demo = diceObj.GetComponent<AppDemo>();
 			
 			yield return demo.Init(stat, characterDiceNum + additionalDie, policeDiceNum);
 			int[] resultNums = { 0, 0 };
 
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
+			
 
 			while (demo.mouseDown == false)
 			{
@@ -44,8 +46,6 @@ namespace ToBeFree
 
 			yield return new WaitForSeconds(1f);
 
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
-			
 			for (int i = 0; i < demo.dices.Length; ++i)
 			{
 				if(demo.dices[i].gameObject.activeSelf == false)
@@ -63,10 +63,13 @@ namespace ToBeFree
 
 			yield return demo.dices[0].StartEffect(demo.dices[1], minSuccessNum);
 
-			yield return new WaitForSeconds(2f);
+			yield return new WaitForSeconds(1f);
 
 			setResultNum(resultNums[0], resultNums[1]);
+			
 			diceObj.SetActive(false);
+
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
 		}
 
 		public int MinSuccessNum

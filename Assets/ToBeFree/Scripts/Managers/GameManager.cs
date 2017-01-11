@@ -506,8 +506,8 @@ namespace ToBeFree
 			// for test
 			//character.Stat.Agility = 0;
 			//character.Stat.InfoNum = 4;
-			character.Stat.HP = 1;
-			character.Stat.Satiety = 1;
+			//character.Stat.HP = 1;
+			//character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 #endif
@@ -523,7 +523,7 @@ namespace ToBeFree
 		IEnumerator MainState()
 		{
 			// Enter
-			yield return this.ChangeScene(eSceneState.Main);
+			yield return this.ChangeScene(eSceneState.Main, false);
 			
 			// Excute
 			while (this.state == GameState.Main)
@@ -618,7 +618,7 @@ namespace ToBeFree
 			//GC.WaitForPendingFinalizers();
 		}
 
-		public IEnumerator ChangeScene(eSceneState sceneState)
+		public IEnumerator ChangeScene(eSceneState sceneState, bool fade = true)
 		{
 			int iSceneState = (int)sceneState;
 			if(iSceneState >= scenes.Length)
@@ -627,12 +627,20 @@ namespace ToBeFree
 				yield break;
 			}
 
-			yield return blackFader.Fade(true);
+			if(fade)
+			{
+				yield return blackFader.Fade(true);
+			}
+			
 			for(int i=0; i<scenes.Length; ++i)
 			{
 				scenes[i].SetActive(i == iSceneState);
 			}
-			yield return blackFader.Fade(false);
+
+			if(fade)
+			{
+				yield return blackFader.Fade(false);
+			}
 		}
 
 		IEnumerator StartWeekState()
@@ -640,7 +648,7 @@ namespace ToBeFree
 			// Enter
 			yield return (Instance_NotifyEveryWeek());
 
-			yield return GameManager.Instance.ShowStateLabel(LanguageManager.Instance.Find(eLanguageKey.UI_Your_Turn), 2f);
+			yield return GameManager.Instance.ShowStateLabel(LanguageManager.Instance.Find(eLanguageKey.UI_Your_Turn), 1f);
 
 			action = null;
 			yield return null;

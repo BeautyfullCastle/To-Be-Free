@@ -300,7 +300,7 @@ namespace ToBeFree
 				yield break;
 			}
 
-			int moveTimePerCity = TimeTable.Instance.MoveTimePerAction;
+			float moveTimePerCity = TimeTable.Instance.MoveTimePerAction;
 
 			if (actionName == eEventAction.MOVE_BUS)
 			{

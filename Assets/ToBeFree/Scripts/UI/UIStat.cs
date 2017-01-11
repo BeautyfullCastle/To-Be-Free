@@ -2,25 +2,27 @@
 
 namespace ToBeFree
 {
-	public class UIStat : MonoBehaviour {
-        public eStat stat;
-        private UILabel label;
+	public class UIStat : MonoBehaviour
+	{
+		public eStat stat;
+		private UILabel label;
 
-        // Use this for initialization
-        void Awake() {
-            label = this.GetComponent<UILabel>();
-            Stat.OnValueChange += OnValueChange;
+		// Use this for initialization
+		void Awake()
+		{
+			label = this.GetComponent<UILabel>();
+			Stat.OnValueChange += OnValueChange;
 			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
-        }
+		}
 
 		private void LanguageSelection_selectLanguage(eLanguage language)
 		{
 			eLanguageKey key = eLanguageKey.UI_HP;
-			if(stat == eStat.HP)
+			if(stat == eStat.HP || stat == eStat.TOTALHP)
 			{
 				key = eLanguageKey.UI_HP;
 			}
-			else if (stat == eStat.SATIETY)
+			else if (stat == eStat.SATIETY || stat == eStat.TOTALSATIETY)
 			{
 				key = eLanguageKey.UI_Satiety;
 			}
@@ -52,15 +54,13 @@ namespace ToBeFree
 		}
 
 		void OnValueChange(int value, eStat stat)
-        {
-            if(stat != this.stat)
-            {
-                return;
-            }
+		{
+			if(stat != this.stat)
+			{
+				return;
+			}
 
-            label.text = value.ToString();
-        }
-
-        
-    }
+			label.text = value.ToString();
+		}
+	}
 }

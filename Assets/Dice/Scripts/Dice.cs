@@ -19,6 +19,7 @@ using System.Collections;
 using ToBeFree;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 /// <summary>
 /// This dice dupporting class has some 'static' methods to help you throwning dice
@@ -145,7 +146,9 @@ public class Dice : MonoBehaviour {
 		positionY = this.spawnPoint.position.y;
 		
 		this.nameLabel.text = name;
-		this.statLabel.text = stat.ToString();
+		string strStat = this.UppercaseFirst(stat.ToString());
+		strStat = "UI_" + strStat;
+		this.statLabel.text = LanguageManager.Instance.Find(EnumConvert<eLanguageKey>.ToEnum(strStat));
 		this.statSprite.spriteName = "STAT_" + stat.ToString();
 		this.diceNumLabel.text = diceNum.ToString();
 
@@ -159,6 +162,35 @@ public class Dice : MonoBehaviour {
 		for (int d = 0; d < diceNum; d++)
 		{
 			yield return AddDie(LayerMask.NameToLayer(layerName));
+		}
+	}
+
+	/* 
+	[출처]
+	[C#] 첫 글자(문자)만 대문자로 바꾸기|작성자 씨콤
+	*/
+	private string UppercaseFirst(string s)
+	{
+		if (string.IsNullOrEmpty(s))
+		{
+			return string.Empty;
+		}
+		else
+		{
+			StringBuilder sbAfterString = new StringBuilder();
+			string sBeforeChar = string.Empty;
+			int i = 0;
+			foreach (char c in s)
+			{
+				if (i.Equals(0) || sBeforeChar.Equals(" "))
+					sbAfterString.Append(c.ToString().ToUpper());
+				else
+					sbAfterString.Append(c.ToString().ToLower());
+
+				sBeforeChar = c.ToString();
+				i++;
+			}
+			return sbAfterString.ToString();
 		}
 	}
 
@@ -200,7 +232,7 @@ public class Dice : MonoBehaviour {
 		tweenScale.ignoreTimeScale = false;
 		tweenScale.PlayForward();
 
-		yield return new WaitForSeconds(tweenPosition.duration + 1);
+		yield return new WaitForSeconds(tweenPosition.duration);
 
 		yield return null;
 
@@ -475,3 +507,4 @@ class RollingDie
 		//die.GetComponent<Collider>().enabled = useGravity;
 	}
 }
+ 

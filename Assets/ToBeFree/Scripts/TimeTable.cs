@@ -21,10 +21,9 @@ namespace ToBeFree
 		private int day;
 		private int policeTurnDays;
 
-		private readonly int moveTimePerAction;
-
 		private int totalHour;
 		private int usedHour;
+		private float timePerHour;
 
 		public delegate void TimeEventHandler();
 
@@ -34,7 +33,7 @@ namespace ToBeFree
 
 		public TimeTable()
 		{
-			moveTimePerAction = 6;
+			timePerHour = 0.7f;
 			policeTurnDays = GameManager.Instance.PoliceTurnDays;
 
 			Reset();
@@ -78,7 +77,7 @@ namespace ToBeFree
 
 			while (true)
 			{
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(timePerHour);
 				Hour++;
 				usedHour++;
 
@@ -103,7 +102,7 @@ namespace ToBeFree
 		{
 			while (true)
 			{
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(timePerHour);
 				Hour++;
 				usedHour++;
 
@@ -156,11 +155,19 @@ namespace ToBeFree
 			}
 		}
 
-		public int MoveTimePerAction
+		public float MoveTimePerAction
 		{
 			get
 			{
-				return moveTimePerAction;
+				return timePerHour * 6;
+			}
+		}
+
+		public float TimePerHour
+		{
+			get
+			{
+				return timePerHour;
 			}
 		}
 	}

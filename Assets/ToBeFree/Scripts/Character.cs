@@ -232,7 +232,7 @@ namespace ToBeFree
 			AP++;
 		}
 
-		public IEnumerator MoveTo(City city, int moveTimePerCity = 0, bool direct = false)
+		public IEnumerator MoveTo(City city, float moveTimePerCity = 0, bool direct = false)
 		{
 			if (direct)
 			{

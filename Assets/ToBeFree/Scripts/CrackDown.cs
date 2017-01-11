@@ -38,7 +38,7 @@ namespace ToBeFree
 		{
 			TipManager.Instance.Show(eTipTiming.PoliceTurn);
 
-			yield return GameManager.Instance.ShowStateLabel(LanguageManager.Instance.Find(eLanguageKey.UI_Police_Turn), 2f);
+			yield return GameManager.Instance.ShowStateLabel(LanguageManager.Instance.Find(eLanguageKey.UI_Police_Turn), 1f);
 
 			if(isCrackDown)
 			{
