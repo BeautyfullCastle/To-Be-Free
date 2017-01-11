@@ -135,7 +135,7 @@ public class Dice : MonoBehaviour {
 	/// format dice 			: 	({count}){die type}	, exmpl.  d6, 4d4, 12d8 , 1d20
 	/// possible die types 	:	d4, d6, d8 , d10, d12, d20
 	/// </summary>
-	public IEnumerator Init(int diceNum, string name, eTestStat stat = eTestStat.NULL)
+	public void Init(int dieNum, bool isPolice, string name, eTestStat stat = eTestStat.NULL)
 	{
 		if(spawnPoint == null)
 		{
@@ -145,21 +145,33 @@ public class Dice : MonoBehaviour {
 		positionX = this.spawnPoint.position.x;
 		positionY = this.spawnPoint.position.y;
 		
-		this.nameLabel.text = name;
+		if(this.nameLabel != null)
+		{
+			this.nameLabel.text = name;
+		}
+		
 		string strStat = this.UppercaseFirst(stat.ToString());
 		strStat = "UI_" + strStat;
-		this.statLabel.text = LanguageManager.Instance.Find(EnumConvert<eLanguageKey>.ToEnum(strStat));
+		eLanguageKey key = EnumConvert<eLanguageKey>.ToEnum(strStat);
+		if((int)key != 0)
+		{
+			this.statLabel.text = LanguageManager.Instance.Find(key);
+		}
+		
 		this.statSprite.spriteName = "STAT_" + stat.ToString();
-		this.diceNumLabel.text = diceNum.ToString();
+		this.diceNumLabel.text = dieNum.ToString();
+	}
 
+	public IEnumerator InitDies(int dieNum, bool isPolice)
+	{
 		string layerName = "Dice1";
-		if(name == "Police")
+		if (isPolice)
 		{
 			layerName = "Dice2";
 		}
 
 		// instantiate the dice
-		for (int d = 0; d < diceNum; d++)
+		for (int d = 0; d < dieNum; d++)
 		{
 			yield return AddDie(LayerMask.NameToLayer(layerName));
 		}

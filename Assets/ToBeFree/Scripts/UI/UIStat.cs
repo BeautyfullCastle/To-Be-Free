@@ -46,7 +46,7 @@ namespace ToBeFree
 			{
 				key = eLanguageKey.UI_Talent;
 			}
-			else if (stat == eStat.CONCENTRATION)
+			else if (stat == eStat.FOCUS)
 			{
 				key = eLanguageKey.UI_Focus;
 			}

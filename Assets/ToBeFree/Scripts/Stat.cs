@@ -6,13 +6,13 @@ namespace ToBeFree
 {
 	public enum eStat
 	{
-		HP, TOTALHP, SATIETY, MONEY, INFO, STRENGTH, AGILITY, CONCENTRATION, TALENT, NULL,
+		HP, TOTALHP, SATIETY, MONEY, INFO, STRENGTH, AGILITY, FOCUS, TALENT, NULL,
 		TOTALSATIETY
 	}
 
 	public enum eTestStat
 	{
-		STRENGTH, AGILITY, CONCENTRATION, TALENT, ALL, NULL
+		STRENGTH, AGILITY, FOCUS, TALENT, ALL, NULL
 	}
 
 	[Serializable]
@@ -159,7 +159,7 @@ namespace ToBeFree
 
 			OnValueChange(strength, eStat.STRENGTH);
 			OnValueChange(agility, eStat.AGILITY);
-			OnValueChange(concentration, eStat.CONCENTRATION);
+			OnValueChange(concentration, eStat.FOCUS);
 			OnValueChange(talent, eStat.TALENT);
 
 			OnValueChange(money, eStat.MONEY);
@@ -203,7 +203,7 @@ namespace ToBeFree
 			set
 			{
 				concentration = Mathf.Max(value, 1);
-				OnValueChange(concentration, eStat.CONCENTRATION);
+				OnValueChange(concentration, eStat.FOCUS);
 			}
 		}
 

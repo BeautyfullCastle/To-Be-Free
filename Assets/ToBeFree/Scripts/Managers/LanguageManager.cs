@@ -13,8 +13,9 @@ namespace ToBeFree
 	public enum eLanguageKey
 	{
 		UI_Move, UI_Work, UI_Inquiry, UI_Rest, UI_Shop, UI_Broker, UI_Quest, UI_Abilty, UI_CityInquiry, UI_BrokerInquiry, UI_PoliceInquiry,
-		UI_GatheringInquiry, UI_HideRest, UI_Walking, UI_Bus, UI_HP, UI_Satiety, UI_Money, UI_Info, UI_Strength, UI_Agility, UI_Talent,
-		UI_Focus, UI_Day, UI_Setting, UI_Resolution, UI_FullScreen, UI_MusicVolume, UI_EffectVolume, UI_Mute, UI_Language,
+		UI_GatheringInquiry, UI_HideRest, UI_Walking, UI_Bus, UI_HP, UI_Satiety, UI_Money, UI_Info,
+		UI_Strength, UI_Agility, UI_Talent, UI_Focus,
+		UI_Day, UI_Setting, UI_Resolution, UI_FullScreen, UI_MusicVolume, UI_EffectVolume, UI_Mute, UI_Language,
 		UI_Police_Turn, UI_Your_Turn, Event_Police_Add, Event_Police_AddStat, Event_Police_Move, Event_Police_CrackDown, UI_Road,
 		UI_SmallTown, UI_MiddleCity, UI_BigCity, UI_Mountain, UI_RequiredTime,
 		Event_Start_Working, Event_Start_CityInvestigation, Event_Start_PoliceInvestigation, Event_Start_BrokerInfoInvestigation,

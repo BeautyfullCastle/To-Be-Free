@@ -33,20 +33,20 @@ public class AppDemo : MonoBehaviour
 
 	private eTestStat stat;
 
-	public IEnumerator Init(eTestStat stat, int characterDiceNum, int policeDiceNum = 0)
+	public IEnumerator Init(eTestStat stat, int characterDieNum, int policeDieNum = 0)
 	{
-		//dices[0].Clear();
-		//dices[1].Clear();
+		if (characterDieNum <= 0)
+			characterDieNum = 1;
 
-		if (characterDiceNum <= 0)
-			characterDiceNum = 1;
+		bool hasPolice = policeDieNum > 0;
+		dices[0].SetPosition(hasPolice);
+		dices[1].gameObject.SetActive(hasPolice);
 
-		bool isPolice = policeDiceNum > 0;
-		dices[0].SetPosition(isPolice);
-		dices[1].gameObject.SetActive(isPolice);
+		dices[0].Init(characterDieNum, false, GameManager.Instance.Character.Name, stat);
+		dices[1].Init(policeDieNum, true, "Police", stat);
 
-		yield return dices[0].Init(characterDiceNum, GameManager.Instance.Character.Name, stat);
-		yield return dices[1].Init(policeDiceNum, "Police", stat);
+		yield return dices[0].InitDies(characterDieNum, false);
+		yield return dices[1].InitDies(policeDieNum, true);
 
 		button.SetEnable(true);
 		this.stat = stat;

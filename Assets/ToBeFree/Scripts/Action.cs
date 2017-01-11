@@ -777,7 +777,7 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			NGUIDebug.Log("BrokerAction action");
+			//NGUIDebug.Log("BrokerAction action");
 
 			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Broker));
 
@@ -810,7 +810,7 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			NGUIDebug.Log("AbilityAction action");
+			//NGUIDebug.Log("AbilityAction action");
 
 			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Ability));
 

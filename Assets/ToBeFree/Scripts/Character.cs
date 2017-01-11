@@ -96,7 +96,7 @@ namespace ToBeFree
 				case eTestStat.AGILITY:
 					diceNum = this.Stat.Agility;
 					break;
-				case eTestStat.CONCENTRATION:
+				case eTestStat.FOCUS:
 					diceNum = this.Stat.Concentration;
 					break;
 				case eTestStat.TALENT:
