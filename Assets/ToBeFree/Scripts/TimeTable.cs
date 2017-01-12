@@ -33,7 +33,7 @@ namespace ToBeFree
 
 		public TimeTable()
 		{
-			timePerHour = 0.7f;
+			timePerHour = 0.3f;
 			policeTurnDays = GameManager.Instance.PoliceTurnDays;
 
 			Reset();

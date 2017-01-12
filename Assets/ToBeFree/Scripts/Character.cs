@@ -304,7 +304,7 @@ namespace ToBeFree
 			return hasSpecialEvent;
 		}
 
-		public void Reset()
+		public void ResetAPandAction()
 		{
 			ap = 0;
 			SetCanAction(true);

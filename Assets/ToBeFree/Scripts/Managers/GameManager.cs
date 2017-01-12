@@ -892,7 +892,7 @@ namespace ToBeFree
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
 
 			// 구금 상태일 때 밤단계 탈출 시도를 위한.
-			if (character.IsDetention == true)// && action is DetentionAction)
+			if (character.IsDetention == true)
 			{
 				if(action is DetentionAction == false)
 				{
@@ -901,24 +901,9 @@ namespace ToBeFree
 				yield return action.Activate(character);
 			}
 
-			character.Reset();
-
-
-			if (character.IsFull)
-			{
-				Debug.Log("character is full.");
-			}
-			else
-			{
-				if (character.Stat.Satiety <= 0)
-				{
-					character.Stat.HP -= 2;
-				}
-				else
-				{
-					character.Stat.Satiety--;
-				}
-			}
+			character.ResetAPandAction();
+			
+			character.Stat.Satiety--;
 
 			yield return AbnormalConditionManager.Instance.ActiveByCondition();
 

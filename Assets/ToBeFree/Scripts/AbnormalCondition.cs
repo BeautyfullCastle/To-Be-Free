@@ -63,7 +63,7 @@ namespace ToBeFree
 				if(isStack)
 				{
 					stack++;
-					this.buff.EffectAmountList[0].Amount += firstAmount;
+					this.buff.EffectAmountList[0].Amount = firstAmount * stack;
 					UIBuff uiBuff = GameManager.Instance.uiBuffManager.Find(this.buff);
 					if(uiBuff)
 					{
@@ -83,7 +83,7 @@ namespace ToBeFree
 
 			this.stack = 1;
 			this.buff.AliveDays = 0;
-
+			this.buff.EffectAmountList[0].Amount = firstAmount;
 			yield return null;
 		}
 
