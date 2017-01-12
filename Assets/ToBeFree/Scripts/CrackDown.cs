@@ -25,6 +25,10 @@ namespace ToBeFree
 			{
 				crackDownEffect = GameObject.Find("CrackDown Effect").GetComponent<UISprite>();
 			}
+			else
+			{
+				crackDownEffect.enabled = false;
+			}
 		}
 
 		private bool RaiseAndCheckProbability()
