@@ -106,6 +106,11 @@ namespace ToBeFree
 
 		public Item[] FindAll(ItemTag tag)
 		{
+			if (list == null)
+				return null;
+			else if (list.Length <= 0)
+				return null;
+
 			return Array.FindAll<Item>(list, x => x.Tag == tag);
 		}
 

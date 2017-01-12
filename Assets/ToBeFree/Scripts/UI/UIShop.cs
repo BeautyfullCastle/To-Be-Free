@@ -23,8 +23,6 @@ namespace ToBeFree
 		public void Init()
 		{
 			grids = GetComponentsInChildren<UIGrid>();
-
-			
 			
 			foreach (UIGrid grid in grids)
 			{
@@ -40,6 +38,9 @@ namespace ToBeFree
 		{
 			// 기본 아이템 세팅
 			Item[] basicItemList = ItemManager.Instance.FindAll(ItemTag.FOOD);
+			if (basicItemList == null)
+				return;
+
 			for (int i = 0; i < basicItemList.Length; ++i)
 			{
 				basicItems[i].SetInfo(basicItemList[i]);

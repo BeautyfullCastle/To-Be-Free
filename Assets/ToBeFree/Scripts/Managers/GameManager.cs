@@ -757,12 +757,14 @@ namespace ToBeFree
 			}
 
 			// 행동 이벤트
-			if (character.IsDetention == false && character.IsActionSkip == false)
+			if (character.IsActionSkip == false)
 			{
-				// activate selected event
-				yield return action.Activate(character);
+				if(character.IsDetention == false)
+				{
+					yield return action.Activate(character);
+				}
 			}
-			else if (character.IsActionSkip == true)
+			else
 			{
 				character.IsActionSkip = false;
 			}

@@ -219,6 +219,21 @@ namespace ToBeFree
 		{
 			this.enabled = isEnable;
 
+			if (isEnable)
+			{
+				this.GetComponent<UIButton>().defaultColor = defaultColor;
+				this.GetComponent<UIButton>().hover = hover;
+				this.GetComponent<UIButton>().pressed = pressed;
+				this.GetComponent<UIButton>().disabledColor = disabledColor;
+			}
+			else
+			{ 
+				this.GetComponent<UIButton>().defaultColor = Color.gray;
+				this.GetComponent<UIButton>().hover = Color.gray;
+				this.GetComponent<UIButton>().pressed = Color.gray;
+				this.GetComponent<UIButton>().disabledColor = Color.gray;
+			}
+
 			UIButtonEventSynchronizer synchronizer = this.GetComponent<UIButtonEventSynchronizer>();
 			if (synchronizer == null)
 			{
@@ -229,18 +244,12 @@ namespace ToBeFree
 
 		void OnEnable()
 		{
-			this.GetComponent<UIButton>().defaultColor = defaultColor;
-			this.GetComponent<UIButton>().hover = hover;
-			this.GetComponent<UIButton>().pressed = pressed;
-			this.GetComponent<UIButton>().disabledColor = disabledColor;
+			
 		}
 
 		void OnDisable()
 		{
-			this.GetComponent<UIButton>().defaultColor = Color.gray;
-			this.GetComponent<UIButton>().hover = Color.gray;
-			this.GetComponent<UIButton>().pressed = Color.gray;
-			this.GetComponent<UIButton>().disabledColor = Color.gray;
+			
 		}
 
 		public Item Item
