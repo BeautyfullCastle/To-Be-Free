@@ -17,13 +17,14 @@ namespace ToBeFree
 
 	public class TimeTable : Singleton<TimeTable>
 	{
-		private int hour;
+		private float hour;
 		private int day;
 		private int policeTurnDays;
 
-		private int totalHour;
-		private int usedHour;
+		private float totalHour;
+		private float usedHour;
 		private float timePerHour;
+		private AudioSource hourAudioSource;
 
 		public delegate void TimeEventHandler();
 
@@ -35,6 +36,7 @@ namespace ToBeFree
 		{
 			timePerHour = 0.3f;
 			policeTurnDays = GameManager.Instance.PoliceTurnDays;
+			hourAudioSource = AudioManager.Instance.Find("hour");
 
 			Reset();
 		}
@@ -71,45 +73,27 @@ namespace ToBeFree
 		public IEnumerator SpendTime(int requiredTime, eSpendTime timer)
 		{
 			totalHour = (requiredTime) * 6;
-			usedHour = 0;
-			int randHour = UnityEngine.Random.Range(0, totalHour);
-			int remainHour = totalHour - randHour;
-
-			while (true)
+			if(timer == eSpendTime.RAND)
 			{
-				yield return new WaitForSeconds(timePerHour);
-				Hour++;
-				usedHour++;
-
-				if (timer == eSpendTime.END)
-				{
-					if (usedHour >= totalHour)
-					{
-						yield break;
-					}
-				}
-				else if (timer == eSpendTime.RAND)
-				{
-					if (usedHour >= randHour)
-					{
-						yield break;
-					}
-				}
+				totalHour = UnityEngine.Random.Range(0, totalHour);
 			}
+			usedHour = 0f;
+
+			yield return TurningHour();
 		}
 
 		public IEnumerator SpendRemainTime()
 		{
-			while (true)
-			{
-				yield return new WaitForSeconds(timePerHour);
-				Hour++;
-				usedHour++;
+			yield return TurningHour();
+		}
 
-				if (usedHour >= totalHour)
-				{
-					yield break;
-				}
+		private IEnumerator TurningHour()
+		{
+			while (usedHour <= totalHour)
+			{
+				yield return new WaitForEndOfFrame();
+				Hour += Time.deltaTime / TimeTable.Instance.TimePerHour;
+				usedHour += Time.deltaTime / TimeTable.Instance.TimePerHour;
 			}
 		}
 
@@ -126,7 +110,7 @@ namespace ToBeFree
 			}
 		}
 
-		public int Hour
+		public float Hour
 		{
 			get
 			{
@@ -139,10 +123,15 @@ namespace ToBeFree
 				else
 					hour = value;
 
-				if(GameObject.Find("InGame") != null)
+				if(hourAudioSource == null)
 				{
-					AudioManager.Instance.Find("hour").Play();
+					hourAudioSource = AudioManager.Instance.Find("hour");
 				}
+				else if (hour % 1 <= 0.1f && hourAudioSource.isPlaying == false)
+				{
+					hourAudioSource.Play();
+				}
+				
 				NotifyEveryHour();
 			}
 		}

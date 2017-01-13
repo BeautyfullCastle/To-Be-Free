@@ -302,10 +302,7 @@ namespace ToBeFree
 			}
 			else
 			{
-				//if(actionType == eEventAction.MOVE)
-					path = curves[(int)eWay.NORMALWAY].GetPath(currentPoint, destinationPoint);
-				//else if(actionType == eEventAction.MOVE_BUS)
-				//	path = curves[(int)eWay.HIGHWAY].GetPath(currentPoint, destinationPoint);
+				path = curves[(int)eWay.NORMALWAY].GetPath(currentPoint, destinationPoint);
 			}
 
 			if (path == null)
@@ -342,22 +339,33 @@ namespace ToBeFree
 				yield break;
 			}
 
+			//List<BezierPoint> path = null;
+			//if (curPoint.GetComponent<IconCity>().type == eNodeType.MOUNTAIN || point.GetComponent<IconCity>().type == eNodeType.MOUNTAIN)
+			//{
+			//	path = curves[(int)eWay.ENTIREWAY].GetPath(curPoint, point);
+			//}
+			//else
+			//{
+			//	path = curves[(int)eWay.NORMALWAY].GetPath(curPoint, point);
+			//}
+
+			//if (path == null)
+			//	yield break;
+
 			currMoveTime = 0f;
-			float currTimeCounter = 1f;
+			float currTimeCounter = moveTimePerCity;
 			while (currMoveTime <= moveTimePerCity)
 			{
 				if (character.gameObject.name == "Character")
 				{
-					if (currTimeCounter >= TimeTable.Instance.TimePerHour)
-					{
-						TimeTable.Instance.Hour++;
-						currTimeCounter = 0f;
-					}
+					TimeTable.Instance.Hour += Time.deltaTime / TimeTable.Instance.TimePerHour;
+					//if (currTimeCounter >=  TimeTable.Instance.TimePerHour)
+					//{
+					//	TimeTable.Instance.Hour++;
+					//	currTimeCounter = 0f;
+					//}
 				}
-				else
-				{
-					yield return new WaitForEndOfFrame();
-				}
+				yield return new WaitForEndOfFrame();
 
 				currMoveTime += Time.deltaTime;
 				currTimeCounter += Time.deltaTime;

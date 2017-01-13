@@ -39,7 +39,7 @@ namespace ToBeFree
 			ChangeHour(TimeTable.Instance.Hour);
 		}
 
-		private void ChangeHour(int hour)
+		private void ChangeHour(float hour)
 		{
 			hour -= 6;
 			hourhand.localRotation = Quaternion.AngleAxis(angle + hour * -15f, Vector3.forward);

@@ -300,8 +300,10 @@ namespace ToBeFree
 				yield break;
 			}
 
+			// 일반 이동
 			float moveTimePerCity = TimeTable.Instance.MoveTimePerAction;
 
+			// 버스 이동
 			if (actionName == eEventAction.MOVE_BUS)
 			{
 				character.Stat.Money -= 4;

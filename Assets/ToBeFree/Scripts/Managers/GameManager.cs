@@ -361,7 +361,8 @@ namespace ToBeFree
 #if UNITY_EDITOR
 			if (Input.GetKeyDown(KeyCode.D))
 			{
-				character.IsDetention = true;
+				if(character != null)
+					character.IsDetention = true;
 			}
 
 			if(Input.GetKeyDown(KeyCode.A))
