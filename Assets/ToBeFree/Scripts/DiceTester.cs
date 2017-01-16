@@ -29,16 +29,15 @@ namespace ToBeFree
 			}
 
 			diceObj.SetActive(true);
-
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
-
+			
 			AppDemo demo = diceObj.GetComponent<AppDemo>();
 			
 			yield return demo.Init(stat, characterDiceNum + additionalDie, policeDiceNum);
+
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
+
 			int[] resultNums = { 0, 0 };
-
 			
-
 			while (demo.mouseDown == false)
 			{
 				yield return new WaitForSeconds(1f);

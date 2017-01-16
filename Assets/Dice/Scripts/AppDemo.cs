@@ -50,6 +50,8 @@ public class AppDemo : MonoBehaviour
 
 		button.SetEnable(true);
 		this.stat = stat;
+
+		Stat.OnValueChange += Stat_OnValueChange;
 	}
 
 	void Awake()
@@ -61,12 +63,7 @@ public class AppDemo : MonoBehaviour
 
 		this.gameObject.SetActive(false);
 	}
-
-	void OnEnable()
-	{
-		Stat.OnValueChange += Stat_OnValueChange;
-	}
-
+	
 	void OnDisable()
 	{
 		foreach (Dice dice in dices)
@@ -74,7 +71,6 @@ public class AppDemo : MonoBehaviour
 			dice.Clear();
 		}
 		mouseDown = false;
-		Stat.OnValueChange -= Stat_OnValueChange;
 	}
 	
 	public void OnButtonClick()
@@ -84,6 +80,8 @@ public class AppDemo : MonoBehaviour
 			dice.Freeze(false);
 		}
 		mouseDown = true;
+		Stat.OnValueChange -= Stat_OnValueChange;
+		
 	}
 
 	// check if a point is within a rectangle
@@ -101,16 +99,32 @@ public class AppDemo : MonoBehaviour
 		return mp;
 	}
 
-	public IEnumerator AddDie()
-	{
-		yield return dices[0].AddDie(LayerMask.NameToLayer("Dice1"));
-	}
-
 	private void Stat_OnValueChange(int value, eStat stat)
 	{
-		if (EnumConvert<eTestStat>.ToString(this.stat) == EnumConvert<eStat>.ToString(stat) && value >= 1)
+		if (EnumConvert<eTestStat>.ToString(this.stat) == EnumConvert<eStat>.ToString(stat))
 		{
-			StartCoroutine(AddDie());
+			int characterStatNum = GameManager.Instance.Character.GetDiceNum(this.stat);
+			if(value >= characterStatNum)
+			{
+				StartCoroutine(dices[0].AddDie(LayerMask.NameToLayer("Dice1")));
+			}
 		}
+	}
+
+	public IEnumerator AddDie()
+	{
+		while(true)
+		{
+			if (dices[0].AddingDie)
+			{
+				yield return new WaitForSeconds(0.1f);
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		yield return dices[0].AddDie(LayerMask.NameToLayer("Dice1"));
 	}
 }

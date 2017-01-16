@@ -52,6 +52,8 @@ public class Dice : MonoBehaviour {
 	private ArrayList allDice = new ArrayList();
 	// reference to the dice that are rolling
 	private ArrayList rollingDice = new ArrayList();
+
+	private bool addingDie = false;
 	
 	[SerializeField]
 	private Transform spawnPoint = null;
@@ -66,7 +68,6 @@ public class Dice : MonoBehaviour {
 
 	private float positionX;
 	private float positionY;
-	
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// public methods
@@ -178,37 +179,12 @@ public class Dice : MonoBehaviour {
 		}
 	}
 
-	/* 
-	[출처]
-	[C#] 첫 글자(문자)만 대문자로 바꾸기|작성자 씨콤
-	*/
-	private string UppercaseFirst(string s)
-	{
-		if (string.IsNullOrEmpty(s))
-		{
-			return string.Empty;
-		}
-		else
-		{
-			StringBuilder sbAfterString = new StringBuilder();
-			string sBeforeChar = string.Empty;
-			int i = 0;
-			foreach (char c in s)
-			{
-				if (i.Equals(0) || sBeforeChar.Equals(" "))
-					sbAfterString.Append(c.ToString().ToUpper());
-				else
-					sbAfterString.Append(c.ToString().ToLower());
-
-				sBeforeChar = c.ToString();
-				i++;
-			}
-			return sbAfterString.ToString();
-		}
-	}
+	
 
 	public IEnumerator AddDie(int layer)
 	{
+		addingDie = true;
+
 		string dieType = "d6";
 		string mat = "red";
 
@@ -247,17 +223,47 @@ public class Dice : MonoBehaviour {
 
 		yield return new WaitForSeconds(tweenPosition.duration);
 
-		yield return null;
-
-		positionX += 0.15f;
-		if (allDice.Count % 3 == 0)
+		float spaceWithDies = (die.transform.lossyScale.sqrMagnitude * 0.5f);
+		positionX += spaceWithDies;
+		if (allDice.Count % 5 == 0)
 		{
 			positionX = this.spawnPoint.position.x;
-			positionY += 0.15f;
+			positionY += spaceWithDies;
 		}
 
 		rDie.SetGravity(false);
 		rDie.force = Vector3.zero;
+
+		addingDie = false;
+	}
+
+	/* 
+	[출처]
+	[C#] 첫 글자(문자)만 대문자로 바꾸기|작성자 씨콤
+	*/
+	private string UppercaseFirst(string s)
+	{
+		if (string.IsNullOrEmpty(s))
+		{
+			return string.Empty;
+		}
+		else
+		{
+			StringBuilder sbAfterString = new StringBuilder();
+			string sBeforeChar = string.Empty;
+			int i = 0;
+			foreach (char c in s)
+			{
+				if (i.Equals(0) || sBeforeChar.Equals(" "))
+					sbAfterString.Append(c.ToString().ToUpper());
+				else
+					sbAfterString.Append(c.ToString().ToLower());
+
+				sBeforeChar = c.ToString();
+				i++;
+			}
+			return sbAfterString.ToString();
+		}
 	}
 
 	/// <summary>
@@ -382,9 +388,8 @@ public class Dice : MonoBehaviour {
 	private Vector3 Force()
 	{
 		float force = 1f;
-		return new Vector3(Random.Range(-0.2f, 0.2f) * force, Random.Range(-0.2f, 0.2f) * force, -force * 2);
-		Vector3 rollTarget = Vector3.zero + new Vector3(2 + 7 * Random.value, .5F + 4 * Random.value, -2 - 3 * Random.value);
-		return Vector3.Lerp(spawnPoint.position, rollTarget, 1).normalized * (-35 - Random.value * 5);
+		float randValue = 0.5f;
+		return new Vector3(Random.Range(-randValue, randValue) * force, Random.Range(-randValue, randValue) * force, -force * 2);
 	}
 
 	public void SetPosition(bool isPolice)
@@ -461,7 +466,15 @@ public class Dice : MonoBehaviour {
 			AudioManager.Instance.Find("success").Play();
 			yield return new WaitForSeconds(1f);
 		}
-	}	
+	}
+
+	public bool AddingDie
+	{
+		get
+		{
+			return addingDie;
+		}
+	}
 }
 
 /// <summary>

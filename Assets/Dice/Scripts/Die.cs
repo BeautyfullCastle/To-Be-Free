@@ -117,20 +117,25 @@ public class Die : MonoBehaviour {
 		{
 			GetValue();
 		
-			Rigidbody rigid = this.GetComponent<Rigidbody>();
-			if (rigid == null)
-				return;
-
-			if (rigid.useGravity == false)
-				return;
-			
 			if (this.value <= 0 || this.transform.position.z < -0.1f)
 			{
-				rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
-				rigid.AddForce(new Vector3(0.1f, 0.1f, 1f), ForceMode.Impulse);
-				NGUIDebug.Log("Reroll");
+				ReRoll();
 			}
 		}
+	}
+
+	private void ReRoll()
+	{
+		Rigidbody rigid = this.GetComponent<Rigidbody>();
+		if (rigid == null)
+			return;
+
+		if (rigid.useGravity == false)
+			return;
+
+		rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
+		rigid.AddForce(new Vector3(0.1f, 0.1f, 1f), ForceMode.Impulse);
+		NGUIDebug.Log("Reroll");
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -138,6 +143,10 @@ public class Die : MonoBehaviour {
 		if (collision.gameObject.name == "platform")
 		{
 			isOnGround = true;
+		}
+		else if(collision.gameObject.name == this.gameObject.name && this.transform.position.z < -0.1f)
+		{
+			ReRoll();
 		}
 	}
 

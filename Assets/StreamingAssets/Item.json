@@ -391,7 +391,7 @@
 			"duration": "EQUIP",
 			"restore": "true",
 			"effectIndexList": [
-				31
+				29
 			],
 			"amountList": [
 				1
@@ -407,7 +407,7 @@
 			"duration": "EQUIP",
 			"restore": "true",
 			"effectIndexList": [
-				31
+				29
 			],
 			"amountList": [
 				1
@@ -423,7 +423,7 @@
 			"duration": "EQUIP",
 			"restore": "true",
 			"effectIndexList": [
-				31
+				29
 			],
 			"amountList": [
 				1
@@ -439,7 +439,7 @@
 			"duration": "ONCE",
 			"restore": "true",
 			"effectIndexList": [
-				31
+				29
 			],
 			"amountList": [
 				1
@@ -455,7 +455,7 @@
 			"duration": "ONCE",
 			"restore": "true",
 			"effectIndexList": [
-				31
+				29
 			],
 			"amountList": [
 				1
