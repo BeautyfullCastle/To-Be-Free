@@ -99,15 +99,13 @@ public class AppDemo : MonoBehaviour
 		return mp;
 	}
 
+	// 스탯 장착템으로 인해 불러오는 이벤트.
 	private void Stat_OnValueChange(int value, eStat stat)
 	{
 		if (EnumConvert<eTestStat>.ToString(this.stat) == EnumConvert<eStat>.ToString(stat))
 		{
 			int characterStatNum = GameManager.Instance.Character.GetDiceNum(this.stat);
-			if(value >= characterStatNum)
-			{
-				StartCoroutine(dices[0].AddDie(LayerMask.NameToLayer("Dice1")));
-			}
+			StartCoroutine(this.AddDie());
 		}
 	}
 
@@ -125,6 +123,7 @@ public class AppDemo : MonoBehaviour
 			}
 		}
 
+		dices[0].AddDieNum();
 		yield return dices[0].AddDie(LayerMask.NameToLayer("Dice1"));
 	}
 }

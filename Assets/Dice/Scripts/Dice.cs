@@ -64,7 +64,8 @@ public class Dice : MonoBehaviour {
 	[SerializeField]
 	private UISprite statSprite;
 	[SerializeField]
-	private UILabel diceNumLabel;
+	private UILabel dieNumLabel;
+	private int dieNum;
 
 	private float positionX;
 	private float positionY;
@@ -161,7 +162,7 @@ public class Dice : MonoBehaviour {
 		}
 		
 		this.statSprite.spriteName = "STAT_" + stat.ToString();
-		this.diceNumLabel.text = dieNum.ToString();
+		this.SetDieNum(dieNum);
 	}
 
 	public IEnumerator InitDies(int dieNum, bool isPolice)
@@ -178,9 +179,7 @@ public class Dice : MonoBehaviour {
 			yield return AddDie(LayerMask.NameToLayer(layerName));
 		}
 	}
-
 	
-
 	public IEnumerator AddDie(int layer)
 	{
 		addingDie = true;
@@ -235,6 +234,17 @@ public class Dice : MonoBehaviour {
 		rDie.force = Vector3.zero;
 
 		addingDie = false;
+	}
+
+	public void AddDieNum()
+	{
+		this.SetDieNum(this.dieNum + 1);
+	}
+
+	private void SetDieNum(int dieNum)
+	{
+		this.dieNum = dieNum;
+		this.dieNumLabel.text = dieNum.ToString();
 	}
 
 	/* 

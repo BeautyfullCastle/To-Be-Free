@@ -146,7 +146,11 @@ public class Die : MonoBehaviour {
 		}
 		else if(collision.gameObject.name == this.gameObject.name && this.transform.position.z < -0.1f)
 		{
-			ReRoll();
+			// 서로 반대 방향으로 튕겨낸다.
+			Vector3 v = collision.transform.position - this.transform.position;
+			v.Normalize();
+			Rigidbody rigid = this.GetComponent<Rigidbody>();
+			rigid.AddForce(v * Random.value, ForceMode.Impulse);
 		}
 	}
 

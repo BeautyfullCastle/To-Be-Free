@@ -99,8 +99,6 @@ namespace ToBeFree
 					GameObject.Destroy(effectObj, effectObj.GetComponent<ParticleSystem>().duration);
 
 					StartCoroutine(GameManager.Instance.Character.Inven.UseItem(this.Item, GameManager.Instance.Character));
-					
-					Debug.Log(this.name + " : UseItem()");
 				}
 				return;
 			}

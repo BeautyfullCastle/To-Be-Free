@@ -5,6 +5,7 @@ namespace ToBeFree
 {
 	public class DiceTester : Singleton<DiceTester>
 	{
+		public AppDemo demo;
 		private GameObject diceObj;
 
 		private int minSuccessNum;
@@ -16,6 +17,8 @@ namespace ToBeFree
 			minSuccessNum = 6;
 			diceObj = GameManager.Instance.diceObj;
 			diceObj.SetActive(false);
+
+			demo = diceObj.GetComponent<AppDemo>();
 
 			additionalDie = 0;
 		}
@@ -29,8 +32,6 @@ namespace ToBeFree
 			}
 
 			diceObj.SetActive(true);
-			
-			AppDemo demo = diceObj.GetComponent<AppDemo>();
 			
 			yield return demo.Init(stat, characterDiceNum + additionalDie, policeDiceNum);
 

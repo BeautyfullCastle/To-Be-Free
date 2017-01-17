@@ -177,11 +177,23 @@ namespace ToBeFree
 
 		public IEnumerator UseItem(Item item, Character character)
 		{
-			yield return item.Buff.ActivateEffect(character);
 			if (item.Buff.Duration == eDuration.ONCE)
 			{
+				if(item.Buff.EffectAmountList[0].Effect.SubjectType == eSubjectType.STAT)
+				{
+					yield return DiceTester.Instance.demo.AddDie();
+				}
+				else
+				{
+					yield return item.Buff.ActivateEffect(character);
+				}
+
 				AudioManager.Instance.Find("use_item").Play();
 				yield return Delete(item, character);
+			}
+			else
+			{
+				yield return item.Buff.ActivateEffect(character);
 			}
 		}
 
