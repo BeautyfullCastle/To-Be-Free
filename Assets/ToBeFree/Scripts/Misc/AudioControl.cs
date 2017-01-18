@@ -16,10 +16,12 @@ public class AudioControl : MonoBehaviour {
 		if(musicVolumeSlider)
 		{
 			musicVolumeSlider.value = 0.8f;
+			SetMusicVolume(musicVolumeSlider.value);
 		}
 		if(sfxVolumeSlider)
 		{
 			sfxVolumeSlider.value = 0.8f;
+			SetsfxVolume(sfxVolumeSlider.value);
 		}
 		if(muteCheckbox)
 		{
@@ -29,7 +31,8 @@ public class AudioControl : MonoBehaviour {
 		this.gameObject.SetActive(false);
 	}
 
-	public void SetsfxVolume (float volume) {
+	public void SetsfxVolume (float volume)
+	{
 		volume = ChangeSliderValueToDecibel(volume);
 		masterGroup.audioMixer.SetFloat("sfxVolume", volume);
 	}

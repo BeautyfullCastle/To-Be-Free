@@ -466,7 +466,7 @@ namespace ToBeFree
 			
 			if (IsNew == false)
 			{
-				SaveLoadManager.Instance.Init();
+				SaveLoadManager.Instance.Load();
 
 				AbnormalConditionManager.Instance.Load(SaveLoadManager.Instance.data.abnormalList);
 				QuestManager.Instance.Load(SaveLoadManager.Instance.data.questList);
@@ -530,6 +530,8 @@ namespace ToBeFree
 
 		IEnumerator MainState()
 		{
+			SaveLoadManager.Instance.Init();
+
 			// Enter
 			yield return this.ChangeScene(eSceneState.Main, false);
 			

@@ -12,6 +12,8 @@ namespace ToBeFree
 
 		private string file;
 
+		private UIButton continueButton;
+
 		[Serializable]
 		public class Data : IData
 		{
@@ -39,6 +41,12 @@ namespace ToBeFree
 		{
 			file = Application.dataPath + "/saveData.json";
 			Load();
+
+			if (continueButton == null)
+			{
+				continueButton = GameObject.Find("CONTINUE").GetComponent<UIButton>();
+			}
+			continueButton.isEnabled = data != null;
 		}
 
 		public void Save()
@@ -53,11 +61,8 @@ namespace ToBeFree
 			CharacterManager.Instance.Save(data.character);
 			TimeTable.Instance.Save(data.time);
 			
-			//JsonData jsonData = JsonMapper.ToJson(data);
-			//Debug.Log(jsonData);
 			string s = JsonUtility.ToJson(data);
 			Debug.Log(s);
-			string file = Application.dataPath + "/saveData.json";
 			File.WriteAllText(file, s);
 		}
 
@@ -68,7 +73,6 @@ namespace ToBeFree
 			string json = reader.ReadToEnd();
 
 			data = JsonUtility.FromJson<Data>(json);
-			Debug.Log(data.character.index);
 
 			reader.Close();
 		}
