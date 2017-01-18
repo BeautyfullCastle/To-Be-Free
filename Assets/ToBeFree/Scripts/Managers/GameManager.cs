@@ -351,11 +351,7 @@ namespace ToBeFree
 
 			if(Input.GetKeyDown(KeyCode.Escape))
 			{
-				SwitchMenu(false);
-				if (optionObj.activeSelf)
-				{
-					SwitchMenu(true);
-				}
+				ExitSetting();
 			}
 
 #if UNITY_EDITOR
@@ -409,6 +405,15 @@ namespace ToBeFree
 
 			// 6. end week
 
+		}
+
+		private void ExitSetting()
+		{
+			SwitchMenu(false);
+			if (optionObj.activeSelf)
+			{
+				SwitchMenu(true);
+			}
 		}
 
 		private void SwitchMenu(bool isOption)
@@ -591,13 +596,20 @@ namespace ToBeFree
 			}
 			else if(buttonName == "EXIT")
 			{
-				SwitchMenu(false);
-				StopAllCoroutines();
-				StartCoroutine(ChangeToMain());
+				if(this.state == GameState.Main)
+				{
+					Application.Quit();
+				}
+				else
+				{
+					SwitchMenu(false);
+					StopAllCoroutines();
+					StartCoroutine(ChangeToMain());
+				}
 			}
-			else if(buttonName == "EXIT_MAIN")
+			else if(buttonName == "EXIT_SETTING")
 			{
-				Application.Quit();
+				ExitSetting();
 			}
 		}
 

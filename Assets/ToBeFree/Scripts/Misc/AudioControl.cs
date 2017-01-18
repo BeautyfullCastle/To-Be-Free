@@ -2,13 +2,30 @@
 using UnityEngine.Audio;
 
 public class AudioControl : MonoBehaviour {
-	public AudioMixerGroup masterGroup;
+	[SerializeField]
+	private AudioMixerGroup masterGroup;
+	[SerializeField]
+	private UISlider musicVolumeSlider;
+	[SerializeField]
+	private UISlider sfxVolumeSlider;
+	[SerializeField]
+	private UIToggle muteCheckbox;
 
 	void Start()
 	{
-		SetsfxVolume(.5f);
-		SetMusicVolume(.5f);
-		SetMasterVolume(false);
+		if(musicVolumeSlider)
+		{
+			musicVolumeSlider.value = 0.8f;
+		}
+		if(sfxVolumeSlider)
+		{
+			sfxVolumeSlider.value = 0.8f;
+		}
+		if(muteCheckbox)
+		{
+			muteCheckbox.value = false;
+		}
+		
 		this.gameObject.SetActive(false);
 	}
 

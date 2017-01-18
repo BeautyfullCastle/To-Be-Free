@@ -7,7 +7,20 @@ namespace ToBeFree
 	{
 		public delegate void selectLanguageHandler(eLanguage language);
 		static public event selectLanguageHandler selectLanguage;
+
+		[SerializeField]
+		private UIPopupList popupList;
 		
+		void Start()
+		{
+			if(popupList == null)
+			{
+				popupList = this.GetComponent<UIPopupList>();
+			}
+			
+			popupList.value = EnumConvert<eLanguage>.ToString(LanguageManager.Instance.CurrentLanguage);
+		}
+
 		public void SelectLanguage(string language)
 		{
 			LanguageManager.Instance.SelectLanguage(EnumConvert<eLanguage>.ToEnum(language));
