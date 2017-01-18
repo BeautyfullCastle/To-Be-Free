@@ -32,13 +32,14 @@ namespace ToBeFree
 		public event TimeEventHandler NotifyEveryday = delegate { };
 		public event TimeEventHandler NotifyEveryWeek = delegate { };
 
-		public TimeTable()
+		public void Init()
 		{
 			timePerHour = 0.3f;
 			policeTurnDays = GameManager.Instance.PoliceTurnDays;
-			hourAudioSource = AudioManager.Instance.Find("hour");
-
-			Reset();
+			if(hourAudioSource == null)
+			{
+				hourAudioSource = AudioManager.Instance.Find("hour");
+			}
 		}
 
 		public void Reset()
@@ -129,7 +130,10 @@ namespace ToBeFree
 				}
 				else if (hour % 1 <= 0.1f && hourAudioSource.isPlaying == false)
 				{
-					hourAudioSource.Play();
+					if(GameManager.Instance.State != GameManager.GameState.Init)
+					{
+						hourAudioSource.Play();
+					}
 				}
 				
 				NotifyEveryHour();

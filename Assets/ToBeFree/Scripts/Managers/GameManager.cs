@@ -116,9 +116,12 @@ namespace ToBeFree
 				command.GetComponent<UIButton>().isEnabled = false;
 			}
 
+			TimeTable.Instance.Init();
 			TimeTable.Instance.NotifyEveryWeek += WeekIsGone;
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
-			
+			ResetUI();
+
+
 			optionObj.SetActive(false);
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
@@ -617,7 +620,6 @@ namespace ToBeFree
 
 		public IEnumerator ChangeToMain()
 		{
-			ResetUI();
 			worldObj.SetActive(false);
 			this.state = GameState.Main;
 			
