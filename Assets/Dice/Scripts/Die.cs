@@ -54,10 +54,10 @@ public class Die : MonoBehaviour {
 		get
 		{
 			// create a Ray from straight above this Die , moving downwards
-			Ray ray = new Ray(transform.position + (new Vector3(0, 0, -5) * transform.localScale.magnitude), Vector3.forward);
+			Ray ray = new Ray(transform.position + (new Vector3(0, 0, -1f) * transform.localScale.sqrMagnitude), Vector3.forward);
 			RaycastHit hit = new RaycastHit();
 			// cast the ray and validate it against this die's collider
-			if (GetComponent<Collider>().Raycast(ray, out hit, 8 * transform.localScale.magnitude))
+			if (GetComponent<Collider>().Raycast(ray, out hit, 2f * transform.localScale.sqrMagnitude))
 			{
 				// we got a hit so we determine the local normalized vector from the die center to the face that was hit.
 				// because we are using local space, each die side will have its own local hit vector coordinates that will always be the same.

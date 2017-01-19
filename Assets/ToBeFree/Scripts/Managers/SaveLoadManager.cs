@@ -39,7 +39,7 @@ namespace ToBeFree
 
 		public void Init()
 		{
-			file = Application.dataPath + "/saveData.json";
+			file = Application.streamingAssetsPath + "/saveData.json";
 			Load();
 
 			if (continueButton == null)
