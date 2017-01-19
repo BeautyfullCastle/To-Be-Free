@@ -254,7 +254,7 @@
 			"index": 24,
 			"actionType": "REST_SPECIAL",
 			"difficulty": "NORMAL",
-			"script": "인적이 드문 곳에서 휴식을 취합니다. 한 남자가 다가오더니 명한 같은 것을 줍니다. 명함에는 한국어로 조선족 쉼터라고 적혀 있습니다. 쉼터는 그리 멀지 않은 곳에 있는 것 같습니다.",
+			"script": "인적이 드문 곳에서 휴식을 취합니다. 한 남자가 다가오더니 명함을 줍니다. 명함에는 한국어로 조선족 쉼터라고 적혀 있습니다. 쉼터는 그리 멀지 않은 곳에 있는 것 같습니다.",
 			"resultIndex": -99,
 			"selectIndexList": [
 				51,
@@ -327,7 +327,7 @@
 			"index": 31,
 			"actionType": "WORK_END",
 			"difficulty": "NORMAL",
-			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕 하시우, 네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 기뻐하며 자신의 이름을 김봉식이라고 하고 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있는가? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있나?'",
+			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕 하시우, 네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 기뻐하며 자신의 이름을 김봉식이라고 하고 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'",
 			"resultIndex": -99,
 			"selectIndexList": [
 				2,
@@ -336,7 +336,7 @@
 		},
 		{
 			"index": 32,
-			"actionType": "HIDE_SPECIAL",
+			"actionType": "REST_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "숨어서 휴식을 취하는 도중 근처에 한 사람이 초조해 보이는 듯 주변을 두리번거리고 있습니다. 행색으로 보아하니 같은 탈북자인 것 같습니다.",
 			"resultIndex": -99,
@@ -359,7 +359,7 @@
 			"index": 34,
 			"actionType": "WORK_END",
 			"difficulty": "NORMAL",
-			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕하시우, 네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있는가? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있나?'",
+			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕하시우, 네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'",
 			"resultIndex": -99,
 			"selectIndexList": [
 				4,
@@ -368,7 +368,7 @@
 		},
 		{
 			"index": 35,
-			"actionType": "HIDE_SPECIAL",
+			"actionType": "REST_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "공안을 피해서 숨어서 휴식을 취합니다. 휴식을 취하던 중 근처에 공안이 순찰 중인 것을 확인했습니다. 위험하기 때문에 몰래 장소를 빠져나갑니다.",
 			"resultIndex": 66,
@@ -378,7 +378,7 @@
 		},
 		{
 			"index": 36,
-			"actionType": "HIDE_SPECIAL",
+			"actionType": "REST_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "숨어서 휴식을 취하고 있는 중 공안이 근처에 오는 것이 보입니다. 지금이라면 숨는 장소를 이동 할 수 있을 것 같습니다.",
 			"resultIndex": -99,
@@ -641,7 +641,7 @@
 		},
 		{
 			"index": 61,
-			"actionType": "INSPECT_SPECIAL",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "한 공안이 당신을 발견하고 이상한 손짓을 합니다. 바로 잡으러 오지 않는 걸 보아하니 무언가 이상합니다.",
 			"resultIndex": -99,
@@ -664,7 +664,7 @@
 			"index": 63,
 			"actionType": "INVESTIGATION_BROKER_SPECIAL",
 			"difficulty": "NORMAL",
-			"script": "소문을 통해서 브로커를 알고 있다는 한 조선인을 만났습니다.\\n'남한으로 가고 싶다고? 용하게도 내가 브로커에 대한 정보가 있다는 걸 알았나보구먼. 좋수만 대신 조건이 있제. 세상은 다 돈이여 돈 좀 있나? 돈을 주면 알려줄 수 있지 4위안만 주게'",
+			"script": "소문을 통해서 브로커를 알고 있다는 한 조선인을 만났습니다.\\n'남한으로 가고 싶다고? 용하게도 내가 브로커에 대한 정보가 있다는 걸 알았나보구먼. 좋수만 대신 조건이 있제. 돈 좀 있나? 돈을 주면 알려줄 수 있지 4위안만 주게'",
 			"resultIndex": -99,
 			"selectIndexList": [
 				27,
@@ -780,7 +780,7 @@
 			"index": 74,
 			"actionType": "CAMP",
 			"difficulty": "NORMAL",
-			"script": "수용소에서 있는데 한 공안이 나와 중국어로 이야기합니다. 옆에 있던 탈북자가 7위안을 주면 나갈 수 있다는 이야기를 하고 있다며 알려줍니다.",
+			"script": "수용소에서 있는데 한 공안이 나와 중국어로 이야기합니다. 옆에 있던 탈북자가 8위안을 주면 나갈 수 있다는 이야기를 하고 있다며 알려줍니다.",
 			"resultIndex": -99,
 			"selectIndexList": [
 				67,
@@ -820,7 +820,7 @@
 		},
 		{
 			"index": 78,
-			"actionType": "START",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "큰 태풍이 왔습니다.",
 			"resultIndex": 98,
@@ -830,7 +830,7 @@
 		},
 		{
 			"index": 79,
-			"actionType": "START",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "아침에 일어나니 오늘은 매우 피곤합니다.",
 			"resultIndex": 99,
@@ -840,7 +840,7 @@
 		},
 		{
 			"index": 80,
-			"actionType": "START",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "자고 일어나니 팔이 저립니다.",
 			"resultIndex": 100,
@@ -850,7 +850,7 @@
 		},
 		{
 			"index": 81,
-			"actionType": "START",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "자고 일어나니 다리가 저립니다.",
 			"resultIndex": 101,
@@ -860,7 +860,7 @@
 		},
 		{
 			"index": 82,
-			"actionType": "START",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "아침에 일어나니 오늘은 기분이 매우 좋습니다.",
 			"resultIndex": 102,
@@ -870,7 +870,7 @@
 		},
 		{
 			"index": 83,
-			"actionType": "START",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "일어나 보니 돈이 조금 사라져 있습니다.",
 			"resultIndex": 103,
@@ -880,7 +880,7 @@
 		},
 		{
 			"index": 84,
-			"actionType": "END",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "밤에 밖에서 잠을 청하려 합니다. 하지만 추위가 엄습해서 잠을 자기 힘듭니다. 휴식을 취하기 위해서 잠에 집중해봅니다.",
 			"resultIndex": 104,
@@ -890,7 +890,7 @@
 		},
 		{
 			"index": 85,
-			"actionType": "END",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "밖에서 잠을 청하고 있는데 중간에 부스럭거리는 소리가 들립니다. 신경이 쓰이지만 지나치게 피곤합니다.",
 			"resultIndex": -99,

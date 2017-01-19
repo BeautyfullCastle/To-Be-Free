@@ -48,7 +48,12 @@ namespace ToBeFree
 			{
 				itemPrice.enabled = false;
 			}
-			
+
+			if (item == null)
+			{
+				return;
+			}
+
 			if(item.Buff == null)
 			{
 				return;

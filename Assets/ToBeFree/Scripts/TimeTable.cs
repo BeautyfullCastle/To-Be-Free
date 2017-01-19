@@ -73,24 +73,25 @@ namespace ToBeFree
 
 		public IEnumerator SpendTime(int requiredTime, eSpendTime timer)
 		{
-			totalHour = (requiredTime) * 6;
+			float endHour = (requiredTime) * 6;
 			if(timer == eSpendTime.RAND)
 			{
-				totalHour = UnityEngine.Random.Range(0, totalHour);
+				endHour = UnityEngine.Random.Range(0, totalHour);
 			}
 			usedHour = 0f;
 
-			yield return TurningHour();
+			yield return TurningHour(endHour);
+			totalHour = (requiredTime) * 6;
 		}
 
 		public IEnumerator SpendRemainTime()
 		{
-			yield return TurningHour();
+			yield return TurningHour(totalHour);
 		}
 
-		private IEnumerator TurningHour()
+		private IEnumerator TurningHour(float endHour)
 		{
-			while (usedHour <= totalHour)
+			while (usedHour <= endHour)
 			{
 				yield return new WaitForEndOfFrame();
 				Hour += Time.deltaTime / TimeTable.Instance.TimePerHour;

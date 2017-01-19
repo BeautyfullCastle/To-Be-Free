@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<MyTest>
-	<Field id="a" value="1"/>
-	<Field id="b" value="2"/>
-	<Field id="c" value="3"/>
-</MyTest>

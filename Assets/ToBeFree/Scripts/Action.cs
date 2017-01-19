@@ -75,10 +75,10 @@ namespace ToBeFree
 			
 			if (character.CheckSpecialEvent())
 			{
-				if (actionName == eEventAction.REST)
+				//if (actionName == eEventAction.REST)
 					actionName = eEventAction.REST_SPECIAL;
-				else if (actionName == eEventAction.HIDE)
-					actionName = eEventAction.HIDE_SPECIAL;
+				//else if (actionName == eEventAction.HIDE)
+				//	actionName = eEventAction.HIDE_SPECIAL;
 
 				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
 
@@ -405,13 +405,13 @@ namespace ToBeFree
 				if (character.IsDetention)
 					break;
 
-				if (character.CheckSpecialEvent())
-				{
-					actionName = eEventAction.INSPECT_SPECIAL;
-					yield return EventManager.Instance.DoCommand(actionName, character);
-				}
-				else
-				{
+				//if (character.CheckSpecialEvent())
+				//{
+				//	actionName = eEventAction.INSPECT_SPECIAL;
+				//	yield return EventManager.Instance.DoCommand(actionName, character);
+				//}
+				//else
+				//{
 					actionName = eEventAction.INSPECT;
 
 					Police police = policesInThisCity[i] as Police;
@@ -429,7 +429,7 @@ namespace ToBeFree
 						character.IsDetention = true;
 						yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 					}
-				}
+				//}
 			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);

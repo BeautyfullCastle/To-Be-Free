@@ -117,7 +117,7 @@ public class Die : MonoBehaviour {
 		{
 			GetValue();
 		
-			if (this.value <= 0 || this.transform.position.z < -0.1f)
+			if (this.value <= 0)
 			{
 				ReRoll();
 			}
@@ -144,14 +144,6 @@ public class Die : MonoBehaviour {
 		{
 			isOnGround = true;
 		}
-		else if(collision.gameObject.name == this.gameObject.name && this.transform.position.z < -0.1f)
-		{
-			// 서로 반대 방향으로 튕겨낸다.
-			Vector3 v = collision.transform.position - this.transform.position;
-			v.Normalize();
-			Rigidbody rigid = this.GetComponent<Rigidbody>();
-			rigid.AddForce(v * Random.value, ForceMode.Impulse);
-		}
 	}
 
 	void OnSollisionExit(Collision collision)
@@ -162,6 +154,18 @@ public class Die : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionStay(Collision collision)
+	{
+		if (collision.gameObject.name == this.gameObject.name)
+		{
+			// 서로 반대 방향으로 튕겨낸다.
+			Vector3 v = this.transform.position - collision.transform.position;
+			v.Normalize();
+			Rigidbody rigid = this.GetComponent<Rigidbody>();
+			float force = 0.1f;
+			rigid.AddForce(v * Random.value * force, ForceMode.Impulse);
+		}
+	}
 	private Vector3 Force()
 	{
 		float force = 1.5f;

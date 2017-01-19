@@ -726,13 +726,13 @@ namespace ToBeFree
 			*/
 
 			// 하루 시작 이벤트
-			if (character.IsDetention == false)
-			{
-				if (character.CheckSpecialEvent())
-				{
-					yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.START), character);
-				}
-			}
+			//if (character.IsDetention == false)
+			//{
+			//	if (character.CheckSpecialEvent())
+			//	{
+			//		yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.START), character);
+			//	}
+			//}
 
 			if (character.IsDetention)
 			{
@@ -822,17 +822,17 @@ namespace ToBeFree
 			lightSpriteTweenAlpha.PlayForward();
 
 			// 하루 끝 이벤트
-			if (character.CheckSpecialEvent() && character.IsDetention == false)
-			{
-				yield return TimeTable.Instance.SpendTime(1, eSpendTime.RAND);
-				yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
-				yield return TimeTable.Instance.SpendRemainTime();
-			}
-			else
-			{
-				yield return TimeTable.Instance.SpendTime(1, eSpendTime.END);
-			}
-			
+			//if (character.CheckSpecialEvent() && character.IsDetention == false)
+			//{
+			//	yield return TimeTable.Instance.SpendTime(1, eSpendTime.RAND);
+			//	yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
+			//	yield return TimeTable.Instance.SpendRemainTime();
+			//}
+			//else
+			//{
+			yield return TimeTable.Instance.SpendTime(1, eSpendTime.END);
+			//}
+
 			yield return Instance_NotifyEveryNight();
 
 			#region editor test
