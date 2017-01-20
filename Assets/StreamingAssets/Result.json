@@ -210,10 +210,10 @@
 			],
 			"failureScript": "온 힘을 다해 도망쳤지만 결국 공안에게 잡히고 말았습니다.",
 			"failureEffectIndexList": [
-				56
+				1
 			],
 			"failureEffectValueList": [
-				6
+				-99
 			]
 		},
 		{
@@ -752,10 +752,10 @@
 			],
 			"failureScript": "어눌한 중국어에 공안이 눈치를 챘는지 버스에서 당신을 끌고 내렸습니다. 당신은 체포 되었습니다.",
 			"failureEffectIndexList": [
-				56
+				1
 			],
 			"failureEffectValueList": [
-				6
+				-99
 			]
 		},
 		{
@@ -1484,10 +1484,10 @@
 			],
 			"failureScript": "도망쳤지만 그만 공안에게 붙잡히고 말았습니다.",
 			"failureEffectIndexList": [
-				56
+				1
 			],
 			"failureEffectValueList": [
-				6
+				-99
 			]
 		},
 		{
@@ -1502,10 +1502,10 @@
 			],
 			"failureScript": "은밀하게 움직였지만 공안에게 들켜버렸습니다. 결국 공안에게 붙잡히고 말았습니다.",
 			"failureEffectIndexList": [
-				56
+				1
 			],
 			"failureEffectValueList": [
-				6
+				-99
 			]
 		},
 		{

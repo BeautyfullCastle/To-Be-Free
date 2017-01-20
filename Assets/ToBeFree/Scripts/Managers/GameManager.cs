@@ -513,13 +513,14 @@ namespace ToBeFree
 
 #if UNITY_EDITOR
 			// for test
-			//character.Stat.Agility = 0;
+			//character.Stat.Agility = 1;
 			//character.Stat.InfoNum = 4;
 			//character.Stat.HP = 1;
 			//character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
+			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[11], character);
 #endif
 
 			this.State = GameState.StartDay;
@@ -819,18 +820,8 @@ namespace ToBeFree
 		{
 			// Enter
 			lightSpriteTweenAlpha.PlayForward();
-
-			// 하루 끝 이벤트
-			//if (character.CheckSpecialEvent() && character.IsDetention == false)
-			//{
-			//	yield return TimeTable.Instance.SpendTime(1, eSpendTime.RAND);
-			//	yield return EventManager.Instance.ActivateEvent(EventManager.Instance.Find(eEventAction.END), character);
-			//	yield return TimeTable.Instance.SpendRemainTime();
-			//}
-			//else
-			//{
+			
 			yield return TimeTable.Instance.SpendTime(1, eSpendTime.END);
-			//}
 
 			yield return Instance_NotifyEveryNight();
 

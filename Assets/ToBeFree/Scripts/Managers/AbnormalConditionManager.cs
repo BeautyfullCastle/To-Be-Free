@@ -140,7 +140,7 @@ namespace ToBeFree
 
 		public AbnormalCondition Find(string name)
 		{
-			return Array.Find(list, x => x.Name == name);
+			return this.list[Array.Find(engList, x => x.name == name).index];
 		}
 
 		public IEnumerator ActiveByCondition()

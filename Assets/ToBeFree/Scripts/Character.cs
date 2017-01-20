@@ -199,6 +199,12 @@ namespace ToBeFree
 				{
 					Police police = new Police(this.curCity, eSubjectType.POLICE, 1, 1);
 					PieceManager.Instance.Add(police);
+					AbnormalCondition detention = AbnormalConditionManager.Instance.Find("Detention");
+					if (detention != null)
+					{
+						yield return detention.Activate(this);
+					}
+
 					yield return this.Arrested(police);
 				}
 			}

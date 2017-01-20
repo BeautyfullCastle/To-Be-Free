@@ -436,26 +436,13 @@ namespace ToBeFree
 
 			bool isLastCity = (character.CurCity.Name == "DANDONG" || character.CurCity.Name == "TUMEN");
 
-			// ActState : 체포상태에서 체포된 공안의 이동력만큼 이동
-			if (GameManager.Instance.State == GameManager.GameState.Detention)
-			{
-				// 마지막 도시에 도착하면 밤에 수용소 이벤트를 하고 실패시 그 다음날 아침에 북송 엔딩
-				if(isLastCity)
-				{
-					yield return GameManager.Instance.endingManager.StartEnding(eEnding.REPATRIATE);
-				}
-				else
-				{
-					yield return character.HaulIn();
-				}
-			}
 			/* 밤단계 때 
 			 * 단둥 또는 투먼시에 도착하지 않았으면 공안체크로 탈출 시도 이벤트
 			 * 단둥 또는 투먼시에 도착하면 밤단계에 수용소이벤트 출력
 			 * 수용소 이벤트는 그냥 호출
 			 * - 수용소이벤트 실패 시 북송 게임오버
 			 * */
-			else if (GameManager.Instance.State == GameManager.GameState.Night)
+			if (GameManager.Instance.State == GameManager.GameState.Night)
 			{
 				if (isLastCity)
 				{
@@ -472,6 +459,19 @@ namespace ToBeFree
 				{
 					actionName = eEventAction.DETENTION;
 					yield return character.CaughtPolice.Fight(actionName, character);
+				}
+			}
+			// ActState : 체포상태에서 체포된 공안의 이동력만큼 이동
+			else if (GameManager.Instance.State == GameManager.GameState.Detention)
+			{
+				// 마지막 도시에 도착하면 밤에 수용소 이벤트를 하고 실패시 그 다음날 아침에 북송 엔딩
+				if (isLastCity)
+				{
+					yield return GameManager.Instance.endingManager.StartEnding(eEnding.REPATRIATE);
+				}
+				else
+				{
+					yield return character.HaulIn();
 				}
 			}
 
