@@ -81,7 +81,6 @@ namespace ToBeFree
 
 		private int tempDiceNum;
 		private int diceNumByEffect;
-		private StatSaveData stat;
 
 		public delegate void OnValueChangeHandler(int value, eStat stat);
 		static public event OnValueChangeHandler OnValueChange;
@@ -135,7 +134,7 @@ namespace ToBeFree
 			OnValueChange(totalHP, eStat.TOTALHP);
 
 			OnValueChange(satiety, eStat.SATIETY);
-			OnValueChange(satiety, eStat.TOTALSATIETY);
+			OnValueChange(totalSatiety, eStat.TOTALSATIETY);
 
 			OnValueChange(strength, eStat.STRENGTH);
 			OnValueChange(agility, eStat.AGILITY);
@@ -271,7 +270,7 @@ namespace ToBeFree
 					return;
 				}
 				totalSatiety = value;
-				OnValueChange(satiety, eStat.TOTALSATIETY);
+				OnValueChange(totalSatiety, eStat.TOTALSATIETY);
 			}
 		}
 
