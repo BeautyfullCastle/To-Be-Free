@@ -294,7 +294,7 @@ namespace ToBeFree
 			yield return null;
 		}
 
-		public IEnumerator Deactivate(Character character)
+		public IEnumerator Deactivate(Character character, int amount)
 		{
 			switch (subjectType)
 			{
@@ -314,7 +314,7 @@ namespace ToBeFree
 				case eSubjectType.STAT:
 					if (verbType == eVerbType.ADD)
 					{
-						character.Stat.Restore(objectType);
+						character.Stat.Restore(objectType, amount);
 					}
 					break;
 				case eSubjectType.EVENT:

@@ -7,7 +7,7 @@ namespace ToBeFree
 		[HideInInspector]
 		public int currSiblingIndex;
 		[HideInInspector]
-		public Item item;
+		public UIItem uiItem;
 
 		/// <summary>
 		/// Called on the cloned object when it was duplicated.
@@ -18,8 +18,7 @@ namespace ToBeFree
 			UIItem originUIItem = original.GetComponent<ToBeFree.UIItem>();
 			if (originUIItem == null)
 				return;
-
-			this.item = originUIItem.Item;
+			this.uiItem = originUIItem;
 		}
 	}
 }

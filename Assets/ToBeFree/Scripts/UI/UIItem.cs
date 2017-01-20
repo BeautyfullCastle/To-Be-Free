@@ -21,7 +21,8 @@ namespace ToBeFree
 		private Color hover;
 		private Color pressed;
 		private Color disabledColor;
-		
+
+		UIButtonEventSynchronizer synchronizer;
 
 		void Awake()
 		{
@@ -35,6 +36,7 @@ namespace ToBeFree
 			pressed = this.GetComponent<UIButton>().pressed;
 			disabledColor = this.GetComponent<UIButton>().disabledColor;
 
+			synchronizer = this.GetComponent<UIButtonEventSynchronizer>();
 		}
 
 		void Start()
@@ -237,22 +239,11 @@ namespace ToBeFree
 				this.GetComponent<UIButton>().disabledColor = Color.gray;
 			}
 
-			UIButtonEventSynchronizer synchronizer = this.GetComponent<UIButtonEventSynchronizer>();
-			if (synchronizer == null)
+			if (this.synchronizer == null)
 			{
 				return;
 			}
-			synchronizer.enabled = isEnable;
-		}
-
-		void OnEnable()
-		{
-			
-		}
-
-		void OnDisable()
-		{
-			
+			this.synchronizer.enabled = isEnable;
 		}
 
 		public Item Item

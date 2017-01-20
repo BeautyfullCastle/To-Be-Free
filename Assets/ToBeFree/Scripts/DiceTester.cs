@@ -58,6 +58,9 @@ namespace ToBeFree
 					yield return new WaitForSeconds(1f);
 					continue;
 				}
+
+				yield return new WaitForSeconds(1f);
+
 				resultNums[i] = demo.dices[i].GetSuccessNum(MinSuccessNum);
 			}
 

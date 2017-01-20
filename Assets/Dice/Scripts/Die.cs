@@ -57,7 +57,7 @@ public class Die : MonoBehaviour {
 			Ray ray = new Ray(transform.position + (new Vector3(0, 0, -1f) * transform.localScale.sqrMagnitude), Vector3.forward);
 			RaycastHit hit = new RaycastHit();
 			// cast the ray and validate it against this die's collider
-			if (GetComponent<Collider>().Raycast(ray, out hit, 2f * transform.localScale.sqrMagnitude))
+			if (GetComponent<Collider>().Raycast(ray, out hit, 1.5f * transform.localScale.sqrMagnitude))
 			{
 				// we got a hit so we determine the local normalized vector from the die center to the face that was hit.
 				// because we are using local space, each die side will have its own local hit vector coordinates that will always be the same.
@@ -162,7 +162,7 @@ public class Die : MonoBehaviour {
 			Vector3 v = this.transform.position - collision.transform.position;
 			v.Normalize();
 			Rigidbody rigid = this.GetComponent<Rigidbody>();
-			float force = 0.1f;
+			float force = 0.15f;
 			rigid.AddForce(v * Random.value * force, ForceMode.Impulse);
 		}
 	}

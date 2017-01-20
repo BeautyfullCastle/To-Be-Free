@@ -145,11 +145,16 @@ namespace ToBeFree
 
 		public IEnumerator CheckItem(eStartTime startTime, bool isActive, Character character)
 		{
+			// 아이템 활/비활성화
+			foreach(Item item in list)
+			{
+				SetItemEnabled(item, item.Buff.StartTime == startTime);
+			}
+
+			// 장비템 Effect Activate/Deactivate
 			List<Item> items = list.FindAll(x => x.Buff.StartTime == startTime);
-			
 			for (int i = 0; i < items.Count; ++i)
 			{
-				// 장비템은 알아서 사용됨
 				if (items[i].Buff.Duration == eDuration.EQUIP)
 				{
 					if (isActive)
@@ -157,11 +162,7 @@ namespace ToBeFree
 					else
 						yield return DeactvieItems(items[i], character);
 				}
-				// 소모 아이템은 활성화/비활성화
-				else if (items[i].Buff.Duration == eDuration.ONCE)
-				{
-					SetItemEnabled(items[i], isActive);
-				}
+				
 			}
 		}
 
@@ -171,7 +172,7 @@ namespace ToBeFree
 
 			foreach(UIItem uiItem in uiItems)
 			{
-				uiItem.GetComponent<UIItem>().enabled = isEnabled;
+				uiItem.SetEnable(isEnabled);
 			}
 		}
 

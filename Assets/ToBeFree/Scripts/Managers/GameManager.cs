@@ -521,6 +521,11 @@ namespace ToBeFree
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 			character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
 			character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
+			character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
+			character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
+			character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
+			character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
+			character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
 #endif
 
 			this.State = GameState.StartDay;

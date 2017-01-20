@@ -21,19 +21,23 @@ namespace ToBeFree
 		{
 			if (dropped == null)
 				return;
-			
-			UIItem droppedUIItem = dropped.GetComponent<UIItem>();
-			if (droppedUIItem == null)
-				return;
-			
-			if (droppedUIItem.belong != UIItem.eBelong.INVEN)
-				return;
 
-			UIDragDropMyItem dragdropItem = droppedUIItem.GetComponent<UIDragDropMyItem>();
+			UIDragDropMyItem dragdropItem = dropped.GetComponent<UIDragDropMyItem>();
 			if (dragdropItem == null)
 				return;
 
-			Item item = dragdropItem.item;
+			UIItem uiItem = dragdropItem.uiItem;
+			if (uiItem == null)
+				return;
+			
+			if (uiItem.belong != UIItem.eBelong.INVEN)
+				return;
+
+			// uiItem이 활성화되어있으면 폐기 불가
+			if (uiItem.enabled)
+				return;
+			
+			Item item = uiItem.Item;
 			if (item == null)
 				return;
 

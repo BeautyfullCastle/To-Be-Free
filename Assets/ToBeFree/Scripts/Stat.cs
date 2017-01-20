@@ -29,11 +29,6 @@ namespace ToBeFree
 		public int concentration; // 휴식
 		public int talent; // 조사
 		
-		public int prevStrength;
-		public int prevAgility;
-		public int prevConcentration;
-		public int prevTalent;
-		
 		public int money;
 		
 		public int infoNum;
@@ -54,11 +49,6 @@ namespace ToBeFree
 			agility = stat.Agility;
 			concentration = stat.Concentration;
 			talent = stat.Talent;
-
-			prevStrength = stat.PrevStrength;
-			prevAgility = stat.PrevAgility;
-			prevConcentration = stat.PrevConcentration;
-			prevTalent = stat.PrevTalent;
 
 			money = stat.Money;
 
@@ -82,11 +72,6 @@ namespace ToBeFree
 		private int agility; // 공안
 		private int concentration; // 휴식
 		private int talent; // 조사
-
-		private int prevStrength;
-		private int prevAgility;
-		private int prevConcentration;
-		private int prevTalent;
 
 		private int money;
 
@@ -134,11 +119,6 @@ namespace ToBeFree
 			agility = data.agility;
 			concentration = data.concentration;
 			talent = data.talent;
-
-			prevStrength = data.prevStrength;
-			prevAgility = data.prevAgility;
-			prevConcentration = data.prevConcentration;
-			prevTalent = data.prevTalent;
 
 			money = data.money;
 
@@ -370,38 +350,6 @@ namespace ToBeFree
 			}
 		}
 
-		public int PrevStrength
-		{
-			get
-			{
-				return prevStrength;
-			}
-		}
-
-		public int PrevAgility
-		{
-			get
-			{
-				return prevAgility;
-			}
-		}
-
-		public int PrevConcentration
-		{
-			get
-			{
-				return prevConcentration;
-			}
-		}
-
-		public int PrevTalent
-		{
-			get
-			{
-				return prevTalent;
-			}
-		}
-
 		public int PreViewRange
 		{
 			get
@@ -449,27 +397,18 @@ namespace ToBeFree
 			switch (objectType)
 			{
 				case eObjectType.STRENGTH:
-					prevStrength = Strength;
 					Strength += amount;
 					break;
 				case eObjectType.AGILITY:
-					prevAgility = Agility;
 					Agility += amount;
 					break;
 				case eObjectType.CONCENTRATION:
-					prevConcentration = Concentration;
 					Concentration += amount;
 					break;
 				case eObjectType.TALENT:
-					prevTalent = Talent;
 					Talent += amount;
 					break;
 				case eObjectType.ALL:
-					prevStrength     = Strength;
-					prevAgility      = Agility;
-					prevConcentration  = Concentration;
-					prevTalent      = Talent;
-
 					Strength += amount;
 					Agility += amount;
 					Concentration += amount;
@@ -478,27 +417,27 @@ namespace ToBeFree
 			}
 		}
 
-		public void Restore(eObjectType objectType)
+		public void Restore(eObjectType objectType, int amount)
 		{
 			switch(objectType)
 			{
 				case eObjectType.STRENGTH:
-					Strength = prevStrength;
+					Strength -= amount;
 					break;
 				case eObjectType.AGILITY:
-					Agility = prevAgility;
+					Agility -= amount;
 					break;
 				case eObjectType.CONCENTRATION:
-					Concentration = prevConcentration;
+					Concentration -= amount;
 					break;
 				case eObjectType.TALENT:
-					Talent = prevTalent;
+					Talent -= amount;
 					break;
 				case eObjectType.ALL:
-					Strength = prevStrength;
-					Agility = prevAgility;
-					Concentration = prevConcentration;
-					Talent = prevTalent;
+					Strength -= amount;
+					Agility -= amount;
+					Concentration -= amount;
+					Talent -= amount;
 					break;
 			}
 		}

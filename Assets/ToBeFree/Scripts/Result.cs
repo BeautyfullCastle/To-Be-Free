@@ -106,7 +106,7 @@ namespace ToBeFree
 				Debug.LogError("effect is null.");
 				yield break;
 			}
-			yield return effect.Deactivate(character);
+			yield return effect.Deactivate(character, amount);
 		}
 
 		public override string ToString()
