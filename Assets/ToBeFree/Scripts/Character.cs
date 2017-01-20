@@ -190,10 +190,16 @@ namespace ToBeFree
 			{
 				if (objectType == eObjectType.DETENTION)
 				{
-					if (IsDetention == false)
-					{
-						IsDetention = true;
-					}
+					IsDetention = true;
+				}
+			}
+			else if(verbType == eVerbType.ARRESTED)
+			{
+				if(objectType == eObjectType.STAKEOUT)
+				{
+					Police police = new Police(this.curCity, eSubjectType.POLICE, 1, 1);
+					PieceManager.Instance.Add(police);
+					yield return this.Arrested(police);
 				}
 			}
 		}
@@ -565,6 +571,19 @@ namespace ToBeFree
 
 				return characterData.name;
 			}
+		}
+
+		public IEnumerator Arrested(Police police)
+		{
+			this.caughtPolice = police;
+			List<City> pathToTumen = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("TUMEN"), eEventAction.MOVE);
+			List<City> pathToDandong = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("DANDONG"), eEventAction.MOVE);
+
+			CityManager.Instance.FindNearestPath(pathToTumen, pathToDandong);
+			int remainAP = this.RemainAP;
+			this.AP = this.TotalAP;
+			this.IsDetention = true;
+			yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 		}
 	}
 }

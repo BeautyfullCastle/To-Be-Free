@@ -405,31 +405,15 @@ namespace ToBeFree
 				if (character.IsDetention)
 					break;
 
-				//if (character.CheckSpecialEvent())
-				//{
-				//	actionName = eEventAction.INSPECT_SPECIAL;
-				//	yield return EventManager.Instance.DoCommand(actionName, character);
-				//}
-				//else
-				//{
-					actionName = eEventAction.INSPECT;
+				actionName = eEventAction.INSPECT;
 
-					Police police = policesInThisCity[i] as Police;
-					yield return police.Fight(actionName, character);
+				Police police = policesInThisCity[i] as Police;
+				yield return police.Fight(actionName, character);
 
-					if (EventManager.Instance.TestResult == false)
-					{
-						character.CaughtPolice = police;
-						List<City> pathToTumen = CityManager.Instance.CalcPath(character.CurCity, CityManager.Instance.Find("TUMEN"), eEventAction.MOVE);
-						List<City> pathToDandong = CityManager.Instance.CalcPath(character.CurCity, CityManager.Instance.Find("DANDONG"), eEventAction.MOVE);
-
-						CityManager.Instance.FindNearestPath(pathToTumen, pathToDandong);
-						int remainAP = character.RemainAP;
-						character.AP = character.TotalAP;
-						character.IsDetention = true;
-						yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
-					}
-				//}
+				if (EventManager.Instance.TestResult == false)
+				{
+					yield return character.Arrested(police);
+				}
 			}
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
