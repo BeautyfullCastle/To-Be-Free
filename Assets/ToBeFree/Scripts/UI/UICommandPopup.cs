@@ -7,6 +7,7 @@ namespace ToBeFree
 		public UILabel explainLabel;
 		public UILabel requiredTimeLabel;
 		public UIButton[] requiredTimeButtons;
+		public UIButton moveButton;
 		public eEventAction actionType;
 		
 		// Use this for initialization

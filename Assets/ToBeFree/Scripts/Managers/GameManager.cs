@@ -273,11 +273,13 @@ namespace ToBeFree
 
 			if (actionType == (actionType & (eEventAction.MOVE | eEventAction.MOVE_BUS )))
 			{
+				popup.requiredTimeButtons[0].gameObject.SetActive(false);
 				popup.requiredTimeButtons[1].gameObject.SetActive(false);
 				popup.requiredTimeButtons[2].gameObject.SetActive(false);
 			}
 			else
 			{
+				popup.moveButton.gameObject.SetActive(false);
 				popup.requiredTimeButtons[1].gameObject.SetActive(character.RemainAP >= 2);
 				popup.requiredTimeButtons[2].gameObject.SetActive(character.RemainAP >= 3);
 			}
@@ -519,7 +521,7 @@ namespace ToBeFree
 			//character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
-			character.Inven.AddItem(ItemManager.Instance.GetByIndex(7));
+			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(7));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[11], character);
 #endif
 
