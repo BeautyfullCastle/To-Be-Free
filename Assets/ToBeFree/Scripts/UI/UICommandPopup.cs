@@ -15,12 +15,22 @@ namespace ToBeFree
 		{
 			foreach(UIButton button in requiredTimeButtons)
 			{
-				button.defaultColor = Color.white;
-				EventDelegate.Parameter[] parameters = new EventDelegate.Parameter[] { new EventDelegate.Parameter(this, "actionType"), new EventDelegate.Parameter(button.transform, "name") };
-				NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), button, "ClickCommandRequiredTime", parameters);
+				InitButton(button);
 			}
 
+			InitButton(moveButton);
+
 			ChangeLanguage();
+		}
+
+		private void InitButton(UIButton button)
+		{
+			if (button == null)
+				return;
+
+			button.defaultColor = Color.white;
+			EventDelegate.Parameter[] parameters = new EventDelegate.Parameter[] { new EventDelegate.Parameter(this, "actionType"), new EventDelegate.Parameter(button.transform, "name") };
+			NGUIEventRegister.Instance.AddOnClickEvent(FindObjectOfType<GameManager>(), button, "ClickCommandRequiredTime", parameters);
 		}
 
 		private void ChangeLanguage()

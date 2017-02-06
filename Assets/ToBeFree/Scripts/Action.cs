@@ -341,6 +341,8 @@ namespace ToBeFree
 
 				yield return character.MoveTo(city, moveTimePerCity);
 			}
+			
+			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_End_Move));
 		}
 	}
 

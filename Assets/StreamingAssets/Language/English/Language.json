@@ -404,6 +404,31 @@
 			"index": 80,
 			"key": "UI_EXIT_Main",
 			"script": "EXIT"
+		},
+		{
+			"index": 81,
+			"key": "Popup_Strength",
+			"script": "Use when you work"
+		},
+		{
+			"index": 82,
+			"key": "Popup_Agility",
+			"script": "Use when you meet police."
+		},
+		{
+			"index": 83,
+			"key": "Popup_Talent",
+			"script": "Use when you investigate."
+		},
+		{
+			"index": 84,
+			"key": "Popup_Focus",
+			"script": "Use when you rest."
+		},
+		{
+			"index": 85,
+			"key": "Event_End_Move",
+			"script": "You arrived destination."
 		}
 	]
 }

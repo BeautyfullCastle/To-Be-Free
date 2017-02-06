@@ -404,6 +404,31 @@
 			"index": 80,
 			"key": "UI_EXIT_Main",
 			"script": "종료하기"
+		},
+		{
+			"index": 81,
+			"key": "Popup_Strength",
+			"script": "일을 할 때 사용되는 능력\\n능력치 만큼 주사위를 받습니다."
+		},
+		{
+			"index": 82,
+			"key": "Popup_Agility",
+			"script": "공안을 피할 때 사용되는 능력\\n능력치 만큼 주사위를 받습니다."
+		},
+		{
+			"index": 83,
+			"key": "Popup_Talent",
+			"script": "조사를 할 때 사용되는 능력\\n능력치 만큼 주사위를 받습니다."
+		},
+		{
+			"index": 84,
+			"key": "Popup_Focus",
+			"script": "휴식을 할 때 사용되는 능력\\n능력치 만큼 주사위를 받습니다."
+		},
+		{
+			"index": 85,
+			"key": "Event_End_Move",
+			"script": "목적지에 도착했습니다."
 		}
 	]
 }
