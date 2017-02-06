@@ -519,7 +519,7 @@ namespace ToBeFree
 			//character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
-			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(21));
+			character.Inven.AddItem(ItemManager.Instance.GetByIndex(7));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[11], character);
 #endif
 
@@ -855,10 +855,14 @@ namespace ToBeFree
 			//character.Stat.Observation = 0;
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[89], character);
 
-			// open mongol event
-			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[51], character);
+			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[11], character);
 
-			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[0], character);
+			Police p = PieceManager.Instance.Find(eSubjectType.POLICE, CityManager.Instance.Find("TUMEN")) as Police;
+			if(p != null)
+			{
+				yield return p.AddStat(CrackDown.Instance.IsCrackDown);
+			}
+			
 #endif
 			#endregion
 

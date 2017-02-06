@@ -148,7 +148,7 @@ namespace ToBeFree
 			// 아이템 활/비활성화
 			foreach(Item item in list)
 			{
-				SetItemEnabled(item, item.Buff.StartTime == startTime);
+				SetItemEnabled(item, item.Buff.StartTime == startTime && isActive);
 			}
 
 			// 장비템 Effect Activate/Deactivate

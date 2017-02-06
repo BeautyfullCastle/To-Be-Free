@@ -29,7 +29,7 @@ public class AppDemo : MonoBehaviour
 	private RollButton button;
 
 	[HideInInspector]
-	public bool mouseDown = false;
+	private bool isMouseDown = false;
 
 	private eTestStat stat;
 
@@ -47,8 +47,7 @@ public class AppDemo : MonoBehaviour
 
 		yield return dices[0].InitDies(characterDieNum, false);
 		yield return dices[1].InitDies(policeDieNum, true);
-
-		button.SetEnable(true);
+		
 		this.stat = stat;
 
 		Stat.OnValueChange += Stat_OnValueChange;
@@ -66,11 +65,25 @@ public class AppDemo : MonoBehaviour
 	
 	void OnDisable()
 	{
+		isMouseDown = false;
+
+		if(dices == null || dices.Length <= 0)
+		{
+			return;
+		}
+
 		foreach (Dice dice in dices)
 		{
-			dice.Clear();
+			if(dice != null)
+			{
+				dice.Clear();
+			}
 		}
-		mouseDown = false;
+	}
+
+	public void SetEnableRollButton()
+	{
+		button.SetEnable(true);
 	}
 	
 	public void OnButtonClick()
@@ -79,7 +92,7 @@ public class AppDemo : MonoBehaviour
 		{
 			dice.Freeze(false);
 		}
-		mouseDown = true;
+		isMouseDown = true;
 		Stat.OnValueChange -= Stat_OnValueChange;
 		
 	}
@@ -125,5 +138,13 @@ public class AppDemo : MonoBehaviour
 
 		dices[0].AddDieNum();
 		yield return dices[0].AddDie(LayerMask.NameToLayer("Dice1"));
+	}
+
+	public bool IsMouseDown
+	{
+		get
+		{
+			return isMouseDown;
+		}
 	}
 }

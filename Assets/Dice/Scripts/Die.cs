@@ -162,7 +162,7 @@ public class Die : MonoBehaviour {
 			Vector3 v = this.transform.position - collision.transform.position;
 			v.Normalize();
 			Rigidbody rigid = this.GetComponent<Rigidbody>();
-			float force = 0.15f;
+			float force = 0.25f;
 			rigid.AddForce(v * Random.value * force, ForceMode.Impulse);
 		}
 	}

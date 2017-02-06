@@ -63,7 +63,7 @@ namespace ToBeFree
 
 			if (item.Buff.StartTime != eStartTime.NOW || item.Buff.Duration == eDuration.EQUIP)
 			{
-				this.enabled = false;
+				SetEnable(false);
 			}
 		}
 
@@ -222,9 +222,16 @@ namespace ToBeFree
 
 		public void SetEnable(bool isEnable)
 		{
-			this.enabled = isEnable;
+			if(this.item.Buff.StartTime == eStartTime.NOW)
+			{
+				this.enabled = true;
+			}
+			else
+			{
+				this.enabled = isEnable;
+			}
 
-			if (isEnable)
+			if (this.enabled)
 			{
 				this.GetComponent<UIButton>().defaultColor = defaultColor;
 				this.GetComponent<UIButton>().hover = hover;
