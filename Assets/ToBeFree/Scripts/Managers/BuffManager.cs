@@ -142,8 +142,14 @@ namespace ToBeFree
 				{
 					yield return buff.DeactivateEffect(character);
 				}
-				
-				yield return AbnormalConditionManager.Instance.Find(buff.Name).DeActivate(character);
+
+				AbnormalCondition condition = AbnormalConditionManager.Instance.GetByIndex(buff.Index);
+				if(condition == null)
+				{
+					Debug.LogError("Can't find buff : " + buff.Name);
+					continue;
+				}
+				yield return condition.DeActivate(character);
 			}
 			yield return null;
 		}

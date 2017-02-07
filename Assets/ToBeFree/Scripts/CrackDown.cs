@@ -9,7 +9,8 @@ namespace ToBeFree
 		private int probability;
 		private int increasingProbability;
 		private bool isCrackDown;
-		private UISprite crackDownEffect;
+		private UISprite sprite;
+		private UILabel label;
 
 		public CrackDown()
 		{
@@ -18,16 +19,28 @@ namespace ToBeFree
 
 		public void Reset()
 		{
-			probability = 0;
-			increasingProbability = 20;
-			isCrackDown = false;
-			if(crackDownEffect == null)
+			this.probability = 0;
+			this.increasingProbability = 20;
+			this.isCrackDown = false;
+			if(this.sprite == null)
 			{
-				crackDownEffect = GameObject.Find("CrackDown Effect").GetComponent<UISprite>();
+				GameObject crackdownObj = GameObject.Find("CrackDown Effect");
+				if(crackdownObj)
+				{
+					this.sprite = crackdownObj.GetComponent<UISprite>();
+				}
 			}
 			else
 			{
-				crackDownEffect.enabled = false;
+				this.sprite.enabled = false;
+			}
+			if(this.label == null)
+			{
+				UITimeTable uiTimeTable = GameObject.FindObjectOfType<UITimeTable>();
+				if(uiTimeTable)
+				{
+					this.label = uiTimeTable.crackdownLabel;
+				}
 			}
 		}
 
@@ -47,8 +60,14 @@ namespace ToBeFree
 			if(isCrackDown)
 			{
 				isCrackDown = false;
-				crackDownEffect.enabled = false;
-				GameObject.FindObjectOfType<UITimeTable>().crackdownLabel.enabled = false;
+				if(this.sprite)
+				{
+					sprite.enabled = false;
+				}
+				if(this.label)
+				{
+					this.label.enabled = false;
+				}
 			}
 			else
 			{
@@ -57,8 +76,14 @@ namespace ToBeFree
 					yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_CrackDown));
 
 					isCrackDown = true;
-					crackDownEffect.enabled = true;
-					GameObject.FindObjectOfType<UITimeTable>().crackdownLabel.enabled = true;
+					if(this.sprite)
+					{
+						this.sprite.enabled = true;
+					}
+					if(this.label)
+					{
+						this.label.enabled = true;
+					}
 					probability = 0;
 					TipManager.Instance.Show(eTipTiming.Crackdown);
 				}

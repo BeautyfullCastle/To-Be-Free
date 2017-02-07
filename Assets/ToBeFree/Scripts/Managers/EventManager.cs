@@ -152,7 +152,7 @@ namespace ToBeFree
 
 		public IEnumerator WaitUntilFinish()
 		{
-			GameManager.Instance.uiEventManager.okButton.isEnabled = true;
+			GameManager.Instance.uiEventManager.okButton.gameObject.SetActive(true);
 			isFinish = false;
 			while (isFinish == false)
 			{
@@ -164,7 +164,7 @@ namespace ToBeFree
 		{
 			if (IsFinish == false)
 			{
-				GameManager.Instance.uiEventManager.okButton.isEnabled = false;
+				GameManager.Instance.uiEventManager.okButton.gameObject.SetActive(false);
 				isFinish = true;
 				AudioManager.Instance.Find("through_page").Play();
 			}
