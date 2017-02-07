@@ -500,6 +500,9 @@ namespace ToBeFree
 
 			this.languageSelection.Recall();
 
+			yield return new WaitForSeconds(2f);
+			yield return blackFader.Fade(false);
+
 			if (IsNew)
 			{
 				//add polices in big cities.
@@ -513,11 +516,10 @@ namespace ToBeFree
 				Quest firstMainQuest = QuestManager.Instance.GetByIndex(15);
 				if(firstMainQuest != null)
 				{
+					yield return new WaitForSeconds(3f);
 					yield return QuestManager.Instance.Load(firstMainQuest, character);
 				}
 			}
-
-			yield return null;
 
 #if UNITY_EDITOR
 			// for test
@@ -532,8 +534,6 @@ namespace ToBeFree
 #endif
 
 			this.State = GameState.StartDay;
-
-			yield return null;
 
 			// Exit
 			yield return NextState();
@@ -575,9 +575,11 @@ namespace ToBeFree
 
 		IEnumerator InGameState()
 		{
-			// Enter
-			yield return this.ChangeScene(eSceneState.InGame);
+			yield return blackFader.Fade(true);
 
+			// Enter
+			yield return this.ChangeScene(eSceneState.InGame, false);
+			
 			// Excute
 			this.state = GameState.Init;
 
