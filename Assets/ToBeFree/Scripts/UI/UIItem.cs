@@ -226,6 +226,10 @@ namespace ToBeFree
 			{
 				this.enabled = true;
 			}
+			else if(this.item.Buff.Duration == eDuration.EQUIP)
+			{
+				this.enabled = false;
+			}
 			else
 			{
 				this.enabled = isEnable;
