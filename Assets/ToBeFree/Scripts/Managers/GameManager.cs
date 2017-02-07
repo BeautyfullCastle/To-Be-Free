@@ -217,12 +217,18 @@ namespace ToBeFree
 					{
 						foreach (UIButton button in popup.requiredTimeButtons)
 						{
-							button.isEnabled = !isMountain;
+							if(isMountain == true)
+							{
+								button.isEnabled = false;
+							}
 						}
 					}
 					foreach (UIButton button in gatheringPopup.requiredTimeButtons)
 					{
-						button.isEnabled = isMountain;
+						if(isMountain == false)
+						{
+							button.isEnabled = false;
+						}
 					}
 					break;
 				case eCommand.SHOP:
@@ -280,8 +286,8 @@ namespace ToBeFree
 			else
 			{
 				popup.moveButton.gameObject.SetActive(false);
-				popup.requiredTimeButtons[1].gameObject.SetActive(character.RemainAP >= 2);
-				popup.requiredTimeButtons[2].gameObject.SetActive(character.RemainAP >= 3);
+				popup.requiredTimeButtons[1].isEnabled = character.RemainAP >= 2;
+				popup.requiredTimeButtons[2].isEnabled = character.RemainAP >= 3;
 			}
 
 			commandPopupGrid.Reposition();
