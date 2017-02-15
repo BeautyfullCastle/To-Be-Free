@@ -38,20 +38,25 @@ namespace ToBeFree
 		{
 			yield return GameManager.Instance.ChangeScene(GameManager.eSceneState.Ending);
 
+			AudioSource audio = null;
 			switch(ending)
 			{
 				case eEnding.STARVATION:
+					AudioManager.Instance.ChangeBGM("GameOver");
 					yield return TurnPages(starvationTextures);
 					break;
 				case eEnding.REPATRIATE:
+					AudioManager.Instance.ChangeBGM("GameOver");
 					yield return TurnPages(repatriateTextures);
 					break;
 				case eEnding.HAPPY:
+					AudioManager.Instance.ChangeBGM("HappyEnding");
 					yield return TurnPages(happyTextures);
 					break;
 			}
 
-			yield return GameManager.Instance.ChangeToMain();
+			StopAllCoroutines();
+			StartCoroutine(GameManager.Instance.ChangeToMain());
 		}
 
 		private IEnumerator TurnPages(Texture[] textures)

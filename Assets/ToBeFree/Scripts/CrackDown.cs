@@ -86,6 +86,7 @@ namespace ToBeFree
 					}
 					probability = 0;
 					TipManager.Instance.Show(eTipTiming.Crackdown);
+					AudioManager.Instance.ChangeBGM("Crackdown");
 				}
 				else
 				{

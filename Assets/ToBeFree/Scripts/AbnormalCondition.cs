@@ -189,10 +189,17 @@ namespace ToBeFree
 
 		}
 
+		public override IEnumerator Activate(Character character)
+		{
+			yield return base.Activate(character);
+			AudioManager.Instance.ChangeBGM("Detention");
+		}
+
 		public override IEnumerator DeActivate(Character character)
 		{
 			yield return base.DeActivate(character);
 			character.IsDetention = false;
+			AudioManager.Instance.ChangeToPrevBGM();
 			yield return null;
 		}
 	}

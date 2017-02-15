@@ -449,6 +449,7 @@ namespace ToBeFree
 				if (isLastCity)
 				{
 					TipManager.Instance.Show(eTipTiming.Camp);
+					AudioManager.Instance.ChangeBGM("Camp");
 					actionName = eEventAction.CAMP;
 					yield return EventManager.Instance.DoCommand(actionName, character);
 				}

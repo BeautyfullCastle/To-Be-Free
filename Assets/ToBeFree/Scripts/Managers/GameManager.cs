@@ -543,6 +543,8 @@ namespace ToBeFree
 		{
 			SaveLoadManager.Instance.Init();
 
+			AudioManager.Instance.ChangeBGM("MainMenu");
+
 			// Enter
 			yield return this.ChangeScene(eSceneState.Main, false);
 			
@@ -579,6 +581,8 @@ namespace ToBeFree
 
 			// Enter
 			yield return this.ChangeScene(eSceneState.InGame, false);
+
+			AudioManager.Instance.ChangeBGM("Main");
 			
 			// Excute
 			this.state = GameState.Init;
@@ -817,6 +821,7 @@ namespace ToBeFree
 			if (action is DetentionAction == false)
 			{
 				action = new DetentionAction();
+				AudioManager.Instance.ChangeBGM("Detention");
 			}
 			yield return action.Activate(character);
 			

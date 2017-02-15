@@ -10,6 +10,9 @@ namespace ToBeFree
 		[SerializeField]
 		private AudioSerializableDictionary dic;
 
+		private AudioSource bgmAudio;
+		private AudioSource prevBgmAudio;
+
 		private AudioManager() { }
 
 		void Awake()
@@ -33,14 +36,45 @@ namespace ToBeFree
 				if (key == keyName)
 					return dic[key];
 			}
+			Debug.LogError("Can't find '" + keyName + "' audio source.");
 			return null;
+		}
+
+		public void ChangeBGM(string keyName)
+		{
+			AudioSource foundAudio = Find(keyName);
+			if(foundAudio == bgmAudio)
+			{
+				return;
+			}
+
+			if(bgmAudio)
+			{
+				bgmAudio.Stop();
+			}
+			prevBgmAudio = bgmAudio;
+			bgmAudio = foundAudio;
+			if(bgmAudio)
+			{
+				bgmAudio.Play();
+			}
+		}
+
+		public void ChangeToPrevBGM()
+		{
+			if(bgmAudio)
+			{
+				bgmAudio.Stop();
+			}
+			if(prevBgmAudio)
+			{
+				bgmAudio = prevBgmAudio;
+				bgmAudio.Play();
+			}
 		}
 
 		private void Init()
 		{
-			if (dic != null)
-				return;
-
 			dic = new AudioSerializableDictionary();
 			AudioSource[] sources = this.GetComponentsInChildren<AudioSource>();
 			foreach(AudioSource source in sources)
