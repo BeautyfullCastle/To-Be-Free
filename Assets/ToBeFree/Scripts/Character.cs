@@ -292,7 +292,7 @@ namespace ToBeFree
 				if (city != null)
 				{
 					yield return this.caughtPolice.MoveCity(city);
-					yield return MoveTo(city);
+					yield return MoveTo(city, TimeTable.Instance.MoveTimePerAction * 3 / caughtPolice.Movement);
 				}
 			}
 		}

@@ -168,9 +168,17 @@ namespace ToBeFree
 
 		public void SetItemEnabled(Item item, bool isEnabled)
 		{
-			List<UIItem> uiItems = GameObject.FindObjectOfType<UIInventory>().FindAll(item);
+			UIInventory uiInven = GameObject.FindObjectOfType<UIInventory>();
+			if(uiInven == null)
+				return;
 
-			foreach(UIItem uiItem in uiItems)
+			List<UIItem> uiItems = uiInven.FindAll(item);
+			if (uiItems == null)
+				return;
+			if(uiItems.Count <= 0)
+				return;
+
+			foreach (UIItem uiItem in uiItems)
 			{
 				uiItem.SetEnable(isEnabled);
 			}

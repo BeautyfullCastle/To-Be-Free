@@ -134,7 +134,7 @@ public class Die : MonoBehaviour {
 			return;
 
 		rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
-		rigid.AddForce(new Vector3(0.1f, 0.1f, 1f), ForceMode.Impulse);
+		rigid.AddForce(new Vector3(Random.value, Random.value, 2f), ForceMode.Impulse);
 		NGUIDebug.Log("Reroll");
 	}
 

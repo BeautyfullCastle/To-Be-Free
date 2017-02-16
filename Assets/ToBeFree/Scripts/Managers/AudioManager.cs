@@ -43,7 +43,7 @@ namespace ToBeFree
 		public void ChangeBGM(string keyName)
 		{
 			AudioSource foundAudio = Find(keyName);
-			if(foundAudio == bgmAudio)
+			if (foundAudio == bgmAudio)
 			{
 				return;
 			}
@@ -52,11 +52,26 @@ namespace ToBeFree
 			{
 				bgmAudio.Stop();
 			}
-			prevBgmAudio = bgmAudio;
-			bgmAudio = foundAudio;
+
+			if (keyName == "Main" || keyName == "Crackdown")
+			{
+				if (bgmAudio.gameObject.name != "Detention" && bgmAudio.gameObject.name != "Camp")
+				{
+					bgmAudio = foundAudio;
+				}
+				prevBgmAudio = foundAudio;
+			}
+			else
+			{
+				bgmAudio = foundAudio;
+			}
+			
 			if(bgmAudio)
 			{
-				bgmAudio.Play();
+				//if(bgmAudio != prevBgmAudio)
+				{
+					bgmAudio.Play();
+				}
 			}
 		}
 
