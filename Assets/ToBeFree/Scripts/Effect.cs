@@ -137,7 +137,7 @@ namespace ToBeFree
 						// reveal police's crackdown probability
 						else if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
 						{
-							yield return GameManager.Instance.uiEventManager.OnChanged(this.ToString() + " : " + CrackDown.Instance.Probability + "%");
+							//yield return GameManager.Instance.uiEventManager.OnChanged(this.ToString() + " : " + CrackDown.Instance.Probability + "%");
 						}
 					}
 					break;

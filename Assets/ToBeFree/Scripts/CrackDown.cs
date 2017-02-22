@@ -4,14 +4,19 @@ using UnityEngine;
 
 namespace ToBeFree
 {
+	public enum eGauge
+	{
+		Short, Long, Crackdown
+	}
+
 	public class CrackDown : Singleton<CrackDown>
 	{
-		private int probability;
-		private int increasingProbability;
 		private bool isCrackDown;
 		private UISprite sprite;
 		private UILabel label;
 
+		private UICrackdown uiCrackdown;
+		
 		public CrackDown()
 		{
 			Reset();
@@ -19,8 +24,6 @@ namespace ToBeFree
 
 		public void Reset()
 		{
-			this.probability = 0;
-			this.increasingProbability = 20;
 			this.isCrackDown = false;
 			if(this.sprite == null)
 			{
@@ -34,6 +37,7 @@ namespace ToBeFree
 			{
 				this.sprite.enabled = false;
 			}
+
 			if(this.label == null)
 			{
 				UITimeTable uiTimeTable = GameObject.FindObjectOfType<UITimeTable>();
@@ -42,13 +46,16 @@ namespace ToBeFree
 					this.label = uiTimeTable.crackdownLabel;
 				}
 			}
+
+			if(this.uiCrackdown == null)
+			{
+				this.uiCrackdown = GameObject.FindObjectOfType<UICrackdown>();
+			}
 		}
 
-		private bool RaiseAndCheckProbability()
+		private bool TurnUpAndCheckProbability()
 		{
-			probability += increasingProbability;
-			NGUIDebug.Log("Crackdown probability : " + probability);
-			return probability > UnityEngine.Random.Range(0, 100);
+			return uiCrackdown.TurnUpShortTermGauge();
 		}
 
 		public IEnumerator Check()
@@ -59,19 +66,24 @@ namespace ToBeFree
 
 			if(isCrackDown)
 			{
-				isCrackDown = false;
-				if(this.sprite)
+				bool isFinishedCrackdown = uiCrackdown.TurnDownCrackdownGauge();
+				if(isFinishedCrackdown)
 				{
-					sprite.enabled = false;
-				}
-				if(this.label)
-				{
-					this.label.enabled = false;
+					isCrackDown = false;
+					if (this.sprite)
+					{
+						sprite.enabled = false;
+					}
+					if (this.label)
+					{
+						this.label.enabled = false;
+					}
 				}
 			}
 			else
 			{
-				if (RaiseAndCheckProbability())
+				// 집중단속이 시작되면
+				if (TurnUpAndCheckProbability())
 				{
 					yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_CrackDown));
 
@@ -84,13 +96,12 @@ namespace ToBeFree
 					{
 						this.label.enabled = true;
 					}
-					probability = 0;
+					uiCrackdown.SwitchGauge(isCrackDown);
 					TipManager.Instance.Show(eTipTiming.Crackdown);
 					AudioManager.Instance.ChangeBGM("Crackdown");
 				}
 				else
 				{
-
 					int randIndex = UnityEngine.Random.Range(0, 3);
 					// add one more police
 					if (randIndex == 0)
@@ -150,14 +161,6 @@ namespace ToBeFree
 			{
 				isCrackDown = value;
 				GameObject.Find("CrackDown Effect").GetComponent<UISprite>().enabled = isCrackDown;
-			}
-		}
-
-		public int Probability
-		{
-			get
-			{
-				return probability;
 			}
 		}
 	}
