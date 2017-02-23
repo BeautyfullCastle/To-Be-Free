@@ -28,7 +28,7 @@ public class UICrackdownMeter : MonoBehaviour
 		totalGauge = cells.Length;
 		if (isMax)
 		{
-			this.currentGauge = totalGauge;
+			this.currentGauge = totalGauge - 1;
 		}
 		else
 		{
@@ -43,27 +43,33 @@ public class UICrackdownMeter : MonoBehaviour
 
 	public bool TurnUpAndCheckIsFull()
 	{
-		if(currentGauge >= totalGauge)
+		if(IsFull())
 			return true;
 		
 		cells[currentGauge].TurnOnSprite(true);
 		currentGauge++;
 
-		if (currentGauge >= totalGauge)
-			return true;
-
-		return false;
+		return IsFull();
 	}
 
 	public bool TurnDownAndCheckIsEmpty()
 	{
-		bool isEmpty = currentGauge <= 0;
-		if (isEmpty)
+		if (IsEmpty())
 			return true;
 		
 		cells[currentGauge].TurnOnSprite(false);
 		currentGauge--;
 
-		return false;
+		return IsEmpty();
+	}
+
+	public bool IsFull()
+	{
+		return currentGauge >= totalGauge;
+	}
+
+	public bool IsEmpty()
+	{
+		return currentGauge < 0;
 	}
 }

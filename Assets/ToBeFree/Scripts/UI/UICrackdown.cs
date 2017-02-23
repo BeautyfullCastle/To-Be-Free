@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using ToBeFree;
 using System;
+using System.Collections;
 
 public class UICrackdown : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class UICrackdown : MonoBehaviour
 	[SerializeField]
 	private UICrackdownMeter crackdownMeter;
 	[SerializeField]
-	private Transform axis;
+	private TweenRotation axisTween;
 
-	void Start()
+	public void Init()
 	{
 		if (shortTermMeter == null)
 		{
@@ -51,10 +52,33 @@ public class UICrackdown : MonoBehaviour
 		return crackdownMeter.TurnDownAndCheckIsEmpty();
 	}
 
-	public void SwitchGauge(bool isCrackdown)
+	public bool CheckLongTermGauge()
 	{
-		int isPositive = isCrackdown ? -1 : 1;
-		float rotateAngle = 90f * isPositive;
-		axis.Rotate(Vector3.right, -90f);
+		return longTermMeter.IsFull();
+	}
+
+	public IEnumerator SwitchGauge(bool isCrackdown)
+	{
+		if (isCrackdown)
+		{
+			crackdownMeter.Init(true);
+		}
+		else
+		{
+			shortTermMeter.Init(false);
+		}
+		
+		if (axisTween == null)
+			yield break;
+
+		if (isCrackdown)
+		{
+			axisTween.PlayForward();
+		}
+		else
+		{
+			axisTween.PlayReverse();
+		}
+		yield return new WaitForSeconds(axisTween.duration);
 	}
 }

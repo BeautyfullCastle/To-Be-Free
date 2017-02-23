@@ -704,7 +704,7 @@ namespace ToBeFree
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[26], character);
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.List[1], character);
-			//character.Stat.ViewRange = 100;
+			character.Stat.Satiety = 5;
 			//character.Stat.SetViewRange();
 
 			//Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
