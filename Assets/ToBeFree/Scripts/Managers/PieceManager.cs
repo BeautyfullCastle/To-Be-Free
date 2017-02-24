@@ -226,11 +226,6 @@ namespace ToBeFree
 			return null;
 		}
 
-		public IEnumerator Move(Piece piece, City city)
-		{
-			yield return piece.MoveCity(city);
-		}
-
 		public List<Piece> List
 		{
 			get

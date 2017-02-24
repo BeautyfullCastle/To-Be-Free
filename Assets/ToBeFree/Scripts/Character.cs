@@ -77,6 +77,27 @@ namespace ToBeFree
 			SetCanAction(true);
 		}
 
+		public IEnumerator Init()
+		{
+			GameManager.Instance.uiCharacter.Refresh();
+			this.Stat.RefreshUI();
+			this.Stat.SetViewRange();
+
+			GameManager.Instance.uiInventory.Init(this.Inven);
+
+			GameManager.Instance.worldCam.GetComponent<CameraZoom>().Init();
+
+			// activate character's passive abnormal condition.
+			AbnormalCondition ab = AbnormalConditionManager.Instance.GetByIndex(this.AbnormalIndex);
+			if (ab != null)
+			{
+				yield return ab.Activate(this);
+			}
+			GameManager.Instance.uiBuffManager.Refresh();
+
+			yield return this.MoveTo(this.CurCity, 0, true);
+		}
+
 		private void SetCanAction(bool canAction)
 		{
 			for (int i = 0; i < this.canAction.Length; ++i)
@@ -291,7 +312,7 @@ namespace ToBeFree
 
 				if (city != null)
 				{
-					yield return this.caughtPolice.MoveCity(city);
+					yield return this.caughtPolice.MoveTo(city);
 					yield return MoveTo(city, TimeTable.Instance.MoveTimePerAction * 3 / caughtPolice.Movement);
 				}
 			}
@@ -322,25 +343,17 @@ namespace ToBeFree
 			SetCanAction(true);
 		}
 
-		public IEnumerator Init()
+		public IEnumerator Arrested(Police police)
 		{
-			GameManager.Instance.uiCharacter.Refresh();
-			this.Stat.RefreshUI();
-			this.Stat.SetViewRange();
+			this.caughtPolice = police;
+			List<City> pathToTumen = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("TUMEN"), eEventAction.MOVE);
+			List<City> pathToDandong = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("DANDONG"), eEventAction.MOVE);
 
-			GameManager.Instance.uiInventory.Init(this.Inven);
-
-			GameManager.Instance.worldCam.GetComponent<CameraZoom>().Init();
-
-			// activate character's passive abnormal condition.
-			AbnormalCondition ab = AbnormalConditionManager.Instance.GetByIndex(this.AbnormalIndex);
-			if(ab != null)
-			{
-				yield return ab.Activate(this);
-			}
-			GameManager.Instance.uiBuffManager.Refresh();
-
-			yield return this.MoveTo(this.CurCity, 0, true);
+			CityManager.Instance.FindNearestPath(pathToTumen, pathToDandong);
+			int remainAP = this.RemainAP;
+			this.AP = this.TotalAP;
+			this.IsDetention = true;
+			yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 		}
 
 		public Stat Stat
@@ -577,19 +590,6 @@ namespace ToBeFree
 
 				return characterData.name;
 			}
-		}
-
-		public IEnumerator Arrested(Police police)
-		{
-			this.caughtPolice = police;
-			List<City> pathToTumen = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("TUMEN"), eEventAction.MOVE);
-			List<City> pathToDandong = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("DANDONG"), eEventAction.MOVE);
-
-			CityManager.Instance.FindNearestPath(pathToTumen, pathToDandong);
-			int remainAP = this.RemainAP;
-			this.AP = this.TotalAP;
-			this.IsDetention = true;
-			yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 		}
 	}
 }

@@ -199,6 +199,7 @@ namespace ToBeFree
 		{
 			yield return base.DeActivate(character);
 			character.IsDetention = false;
+			character.CaughtPolice = null;
 			AudioManager.Instance.ChangeToPrevBGM();
 			yield return null;
 		}

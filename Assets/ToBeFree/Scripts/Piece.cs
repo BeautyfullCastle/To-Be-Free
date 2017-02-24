@@ -62,22 +62,6 @@ namespace ToBeFree
 			}
 		}
 
-		public IEnumerator MoveCity(City destCity)
-		{
-			List<City> path = CityManager.Instance.CalcPath(city, destCity, eEventAction.MOVE);
-
-			foreach (City nextCity in path)
-			{
-				if (this.iconPiece.gameObject.activeSelf)
-				{
-					yield return CityManager.Instance.MoveTo(iconPiece.transform, city, nextCity);
-				}
-				city = nextCity;
-				GameManager.Instance.Character.Stat.SetViewRange();
-			}
-			city.IconCity.PutPiece(this.iconPiece);
-		}
-
 		public virtual bool CheckDuration()
 		{
 			return false;
@@ -134,7 +118,7 @@ namespace ToBeFree
 			yield return GameManager.Instance.MoveDirectingCam(new List<Transform> { iconPiece.transform }, 1f);
 		}
 
-		public IEnumerator Move()
+		public IEnumerator MoveToRandomCity()
 		{
 			// city list can move.
 			List<City> cityList = CityManager.Instance.FindCitiesByDistance(city, movement, eWay.NORMALWAY);
@@ -146,7 +130,68 @@ namespace ToBeFree
 
 			TipManager.Instance.Show(eTipTiming.PoliceMove);
 			
-			yield return MoveCity(cityList[UnityEngine.Random.Range(0, cityList.Count)]);
+			yield return MoveTo(cityList[UnityEngine.Random.Range(0, cityList.Count)]);
+		}
+
+		public IEnumerator MoveTo(City destCity)
+		{
+			List<City> path = CityManager.Instance.CalcPath(city, destCity, eEventAction.MOVE);
+			if (path == null)
+				yield break;
+			else if (path.Count == 0)
+				yield break;
+
+			foreach (City nextCity in path)
+			{
+				if (this.iconPiece.gameObject.activeSelf)
+				{
+					yield return CityManager.Instance.MoveTo(iconPiece.transform, city, nextCity, 1f);
+				}
+
+				city = nextCity;
+				Character character = GameManager.Instance.Character;
+				if (character == null)
+				{
+					continue;
+				}
+					
+				character.Stat.SetViewRange();
+				city.IconCity.PutPiece(this.iconPiece);
+
+				if (character.IsDetention == false)
+				{
+					if (character.CurCity.Index == this.city.Index)
+					{
+						yield return this.Fight(eEventAction.INSPECT, character);
+					}
+
+					if (EventManager.Instance.TestResult == false)
+					{
+						yield return character.Arrested(this);
+						break;
+					}
+				}
+			}
+		}
+
+		public IEnumerator Fight(eEventAction actionName, Character character)
+		{
+			Event selectedEvent = EventManager.Instance.Find(actionName);
+			if (selectedEvent == null)
+			{
+				Debug.LogError("selectedEvent is null");
+				yield break;
+			}
+
+			yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
+
+			int characterSuccessNum = 0;
+			int policeSuccessNum = 0;
+			yield return DiceTester.Instance.Test(eTestStat.AGILITY, character.Stat.Agility, this.Power, (x, x2) => { characterSuccessNum = x; policeSuccessNum = x2; });
+
+			EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
+
+			yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
 		}
 
 		public bool IsMaxStat()
@@ -186,26 +231,6 @@ namespace ToBeFree
 				}
 				iconPiece.Movement = movement;
 			}
-		}
-
-		public IEnumerator Fight(eEventAction actionName, Character character)
-		{
-			Event selectedEvent = EventManager.Instance.Find(actionName);
-			if (selectedEvent == null)
-			{
-				Debug.LogError("selectedEvent is null");
-				yield break;
-			}
-			
-			yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
-			
-			int characterSuccessNum = 0;
-			int policeSuccessNum = 0;
-			yield return DiceTester.Instance.Test(eTestStat.AGILITY, character.Stat.Agility, this.Power, (x, x2) => { characterSuccessNum = x; policeSuccessNum = x2; } );
-
-			EventManager.Instance.TestResult = characterSuccessNum >= policeSuccessNum;
-			
-			yield return EventManager.Instance.TreatResult(selectedEvent.Result, character);
 		}
 	}
 

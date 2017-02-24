@@ -146,7 +146,7 @@ namespace ToBeFree
 							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_Move));
 
 							Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
-							yield return police.Move();
+							yield return police.MoveToRandomCity();
 						}
 					}
 				}
@@ -168,7 +168,7 @@ namespace ToBeFree
 						continue;
 					}
 					NGUIDebug.Log("CrackDown : Move Police from " + police.City.Name);
-					yield return police.Move();
+					yield return police.MoveToRandomCity();
 				}
 			}
 		}
