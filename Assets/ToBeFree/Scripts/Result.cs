@@ -138,6 +138,15 @@ namespace ToBeFree
 				case eSubjectType.MONEY:
 					strAmount = this.amount.ToString();
 					break;
+				case eSubjectType.POLICE:
+					if(effect.VerbType == eVerbType.DEL)
+					{
+						if(effect.ObjectType == eObjectType.SHORT_TERM_GAUGE)
+						{
+							strAmount = this.amount.ToString();
+						}
+					}
+					break;
 				case eSubjectType.ITEM:
 					Item item = ItemManager.Instance.GetByIndex(this.amount);
 					if(item != null)
@@ -154,7 +163,7 @@ namespace ToBeFree
 					break;
 			}
 			
-			return effect.ToString() + strAmount;
+			return effect.ToString() + " : " + strAmount;
 		}
 
 		public int Amount

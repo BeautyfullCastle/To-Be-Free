@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -150,6 +151,21 @@ namespace ToBeFree
 						}
 					}
 				}
+			}
+		}
+
+		public IEnumerator DecreaseShortTermGauge(int amount)
+		{
+			if (amount <= 0)
+				yield break;
+
+			for(int i=0; i<amount; ++i)
+			{
+				if(uiCrackdown.TurnDownShortTermGauge())
+				{
+					break;
+				}
+				yield return new WaitForSeconds(0.5f);
 			}
 		}
 

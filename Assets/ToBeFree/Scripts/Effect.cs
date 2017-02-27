@@ -56,7 +56,7 @@ namespace ToBeFree
 		CANCEL,
 		VIEWRANGE,
 		NUMBER,
-		CRACKDOWN_PROBABILITY,
+		SHORT_TERM_GAUGE,
 		MENTAL, HP_MENTAL, PATIENCE, LUCK, // 지워야 되는 것들
 		DICE,
 		STAKEOUT
@@ -131,12 +131,16 @@ namespace ToBeFree
 
 							City city = GameManager.Instance.ClickedIconCity.City;
 							int policeNumInClickedCity = PieceManager.Instance.FindAll(eSubjectType.POLICE, city).Count;
-							
+
 							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_PoliceNumber) + " : " + policeNumInClickedCity);
 						}
-						// reveal police's crackdown probability
-						else if (objectType == eObjectType.CRACKDOWN_PROBABILITY)
+					}
+					// Decrease police's crackdown gauge
+					else if (verbType == eVerbType.DEL)
+					{
+						if (objectType == eObjectType.SHORT_TERM_GAUGE)
 						{
+							yield return CrackDown.Instance.DecreaseShortTermGauge(amount);
 							//yield return GameManager.Instance.uiEventManager.OnChanged(this.ToString() + " : " + CrackDown.Instance.Probability + "%");
 						}
 					}

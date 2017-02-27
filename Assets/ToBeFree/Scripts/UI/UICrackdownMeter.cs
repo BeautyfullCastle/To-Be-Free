@@ -4,7 +4,6 @@ using System;
 
 public class UICrackdownMeter : MonoBehaviour
 {
-	private int totalGauge;
 	private int currentGauge;
 
 	[SerializeField]
@@ -24,15 +23,13 @@ public class UICrackdownMeter : MonoBehaviour
 			Debug.LogError("You should Init cells : " + this.name);
 			return;
 		}
-		
-		totalGauge = cells.Length;
 		if (isMax)
 		{
-			this.currentGauge = totalGauge - 1;
+			this.CurrentGauge = this.TotalGauge;
 		}
 		else
 		{
-			this.currentGauge = 0;
+			this.CurrentGauge = 0;
 		}
 
 		foreach(UICrackdownCell cell in cells)
@@ -43,33 +40,63 @@ public class UICrackdownMeter : MonoBehaviour
 
 	public bool TurnUpAndCheckIsFull()
 	{
-		if(IsFull())
-			return true;
-		
-		cells[currentGauge].TurnOnSprite(true);
-		currentGauge++;
+		if(cells[CurrentGauge].IsOn())
+		{
+			CurrentGauge++;
+		}
+		cells[CurrentGauge].TurnOnSprite(true);
 
 		return IsFull();
 	}
 
 	public bool TurnDownAndCheckIsEmpty()
 	{
-		if (IsEmpty())
-			return true;
-		
-		cells[currentGauge].TurnOnSprite(false);
-		currentGauge--;
+		if(cells[CurrentGauge].IsOn() == false)
+		{
+			CurrentGauge--;
+		}
+		cells[CurrentGauge].TurnOnSprite(false);
 
 		return IsEmpty();
 	}
 
 	public bool IsFull()
 	{
-		return currentGauge >= totalGauge;
+		return this.CurrentGauge >= this.TotalGauge;
 	}
 
 	public bool IsEmpty()
 	{
-		return currentGauge < 0;
+		return CurrentGauge < 0;
+	}
+
+	public int CurrentGauge
+	{
+		get
+		{
+			return this.currentGauge;
+		}
+		private set
+		{
+			if(value < 0 || value >= this.cells.Length)
+			{
+				return;
+			}
+			this.currentGauge = value;
+		}
+	}
+
+	private int TotalGauge
+	{
+		get
+		{
+			if (this.cells == null)
+			{
+				Debug.LogError(this.gameObject.name + "'s cells' null.");
+				return -1;
+			}
+
+			return this.cells.Length - 1;
+		}
 	}
 }

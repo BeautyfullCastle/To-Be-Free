@@ -16,16 +16,16 @@
 		},
 		{
 			"index": 2,
-			"subjectType": "CHARACTER",
-			"verbType": "ADD",
-			"objectType": "HP_MENTAL",
+			"subjectType": "STATE",
+			"verbType": "BIGCITY",
+			"objectType": "DICE",
 			"script": "NULL"
 		},
 		{
 			"index": 3,
-			"subjectType": "INFO",
-			"verbType": "MOVE",
-			"objectType": "FAR_CLOSE",
+			"subjectType": "STATE",
+			"verbType": "MOUNTAIN",
+			"objectType": "DICE",
 			"script": "NULL"
 		},
 		{
@@ -542,9 +542,9 @@
 		{
 			"index": 77,
 			"subjectType": "POLICE",
-			"verbType": "REVEAL",
-			"objectType": "CRACKDOWN_PROBABILITY",
-			"script": "탈북자 집중단속기간이 나올 확률 확인"
+			"verbType": "DEL",
+			"objectType": "SHORT_TERM_GAUGE",
+			"script": "집중 단속 게이지 감소"
 		},
 		{
 			"index": 78,

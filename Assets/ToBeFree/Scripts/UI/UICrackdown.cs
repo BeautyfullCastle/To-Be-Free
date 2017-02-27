@@ -47,6 +47,17 @@ public class UICrackdown : MonoBehaviour
 		return isFull;
 	}
 
+	public bool TurnDownShortTermGauge()
+	{
+		if (shortTermMeter == null)
+		{
+			Debug.LogError("shortTermMeter is null");
+			return false;
+		}
+
+		return shortTermMeter.TurnDownAndCheckIsEmpty();
+	}
+
 	public bool TurnDownCrackdownGauge()
 	{
 		return crackdownMeter.TurnDownAndCheckIsEmpty();

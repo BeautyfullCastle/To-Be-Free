@@ -12,4 +12,9 @@ public class UICrackdownCell : MonoBehaviour
 
 		this.sprite.enabled = isActive;
 	}
+
+	public bool IsOn()
+	{
+		return this.sprite.enabled;
+	}
 }

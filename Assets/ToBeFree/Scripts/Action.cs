@@ -197,10 +197,9 @@ namespace ToBeFree
 							earnedMoney += randWorkingMoneyOfCity;
 							earnedMoney += EventManager.Instance.TestSuccessNum;
 							yield return GameManager.Instance.uiEventManager.OnChanged(
-								LanguageManager.Instance.Find(eLanguageKey.Event_WoringMoneyPerCity) + " : " + randWorkingMoneyOfCity
-								+ "\n" + LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + " : " + EventManager.Instance.TestSuccessNum
-								+ "\n" + LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + " : " + earnedMoney,
-								false, true);
+								//LanguageManager.Instance.Find(eLanguageKey.Event_WoringMoneyPerCity) + " : " + randWorkingMoneyOfCity + "\n" + 
+								LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + " : " + EventManager.Instance.TestSuccessNum + "\n" +
+								LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + " : " + earnedMoney, false, true);
 
 							character.Stat.Money += earnedMoney;
 							break;
@@ -505,7 +504,6 @@ namespace ToBeFree
 		public Investigation()
 		{
 			startTime = eStartTime.INVESTIGATION;
-			//actionName = eEventAction.INFO;
 		}
 
 		public override IEnumerator Activate(Character character)
@@ -592,6 +590,7 @@ namespace ToBeFree
 				ArrayList list = new ArrayList(3);
 				ArrayList finalList = new ArrayList();
 
+				// 브로커 조사 : 정보 퀘스트, 정보
 				if (ActionName == eEventAction.INVESTIGATION_BROKER)
 				{
 					Quest quest = QuestManager.Instance.FindRand(eQuestActionType.QUEST_BROKERINFO);
@@ -653,34 +652,24 @@ namespace ToBeFree
 						finalList.AddRange(list);
 					}
 				}
-				//공안 조사 : 하루 시야 증가, 클릭한 도시의 공안 수, 집중단속확률 중 1, 2, 3 (중복 없음)
+				//공안 조사 : decrease short-term gauge
 				else if (ActionName == eEventAction.INVESTIGATION_POLICE)
 				{
-					AbnormalCondition addViewRange = AbnormalConditionManager.Instance.Find("Add View Range");
-					EffectAmount revealPosition = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.NUMBER), 1);
-					EffectAmount getProbability = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.CRACKDOWN_PROBABILITY), 1);
-					
-					list.Add(addViewRange);
-					list.Add(revealPosition);
-					list.Add(getProbability);
+					// 하루 시야 증가, 클릭한 도시의 공안 수, 집중단속확률 중 1, 2, 3 (중복 없음)
+					//AbnormalCondition addViewRange = AbnormalConditionManager.Instance.Find("Add View Range");
+					//EffectAmount revealPosition = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.NUMBER), 1);
+					//EffectAmount getProbability = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.REVEAL, eObjectType.CRACKDOWN_GAUGE), 1);
+					int amount = testSuccessNum;
+					// 최대 3개 감소
+					if (amount > 3)
+					{
+						amount = 3;
+					}
+					EffectAmount decreaseShortTermGauge = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.DEL, eObjectType.SHORT_TERM_GAUGE), amount);
 
-					int rand = UnityEngine.Random.Range(0, 3);
-
-					if (testSuccessNum == 1)
-					{
-						finalList.Add(list[rand]);
-					}
-					else if (testSuccessNum == 2)
-					{
-						list.RemoveAt(rand);
-						finalList.AddRange(list);
-					}
-					else if (testSuccessNum >= 3)
-					{
-						finalList.AddRange(list);
-					}
+					finalList.Add(decreaseShortTermGauge);
 				}
-				//식량아이템 얻기 차는량이 하나 또는 둘 또는 셋
+				//식량아이템 얻기 : 차는 양이 하나 또는 둘 또는 셋
 				else if (ActionName ==  eEventAction.GATHERING)
 				{
 					Item[] foods = ItemManager.Instance.FindAll(ItemTag.FOOD);
