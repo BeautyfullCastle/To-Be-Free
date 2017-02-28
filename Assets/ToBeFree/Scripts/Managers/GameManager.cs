@@ -178,12 +178,9 @@ namespace ToBeFree
 					InstantiatePopup("Normal Move", eEventAction.MOVE);
 					UICommandPopup busPopup = InstantiatePopup("Bus", eEventAction.MOVE_BUS);
 					List<City> busCityList = CityManager.Instance.GetCityList(eWay.HIGHWAY);
-					bool isHighway = busCityList.Contains(character.CurCity);						
+					bool isHighway = busCityList.Contains(character.CurCity);
 					bool buttonEnabled = (isHighway) && (character.Stat.Money >= 4);
-					foreach (UIButton button in busPopup.requiredTimeButtons)
-					{
-						button.isEnabled = buttonEnabled;
-					}
+					busPopup.moveButton.isEnabled = buttonEnabled;
 
 					break;
 
@@ -867,16 +864,18 @@ namespace ToBeFree
 			// select test
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[13], character);
 
-			//character.Stat.Observation = 0;
+
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[89], character);
 
+			// 공안 만나는 이벤트
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[11], character);
 
-			Police p = PieceManager.Instance.Find(eSubjectType.POLICE, CityManager.Instance.Find("TUMEN")) as Police;
-			if(p != null)
-			{
-				yield return p.AddStat(CrackDown.Instance.IsCrackDown);
-			}
+			// 공안 스탯 증가
+			//Police p = PieceManager.Instance.Find(eSubjectType.POLICE, CityManager.Instance.Find("TUMEN")) as Police;
+			//if(p != null)
+			//{
+			//	yield return p.AddStat(CrackDown.Instance.IsCrackDown);
+			//}
 			
 #endif
 			#endregion

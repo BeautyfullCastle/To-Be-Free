@@ -162,7 +162,11 @@ namespace ToBeFree
 					}
 					break;
 			}
-			
+
+			if (effect.ToString() == string.Empty)
+			{
+				return string.Empty;
+			}
 			return effect.ToString() + " : " + strAmount;
 		}
 
