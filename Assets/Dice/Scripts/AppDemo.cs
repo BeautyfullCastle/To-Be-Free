@@ -147,4 +147,16 @@ public class AppDemo : MonoBehaviour
 			return isMouseDown;
 		}
 	}
+
+	public void SetEnableCameras(bool isEnable)
+	{
+		Camera[] cameras = this.GetComponentsInChildren<Camera>();
+		if (cameras == null)
+			return;
+
+		foreach(Camera camera in cameras)
+		{
+			camera.enabled = isEnable;
+		}
+	}
 }

@@ -181,7 +181,6 @@ namespace ToBeFree
 					bool isHighway = busCityList.Contains(character.CurCity);
 					bool buttonEnabled = (isHighway) && (character.Stat.Money >= 4);
 					busPopup.moveButton.isEnabled = buttonEnabled;
-
 					break;
 
 				case eCommand.WORK:
@@ -436,10 +435,20 @@ namespace ToBeFree
 				obj = menuObj;
 			}
 			obj.SetActive(!obj.activeSelf);
+			bool isObjActive = menuObj.activeSelf || optionObj.activeSelf;
 			int mask = 32; // UI Layer Num : 2 ^ 5
 			if (menuObj.activeSelf || optionObj.activeSelf)
+			{
 				mask = 256; // Setting Layer Num : 2 ^ 8
+			}
 			uiCamera.eventReceiverMask = mask;
+
+			// 주사위 보이는 상태에서 설정 키면 주사위가 보이므로 주사위쪽 카메라 꺼줌.
+			if(diceObj.activeSelf)
+			{
+				DiceTester.Instance.demo.SetEnableCameras(!isObjActive);
+			}
+			
 		}
 
 		private void DayIsGone()

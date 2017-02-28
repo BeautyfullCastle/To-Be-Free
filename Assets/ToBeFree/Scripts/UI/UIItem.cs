@@ -37,10 +37,7 @@ namespace ToBeFree
 			disabledColor = this.GetComponent<UIButton>().disabledColor;
 
 			synchronizer = this.GetComponent<UIButtonEventSynchronizer>();
-		}
 
-		void Start()
-		{
 			if (belong == eBelong.SHOP)
 			{
 				return;
