@@ -794,11 +794,9 @@ namespace ToBeFree
 
 			yield return base.Activate(character);
 
-			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
 			yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[character.EventIndex], character);
-
-			yield return TimeTable.Instance.SpendRemainTime();
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 

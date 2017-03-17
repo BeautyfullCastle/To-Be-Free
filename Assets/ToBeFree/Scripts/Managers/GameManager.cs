@@ -9,7 +9,7 @@ namespace ToBeFree
 	{
 		public enum eSceneState
 		{
-			Main=0, CharacterSelect, InGame, Ending
+			Logo=0, Main, CharacterSelect, InGame, Ending
 		}
 
 		public enum GameState
@@ -468,7 +468,7 @@ namespace ToBeFree
 
 		private void Start()
 		{
-			this.StartCoroutine(MainState());
+			this.StartCoroutine(LogoState());
 		}
 
 		#region State Routine
@@ -545,21 +545,34 @@ namespace ToBeFree
 			yield return NextState();
 		}
 
+		IEnumerator LogoState()
+		{
+			yield return new WaitForSeconds(1f);
+
+			yield return this.ChangeScene(eSceneState.Logo, false);
+
+			yield return blackFader.Fade(false);
+
+			this.State = GameState.Main;
+
+			yield return NextState();
+		}
+
 		IEnumerator MainState()
 		{
-			SaveLoadManager.Instance.Init();
-
 			AudioManager.Instance.ChangeBGM("MainMenu");
 
 			// Enter
 			yield return this.ChangeScene(eSceneState.Main, true);
-			
+
 			// Excute
+			SaveLoadManager.Instance.Init();
+			
 			while (this.state == GameState.Main)
 			{
 				yield return new WaitForSecondsRealtime(0.2f);
 			}
-
+			
 			worldObj.SetActive(true);
 			
 			// Exit
@@ -641,8 +654,6 @@ namespace ToBeFree
 		public IEnumerator ChangeToMain()
 		{
 			worldObj.SetActive(false);
-			//StopAllCoroutines();
-			//StartCoroutine(MainState());
 
 			this.state = GameState.Main;
 			yield return NextState();

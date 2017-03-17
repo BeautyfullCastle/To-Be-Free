@@ -14,7 +14,6 @@ namespace ToBeFree
 		{
 			this.sprite = this.GetComponent<UISprite>();
 			this.tweenAlpha = this.GetComponent<TweenAlpha>();
-			this.tweenAlpha.ResetToBeginning();
 			this.tweenAlpha.duration = this.duration;
 		}
 
