@@ -54,9 +54,8 @@ namespace ToBeFree
 					yield return TurnPages(happyTextures);
 					break;
 			}
-
-			StopAllCoroutines();
-			StartCoroutine(GameManager.Instance.ChangeToMain());
+			
+			yield return GameManager.Instance.ChangeToMain();
 		}
 
 		private IEnumerator TurnPages(Texture[] textures)

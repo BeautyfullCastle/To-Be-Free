@@ -67,7 +67,7 @@ public class UICrackdownMeter : MonoBehaviour
 
 	public bool IsEmpty()
 	{
-		return CurrentGauge < 0;
+		return CurrentGauge <= 0;
 	}
 
 	public int CurrentGauge

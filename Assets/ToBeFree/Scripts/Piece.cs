@@ -158,7 +158,8 @@ namespace ToBeFree
 				character.Stat.SetViewRange();
 				city.IconCity.PutPiece(this.iconPiece);
 
-				if (character.IsDetention == false)
+				// 집중단속 중이고 캐릭터가 이미 구금된 상태가 아닐 때만 검문한다.
+				if (character.IsDetention == false && CrackDown.Instance.IsCrackDown)
 				{
 					if (character.CurCity.Index == this.city.Index)
 					{

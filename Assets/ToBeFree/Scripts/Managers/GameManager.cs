@@ -529,10 +529,10 @@ namespace ToBeFree
 
 #if UNITY_EDITOR
 			// for test
-			character.Stat.Agility = 1;
+			//character.Stat.Agility = 1;
 			//character.Stat.InfoNum = 4;
-			//character.Stat.HP = 1;
-			//character.Stat.Satiety = 1;
+			character.Stat.HP = 1;
+			character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(7));
@@ -552,7 +552,7 @@ namespace ToBeFree
 			AudioManager.Instance.ChangeBGM("MainMenu");
 
 			// Enter
-			yield return this.ChangeScene(eSceneState.Main, false);
+			yield return this.ChangeScene(eSceneState.Main, true);
 			
 			// Excute
 			while (this.state == GameState.Main)
@@ -628,7 +628,7 @@ namespace ToBeFree
 				else
 				{
 					SwitchMenu(false);
-					StopAllCoroutines();
+
 					StartCoroutine(ChangeToMain());
 				}
 			}
@@ -641,8 +641,10 @@ namespace ToBeFree
 		public IEnumerator ChangeToMain()
 		{
 			worldObj.SetActive(false);
+			//StopAllCoroutines();
+			//StartCoroutine(MainState());
+
 			this.state = GameState.Main;
-			
 			yield return NextState();
 		}
 
@@ -700,6 +702,15 @@ namespace ToBeFree
 			yield return NextState();
 		}
 
+		private IEnumerator Instance_NotifyEveryWeek()
+		{
+			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
+
+			yield return CrackDown.Instance.Check();
+
+			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.WEEK, character);
+		}
+
 		IEnumerator StartDayState()
 		{
 			// Enter
@@ -710,7 +721,7 @@ namespace ToBeFree
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[26], character);
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.List[1], character);
-			character.Stat.Satiety = 5;
+			//character.Stat.Satiety = 5;
 			//character.Stat.SetViewRange();
 
 			//Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
@@ -915,16 +926,6 @@ namespace ToBeFree
 			yield return NextState();
 		}
 
-		#endregion
-
-		protected IEnumerator NextState()
-		{
-			string methodName = EnumConvert<GameState>.ToString(State) + "State";
-			System.Reflection.MethodInfo info = GetType().GetMethod(methodName,
-				System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-			yield return ((IEnumerator)info.Invoke(this, null));
-		}
-
 		private IEnumerator Instance_NotifyEveryNight()
 		{
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.NIGHT, character);
@@ -932,7 +933,7 @@ namespace ToBeFree
 			// 구금 상태일 때 밤단계 탈출 시도를 위한.
 			if (character.IsDetention == true)
 			{
-				if(action is DetentionAction == false)
+				if (action is DetentionAction == false)
 				{
 					action = new DetentionAction();
 				}
@@ -940,7 +941,7 @@ namespace ToBeFree
 			}
 
 			character.ResetAPandAction();
-			
+
 			character.Stat.Satiety--;
 
 			yield return AbnormalConditionManager.Instance.ActiveByCondition();
@@ -959,13 +960,14 @@ namespace ToBeFree
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
 		}
 
-		private IEnumerator Instance_NotifyEveryWeek()
+		#endregion
+
+		protected IEnumerator NextState()
 		{
-			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
-
-			yield return CrackDown.Instance.Check();
-
-			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.WEEK, character);
+			string methodName = EnumConvert<GameState>.ToString(State) + "State";
+			System.Reflection.MethodInfo info = GetType().GetMethod(methodName,
+				System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+			yield return ((IEnumerator)info.Invoke(this, null));
 		}
 
 		public IEnumerator ShowStateLabel(string text, float duration)
