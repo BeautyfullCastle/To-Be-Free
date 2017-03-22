@@ -6,11 +6,17 @@ using System.Collections;
 public class UICrackdown : MonoBehaviour
 {
 	[SerializeField]
-	private UICrackdownMeter shortTermMeter;
+	private int shortTermCellNum;
 	[SerializeField]
-	private UICrackdownMeter longTermMeter;
+	private UIGaugeMeter shortTermMeter;
 	[SerializeField]
-	private UICrackdownMeter crackdownMeter;
+	private int longTermCellNum;
+	[SerializeField]
+	private UIGaugeMeter longTermMeter;
+	[SerializeField]
+	private int crackdownCellNum;
+	[SerializeField]
+	private UIGaugeMeter crackdownMeter;
 	[SerializeField]
 	private TweenRotation axisTween;
 
@@ -21,21 +27,33 @@ public class UICrackdown : MonoBehaviour
 			Debug.LogError("shortTermMeter Init");
 			return;
 		}
-		shortTermMeter.Init(false);
+		if(shortTermCellNum <= 0)
+		{
+			Debug.LogError("longTerm Cell Num is wrong.");
+		}
+		shortTermMeter.Init(shortTermCellNum, false);
 
 		if (longTermMeter == null)
 		{
 			Debug.LogError("longTermMeter Init");
 			return;
 		}
-		longTermMeter.Init(false);
+		if (longTermCellNum <= 0)
+		{
+			Debug.LogError("shorTerm Cell Num is wrong.");
+		}
+		longTermMeter.Init(longTermCellNum, false);
 
 		if (crackdownMeter == null)
 		{
 			Debug.LogError("crackdownMeter Init");
 			return;
 		}
-		crackdownMeter.Init(true);
+		if (crackdownCellNum <= 0)
+		{
+			Debug.LogError("crackdown Cell Num is wrong.");
+		}
+		crackdownMeter.Init(crackdownCellNum, true);
 	}
 
 	public bool TurnUpShortTermGauge()
@@ -72,15 +90,17 @@ public class UICrackdown : MonoBehaviour
 	{
 		if (isCrackdown)
 		{
-			crackdownMeter.Init(true);
+			crackdownMeter.Reset();
 		}
 		else
 		{
-			shortTermMeter.Init(false);
+			shortTermMeter.Reset();
 		}
 		
 		if (axisTween == null)
+		{
 			yield break;
+		}
 
 		if (isCrackdown)
 		{

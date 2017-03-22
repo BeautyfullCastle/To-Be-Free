@@ -80,7 +80,7 @@ namespace ToBeFree
 		public IEnumerator Init()
 		{
 			GameManager.Instance.uiCharacter.Refresh();
-			this.Stat.RefreshUI();
+			this.Stat.InitUI();
 			this.Stat.SetViewRange();
 
 			GameManager.Instance.uiInventory.Init(this.Inven);

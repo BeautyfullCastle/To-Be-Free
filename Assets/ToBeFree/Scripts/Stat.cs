@@ -7,7 +7,7 @@ namespace ToBeFree
 	public enum eStat
 	{
 		HP, TOTALHP, SATIETY, MONEY, INFO, STRENGTH, AGILITY, FOCUS, TALENT, NULL,
-		TOTALSATIETY
+		TOTALSATIETY, TOTALINFO
 	}
 
 	public enum eTestStat
@@ -89,8 +89,8 @@ namespace ToBeFree
 		{
 			viewRange = 1;
 			tempDiceNum = 0;
-			TotalSatiety = 5;
-			Satiety = TotalSatiety;
+			totalSatiety = 5;
+			satiety = totalSatiety;
 		}
 
 		public Stat(int hp, int strength, int agility, int concentration, int talent, int startMoney) : this()
@@ -128,21 +128,25 @@ namespace ToBeFree
 			diceNumByEffect = data.diceNumByEffect;
 		}
 
-		public void RefreshUI()
+		public void InitUI()
 		{
-			OnValueChange(hp, eStat.HP);
 			OnValueChange(totalHP, eStat.TOTALHP);
+			OnValueChange(hp, eStat.HP);
 
-			OnValueChange(satiety, eStat.SATIETY);
 			OnValueChange(totalSatiety, eStat.TOTALSATIETY);
-
+			OnValueChange(satiety, eStat.SATIETY);
+			
 			OnValueChange(strength, eStat.STRENGTH);
 			OnValueChange(agility, eStat.AGILITY);
 			OnValueChange(concentration, eStat.FOCUS);
 			OnValueChange(talent, eStat.TALENT);
 
 			OnValueChange(money, eStat.MONEY);
+
+			OnValueChange(5, eStat.TOTALINFO);
 			OnValueChange(infoNum, eStat.INFO);
+			
+
 		}
 
 		public int Strength

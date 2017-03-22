@@ -17,6 +17,12 @@ namespace ToBeFree
 
 		private void LanguageSelection_selectLanguage(eLanguage language)
 		{
+			UILabel parentLabel = this.transform.parent.GetComponent<UILabel>();
+			if (parentLabel == null)
+			{
+				return;
+			}
+
 			eLanguageKey key = eLanguageKey.UI_HP;
 			if(stat == eStat.HP || stat == eStat.TOTALHP)
 			{
@@ -50,7 +56,8 @@ namespace ToBeFree
 			{
 				key = eLanguageKey.UI_Focus;
 			}
-			this.transform.parent.GetComponent<UILabel>().text =  LanguageManager.Instance.Find(key);
+			
+			parentLabel.text =  LanguageManager.Instance.Find(key);
 		}
 
 		void OnValueChange(int value, eStat stat)

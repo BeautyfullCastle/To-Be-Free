@@ -6,19 +6,22 @@ namespace ToBeFree
 	public class BlackFader : MonoBehaviour
 	{
 		public float duration;
-
-		private UISprite sprite;
+		
 		private TweenAlpha tweenAlpha;
 
 		void Awake()
 		{
-			this.sprite = this.GetComponent<UISprite>();
 			this.tweenAlpha = this.GetComponent<TweenAlpha>();
 			this.tweenAlpha.duration = this.duration;
 		}
 
 		public IEnumerator Fade(bool isIn)
 		{
+			if(this.tweenAlpha == null)
+			{
+				this.Awake();
+			}
+
 			if(isIn)
 			{
 				this.tweenAlpha.PlayForward();
