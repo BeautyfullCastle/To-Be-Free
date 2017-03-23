@@ -60,10 +60,15 @@ namespace ToBeFree
 			CityManager.Instance.Save(data.cityList);
 			CharacterManager.Instance.Save(data.character);
 			TimeTable.Instance.Save(data.time);
-			
+
 			string s = JsonUtility.ToJson(data);
 			Debug.Log(s);
 			File.WriteAllText(file, s);
+		}
+
+		public void Delete()
+		{
+			File.WriteAllText(file, "");
 		}
 
 		public void Load()

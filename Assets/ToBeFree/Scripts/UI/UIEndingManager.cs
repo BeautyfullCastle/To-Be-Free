@@ -54,6 +54,8 @@ namespace ToBeFree
 					yield return TurnPages(happyTextures);
 					break;
 			}
+
+			SaveLoadManager.Instance.Delete();
 			
 			yield return GameManager.Instance.ChangeToMain();
 		}
