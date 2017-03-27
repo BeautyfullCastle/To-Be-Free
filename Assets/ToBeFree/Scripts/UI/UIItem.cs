@@ -219,18 +219,7 @@ namespace ToBeFree
 
 		public void SetEnable(bool isEnable)
 		{
-			if(this.item.Buff.StartTime == eStartTime.NOW)
-			{
-				this.enabled = true;
-			}
-			else if(this.item.Buff.Duration == eDuration.EQUIP)
-			{
-				this.enabled = false;
-			}
-			else
-			{
-				this.enabled = isEnable;
-			}
+			this.enabled = isEnable;
 
 			if (this.enabled)
 			{

@@ -37,8 +37,7 @@ namespace ToBeFree
 		public IEnumerator StartEnding(eEnding ending)
 		{
 			yield return GameManager.Instance.ChangeScene(GameManager.eSceneState.Ending);
-
-			AudioSource audio = null;
+			
 			switch(ending)
 			{
 				case eEnding.STARVATION:
@@ -50,7 +49,7 @@ namespace ToBeFree
 					yield return TurnPages(repatriateTextures);
 					break;
 				case eEnding.HAPPY:
-					AudioManager.Instance.ChangeBGM("HappyEnding");
+					AudioManager.Instance.ChangeBGM("HappyEnding"); 
 					yield return TurnPages(happyTextures);
 					break;
 			}
