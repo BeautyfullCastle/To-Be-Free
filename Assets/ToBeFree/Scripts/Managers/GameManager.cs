@@ -617,11 +617,13 @@ namespace ToBeFree
 			{
 				this.isNew = true;
 				this.state = GameState.InGame;
+				AudioManager.Instance.Find("start_game").Play();
 			}
 			else if(buttonName == "CONTINUE")
 			{
 				this.isNew = false;
 				this.state = GameState.InGame;
+				AudioManager.Instance.Find("start_game").Play();
 			}
 			else if(buttonName == "MENU")
 			{

@@ -1,4 +1,5 @@
 ﻿using System;
+using ToBeFree;
 using UnityEngine;
 
 public class UIGaugeCell : MonoBehaviour
@@ -26,6 +27,7 @@ public class UIGaugeCell : MonoBehaviour
 		{
 			tweenAlpha.PlayReverse();
 		}
+		AudioManager.Instance.Find("gauge_move").Play();
 	}
 
 	public bool IsOn()

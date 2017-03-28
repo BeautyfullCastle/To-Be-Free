@@ -229,7 +229,7 @@ namespace ToBeFree
 				this.GetComponent<UIButton>().disabledColor = disabledColor;
 			}
 			else
-			{ 
+			{
 				this.GetComponent<UIButton>().defaultColor = Color.gray;
 				this.GetComponent<UIButton>().hover = Color.gray;
 				this.GetComponent<UIButton>().pressed = Color.gray;
