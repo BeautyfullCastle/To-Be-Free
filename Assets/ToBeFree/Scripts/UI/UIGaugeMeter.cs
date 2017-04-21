@@ -51,7 +51,7 @@ public class UIGaugeMeter : MonoBehaviour
 		}
 	}
 
-	private void SetCellNum(int value)
+	public void SetCellNum(int value)
 	{
 		if (value < 0 || value > this.TotalGauge)
 		{
@@ -73,10 +73,11 @@ public class UIGaugeMeter : MonoBehaviour
 			// 0 : 5 = true
 			// 4 : 5 = true
 			isCellActive = i < value;
-			if (isCellActive)
-				CurrentGauge = i;
+			//if (isCellActive)
+			//	CurrentGauge = i;
 			cellList[i].TurnOnSprite(isCellActive);
 		}
+		CurrentGauge = value;
 	}
 
 	public void Init(int cellNum, bool startWithFullGauge)
@@ -91,18 +92,22 @@ public class UIGaugeMeter : MonoBehaviour
 			return;
 		}
 
-		cellList = new List<UIGaugeCell>();
-		for(int i=0; i<cellNum; ++i)
+		if(cellList == null)
 		{
-			GameObject obj = GameObject.Instantiate(cellObj, grid.transform) as GameObject;
-			obj.transform.localScale = new Vector3(1, 1, 1);
-			UIGaugeCell cell = obj.GetComponent<UIGaugeCell>();
-			if (cell == null)
-				continue;
+			cellList = new List<UIGaugeCell>();
+			for (int i = 0; i < cellNum; ++i)
+			{
+				GameObject obj = GameObject.Instantiate(cellObj, grid.transform) as GameObject;
+				obj.transform.localScale = new Vector3(1, 1, 1);
+				UIGaugeCell cell = obj.GetComponent<UIGaugeCell>();
+				if (cell == null)
+					continue;
 
-			cell.ChangeSpritesParam(this.cellSize, this.cellColor);
-			cellList.Add(cell);
+				cell.ChangeSpritesParam(this.cellSize, this.cellColor);
+				cellList.Add(cell);
+			}
 		}
+		
 		grid.Reposition();
 		
 		this.startWithFullGauge = startWithFullGauge;
@@ -128,24 +133,34 @@ public class UIGaugeMeter : MonoBehaviour
 
 	public bool TurnUpAndCheckIsFull()
 	{
-		if(cellList[CurrentGauge].IsOn())
-		{
-			CurrentGauge++;
-		}
-		cellList[CurrentGauge].TurnOnSprite(true);
+		//if(cellList[CurrentGauge].IsOn())
+		//{
+		//	CurrentGauge++;
+		//}
 
-		return IsFull();
+		bool isFull = IsFull();
+		if (isFull)
+			return true;
+
+		cellList[CurrentGauge++].TurnOnSprite(true);
+
+		return isFull;
 	}
 
 	public bool TurnDownAndCheckIsEmpty()
 	{
-		if(cellList[CurrentGauge].IsOn() == false)
-		{
-			CurrentGauge--;
-		}
-		cellList[CurrentGauge].TurnOnSprite(false);
+		//if(cellList[CurrentGauge].IsOn() == false)
+		//{
+		//	CurrentGauge--;
+		//}
 
-		return IsEmpty();
+		bool isEmpty = this.IsEmpty();
+		if (isEmpty)
+			return true;
+
+		cellList[CurrentGauge--].TurnOnSprite(false);
+
+		return isEmpty;
 	}
 
 	public bool IsFull()
@@ -166,7 +181,7 @@ public class UIGaugeMeter : MonoBehaviour
 		}
 		private set
 		{
-			if(value < 0 || value >= this.cellList.Count)
+			if(value < 0 || value > this.cellList.Count)
 			{
 				return;
 			}
@@ -184,7 +199,7 @@ public class UIGaugeMeter : MonoBehaviour
 				return -1;
 			}
 
-			return this.cellList.Count - 1;
+			return this.cellList.Count;
 		}
 	}
 }

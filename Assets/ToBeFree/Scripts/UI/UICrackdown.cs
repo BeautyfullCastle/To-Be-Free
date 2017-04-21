@@ -19,7 +19,7 @@ public class UICrackdown : MonoBehaviour
 	private UIGaugeMeter crackdownMeter;
 	[SerializeField]
 	private TweenRotation axisTween;
-
+	
 	public void Init()
 	{
 		if (shortTermMeter == null)
@@ -111,5 +111,37 @@ public class UICrackdown : MonoBehaviour
 			axisTween.PlayReverse();
 		}
 		yield return new WaitForSeconds(axisTween.duration);
+	}
+
+	public UIGaugeMeter ShortTermMeter
+	{
+		get
+		{
+			return shortTermMeter;
+		}
+	}
+
+	public UIGaugeMeter LongTermMeter
+	{
+		get
+		{
+			return longTermMeter;
+		}
+	}
+
+	public UIGaugeMeter CrackdownMeter
+	{
+		get
+		{
+			return crackdownMeter;
+		}
+	}
+
+	public TweenRotation AxisTween
+	{
+		get
+		{
+			return axisTween;
+		}
 	}
 }

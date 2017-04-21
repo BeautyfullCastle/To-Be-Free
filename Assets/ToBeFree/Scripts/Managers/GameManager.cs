@@ -121,6 +121,7 @@ namespace ToBeFree
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
 			ResetUI();
 
+			CrackDown.Instance.Reset();
 
 			optionObj.SetActive(false);
 
@@ -495,6 +496,8 @@ namespace ToBeFree
 				yield return BuffManager.Instance.Load(SaveLoadManager.Instance.data.buffList);
 
 				TimeTable.Instance.Load(SaveLoadManager.Instance.data.time);
+
+				CrackDown.Instance.Load(SaveLoadManager.Instance.data.crackdown);
 			}
 			else
 			{
@@ -719,7 +722,7 @@ namespace ToBeFree
 		{
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
 
-			yield return CrackDown.Instance.Check();
+			
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.WEEK, character);
 		}
@@ -926,6 +929,8 @@ namespace ToBeFree
 			{
 				yield return null;
 			}
+
+			yield return CrackDown.Instance.Check();
 
 			// 집중 단속 시 모든 공안 이동력만큼 움직이기
 			yield return CrackDown.Instance.MoveEveryPolice();

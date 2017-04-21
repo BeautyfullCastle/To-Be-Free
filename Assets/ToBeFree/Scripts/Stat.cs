@@ -145,8 +145,6 @@ namespace ToBeFree
 
 			OnValueChange(5, eStat.TOTALINFO);
 			OnValueChange(infoNum, eStat.INFO);
-			
-
 		}
 
 		public int Strength

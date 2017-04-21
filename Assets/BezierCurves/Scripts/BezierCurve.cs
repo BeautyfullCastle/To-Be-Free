@@ -141,24 +141,24 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 	
 	#region UnityFunctions
 	
-	/*
-	void OnDrawGizmos () {
-		Gizmos.color = drawColor;
+	// µµ½Ã ÀÕ´Â ¼±
+	//void OnDrawGizmos () {
+	//	Gizmos.color = drawColor;
 		
-		if(points.Length > 1){
-			for(int i = 0; i < points.Length - 1; i++){
-				DrawCurve(points[i], points[i+1], resolution, Color.white);
-				DrawCurve(points[i+1], points[i], resolution, Color.red);
-			}
+	//	if(points.Length > 1){
+	//		for(int i = 0; i < points.Length - 1; i++){
+	//			DrawCurve(points[i], points[i+1], resolution, Color.white);
+	//			DrawCurve(points[i+1], points[i], resolution, Color.red);
+	//		}
 
-			if (close)
-			{
-				DrawCurve(points[points.Length - 1], points[0], resolution, Color.black);
-				DrawCurve(points[0], points[points.Length - 1], resolution, Color.blue);
-			}
-		}
-	}
-	*/
+	//		if (close)
+	//		{
+	//			DrawCurve(points[points.Length - 1], points[0], resolution, Color.black);
+	//			DrawCurve(points[0], points[points.Length - 1], resolution, Color.blue);
+	//		}
+	//	}
+	//}
+	
 
 	void Awake(){
 		dirty = true;

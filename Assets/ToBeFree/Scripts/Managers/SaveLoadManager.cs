@@ -26,6 +26,7 @@ namespace ToBeFree
 				questList = new List<QuestSaveData>();
 				cityList = new List<CitySaveData>();
 				time = new TimeSaveData();
+				crackdown = new CrackDownSaveData();
 			}
 
 			public CharacterSaveData character;
@@ -35,6 +36,7 @@ namespace ToBeFree
 			public List<QuestSaveData> questList;
 			public List<CitySaveData> cityList;
 			public TimeSaveData time;
+			public CrackDownSaveData crackdown;
 		}
 
 		public void Init()
@@ -60,6 +62,7 @@ namespace ToBeFree
 			CityManager.Instance.Save(data.cityList);
 			CharacterManager.Instance.Save(data.character);
 			TimeTable.Instance.Save(data.time);
+			CrackDown.Instance.Save(data.crackdown);
 
 			string s = JsonUtility.ToJson(data);
 			Debug.Log(s);

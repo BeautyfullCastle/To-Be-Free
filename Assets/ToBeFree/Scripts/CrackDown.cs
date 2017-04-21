@@ -10,6 +10,16 @@ namespace ToBeFree
 		Short, Long, Crackdown
 	}
 
+	[Serializable]
+	public class CrackDownSaveData
+	{
+		public bool isCrackDown;
+		public bool isEternalCrackdown;
+		public int shortTermGauge;
+		public int longTermGauge;
+		public int crackdownGauge;
+	}
+
 	public class CrackDown : Singleton<CrackDown>
 	{
 		private bool isCrackDown;
@@ -18,11 +28,6 @@ namespace ToBeFree
 		private UILabel label;
 
 		private UICrackdown uiCrackdown;
-		
-		public CrackDown()
-		{
-			Reset();
-		}
 
 		public void Reset()
 		{
@@ -57,6 +62,52 @@ namespace ToBeFree
 			else
 			{
 				this.uiCrackdown.Init();
+			}
+		}
+
+		public void Save(CrackDownSaveData data)
+		{
+			data.isCrackDown = this.IsCrackDown;
+			data.isEternalCrackdown = this.isEternalCrackdown;
+			data.shortTermGauge = this.uiCrackdown.ShortTermMeter.CurrentGauge;
+			data.longTermGauge = this.uiCrackdown.LongTermMeter.CurrentGauge;
+			data.crackdownGauge = this.uiCrackdown.CrackdownMeter.CurrentGauge;
+
+			SaveLoadManager.Instance.data.crackdown = data;
+		}
+
+		public void Load(CrackDownSaveData data)
+		{
+			this.IsCrackDown = data.isCrackDown;
+			this.isEternalCrackdown = data.isEternalCrackdown;
+
+			//for(int i = 0; i < data.shortTermGauge; ++i)
+			//	this.uiCrackdown.ShortTermMeter.TurnUpAndCheckIsFull();
+
+			//for (int i = 0; i < data.longTermGauge; ++i)
+			//	this.uiCrackdown.LongTermMeter.TurnUpAndCheckIsFull();
+
+			//for (int i = 0; i < data.crackdownGauge; ++i)
+			//	this.uiCrackdown.CrackdownMeter.TurnUpAndCheckIsFull();
+
+			this.uiCrackdown.ShortTermMeter.SetCellNum(data.shortTermGauge);
+			this.uiCrackdown.LongTermMeter.SetCellNum(data.longTermGauge);
+			this.uiCrackdown.CrackdownMeter.SetCellNum(data.crackdownGauge);
+
+			if(isEternalCrackdown)
+			{
+				this.uiCrackdown.AxisTween.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+			}
+			else
+			{
+				if (isCrackDown)
+				{
+					this.uiCrackdown.AxisTween.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+				}
+				else
+				{
+					this.uiCrackdown.AxisTween.transform.localRotation = Quaternion.identity;
+				}
 			}
 		}
 
@@ -198,7 +249,11 @@ namespace ToBeFree
 			set
 			{
 				isCrackDown = value;
-				GameObject.Find("CrackDown Effect").GetComponent<UISprite>().enabled = isCrackDown;
+				GameObject effect = GameObject.Find("CrackDown Effect");
+				if (effect == null)
+					return;
+
+				effect.GetComponent<UISprite>().enabled = isCrackDown;
 			}
 		}
 	}
