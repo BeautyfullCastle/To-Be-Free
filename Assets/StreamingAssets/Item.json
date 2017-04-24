@@ -174,7 +174,7 @@
 			],
 			"price": 5,
 			"tag": "NULL",
-			"script": "힘을 1올립니다.\\n벨트가 있으면 2,3번의 일도 한번에 할 수 있죠."
+			"script": "힘을 1올립니다."
 		},
 		{
 			"index": 11,
@@ -575,6 +575,54 @@
 			"price": 4,
 			"tag": "NULL",
 			"script": "얻은 즉시 피곤함상태를 치유한다."
+		},
+		{
+			"index": 36,
+			"name": "Catcher",
+			"startTime": "TEST",
+			"duration": "EQUIP",
+			"restore": "true",
+			"effectIndexList": [
+				3
+			],
+			"amountList": [
+				1
+			],
+			"price": 4,
+			"tag": "NULL",
+			"script": "산에서 주사위 하나를 얻습니다."
+		},
+		{
+			"index": 37,
+			"name": "Nice Cloth",
+			"startTime": "TEST",
+			"duration": "EQUIP",
+			"restore": "true",
+			"effectIndexList": [
+				2
+			],
+			"amountList": [
+				1
+			],
+			"price": 4,
+			"tag": "NULL",
+			"script": "대도시에서 주사위 하나를 얻습니다."
+		},
+		{
+			"index": 38,
+			"name": "Korean Rest Membership",
+			"startTime": "REST",
+			"duration": "ONCE",
+			"restore": "false",
+			"effectIndexList": [
+				0
+			],
+			"amountList": [
+				2
+			],
+			"price": 3,
+			"tag": "NULL",
+			"script": "쉼터에 가서 휴식을 취합니다."
 		}
 	]
 }

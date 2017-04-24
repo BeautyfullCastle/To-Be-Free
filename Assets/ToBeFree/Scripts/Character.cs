@@ -350,9 +350,17 @@ namespace ToBeFree
 			List<City> pathToDandong = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("DANDONG"), eEventAction.MOVE);
 
 			CityManager.Instance.FindNearestPath(pathToTumen, pathToDandong);
+
+			this.IsDetention = true;
+
+			yield return SkipTime();
+		}
+
+		public IEnumerator SkipTime()
+		{
 			int remainAP = this.RemainAP;
 			this.AP = this.TotalAP;
-			this.IsDetention = true;
+
 			yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 		}
 

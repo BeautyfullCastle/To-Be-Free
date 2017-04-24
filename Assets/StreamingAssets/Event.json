@@ -146,7 +146,7 @@
 			"index": 14,
 			"actionType": "INVESTIGATION_POLICE_SPECIAL",
 			"difficulty": "NORMAL",
-			"script": "공안에 대한 정보를 알고 있다는 사람을 만났습니다. 그는 많은 것을 알고 있다고 정보를 알려주겠다고 합니다.",
+			"script": "공안에 대한 정보를 알고 있다는 사람을 만났습니다. 그는 정보를 알려줄 수 있지만 돈을 원한다고 합니다.",
 			"resultIndex": -99,
 			"selectIndexList": [
 				36,
@@ -1045,6 +1045,320 @@
 			"difficulty": "NORMAL",
 			"script": "당신은 소문의 장소에서 브로커에 대한 정보를 알고 있다는 사람을 찾아봅니다.",
 			"resultIndex": 119,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 101,
+			"actionType": "INVESTIGATION_POLICE_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "당신은 정보를 조사 중 공안에 대한 정보를 알고 있다는 한 조선족을 알아냈습니다. 그 사람이 산다는 집을 갔지만 그곳에는 아무도 없었습니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				73,
+				74
+			]
+		},
+		{
+			"index": 102,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "주변을 돌아다니며 혹시 사람이 있는가 찾아봅니다.",
+			"resultIndex": 124,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 103,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "주변에서 기다립니다. 오랫동안 기다렸지만 사람이 오지 않습니다. 그만두고 돌아가야하는지 참기가 힘듭니다.",
+			"resultIndex": 125,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 104,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "공안에대한 정보를 알고 있다는 사람이 있다는 곳을 찾았습니다.",
+			"resultIndex": 126,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 105,
+			"actionType": "INVESTIGATION_POLICE_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "공안이 탈북자에 대한 조사를 강화한다는 소문을 들었습니다. 당신은 주변 탈북자들에게 위험을 전달하기 위해서 소문을 냅니다.",
+			"resultIndex": 127,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 106,
+			"actionType": "INVESTIGATION_CITY_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "조사를 하던 중 공안이 이 일대에 집중적으로 추가 되고 있다는 소문을 들었습니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				75,
+				76,
+				77
+			]
+		},
+		{
+			"index": 107,
+			"actionType": "INVESTIGATION_CITY_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "근처에 도박장이 있다는 소문을 들었습니다. 잘만하면 돈을 따서 돈을 만질 수도 있을 겁니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				78,
+				79
+			]
+		},
+		{
+			"index": 108,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "소문의 도박장에 도착했습니다. 도박으로 돈을 딸 수 있을지 자신의 운을 시험해봅니다.",
+			"resultIndex": 133,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 109,
+			"actionType": "INVESTIGATION_CITY_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "근처에 도박장이 있다는 소문을 들었습니다. 잘만하면 돈을 따서 돈을 만질 수도 있을 겁니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				80,
+				79
+			]
+		},
+		{
+			"index": 110,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "소문의 도박장에 도착했습니다. 도박으로 돈을 딸 수 있을지 자신의 운을 시험해봅니다.",
+			"resultIndex": 131,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 111,
+			"actionType": "INVESTIGATION_CITY_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "어떤 사람이 와서 조선인 쉼터라는 곳을 소개하며 쉼터 회원권을 구입하지 않겠냐고 물어봅니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				81,
+				82
+			]
+		},
+		{
+			"index": 112,
+			"actionType": "INVESTIGATION_BROKER_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "브로커에 대한 정보를 모으던 중 방금 브로커가 근방으로 이동했다는 소문을 들었습니다. 빨리 이동한다면 찾을 수 있을지도 모릅니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				83,
+				84
+			]
+		},
+		{
+			"index": 113,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "브로커가 향했다는 곳을 빠르게 추격했습니다. 브로커가 있을 만한 곳을 찾아봅니다.",
+			"resultIndex": 138,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 114,
+			"actionType": "INVESTIGATION_BROKER_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "탈북자를 도와주는 센터에 대한 이야기를 들었습니다. 센터를 찾는다면 브로커에 대한 이야기를 들을 수 있을 겁니다.",
+			"resultIndex": 140,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 115,
+			"actionType": "INVESTIGATION_BROKER_SPECIAL",
+			"difficulty": "NORMAL",
+			"script": "한 노숙자가 다가와 말을 겁니다. '이봐 거기 보아하니 탈북자 같은데 혹시 브로커 정보를 찾는가? 식량을 좀 준다면 알려줄 수 있네'",
+			"resultIndex": -99,
+			"selectIndexList": [
+				85,
+				86
+			]
+		},
+		{
+			"index": 116,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "당신은 식량이 없다고 말하고 가려고 합니다. '이봐! 그럼 먹을 걸 살 돈으라도 좋네!'",
+			"resultIndex": -99,
+			"selectIndexList": [
+				87,
+				88
+			]
+		},
+		{
+			"index": 117,
+			"actionType": "MOVE",
+			"difficulty": "NORMAL",
+			"script": "걷는 중 뒤에서 공안차가 오고 있습니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				89,
+				90,
+				91
+			]
+		},
+		{
+			"index": 118,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "공안차가 다가오기전에 빠르게 숨어야합니다. 집중해서 숨을 곳을 빠르게 찾아봅니다",
+			"resultIndex": 147,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 119,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "온힘을 다해서 도망칩니다.",
+			"resultIndex": 149,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 120,
+			"actionType": "MOVE",
+			"difficulty": "NORMAL",
+			"script": "길을 가던 중 먹을 수 있을 것 같은 열매가 있는 나무가 보입니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				92,
+				93
+			]
+		},
+		{
+			"index": 121,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "나무에 올라갑니다. 생각보다 미끄럽습니다. 미끄러지지 않게 힘을 줘서 올라갑니다.",
+			"resultIndex": 150,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 122,
+			"actionType": "MOVE",
+			"difficulty": "NORMAL",
+			"script": "가는 길에 공안이 보입니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				94,
+				95
+			]
+		},
+		{
+			"index": 123,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "공안이 있는 곳은 위험하니 돌아갑니다. 다만 늦지 않게 가려면 빠르게 이동해야 할 것 같습니다.",
+			"resultIndex": 153,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 124,
+			"actionType": "GATHERING",
+			"difficulty": "NORMAL",
+			"script": "산에서 계속해서 식량을 찾았지만 먹을만 한 것이 없습니다.",
+			"resultIndex": -99,
+			"selectIndexList": [
+				96,
+				97
+			]
+		},
+		{
+			"index": 125,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "숲 속 깊숙히 이동해서 식량을 찾아봅니다.",
+			"resultIndex": 153,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 126,
+			"actionType": "MOVE_BUS",
+			"difficulty": "NORMAL",
+			"script": "버스로 이동 중 탈북자 검문이 있습니다. 걸리지 않도록 숨죽이며 자연스럽게 연기합니다.",
+			"resultIndex": 156,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 127,
+			"actionType": "DETENTION",
+			"difficulty": "NORMAL",
+			"script": "잡혀 있는데 갑자기 공안이 풀어줍니다. 모르는 사람이 와서 돈을 주고 풀어줬습니다. 모르는 사람 손에 이끌려 공안에게서 벗어납니다.",
+			"resultIndex": 158,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 128,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "잡혀서 이동하는 중 집중해서 도망칠 틈을 엿봅니다.",
+			"resultIndex": 163,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 129,
+			"actionType": "NULL",
+			"difficulty": "NORMAL",
+			"script": "이동 하는 중 이상함을 느낍니다. 아무래도 도망쳐야할 것 같습니다.",
+			"resultIndex": 161,
+			"selectIndexList": [
+				-99
+			]
+		},
+		{
+			"index": 130,
+			"actionType": "DETENTION",
+			"difficulty": "NORMAL",
+			"script": "잡혀 있는데 갑자기 공안이 풀어줍니다. 모르는 사람이 와서 돈을 주고 풀어줬습니다. 모르는 사람 손에 이끌려 공안에게서 벗어납니다.",
+			"resultIndex": 165,
 			"selectIndexList": [
 				-99
 			]

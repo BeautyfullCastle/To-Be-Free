@@ -20,7 +20,8 @@ namespace ToBeFree
 		RESULT,
 		DDAY,
 		FOOD,
-		ENDING
+		ENDING,
+		TIME
 	}
 
 	public enum eVerbType
@@ -59,7 +60,8 @@ namespace ToBeFree
 		SHORT_TERM_GAUGE,
 		MENTAL, HP_MENTAL, PATIENCE, LUCK, // 지워야 되는 것들
 		DICE,
-		STAKEOUT
+		STAKEOUT,
+		BIGCITY, MOUNTAIN
 	}
 
 	public class Effect
@@ -199,7 +201,20 @@ namespace ToBeFree
 					}
 					else if(verbType == eVerbType.ADD)
 					{
-						DiceTester.Instance.AdditionalDie = amount;
+						bool correct = false;
+						if(objectType.ToString() == character.CurCity.Type.ToString())
+						{
+							correct = true;
+						}
+						else if(objectType == eObjectType.NULL)
+						{
+							correct = true;
+						}
+
+						if(correct == true)
+						{
+							DiceTester.Instance.AdditionalDie = amount;
+						}
 					}
 					break;
 				case eSubjectType.ACTION:
@@ -291,6 +306,13 @@ namespace ToBeFree
 					{
 						// (HP=0,) 북송, 해피엔딩
 						yield return GameManager.Instance.endingManager.StartEnding((eEnding)amount);
+					}
+					break;
+				case eSubjectType.TIME:
+					// 하루를 끝냄
+					if(verbType == eVerbType.SKIP)
+					{
+						yield return character.SkipTime();
 					}
 					break;
 				default:

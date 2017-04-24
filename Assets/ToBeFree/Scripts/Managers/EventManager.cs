@@ -56,9 +56,14 @@ namespace ToBeFree
 				Event curEvent = new Event(EnumConvert<eEventAction>.ToEnum(data.actionType), 
 					EnumConvert<eDifficulty>.ToEnum(data.difficulty), data.script, data.resultIndex, data.selectIndexList);
 
+				if(data.index >= list.Length)
+				{
+					throw new Exception("Event data.index " + data.index + " is longer than length of list." + list.Length);
+				}
+
 				if (list[data.index] != null)
 				{
-					Debug.LogError("EventManager : data.index is duplicated.");
+					Debug.LogError("EventManager : data.index is duplicated : " + data.index);
 				}
 
 				if (list[data.index] != null)

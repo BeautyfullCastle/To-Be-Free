@@ -62,12 +62,12 @@
 		},
 		{
 			"index": 12,
-			"successScript": "그는 알겠다고 알고 싶은 곳을 알려 달라고 합니다.",
+			"successScript": "그는 돈을 받고 바로 공안에 대한 정보를 알려주었습니다.",
 			"failureScript": "NULL"
 		},
 		{
 			"index": 13,
-			"successScript": "그는 알겠다며 공안이 탈북자 집중단속을 할 확률을 알려주었습니다.",
+			"successScript": "당신은 돈이 없다고 말하고 그 곳을 떠났습니다.",
 			"failureScript": "NULL"
 		},
 		{
@@ -618,6 +618,216 @@
 		{
 			"index": 123,
 			"successScript": "짐승과 마주치면 위험하니 이대로 돌아갑니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 124,
+			"successScript": "근처에 사람이 보입니다. 찾아가 물어보니 근처에 출장을 갔다고 합니다.",
+			"failureScript": "주변을 돌아봤지만 아무도 없었습니다. 아무래도 허탕인 것 같습니다."
+		},
+		{
+			"index": 125,
+			"successScript": "끈질기게 기다리다보니 한 사람이 다가와 이 집 사람을 기다리냐고 물어봅니다. 이야기를 들어보니 근처에 출장을 갔다고 합니다.",
+			"failureScript": "기다리다 지쳐 돌아갑니다."
+		},
+		{
+			"index": 126,
+			"successScript": "공안에 대한 정보를 알고 있는 사람을 만나, 공안에 대한 정보를 들었습니다. 정보를 이용해서 공안의 위협을 줄였습니다",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 127,
+			"successScript": "성공적으로 소문이 퍼진것 같습니다. 주변 탈북자들이 공안을 피해서 도망쳤다고 합니다. 공안에 대한 위협이 낮아졌습니다.",
+			"failureScript": "소문이 충분히 전달되지 않은 것 같습니다. 공안에 대한 위협이 여전합니다."
+		},
+		{
+			"index": 128,
+			"successScript": "소문이 진실일 수 있으니 빠르게 다른 지역으로 도망쳤습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 129,
+			"successScript": "헛소문일 수 있지만 혹시 몰라 숨어서 지켜봅니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 130,
+			"successScript": "분명 헛소문입니다. 아무런 조치도 취하지 않습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 131,
+			"successScript": "운이 좋았습니다. 큰 돈을 땄습니다.",
+			"failureScript": "이런 운이 없었습니다. 돈을 잃었습니다."
+		},
+		{
+			"index": 132,
+			"successScript": "도박은 위험합니다. 도박장에 가지 않습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 133,
+			"successScript": "운이 좋았습니다. 큰 돈을 땄습니다. 그런데 그 순간 큰소리가 들립니다. 공안의 단속입니다. 빠르게 도망쳐야합니다.",
+			"failureScript": "이런 운이 없었습니다. 돈을 잃었습니다."
+		},
+		{
+			"index": 134,
+			"successScript": "도망치면서 순발력 있게 딴 돈도 가지고 빠져나갔습니다.",
+			"failureScript": "허겁지겁 도망쳤습니다. 도박장을 성공적으로 빠져나갔지만 돈을 챙지기는 못했습니다."
+		},
+		{
+			"index": 135,
+			"successScript": "3위안을 내고 회원권을 구매했습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 136,
+			"successScript": "당신은 돈이 없다고 말하고 그 곳을 떠났습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 137,
+			"successScript": "브로커를 찾아 빠르게 이동합니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 138,
+			"successScript": "주변을 찾았지만 이미 브로커는 사라진 뒤 인 것 같습니다. 다만 주변에 이야기를 들어보니 지나간 브로커에 대한 정보를 들을 수 있었습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 139,
+			"successScript": "소문을 믿을 수 없고 브로커를 찾을 수 있을지 알 수 없기 때문에 가지 않습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 140,
+			"successScript": "수소문해서 탈북자 센터를 찾았습니다만 센터엔 아무도 없습니다. 사람을 기다렸지만 아무도 오지 않습니다. 인내심에 한계가 느껴집니다.",
+			"failureScript": "열심히 센터를 찾았지만 결국 발견하지 못했습니다."
+		},
+		{
+			"index": 141,
+			"successScript": "집중해서 끈길기게 기다리다보니 사람이 왔습니다. 탈북자 센터 사람이지만 현재 제대로 운영이 되고 있지 않다고 합니다. 그는 최선을 다해서 알고 있는 브로커정보를 알려주었습니다.",
+			"failureScript": "기다리다 지쳐 돌아갑니다."
+		},
+		{
+			"index": 142,
+			"successScript": "고맙네' 노숙자는 허겁지겁 식량을 다먹더니 이야기합니다. '사실 브로커정보 나도 몰라. 다만 다른 노숙자에게 이야기를 들었어' 그는 소문을 알고 있단느 노숙자의 위치를 알려줬습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 143,
+			"successScript": "노숙자는 돈을 받더니 빠르게 도망을 칩니다. 노숙자를 잡기위해 달립니다. 튀기전에 옷을 붙잡았습니다. 놓치지 않기 위해 힘을 줍니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 144,
+			"successScript": "힘으로 노숙자를 잡았습니다. '미안해! 사실 브로커정보 나도 몰라. 다만 다른 노숙자에게 이야기를 들었어' 그는 소문을 알고 있다는 노숙자의 위치를 알려줬습니다.",
+			"failureScript": "제대로 붙잡지 못했습니다. 노숙자가 멀리 달아났습니다."
+		},
+		{
+			"index": 145,
+			"successScript": "당신은 돈이 없다고 말하고 그 곳을 떠났습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 146,
+			"successScript": "모르는 척 가던길을 갑니다. 공안차가 옆으로 지나갑니다. 들키지 않은 것 같습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 147,
+			"successScript": "성공적으로 숨을 곳을 찾아 숨었습니다. 공안차가 지나갑니다. 들키지 않은 것 같습니다.",
+			"failureScript": "숨을 곳을 찾지 못했습니다. 허둥지둥 하는 사이 공안차가 근처로 왔습니다. 지금이라도 숨어야합니다. 다시한번 집중해서 숨을 곳을 찾습니다."
+		},
+		{
+			"index": 148,
+			"successScript": "성공적으로 숨을 곳을 찾아 숨었습니다. 공안차가 지나갑니다. 들키지 않은 것 같습니다.",
+			"failureScript": "허둥지둥하는 모습을 보고 공안이 차에서 내려 옵니다. 이젠 도망쳐야합니다."
+		},
+		{
+			"index": 149,
+			"successScript": "뛰면서 확인해보니 쫓아오지 않는것 같습니다.",
+			"failureScript": "뛰다가 넘어졌습니다. 다리를 절면서 확인해보니 공안이 쫒아오지는 않는것 같습니다."
+		},
+		{
+			"index": 150,
+			"successScript": "성공적으로 열매를 따고 내려왔습니다. 열매는 먹을 수 있는 것 같습니다.",
+			"failureScript": "올라가다가 그만 떨어졌습니다. 다리가 아픕니다."
+		},
+		{
+			"index": 151,
+			"successScript": "나무에 올라타는 것은 위험합니다. 가던 길을 마저 갑니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 152,
+			"successScript": "모르는 척 이동합니다. 다행히 공안이 관심을 가진 것 같지는 않습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 153,
+			"successScript": "재빠르게 이동해서 늦지 않게 도착했습니다.",
+			"failureScript": "늦지 않기위해서 빠르게 이동했습니다. 너무 무리 하게 이동했는지 공복감이 밀려옵니다."
+		},
+		{
+			"index": 153,
+			"successScript": "식량을 제대로 찾았습니다. 이제 돌아가야 하는데 너무 깊숙한 곳이여서 길을 모르겠습니다. 집중해서 길을 찾아봅니다.",
+			"failureScript": "식량을 찾지 못했습니다. 늦어지기 전에 돌아가야 하는데 너무 깊숙한 곳이여서 길을 모르겠습니다. 집중해서 길을 찾아봅니다."
+		},
+		{
+			"index": 154,
+			"successScript": "늦지 않게 길을 찾아서 돌아갔습니다.",
+			"failureScript": "길을 제대로 찾지 못하고 숲 속에서 오랫동안 해매이다 돌아왔습니다. 하지만 너무 피곤합니다."
+		},
+		{
+			"index": 155,
+			"successScript": "더 깊숙한 숲으로 가는 것은 위험합니다. 이대로 돌아갑니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 156,
+			"successScript": "다행히 들키지 않은 것 같습니다. 버스가 다시 움직입니다.",
+			"failureScript": "부자연스러움에 공안이 주위를 끌고 붙잡혔습니다. 내리는 중 도망을 시도합니다."
+		},
+		{
+			"index": 157,
+			"successScript": "다행히 공안에서 도망치는데 성공합니다.",
+			"failureScript": "도망에 실패했고 공안에게 끌려갑니다."
+		},
+		{
+			"index": 158,
+			"successScript": "이동하는데 중국어로 이야기 하는 내용이 들립니다. 자세한 내용을 듣기 위해서 노력해봅니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 160,
+			"successScript": "자세한 내용은 모르겠지만 아무래도 인신매매에 관련된 내용인 것 같습니다. 감시가 약해진 틈을 타서 도망을 시도합니다.",
+			"failureScript": "무슨 내용인지 모르겠습니다. 따라서 이동합니다."
+		},
+		{
+			"index": 161,
+			"successScript": "도망칩니다. 깜짝 놀란 사람이 당신을 붙잡습니다. 뿌리치고 도망쳐야합니다.",
+			"failureScript": "도망치는데 실패했습니다. 그들은 당신을 폭행하고, 다시 붙잡혀서 이동합니다."
+		},
+		{
+			"index": 162,
+			"successScript": "뿌리치고 도망치는데 성공했습니다.",
+			"failureScript": "뿌리치지 못했습니다. 그들은 당신을 폭행하고, 다시 붙잡혀서 이동합니다."
+		},
+		{
+			"index": 163,
+			"successScript": "집중해서 살펴본 도망루트로 틈을 이용해서 도망치는데 성공합니다.",
+			"failureScript": "틈을 보는데 실패했습니다. 이대로 계속 이동합니다."
+		},
+		{
+			"index": 164,
+			"successScript": "결국 목적지에 도달한 것 같습니다. 도착해서 혼란한 틈을 타서 도망쳤습니다. 하지만 그 과정에서 많은 것들을 잃었습니다.",
+			"failureScript": "NULL"
+		},
+		{
+			"index": 165,
+			"successScript": "어느정도 이동을 하니 그들이 자신들이 인권단체라고 소개합니다. 다만 빼내는것이 한계라며 주변에서 내려줍니다. 당신은 감사를 표합니다.",
 			"failureScript": "NULL"
 		}
 	]

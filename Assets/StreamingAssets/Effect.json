@@ -16,23 +16,23 @@
 		},
 		{
 			"index": 2,
-			"subjectType": "STATE",
-			"verbType": "BIGCITY",
-			"objectType": "DICE",
+			"subjectType": "DICE",
+			"verbType": "ADD",
+			"objectType": "BIGCITY",
 			"script": "NULL"
 		},
 		{
 			"index": 3,
-			"subjectType": "STATE",
-			"verbType": "MOUNTAIN",
-			"objectType": "DICE",
+			"subjectType": "DICE",
+			"verbType": "ADD",
+			"objectType": "MOUNTAIN",
 			"script": "NULL"
 		},
 		{
 			"index": 4,
-			"subjectType": "INFO",
-			"verbType": "MOVE",
-			"objectType": "CLOSE_FAR",
+			"subjectType": "TIME",
+			"verbType": "SKIP",
+			"objectType": "NULL",
 			"script": "NULL"
 		},
 		{
