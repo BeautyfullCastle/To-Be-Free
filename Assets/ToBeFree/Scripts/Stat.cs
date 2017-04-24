@@ -393,7 +393,7 @@ namespace ToBeFree
 			}
 		}
 
-		public void Set(eObjectType objectType, int amount)
+		public void Add(eObjectType objectType, int amount)
 		{
 			switch (objectType)
 			{

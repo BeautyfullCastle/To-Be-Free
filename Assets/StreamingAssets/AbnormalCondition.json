@@ -262,7 +262,7 @@
 			"stack": "FALSE",
 			"startTime": "TEST",
 			"duration": "TODAY",
-			"script": "오늘 하루 힘을 1증가합니다.",
+			"script": "오늘 하루 힘이 1 증가합니다.",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		},
@@ -277,6 +277,48 @@
 			"startTime": "WORK",
 			"duration": "NULL",
 			"script": "이 사람은 훌륭한 일꾼입니다. 일을 할 때 주사위를 하나 추가로 받습니다.",
+			"isBody": "NULL",
+			"isPositive": "NULL"
+		},
+		{
+			"index": 20,
+			"name": "Increase Agility",
+			"spawnCondition": "EVENT",
+			"effectIndex": 28,
+			"amount": 1,
+			"isRestore": "TRUE",
+			"stack": "FALSE",
+			"startTime": "TEST",
+			"duration": "TODAY",
+			"script": "오늘 하루 민첩성이 1 증가합니다.",
+			"isBody": "NULL",
+			"isPositive": "NULL"
+		},
+		{
+			"index": 21,
+			"name": "Increase Concentration",
+			"spawnCondition": "EVENT",
+			"effectIndex": 29,
+			"amount": 1,
+			"isRestore": "TRUE",
+			"stack": "FALSE",
+			"startTime": "TEST",
+			"duration": "TODAY",
+			"script": "오늘 하루 관찰력이 1 증가합니다.",
+			"isBody": "NULL",
+			"isPositive": "NULL"
+		},
+		{
+			"index": 22,
+			"name": "Increase Talent",
+			"spawnCondition": "EVENT",
+			"effectIndex": 30,
+			"amount": 1,
+			"isRestore": "TRUE",
+			"stack": "FALSE",
+			"startTime": "TEST",
+			"duration": "TODAY",
+			"script": "오늘 하루 협상력이 1 증가합니다.",
 			"isBody": "NULL",
 			"isPositive": "NULL"
 		}

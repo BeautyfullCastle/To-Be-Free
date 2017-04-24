@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace ToBeFree
 {
@@ -108,7 +109,31 @@ namespace ToBeFree
 				case eSubjectType.STAT:
 					if (verbType == eVerbType.ADD)
 					{
-						character.Stat.Set(objectType, amount);
+						if(objectType == eObjectType.RAND)
+						{
+							if (amount <= 0 || amount > 4)
+							{
+								Debug.LogError("STAT ADD RAND : amount <= 0 || amount > 4");
+								yield break;
+							}
+
+							List<AbnormalCondition> statAbnormalList = new List<AbnormalCondition>();
+							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Strength"));
+							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Agility"));
+							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Concentration"));
+							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Talent"));
+
+							for(int i=0; i<amount; ++i)
+							{
+								int randInt = UnityEngine.Random.Range(0, statAbnormalList.Count);
+								yield return statAbnormalList[randInt].Activate(character);
+								statAbnormalList.Remove(statAbnormalList[randInt]);
+							}
+						}
+						else
+						{
+							character.Stat.Add(objectType, amount);
+						}
 					}
 					break;
 
@@ -319,6 +344,26 @@ namespace ToBeFree
 					break;
 			}
 			yield return null;
+		}
+
+		private eObjectType GetRandStatType()
+		{
+			eObjectType statType = eObjectType.STRENGTH;
+			int randInt = UnityEngine.Random.Range(1, 4);
+			if (randInt == 2)
+			{
+				statType = eObjectType.AGILITY;
+			}
+			else if (randInt == 3)
+			{
+				statType = eObjectType.CONCENTRATION;
+			}
+			else if (randInt == 4)
+			{
+				statType = eObjectType.TALENT;
+			}
+
+			return statType;
 		}
 
 		public IEnumerator Deactivate(Character character, int amount)

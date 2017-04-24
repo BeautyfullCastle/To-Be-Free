@@ -3,102 +3,117 @@
 		{
 			"index": 0,
 			"name": "Anxiety",
-			"script": "휴식 시 회복이 되지 않습니다.\\n휴식 시 집중에 성공하면 이 상태를 없앱니다."
+			"script": "abnormal script 0"
 		},
 		{
 			"index": 1,
 			"name": "LegInjury",
-			"script": "이동 할 때 체력이 1피해를 입습니다.\\n휴식 시 집중에 성공하면 이 상태를 없앱니다."
+			"script": "abnormal script 1"
 		},
 		{
 			"index": 2,
 			"name": "Fatigue",
-			"script": "모든 능력치가 1줄어듭니다. \\n휴식 시 집중에 성공하면 이 상태를 없앱니다."
+			"script": "abnormal script 2"
 		},
 		{
 			"index": 3,
 			"name": "Exhilaration",
-			"script": "성공한 주사위 눈을 5, 6으로 바꿉니다.\\n획득 다음날 밤부터 매일 밤 주사위 하나라를 굴려서 4이하가 나오면 사라집니다. "
+			"script": "abnormal script 3"
 		},
 		{
 			"index": 4,
 			"name": "Concentration",
-			"script": "모든 능력치를 1올립니다.\\n획득 다음날 밤부터 매일 밤 주사위 하나라를 굴려서 4이하가 나오면 사라집니다. "
+			"script": "abnormal script 4"
 		},
 		{
 			"index": 5,
 			"name": "Hunger",
-			"script": "밤마다 배고픔 수치만큼 체력피해를 입습니다.\\n 식량을 먹으면 사라집니다."
+			"script": "abnormal script 5"
 		},
 		{
 			"index": 6,
 			"name": "Detention",
-			"script": "공안에게 잡혔습니다. 매일 민첩테스트로 탈출을 시도합니다.\\n실패하면 북한으로 이동합니다.\\n마지막도시에서도 실패 시 행운테스트를 하며, 행운테스트도 실패 시 게임오버가 됩니다."
+			"script": "abnormal script 6"
 		},
 		{
 			"index": 7,
 			"name": "Decrease Strength",
-			"script": "하루 동안 힘-"
+			"script": "abnormal script 7"
 		},
 		{
 			"index": 8,
 			"name": "Decrease Agility",
-			"script": "한 주 동안 민첩성-"
+			"script": "abnormal script 8"
 		},
 		{
 			"index": 9,
 			"name": "Decrease Concentration",
-			"script": "한 주 동안 관찰력-"
+			"script": "abnormal script 9"
 		},
 		{
 			"index": 10,
 			"name": "Decrease Talent",
-			"script": "한 주 동안 협상력-"
+			"script": "abnormal script 10"
 		},
 		{
 			"index": 11,
 			"name": "Add View Range",
-			"script": "하루동안 공안 인식 범위 증가"
+			"script": "abnormal script 11"
 		},
 		{
 			"index": 12,
 			"name": "Decrease AllStat",
-			"script": "한 주 동안 모든 능력치-"
+			"script": "abnormal script 12"
 		},
 		{
 			"index": 13,
 			"name": "Deactive Work",
-			"script": "일행동 하루동안 사용불가"
+			"script": "abnormal script 13"
 		},
 		{
 			"index": 14,
 			"name": "Deactive Move",
-			"script": "오늘 하루 이동행동 사용불가"
+			"script": "abnormal script 14"
 		},
 		{
 			"index": 15,
 			"name": "Deactive Rest",
-			"script": "휴식행동 하루동안 사용불가"
+			"script": "abnormal script 15"
 		},
 		{
 			"index": 16,
 			"name": "Deactive Investigation",
-			"script": "조사행동 하루동안 사용불가"
+			"script": "abnormal script 16"
 		},
 		{
 			"index": 17,
 			"name": "Deactive Shop",
-			"script": "상점행동 하루동안 사용불가"
+			"script": "abnormal script 17"
 		},
 		{
 			"index": 18,
 			"name": "Increase Strength",
-			"script": "오늘 하루 힘을 1증가합니다."
+			"script": "abnormal script 18"
 		},
 		{
 			"index": 19,
 			"name": "A Good Worker",
-			"script": "이 사람은 훌륭한 일꾼입니다. 일을 할 때 주사위를 하나 추가로 받습니다."
+			"script": "abnormal script 19"
+		},
+		{
+			"index": 20,
+			"name": "Increase Agility",
+			"script": "abnormal script 20"
+		},
+		{
+			"index": 21,
+			"name": "Increase Concentration",
+			"script": "abnormal script 21"
+		},
+		{
+			"index": 22,
+			"name": "Increase Talent",
+			"script": "abnormal script 22"
 		}
 	]
 }
