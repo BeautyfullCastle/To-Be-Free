@@ -118,6 +118,13 @@
 			"failureScript": "NULL",
 			"uiName": "브로커를 찾아가기",
 			"uiConditionScript": "브로커협상"
+		},
+		{
+			"index": 17,
+			"script": "조사를 통해 공안에 대한 정보를 알고 있다는 사람이 있다는 곳을 알아 낼 수 있었습니다.\\n그 곳을 조사해보면 공안에 대한 정보를 알고 있는 사람을 볼 수 있을지도 모릅니다.",
+			"failureScript": "NULL",
+			"uiName": "공안정보원 찾기",
+			"uiConditionScript": "공안위협 2단계낮추기"
 		}
 	]
 }
