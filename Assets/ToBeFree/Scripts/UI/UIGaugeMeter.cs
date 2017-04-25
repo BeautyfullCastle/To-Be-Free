@@ -158,7 +158,7 @@ public class UIGaugeMeter : MonoBehaviour
 		if (isEmpty)
 			return true;
 
-		cellList[CurrentGauge--].TurnOnSprite(false);
+		cellList[--CurrentGauge].TurnOnSprite(false);
 
 		return isEmpty;
 	}
