@@ -6,7 +6,6 @@ namespace ToBeFree
 	{
 		public UILabel dayLabel;
 		public UILabel dDayLabel;
-		public UILabel crackdownLabel;
 		public Transform hourhand;
 		
 		private float angle;
@@ -18,7 +17,6 @@ namespace ToBeFree
 			TimeTable.Instance.NotifyEveryday += OnDayChange;
 			angle = hourhand.localRotation.eulerAngles.z;
 			strDay = "Day";
-			crackdownLabel.enabled = false;
 			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
 		}
 

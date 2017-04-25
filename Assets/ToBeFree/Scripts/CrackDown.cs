@@ -25,7 +25,6 @@ namespace ToBeFree
 		private bool isCrackDown;
 		private bool isEternalCrackdown;
 		private UISprite sprite;
-		private UILabel label;
 
 		private UICrackdown uiCrackdown;
 
@@ -44,15 +43,6 @@ namespace ToBeFree
 			else
 			{
 				this.sprite.enabled = false;
-			}
-
-			if(this.label == null)
-			{
-				UITimeTable uiTimeTable = GameObject.FindObjectOfType<UITimeTable>();
-				if(uiTimeTable)
-				{
-					this.label = uiTimeTable.crackdownLabel;
-				}
 			}
 
 			if(this.uiCrackdown == null)
@@ -138,10 +128,6 @@ namespace ToBeFree
 						{
 							sprite.enabled = false;
 						}
-						if (this.label)
-						{
-							this.label.enabled = false;
-						}
 						yield return uiCrackdown.SwitchGauge(isCrackDown);
 					}
 				}
@@ -156,10 +142,6 @@ namespace ToBeFree
 						if (this.sprite)
 						{
 							this.sprite.enabled = true;
-						}
-						if (this.label)
-						{
-							this.label.enabled = true;
 						}
 						isEternalCrackdown = uiCrackdown.CheckLongTermGauge();
 						if (isEternalCrackdown)
