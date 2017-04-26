@@ -3051,6 +3051,24 @@
 			"failureEffectValueList": [
 				-99
 			]
+		},
+		{
+			"index": 166,
+			"stat": "NULL",
+			"successScript": "스탯 랜덤 두 개 각각 추가",
+			"successEffectIndexList": [
+				31
+			],
+			"successEffectValueList": [
+				2
+			],
+			"failureScript": "NULL",
+			"failureEffectIndexList": [
+				-99
+			],
+			"failureEffectValueList": [
+				-99
+			]
 		}
 	]
 }

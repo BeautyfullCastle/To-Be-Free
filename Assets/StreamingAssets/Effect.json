@@ -221,7 +221,7 @@
 			"index": 31,
 			"subjectType": "STAT",
 			"verbType": "ADD",
-			"objectType": "PATIENCE",
+			"objectType": "RAND",
 			"script": "NULL"
 		},
 		{

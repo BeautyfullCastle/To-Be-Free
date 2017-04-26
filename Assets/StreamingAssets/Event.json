@@ -1362,6 +1362,16 @@
 			"selectIndexList": [
 				-99
 			]
+		},
+		{
+			"index": 131,
+			"actionType": "ABILITY",
+			"difficulty": "NORMAL",
+			"script": "스탯 랜덤 두 개 각각 1 추가",
+			"resultIndex": 165,
+			"selectIndexList": [
+				-99
+			]
 		}
 	]
 }
