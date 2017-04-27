@@ -32,7 +32,12 @@ public class IconPiece : MonoBehaviour
 	{
 		this.subjectType = subjectType;
 		this.gameObject.name = EnumConvert<eSubjectType>.ToString(subjectType);
-		
+
+		UISprite sprite = this.GetComponent<UISprite>();
+
+		if (sprite == null)
+			return;
+
 		if (subjectType == eSubjectType.POLICE)
 		{
 			//this.transform.localPosition = new Vector3(transform.localPosition.x - 30, transform.localPosition.y + 30);
@@ -40,11 +45,15 @@ public class IconPiece : MonoBehaviour
 		else if(subjectType == eSubjectType.QUEST)
 		{
 			//this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 30);
-			this.GetComponent<UISprite>().spriteName = "quest";
+			sprite.spriteName = "quest";
+			sprite.width = 32;
+			sprite.height = 32;
 		}
 		else if(subjectType == eSubjectType.BROKER)
 		{
-			this.GetComponent<UISprite>().spriteName = "broker";
+			sprite.spriteName = "broker";
+			sprite.width = 32;
+			sprite.height = 32;
 		}
 	}
 

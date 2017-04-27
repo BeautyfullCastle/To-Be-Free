@@ -84,10 +84,10 @@
 			],
 			"failureScript": "탈출을 시도했지만 붙잡혔습니다.",
 			"failureEffectIndexList": [
-				1
+				56
 			],
 			"failureEffectValueList": [
-				-99
+				6
 			]
 		},
 		{
@@ -3055,7 +3055,7 @@
 		{
 			"index": 166,
 			"stat": "NULL",
-			"successScript": "스탯 랜덤 두 개 각각 추가",
+			"successScript": "스탯 랜덤 두개 각각 1 추가",
 			"successEffectIndexList": [
 				31
 			],
