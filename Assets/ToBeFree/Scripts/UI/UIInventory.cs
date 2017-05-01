@@ -45,7 +45,7 @@ namespace ToBeFree
 			// 이제 이름과 아이콘을 세팅할께요.
 			// 그럴려면 먼저 아까 만든 ItemScript를 가져와야겠죠.
 			UIItem itemScript = gObjItem.GetComponent<UIItem>();
-			itemScript.SetInfo(item);
+			itemScript.SetInfo(item, false);
 			itemScript.belong = UIItem.eBelong.INVEN;
 
 			// 이제 그리드와 스크롤뷰를 재정렬 시킵시다.

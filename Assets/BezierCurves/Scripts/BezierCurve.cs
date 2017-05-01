@@ -422,7 +422,7 @@ public class BezierCurve : MonoBehaviour, ISerializationCallbackReceiver
 					globalHandle2 = h1.globalHandle1;
 					t = 1f - t;
 				}
-				return GetCubicCurvePoint(point1, globalHandle1, globalHandle2, point2, t);				
+				return GetCubicCurvePoint(point1, globalHandle1, globalHandle2, point2, t);
 			}
 		}
 		return Vector3.zero;

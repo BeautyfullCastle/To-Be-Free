@@ -26,6 +26,8 @@ namespace ToBeFree
 		[SerializeField]
 		private int policeTurnDays;
 
+		public float moveTimeSpeed;
+
 		public UILabel stateLabel;
 		public Camera worldCam;
 		public UICamera uiCamera;
@@ -78,7 +80,6 @@ namespace ToBeFree
 
 		// don't use.
 		private Camera directingCam;
-		
 
 		// can't use the constructor
 		private GameManager()

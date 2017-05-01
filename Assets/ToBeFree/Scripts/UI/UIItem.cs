@@ -57,11 +57,6 @@ namespace ToBeFree
 			{
 				return;
 			}
-
-			if (item.Buff.StartTime != eStartTime.NOW || item.Buff.Duration == eDuration.EQUIP)
-			{
-				SetEnable(false);
-			}
 		}
 
 		void OnClick()
@@ -187,13 +182,19 @@ namespace ToBeFree
 			UITooltip.Show(description);
 		}
 
-		public void SetInfo(Item item)
+		public void SetInfo(Item item, bool isInShop = true)
 		{
 			if (item == null)
 				return;
 
 			this.Item = item;
 			itemName.text = item.Name;
+			if (isInShop)
+				this.belong = eBelong.SHOP;
+			else
+				this.belong = eBelong.INVEN;
+
+			itemPrice.enabled = isInShop;
 			itemPrice.text = item.Price.ToString();
 
 			if (explanation)
@@ -215,6 +216,8 @@ namespace ToBeFree
 					button.normalSprite = sprite.spriteName;
 				}
 			}
+
+			SetEnable(!(item.Buff.StartTime != eStartTime.NOW || item.Buff.Duration == eDuration.EQUIP));
 		}
 
 		public void SetEnable(bool isEnable)

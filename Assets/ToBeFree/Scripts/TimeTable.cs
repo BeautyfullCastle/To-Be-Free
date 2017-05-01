@@ -34,7 +34,7 @@ namespace ToBeFree
 
 		public void Init()
 		{
-			timePerHour = 0.3f;
+			timePerHour = GameManager.Instance.moveTimeSpeed;
 			policeTurnDays = GameManager.Instance.PoliceTurnDays;
 			if(hourAudioSource == null)
 			{
@@ -94,8 +94,8 @@ namespace ToBeFree
 			while (usedHour <= endHour)
 			{
 				yield return new WaitForEndOfFrame();
-				Hour += Time.deltaTime / TimeTable.Instance.TimePerHour;
-				usedHour += Time.deltaTime / TimeTable.Instance.TimePerHour;
+				Hour += Time.deltaTime / TimePerHour;
+				usedHour += Time.deltaTime / TimePerHour;
 			}
 		}
 

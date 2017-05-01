@@ -98,7 +98,9 @@ public class UIGaugeMeter : MonoBehaviour
 			for (int i = 0; i < cellNum; ++i)
 			{
 				GameObject obj = GameObject.Instantiate(cellObj, grid.transform) as GameObject;
-				obj.transform.localScale = new Vector3(1, 1, 1);
+				obj.transform.localScale = Vector3.one;
+				obj.transform.localPosition = Vector3.zero;
+				obj.transform.localRotation = Quaternion.identity;
 				UIGaugeCell cell = obj.GetComponent<UIGaugeCell>();
 				if (cell == null)
 					continue;

@@ -199,7 +199,7 @@ namespace ToBeFree
 			{
 				if (objectType == eObjectType.CLOSE)
 				{
-					yield return MoveTo(CityManager.Instance.FindRandCityByDistance(CurCity, amount, eSubjectType.CHARACTER, eWay.ENTIREWAY));
+					yield return MoveTo(CityManager.Instance.FindRandCityByDistance(CurCity, amount, eSubjectType.CHARACTER, eWay.ENTIREWAY), TimeTable.Instance.MoveTimePerAction);
 				}
 				// can't move after move event( in mongolia )
 				else if (objectType == eObjectType.CANCEL)
@@ -360,6 +360,8 @@ namespace ToBeFree
 		{
 			int remainAP = this.RemainAP;
 			this.AP = this.TotalAP;
+
+			yield return TimeTable.Instance.SpendRemainTime();
 
 			yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 		}
