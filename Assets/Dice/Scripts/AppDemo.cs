@@ -118,7 +118,10 @@ public class AppDemo : MonoBehaviour
 		if (EnumConvert<eTestStat>.ToString(this.stat) == EnumConvert<eStat>.ToString(stat))
 		{
 			int characterStatNum = GameManager.Instance.Character.GetDiceNum(this.stat);
-			StartCoroutine(this.AddDie());
+			if(this.gameObject.activeSelf)
+			{
+				StartCoroutine(this.AddDie());
+			}
 		}
 	}
 

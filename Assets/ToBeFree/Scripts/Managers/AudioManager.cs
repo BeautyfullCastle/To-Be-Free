@@ -9,7 +9,7 @@ namespace ToBeFree
 	{
 		[SerializeField]
 		private AudioSerializableDictionary dic;
-
+		[SerializeField]
 		private AudioSource bgmAudio;
 		private AudioSource prevBgmAudio;
 

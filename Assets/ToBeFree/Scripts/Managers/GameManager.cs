@@ -26,6 +26,9 @@ namespace ToBeFree
 		[SerializeField]
 		private int policeTurnDays;
 
+		[SerializeField]
+		private GameState state;
+
 		public float moveTimeSpeed;
 
 		public UILabel stateLabel;
@@ -62,7 +65,7 @@ namespace ToBeFree
 		private Character character;
 		private Action action;
 		private Action inspectAction;
-		private GameState state;
+		
 		private BezierCurveList curves;
 		private UICommand[] commands;
 		
@@ -535,8 +538,8 @@ namespace ToBeFree
 			// for test
 			//character.Stat.Agility = 1;
 			//character.Stat.InfoNum = 4;
-			//character.Stat.HP = 1;
-			//character.Stat.Satiety = 1;
+			character.Stat.HP = 1;
+			character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(7));
@@ -569,6 +572,8 @@ namespace ToBeFree
 			// Enter
 			yield return this.ChangeScene(eSceneState.Main, true);
 
+			this.state = GameState.Main;
+
 			// Excute
 			SaveLoadManager.Instance.Init();
 			
@@ -587,6 +592,8 @@ namespace ToBeFree
 		{
 			// Enter
 			yield return this.ChangeScene(eSceneState.CharacterSelect);
+
+			this.state = GameState.CharacterSelect;
 
 			// Excute
 			while (this.state == GameState.CharacterSelect)
@@ -684,21 +691,21 @@ namespace ToBeFree
 				Debug.LogError("scenes' length longer than sceneState : " + scenes.Length + ", " + iSceneState);
 				yield break;
 			}
-
-			if(fade)
+			
+			if (fade)
 			{
 				yield return blackFader.Fade(true);
 			}
-			
-			for(int i=0; i<scenes.Length; ++i)
+			for (int i = 0; i < scenes.Length; ++i)
 			{
 				scenes[i].SetActive(i == iSceneState);
 			}
-
-			if(fade)
+			if (fade)
 			{
 				yield return blackFader.Fade(false);
 			}
+
+			yield return null;
 		}
 
 		IEnumerator StartWeekState()
@@ -733,6 +740,11 @@ namespace ToBeFree
 			// Enter
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.DAY, character);
 
+			if (character.Stat.HP <= 0)
+			{
+				yield return GameManager.Instance.endingManager.StartEnding(eEnding.STARVATION);
+			}
+
 #if UNITY_EDITOR
 			// for test
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
@@ -752,7 +764,7 @@ namespace ToBeFree
 
 			///character.Inven.AddItem(ItemManager.Instance.GetByIndex(12));
 
-			
+
 #endif
 			/*
 			 * Заµї ЅГ
@@ -925,6 +937,8 @@ namespace ToBeFree
 
 			// after daytime // Temporary
 			yield return BuffManager.Instance.CheckDuration(character);
+
+			
 
 			while (state == GameState.Night)
 			{

@@ -18,7 +18,7 @@ namespace ToBeFree
 			FADE_IN, FADE_OUT,
 			FADE_COLOR_WHITE, FADE_COLOR_BLACK,
 			MOVE_UP_DOWN, MOVE_RIGHT_LEFT,
-			ZOOM_IN
+			ZOOM_IN,
 		}
 
 		public eEndingEffect effect;
@@ -52,7 +52,6 @@ namespace ToBeFree
 					break;
 			}
 		}
-
 	}
 
 	public class UIEndingManager : MonoBehaviour
@@ -71,17 +70,7 @@ namespace ToBeFree
 
 		void Awake()
 		{
-			Stat.OnValueChange += Stat_OnValueChange;
 			this.page = this.GetComponentInChildren<UITexture>();
-		}
-
-		private void Stat_OnValueChange(int value, eStat stat)
-		{
-			if(stat == eStat.HP && value <= 0)
-			{
-				this.gameObject.SetActive(true);
-				StartCoroutine(this.StartEnding(eEnding.STARVATION));
-			}
 		}
 
 		public IEnumerator StartEnding(eEnding ending)
@@ -107,17 +96,14 @@ namespace ToBeFree
 			}
 
 			SaveLoadManager.Instance.Delete();
-
-			yield return new WaitForSeconds(132.02f);
-			
-			yield return GameManager.Instance.ChangeToMain();
+			yield return (GameManager.Instance.ChangeToMain());
 		}
 
 		private IEnumerator Play(UIEnding[] endings)
 		{
 			foreach(UIEnding ending in endings)
 			{
-				yield return ending.Play();
+				yield return (ending.Play());
 			}
 		}
 

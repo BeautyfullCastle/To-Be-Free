@@ -29,7 +29,6 @@ namespace ToBeFree
 			else
 			{
 				this.tweenAlpha.PlayReverse();
-				this.tweenAlpha.ResetToBeginning();
 			}
 			
 			yield return new WaitForSeconds(this.duration);

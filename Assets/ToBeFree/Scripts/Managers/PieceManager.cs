@@ -120,10 +120,9 @@ namespace ToBeFree
 		public Piece FindRand(eSubjectType type)
 		{
 			List<Piece> specificTypelist = FindAll(type);
-
-			System.Random r = new System.Random();
-			int index = r.Next(0, list.Count);
-			return list[index];
+			
+			int index = UnityEngine.Random.Range(0, specificTypelist.Count);
+			return specificTypelist[index];
 		}
 
 		public List<Piece> FindAll(eSubjectType type)
