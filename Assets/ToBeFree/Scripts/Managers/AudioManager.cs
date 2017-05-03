@@ -40,6 +40,11 @@ namespace ToBeFree
 			return null;
 		}
 
+		internal void ChangeBGM(object audioName)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void ChangeBGM(string keyName)
 		{
 			AudioSource foundAudio = Find(keyName);
