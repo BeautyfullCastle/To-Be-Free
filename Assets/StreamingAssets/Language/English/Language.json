@@ -429,6 +429,21 @@
 			"index": 85,
 			"key": "Event_End_Move",
 			"script": "You arrived destination."
+		},
+		{
+			"index": 86,
+			"key": "Popup_HP",
+			"script": "체력을 모두 잃으면 죽습니다."
+		},
+		{
+			"index": 87,
+			"key": "Popup_Starvation",
+			"script": "하루에 하나씩 배가 고파진다. 0 이하가 되면 굶주림 상태를 얻습니다."
+		},
+		{
+			"index": 88,
+			"key": "Event_Start_Camp",
+			"script": "공안은 당신을 데리고 외곽에 있는 지역으로 이동합니다. 공안이 당신을 탈북자 수용소로 인도했습니다. "
 		}
 	]
 }

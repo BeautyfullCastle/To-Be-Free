@@ -69,7 +69,7 @@ namespace ToBeFree
 
 		public override IEnumerator Activate(Character character)
 		{
-			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Camp));
+			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Rest));
 
 			yield return base.Activate(character);
 			
@@ -99,6 +99,11 @@ namespace ToBeFree
 
 				yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
 
+				if (actionName == eEventAction.HIDE)
+				{
+					character.Stat.TempDiceNum -= 2;
+				}
+
 				// deal with result
 				yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, character);
 				if(selectedEvent.Result != null)
@@ -109,14 +114,11 @@ namespace ToBeFree
 
 				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character, true, false);
 
-				int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime - 1;
+				//int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime - 1;
 
-				if(actionName == eEventAction.HIDE)
-				{
-					testSuccessNum -= 2;
-				}
+				
 
-				yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, testSuccessNum);
+				yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, EventManager.Instance.TestSuccessNum);
 			}
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);

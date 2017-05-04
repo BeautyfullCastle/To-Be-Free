@@ -17,7 +17,7 @@ namespace ToBeFree
 			this.gameObject.SetActive(true);
 		}
 
-		public void Start()
+		public void Reset()
 		{
 			allLabel = new UILabel[4];
 			allLabel[0] = eventScript;

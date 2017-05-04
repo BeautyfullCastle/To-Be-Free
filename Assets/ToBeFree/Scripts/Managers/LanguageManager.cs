@@ -25,7 +25,8 @@ namespace ToBeFree
 		Popup_Hide_Rest, Popup_Rest, Popup_Work,
 		Event_PoliceRevealNumber, Event_PoliceNumber, Event_WoringMoneyPerCity, Event_SucceedDiceNumber, Event_TotalMoney,
 		UI_CrackDown, UI_EXIT, UI_New, UI_Continue, UI_Credit, UI_EXIT_Main,
-		Event_End_Move
+		Event_End_Move,
+		Event_Start_Rest
 	}
 
 	public class LanguageManager : Singleton<LanguageManager>

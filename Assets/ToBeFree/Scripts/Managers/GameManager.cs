@@ -679,6 +679,8 @@ namespace ToBeFree
 			BuffManager.Instance.Reset();
 			PieceManager.Instance.Reset();
 
+			uiEventManager.Reset();
+
 			//GC.Collect();
 			//GC.WaitForPendingFinalizers();
 		}

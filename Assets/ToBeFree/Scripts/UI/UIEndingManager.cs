@@ -29,8 +29,6 @@ namespace ToBeFree
 		private float startTime;
 		[SerializeField]
 		private float endTime;
-		[SerializeField]
-		private float scale;
 		
 		public void Init()
 		{

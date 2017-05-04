@@ -13,6 +13,7 @@ namespace ToBeFree
 		private TweenAlpha tweenAlpha;
 		private TweenColor tweenColor;
 		private TweenPosition tweenPosition;
+		private TweenScale tweenScale;
 		
 		private Vector3 pos;
 
@@ -23,6 +24,7 @@ namespace ToBeFree
 			this.tweenAlpha = this.GetComponent<TweenAlpha>();
 			this.tweenColor = this.GetComponent<TweenColor>();
 			this.tweenPosition = this.GetComponent<TweenPosition>();
+			this.tweenScale = this.GetComponent<TweenScale>();
 
 			this.pos = this.transform.position;
 		}
@@ -45,6 +47,10 @@ namespace ToBeFree
 			if(this.tweenPosition)
 			{
 				this.tweenPosition.enabled = false;
+			}
+			if(this.tweenScale)
+			{
+				this.tweenScale.enabled = false;
 			}
 			this.transform.position = pos;
 		}
@@ -72,6 +78,9 @@ namespace ToBeFree
 					break;
 				case eEndingEffect.MOVE:
 					yield return Fade(tweenPosition, endTime - startTime, true);
+					break;
+				case eEndingEffect.ZOOM_IN:
+					yield return Fade(tweenScale, endTime - startTime, true);
 					break;
 			}
 		}

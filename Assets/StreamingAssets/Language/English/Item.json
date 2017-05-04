@@ -22,12 +22,12 @@
 		},
 		{
 			"index": 4,
-			"name": "Hot Milk",
+			"name": "HOT MILK",
 			"script": "item script 4"
 		},
 		{
 			"index": 5,
-			"name": "High quality Hot Milk",
+			"name": "High quality HOT MILK",
 			"script": "item script 5"
 		},
 		{
@@ -112,7 +112,7 @@
 		},
 		{
 			"index": 22,
-			"name": "Oral Cleanser",
+			"name": "Oral cleanser",
 			"script": "item script 22"
 		},
 		{
@@ -127,7 +127,7 @@
 		},
 		{
 			"index": 25,
-			"name": "Book",
+			"name": "book",
 			"script": "item script 25"
 		},
 		{
@@ -147,12 +147,12 @@
 		},
 		{
 			"index": 29,
-			"name": "Bribe Provision 1",
+			"name": "Bribe provision 1",
 			"script": "item script 29"
 		},
 		{
 			"index": 30,
-			"name": "Bribe Provision 2",
+			"name": "Bribe provision 2",
 			"script": "item script 30"
 		},
 		{
@@ -172,12 +172,12 @@
 		},
 		{
 			"index": 34,
-			"name": "Anxiety Disorder Drug",
+			"name": "Anxiety disorder drug",
 			"script": "item script 34"
 		},
 		{
 			"index": 35,
-			"name": "Restorative Pill",
+			"name": "Restorative pill",
 			"script": "item script 35"
 		},
 		{
