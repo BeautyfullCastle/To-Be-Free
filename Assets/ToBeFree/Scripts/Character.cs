@@ -333,6 +333,7 @@ namespace ToBeFree
 			if (hasSpecialEvent)
 			{
 				specialEventProbability = 0f;
+				TipManager.Instance.Show(eTipTiming.Event);
 			}
 			return hasSpecialEvent;
 		}

@@ -63,14 +63,6 @@
 		{
 			"index": 15,
 			"script": "tip script 15"
-		},
-		{
-			"index": 16,
-			"script": "tip script 16"
-		},
-		{
-			"index": 17,
-			"script": "tip script 17"
 		}
 	]
 }

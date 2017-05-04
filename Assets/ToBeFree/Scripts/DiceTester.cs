@@ -31,6 +31,8 @@ namespace ToBeFree
 				yield break;
 			}
 
+			TipManager.Instance.Show(eTipTiming.Test);
+
 			diceObj.SetActive(true);
 			
 			yield return demo.Init(stat, characterDiceNum + additionalDie, policeDiceNum);

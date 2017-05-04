@@ -7,7 +7,7 @@ namespace ToBeFree
 	public enum eTipTiming
 	{
 		NULL, Act, Work, Investigation, Rest, Move, PoliceMove, Inspect, Crackdown, Detention, Shop,
-		PoliceAppeared, PoliceTurn, Camp, Gathering, GrabItem, Street, BigCity, Mountain
+		PoliceAppeared, PoliceTurn, Camp, Gathering, GrabItem, Street, BigCity, Mountain, Test, Event
 	}
 
 	public class TipManager : Singleton<TipManager>
