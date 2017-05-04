@@ -93,10 +93,12 @@ namespace ToBeFree
 				if (isCrackDown)
 				{
 					this.uiCrackdown.AxisTween.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+					AudioManager.Instance.ChangeBGM("Crackdown");
 				}
 				else
 				{
 					this.uiCrackdown.AxisTween.transform.localRotation = Quaternion.identity;
+					AudioManager.Instance.ChangeBGM("Main");
 				}
 			}
 		}
@@ -128,6 +130,7 @@ namespace ToBeFree
 						{
 							sprite.enabled = false;
 						}
+						AudioManager.Instance.ChangeBGM("Main");
 						yield return uiCrackdown.SwitchGauge(isCrackDown);
 					}
 				}
