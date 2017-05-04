@@ -10,7 +10,8 @@ public class UICommand : MonoBehaviour
 	private string tooltip;
 
 	// Use this for initialization
-	void Awake () {
+	void Awake ()
+	{
 		Effect.DeactiveEvent += DeactiveEvent;
 		ToBeFree.LanguageSelection.selectLanguage += ChangeLanguage;
 
