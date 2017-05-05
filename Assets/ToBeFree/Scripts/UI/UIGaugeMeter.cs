@@ -53,7 +53,7 @@ public class UIGaugeMeter : MonoBehaviour
 
 	public void SetCellNum(int value)
 	{
-		if (value < 0 || value > this.TotalGauge)
+		if ( value < 0 || value > this.cellList.Count)
 		{
 			Debug.LogError(this.gameObject.name + " : SetCellNum : value is over the range : " + value);
 			return;

@@ -162,4 +162,9 @@ public class AppDemo : MonoBehaviour
 			camera.enabled = isEnable;
 		}
 	}
+
+	public bool IsAddingDie()
+	{
+		return dices[0].AddingDie;
+	}
 }

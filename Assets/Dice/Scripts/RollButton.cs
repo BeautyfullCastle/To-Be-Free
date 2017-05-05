@@ -28,6 +28,7 @@ public class RollButton : MonoBehaviour {
 
 	public void OnRelease()
 	{
+		this.SetEnable(false);
 		StartCoroutine(Roll());
 	}
 
@@ -42,7 +43,7 @@ public class RollButton : MonoBehaviour {
 		demo.OnButtonClick();
 		AudioManager.Instance.Find("dice_hand").Stop();
 		AudioManager.Instance.Find("dice_full").Play();
-		this.SetEnable(false);
+		
 	}
 
 	public void SetEnable(bool isEnable)

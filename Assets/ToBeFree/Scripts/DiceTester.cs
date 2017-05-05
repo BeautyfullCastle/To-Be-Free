@@ -39,6 +39,11 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);
 
+			while(demo.IsAddingDie())
+			{
+				yield return new WaitForSeconds(0.1f);
+			}
+
 			demo.SetEnableRollButton();
 
 			int[] resultNums = { 0, 0 };
