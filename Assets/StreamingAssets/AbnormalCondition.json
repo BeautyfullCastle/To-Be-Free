@@ -2,7 +2,7 @@
 	"dataList": [
 		{
 			"index": 0,
-			"name": "Anxiety",
+			"name": "우울",
 			"spawnCondition": "EVENT",
 			"effectIndex": 54,
 			"amount": -99,
@@ -16,7 +16,7 @@
 		},
 		{
 			"index": 1,
-			"name": "LegInjury",
+			"name": "다리부상",
 			"spawnCondition": "EVENT",
 			"effectIndex": 0,
 			"amount": -1,
@@ -30,7 +30,7 @@
 		},
 		{
 			"index": 2,
-			"name": "Fatigue",
+			"name": "피로",
 			"spawnCondition": "EVENT",
 			"effectIndex": 33,
 			"amount": -1,
@@ -44,7 +44,7 @@
 		},
 		{
 			"index": 3,
-			"name": "Exhilaration",
+			"name": "상쾌함",
 			"spawnCondition": "EVENT",
 			"effectIndex": 25,
 			"amount": 5,
@@ -58,7 +58,7 @@
 		},
 		{
 			"index": 4,
-			"name": "Concentration",
+			"name": "집중",
 			"spawnCondition": "EVENT",
 			"effectIndex": 33,
 			"amount": 1,
@@ -72,7 +72,7 @@
 		},
 		{
 			"index": 5,
-			"name": "Hunger",
+			"name": "배고픔",
 			"spawnCondition": "SATIETY <= 0",
 			"effectIndex": 0,
 			"amount": -1,
@@ -86,7 +86,7 @@
 		},
 		{
 			"index": 6,
-			"name": "Detention",
+			"name": "구금",
 			"spawnCondition": "EVENT",
 			"effectIndex": 72,
 			"amount": -99,
@@ -100,7 +100,7 @@
 		},
 		{
 			"index": 7,
-			"name": "Decrease Strength",
+			"name": "힘 감소",
 			"spawnCondition": "EVENT",
 			"effectIndex": 27,
 			"amount": -1,
@@ -114,7 +114,7 @@
 		},
 		{
 			"index": 8,
-			"name": "Decrease Agility",
+			"name": "민첩 감소",
 			"spawnCondition": "EVENT",
 			"effectIndex": 28,
 			"amount": -1,
@@ -128,7 +128,7 @@
 		},
 		{
 			"index": 9,
-			"name": "Decrease Concentration",
+			"name": "집중력 감소",
 			"spawnCondition": "EVENT",
 			"effectIndex": 29,
 			"amount": -1,
@@ -142,7 +142,7 @@
 		},
 		{
 			"index": 10,
-			"name": "Decrease Talent",
+			"name": "재주 감소",
 			"spawnCondition": "EVENT",
 			"effectIndex": 30,
 			"amount": -1,
@@ -156,7 +156,7 @@
 		},
 		{
 			"index": 11,
-			"name": "Add View Range",
+			"name": "시야 증가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 75,
 			"amount": 1,
@@ -170,7 +170,7 @@
 		},
 		{
 			"index": 12,
-			"name": "Decrease AllStat",
+			"name": "모든 능력치 감소",
 			"spawnCondition": "EVENT",
 			"effectIndex": 33,
 			"amount": -1,
@@ -184,7 +184,7 @@
 		},
 		{
 			"index": 13,
-			"name": "Deactive Work",
+			"name": "일 불가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 46,
 			"amount": 1,
@@ -198,7 +198,7 @@
 		},
 		{
 			"index": 14,
-			"name": "Deactive Move",
+			"name": "이동 불가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 47,
 			"amount": 1,
@@ -212,7 +212,7 @@
 		},
 		{
 			"index": 15,
-			"name": "Deactive Rest",
+			"name": "휴식 불가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 48,
 			"amount": 1,
@@ -226,7 +226,7 @@
 		},
 		{
 			"index": 16,
-			"name": "Deactive Investigation",
+			"name": "조사 불가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 49,
 			"amount": 1,
@@ -240,7 +240,7 @@
 		},
 		{
 			"index": 17,
-			"name": "Deactive Shop",
+			"name": "상점 불가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 58,
 			"amount": 1,
@@ -254,7 +254,7 @@
 		},
 		{
 			"index": 18,
-			"name": "Increase Strength",
+			"name": "힘 증가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 27,
 			"amount": 1,
@@ -268,7 +268,7 @@
 		},
 		{
 			"index": 19,
-			"name": "A Good Worker",
+			"name": "좋은 일꾼",
 			"spawnCondition": "EVENT",
 			"effectIndex": 80,
 			"amount": 1,
@@ -282,7 +282,7 @@
 		},
 		{
 			"index": 20,
-			"name": "Increase Agility",
+			"name": "민첩 증가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 28,
 			"amount": 1,
@@ -296,7 +296,7 @@
 		},
 		{
 			"index": 21,
-			"name": "Increase Concentration",
+			"name": "집중 증가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 29,
 			"amount": 1,
@@ -310,7 +310,7 @@
 		},
 		{
 			"index": 22,
-			"name": "Increase Talent",
+			"name": "재주 증가",
 			"spawnCondition": "EVENT",
 			"effectIndex": 30,
 			"amount": 1,

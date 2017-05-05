@@ -822,7 +822,7 @@
 			"index": 78,
 			"actionType": "NULL",
 			"difficulty": "NORMAL",
-			"script": "큰 태풍이 왔습니다.",
+			"script": "공안은 당신을 데리고 외곽에 있는 지역으로 이동합니다. 공안이 당신을 탈북자 수용소로 인도했습니다. ",
 			"resultIndex": 98,
 			"selectIndexList": [
 				-99
@@ -1365,10 +1365,10 @@
 		},
 		{
 			"index": 131,
-			"actionType": "ABILITY",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
-			"script": "스탯 랜덤 두 개 각각 1 추가",
-			"resultIndex": 165,
+			"script": "영성은 크게 집중했습니다.",
+			"resultIndex": 166,
 			"selectIndexList": [
 				-99
 			]

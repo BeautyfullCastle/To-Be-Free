@@ -122,6 +122,8 @@ namespace ToBeFree
 			{
 				if (isCrackDown)
 				{
+					yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_CrackDown));
+
 					bool isFinishedCrackdown = uiCrackdown.TurnDownCrackdownGauge();
 					if (isFinishedCrackdown)
 					{
@@ -139,28 +141,12 @@ namespace ToBeFree
 					// 집중단속이 시작되면
 					if (TurnUpAndCheckProbability())
 					{
-						yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_CrackDown));
-
-						isCrackDown = true;
-						if (this.sprite)
-						{
-							this.sprite.enabled = true;
-						}
-						isEternalCrackdown = uiCrackdown.CheckLongTermGauge();
-						if (isEternalCrackdown)
-						{
-
-						}
-						else
-						{
-							yield return uiCrackdown.SwitchGauge(isCrackDown);
-							TipManager.Instance.Show(eTipTiming.Crackdown);
-							AudioManager.Instance.ChangeBGM("Crackdown");
-						}
+						yield return StartCrackDown();
 					}
 					else
 					{
-						int randIndex = UnityEngine.Random.Range(0, 3);
+						int randIndex = UnityEngine.Random.Range(0, 4);
+						randIndex = 3;
 						// add one more police
 						if (randIndex == 0)
 						{
@@ -185,8 +171,37 @@ namespace ToBeFree
 							Police police = PieceManager.Instance.FindRand(eSubjectType.POLICE) as Police;
 							yield return police.MoveToRandomCity();
 						}
+						else
+						{
+							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_Addgauge));
+
+							if(TurnUpAndCheckProbability())
+							{
+								yield return StartCrackDown();
+							}
+						}
 					}
 				}
+			}
+		}
+
+		private IEnumerator StartCrackDown()
+		{
+			isCrackDown = true;
+			if (this.sprite)
+			{
+				this.sprite.enabled = true;
+			}
+			isEternalCrackdown = uiCrackdown.CheckLongTermGauge();
+			if (isEternalCrackdown)
+			{
+
+			}
+			else
+			{
+				yield return uiCrackdown.SwitchGauge(isCrackDown);
+				TipManager.Instance.Show(eTipTiming.Crackdown);
+				AudioManager.Instance.ChangeBGM("Crackdown");
 			}
 		}
 

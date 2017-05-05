@@ -120,7 +120,7 @@ namespace ToBeFree
 							List<AbnormalCondition> statAbnormalList = new List<AbnormalCondition>();
 							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Strength"));
 							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Agility"));
-							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Concentration"));
+							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Focus"));
 							statAbnormalList.Add(AbnormalConditionManager.Instance.Find("Increase Talent"));
 
 							for(int i=0; i<amount; ++i)

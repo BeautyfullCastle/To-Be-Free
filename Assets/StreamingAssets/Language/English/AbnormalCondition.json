@@ -47,7 +47,7 @@
 		},
 		{
 			"index": 9,
-			"name": "Decrease Concentration",
+			"name": "Decrease Focus",
 			"script": "abnormal script 9"
 		},
 		{
@@ -107,7 +107,7 @@
 		},
 		{
 			"index": 21,
-			"name": "Increase Concentration",
+			"name": "Increase Focus",
 			"script": "abnormal script 21"
 		},
 		{
