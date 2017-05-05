@@ -22,12 +22,12 @@
 		},
 		{
 			"index": 4,
-			"name": "HOT MILK",
+			"name": "Hot milk",
 			"script": "item script 4"
 		},
 		{
 			"index": 5,
-			"name": "High quality HOT MILK",
+			"name": "High quality Hot milk",
 			"script": "item script 5"
 		},
 		{
@@ -127,7 +127,7 @@
 		},
 		{
 			"index": 25,
-			"name": "book",
+			"name": "Book",
 			"script": "item script 25"
 		},
 		{
