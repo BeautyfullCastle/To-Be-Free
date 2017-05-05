@@ -20,24 +20,32 @@ using UnityEngine;
 /// <summary>
 /// Die base class to determine if a die is rolling and to calculate it's current value
 /// </summary>
-public class Die : MonoBehaviour {
+public class Die : MonoBehaviour
+{
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// public attributes
 	//------------------------------------------------------------------------------------------------------------------------------
-	
+
 	// current value, 0 is undetermined (die is rolling) or invalid.
 	public int value = 0;
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// private attributes
 	//------------------------------------------------------------------------------------------------------------------------------	
-	
+
 	// normalized (hit)vector from die center to upper side in local space is used to determine what side of a specific die is up/down = value
 	private Vector3 localHitNormalized;
 	// hitVector check margin
 	private float validMargin = 0.05F;
 	private bool isOnGround = false;
+
+	private Rigidbody rigid;
+
+	void Awake()
+	{
+		this.rigid = this.GetComponent<Rigidbody>();
+	}
 
 	// true is die is still rolling
 	public bool rolling
@@ -107,16 +115,25 @@ public class Die : MonoBehaviour {
 		} while (testHitVector != Vector3.zero);
 	}
 
+	private float maxSpeed = 2f;
 	void Update()
 	{
 		if (rolling)
+		{
+			if (this.rigid.velocity.magnitude > maxSpeed)
+			{
+				this.rigid.velocity = this.rigid.velocity.normalized * maxSpeed;
+				Debug.Log("Die : Over the limit.");
+			}
+
 			return;
+		}
 
 		// determine the value is the die is not rolling
 		if (localHit && isOnGround && this.value <= 0)
 		{
 			GetValue();
-		
+
 			if (this.value <= 0)
 			{
 				ReRoll();
@@ -126,7 +143,7 @@ public class Die : MonoBehaviour {
 
 	private void ReRoll()
 	{
-		Rigidbody rigid = this.GetComponent<Rigidbody>();
+		Rigidbody rigid = this.rigid;
 		if (rigid == null)
 			return;
 
@@ -161,7 +178,7 @@ public class Die : MonoBehaviour {
 			// 서로 반대 방향으로 튕겨낸다.
 			Vector3 v = this.transform.position - collision.transform.position;
 			v.Normalize();
-			Rigidbody rigid = this.GetComponent<Rigidbody>();
+			Rigidbody rigid = this.rigid;
 			float force = 0.25f;
 			rigid.AddForce(v * Random.value * force, ForceMode.Impulse);
 		}

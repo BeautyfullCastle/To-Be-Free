@@ -164,12 +164,12 @@ namespace ToBeFree
 					if (character.CurCity.Index == this.city.Index)
 					{
 						yield return this.Fight(eEventAction.INSPECT, character);
-					}
 
-					if (EventManager.Instance.TestResult == false)
-					{
-						yield return character.Arrested(this);
-						break;
+						if (EventManager.Instance.TestResult == false)
+						{
+							yield return character.Arrested(this);
+							break;
+						}
 					}
 				}
 			}

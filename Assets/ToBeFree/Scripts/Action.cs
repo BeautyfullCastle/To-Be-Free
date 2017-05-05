@@ -454,8 +454,6 @@ namespace ToBeFree
 					actionName = eEventAction.CAMP;
 
 					yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Camp));
-					// 78번 이벤트 : 수용소에 들어갈 때 나오는 텍스트.
-					yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[78], character);
 					yield return EventManager.Instance.DoCommand(actionName, character);
 				}
 				else if (character.CheckSpecialEvent())

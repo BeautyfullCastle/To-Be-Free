@@ -160,7 +160,7 @@ public class UIGaugeMeter : MonoBehaviour
 		if (isEmpty)
 			return true;
 
-		cellList[--CurrentGauge].TurnOnSprite(false);
+		cellList[CurrentGauge--].TurnOnSprite(false);
 
 		return isEmpty;
 	}
@@ -201,7 +201,7 @@ public class UIGaugeMeter : MonoBehaviour
 				return -1;
 			}
 
-			return this.cellList.Count;
+			return this.cellList.Count-1;
 		}
 	}
 }
