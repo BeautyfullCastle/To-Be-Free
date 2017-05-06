@@ -458,7 +458,17 @@
 		{
 			"index": 91,
 			"key": "Event_Police_Addgauge",
-			"script": "공안이 높아진 탈북자의 수에 위험을 느끼며 탈북자에 대한 위협 수준을 높였습니다."
+			"script": "공안이 높아진 탈북자의 수에 위험을 느끼며 탈북자에 대한 위협 수준을 추가로 높였습니다."
+		},
+		{
+			"index": 92,
+			"key": "UI_Police",
+			"script": "공안"
+		},
+		{
+			"index": 93,
+			"key": "UI_Observation",
+			"script": "관찰력"
 		}
 	]
 }

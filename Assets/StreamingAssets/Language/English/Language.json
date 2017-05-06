@@ -3,407 +3,407 @@
 		{
 			"index": 0,
 			"key": "UI_Move",
-			"script": "MOVE"
+			"script": "이동"
 		},
 		{
 			"index": 1,
 			"key": "UI_Work",
-			"script": "WORK"
+			"script": "일"
 		},
 		{
 			"index": 2,
 			"key": "UI_Inquiry",
-			"script": "INQUIRY"
+			"script": "조사"
 		},
 		{
 			"index": 3,
 			"key": "UI_Rest",
-			"script": "REST"
+			"script": "휴식"
 		},
 		{
 			"index": 4,
 			"key": "UI_Shop",
-			"script": "SHOP"
+			"script": "상점"
 		},
 		{
 			"index": 5,
 			"key": "UI_Broker",
-			"script": "BROKER"
+			"script": "브로커"
 		},
 		{
 			"index": 6,
 			"key": "UI_Quest",
-			"script": "QUEST"
+			"script": "의뢰"
 		},
 		{
 			"index": 7,
 			"key": "UI_Abilty",
-			"script": "ABILITY"
+			"script": "능력"
 		},
 		{
 			"index": 8,
 			"key": "UI_CityInquiry",
-			"script": "CITY INQUIRY"
+			"script": "도시 조사"
 		},
 		{
 			"index": 9,
 			"key": "UI_BrokerInquiry",
-			"script": "BROKER INQUIRY"
+			"script": "브로커 조사"
 		},
 		{
 			"index": 10,
 			"key": "UI_PoliceInquiry",
-			"script": "POLICE INQUIRY"
+			"script": "공안 조사"
 		},
 		{
 			"index": 11,
 			"key": "UI_GatheringInquiry",
-			"script": "GATHERING INQUIRY"
+			"script": "채집 조사"
 		},
 		{
 			"index": 12,
 			"key": "UI_HideRest",
-			"script": "HIDE REST"
+			"script": "숨기 휴식"
 		},
 		{
 			"index": 13,
 			"key": "UI_Walking",
-			"script": "WALKING"
+			"script": "도보 이동"
 		},
 		{
 			"index": 14,
 			"key": "UI_Bus",
-			"script": "BUS"
+			"script": "버스 이동"
 		},
 		{
 			"index": 15,
 			"key": "UI_HP",
-			"script": "HP"
+			"script": "체력"
 		},
 		{
 			"index": 16,
 			"key": "UI_Satiety",
-			"script": "SATIETY"
+			"script": "배고픔"
 		},
 		{
 			"index": 17,
 			"key": "UI_Money",
-			"script": "MONEY"
+			"script": "돈"
 		},
 		{
 			"index": 18,
 			"key": "UI_Info",
-			"script": "INFO"
+			"script": "정보"
 		},
 		{
 			"index": 19,
 			"key": "UI_Strength",
-			"script": "STRENGTH"
+			"script": "힘"
 		},
 		{
 			"index": 20,
 			"key": "UI_Agility",
-			"script": "AGILITY"
+			"script": "민첩"
 		},
 		{
 			"index": 21,
 			"key": "UI_Talent",
-			"script": "TALENT"
+			"script": "재주"
 		},
 		{
 			"index": 22,
 			"key": "UI_Focus",
-			"script": "FOCUS"
+			"script": "집중"
 		},
 		{
 			"index": 23,
 			"key": "UI_Day",
-			"script": "DAY"
+			"script": "일"
 		},
 		{
 			"index": 24,
 			"key": "UI_Setting",
-			"script": "SETTING"
+			"script": "설정"
 		},
 		{
 			"index": 25,
 			"key": "UI_Resolution",
-			"script": "RESOLUTION"
+			"script": "해상도"
 		},
 		{
 			"index": 26,
 			"key": "UI_FullScreen",
-			"script": "FULL SCREEN"
+			"script": "전체 화면"
 		},
 		{
 			"index": 27,
 			"key": "UI_MusicVolume",
-			"script": "MUSIC VOLUME"
+			"script": "배경음"
 		},
 		{
 			"index": 28,
 			"key": "UI_EffectVolume",
-			"script": "EFFECT VOLUME"
+			"script": "효과음"
 		},
 		{
 			"index": 29,
 			"key": "UI_Mute",
-			"script": "MUTE"
+			"script": "음소거"
 		},
 		{
 			"index": 30,
 			"key": "UI_Language",
-			"script": "LANGUAGE"
+			"script": "언어"
 		},
 		{
 			"index": 31,
 			"key": "Event_Start_Working",
-			"script": "You started working."
+			"script": "당신은 게시판의 일거리를 찾아서 일을 시작했습니다."
 		},
 		{
 			"index": 32,
 			"key": "Event_Start_CityInvestigation",
-			"script": "You started investigating various information of this city."
+			"script": "당신은 도시의 다양한 정보조사를 시작했습니다."
 		},
 		{
 			"index": 33,
 			"key": "Event_Start_PoliceInvestigation",
-			"script": "You started investigating various information of polices."
+			"script": "당신은 공안에 대한 정보조사를 시작했습니다."
 		},
 		{
 			"index": 34,
 			"key": "Event_Start_BrokerInfoInvestigation",
-			"script": "You started investigating various information of broker."
+			"script": "당신은 브로커에 대한 정보조사를 시작했습니다."
 		},
 		{
 			"index": 35,
 			"key": "Event_Start_Gathering",
-			"script": "You started gathering some food of this mountain."
+			"script": "당신은 산에서 식량을 채집하기 시작했습니다."
 		},
 		{
 			"index": 36,
 			"key": "Event_Start_Rest",
-			"script": "You rest in a quiet place."
+			"script": "당신은 한적한 곳에서 휴식을 취하기 시작했습니다."
 		},
 		{
 			"index": 37,
 			"key": "Event_Start_Broker",
-			"script": "You're finding broker in this place."
+			"script": "당신은 브로커가 있다는 장소에서, 브로커를 찾습니다."
 		},
 		{
 			"index": 38,
 			"key": "Event_Start_Walking",
-			"script": "You're walking to the destination."
+			"script": "당신은 목적지까지 걸어서 이동합니다."
 		},
 		{
 			"index": 39,
 			"key": "Event_Start_Bus",
-			"script": "You get on a bus and move to the destination."
+			"script": "당신은 목적지까지 버스를 타고 이동합니다."
 		},
 		{
 			"index": 40,
 			"key": "Event_Start_Ability",
-			"script": "You focus and use ability."
+			"script": "당신은 집중해서 능력을 사용합니다."
 		},
 		{
 			"index": 41,
 			"key": "UI_Police_Turn",
-			"script": "Police Turn"
+			"script": "공안의 차례"
 		},
 		{
 			"index": 42,
 			"key": "UI_Your_Turn",
-			"script": "Your Turn"
+			"script": "당신의 차례"
 		},
 		{
 			"index": 43,
 			"key": "Event_Police_Add",
-			"script": "New police is added in somewhere."
+			"script": "어딘가에서 새로운 공안이 추가 되었습니다."
 		},
 		{
 			"index": 44,
 			"key": "Event_Police_AddStat",
-			"script": "Some police is strengthen."
+			"script": "어딘가에서 기존의 공안에 새로운 병력이 추가 되었습니다."
 		},
 		{
 			"index": 45,
 			"key": "Event_Police_Move",
-			"script": "Some police is moved."
+			"script": "어딘가에서 공안이 이동했습니다."
 		},
 		{
 			"index": 46,
 			"key": "Event_Police_CrackDown",
-			"script": "Police center declared crackdown. They'll crack defectors to the next police turn."
+			"script": "탈북자 집중단속기간입니다. 모든 공안이 이동하며 탈북자를 찾습니다."
 		},
 		{
 			"index": 47,
 			"key": "UI_Road",
-			"script": "ROAD"
+			"script": "길"
 		},
 		{
 			"index": 48,
 			"key": "UI_SmallTown",
-			"script": "SMALL TOWN"
+			"script": "소도시"
 		},
 		{
 			"index": 49,
 			"key": "UI_MiddleCity",
-			"script": "MIDDLE CITY"
+			"script": "중도시"
 		},
 		{
 			"index": 50,
 			"key": "UI_BigCity",
-			"script": "BIG CITY"
+			"script": "대도시"
 		},
 		{
 			"index": 51,
 			"key": "UI_Mountain",
-			"script": "MOUNTAIN"
+			"script": "산"
 		},
 		{
 			"index": 52,
 			"key": "UI_RequiredTime",
-			"script": "REQUIRED TIME"
+			"script": "소요 시간"
 		},
 		{
 			"index": 53,
 			"key": "Over_Move",
-			"script": "Move to anther place."
+			"script": "다른 곳으로 이동합니다."
 		},
 		{
 			"index": 54,
 			"key": "Over_Work",
-			"script": "earn money using strength."
+			"script": "힘을 이용해서 돈을 법니다."
 		},
 		{
 			"index": 55,
 			"key": "Over_Inquiry",
-			"script": "Get information using talent."
+			"script": "재주를 이용해서 각종 정보를 획득 합니다."
 		},
 		{
 			"index": 56,
 			"key": "Over_Rest",
-			"script": "Focus to eating food and cure abnormal condition and HP."
+			"script": "집중해서 밥을 먹고 상태이상과 HP를 회복합니다."
 		},
 		{
 			"index": 57,
 			"key": "Over_Shop",
-			"script": "Buy item."
+			"script": "돈을 사용해서 물건을 구입합니다."
 		},
 		{
 			"index": 58,
 			"key": "Over_Abilty",
-			"script": "Use character ability."
+			"script": "캐릭터의 능력을 사용합니다."
 		},
 		{
 			"index": 59,
 			"key": "Over_Quest",
-			"script": "Solve the quest."
+			"script": "받은 의뢰를 해결합니다."
 		},
 		{
 			"index": 60,
 			"key": "Over_Broker",
-			"script": "Meet broker."
+			"script": "브로커를 만납니다."
 		},
 		{
 			"index": 61,
 			"key": "Popup_Walking",
-			"script": "Walk."
+			"script": "걸어서 이동합니다."
 		},
 		{
 			"index": 62,
 			"key": "Popup_Bus_Move",
-			"script": "Pay four yuan and go to the next stop you selected."
+			"script": "4위안을 내고 다음 정류장이 있는 도시로 이동합니다."
 		},
 		{
 			"index": 63,
 			"key": "Popup_City_Inquiry",
-			"script": "Inquiry information of this city. You can get quest, item, or money."
+			"script": "도시의 정보를 조사합니다. 도시의 의뢰, 물건, 돈을 얻을 수 있습니다."
 		},
 		{
 			"index": 64,
 			"key": "Popup_Broker_Inquiry",
-			"script": "Inquiry information of brokers. You can get quest, or information about broker."
+			"script": "브로커 정보를 조사합니다. 브로커에 대한 의뢰, 정보를 얻을 수 있습니다."
 		},
 		{
 			"index": 65,
 			"key": "Popup_Police_Inquiry",
-			"script": "Inquiry information of polices. You can get number of polices of selected city, crackdown probablity, or Add View Range buff."
+			"script": "공안에 대한 정보를 조사합니다.\\n공안에 대한 정보로 집중단속 게이지를 줄입니다."
 		},
 		{
 			"index": 66,
 			"key": "Popup_Gathering_Inquiry",
-			"script": "Try to find some food using talent."
+			"script": "산에서 재주를 이용해서 식량을 찾아봅니다."
 		},
 		{
 			"index": 67,
 			"key": "Popup_Hide_Rest",
-			"script": "Hide from police and rest. Decrease two dies of this test."
+			"script": "공안을 피해서 휴식합니다.\\n 주사위 2개가 줄어듭니다."
 		},
 		{
 			"index": 68,
 			"key": "Popup_Work",
-			"script": "Earn money using strength."
+			"script": "힘을 이용해서 돈을 법니다."
 		},
 		{
 			"index": 69,
 			"key": "Popup_Rest",
-			"script": "Focus to eating food and cure abnormal condition and HP."
+			"script": "집중해서 밥을 먹고 상태이상과 HP를 회복합니다."
 		},
 		{
 			"index": 70,
 			"key": "Event_PoliceRevealNumber",
-			"script": "Select the city that you want to know the number of polices."
+			"script": "공안의 수를 알고 싶은 도시를 선택하십시요"
 		},
 		{
 			"index": 71,
 			"key": "Event_PoliceNumber",
-			"script": "Number of polices of this city."
+			"script": "해당 도시의 공안의 수"
 		},
 		{
 			"index": 72,
 			"key": "Event_SucceedDiceNumber",
-			"script": "Added salary of succeeded dices"
+			"script": "주사위 성공 추가 급여"
 		},
 		{
 			"index": 73,
 			"key": "Event_WoringMoneyPerCity",
-			"script": "Added salary of city size."
+			"script": "도시 추가 급여"
 		},
 		{
 			"index": 74,
 			"key": "Event_TotalMoney",
-			"script": "Total salary."
+			"script": "총 획득 급여"
 		},
 		{
 			"index": 75,
 			"key": "UI_CrackDown",
-			"script": "Crackdown"
+			"script": "탈북자 집중단속"
 		},
 		{
 			"index": 76,
 			"key": "UI_EXIT",
-			"script": "EXIT"
+			"script": "나가기"
 		},
 		{
 			"index": 77,
 			"key": "UI_New",
-			"script": "NEW"
+			"script": "새로운 이야기"
 		},
 		{
 			"index": 78,
 			"key": "UI_Continue",
-			"script": "CONTINUE"
+			"script": "계속하기"
 		},
 		{
 			"index": 79,
 			"key": "UI_Credit",
-			"script": "CREDIT"
+			"script": "제작진"
 		},
 		{
 			"index": 80,
 			"key": "UI_EXIT_Main",
-			"script": "EXIT"
+			"script": "종료하기"
 		},
 		{
 			"index": 81,
@@ -443,7 +443,7 @@
 		{
 			"index": 88,
 			"key": "Event_Start_Camp",
-			"script": "공안은 당신을 데리고 외곽에 있는 지역으로 이동합니다. 공안이 당신을 탈북자 수용소로 인도했습니다. "
+			"script": "공안이 당신을 탈북자 수용소로 인도했습니다. 수용소는 북한으로 이송 전 하루 머무는 곳입니다. 하루동안 탈출하지 못하면 이대로 북한으로 이송 될 겁니다."
 		},
 		{
 			"index": 89,
@@ -458,7 +458,17 @@
 		{
 			"index": 91,
 			"key": "Event_Police_Addgauge",
-			"script": "공안이 높아진 탈북자의 수에 위험을 느끼며 탈북자에 대한 위협 수준을 높였습니다."
+			"script": "공안이 높아진 탈북자의 수에 위험을 느끼며 탈북자에 대한 위협 수준을 추가로 높였습니다."
+		},
+		{
+			"index": 92,
+			"key": "UI_Police",
+			"script": "공안"
+		},
+		{
+			"index": 93,
+			"key": "UI_Observation",
+			"script": "관찰력"
 		}
 	]
 }

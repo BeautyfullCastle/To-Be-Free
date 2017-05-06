@@ -152,16 +152,23 @@ public class Dice : MonoBehaviour {
 			this.nameLabel.text = name;
 		}
 		
-		string strStat = this.UppercaseFirst(stat.ToString());
-		strStat = "UI_" + strStat;
-		eLanguageKey key = EnumConvert<eLanguageKey>.ToEnum(strStat);
-
-		if((int)key != 0)
+		if(this.statLabel != null)
 		{
-			this.statLabel.text = LanguageManager.Instance.Find(key);
+			string strStat = this.UppercaseFirst(stat.ToString());
+			strStat = "UI_" + strStat;
+			eLanguageKey key = EnumConvert<eLanguageKey>.ToEnum(strStat);
+
+			if ((int)key != 0)
+			{
+				this.statLabel.text = LanguageManager.Instance.Find(key);
+			}
 		}
 		
-		this.statSprite.spriteName = "STAT_" + stat.ToString();
+		if(this.statSprite != null)
+		{
+			this.statSprite.spriteName = "STAT_" + stat.ToString();
+		}
+		
 		this.SetDieNum(dieNum);
 	}
 
@@ -244,7 +251,10 @@ public class Dice : MonoBehaviour {
 	private void SetDieNum(int dieNum)
 	{
 		this.dieNum = dieNum;
-		this.dieNumLabel.text = dieNum.ToString();
+		if(this.dieNumLabel != null)
+		{
+			this.dieNumLabel.text = dieNum.ToString();
+		}
 	}
 
 	/* 

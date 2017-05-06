@@ -27,7 +27,8 @@ namespace ToBeFree
 		UI_CrackDown, UI_EXIT, UI_New, UI_Continue, UI_Credit, UI_EXIT_Main,
 		Event_End_Move, Event_Start_Rest,
 		Over_Strength, Over_Agility, Over_Talent, Over_Focus, Over_HP, Over_Satiety, Over_Info, Over_Money,
-		Event_Police_Addgauge
+		Event_Police_Addgauge,
+		UI_Police, UI_Observation
 	}
 
 	public class LanguageManager : Singleton<LanguageManager>
