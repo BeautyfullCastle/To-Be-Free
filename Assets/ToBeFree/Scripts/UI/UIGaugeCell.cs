@@ -27,7 +27,11 @@ public class UIGaugeCell : MonoBehaviour
 		{
 			tweenAlpha.PlayReverse();
 		}
-		AudioManager.Instance.Find("gauge_move").Play();
+		
+		if(GameManager.Instance.State != GameManager.GameState.StartDay)
+		{
+			AudioManager.Instance.Find("gauge_move").Play();
+		}
 	}
 
 	public bool IsOn()
