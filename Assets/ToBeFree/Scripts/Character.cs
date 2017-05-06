@@ -199,7 +199,7 @@ namespace ToBeFree
 			{
 				if (objectType == eObjectType.CLOSE)
 				{
-					yield return MoveTo(CityManager.Instance.FindRandCityByDistance(CurCity, amount, eSubjectType.CHARACTER, eWay.ENTIREWAY), TimeTable.Instance.MoveTimePerAction);
+					yield return MoveTo(CityManager.Instance.FindRandCityByDistance(CurCity, amount, eSubjectType.CHARACTER, eWay.ENTIREWAY), TimeTable.Instance.MoveTimePerAction, false, false);
 				}
 				// can't move after move event( in mongolia )
 				else if (objectType == eObjectType.CANCEL)
@@ -265,7 +265,7 @@ namespace ToBeFree
 			AP++;
 		}
 
-		public IEnumerator MoveTo(City city, float moveTimePerCity = 0, bool direct = false)
+		public IEnumerator MoveTo(City city, float moveTimePerCity = 0, bool direct = false, bool flowTime = true)
 		{
 			if (direct)
 			{
@@ -278,7 +278,7 @@ namespace ToBeFree
 				yield break;
 			}
 
-			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city, moveTimePerCity);
+			yield return CityManager.Instance.MoveTo(iconCharacter.transform, curCity, city, moveTimePerCity, flowTime);
 			this.iconCharacter.transform.position = city.IconCity.characterOffset.position;
 			this.CurCity = city;
 

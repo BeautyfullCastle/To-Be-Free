@@ -148,7 +148,6 @@ namespace ToBeFree
 					else
 					{
 						int randIndex = UnityEngine.Random.Range(0, 4);
-						randIndex = 3;
 						// add one more police
 						if (randIndex == 0)
 						{
