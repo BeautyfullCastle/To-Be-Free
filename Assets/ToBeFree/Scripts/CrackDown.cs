@@ -52,7 +52,9 @@ namespace ToBeFree
 			else
 			{
 				this.uiCrackdown.Init();
+				this.uiCrackdown.AxisTween.transform.localRotation = Quaternion.identity;
 			}
+			
 		}
 
 		public void Save(CrackDownSaveData data)
