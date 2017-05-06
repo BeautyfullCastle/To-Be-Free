@@ -194,9 +194,8 @@ namespace ToBeFree
 						}
 						if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
 						{
-							int earnedMoney = successResulteffects[i].Amount;
 							int randWorkingMoneyOfCity = character.CurCity.CalcRandWorkingMoney();
-							earnedMoney += randWorkingMoneyOfCity;
+							int earnedMoney = randWorkingMoneyOfCity;
 							earnedMoney += EventManager.Instance.TestSuccessNum;
 							yield return GameManager.Instance.uiEventManager.OnChanged(
 								//LanguageManager.Instance.Find(eLanguageKey.Event_WoringMoneyPerCity) + " : " + randWorkingMoneyOfCity + "\n" + 
