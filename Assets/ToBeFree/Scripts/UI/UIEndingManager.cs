@@ -59,6 +59,8 @@ namespace ToBeFree
 	public class UIEndingManager : MonoBehaviour
 	{
 		public UIEnding[] happyEndingArr;
+		public UIEnding[] starvationEndingArr;
+		public UIEnding[] repatriateEndingArr;
 
 		void Awake()
 		{
@@ -66,7 +68,18 @@ namespace ToBeFree
 			{
 				if (ending == null)
 					continue;
-
+				ending.Init();
+			}
+			foreach (UIEnding ending in starvationEndingArr)
+			{
+				if (ending == null)
+					continue;
+				ending.Init();
+			}
+			foreach (UIEnding ending in repatriateEndingArr)
+			{
+				if (ending == null)
+					continue;
 				ending.Init();
 			}
 		}
@@ -78,14 +91,13 @@ namespace ToBeFree
 			switch(ending)
 			{
 				case eEnding.STARVATION:
-					yield return Play(happyEndingArr);
+					yield return Play(starvationEndingArr);
 					break;
 				case eEnding.REPATRIATE:
-					yield return Play(happyEndingArr);
+					yield return Play(repatriateEndingArr);
 					break;
 				case eEnding.HAPPY:
-					AudioManager.Instance.ChangeBGM("HappyEnding"); 
-					//yield return TurnPages(happyTextures);
+					yield return Play(happyEndingArr);
 					break;
 			}
 

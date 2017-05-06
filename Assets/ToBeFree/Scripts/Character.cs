@@ -312,10 +312,12 @@ namespace ToBeFree
 
 				if (city != null)
 				{
-					yield return this.caughtPolice.MoveTo(city);
-					yield return MoveTo(city, TimeTable.Instance.MoveTimePerAction * 3 / caughtPolice.Movement);
+					yield return (MoveTo(city, 1f, false, false));// TimeTable.Instance.MoveTimePerAction * 3 / caughtPolice.Movement, false));
+					yield return (this.caughtPolice.MoveTo(city));
 				}
 			}
+
+			yield return TimeTable.Instance.SpendTime(RemainAP, eSpendTime.END);
 		}
 
 		public void AddSpecialEventProbability()
@@ -353,8 +355,13 @@ namespace ToBeFree
 			CityManager.Instance.FindNearestPath(pathToTumen, pathToDandong);
 
 			this.IsDetention = true;
-
+			
 			yield return SkipTime();
+
+			if (GameManager.Instance.State == GameManager.GameState.StartWeek)
+			{
+				GameManager.Instance.ChangeState(GameManager.GameState.Night);
+			}
 		}
 
 		public IEnumerator SkipTime()

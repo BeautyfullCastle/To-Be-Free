@@ -136,7 +136,7 @@ namespace ToBeFree
 			}
 			else
 			{
-				lightSpriteTweenAlpha.ResetToBeginning();
+				lightSpriteTweenAlpha.GetComponent<UISprite>().alpha = lightSpriteTweenAlpha.from;
 			}
 			
 
@@ -345,7 +345,13 @@ namespace ToBeFree
 				}
 			}
 		}
-		
+
+		public void ChangeState(GameState state)
+		{
+			if (this.state != state)
+				this.state = state;
+		}
+
 		private void Update()
 		{
 			if(Input.GetKeyDown(KeyCode.KeypadPlus))

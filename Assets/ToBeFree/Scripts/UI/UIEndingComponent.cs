@@ -17,7 +17,7 @@ namespace ToBeFree
 		
 		private Vector3 pos;
 
-		void Awake()
+		public void Init()
 		{
 			this.texture = this.GetComponent<UITexture>();
 
@@ -27,14 +27,19 @@ namespace ToBeFree
 			this.tweenScale = this.GetComponent<TweenScale>();
 
 			this.pos = this.transform.position;
-		}
 
-		public void Init()
-		{
-			if(this.texture)
+			if (this.texture)
 			{
-				this.texture.enabled = false;
-				this.texture.color = new Color(1f, 1f, 1f, 0f);
+				if(this.gameObject.name == "Background")
+				{
+					this.texture.enabled = true;
+					this.texture.color = new Color(0f, 0f, 0f, 1f);
+				}
+				else
+				{
+					this.texture.enabled = false;
+					this.texture.color = new Color(1f, 1f, 1f, 0f);
+				}
 			}
 			if(this.tweenAlpha)
 			{
@@ -52,7 +57,7 @@ namespace ToBeFree
 			{
 				this.tweenScale.enabled = false;
 			}
-			this.transform.position = pos;
+			//this.transform.position = pos;
 		}
 
 		public IEnumerator Play(eEndingEffect effect, float startTime, float endTime)
