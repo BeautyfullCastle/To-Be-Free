@@ -130,7 +130,15 @@ namespace ToBeFree
 			optionObj.SetActive(false);
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
-			lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
+			if(lightSpriteTweenAlpha == null)
+			{
+				lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
+			}
+			else
+			{
+				lightSpriteTweenAlpha.ResetToBeginning();
+			}
+			
 
 			inspectAction = new Inspect();
 		}
@@ -369,8 +377,7 @@ namespace ToBeFree
 #if UNITY_EDITOR
 			if (Input.GetKeyDown(KeyCode.D))
 			{
-				if(character != null)
-					character.IsDetention = true;
+				character.Stat.Agility = 5;
 			}
 
 			if(Input.GetKeyDown(KeyCode.A))
@@ -579,7 +586,7 @@ namespace ToBeFree
 			
 			while (this.state == GameState.Main)
 			{
-				yield return new WaitForSecondsRealtime(0.2f);
+				yield return new WaitForSecondsRealtime(0.1f);
 			}
 			
 			worldObj.SetActive(true);
@@ -654,7 +661,7 @@ namespace ToBeFree
 				else
 				{
 					SwitchMenu(false);
-
+					StopAllCoroutines();
 					StartCoroutine(ChangeToMain());
 				}
 			}

@@ -84,7 +84,6 @@ namespace ToBeFree
 			this.stack = 1;
 			this.buff.AliveDays = 0;
 			this.buff.EffectAmountList[0].Amount = firstAmount;
-			yield return null;
 		}
 
 		public virtual bool CheckCondition(Character character)
@@ -200,8 +199,8 @@ namespace ToBeFree
 			yield return base.DeActivate(character);
 			character.IsDetention = false;
 			character.CaughtPolice = null;
+
 			AudioManager.Instance.ChangeToPrevBGM();
-			yield return null;
 		}
 	}
 }

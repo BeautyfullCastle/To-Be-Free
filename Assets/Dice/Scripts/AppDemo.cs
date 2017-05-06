@@ -55,14 +55,16 @@ public class AppDemo : MonoBehaviour
 
 	void Awake()
 	{
-		foreach (Dice dice in dices)
-		{
-			dice.Clear();
-		}
+		ClearDices();
 
 		this.gameObject.SetActive(false);
 	}
 	
+	void OnEnable()
+	{
+		ClearDices();
+	}
+
 	void OnDisable()
 	{
 		isMouseDown = false;
@@ -78,6 +80,14 @@ public class AppDemo : MonoBehaviour
 			{
 				dice.Clear();
 			}
+		}
+	}
+
+	private void ClearDices()
+	{
+		foreach (Dice dice in dices)
+		{
+			dice.Clear();
 		}
 	}
 

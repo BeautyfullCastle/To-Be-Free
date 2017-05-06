@@ -746,7 +746,7 @@
 		},
 		{
 			"index": 71,
-			"actionType": "DETENTION_SPECIAL",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "체포되어 수감 중에 한 공안이 와서 돈을 요구하는 듯한 손짓을 합니다. 아무래도 돈을 좀 주면 풀려나게 해줄 것 같습니다.",
 			"resultIndex": -99,
@@ -757,7 +757,7 @@
 		},
 		{
 			"index": 72,
-			"actionType": "DETENTION_SPECIAL",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "기차로 이동 중 간수가 보지 않는 틈을 타서 기차에서 도망 칠 수 있지만 너무 위험합니다.",
 			"resultIndex": -99,
@@ -1325,7 +1325,7 @@
 		},
 		{
 			"index": 127,
-			"actionType": "DETENTION",
+			"actionType": "DETENTION_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "잡혀 있는데 갑자기 공안이 풀어줍니다. 모르는 사람이 와서 돈을 주고 풀어줬습니다. 모르는 사람 손에 이끌려 공안에게서 벗어납니다.",
 			"resultIndex": 158,
@@ -1355,7 +1355,7 @@
 		},
 		{
 			"index": 130,
-			"actionType": "DETENTION",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "잡혀 있는데 갑자기 공안이 풀어줍니다. 모르는 사람이 와서 돈을 주고 풀어줬습니다. 모르는 사람 손에 이끌려 공안에게서 벗어납니다.",
 			"resultIndex": 165,

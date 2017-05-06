@@ -43,7 +43,7 @@ namespace ToBeFree
 				Effect effect = EffectManager.Instance.GetByIndex(data.effectIndex);
 				EffectAmount effectAmount = new EffectAmount(effect, data.amount);
 				EffectAmount[] effectAmountList = new EffectAmount[] { effectAmount };
-				Buff buff = new Buff(data.index, data.name, data.script, effectAmountList, bool.Parse(data.isRestore), 
+				Buff buff = new Buff(data.index, GetEngName(data.index), data.script, effectAmountList, bool.Parse(data.isRestore), 
 								EnumConvert<eStartTime>.ToEnum(data.startTime), EnumConvert<eDuration>.ToEnum(data.duration));
 
 				string[] splitedList = data.spawnCondition.Split(' ');
@@ -59,11 +59,11 @@ namespace ToBeFree
 
 				AbnormalCondition abnormalCondition = null;
 				
-				if (data.name == typeof(Hunger).Name)
+				if (GetEngName(data.index) == typeof(Hunger).Name)
 				{
 					abnormalCondition = new Hunger(data.index, data.name, buff, spawnCondition, bool.Parse(data.stack), EnumConvert<eBodyMental>.ToEnum(data.isBody), EnumConvert<ePositiveNegative>.ToEnum(data.isPositive));
 				}
-				else if (data.name == typeof(Detention).Name)
+				else if (GetEngName(data.index) == typeof(Detention).Name)
 				{
 					abnormalCondition = new Detention(data.index, data.name, buff, spawnCondition, bool.Parse(data.stack), EnumConvert<eBodyMental>.ToEnum(data.isBody), EnumConvert<ePositiveNegative>.ToEnum(data.isPositive));
 				}

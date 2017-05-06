@@ -317,6 +317,7 @@ namespace ToBeFree
 					if (abnormalCondition == null)
 						yield break;
 
+					if(abnormalCondition is Detention)
 					if (verbType == eVerbType.ADD)
 					{
 						yield return abnormalCondition.Activate(character);

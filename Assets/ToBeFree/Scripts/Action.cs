@@ -194,15 +194,16 @@ namespace ToBeFree
 						}
 						if (successResulteffects[i].Effect.SubjectType == eSubjectType.MONEY)
 						{
-							int randWorkingMoneyOfCity = character.CurCity.CalcRandWorkingMoney();
-							int earnedMoney = randWorkingMoneyOfCity;
-							earnedMoney += EventManager.Instance.TestSuccessNum;
+							int basicMoney = successResulteffects[i].Amount;
+							//int randWorkingMoneyOfCity = character.CurCity.CalcRandWorkingMoney();
+							//int earnedMoney = randWorkingMoneyOfCity;
+							int TestSuccesMoney = EventManager.Instance.TestSuccessNum;
 							yield return GameManager.Instance.uiEventManager.OnChanged(
 								//LanguageManager.Instance.Find(eLanguageKey.Event_WoringMoneyPerCity) + " : " + randWorkingMoneyOfCity + "\n" + 
-								LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + " : " + EventManager.Instance.TestSuccessNum + "\n" +
-								LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + " : " + earnedMoney, false, true);
+								LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + " : " + TestSuccesMoney + "\n" +
+								LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + " : " + (TestSuccesMoney + basicMoney), false, true);
 
-							character.Stat.Money += earnedMoney;
+							character.Stat.Money += TestSuccesMoney;
 							break;
 						}
 					}

@@ -188,7 +188,7 @@
 				77
 			],
 			"successEffectValueList": [
-				-99
+				2
 			],
 			"failureScript": "움직이는 도중 공안에게 들키고 말았습니다. 공안을 피해서 달아납니다.",
 			"failureEffectIndexList": [
@@ -206,7 +206,7 @@
 				77
 			],
 			"successEffectValueList": [
-				-99
+				2
 			],
 			"failureScript": "온 힘을 다해 도망쳤지만 결국 공안에게 잡히고 말았습니다.",
 			"failureEffectIndexList": [
@@ -219,12 +219,12 @@
 		{
 			"index": 12,
 			"stat": "NULL",
-			"successScript": "그는 돈을 받고 바로 공안에 대한 정보를 알려주었습니다.",
+			"successScript": "그는 돈을 받고 바로 공안에 대한 정보를 알려주었습니다. 당신은 공안에 대한 정보로 공안에 대한 위협을 피했습니다.",
 			"successEffectIndexList": [
-				"공안게이지 줄임"
+				77
 			],
 			"successEffectValueList": [
-				-99
+				2
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -707,12 +707,12 @@
 		{
 			"index": 39,
 			"stat": "AGILITY",
-			"successScript": "놀라 빠르게 도망갑니다. 다행히도 잘 도망친 것 같습니다.",
+			"successScript": "당신은 서리하던 과일을 가지고 빠르게 도망갑니다. 다행히도 잘 도망친 것 같습니다.",
 			"successEffectIndexList": [
-				-99
+				37
 			],
 			"successEffectValueList": [
-				-99
+				0
 			],
 			"failureScript": "도망쳤지만 과수원주인에게 붙잡혔습니다. 아무래도 보상을 원하는 것 같습니다. 가지고 있는 돈을 과수원 주인에게 주고 주인의 마음이 바뀌기 전에 빠르게 도망쳤습니다.",
 			"failureEffectIndexList": [
@@ -1803,12 +1803,12 @@
 		{
 			"index": 98,
 			"stat": "NULL",
-			"successScript": "큰 태풍때문에 아무래도 다른 도시를 가는 것은 무리 인 것 같습니다. 오늘 하루는 이동을 하기 힘들어 보입니다.",
+			"successScript": "수용소는 북한으로 이송 전 하루 머무는 곳입니다. 하루동안 탈출하지 못하면 이대로 북한으로 이송 될 겁니다.",
 			"successEffectIndexList": [
-				56
+				-99
 			],
 			"successEffectValueList": [
-				14
+				-99
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -2314,7 +2314,7 @@
 				77
 			],
 			"successEffectValueList": [
-				3
+				2
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -2913,10 +2913,12 @@
 			"stat": "NULL",
 			"successScript": "이동하는데 중국어로 이야기 하는 내용이 들립니다. 자세한 내용을 듣기 위해서 노력해봅니다.",
 			"successEffectIndexList": [
+				57,
 				24,
 				78
 			],
 			"successEffectValueList": [
+				6,
 				1,
 				160
 			],
@@ -2965,7 +2967,7 @@
 				78
 			],
 			"failureEffectValueList": [
-				-99,
+				-1,
 				1,
 				163
 			]
@@ -2987,7 +2989,7 @@
 				55
 			],
 			"failureEffectValueList": [
-				-99,
+				-1,
 				1,
 				128
 			]
@@ -3039,9 +3041,11 @@
 			"stat": "NULL",
 			"successScript": "어느정도 이동을 하니 그들이 자신들이 인권단체라고 소개합니다. 다만 빼내는것이 한계라며 주변에서 내려줍니다. 당신은 감사를 표합니다.",
 			"successEffectIndexList": [
+				57,
 				24
 			],
 			"successEffectValueList": [
+				6,
 				2
 			],
 			"failureScript": "NULL",
@@ -3055,7 +3059,7 @@
 		{
 			"index": 166,
 			"stat": "NULL",
-			"successScript": "스탯 랜덤 두개 각각 1 추가",
+			"successScript": "무작위 능력 2개를 각각 1 올렸습니다.",
 			"successEffectIndexList": [
 				31
 			],
