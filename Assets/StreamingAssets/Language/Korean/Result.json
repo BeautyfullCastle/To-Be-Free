@@ -829,6 +829,11 @@
 			"index": 165,
 			"successScript": "어느정도 이동을 하니 그들이 자신들이 인권단체라고 소개합니다. 다만 빼내는것이 한계라며 주변에서 내려줍니다. 당신은 감사를 표합니다.",
 			"failureScript": "NULL"
+		},
+		{
+			"index": 166,
+			"successScript": "무작위 능력 2개를 각각 1 올렸습니다.",
+			"failureScript": "NULL"
 		}
 	]
 }

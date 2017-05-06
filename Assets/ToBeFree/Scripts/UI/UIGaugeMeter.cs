@@ -13,7 +13,9 @@ public class UIGaugeMeter : MonoBehaviour
 	[SerializeField]
 	private GameObject cellObj;
 	[SerializeField]
-	private int cellSize;
+	private int cellWidth;
+	[SerializeField]
+	private int cellHeight;
 	[SerializeField]
 	private Color cellColor;
 
@@ -105,7 +107,7 @@ public class UIGaugeMeter : MonoBehaviour
 				if (cell == null)
 					continue;
 
-				cell.ChangeSpritesParam(this.cellSize, this.cellColor);
+				cell.ChangeSpritesParam(this.cellWidth, this.cellHeight, this.cellColor);
 				cellList.Add(cell);
 			}
 		}

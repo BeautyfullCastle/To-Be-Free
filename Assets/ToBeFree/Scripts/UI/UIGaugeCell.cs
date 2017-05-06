@@ -35,20 +35,20 @@ public class UIGaugeCell : MonoBehaviour
 		return this.sprite.alpha == 1;
 	}
 
-	public void ChangeSpritesParam(int size, Color color)
+	public void ChangeSpritesParam(int width, int height, Color color)
 	{
 		UISprite mySprite = this.GetComponent<UISprite>();
-		ChangeSpriteParam(mySprite, size, color);
-		ChangeSpriteParam(this.sprite, size, color);
+		ChangeSpriteParam(mySprite, width, height, color);
+		ChangeSpriteParam(this.sprite, width, height, color);
 	}
 
-	private void ChangeSpriteParam(UISprite sprite, int size, Color color)
+	private void ChangeSpriteParam(UISprite sprite, int width, int height, Color color)
 	{
 		if (sprite == null)
 			return;
 
-		sprite.width = size;
-		sprite.height = size;
+		sprite.width = width;
+		sprite.height = height;
 		sprite.color = color;
 	}
 }

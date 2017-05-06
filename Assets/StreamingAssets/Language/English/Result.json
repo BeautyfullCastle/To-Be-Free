@@ -829,6 +829,11 @@
 			"index": 165,
 			"successScript": "success script 165",
 			"failureScript": "failure script 165"
+		},
+		{
+			"index": 166,
+			"successScript": "success script 166",
+			"failureScript": "failure script 166"
 		}
 	]
 }
