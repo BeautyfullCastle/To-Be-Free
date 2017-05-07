@@ -168,7 +168,7 @@ namespace ToBeFree
 
 						if (EventManager.Instance.TestResult == false)
 						{
-							yield return character.Arrested(this);
+							yield return character.Arrested(this, true);
 							break;
 						}
 					}

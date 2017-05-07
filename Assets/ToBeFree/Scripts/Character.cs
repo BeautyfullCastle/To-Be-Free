@@ -346,7 +346,7 @@ namespace ToBeFree
 			SetCanAction(true);
 		}
 
-		public IEnumerator Arrested(Police police)
+		public IEnumerator Arrested(Police police, bool atPoliceTurn = false)
 		{
 			this.caughtPolice = police;
 			List<City> pathToTumen = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("TUMEN"), eEventAction.MOVE);
@@ -357,6 +357,11 @@ namespace ToBeFree
 			this.IsDetention = true;
 			
 			yield return SkipTime();
+
+			if(atPoliceTurn)
+			{
+				yield return TimeTable.Instance.SpendTime(TotalAP, eSpendTime.END);
+			}
 
 			if (GameManager.Instance.State == GameManager.GameState.StartWeek)
 			{
@@ -370,8 +375,6 @@ namespace ToBeFree
 			this.AP = this.TotalAP;
 
 			yield return TimeTable.Instance.SpendRemainTime();
-
-			yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 		}
 
 		public Stat Stat

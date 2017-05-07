@@ -141,21 +141,20 @@ public class UIGaugeMeter : MonoBehaviour
 		//{
 		//	CurrentGauge++;
 		//}
-
-		bool isFull = IsFull();
-		if (isFull)
+		
+		if (this.IsFull())
 			return true;
 
 		cellList[CurrentGauge++].TurnOnSprite(true);
 
-		return isFull;
+		return this.IsFull();
 	}
 
 	public bool TurnDownAndCheckIsEmpty()
 	{
 		if(this.IsEmpty())
 		{
-			return false;
+			return true;
 		}
 
 		cellList[--CurrentGauge].TurnOnSprite(false);
@@ -181,7 +180,7 @@ public class UIGaugeMeter : MonoBehaviour
 		}
 		private set
 		{
-			if(value >= 0 && value < this.cellList.Count)
+			if(value >= 0 && value <= this.cellList.Count)
 			{
 				this.currentGauge = value;
 			}
@@ -198,7 +197,7 @@ public class UIGaugeMeter : MonoBehaviour
 				return -1;
 			}
 
-			return this.cellList.Count-1;
+			return this.cellList.Count;
 		}
 	}
 }
