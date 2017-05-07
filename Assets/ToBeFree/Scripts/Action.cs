@@ -145,19 +145,23 @@ namespace ToBeFree
 			
 			if (character.CheckSpecialEvent())
 			{
-				int randActionType = UnityEngine.Random.Range(0, 1);
+				int randActionType = UnityEngine.Random.Range(0, 2);
 				if (randActionType == 0) {
 					actionName = eEventAction.WORK_START;
+
+					yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
+
+					yield return EventManager.Instance.DoCommand(actionName, character);
+
+					yield return TimeTable.Instance.SpendRemainTime();
 				}
 				else {
 					actionName = eEventAction.WORK_END;
+
+					yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
+
+					yield return EventManager.Instance.DoCommand(actionName, character);
 				}
-
-				yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
-
-				yield return EventManager.Instance.DoCommand(actionName, character);
-
-				yield return TimeTable.Instance.SpendRemainTime();
 			}
 			else
 			{
