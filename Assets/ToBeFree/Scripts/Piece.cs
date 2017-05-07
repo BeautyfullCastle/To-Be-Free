@@ -145,6 +145,7 @@ namespace ToBeFree
 			{
 				if (this.iconPiece.gameObject.activeSelf)
 				{
+					city.IconCity.PutOutPiece(this.iconPiece);
 					yield return CityManager.Instance.MoveTo(iconPiece.transform, city, nextCity, 1f);
 				}
 

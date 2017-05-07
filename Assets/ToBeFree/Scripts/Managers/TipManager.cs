@@ -56,7 +56,7 @@ namespace ToBeFree
 					throw new Exception("Tip data.index " + data.index + " is duplicated.");
 				}
 				list[data.index] = tip;
-				Debug.Log(data.index + " : " + " : " + data.timing + " : " + data.script);
+				//Debug.Log(data.index + " : " + " : " + data.timing + " : " + data.script);
 			}
 		}
 

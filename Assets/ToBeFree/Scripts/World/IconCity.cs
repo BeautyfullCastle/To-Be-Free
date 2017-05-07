@@ -142,13 +142,28 @@ namespace ToBeFree
 			//	timerSprite.transform.localPosition = new Vector3(0, 59.7f);
 			//}
 		}
+		public void PutOutPiece(IconPiece iconPiece)
+		{
+			if (iconPiece == null)
+				return;
 
+			if(iconPiece.subjectType == eSubjectType.POLICE)
+			{
+				policeGrid.RemoveChild(iconPiece.transform);
+				policeGrid.Reposition();
+			}
+			
+		}
 		public void PutPiece(IconPiece iconPiece)
 		{
-			if(iconPiece.subjectType == eSubjectType.POLICE)
+			if (iconPiece == null)
+				return;
+
+			if (iconPiece.subjectType == eSubjectType.POLICE)
 			{
 				policeGrid.AddChild(iconPiece.transform);
 				policeGrid.enabled = true;
+				policeGrid.Reposition();
 			}
 			else if(iconPiece.subjectType == eSubjectType.QUEST)
 			{

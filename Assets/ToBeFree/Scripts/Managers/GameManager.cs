@@ -668,6 +668,7 @@ namespace ToBeFree
 				{
 					SwitchMenu(false);
 					StopAllCoroutines();
+
 					StartCoroutine(ChangeToMain());
 				}
 			}

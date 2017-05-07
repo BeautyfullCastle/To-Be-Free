@@ -153,18 +153,14 @@ public class UIGaugeMeter : MonoBehaviour
 
 	public bool TurnDownAndCheckIsEmpty()
 	{
-		//if(cellList[CurrentGauge].IsOn() == false)
-		//{
-		//	CurrentGauge--;
-		//}
+		if(this.IsEmpty())
+		{
+			return false;
+		}
 
-		bool isEmpty = this.IsEmpty();
-		if (isEmpty)
-			return true;
+		cellList[--CurrentGauge].TurnOnSprite(false);
 
-		cellList[CurrentGauge--].TurnOnSprite(false);
-
-		return isEmpty;
+		return this.IsEmpty();
 	}
 
 	public bool IsFull()
@@ -185,11 +181,10 @@ public class UIGaugeMeter : MonoBehaviour
 		}
 		private set
 		{
-			if(value < 0 || value > this.cellList.Count)
+			if(value >= 0 && value < this.cellList.Count)
 			{
-				return;
+				this.currentGauge = value;
 			}
-			this.currentGauge = value;
 		}
 	}
 
