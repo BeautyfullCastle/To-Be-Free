@@ -17,6 +17,7 @@ namespace ToBeFree
 		public int curCityIndex;
 		public bool isDetention;
 		public bool isActionSkip;
+		public int arrestedDate;
 	}
 
 	public class Character
@@ -49,7 +50,8 @@ namespace ToBeFree
 		private float specialEventProbability = 0f;
 
 		private Police caughtPolice;
-		
+		private int arrestedDate;
+
 		// Todo : skill
 		public Character(int index, string name, string script, Stat stat, string startCityName, Inventory inven, int eventIndex, string skillScript, int abnormalIndex)
 		{
@@ -73,6 +75,7 @@ namespace ToBeFree
 			IsFull = false;
 			IsDetention = false;
 			isActionSkip = false;
+			arrestedDate = -1;
 
 			SetCanAction(true);
 		}
@@ -310,14 +313,15 @@ namespace ToBeFree
 			{
 				City city = CityManager.Instance.GetNearestCity(CurCity);
 
-				if (city != null)
+				if (city == null)
 				{
-					yield return (MoveTo(city, 1f, false, false));// TimeTable.Instance.MoveTimePerAction * 3 / caughtPolice.Movement, false));
-					yield return (this.caughtPolice.MoveTo(city));
+					break;
 				}
+				yield return (MoveTo(city, 1f, false, false));// TimeTable.Instance.MoveTimePerAction * 3 / caughtPolice.Movement, false));
+				yield return (this.caughtPolice.MoveTo(city));
 			}
 
-			yield return TimeTable.Instance.SpendTime(RemainAP, eSpendTime.END);
+			yield return TimeTable.Instance.SpendTime(TotalAP, eSpendTime.END);
 		}
 
 		public void AddSpecialEventProbability()
@@ -349,18 +353,20 @@ namespace ToBeFree
 		public IEnumerator Arrested(Police police, bool atPoliceTurn = false)
 		{
 			this.caughtPolice = police;
-			List<City> pathToTumen = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("TUMEN"), eEventAction.MOVE);
-			List<City> pathToDandong = CityManager.Instance.CalcPath(this.CurCity, CityManager.Instance.Find("DANDONG"), eEventAction.MOVE);
 
-			CityManager.Instance.FindNearestPath(pathToTumen, pathToDandong);
+			CityManager.Instance.FindNearestPathToCamp();
 
 			this.IsDetention = true;
-			
-			yield return SkipTime();
+
+			this.arrestedDate = TimeTable.Instance.Day;
 
 			if(atPoliceTurn)
 			{
 				yield return TimeTable.Instance.SpendTime(TotalAP, eSpendTime.END);
+			}
+			else
+			{
+				yield return SkipTime();
 			}
 
 			if (GameManager.Instance.State == GameManager.GameState.StartWeek)
@@ -375,6 +381,8 @@ namespace ToBeFree
 			this.AP = this.TotalAP;
 
 			yield return TimeTable.Instance.SpendRemainTime();
+
+			yield return TimeTable.Instance.SpendTime(remainAP, eSpendTime.END);
 		}
 
 		public Stat Stat
@@ -400,7 +408,12 @@ namespace ToBeFree
 			set
 			{
 				curCity = value;
-				CurPoint = Array.Find<IconCity>(GameManager.Instance.iconCities, x => x.City == curCity).GetComponent<BezierPoint>();
+				IconCity icon = curCity.IconCity;
+				if (icon != null)
+				{
+					CurPoint = icon.GetComponent<BezierPoint>();
+				}
+				
 			}
 		}
 
@@ -610,6 +623,18 @@ namespace ToBeFree
 				}
 
 				return characterData.name;
+			}
+		}
+
+		public int ArrestedDate
+		{
+			get
+			{
+				return arrestedDate;
+			}
+			set
+			{
+				arrestedDate = value;
 			}
 		}
 	}

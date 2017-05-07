@@ -95,18 +95,21 @@ namespace ToBeFree
 			TipManager.Instance.Init();
 			DiceTester.Instance.Init();
 			CityManager.Instance.Init();
-			iconCities = GameObject.FindObjectsOfType<IconCity>();
-			foreach(IconCity iconCity in iconCities)
+			if(iconCities != null)
 			{
-				iconCity.Init();
-			}
+				iconCities = GameObject.FindObjectsOfType<IconCity>();
+				foreach (IconCity iconCity in iconCities)
+				{
+					iconCity.Init();
+				}
 
-			CityManager.Instance.InitList();
-			foreach (IconCity iconCity in iconCities)
-			{
-				iconCity.InitNeighbors();
+				CityManager.Instance.InitList();
+				foreach (IconCity iconCity in iconCities)
+				{
+					iconCity.InitNeighbors();
+				}
 			}
-
+			
 			EventManager.Instance.Init();
 			SelectManager.Instance.Init();
 			ResultManager.Instance.Init();
@@ -549,7 +552,7 @@ namespace ToBeFree
 
 #if UNITY_EDITOR
 			// for test
-			//character.Stat.Agility = 1;
+			character.Stat.Agility = 1;
 			//character.Stat.InfoNum = 4;
 			//character.Stat.HP = 1;
 			//character.Stat.Satiety = 1;
@@ -559,6 +562,7 @@ namespace ToBeFree
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[11], character);
 #endif
 
+			
 			this.State = GameState.StartDay;
 
 			// Exit
@@ -812,7 +816,16 @@ namespace ToBeFree
 
 			if (character.IsDetention)
 			{
-				this.State = GameState.Detention;
+				if (character.ArrestedDate == TimeTable.Instance.Day)
+				{
+					yield return TimeTable.Instance.SpendTime(character.TotalAP, eSpendTime.END);
+					this.State = GameState.Night;
+				}
+				else 
+				{
+					this.State = GameState.Detention;
+				}
+				
 			}
 			else
 			{

@@ -328,7 +328,7 @@ namespace ToBeFree
 					// 공안 단속 후 구금되면 더 이상 이동하지 않음.
 					if (character.IsDetention)
 					{
-						break;
+						yield break;
 					}
 				}
 				

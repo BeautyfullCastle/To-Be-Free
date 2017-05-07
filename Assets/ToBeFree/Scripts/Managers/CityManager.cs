@@ -263,25 +263,31 @@ namespace ToBeFree
 			}
 		}
 		
-		public void FindNearestPath(List<City> path1, List<City> path2)
+		public void FindNearestPathToCamp()
 		{
-			if (path1 == null || path2 == null)
+			City city = GameManager.Instance.Character.CurCity;
+			List<City> pathToTumen = CityManager.Instance.CalcPath(city, CityManager.Instance.Find("TUMEN"), eEventAction.MOVE);
+			List<City> pathToDandong = CityManager.Instance.CalcPath(city, CityManager.Instance.Find("DANDONG"), eEventAction.MOVE);
+
+			if (pathToTumen == null || pathToDandong == null)
 				neareastPath = null;
-			else if (path1.Count < path2.Count)
-				neareastPath = path1;
+			else if (pathToTumen.Count < pathToDandong.Count)
+				neareastPath = pathToTumen;
 			else
-				neareastPath = path2;
+				neareastPath = pathToDandong;
 		}
 
 		public City GetNearestCity(City curCity)
 		{
 			if (neareastPath == null)
-				return null;
-
-			if(neareastPath.Count <=0)
 			{
-				return null;
+				FindNearestPathToCamp();
 			}
+			else if(neareastPath.Count <=0)
+			{
+				FindNearestPathToCamp();
+			}
+
 			City neareastCity = neareastPath[0];
 			neareastPath.RemoveAt(0);
 			return neareastCity;

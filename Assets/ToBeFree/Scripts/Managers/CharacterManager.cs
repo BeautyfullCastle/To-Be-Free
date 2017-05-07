@@ -95,6 +95,7 @@ namespace ToBeFree
 			data.curCityIndex = character.CurCity.Index;
 			data.isDetention = character.IsDetention;
 			data.isActionSkip = character.IsActionSkip;
+			data.arrestedDate = character.ArrestedDate;
 
 			SaveLoadManager.Instance.data.character = data;
 		}
@@ -117,7 +118,7 @@ namespace ToBeFree
 			character.CurCity = CityManager.Instance.EveryCity[data.curCityIndex];
 			character.IsDetention = data.isDetention;
 			character.IsActionSkip = data.isActionSkip;
-
+			character.ArrestedDate = data.arrestedDate;
 			return character;
 		}
 
