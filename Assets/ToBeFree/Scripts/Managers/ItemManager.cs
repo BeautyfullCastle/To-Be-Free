@@ -149,7 +149,7 @@ namespace ToBeFree
 			}
 			else if (objectType == eObjectType.INDEX)
 			{
-				ItemManager.Instance.GetByIndex(amount);
+				item = ItemManager.Instance.GetByIndex(amount);
 			}
 			else
 			{

@@ -189,9 +189,8 @@ namespace ToBeFree
 			{
 				return null;
 			}
-
-			System.Random r = new System.Random();
-			int randVal = r.Next(0, findedEvents.Count - 1);
+			
+			int randVal = UnityEngine.Random.Range(0, findedEvents.Count);
 			
 			return findedEvents[randVal];
 		}
