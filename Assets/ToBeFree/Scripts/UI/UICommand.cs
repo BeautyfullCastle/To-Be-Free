@@ -52,6 +52,7 @@ public class UICommand : MonoBehaviour
 			else if (this.name == "QUEST")
 			{
 				QuestPiece piece = PieceManager.Instance.Find(eSubjectType.QUEST, GameManager.Instance.Character.CurCity) as QuestPiece;
+				
 				bool hasAndCanDoQuest = false;
 				if (piece == null)
 				{
@@ -59,8 +60,8 @@ public class UICommand : MonoBehaviour
 				}
 				else
 				{
-					Quest quest = piece.CurQuest;
-					hasAndCanDoQuest = quest.CheckCondition(GameManager.Instance.Character);
+					UIQuest uiQuest = GameManager.Instance.uiQuestManager.Find(GameManager.Instance.Character.CurCity);
+					hasAndCanDoQuest = uiQuest.CheckCondition();
 				}
 
 				this.GetComponent<UIButton>().isEnabled = hasAndCanDoQuest;

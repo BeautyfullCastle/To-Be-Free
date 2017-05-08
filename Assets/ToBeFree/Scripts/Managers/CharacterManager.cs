@@ -115,7 +115,7 @@ namespace ToBeFree
 			{
 				character.CaughtPolice = PieceManager.Instance.List[data.caughtPolicePieceIndex] as Police;
 			}
-			character.CurCity = CityManager.Instance.EveryCity[data.curCityIndex];
+			character.CurCity = CityManager.Instance.GetbyIndex(data.curCityIndex);
 			character.IsDetention = data.isDetention;
 			character.IsActionSkip = data.isActionSkip;
 			character.ArrestedDate = data.arrestedDate;

@@ -58,7 +58,7 @@ namespace ToBeFree
 			PieceManager.Instance.Save(data.pieceList);
 			BuffManager.Instance.Save(data.buffList);
 			AbnormalConditionManager.Instance.Save(data.abnormalList);
-			QuestManager.Instance.Save(data.questList);
+			GameManager.Instance.uiQuestManager.Save(data.questList);
 			CityManager.Instance.Save(data.cityList);
 			CharacterManager.Instance.Save(data.character);
 			TimeTable.Instance.Save(data.time);

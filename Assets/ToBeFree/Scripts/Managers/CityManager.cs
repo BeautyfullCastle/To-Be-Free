@@ -46,6 +46,17 @@ namespace ToBeFree
 			totalMoveTime = 6f;
 		}
 
+		public City GetbyIndex(int cityIndex)
+		{
+			if (cityIndex < 0 || cityIndex >= everyCity.Count)
+			{
+				Debug.LogError(this.GetType().ToString() + " : GetbyIndex(..) : " + cityIndex + " is out of range.");
+				return null;
+			}
+
+			return everyCity[cityIndex];
+		}
+
 		public void Save(List<CitySaveData> cityList)
 		{
 			for(int i=0; i<everyCity.Count; ++i)
@@ -405,14 +416,6 @@ namespace ToBeFree
 			get
 			{
 				return curves;
-			}
-		}
-
-		public List<City> EveryCity
-		{
-			get
-			{
-				return everyCity;
 			}
 		}
 

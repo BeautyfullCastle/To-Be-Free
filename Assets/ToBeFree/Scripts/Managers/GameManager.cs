@@ -507,11 +507,13 @@ namespace ToBeFree
 				SaveLoadManager.Instance.Load();
 
 				AbnormalConditionManager.Instance.Load(SaveLoadManager.Instance.data.abnormalList);
-				QuestManager.Instance.Load(SaveLoadManager.Instance.data.questList);
+				
 				PieceManager.Instance.Load(SaveLoadManager.Instance.data.pieceList);
 				CityManager.Instance.Load(SaveLoadManager.Instance.data.cityList);
 
 				character = CharacterManager.Instance.Load(SaveLoadManager.Instance.data.character);
+
+				uiQuestManager.Load(SaveLoadManager.Instance.data.questList);
 
 				yield return BuffManager.Instance.Load(SaveLoadManager.Instance.data.buffList);
 
@@ -749,9 +751,7 @@ namespace ToBeFree
 		private IEnumerator Instance_NotifyEveryWeek()
 		{
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.WEEK, character);
-
 			
-
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.WEEK, character);
 		}
 
@@ -769,7 +769,7 @@ namespace ToBeFree
 			// for test
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[26], character);
-			//yield return QuestManager.Instance.Load(QuestManager.Instance.List[1], character);
+			for(int i = 0; i < 3; ++i) yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(5), character);
 			//character.Stat.Satiety = 5;
 			//character.Stat.SetViewRange();
 
@@ -1009,15 +1009,7 @@ namespace ToBeFree
 			yield return AbnormalConditionManager.Instance.ActiveByCondition();
 
 			//check current quest's end time and apply the result
-			List<Piece> questPieces = PieceManager.Instance.FindAll(eSubjectType.QUEST);
-			if (questPieces != null && questPieces.Count > 0)
-			{
-				List<Piece> pastQuestPieces = questPieces.FindAll(x => x.CheckDuration());
-				foreach (QuestPiece pastQuestPiece in pastQuestPieces)
-				{
-					yield return pastQuestPiece.TreatPastQuests(character);
-				}
-			}
+			yield return uiQuestManager.TreatPastQuests();
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(eStartTime.NIGHT, character);
 		}

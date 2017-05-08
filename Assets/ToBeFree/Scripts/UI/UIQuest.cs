@@ -1,48 +1,59 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ToBeFree
 {
 	public class UIQuest : MonoBehaviour
 	{
-		public UILabel questName;
-		public UILabel pastDays;
-		public UILabel condition;
-		public UILabel city;
+		public UILabel questNameLabel;
+		public UILabel pastDaysLabel;
+		public UILabel conditionLabel;
+		public UILabel cityLabel;
 
-		private QuestPiece questPiece;
+		private Quest quest;
+		private QuestPiece piece;
+		private int pastDays;
 		
-		public void SetLabels(string questName, string pastDays, string condition, string city)
+		public void Init(Quest quest, QuestPiece piece)
 		{
-			this.questName.text = questName;
-			this.pastDays.text = pastDays;
-			this.condition.text = condition;
+			this.quest = quest;
+			this.piece = piece;
+			this.pastDays = 0;
 			
-			this.city.text = city;
-
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
 			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
+
+			this.Refresh();
 		}
 
 		public void Refresh()
 		{
-			Quest quest = QuestManager.Instance.GetByIndex(questPiece.CurQuest.Index);
-			if (quest == null)
-				return;
+			this.questNameLabel.text = quest.UiName;
+			this.conditionLabel.text = quest.UiConditionScript;
+			
+			if (quest.Duration == 1000)
+			{
+				this.pastDaysLabel.text = "-";
+			}
+			else
+			{
+				this.pastDaysLabel.text = pastDays.ToString() + "/" + quest.Duration.ToString();
+			}
 
-			this.questName.text = quest.UiName;
-			this.condition.text = quest.UiConditionScript;
+			if (this.Piece == null)
+			{
+				this.cityLabel.text = "-";
+			}
+			else
+			{
+				this.cityLabel.text = piece.City.Name;
+			}
 		}
 
 		private void LanguageSelection_selectLanguage(eLanguage language)
 		{
-			if(questPiece.City == null)
-			{
-				this.city.text = string.Empty;
-				return;
-			}
-			
-			this.city.text = questPiece.City.IconCity.nameLabel.text;
+			this.Refresh();
 		}
 
 		private void OnDisable()
@@ -53,24 +64,87 @@ namespace ToBeFree
 
 		private void DayIsGone()
 		{
-			if(questPiece.CurQuest.Duration == 1000)
+			if(quest.Duration == 1000)
 			{
 				return;
 			}
-			questPiece.CurQuest.PastDays++;
-			pastDays.text = questPiece.CurQuest.PastDays.ToString() + "/" + questPiece.CurQuest.Duration.ToString();
+			this.PastDays++;
 		}
 
-		public QuestPiece QuestPiece
+		public IEnumerator TreatPastQuest()
+		{
+			if (PastDays >= quest.Duration)
+			{
+				yield return GameManager.Instance.uiEventManager.OnChanged(quest.FailureEffects.Script, true, false);
+
+				string effectScript = string.Empty;
+				if (quest.FailureEffects.EffectAmounts != null)
+				{
+					foreach (EffectAmount effectAmount in quest.FailureEffects.EffectAmounts)
+					{
+						if (effectAmount == null)
+							continue;
+
+						effectScript += effectAmount.ToString();
+					}
+				}
+
+				yield return GameManager.Instance.uiEventManager.OnChanged(effectScript, false, true);
+
+				GameManager.Instance.uiQuestManager.DeleteQuest(this.quest);
+			}
+		}
+
+		public bool CheckCondition()
+		{
+			return quest.CheckCondition(GameManager.Instance.Character, pastDays);
+		}
+
+		public IEnumerator Activate()
+		{
+			Character character = GameManager.Instance.Character;
+			if (character == null)
+				yield break;
+
+			EventManager.Instance.TestResult = quest.CheckCondition(character, pastDays);
+			if (EventManager.Instance.TestResult)
+			{
+				yield return QuestManager.Instance.ActivateQuest(quest, character);
+			}
+
+			// have to check TestResult again cause of Dice Test of activated quest.
+			if (EventManager.Instance.TestResult == true)
+			{
+				GameManager.Instance.uiQuestManager.DeleteUIQuest(character.CurCity);
+			}
+		}
+
+		public QuestPiece Piece
 		{
 			get
 			{
-				return questPiece;
+				return piece;
 			}
+		}
 
+		public int PastDays
+		{
+			get
+			{
+				return pastDays;
+			}
 			set
 			{
-				questPiece = value;
+				pastDays = value;
+				this.Refresh();
+			}
+		}
+
+		public Quest Quest
+		{
+			get
+			{
+				return quest;
 			}
 		}
 	}

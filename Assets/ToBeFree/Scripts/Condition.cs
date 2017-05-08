@@ -15,12 +15,12 @@ namespace ToBeFree
 			this.amount = amount;
 		}
 
-		public bool CheckCondition(Character character, Quest quest)
+		public bool CheckCondition(Character character, int PastDays)
 		{
 			int left = -99;
 			if (subjectType == eSubjectType.DDAY)
 			{
-				left = quest.PastDays;
+				left = PastDays;
 				return Compare(left, amount, comparisonOperator);
 			}
 			else
@@ -63,7 +63,7 @@ namespace ToBeFree
 			return Compare(left, amount, comparisonOperator);
 		}
 
-		private bool Compare(int left, int right, string comparisonOp)
+		public static bool Compare(int left, int right, string comparisonOp)
 		{
 			if (comparisonOp == "<")
 			{

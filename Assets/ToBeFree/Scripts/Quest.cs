@@ -15,14 +15,16 @@ namespace ToBeFree
 	[Serializable]
 	public class QuestSaveData
 	{
-		public QuestSaveData(int index, int pastDays)
+		public QuestSaveData(int index, int pastDays, int cityIndex)
 		{
 			this.index = index;
 			this.pastDays = pastDays;
+			this.cityIndex = cityIndex;
 		}
 
 		public int index;
 		public int pastDays;
+		public int cityIndex;
 	}
 
 	public class Quest
@@ -43,8 +45,6 @@ namespace ToBeFree
 		private readonly int duration;
 		private string uiName;
 		private string uiConditionScript;
-
-		private int pastDays;
 
 		public Quest(int index, eSubjectType subjectType, eObjectType objectType, string comparisonOperator,
 			int compareAmount, eQuestActionType actionType, eRegion region, string cityName, eDifficulty difficulty,
@@ -73,9 +73,9 @@ namespace ToBeFree
 			QuestManager.Instance.ActivateResultEffects(failureEffects.EffectAmounts, character);
 		}
 
-		public bool CheckCondition(Character character)
+		public bool CheckCondition(Character character, int pastDays)
 		{
-			return condition.CheckCondition(character, this);
+			return condition.CheckCondition(character, pastDays);
 		}
 
 		public int Duration
@@ -159,19 +159,6 @@ namespace ToBeFree
 			get
 			{
 				return cityName;
-			}
-		}
-
-		public int PastDays
-		{
-			get
-			{
-				return pastDays;
-			}
-
-			set
-			{
-				pastDays = value;
 			}
 		}
 

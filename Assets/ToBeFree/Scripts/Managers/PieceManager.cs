@@ -52,7 +52,6 @@ namespace ToBeFree
 				else if(piece.SubjectType == eSubjectType.QUEST)
 				{
 					QuestPiece questPiece = piece as QuestPiece;
-					data.questIndex = questPiece.CurQuest.Index;
 				}
 
 				pieceList.Add(data);
@@ -64,7 +63,7 @@ namespace ToBeFree
 			for (int i = 0; i < pieceList.Count; ++i)
 			{
 				eSubjectType type = EnumConvert<eSubjectType>.ToEnum(pieceList[i].type);
-				City city = CityManager.Instance.EveryCity[pieceList[i].cityIndex];
+				City city = CityManager.Instance.GetbyIndex(pieceList[i].cityIndex);
 				if (type == eSubjectType.POLICE)
 				{
 					Police police = new Police(city, type, pieceList[i].power, pieceList[i].movement);
@@ -72,15 +71,8 @@ namespace ToBeFree
 				}
 				else if (type == eSubjectType.QUEST)
 				{
-					Quest quest = QuestManager.Instance.GetByIndex(pieceList[i].questIndex);
-					if(quest != null)
-					{
-						QuestPiece piece = new QuestPiece(quest, city, type);
-						if(piece != null)
-						{
-							list.Add(piece);
-						}
-					}
+					QuestPiece piece = new QuestPiece(city, type);
+					list.Add(piece);
 				}
 				else if(type == eSubjectType.BROKER)
 				{
@@ -90,26 +82,9 @@ namespace ToBeFree
 			}
 		}
 
-		public QuestPiece Find(Quest quest)
-		{
-			foreach (Piece piece in list)
-			{
-				if (piece.SubjectType != eSubjectType.QUEST)
-				{
-					continue;
-				}
-				QuestPiece questPiece = piece as QuestPiece;
-				if (questPiece.CurQuest == quest)
-				{
-					return questPiece;
-				}
-			}
-			return null;
-		}
-
 		public Piece Find(eSubjectType type, City city)
 		{
-			Predicate<Piece> match = (x => x.City == city && x.SubjectType == type);
+			Predicate<Piece> match = (x => x.City.Index == city.Index && x.SubjectType == type);
 			if (list.Exists(match))
 			{
 				return list.Find(match);
@@ -201,7 +176,11 @@ namespace ToBeFree
 			}
 			list.Add(piece);
 			AddPiece(piece);
-			GameManager.Instance.Character.Stat.SetViewRange();
+
+			if (GameManager.Instance.Character != null)
+			{
+				GameManager.Instance.Character.Stat.SetViewRange();
+			}
 		}
 
 		public int GetNumberOfPiece(eSubjectType pieceType, City city)

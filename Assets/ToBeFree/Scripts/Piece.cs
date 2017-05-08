@@ -13,8 +13,6 @@ namespace ToBeFree
 		// for Police
 		public int power;
 		public int movement;
-		// for Quest
-		public int questIndex;
 	}
 
 	public class Piece
@@ -35,7 +33,6 @@ namespace ToBeFree
 			{
 				city.IconCity.PutPiece(iconPiece);
 			}
-			
 		}
 
 		public City City
@@ -252,53 +249,8 @@ namespace ToBeFree
 
 	public class QuestPiece : Piece
 	{
-		private Quest quest;
-		
-		public delegate void AddQuestHandler(QuestPiece piece);
-		public static event AddQuestHandler AddQuest;
-
-		public QuestPiece(Quest quest, City city, eSubjectType subjectType) : base(city, subjectType)
+		public QuestPiece(City city, eSubjectType subjectType) : base(city, subjectType)
 		{
-			this.quest = quest;
-
-			AddQuest(this);
-		}
-
-		public IEnumerator TreatPastQuests(Character character)
-		{
-			if(CheckDuration())
-			{
-				yield return GameManager.Instance.uiEventManager.OnChanged(CurQuest.FailureEffects.Script, true, false);
-
-				string effectScript = string.Empty;
-				if (CurQuest.FailureEffects.EffectAmounts != null)
-				{	
-					foreach (EffectAmount effectAmount in CurQuest.FailureEffects.EffectAmounts)
-					{
-						if (effectAmount == null)
-							continue;
-
-						effectScript += effectAmount.ToString();
-					}
-				}
-
-				yield return GameManager.Instance.uiEventManager.OnChanged(effectScript, false, true);
-
-				GameManager.Instance.uiQuestManager.DeleteQuest(this.CurQuest);
-			}
-		}
-
-		public override bool CheckDuration()
-		{
-			return CurQuest.PastDays >= quest.Duration;
-		}
-
-		public Quest CurQuest
-		{
-			get
-			{
-				return quest;
-			}
 		}
 	}
 }

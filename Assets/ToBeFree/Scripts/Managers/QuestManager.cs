@@ -101,23 +101,6 @@ namespace ToBeFree
 			GameManager.Instance.uiQuestManager.Refresh();
 		}
 
-		public void Save(List<QuestSaveData> questList)
-		{
-			for(int i=0; i<list.Length; ++i)
-			{
-				QuestSaveData data = new QuestSaveData(i, list[i].PastDays);
-				questList.Add(data);
-			}
-		}
-
-		public void Load(List<QuestSaveData> questList)
-		{
-			for (int i = 0; i < questList.Count; ++i)
-			{
-				list[i].PastDays = questList[i].pastDays;
-			}
-		}
-
 		public Quest FindRand()
 		{
 			int index = UnityEngine.Random.Range(0, list.Length);
@@ -158,25 +141,9 @@ namespace ToBeFree
 		{
 			yield return GameManager.Instance.uiEventManager.OnChanged(selectedQuest.Script);
 
-			City city = null;
+			GameManager.Instance.uiQuestManager.AddQuest(selectedQuest);
 
-			if (selectedQuest.Region != eRegion.NULL)
-			{
-				if (selectedQuest.Region == eRegion.CITY)
-				{
-					city = CityManager.Instance.Find(selectedQuest.CityName);
-				}
-				else if (selectedQuest.Region == eRegion.RANDOM)
-				{
-					city = CityManager.Instance.FindRandCityByDistance(character.CurCity, 3, eSubjectType.QUEST, eWay.NORMALWAY);
-				}
-				else if (selectedQuest.Region == eRegion.CURRENT)
-				{
-					city = character.CurCity;
-				}
-			}
-			QuestPiece questPiece = new QuestPiece(selectedQuest, city, eSubjectType.QUEST);
-			PieceManager.Instance.Add(questPiece);
+			
 		}
 	}
 }

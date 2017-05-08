@@ -366,22 +366,8 @@ namespace ToBeFree
 			yield return BuffManager.Instance.ActivateEffectByStartTime(startTime, character);
 
 			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
-			
-			List<Piece> quests = PieceManager.Instance.FindAll(eSubjectType.QUEST);
-			QuestPiece questPiece = quests.Find(x => x.City == character.CurCity) as QuestPiece;
 
-			Quest quest = questPiece.CurQuest;
-			EventManager.Instance.TestResult = quest.CheckCondition(character);
-			if (EventManager.Instance.TestResult)
-			{
-				yield return QuestManager.Instance.ActivateQuest(quest, character);
-			}
-
-			// have to check TestResult again cause of Dice Test of activated quest.
-			if (EventManager.Instance.TestResult == true)
-			{
-				GameManager.Instance.uiQuestManager.DeleteQuest(quest);
-			}
+			yield return GameManager.Instance.uiQuestManager.Activate();
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
