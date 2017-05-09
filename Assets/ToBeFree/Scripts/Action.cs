@@ -72,7 +72,9 @@ namespace ToBeFree
 			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Rest));
 
 			yield return base.Activate(character);
-			
+
+			character.AP += requiredTime;
+
 			if (character.CheckSpecialEvent())
 			{
 				//if (actionName == eEventAction.REST)
@@ -123,7 +125,7 @@ namespace ToBeFree
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			character.AP += requiredTime;
+			
 		}
 	}
 
@@ -142,7 +144,9 @@ namespace ToBeFree
 			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Start_Working));
 			
 			yield return base.Activate(character);
-			
+
+			character.AP += requiredTime;
+
 			if (character.CheckSpecialEvent())
 			{
 				int randActionType = UnityEngine.Random.Range(0, 2);
@@ -203,9 +207,9 @@ namespace ToBeFree
 							//int earnedMoney = randWorkingMoneyOfCity;
 							int TestSuccesMoney = EventManager.Instance.TestSuccessNum;
 							yield return GameManager.Instance.uiEventManager.OnChanged(
-								//LanguageManager.Instance.Find(eLanguageKey.Event_WoringMoneyPerCity) + " : " + randWorkingMoneyOfCity + "\n" + 
-								LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + " : " + TestSuccesMoney + "\n" +
-								LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + " : " + (TestSuccesMoney + basicMoney), false, true);
+								//LanguageManager.Instance.Find(eLanguageKey.Event_WoringMoneyPerCity) + " " + randWorkingMoneyOfCity + "\n" + 
+								LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + " " + TestSuccesMoney + "\n" +
+								LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + " " + (TestSuccesMoney + basicMoney), false, true);
 
 							character.Stat.Money += TestSuccesMoney;
 							break;
@@ -220,7 +224,7 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 			
-			character.AP += requiredTime;
+			
 		}
 	}
 
@@ -381,11 +385,13 @@ namespace ToBeFree
 
 			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
+			character.AP += requiredTime;
+
 			yield return GameManager.Instance.uiQuestManager.Activate();
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			character.AP += requiredTime;
+			
 
 			Debug.Log("character quest activated.");
 		}
@@ -536,7 +542,9 @@ namespace ToBeFree
 			yield return GameManager.Instance.uiEventManager.OnChanged(event_start_script);
 
 			yield return base.Activate(character);
-			
+
+			character.AP += requiredTime;
+
 			// 도시크기 별 주사위 추가 - 중도시 주사위1, 대도시는 주사위2
 			//if(character.CurCity.Type == eNodeType.MIDDLECITY)
 			//{
@@ -546,7 +554,7 @@ namespace ToBeFree
 			//{
 			//	character.Stat.TempDiceNum += 2;
 			//}
-			
+
 			// 스페셜 이벤트 처리
 			if (character.CheckSpecialEvent())
 			{
@@ -749,7 +757,7 @@ namespace ToBeFree
 			
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			character.AP += requiredTime;
+			
 		}
 	}
 
@@ -769,6 +777,8 @@ namespace ToBeFree
 
 			yield return base.Activate(character);
 
+			character.AP += requiredTime;
+
 			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.RAND);
 
 			yield return EventManager.Instance.DoCommand(actionName, character);
@@ -782,7 +792,7 @@ namespace ToBeFree
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			character.AP += requiredTime;
+			
 		}
 	}
 
@@ -802,13 +812,15 @@ namespace ToBeFree
 
 			yield return base.Activate(character);
 
+			character.AP += requiredTime;
+
 			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
 			yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[character.EventIndex], character);
 
 			yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
 
-			character.AP += requiredTime;
+			
 		}
 	}
 }

@@ -159,7 +159,7 @@ namespace ToBeFree
 							City city = GameManager.Instance.ClickedIconCity.City;
 							int policeNumInClickedCity = PieceManager.Instance.FindAll(eSubjectType.POLICE, city).Count;
 
-							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_PoliceNumber) + " : " + policeNumInClickedCity);
+							yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_PoliceNumber) + " " + policeNumInClickedCity);
 						}
 					}
 					// Decrease police's crackdown gauge
@@ -168,7 +168,7 @@ namespace ToBeFree
 						if (objectType == eObjectType.SHORT_TERM_GAUGE)
 						{
 							yield return CrackDown.Instance.DecreaseShortTermGauge(amount);
-							//yield return GameManager.Instance.uiEventManager.OnChanged(this.ToString() + " : " + CrackDown.Instance.Probability + "%");
+							//yield return GameManager.Instance.uiEventManager.OnChanged(this.ToString() + " " + CrackDown.Instance.Probability + "%");
 						}
 					}
 					break;
