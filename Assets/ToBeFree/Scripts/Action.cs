@@ -681,9 +681,9 @@ namespace ToBeFree
 					{
 						amount = 3;
 					}
-					EffectAmount decreaseShortTermGauge = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.DEL, eObjectType.SHORT_TERM_GAUGE), amount);
+					EffectAmount decreaseGauge = new EffectAmount(EffectManager.Instance.Find(eSubjectType.POLICE, eVerbType.DEL, eObjectType.SHORT_TERM_GAUGE), amount);
 
-					finalList.Add(decreaseShortTermGauge);
+					finalList.Add(decreaseGauge);
 				}
 				//식량아이템 얻기 : 차는 양이 하나 또는 둘 또는 셋
 				else if (ActionName ==  eEventAction.GATHERING)

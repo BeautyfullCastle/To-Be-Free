@@ -186,6 +186,8 @@ namespace ToBeFree
 			}
 		}
 
+		
+
 		private IEnumerator StartCrackDown()
 		{
 			isCrackDown = true;
@@ -214,6 +216,21 @@ namespace ToBeFree
 			for(int i=0; i<amount; ++i)
 			{
 				if(uiCrackdown.TurnDownShortTermGauge())
+				{
+					break;
+				}
+				yield return new WaitForSeconds(0.5f);
+			}
+		}
+
+		public IEnumerator DecreaseCrackdownGauge(int amount)
+		{
+			if (amount <= 0)
+				yield break;
+
+			for (int i = 0; i < amount; ++i)
+			{
+				if (uiCrackdown.TurnDownCrackdownGauge())
 				{
 					break;
 				}

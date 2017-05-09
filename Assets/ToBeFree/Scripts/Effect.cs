@@ -62,7 +62,7 @@ namespace ToBeFree
 		MENTAL, HP_MENTAL, PATIENCE, LUCK, // 지워야 되는 것들
 		DICE,
 		STAKEOUT,
-		BIGCITY, MOUNTAIN
+		BIGCITY, MOUNTAIN,
 	}
 
 	public class Effect
@@ -167,8 +167,14 @@ namespace ToBeFree
 					{
 						if (objectType == eObjectType.SHORT_TERM_GAUGE)
 						{
-							yield return CrackDown.Instance.DecreaseShortTermGauge(amount);
-							//yield return GameManager.Instance.uiEventManager.OnChanged(this.ToString() + " " + CrackDown.Instance.Probability + "%");
+							if(CrackDown.Instance.IsCrackDown)
+							{
+								yield return CrackDown.Instance.DecreaseCrackdownGauge(amount);
+							}
+							else
+							{
+								yield return CrackDown.Instance.DecreaseShortTermGauge(amount);
+							}
 						}
 					}
 					break;
