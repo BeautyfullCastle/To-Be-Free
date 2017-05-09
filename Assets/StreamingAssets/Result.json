@@ -380,7 +380,7 @@
 		},
 		{
 			"index": 21,
-			"stat": " NULL",
+			"stat": "NULL",
 			"successScript": "자네도 모르는구먼 알겠네'\\n남자는 자리를 떠났습니다.",
 			"successEffectIndexList": [
 				-99
@@ -876,7 +876,7 @@
 				59
 			],
 			"successEffectValueList": [
-				2
+				1
 			],
 			"failureScript": "당신은 열심히 사정을 설명했지만 그는 매우 냉정한 표정으로 이야기합니다.\\n'안됩니다. 당신 같은 사람들 때문에 우리 목사님이 어떤 상황인지 아십니까? 공안을 부르기 전에 당장 떠나십시오'\\n당신은 어쩔 수 없이 포기하고 자리를 떠났습니다.",
 			"failureEffectIndexList": [
@@ -1802,15 +1802,15 @@
 		},
 		{
 			"index": 98,
-			"stat": "NULL",
-			"successScript": "수용소는 북한으로 이송 전 하루 머무는 곳입니다. 하루동안 탈출하지 못하면 이대로 북한으로 이송 될 겁니다.",
+			"stat": "TALENT",
+			"successScript": "당신은 매달리며 사정했습니다. 사장은 난감한 표정을 지으며\\n'이거나 먹고 꺼져!'\\n라고 말하며 돈을 던집니다. 돈을 주워서 신고하기 전에 그곳을 벋어났습니다.",
 			"successEffectIndexList": [
-				-99
+				44
 			],
 			"successEffectValueList": [
-				-99
+				2
 			],
-			"failureScript": "NULL",
+			"failureScript": "당신은 매달리며 사정했습니다. 사장은 더욱 큰소리를 치며 전화기를 잡자, 당신은 신고하기 전에 그곳을 벗어났습니다.",
 			"failureEffectIndexList": [
 				-99
 			],
@@ -2204,7 +2204,7 @@
 				59
 			],
 			"successEffectValueList": [
-				2
+				1
 			],
 			"failureScript": "쪽지를 한참 들여다 봤지만 아무리 봐도 그 뜻을 알 수 없었습니다.",
 			"failureEffectIndexList": [
@@ -2946,7 +2946,7 @@
 				55
 			],
 			"failureEffectValueList": [
-				2,
+				1,
 				129
 			]
 		},

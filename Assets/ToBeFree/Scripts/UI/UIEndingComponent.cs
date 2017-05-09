@@ -76,10 +76,10 @@ namespace ToBeFree
 					yield return Fade(tweenAlpha, endTime - startTime, false);
 					break;
 				case eEndingEffect.FADE_COLOR_BLACK:
-					yield return Fade(tweenColor, endTime - startTime, true);
+					yield return Fade(tweenColor, endTime - startTime, false);
 					break;
 				case eEndingEffect.FADE_COLOR_WHITE:
-					yield return Fade(tweenColor, endTime - startTime, false);
+					yield return Fade(tweenColor, endTime - startTime, true);
 					break;
 				case eEndingEffect.MOVE:
 					yield return Fade(tweenPosition, endTime - startTime, true);

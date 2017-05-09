@@ -73,7 +73,7 @@ namespace ToBeFree
 				}
 				catch (Exception e)
 				{
-					Debug.LogError(data.index.ToString() + " : " + e);
+					Debug.LogError(data.index.ToString() + e);
 				}
 
 			}

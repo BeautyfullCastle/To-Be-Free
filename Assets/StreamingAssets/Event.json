@@ -133,7 +133,7 @@
 		},
 		{
 			"index": 13,
-			"actionType": "WORK_END",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "일을 마치고 일당을 받으려고 하는데 월급을 주지 않았습니다. 사장실로 찾아가보니 사장은 조선족인지 한국말로 이야기를 시작했습니다.\\n'당신 탈북자인 것 같은데 공안에게 말하지 않을 테니 대신 오늘 일당은 줄 수 없네'",
 			"resultIndex": -99,
@@ -211,7 +211,7 @@
 			"index": 20,
 			"actionType": "INVESTIGATION_CITY_SPECIAL",
 			"difficulty": "NORMAL",
-			"script": "근처에 탈북자를 도와주는 시설이 있다는 소문을 듣고 그곳을 찾아 갔습니다.\\n'안녕하세요, 무엇을 도와드릴까요?'",
+			"script": "근처에 탈북자를 도와주는 시설이 있다는 소문을 듣고 그곳을 찾아 갔습니다.\\n'안녕하세요,무엇을 도와드릴까요?'",
 			"resultIndex": -99,
 			"selectIndexList": [
 				45,
@@ -308,7 +308,7 @@
 			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "당신은 자신의 처지를 항변해봅니다.",
-			"resultIndex": 13,
+			"resultIndex": 98,
 			"selectIndexList": [
 				-99
 			]
@@ -325,9 +325,9 @@
 		},
 		{
 			"index": 31,
-			"actionType": "WORK_END",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
-			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕 하시우, 네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 기뻐하며 자신의 이름을 김봉식이라고 하고 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'",
+			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕 하시우,네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 기뻐하며 자신의 이름을 김봉식이라고 하고 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'",
 			"resultIndex": -99,
 			"selectIndexList": [
 				2,
@@ -357,9 +357,9 @@
 		},
 		{
 			"index": 34,
-			"actionType": "WORK_END",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
-			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕하시우, 네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'",
+			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕하시우,네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'",
 			"resultIndex": -99,
 			"selectIndexList": [
 				4,
@@ -383,13 +383,13 @@
 			"script": "숨어서 휴식을 취하고 있는 중 공안이 근처에 오는 것이 보입니다. 지금이라면 숨는 장소를 이동 할 수 있을 것 같습니다.",
 			"resultIndex": -99,
 			"selectIndexList": [
-				5,
-				9
+				59,
+				60
 			]
 		},
 		{
 			"index": 37,
-			"actionType": "WORK_END",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "일을 끝내고 한 남성이 다가와 말을 겁니다.\\n'이봐 자네 보아하니 탈북자인 것 같은데 혹시 남한에 갈 생각이 없나? 내가 브로커를 알고 있거든 대신 돈이 좀 필요한데'\\n그는 돈을 주면 브로커에 대한 정보를 준다고 합니다.",
 			"resultIndex": -99,
@@ -454,7 +454,7 @@
 			"index": 43,
 			"actionType": "NULL",
 			"difficulty": "NORMAL",
-			"script": "'알겠네, 그럼 2위안에 해주겠네'",
+			"script": "알겠네, 그럼 2위안에 해주겠네'",
 			"resultIndex": -99,
 			"selectIndexList": [
 				11,
@@ -474,7 +474,7 @@
 		},
 		{
 			"index": 45,
-			"actionType": "WORK_START",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "일을 하던 중 시끄러운 소리가 들리는 곳을 보니 일터 주차장에 공안의 차량이 보입니다.\\n아무래도 공안이 점검이 나온 것 같습니다.",
 			"resultIndex": -99,
@@ -495,7 +495,7 @@
 		},
 		{
 			"index": 47,
-			"actionType": "WORK_START",
+			"actionType": "NULL",
 			"difficulty": "NORMAL",
 			"script": "일을 하던 중 조선족 인부 한명이 큰소리로 외칩니다.\\n'지금 추가업무가 필요한데 이 일을 하면 지금임금보다 높게 쳐주겠소. 다만 일이 매우 힘듭니다. 그럼 신청자를 받겠습니다.'\\n당신은 힘든 일이지만 신청을 할지 고민합니다.",
 			"resultIndex": -99,
@@ -746,7 +746,7 @@
 		},
 		{
 			"index": 71,
-			"actionType": "NULL",
+			"actionType": "DETENTION_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "체포되어 수감 중에 한 공안이 와서 돈을 요구하는 듯한 손짓을 합니다. 아무래도 돈을 좀 주면 풀려나게 해줄 것 같습니다.",
 			"resultIndex": -99,
@@ -757,7 +757,7 @@
 		},
 		{
 			"index": 72,
-			"actionType": "NULL",
+			"actionType": "DETENTION_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "기차로 이동 중 간수가 보지 않는 틈을 타서 기차에서 도망 칠 수 있지만 너무 위험합니다.",
 			"resultIndex": -99,
@@ -1294,7 +1294,7 @@
 		},
 		{
 			"index": 124,
-			"actionType": "GATHERING",
+			"actionType": "GATHERING_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "산에서 계속해서 식량을 찾았지만 먹을만 한 것이 없습니다.",
 			"resultIndex": -99,
@@ -1355,7 +1355,7 @@
 		},
 		{
 			"index": 130,
-			"actionType": "NULL",
+			"actionType": "DETENTION_SPECIAL",
 			"difficulty": "NORMAL",
 			"script": "잡혀 있는데 갑자기 공안이 풀어줍니다. 모르는 사람이 와서 돈을 주고 풀어줬습니다. 모르는 사람 손에 이끌려 공안에게서 벗어납니다.",
 			"resultIndex": 165,
