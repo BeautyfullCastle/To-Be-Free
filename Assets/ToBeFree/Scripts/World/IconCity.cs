@@ -220,21 +220,11 @@ namespace ToBeFree
 		
 		public void ChangeLanguage(eLanguage language)
 		{
-			Language.CityData[] list = null;
-			if (language == eLanguage.KOREAN)
-			{
-				list = CityManager.Instance.KorList;
-			}
-			else if (language == eLanguage.ENGLISH)
-			{
-				list = CityManager.Instance.EngList;
-			}
-
-			if (list == null || nameLabel == null)
+			if(nameLabel == null)
 			{
 				return;
 			}
-			nameLabel.text = Array.Find(list, x => x.index == city.Name).name;
+			nameLabel.text = CityManager.Instance.GetName(city);
 		}
 		
 		public City City

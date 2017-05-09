@@ -80,6 +80,7 @@ namespace ToBeFree
 				}
 
 				piece = new QuestPiece(city, eSubjectType.QUEST);
+				PieceManager.Instance.List.Add(piece);
 			}
 
 			MakeUIQuest(quest, piece);

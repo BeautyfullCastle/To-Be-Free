@@ -46,8 +46,28 @@ namespace ToBeFree
 			totalMoveTime = 6f;
 		}
 
+		public string GetName(City city)
+		{
+			Language.CityData[] dataList = this.engList;
+			if(LanguageManager.Instance.CurrentLanguage == eLanguage.KOREAN)
+			{
+				dataList = this.korList;
+			}
+			if (dataList == null)
+				return string.Empty;
+
+			Language.CityData data = Array.Find(dataList, x => x.index == city.Name);
+			if (data == null)
+				return string.Empty;
+
+			return data.name;
+		}
+
 		public City GetbyIndex(int cityIndex)
 		{
+			if (cityIndex == -1)
+				return null;
+
 			if (cityIndex < 0 || cityIndex >= everyCity.Count)
 			{
 				Debug.LogError(this.GetType().ToString() + " : GetbyIndex(..) : " + cityIndex + " is out of range.");

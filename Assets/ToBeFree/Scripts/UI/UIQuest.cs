@@ -22,7 +22,6 @@ namespace ToBeFree
 			this.pastDays = 0;
 			
 			TimeTable.Instance.NotifyEveryday += DayIsGone;
-			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
 
 			this.Refresh();
 		}
@@ -47,19 +46,13 @@ namespace ToBeFree
 			}
 			else
 			{
-				this.cityLabel.text = piece.City.Name;
+				this.cityLabel.text = CityManager.Instance.GetName(this.piece.City);
 			}
 		}
-
-		private void LanguageSelection_selectLanguage(eLanguage language)
-		{
-			this.Refresh();
-		}
-
+		
 		private void OnDisable()
 		{
 			TimeTable.Instance.NotifyEveryday -= DayIsGone;
-			LanguageSelection.selectLanguage -= LanguageSelection_selectLanguage;
 		}
 
 		private void DayIsGone()

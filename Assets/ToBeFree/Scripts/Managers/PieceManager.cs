@@ -67,24 +67,27 @@ namespace ToBeFree
 				if (type == eSubjectType.POLICE)
 				{
 					Police police = new Police(city, type, pieceList[i].power, pieceList[i].movement);
-					list.Add(police);
+					this.list.Add(police);
 				}
 				else if (type == eSubjectType.QUEST)
 				{
 					QuestPiece piece = new QuestPiece(city, type);
-					list.Add(piece);
+					this.list.Add(piece);
 				}
 				else if(type == eSubjectType.BROKER)
 				{
 					Broker broker = new Broker(city, type);
-					list.Add(broker);
+					this.list.Add(broker);
 				}
 			}
 		}
 
 		public Piece Find(eSubjectType type, City city)
 		{
-			Predicate<Piece> match = (x => x.City.Index == city.Index && x.SubjectType == type);
+			if (city == null)
+				return null;
+
+			Predicate<Piece> match = (x => x.City.Index == city.Index && x.SubjectType == type );
 			if (list.Exists(match))
 			{
 				return list.Find(match);
