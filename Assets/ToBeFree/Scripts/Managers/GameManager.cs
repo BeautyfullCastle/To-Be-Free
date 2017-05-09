@@ -701,6 +701,8 @@ namespace ToBeFree
 
 			uiEventManager.Reset();
 
+			DiceTester.Instance.demo.SetEnableCameras(false);
+
 			//GC.Collect();
 			//GC.WaitForPendingFinalizers();
 		}

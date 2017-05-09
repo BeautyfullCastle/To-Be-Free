@@ -198,7 +198,7 @@ public class Dice : MonoBehaviour {
 		Vector3 destination = new Vector3(positionX, positionY, spawnPoint.position.z);
 		
 		// create the die prefab/gameObject
-		GameObject die = prefab(dieType, startPosition, new Vector3(0f, 0f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
+		GameObject die = prefab(dieType, startPosition, new Vector3(0f, 90f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
 		die.layer = layer;
 		
 		// give it a random rotation
