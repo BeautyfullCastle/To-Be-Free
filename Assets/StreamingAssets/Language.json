@@ -1,268 +1,276 @@
 {
 	"dataList": [
 		{
-			"index": 0,
+			"index": "Move",
 			"script": "이동"
 		},
 		{
-			"index": 1,
+			"index": "Work",
 			"script": "일"
 		},
 		{
-			"index": 2,
+			"index": "Inquiry",
 			"script": "조사"
 		},
 		{
-			"index": 3,
+			"index": "Rest",
 			"script": "휴식"
 		},
 		{
-			"index": 4,
+			"index": "Shop",
 			"script": "상점"
 		},
 		{
-			"index": 5,
+			"index": "Broker",
 			"script": "브로커"
 		},
 		{
-			"index": 6,
+			"index": "Quest",
 			"script": "의뢰"
 		},
 		{
-			"index": 7,
+			"index": "Abilty",
 			"script": "능력"
 		},
 		{
-			"index": 8,
+			"index": "City_Inquiry",
 			"script": "도시 조사"
 		},
 		{
-			"index": 9,
+			"index": "Broker_Inquiry",
 			"script": "브로커 조사"
 		},
 		{
-			"index": 10,
+			"index": "Police_Inquiry",
 			"script": "공안 조사"
 		},
 		{
-			"index": 11,
+			"index": "Gathering_Inquiry",
 			"script": "채집 조사"
 		},
 		{
-			"index": 12,
-			"script": "휴식"
-		},
-		{
-			"index": 13,
+			"index": "Hide_Rest",
 			"script": "숨기 휴식"
 		},
 		{
-			"index": 14,
+			"index": "Walking",
 			"script": "도보 이동"
 		},
 		{
-			"index": 15,
+			"index": "Bus_Move",
 			"script": "버스 이동"
 		},
 		{
-			"index": 16,
+			"index": "HP",
 			"script": "체력"
 		},
 		{
-			"index": 17,
+			"index": "Satiety",
 			"script": "배고픔"
 		},
 		{
-			"index": 18,
+			"index": "Money",
 			"script": "돈"
 		},
 		{
-			"index": 19,
+			"index": "Info",
 			"script": "정보"
 		},
 		{
-			"index": 20,
+			"index": "Strength",
 			"script": "힘"
 		},
 		{
-			"index": 21,
+			"index": "Agility",
 			"script": "민첩"
 		},
 		{
-			"index": 22,
+			"index": "Talent",
 			"script": "재주"
 		},
 		{
-			"index": 23,
+			"index": "Focus",
 			"script": "집중"
 		},
 		{
-			"index": 24,
+			"index": "Day",
 			"script": "일"
 		},
 		{
-			"index": 25,
+			"index": "Setting",
 			"script": "설정"
 		},
 		{
-			"index": 26,
+			"index": "resolution",
 			"script": "해상도"
 		},
 		{
-			"index": 27,
+			"index": "Full screen",
 			"script": "전체 화면"
 		},
 		{
-			"index": 28,
+			"index": "Music Volume",
 			"script": "배경음"
 		},
 		{
-			"index": 29,
+			"index": "Sound Effect Volume",
 			"script": "효과음"
 		},
 		{
-			"index": 30,
+			"index": "Mute",
 			"script": "음소거"
 		},
 		{
-			"index": 31,
+			"index": "Language",
 			"script": "언어"
 		},
 		{
-			"index": 32,
-			"script": "기한"
-		},
-		{
-			"index": 33,
+			"index": "Start_Work",
 			"script": "당신은 게시판의 일거리를 찾아서 일을 시작했습니다."
 		},
 		{
-			"index": 34,
+			"index": "Start_City",
 			"script": "당신은 도시의 다양한 정보조사를 시작했습니다."
 		},
 		{
-			"index": 35,
+			"index": "Start_Police",
 			"script": "당신은 공안에 대한 정보조사를 시작했습니다."
 		},
 		{
-			"index": 36,
+			"index": "Start_BrokerInfo",
 			"script": "당신은 브로커에 대한 정보조사를 시작했습니다."
 		},
 		{
-			"index": 37,
+			"index": "Start_Gathering",
 			"script": "당신은 산에서 식량을 채집하기 시작했습니다."
 		},
 		{
-			"index": 38,
+			"index": "Start_Rest",
 			"script": "당신은 한적한 곳에서 휴식을 취하기 시작했습니다."
 		},
 		{
-			"index": 39,
+			"index": "Start_Broker",
+			"script": "당신은 브로커가 있다는 장소에서, 브로커를 찾습니다."
+		},
+		{
+			"index": "Start_Walking",
+			"script": "당신은 목적지까지 걸어서 이동합니다."
+		},
+		{
+			"index": "Start_Bus",
+			"script": "당신은 목적지까지 버스를 타고 이동합니다."
+		},
+		{
+			"index": "Start_Ability",
+			"script": "당신은 집중해서 능력을 사용합니다."
+		},
+		{
+			"index": "Police_Turn",
 			"script": "공안의 차례"
 		},
 		{
-			"index": 40,
+			"index": "Your_Turn",
+			"script": "당신의 차례"
+		},
+		{
+			"index": "Police_Add",
 			"script": "어딘가에서 새로운 공안이 추가 되었습니다."
 		},
 		{
-			"index": 41,
+			"index": "Police_Up",
 			"script": "어딘가에서 기존의 공안에 새로운 병력이 추가 되었습니다."
 		},
 		{
-			"index": 42,
+			"index": "Police_Move",
 			"script": "어딘가에서 공안이 이동했습니다."
 		},
 		{
-			"index": 43,
+			"index": "Polive_Crack",
 			"script": "공안이 탈북자 집중단속기간을 선언했습니다. 다음 공안 차례까지 탈북자들을 집중 단속합니다."
 		},
 		{
-			"index": 44,
+			"index": "Road",
 			"script": "길"
 		},
 		{
-			"index": 45,
+			"index": "small town",
 			"script": "소도시"
 		},
 		{
-			"index": 46,
+			"index": "mid city",
 			"script": "중도시"
 		},
 		{
-			"index": 47,
+			"index": "big city",
 			"script": "대도시"
 		},
 		{
-			"index": 48,
+			"index": "mountain",
 			"script": "산"
 		},
 		{
-			"index": "이동",
+			"index": "Time",
+			"script": "소요 시간"
+		},
+		{
+			"index": "Script_Move",
 			"script": "다른 곳으로 이동합니다."
 		},
 		{
-			"index": "일",
+			"index": "Script_Work",
 			"script": "힘을 이용해서 돈을 법니다."
 		},
 		{
-			"index": "조사",
+			"index": "Script_Inquiry",
 			"script": "재주를 이용해서 각종 정보를 획득 합니다."
 		},
 		{
-			"index": "휴식",
+			"index": "Script_Rest",
 			"script": "집중해서 밥을 먹고 상태이상과 HP를 회복합니다."
 		},
 		{
-			"index": "상점",
+			"index": "Script_Shop",
 			"script": "돈을 사용해서 물건을 구입합니다."
 		},
 		{
-			"index": "능력",
+			"index": "Script_Abilty",
 			"script": "캐릭터의 능력을 사용합니다."
 		},
 		{
-			"index": "의뢰",
+			"index": "Script_Quest",
 			"script": "받은 의뢰를 해결합니다."
 		},
 		{
-			"index": "브로커",
+			"index": "Script_Broker",
 			"script": "브로커를 만납니다."
 		},
 		{
-			"index": "도보이동",
+			"index": "Script_Walking",
 			"script": "걸어서 이동합니다."
 		},
 		{
-			"index": "버스이동",
+			"index": "Script_Bus_Move",
 			"script": "4위안을 내고 다음 정류장이 있는 도시로 이동합니다."
 		},
 		{
-			"index": "일하기",
-			"script": "힘을 이용해서 돈을 법니다."
+			"index": "Script_City_Inquiry",
+			"script": "도시의 정보를 조사합니다. 도시의 의뢰, 물건, 돈을 얻을 수 있습니다."
 		},
 		{
-			"index": "도시 조사",
-			"script": "도시의 정보를 조사합니다. "
+			"index": "Script_Broker_Inquiry",
+			"script": "브로커 정보를 조사합니다. 브로커에 대한 의뢰, 정보를 얻을 수 있습니다."
 		},
 		{
-			"index": "브로커 조사",
-			"script": "브로커 정보를 조사합니다."
+			"index": "Script_Police_Inquiry",
+			"script": "공안에 대한 정보를 조사합니다.\\n 도시에 대한 공안의 수, 집중단속 확률, 시야증가를 얻을 수 있습니다."
 		},
 		{
-			"index": "공안 조사",
-			"script": "공안에 대한 정보를 조사합니다."
-		},
-		{
-			"index": "채집 조사",
+			"index": "Script_Gathering_Inquiry",
 			"script": "산에서 재주를 이용해서 식량을 찾아봅니다."
 		},
 		{
-			"index": "휴식",
-			"script": "집중해서 밥을 먹고 상태이상과 HP를 회복합니다."
-		},
-		{
-			"index": "숨기 휴식",
-			"script": "공안을 피해 숨어서 집중해서 밥을 먹고 상태이상과 HP를 회복합니다. 공안을 피해 휴식 하기 때문에 주사위 2개가 줄어듭니다."
+			"index": "Script_Hide_Rest",
+			"script": "공안을 피해서 휴식합니다.\\n 주사위 2개가 줄어듭니다."
 		}
 	]
 }

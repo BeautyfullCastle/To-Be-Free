@@ -412,7 +412,7 @@
 			"eventIndex": 104,
 			"duration": 1000,
 			"uiName": "공안정보원 찾기",
-			"uiConditionScript": "공안위협 2단계낮추기"
+			"uiConditionScript": "공안위협\\n2단계 낮추기"
 		}
 	]
 }

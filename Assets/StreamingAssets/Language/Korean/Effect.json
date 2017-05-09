@@ -2,7 +2,7 @@
 	"dataList": [
 		{
 			"index": 0,
-			"script": "체력회복"
+			"script": "체력: "
 		},
 		{
 			"index": 1,
@@ -18,11 +18,11 @@
 		},
 		{
 			"index": 4,
-			"script": "NULL"
+			"script": "남은 하루의 시간을 넘김"
 		},
 		{
 			"index": 5,
-			"script": "NULL"
+			"script": "집중 단속 게이지 추가: "
 		},
 		{
 			"index": 6,
@@ -106,23 +106,23 @@
 		},
 		{
 			"index": 26,
-			"script": "배고픔 회복"
+			"script": "배고픔 회복: "
 		},
 		{
 			"index": 27,
-			"script": "힘 능력 상승"
+			"script": "힘 능력 상승:"
 		},
 		{
 			"index": 28,
-			"script": "민첩 능력 상승"
+			"script": "민첩 능력 상승:"
 		},
 		{
 			"index": 29,
-			"script": "집중 능력 상승"
+			"script": "집중 능력 상승:"
 		},
 		{
 			"index": 30,
-			"script": "재주 능력 상승"
+			"script": "재주 능력 상승:"
 		},
 		{
 			"index": 31,
@@ -134,7 +134,7 @@
 		},
 		{
 			"index": 33,
-			"script": "모든 능력 상승"
+			"script": "모든 능력 상승:"
 		},
 		{
 			"index": 34,
@@ -150,7 +150,7 @@
 		},
 		{
 			"index": 37,
-			"script": "물건 획득"
+			"script": "물건 획득:"
 		},
 		{
 			"index": 38,
@@ -170,7 +170,7 @@
 		},
 		{
 			"index": 42,
-			"script": "물건 잃어버림"
+			"script": "물건 잃어버림: "
 		},
 		{
 			"index": 43,
@@ -178,11 +178,11 @@
 		},
 		{
 			"index": 44,
-			"script": "돈 획득"
+			"script": "돈: "
 		},
 		{
 			"index": 45,
-			"script": "돈 획득"
+			"script": "돈: "
 		},
 		{
 			"index": 46,
@@ -226,11 +226,11 @@
 		},
 		{
 			"index": 56,
-			"script": "상태이상 추가"
+			"script": "상태이상 추가: "
 		},
 		{
 			"index": 57,
-			"script": "상태이상 회복"
+			"script": "상태이상 회복: "
 		},
 		{
 			"index": 58,
@@ -238,7 +238,7 @@
 		},
 		{
 			"index": 59,
-			"script": "캐릭터가 가진 브로커정보"
+			"script": "브로커정보: "
 		},
 		{
 			"index": 60,
@@ -306,11 +306,11 @@
 		},
 		{
 			"index": 76,
-			"script": "선택한 공안 위치 확인"
+			"script": "선택한 곳 공안 수 확인"
 		},
 		{
 			"index": 77,
-			"script": "집중 단속 게이지 감소"
+			"script": "집중 단속 게이지 감소: "
 		},
 		{
 			"index": 78,

@@ -5,7 +5,7 @@
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
 			"objectType": "HP",
-			"script": "체력회복"
+			"script": "체력: "
 		},
 		{
 			"index": 1,
@@ -33,14 +33,14 @@
 			"subjectType": "TIME",
 			"verbType": "SKIP",
 			"objectType": "NULL",
-			"script": "NULL"
+			"script": "남은 하루의 시간을 넘김"
 		},
 		{
 			"index": 5,
-			"subjectType": "INFO",
-			"verbType": "MOVE",
-			"objectType": "RAND_RAND",
-			"script": "NULL"
+			"subjectType": "POLICE",
+			"verbType": "ADD",
+			"objectType": "SHORT_TERM_GAUGE",
+			"script": "집중 단속 게이지 추가: "
 		},
 		{
 			"index": 6,
@@ -187,35 +187,35 @@
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
 			"objectType": "FOOD",
-			"script": "배고픔 회복"
+			"script": "배고픔 회복: "
 		},
 		{
 			"index": 27,
 			"subjectType": "STAT",
 			"verbType": "ADD",
 			"objectType": "STRENGTH",
-			"script": "힘 능력 상승"
+			"script": "힘 능력 상승:"
 		},
 		{
 			"index": 28,
 			"subjectType": "STAT",
 			"verbType": "ADD",
 			"objectType": "AGILITY",
-			"script": "민첩 능력 상승"
+			"script": "민첩 능력 상승:"
 		},
 		{
 			"index": 29,
 			"subjectType": "STAT",
 			"verbType": "ADD",
 			"objectType": "CONCENTRATION",
-			"script": "집중 능력 상승"
+			"script": "집중 능력 상승:"
 		},
 		{
 			"index": 30,
 			"subjectType": "STAT",
 			"verbType": "ADD",
 			"objectType": "TALENT",
-			"script": "재주 능력 상승"
+			"script": "재주 능력 상승:"
 		},
 		{
 			"index": 31,
@@ -236,7 +236,7 @@
 			"subjectType": "STAT",
 			"verbType": "ADD",
 			"objectType": "ALL",
-			"script": "모든 능력 상승"
+			"script": "모든 능력 상승:"
 		},
 		{
 			"index": 34,
@@ -264,7 +264,7 @@
 			"subjectType": "ITEM",
 			"verbType": "ADD",
 			"objectType": "INDEX",
-			"script": "물건 획득"
+			"script": "물건 획득:"
 		},
 		{
 			"index": 38,
@@ -299,7 +299,7 @@
 			"subjectType": "ITEM",
 			"verbType": "DEL",
 			"objectType": "INDEX",
-			"script": "물건 잃어버림"
+			"script": "물건 잃어버림: "
 		},
 		{
 			"index": 43,
@@ -313,14 +313,14 @@
 			"subjectType": "MONEY",
 			"verbType": "ADD",
 			"objectType": "SPECIFIC",
-			"script": "돈 획득"
+			"script": "돈: "
 		},
 		{
 			"index": 45,
 			"subjectType": "MONEY",
 			"verbType": "ADD",
 			"objectType": "RAND_3",
-			"script": "돈 획득"
+			"script": "돈: "
 		},
 		{
 			"index": 46,
@@ -397,14 +397,14 @@
 			"subjectType": "ABNORMAL",
 			"verbType": "ADD",
 			"objectType": "NULL",
-			"script": "상태이상 추가"
+			"script": "상태이상 추가: "
 		},
 		{
 			"index": 57,
 			"subjectType": "ABNORMAL",
 			"verbType": "DEL",
 			"objectType": "NULL",
-			"script": "상태이상 회복"
+			"script": "상태이상 회복: "
 		},
 		{
 			"index": 58,
@@ -418,7 +418,7 @@
 			"subjectType": "CHARACTER",
 			"verbType": "ADD",
 			"objectType": "INFO",
-			"script": "캐릭터가 가진 브로커정보"
+			"script": "브로커정보: "
 		},
 		{
 			"index": 60,
@@ -537,14 +537,14 @@
 			"subjectType": "POLICE",
 			"verbType": "REVEAL",
 			"objectType": "NUMBER",
-			"script": "선택한 공안 위치 확인"
+			"script": "선택한 곳 공안 수 확인"
 		},
 		{
 			"index": 77,
 			"subjectType": "POLICE",
 			"verbType": "DEL",
 			"objectType": "SHORT_TERM_GAUGE",
-			"script": "집중 단속 게이지 감소"
+			"script": "집중 단속 게이지 감소: "
 		},
 		{
 			"index": 78,

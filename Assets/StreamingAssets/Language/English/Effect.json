@@ -82,47 +82,47 @@
 		},
 		{
 			"index": 20,
-			"script": "NULL"
-		},
-		{
-			"index": 21,
-			"script": "NULL"
-		},
-		{
-			"index": 22,
-			"script": "NULL"
-		},
-		{
-			"index": 23,
-			"script": "NULL"
-		},
-		{
-			"index": 24,
-			"script": "NULL"
-		},
-		{
-			"index": 25,
-			"script": "NULL"
-		},
-		{
-			"index": 26,
 			"script": "Cure Hungry"
 		},
 		{
-			"index": 27,
+			"index": 21,
 			"script": "Increase Strength"
 		},
 		{
-			"index": 28,
+			"index": 22,
 			"script": "Increase Agility"
 		},
 		{
-			"index": 29,
+			"index": 23,
 			"script": "Increase Focus"
 		},
 		{
-			"index": 30,
+			"index": 24,
 			"script": "Increase Talent"
+		},
+		{
+			"index": 25,
+			"script": "Increase Every Ability"
+		},
+		{
+			"index": 26,
+			"script": "NULL"
+		},
+		{
+			"index": 27,
+			"script": "Get Item"
+		},
+		{
+			"index": 28,
+			"script": "NULL"
+		},
+		{
+			"index": 29,
+			"script": "Get Item"
+		},
+		{
+			"index": 30,
+			"script": "NULL"
 		},
 		{
 			"index": 31,
@@ -130,27 +130,27 @@
 		},
 		{
 			"index": 32,
-			"script": "NULL"
+			"script": "Lose Item"
 		},
 		{
 			"index": 33,
-			"script": "Increase Every Ability"
+			"script": "NULL"
 		},
 		{
 			"index": 34,
-			"script": "NULL"
+			"script": "Lose Item"
 		},
 		{
 			"index": 35,
-			"script": "Get Item"
-		},
-		{
-			"index": 36,
 			"script": "NULL"
 		},
 		{
+			"index": 36,
+			"script": "Get Money"
+		},
+		{
 			"index": 37,
-			"script": "Get Item"
+			"script": "Get Money"
 		},
 		{
 			"index": 38,
@@ -162,7 +162,7 @@
 		},
 		{
 			"index": 40,
-			"script": "Lose Item"
+			"script": "NULL"
 		},
 		{
 			"index": 41,
@@ -170,7 +170,7 @@
 		},
 		{
 			"index": 42,
-			"script": "Lose Item"
+			"script": "NULL"
 		},
 		{
 			"index": 43,
@@ -178,11 +178,11 @@
 		},
 		{
 			"index": 44,
-			"script": "Get Money"
+			"script": "NULL"
 		},
 		{
 			"index": 45,
-			"script": "Get Money"
+			"script": "NULL"
 		},
 		{
 			"index": 46,
@@ -194,11 +194,11 @@
 		},
 		{
 			"index": 48,
-			"script": "NULL"
+			"script": "Add Abnormal Condition"
 		},
 		{
 			"index": 49,
-			"script": "NULL"
+			"script": "Cure Abnormal Condition"
 		},
 		{
 			"index": 50,
@@ -206,7 +206,7 @@
 		},
 		{
 			"index": 51,
-			"script": "NULL"
+			"script": "Broker Information"
 		},
 		{
 			"index": 52,
@@ -226,11 +226,11 @@
 		},
 		{
 			"index": 56,
-			"script": "Add Abnormal Condition"
+			"script": "NULL"
 		},
 		{
 			"index": 57,
-			"script": "Cure Abnormal Condition"
+			"script": "NULL"
 		},
 		{
 			"index": 58,
@@ -238,7 +238,7 @@
 		},
 		{
 			"index": 59,
-			"script": "Broker Information"
+			"script": "NULL"
 		},
 		{
 			"index": 60,
@@ -274,11 +274,11 @@
 		},
 		{
 			"index": 68,
-			"script": "NULL"
+			"script": "Check Number of Polices in Selected City"
 		},
 		{
 			"index": 69,
-			"script": "NULL"
+			"script": "Decrease Short-term gauge"
 		},
 		{
 			"index": 70,
@@ -306,11 +306,11 @@
 		},
 		{
 			"index": 76,
-			"script": "Check Number of Polices in Selected City"
+			"script": "선택한 곳 공안 수 확인"
 		},
 		{
 			"index": 77,
-			"script": "Decrease Short-term gauge"
+			"script": "집중 단속 게이지 감소: "
 		},
 		{
 			"index": 78,

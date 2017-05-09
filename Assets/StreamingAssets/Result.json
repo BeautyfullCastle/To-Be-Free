@@ -221,9 +221,11 @@
 			"stat": "NULL",
 			"successScript": "그는 돈을 받고 바로 공안에 대한 정보를 알려주었습니다. 당신은 공안에 대한 정보로 공안에 대한 위협을 피했습니다.",
 			"successEffectIndexList": [
+				44,
 				77
 			],
 			"successEffectValueList": [
+				-3,
 				2
 			],
 			"failureScript": "NULL",
@@ -255,12 +257,12 @@
 		{
 			"index": 14,
 			"stat": "TALENT",
-			"successScript": "주변에 중국어를 하는 조선족이 내용을 알려주었습니다.",
+			"successScript": "주변에 중국어를 하는 조선족이 내용을 알려주었습니다. 해당 내용을 통해서 공안의 위협을 피할 수 있을 것 같습니다.",
 			"successEffectIndexList": [
-				76
+				77
 			],
 			"successEffectValueList": [
-				-99
+				2
 			],
 			"failureScript": "주변에 중국어를 하는 사람을 찾을 수 없었습니다. 사람을 찾느라 오히려 돌아다니느라 피곤해졌습니다.",
 			"failureEffectIndexList": [
@@ -273,12 +275,12 @@
 		{
 			"index": 15,
 			"stat": "NULL",
-			"successScript": "사전을 꺼내 해석을 해봅니다. 해석을 통해서 공문의 내용을 확인했습니다.",
+			"successScript": "사전을 꺼내 해석을 해봅니다. 해석을 통해서 공문의 내용을 확인했습니다. 공문의 내용을 바탕으로 공안의 위협을 피할 수 있을 것 같습니다.",
 			"successEffectIndexList": [
-				76
+				77
 			],
 			"successEffectValueList": [
-				-99
+				2
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -550,7 +552,7 @@
 				44
 			],
 			"successEffectValueList": [
-				3
+				4
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -568,9 +570,9 @@
 				44
 			],
 			"successEffectValueList": [
-				6
+				7
 			],
-			"failureScript": "당신은 힘든 일을 제대로 하지 못했고 결국 추가업무에서 퇴출당했습니다.",
+			"failureScript": "당신은 힘든 일을 제대로 하지 못했고 결국 추가업무에서 퇴출당했습니다.\\n결국 기존에 했던 업무 일당 밖에 받지 못했습니다.",
 			"failureEffectIndexList": [
 				44
 			],
@@ -601,9 +603,11 @@
 			"stat": "NULL",
 			"successScript": "손짓발짓을 이용하여 중국말을 못하는 것을 어필합니다.\\n이 모습을 보고 중국말을 할 줄 아는 사람이 와서 통역해줍니다.\\n'이 사람 도움을 주고 싶다고 하네 식사라도 하고 싶으면 이 쪽으로 오라는 군' 하며 쪽지를 건넸습니다.",
 			"successEffectIndexList": [
+				44,
 				74
 			],
 			"successEffectValueList": [
+				4,
 				4
 			],
 			"failureScript": "NULL",
@@ -619,10 +623,10 @@
 			"stat": "NULL",
 			"successScript": "중국인은 계속 말을 했지만 무시하는 것을 눈치 챘는지 다른 곳으로 떠났습니다.",
 			"successEffectIndexList": [
-				-99
+				44
 			],
 			"successEffectValueList": [
-				-99
+				4
 			],
 			"failureScript": "NULL",
 			"failureEffectIndexList": [
@@ -1151,9 +1155,11 @@
 			"stat": "NULL",
 			"successScript": "사람이 계속 많아지고 있습니다. 낌새가 이상합니다. 다른 곳으로 이동해서 조금이나마 휴식을 취합니다.",
 			"successEffectIndexList": [
-				0
+				0,
+				24
 			],
 			"successEffectValueList": [
+				1,
 				1
 			],
 			"failureScript": "NULL",
@@ -2401,7 +2407,7 @@
 			"stat": "TALENT",
 			"successScript": "운이 좋았습니다. 큰 돈을 땄습니다.",
 			"successEffectIndexList": [
-				44
+				45
 			],
 			"successEffectValueList": [
 				3
@@ -2455,10 +2461,10 @@
 			"stat": "AGILITY",
 			"successScript": "도망치면서 순발력 있게 딴 돈도 가지고 빠져나갔습니다.",
 			"successEffectIndexList": [
-				44
+				45
 			],
 			"successEffectValueList": [
-				5
+				4
 			],
 			"failureScript": "허겁지겁 도망쳤습니다. 도박장을 성공적으로 빠져나갔지만 돈을 챙지기는 못했습니다.",
 			"failureEffectIndexList": [
@@ -2536,7 +2542,7 @@
 			"successEffectValueList": [
 				1
 			],
-			"failureScript": "NULL",
+			"failureScript": "주변을 찾았지만 브로커를 찾지 못했습니다. 아무래도 헛소문이었던것 같습니다.",
 			"failureEffectIndexList": [
 				-99
 			],

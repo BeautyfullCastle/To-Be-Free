@@ -26,7 +26,7 @@
 			"objectType": "NULL",
 			"comparisonOperator": ">",
 			"compareAmount": 0,
-			"script": "브로커 정보를 모른다고 한다.",
+			"script": "브로커 정보를 알려준다.",
 			"linkType": "RESULT",
 			"linkIndex": 18
 		},
@@ -36,7 +36,7 @@
 			"objectType": "NULL",
 			"comparisonOperator": "NULL",
 			"compareAmount": -99,
-			"script": "브로커정보를 알려주지 않는다.",
+			"script": "브로커 정보를 모른다고 한다.",
 			"linkType": "RESULT",
 			"linkIndex": 19
 		},

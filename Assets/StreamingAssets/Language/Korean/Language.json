@@ -464,11 +464,6 @@
 			"index": 92,
 			"key": "UI_Police",
 			"script": "공안"
-		},
-		{
-			"index": 93,
-			"key": "UI_Observation",
-			"script": "관찰력"
 		}
 	]
 }

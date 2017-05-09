@@ -133,7 +133,7 @@
 		},
 		{
 			"index": 13,
-			"actionType": "NULL",
+			"actionType": "WORK_END",
 			"difficulty": "NORMAL",
 			"script": "일을 마치고 일당을 받으려고 하는데 월급을 주지 않았습니다. 사장실로 찾아가보니 사장은 조선족인지 한국말로 이야기를 시작했습니다.\\n'당신 탈북자인 것 같은데 공안에게 말하지 않을 테니 대신 오늘 일당은 줄 수 없네'",
 			"resultIndex": -99,
@@ -325,7 +325,7 @@
 		},
 		{
 			"index": 31,
-			"actionType": "NULL",
+			"actionType": "WORK_END",
 			"difficulty": "NORMAL",
 			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕 하시우,네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 기뻐하며 자신의 이름을 김봉식이라고 하고 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'",
 			"resultIndex": -99,
@@ -357,7 +357,7 @@
 		},
 		{
 			"index": 34,
-			"actionType": "NULL",
+			"actionType": "WORK_END",
 			"difficulty": "NORMAL",
 			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕하시우,네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'",
 			"resultIndex": -99,
@@ -389,7 +389,7 @@
 		},
 		{
 			"index": 37,
-			"actionType": "NULL",
+			"actionType": "WORK_END",
 			"difficulty": "NORMAL",
 			"script": "일을 끝내고 한 남성이 다가와 말을 겁니다.\\n'이봐 자네 보아하니 탈북자인 것 같은데 혹시 남한에 갈 생각이 없나? 내가 브로커를 알고 있거든 대신 돈이 좀 필요한데'\\n그는 돈을 주면 브로커에 대한 정보를 준다고 합니다.",
 			"resultIndex": -99,
@@ -474,7 +474,7 @@
 		},
 		{
 			"index": 45,
-			"actionType": "NULL",
+			"actionType": "WORK_START",
 			"difficulty": "NORMAL",
 			"script": "일을 하던 중 시끄러운 소리가 들리는 곳을 보니 일터 주차장에 공안의 차량이 보입니다.\\n아무래도 공안이 점검이 나온 것 같습니다.",
 			"resultIndex": -99,
@@ -495,7 +495,7 @@
 		},
 		{
 			"index": 47,
-			"actionType": "NULL",
+			"actionType": "WORK_START",
 			"difficulty": "NORMAL",
 			"script": "일을 하던 중 조선족 인부 한명이 큰소리로 외칩니다.\\n'지금 추가업무가 필요한데 이 일을 하면 지금임금보다 높게 쳐주겠소. 다만 일이 매우 힘듭니다. 그럼 신청자를 받겠습니다.'\\n당신은 힘든 일이지만 신청을 할지 고민합니다.",
 			"resultIndex": -99,

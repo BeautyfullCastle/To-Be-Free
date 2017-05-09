@@ -2,7 +2,7 @@
 	"dataList": [
 		{
 			"index": 0,
-			"name": "FOOD 1",
+			"name": "식량 1",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -14,11 +14,11 @@
 			],
 			"price": 2,
 			"tag": "FOOD",
-			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킵니다."
 		},
 		{
 			"index": 1,
-			"name": "FOOD 2",
+			"name": "식량 2",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -30,11 +30,11 @@
 			],
 			"price": 4,
 			"tag": "FOOD",
-			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킵니다."
 		},
 		{
 			"index": 2,
-			"name": "FOOD 3",
+			"name": "식량 3",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -46,11 +46,11 @@
 			],
 			"price": 6,
 			"tag": "FOOD",
-			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킵니다."
 		},
 		{
 			"index": 3,
-			"name": "FOOD 4",
+			"name": "식량 4",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -62,11 +62,11 @@
 			],
 			"price": 8,
 			"tag": "FOOD",
-			"script": "음식, 휴식 때 먹어 배고픔을 회복시킨다."
+			"script": "음식, 휴식 때 먹어 배고픔을 회복시킵니다."
 		},
 		{
 			"index": 4,
-			"name": "HOT MILK",
+			"name": "따뜻한 우유",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -78,11 +78,11 @@
 			],
 			"price": 2,
 			"tag": "NULL",
-			"script": "휴식 때 먹어 체력을 1회복시킨다."
+			"script": "휴식 때 먹어 체력을 1회복시킵니다."
 		},
 		{
 			"index": 5,
-			"name": "High quality HOT MILK",
+			"name": "따뜻한 고급우유",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -94,11 +94,11 @@
 			],
 			"price": 4,
 			"tag": "NULL",
-			"script": "휴식 때 먹어 체력을 2회복시킨다."
+			"script": "휴식 때 먹어 체력을 2회복시킵니다."
 		},
 		{
 			"index": 6,
-			"name": "Pillow",
+			"name": "베게",
 			"startTime": "REST",
 			"duration": "EQUIP",
 			"restore": "false",
@@ -110,11 +110,11 @@
 			],
 			"price": 4,
 			"tag": "NULL",
-			"script": "휴식 때 체력을 1회복시킨다."
+			"script": "휴식 때 체력을 1회복시킵니다."
 		},
 		{
 			"index": 7,
-			"name": "Vulnerary",
+			"name": "상처약",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -126,11 +126,11 @@
 			],
 			"price": 3,
 			"tag": "NULL",
-			"script": "언제든지 사용하는 즉시 1체력을 회복한다."
+			"script": "언제든지 사용하는 즉시 1체력을 회복합니다."
 		},
 		{
 			"index": 8,
-			"name": "High quality Vulnerary",
+			"name": "고급 상처약",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -142,11 +142,11 @@
 			],
 			"price": 6,
 			"tag": "NULL",
-			"script": "언제든지 사용하는 즉시 2체력을 회복한다."
+			"script": "언제든지 사용하는 즉시 2체력을 회복합니다."
 		},
 		{
 			"index": 9,
-			"name": "Work gloves",
+			"name": "작업용 장갑",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -162,7 +162,7 @@
 		},
 		{
 			"index": 10,
-			"name": "Tool belt",
+			"name": "공구벨트",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -178,7 +178,7 @@
 		},
 		{
 			"index": 11,
-			"name": "Working Vest",
+			"name": "작업용 조끼",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -194,7 +194,7 @@
 		},
 		{
 			"index": 12,
-			"name": "Disposable work gloves",
+			"name": "1회용 목장갑",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -210,7 +210,7 @@
 		},
 		{
 			"index": 13,
-			"name": "Disposable coated gloves",
+			"name": "1회용 코팅장갑",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -226,7 +226,7 @@
 		},
 		{
 			"index": 14,
-			"name": "Thin Dress",
+			"name": "얇은 복장",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -242,7 +242,7 @@
 		},
 		{
 			"index": 15,
-			"name": "Sports shoes",
+			"name": "운동화",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -258,7 +258,7 @@
 		},
 		{
 			"index": 16,
-			"name": "Comfortable clothing",
+			"name": "편안한 의복",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -274,7 +274,7 @@
 		},
 		{
 			"index": 17,
-			"name": "Ion drinks",
+			"name": "이온음료",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -290,7 +290,7 @@
 		},
 		{
 			"index": 18,
-			"name": "Clean water",
+			"name": "깨끗한 물",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -306,7 +306,7 @@
 		},
 		{
 			"index": 19,
-			"name": "Watch",
+			"name": "손목시계",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -322,7 +322,7 @@
 		},
 		{
 			"index": 20,
-			"name": "Clean clothes",
+			"name": "깔끔한 의복",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -338,7 +338,7 @@
 		},
 		{
 			"index": 21,
-			"name": "Chinese Dictionary",
+			"name": "중국어 사전",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -354,7 +354,7 @@
 		},
 		{
 			"index": 22,
-			"name": "Oral cleanser",
+			"name": "구강청정제",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -370,7 +370,7 @@
 		},
 		{
 			"index": 23,
-			"name": "Gum",
+			"name": "껌",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -386,7 +386,7 @@
 		},
 		{
 			"index": 24,
-			"name": "Glasses",
+			"name": "안경",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -402,7 +402,7 @@
 		},
 		{
 			"index": 25,
-			"name": "book",
+			"name": "책",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -418,7 +418,7 @@
 		},
 		{
 			"index": 26,
-			"name": "Ear plug",
+			"name": "이어플러그",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -434,7 +434,7 @@
 		},
 		{
 			"index": 27,
-			"name": "Coffee",
+			"name": "커피",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -450,7 +450,7 @@
 		},
 		{
 			"index": 28,
-			"name": "Energy drink",
+			"name": "에너지 드링크",
 			"startTime": "TEST",
 			"duration": "ONCE",
 			"restore": "true",
@@ -466,7 +466,7 @@
 		},
 		{
 			"index": 29,
-			"name": "Bribe provision 1",
+			"name": "뇌물 제공-1",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -478,11 +478,11 @@
 			],
 			"price": 8,
 			"tag": "NULL",
-			"script": "얻는 즉시 가장 가까운 곳의 공안 제거"
+			"script": "얻는 즉시 가장 가까운 곳의 공안을 제거합니다."
 		},
 		{
 			"index": 30,
-			"name": "Bribe provision 2",
+			"name": "뇌물 제공-2",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -494,11 +494,11 @@
 			],
 			"price": 6,
 			"tag": "NULL",
-			"script": "얻는 즉시 랜덤 공안말 제거"
+			"script": "얻는 즉시 무작위 공안을 제거합니다."
 		},
 		{
 			"index": 31,
-			"name": "Lemonade",
+			"name": "레몬에이드",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -510,11 +510,11 @@
 			],
 			"price": 4,
 			"tag": "NULL",
-			"script": "얻는 즉시 상쾌함상태를 얻는다."
+			"script": "얻는 즉시 상쾌함상태를 얻습니다."
 		},
 		{
 			"index": 32,
-			"name": "Chocolate",
+			"name": "초콜릿",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -526,11 +526,11 @@
 			],
 			"price": 4,
 			"tag": "NULL",
-			"script": "얻는 즉시 집중상태를 얻는다."
+			"script": "얻는 즉시 집중상태를 얻습니다."
 		},
 		{
 			"index": 33,
-			"name": "Bandage",
+			"name": "붕대",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -542,11 +542,11 @@
 			],
 			"price": 4,
 			"tag": "NULL",
-			"script": "얻은 즉시 다리부상상태를 치유한다."
+			"script": "얻은 즉시 다리부상상태를 치유합니다."
 		},
 		{
 			"index": 34,
-			"name": "Anxiety disorder drug",
+			"name": "불안장애약",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -558,11 +558,11 @@
 			],
 			"price": 4,
 			"tag": "NULL",
-			"script": "얻은 즉시 불안상태를 한다."
+			"script": "얻은 즉시 불안상태를 치유합니다."
 		},
 		{
 			"index": 35,
-			"name": "Restorative pill",
+			"name": "피로회복제",
 			"startTime": "NOW",
 			"duration": "ONCE",
 			"restore": "false",
@@ -574,11 +574,11 @@
 			],
 			"price": 4,
 			"tag": "NULL",
-			"script": "얻은 즉시 피곤함상태를 치유한다."
+			"script": "얻은 즉시 피곤함상태를 치유합니다."
 		},
 		{
 			"index": 36,
-			"name": "Catcher",
+			"name": "채집도구",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -594,7 +594,7 @@
 		},
 		{
 			"index": 37,
-			"name": "Nice Cloth",
+			"name": "멋드러진 옷",
 			"startTime": "TEST",
 			"duration": "EQUIP",
 			"restore": "true",
@@ -610,7 +610,7 @@
 		},
 		{
 			"index": 38,
-			"name": "Korean Rest Membership",
+			"name": "조선인 쉼터 회워권",
 			"startTime": "REST",
 			"duration": "ONCE",
 			"restore": "false",
@@ -622,7 +622,7 @@
 			],
 			"price": 3,
 			"tag": "NULL",
-			"script": "쉼터에 가서 휴식을 취합니다."
+			"script": "쉼터에 가서 휴식을 취합니다. 휴식 때 체력을 2회복시킵니다."
 		}
 	]
 }

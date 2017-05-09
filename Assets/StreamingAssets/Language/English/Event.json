@@ -2,531 +2,531 @@
 	"dataList": [
 		{
 			"index": 0,
-			"script": "Event English Language Test 0"
+			"script": "당신은 공고를 보고 일터에 나가 일을 했습니다."
 		},
 		{
 			"index": 1,
-			"script": "Event English Language Test 1"
+			"script": "당신은 주변에 브로커에 대한 정보를 조사했습니다."
 		},
 		{
 			"index": 2,
-			"script": "Event English Language Test 2"
+			"script": "당신은 주변에 공안에 대한 정보를 조사했습니다."
 		},
 		{
 			"index": 3,
-			"script": "Event English Language Test 3"
+			"script": "당신은 주변에 도시에 대한 정보를 조사했습니다."
 		},
 		{
 			"index": 4,
-			"script": "Event English Language Test 4"
+			"script": "주변에 공안이 보입니다. 공안에게 들키지 않게 은밀하게 움직입니다."
 		},
 		{
 			"index": 5,
-			"script": "Event English Language Test 5"
+			"script": "체포되어 탈북자 북송수용소까지 끌려갑니다. 끌려가는 도중 탈출을 시도해봅니다."
 		},
 		{
 			"index": 6,
-			"script": "Event English Language Test 6"
+			"script": "피곤을 풀기 위해 휴식을 취했습니다."
 		},
 		{
 			"index": 7,
-			"script": "Event English Language Test 7"
+			"script": "공안을 피해 숨어서 휴식을 취했습니다."
 		},
 		{
 			"index": 8,
-			"script": "Event English Language Test 8"
+			"script": "산에서 먹을 것을 찾아 산속을 찾아다녔습니다."
 		},
 		{
 			"index": 9,
-			"script": "Event English Language Test 9"
+			"script": "당신이 남한으로 보내준다고 들었소'\\n브로커는 당신은 바라보고 옆자리에 앉으라고 손짓했습니다."
 		},
 		{
 			"index": 10,
-			"script": "Event English Language Test 10"
+			"script": "공안을 대한 정보를 조사하는 중 주변에 공안이 순찰을 돌 수 있다는 소문을 들었습니다. 자칫 하다가 공안을 만날 수도 있습니다."
 		},
 		{
 			"index": 11,
-			"script": "Event English Language Test 11"
+			"script": "조사를 하던 중 공안이 보입니다. 공안을 피해서 주변을 벗어납니다."
 		},
 		{
 			"index": 12,
-			"script": "Event English Language Test 12"
+			"script": "당신이 남한으로 보내준다고 들었소'\\n브로커는 당신은 바라보고 옆자리에 앉으라고 손짓했습니다."
 		},
 		{
 			"index": 13,
-			"script": "Event English Language Test 13"
+			"script": "일을 마치고 일당을 받으려고 하는데 월급을 주지 않았습니다. 사장실로 찾아가보니 사장은 조선족인지 한국말로 이야기를 시작했습니다.\\n'당신 탈북자인 것 같은데 공안에게 말하지 않을 테니 대신 오늘 일당은 줄 수 없네'"
 		},
 		{
 			"index": 14,
-			"script": "Event English Language Test 14"
+			"script": "공안에 대한 정보를 알고 있다는 사람을 만났습니다. 그는 정보를 알려줄 수 있지만 돈을 원한다고 합니다."
 		},
 		{
 			"index": 15,
-			"script": "Event English Language Test 15"
+			"script": "공안에 대한 정보가 있는 공고로 추정되는 게시물을 발견했습니다. 하지만 공고는 중국어로 되어있어 해석이 어렵습니다."
 		},
 		{
 			"index": 16,
-			"script": "Event English Language Test 16"
+			"script": "주변에 혹시 조선족처럼 보이는 사람이 있는지 찾아봅니다."
 		},
 		{
 			"index": 17,
-			"script": "Event English Language Test 17"
+			"script": "산에서 먹을 것 찾는 도중 버섯을 찾았습니다. 다만 버섯은 위험한 버섯도 많아서 걱정이 됩니다."
 		},
 		{
 			"index": 18,
-			"script": "Event English Language Test 18"
+			"script": "산에서 먹을 것을 찾는 도중 짐승의 울음소리를 들었습니다. 더 이상 조사했다가 짐승과 마주칠 위험이 있습니다."
 		},
 		{
 			"index": 19,
-			"script": "Event English Language Test 19"
+			"script": "산 안쪽에서 식량을 채집하던 중 멧돼지를 만났습니다. 그전의 울음소리는 이 멧돼지였던 것 같습니다. 멧돼지를 마주치고 빠르게 도망갑니다."
 		},
 		{
 			"index": 20,
-			"script": "Event English Language Test 20"
+			"script": "근처에 탈북자를 도와주는 시설이 있다는 소문을 듣고 그곳을 찾아 갔습니다.\\n'안녕하세요, 무엇을 도와드릴까요?'"
 		},
 		{
 			"index": 21,
-			"script": "Event English Language Test 21"
+			"script": "도시를 조사하다가 길거리에 놓여진 가방을 발견했습니다. 주변에는 아무도 없어 보입니다."
 		},
 		{
 			"index": 22,
-			"script": "Event English Language Test 22"
+			"script": "조사를 하다가 멀쩡해 보이는 음식이 쓰레기통에 있는 것을 발견했습니다. 이 음식을 먹을 지 고민해봅니다."
 		},
 		{
 			"index": 23,
-			"script": "Event English Language Test 23"
+			"script": "인적이 드문 곳에서 휴식을 취합니다."
 		},
 		{
 			"index": 24,
-			"script": "Event English Language Test 24"
+			"script": "인적이 드문 곳에서 휴식을 취합니다. 한 남자가 다가오더니 명함을 줍니다. 명함에는 한국어로 조선족 쉼터라고 적혀 있습니다. 쉼터는 그리 멀지 않은 곳에 있는 것 같습니다."
 		},
 		{
 			"index": 25,
-			"script": "Event English Language Test 25"
+			"script": "명함에 표시된 곳으로 이동합니다. 이동하는데 지리를 잘 모르겠습니다. 집중해서 길을 찾아봅니다."
 		},
 		{
 			"index": 26,
-			"script": "Event English Language Test 26"
+			"script": "인적이 드문 곳에서 휴식을 취합니다. 그런데 갑자기 사람들이 모여들기 시작합니다."
 		},
 		{
 			"index": 27,
-			"script": "Event English Language Test 27"
+			"script": "무시하고 휴식을 취하지만 이상하게도 사람이 계속해서 많아 집니다. 아무래도 주변에 무슨 일 있는 것 같습니다."
 		},
 		{
 			"index": 28,
-			"script": "Event English Language Test 28"
+			"script": "김철수는 일을 하기 위해서 크게 집중했다."
 		},
 		{
 			"index": 29,
-			"script": "Event English Language Test 29"
+			"script": "당신은 자신의 처지를 항변해봅니다."
 		},
 		{
 			"index": 30,
-			"script": "Event English Language Test 30"
+			"script": "당신은 어쩔 수 없이 돈을 받는 것을 포기했습니다.\\n사장이 공안을 부를 수 있으니 빠르게 자리를 떠났습니다."
 		},
 		{
 			"index": 31,
-			"script": "Event English Language Test 31"
+			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕 하시우, 네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 기뻐하며 자신의 이름을 김봉식이라고 하고 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'"
 		},
 		{
 			"index": 32,
-			"script": "Event English Language Test 32"
+			"script": "숨어서 휴식을 취하는 도중 근처에 한 사람이 초조해 보이는 듯 주변을 두리번거리고 있습니다. 행색으로 보아하니 같은 탈북자인 것 같습니다."
 		},
 		{
 			"index": 33,
-			"script": "Event English Language Test 33"
+			"script": "같은 탈북자를 모른 체 할 수 없어서 다가가서 말을 건넵니다.\\n'보아하니 탈북자 같은데 혹시 숨을 곳을 찾으십니까?'\\n그는 마치 구세주를 만났다는 눈빛을 하며 고개를 끄덕였습니다. 당신은 그를 이끌고 당신이 숨어있던 장소로 향합니다. 공안이 움직이는 동안 눈치 챌 수 있으니 은밀하게 움직입니다."
 		},
 		{
 			"index": 34,
-			"script": "Event English Language Test 34"
+			"script": "일이 끝나고 한 남자가 다가와 말을 겁니다.\\n'안녕하시우, 네도 탈북자입네다. 같이 이야기를 좀 할 수 있겄습니까?'\\n당신은 고개를 끄덕였습니다. 그는 이야기를 이어갔습니다.\\n'혹시 당신도 남한에 갈 생각이 있습니까? 중국은 너무 위험하네. 혹시 브로커에 대한 정보를 알고 있는 것이 있습니까?'"
 		},
 		{
 			"index": 35,
-			"script": "Event English Language Test 35"
+			"script": "공안을 피해서 숨어서 휴식을 취합니다. 휴식을 취하던 중 근처에 공안이 순찰 중인 것을 확인했습니다. 위험하기 때문에 몰래 장소를 빠져나갑니다."
 		},
 		{
 			"index": 36,
-			"script": "Event English Language Test 36"
+			"script": "숨어서 휴식을 취하고 있는 중 공안이 근처에 오는 것이 보입니다. 지금이라면 숨는 장소를 이동 할 수 있을 것 같습니다."
 		},
 		{
 			"index": 37,
-			"script": "Event English Language Test 37"
+			"script": "일을 끝내고 한 남성이 다가와 말을 겁니다.\\n'이봐 자네 보아하니 탈북자인 것 같은데 혹시 남한에 갈 생각이 없나? 내가 브로커를 알고 있거든 대신 돈이 좀 필요한데'\\n그는 돈을 주면 브로커에 대한 정보를 준다고 합니다."
 		},
 		{
 			"index": 38,
-			"script": "Event English Language Test 38"
+			"script": "당신은 제안을 받아드렸습니다. 그는 6위안을 주면 정보를 알려주겠다고 합니다."
 		},
 		{
 			"index": 39,
-			"script": "Event English Language Test 39"
+			"script": "공안이 온 반대방향으로 은밀하게 이동합니다."
 		},
 		{
 			"index": 40,
-			"script": "Event English Language Test 40"
+			"script": "장소를 이동하는 중 반대로 들키게 될 수 있으므로 이동을 하지않고 가만히 있습니다. 하지만 공안이 더 가까이 다가옵니다. 당신은 숨소리 조차 내지 않으려 노력합니다."
 		},
 		{
 			"index": 41,
-			"script": "Event English Language Test 41"
+			"script": "당신은 자신의 처지를 알아 달라며 그에게 너무 비싸다며 이야기 해봅니다."
 		},
 		{
 			"index": 42,
-			"script": "Event English Language Test 42"
+			"script": "당신이 남한으로 보내준다고 들었소'\\n브로커는 당신은 바라보고 옆자리에 앉으라고 손짓했습니다."
 		},
 		{
 			"index": 43,
-			"script": "Event English Language Test 43"
+			"script": "'알겠네, 그럼 2위안에 해주겠네'"
 		},
 		{
 			"index": 44,
-			"script": "Event English Language Test 44"
+			"script": "알겠네, 그럼 4위안에 해주겠네'"
 		},
 		{
 			"index": 45,
-			"script": "Event English Language Test 45"
+			"script": "일을 하던 중 시끄러운 소리가 들리는 곳을 보니 일터 주차장에 공안의 차량이 보입니다.\\n아무래도 공안이 점검이 나온 것 같습니다."
 		},
 		{
 			"index": 46,
-			"script": "Event English Language Test 46"
+			"script": "당신이 남한으로 보내준다고 들었소'\\n브로커는 당신은 바라보고 옆자리에 앉으라고 손짓했습니다."
 		},
 		{
 			"index": 47,
-			"script": "Event English Language Test 47"
+			"script": "일을 하던 중 조선족 인부 한명이 큰소리로 외칩니다.\\n'지금 추가업무가 필요한데 이 일을 하면 지금임금보다 높게 쳐주겠소. 다만 일이 매우 힘듭니다. 그럼 신청자를 받겠습니다.'\\n당신은 힘든 일이지만 신청을 할지 고민합니다."
 		},
 		{
 			"index": 48,
-			"script": "Event English Language Test 48"
+			"script": "당신은 돈을 조금이라도 더 벌기 위해서 손을 들어서 추가 업무를 신청합니다. 추가업무는 이야기 한 것 처럼 정말 힘든 일이었습니다."
 		},
 		{
 			"index": 49,
-			"script": "Event English Language Test 49"
+			"script": "쉬는 시간 중 한 중국인이 다가와 중국어로 이야기하기 시작했습니다. 중국말을 알아들을 수 없다고 말했지만 중국인은 계속해서 말을 이어갔습니다."
 		},
 		{
 			"index": 50,
-			"script": "Event English Language Test 50"
+			"script": "걷다 보니 길을 잃었습니다. 목적지에 가는길을 찾아봅니다."
 		},
 		{
 			"index": 51,
-			"script": "Event English Language Test 51"
+			"script": "모르는 길을 무작정 걷는 것은 위험합니다. 집중해서 주변에 표지판이 있는지 확인해봅니다."
 		},
 		{
 			"index": 52,
-			"script": "Event English Language Test 52"
+			"script": "하염없이 걷다 보니 다리가 아픕니다. 아무래도 쉬어 가는 것이 좋아 보입니다. 하지만 지금 휴식을 한다면 목적지에 제때 도착하지 못할 수 있습니다."
 		},
 		{
 			"index": 53,
-			"script": "Event English Language Test 53"
+			"script": "아픈 다리를 부여잡고 계속해서 이동합니다. 하지만 아픈 다리로 계속해서 이동하는 것이 힘이 듭니다."
 		},
 		{
 			"index": 54,
-			"script": "Event English Language Test 54"
+			"script": "잠시 휴식을 취한 뒤 이동하기로 합니다. 휴식을 취하는데 다리가 욱신거립니다. 더 좋은 휴식을 취하기 위해서 집중해 봅니다."
 		},
 		{
 			"index": 55,
-			"script": "Event English Language Test 55"
+			"script": "걷는 중 근처에 과수원이 보입니다. 사람이 없는 걸 보니 몰래 먹을 수도 있을 것 같습니다."
 		},
 		{
 			"index": 56,
-			"script": "Event English Language Test 56"
+			"script": "배고픔에 몰래 과일을 서리하는 중 누군가가 다가옵니다. 농장주인인 것 같습니다. 당신은 걸리지 않게 위해 도망갑니다."
 		},
 		{
 			"index": 57,
-			"script": "Event English Language Test 57"
+			"script": "이미 공안에게 들켰으니 빠르게 도망칩니다. 얼마지나지 않아 공안의 소리가 커집니다. 아무래도 주변에 탈북자가 있다는 사실을 들킨 것 같습니다. 더 빠르게 달아납니다."
 		},
 		{
 			"index": 58,
-			"script": "Event English Language Test 58"
+			"script": "버스로 이동 중 갑자기 버스가 멈추더니 공안이 버스 안으로 들어왔습니다. 아무래도 공안의 검문인 것 같습니다. 공안의 검문을 피하기 위해 숨죽여 검문이 끝나기를 기다립니다."
 		},
 		{
 			"index": 59,
-			"script": "Event English Language Test 59"
+			"script": "버스로 이동 중 한 사람이 가지고 온 짐을 엎어버렸습니다. 이동 중에 위험하지만 엎어버린 짐을 정리하고 있습니다. 다른 사람들은 도와주고 있지 않고 있습니다."
 		},
 		{
 			"index": 60,
-			"script": "Event English Language Test 60"
+			"script": "짐을 줍는 것을 보고 옆으로 다가가 짐을 줍는 것을 도와줍니다. 그런데 생각보다 짐이 무겁습니다."
 		},
 		{
 			"index": 61,
-			"script": "Event English Language Test 61"
+			"script": "한 공안이 당신을 발견하고 이상한 손짓을 합니다. 바로 잡으러 오지 않는 걸 보아하니 무언가 이상합니다."
 		},
 		{
 			"index": 62,
-			"script": "Event English Language Test 62"
+			"script": "버스로 이동 중 조선어 같은 말소리가 들립니다. 자세히 듣기위해 집중해 봅니다."
 		},
 		{
 			"index": 63,
-			"script": "Event English Language Test 63"
+			"script": "소문을 통해서 브로커를 알고 있다는 한 조선인을 만났습니다.\\n'남한으로 가고 싶다고? 용하게도 내가 브로커에 대한 정보가 있다는 걸 알았나보구먼. 좋수만 대신 조건이 있제. 돈 좀 있나? 돈을 주면 알려줄 수 있지 4위안만 주게'"
 		},
 		{
 			"index": 64,
-			"script": "Event English Language Test 64"
+			"script": "자신이 돈이 없고 도움을 달라고 그를 설득해봅니다."
 		},
 		{
 			"index": 65,
-			"script": "Event English Language Test 65"
+			"script": "잡으러 오지 않는 걸 보아하니 이상해서 손짓을 이해하기 위해서 노력합니다. 손짓을 보아하니 손짓의 방향으로 도망치라는 의미인 것 같습니다."
 		},
 		{
 			"index": 66,
-			"script": "Event English Language Test 66"
+			"script": "브로커 정보를 알고 있다는 사람을 만났습니다. 그 사람과 이야기를 하던 중 이상한 낌새가 느껴집니다."
 		},
 		{
 			"index": 67,
-			"script": "Event English Language Test 67"
+			"script": "정확하지 않는 감에 브로커에 대한 정보를 얻을 수 있는 기회를 놓칠 수 없습니다. 위험을 무릅쓰고 브로커에 대한 정보를 알아냈습니다. 다만 근처에서 공안이 보입니다. 감이 맞은 것 같습니다. 장소를 빠르게 벗어납니다."
 		},
 		{
 			"index": 68,
-			"script": "Event English Language Test 68"
+			"script": "당신은 브로커가 말한 20위안을 건냈다."
 		},
 		{
 			"index": 69,
-			"script": "Event English Language Test 69"
+			"script": "한국인이 운영하는 교회에서 몰래 탈북자들을 지원하고 있다고 이야기를 들었습니다. 수소문 끝에 교회를 찾았습니다.\\n'사정은 딱하지만 이번에 우리 목사님께서 탈북자들을 도와 주시다가 잡혀 가셨습니다. 그냥 돌아가 주세요'\\n말하며 교회 문을 닫으려 합니다."
 		},
 		{
 			"index": 70,
-			"script": "Event English Language Test 70"
+			"script": "당신은 문을 닫기 전에 그를 막으려 재빠르게 문에 손을 뻗습니다."
 		},
 		{
 			"index": 71,
-			"script": "Event English Language Test 71"
+			"script": "체포되어 수감 중에 한 공안이 와서 돈을 요구하는 듯한 손짓을 합니다. 아무래도 돈을 좀 주면 풀려나게 해줄 것 같습니다."
 		},
 		{
 			"index": 72,
-			"script": "Event English Language Test 72"
+			"script": "기차로 이동 중 간수가 보지 않는 틈을 타서 기차에서 도망 칠 수 있지만 너무 위험합니다."
 		},
 		{
 			"index": 73,
-			"script": "Event English Language Test 73"
+			"script": "위험하지만 체포되어 북송 당하는 것 보다는 낫다고 생각이 됩니다. 다치지 않게 몸에 힘을 주고 뛰어 내립니다."
 		},
 		{
 			"index": 74,
-			"script": "Event English Language Test 74"
+			"script": "수용소에서 있는데 한 공안이 나와 중국어로 이야기합니다. 옆에 있던 탈북자가 8위안을 주면 나갈 수 있다는 이야기를 하고 있다며 알려줍니다."
 		},
 		{
 			"index": 75,
-			"script": "Event English Language Test 75"
+			"script": "수용에서 칼을 찾았습니다. 이 칼을 이용하면 약한 창살을 뚫고 도망갈 수 있을 것 같습니다. 다만 칼을 사용하는데 힘이 많이 들 것 같습니다."
 		},
 		{
 			"index": 76,
-			"script": "Event English Language Test 76"
+			"script": "수용소에서 공안들의 틈을 발견했습니다. 은밀하게 들키지 않게 탈출을 시도해봅니다."
 		},
 		{
 			"index": 77,
-			"script": "Event English Language Test 77"
+			"script": "수용소에서 한 남자가 다가왔습니다. 그는 자신이 알고 있는 수용소 탈출루트가 있다며 혹시 먹을 것을 좀 나눠 준다면 자신이 알고 있는 탈출루트를 알려주겠다고 합니다."
 		},
 		{
 			"index": 78,
-			"script": "Event English Language Test 78"
+			"script": "공안은 당신을 데리고 외곽에 있는 지역으로 이동합니다. 공안이 당신을 탈북자 수용소로 인도했습니다. "
 		},
 		{
 			"index": 79,
-			"script": "Event English Language Test 79"
+			"script": "아침에 일어나니 오늘은 매우 피곤합니다."
 		},
 		{
 			"index": 80,
-			"script": "Event English Language Test 80"
+			"script": "자고 일어나니 팔이 저립니다."
 		},
 		{
 			"index": 81,
-			"script": "Event English Language Test 81"
+			"script": "자고 일어나니 다리가 저립니다."
 		},
 		{
 			"index": 82,
-			"script": "Event English Language Test 82"
+			"script": "아침에 일어나니 오늘은 기분이 매우 좋습니다."
 		},
 		{
 			"index": 83,
-			"script": "Event English Language Test 83"
+			"script": "일어나 보니 돈이 조금 사라져 있습니다."
 		},
 		{
 			"index": 84,
-			"script": "Event English Language Test 84"
+			"script": "밤에 밖에서 잠을 청하려 합니다. 하지만 추위가 엄습해서 잠을 자기 힘듭니다. 휴식을 취하기 위해서 잠에 집중해봅니다."
 		},
 		{
 			"index": 85,
-			"script": "Event English Language Test 85"
+			"script": "밖에서 잠을 청하고 있는데 중간에 부스럭거리는 소리가 들립니다. 신경이 쓰이지만 지나치게 피곤합니다."
 		},
 		{
 			"index": 86,
-			"script": "Event English Language Test 86"
+			"script": "부스럭 거리는 소리가 시끄러우니 일어나서 확인해봅니다. 일어나서 확인해보니 어떤 사람이 옆에 놓은 가방을 뒤지고 있었습니다. 화들짝 놀라 일어나서 도둑을 잡으려 합니다."
 		},
 		{
 			"index": 87,
-			"script": "Event English Language Test 87"
+			"script": "당신은 브로커가 말한 20위안을 건냈다."
 		},
 		{
 			"index": 88,
-			"script": "Event English Language Test 88"
+			"script": "당신은 퉁랴오의 약속한 장소에 가서 브로커에게 식량을 충분히 챙겼다고 식량을 보여줬습니다."
 		},
 		{
 			"index": 89,
-			"script": "Event English Language Test 89"
+			"script": "당신은 브로커가 말한 10위안을 건냈다."
 		},
 		{
 			"index": 90,
-			"script": "Event English Language Test 90"
+			"script": "당신은 퉁랴오의 약속한 장소에서 브로커를 찾았습니다."
 		},
 		{
 			"index": 91,
-			"script": "Event English Language Test 91"
+			"script": "당신은 약속한 날에 맞춰 브로커에게 갔습니다."
 		},
 		{
 			"index": 92,
-			"script": "Event English Language Test 92"
+			"script": "당신은 수상한 물건을 들고 이야기한 장소에 도착했습니다."
 		},
 		{
 			"index": 93,
-			"script": "Event English Language Test 93"
+			"script": "당신은 확실히 분주해보이는 일터에 도착했습니다. 게시판의 내용대로 아주 바빠보입니다. 별다른 교육 없이 바로 일을 시작하라고 합니다. 일은 물건을 나르는 단순한 일이지만 힘이 필요할 것 같습니다."
 		},
 		{
 			"index": 94,
-			"script": "Event English Language Test 94"
+			"script": "물건을 나누어 준다는 곳에 도착했습니다. 확실한 소문인지 근처에 사람들이 많습니다. 장소에 가보니 이미 물건을 뿌리고 있고 많은 사람들로 아수라장입니다. 이 아수라장에서 물건을 집으려 노력합니다."
 		},
 		{
 			"index": 95,
-			"script": "Event English Language Test 95"
+			"script": "쓰레기장에서 아직 쓸만한 물건이 있는지 찾아봅니다."
 		},
 		{
 			"index": 96,
-			"script": "Event English Language Test 96"
+			"script": "소문의 무료 급식소에 도착했습니다. 정말로 무료급식을 하고 있습니다."
 		},
 		{
 			"index": 97,
-			"script": "Event English Language Test 97"
+			"script": "당신은 약속한 날에 맞춰 정보원에게 찾아갔습니다."
 		},
 		{
 			"index": 98,
-			"script": "Event English Language Test 98"
+			"script": "당신은 소문의 장소에서 브로커에 대한 정보를 알고 있다는 사람을 찾아봅니다."
 		},
 		{
 			"index": 99,
-			"script": "Event English Language Test 99"
+			"script": "돈을 들고 정보를 알고 있는 사람을 찾아 갔습니다."
 		},
 		{
 			"index": 100,
-			"script": "Event English Language Test 100"
+			"script": "당신은 소문의 장소에서 브로커에 대한 정보를 알고 있다는 사람을 찾아봅니다."
 		},
 		{
 			"index": 101,
-			"script": "Event English Language Test 101"
-		},
-		{
-			"index": 101,
-			"script": "Event English Language Test 102"
+			"script": "당신은 정보를 조사 중 공안에 대한 정보를 알고 있다는 한 조선족을 알아냈습니다. 그 사람이 산다는 집을 갔지만 그곳에는 아무도 없었습니다."
 		},
 		{
 			"index": 102,
-			"script": "Event English Language Test 103"
+			"script": "주변을 돌아다니며 혹시 사람이 있는가 찾아봅니다."
 		},
 		{
 			"index": 103,
-			"script": "Event English Language Test 104"
+			"script": "주변에서 기다립니다. 오랫동안 기다렸지만 사람이 오지 않습니다. 그만두고 돌아가야하는지 참기가 힘듭니다."
 		},
 		{
 			"index": 104,
-			"script": "Event English Language Test 105"
+			"script": "공안에대한 정보를 알고 있다는 사람이 있다는 곳을 찾았습니다."
 		},
 		{
 			"index": 105,
-			"script": "Event English Language Test 106"
+			"script": "공안이 탈북자에 대한 조사를 강화한다는 소문을 들었습니다. 당신은 주변 탈북자들에게 위험을 전달하기 위해서 소문을 냅니다."
 		},
 		{
 			"index": 106,
-			"script": "Event English Language Test 107"
+			"script": "조사를 하던 중 공안이 이 일대에 집중적으로 추가 되고 있다는 소문을 들었습니다."
 		},
 		{
 			"index": 107,
-			"script": "Event English Language Test 108"
+			"script": "근처에 도박장이 있다는 소문을 들었습니다. 잘만하면 돈을 따서 돈을 만질 수도 있을 겁니다."
 		},
 		{
 			"index": 108,
-			"script": "Event English Language Test 109"
+			"script": "소문의 도박장에 도착했습니다. 도박으로 돈을 딸 수 있을지 자신의 운을 시험해봅니다."
 		},
 		{
 			"index": 109,
-			"script": "Event English Language Test 110"
+			"script": "근처에 도박장이 있다는 소문을 들었습니다. 잘만하면 돈을 따서 돈을 만질 수도 있을 겁니다."
 		},
 		{
 			"index": 110,
-			"script": "Event English Language Test 111"
+			"script": "소문의 도박장에 도착했습니다. 도박으로 돈을 딸 수 있을지 자신의 운을 시험해봅니다."
 		},
 		{
 			"index": 111,
-			"script": "Event English Language Test 112"
+			"script": "어떤 사람이 와서 조선인 쉼터라는 곳을 소개하며 쉼터 회원권을 구입하지 않겠냐고 물어봅니다."
 		},
 		{
 			"index": 112,
-			"script": "Event English Language Test 113"
+			"script": "브로커에 대한 정보를 모으던 중 방금 브로커가 근방으로 이동했다는 소문을 들었습니다. 빨리 이동한다면 찾을 수 있을지도 모릅니다."
 		},
 		{
 			"index": 113,
-			"script": "Event English Language Test 114"
+			"script": "브로커가 향했다는 곳을 빠르게 추격했습니다. 브로커가 있을 만한 곳을 찾아봅니다."
 		},
 		{
 			"index": 114,
-			"script": "Event English Language Test 115"
+			"script": "탈북자를 도와주는 센터에 대한 이야기를 들었습니다. 센터를 찾는다면 브로커에 대한 이야기를 들을 수 있을 겁니다."
 		},
 		{
 			"index": 115,
-			"script": "Event English Language Test 116"
+			"script": "한 노숙자가 다가와 말을 겁니다. '이봐 거기 보아하니 탈북자 같은데 혹시 브로커 정보를 찾는가? 식량을 좀 준다면 알려줄 수 있네'"
 		},
 		{
 			"index": 116,
-			"script": "Event English Language Test 117"
+			"script": "당신은 식량이 없다고 말하고 가려고 합니다. '이봐! 그럼 먹을 걸 살 돈으라도 좋네!'"
 		},
 		{
 			"index": 117,
-			"script": "Event English Language Test 118"
+			"script": "걷는 중 뒤에서 공안차가 오고 있습니다."
 		},
 		{
 			"index": 118,
-			"script": "Event English Language Test 119"
+			"script": "공안차가 다가오기전에 빠르게 숨어야합니다. 집중해서 숨을 곳을 빠르게 찾아봅니다"
 		},
 		{
 			"index": 119,
-			"script": "Event English Language Test 120"
+			"script": "온힘을 다해서 도망칩니다."
 		},
 		{
 			"index": 120,
-			"script": "Event English Language Test 121"
+			"script": "길을 가던 중 먹을 수 있을 것 같은 열매가 있는 나무가 보입니다."
 		},
 		{
 			"index": 121,
-			"script": "Event English Language Test 122"
+			"script": "나무에 올라갑니다. 생각보다 미끄럽습니다. 미끄러지지 않게 힘을 줘서 올라갑니다."
 		},
 		{
 			"index": 122,
-			"script": "Event English Language Test 123"
+			"script": "가는 길에 공안이 보입니다."
 		},
 		{
 			"index": 123,
-			"script": "Event English Language Test 124"
+			"script": "공안이 있는 곳은 위험하니 돌아갑니다. 다만 늦지 않게 가려면 빠르게 이동해야 할 것 같습니다."
 		},
 		{
 			"index": 124,
-			"script": "Event English Language Test 125"
+			"script": "산에서 계속해서 식량을 찾았지만 먹을만 한 것이 없습니다."
 		},
 		{
 			"index": 125,
-			"script": "Event English Language Test 126"
+			"script": "숲 속 깊숙히 이동해서 식량을 찾아봅니다."
 		},
 		{
 			"index": 126,
-			"script": "Event English Language Test 127"
+			"script": "버스로 이동 중 탈북자 검문이 있습니다. 걸리지 않도록 숨죽이며 자연스럽게 연기합니다."
 		},
 		{
 			"index": 127,
-			"script": "Event English Language Test 128"
+			"script": "잡혀 있는데 갑자기 공안이 풀어줍니다. 모르는 사람이 와서 돈을 주고 풀어줬습니다. 모르는 사람 손에 이끌려 공안에게서 벗어납니다."
 		},
 		{
 			"index": 128,
-			"script": "Event English Language Test 129"
+			"script": "잡혀서 이동하는 중 집중해서 도망칠 틈을 엿봅니다."
 		},
 		{
 			"index": 129,
-			"script": "Event English Language Test 130"
+			"script": "이동 하는 중 이상함을 느낍니다. 아무래도 도망쳐야할 것 같습니다."
 		},
 		{
 			"index": 130,
-			"script": "Event English Language Test 131"
+			"script": "잡혀 있는데 갑자기 공안이 풀어줍니다. 모르는 사람이 와서 돈을 주고 풀어줬습니다. 모르는 사람 손에 이끌려 공안에게서 벗어납니다."
+		},
+		{
+			"index": 131,
+			"script": "영성은 크게 집중했습니다."
 		}
 	]
 }
