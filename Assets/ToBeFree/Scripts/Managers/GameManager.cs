@@ -357,21 +357,21 @@ namespace ToBeFree
 
 		private void Update()
 		{
-			if(Input.GetKeyDown(KeyCode.KeypadPlus))
-			{
-				if(Time.timeScale > 0f)
-					Time.timeScale -= 1f;
+			//if(Input.GetKeyDown(KeyCode.KeypadPlus))
+			//{
+			//	if(Time.timeScale > 0f)
+			//		Time.timeScale -= 1f;
 
-				NGUIDebug.Log("Time Scale : " + Time.timeScale);
-			}
+			//	NGUIDebug.Log("Time Scale : " + Time.timeScale);
+			//}
 
-			if (Input.GetKeyDown(KeyCode.KeypadMinus))
-			{
-				if(Time.timeScale < 10f)
-					Time.timeScale += 1f;
+			//if (Input.GetKeyDown(KeyCode.KeypadMinus))
+			//{
+			//	if(Time.timeScale < 10f)
+			//		Time.timeScale += 1f;
 
-				NGUIDebug.Log("Time Scale : " + Time.timeScale);
-			}
+			//	NGUIDebug.Log("Time Scale : " + Time.timeScale);
+			//}
 
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
