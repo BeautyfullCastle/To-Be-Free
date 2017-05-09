@@ -253,10 +253,23 @@ namespace ToBeFree
 
 			yield return base.Activate(character);
 
-			bool dontMove = false;
+			// 1. 집중 단속 시 공안 단속
+			if (CrackDown.Instance.IsCrackDown)
+			{
+				yield return inspectAction.Activate(character);
 
+				// 공안 단속 후 구금되면 더 이상 이동하지 않음.
+				if (character.IsDetention)
+				{
+					yield break;
+				}
+			}
+
+			// 2. 스페셜 이벤트 확인
 			if (character.CheckSpecialEvent())
 			{
+				bool dontMove = false;
+
 				yield return EventManager.Instance.DoCommand(actionName, character);
 				
 				EffectAmount[] effects = null;
@@ -287,12 +300,14 @@ namespace ToBeFree
 				}
 
 				yield return BuffManager.Instance.DeactivateEffectByStartTime(startTime, character);
+
+				if (dontMove)
+				{
+					yield break;
+				}
 			}
 
-			if (dontMove)
-			{
-				yield break;
-			}
+			// 3. 이동 및 중간 경로 검문
 
 			List<City> path = CityManager.Instance.CalcPath(character.CurCity, character.NextCity, actionName);
 
@@ -320,18 +335,6 @@ namespace ToBeFree
 
 			foreach (City city in path)
 			{
-				// 집중 단속 기간이면 공안 단속 들어감
-				if (CrackDown.Instance.IsCrackDown)
-				{
-					yield return inspectAction.Activate(character);
-
-					// 공안 단속 후 구금되면 더 이상 이동하지 않음.
-					if (character.IsDetention)
-					{
-						yield break;
-					}
-				}
-				
 				if (actionName == eEventAction.MOVE)
 				{
 					character.AP++;
@@ -343,8 +346,19 @@ namespace ToBeFree
 						moveTimePerCity += TimeTable.Instance.MoveTimePerAction;
 					}
 				}
-
 				yield return character.MoveTo(city, moveTimePerCity);
+
+				// 집중 단속 기간이면 공안 단속 들어감
+				if (CrackDown.Instance.IsCrackDown)
+				{
+					yield return inspectAction.Activate(character);
+
+					// 공안 단속 후 구금되면 더 이상 이동하지 않음.
+					if (character.IsDetention)
+					{
+						yield break;
+					}
+				}
 			}
 			
 			yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_End_Move));

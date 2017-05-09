@@ -88,8 +88,8 @@ public class IconPiece : MonoBehaviour
 	{
 		exclamationAlpha.PlayForward();
 		yield return new WaitForSeconds(exclamationAlpha.duration);
-		exclamationAlpha.PlayReverse();
-		yield return new WaitForSeconds(exclamationAlpha.duration);
+		//exclamationAlpha.PlayReverse();
+		//yield return new WaitForSeconds(exclamationAlpha.duration);
 		exclamationAlpha.value = exclamationAlpha.from;
 	}
 
