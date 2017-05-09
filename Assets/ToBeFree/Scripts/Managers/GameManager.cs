@@ -769,7 +769,7 @@ namespace ToBeFree
 			// for test
 			//PieceManager.Instance.Add(new Broker(character.CurCity, eSubjectType.BROKER));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[26], character);
-			for(int i = 0; i < 3; ++i) yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(5), character);
+			//for(int i = 0; i < 3; ++i) yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(5), character);
 			//character.Stat.Satiety = 5;
 			//character.Stat.SetViewRange();
 

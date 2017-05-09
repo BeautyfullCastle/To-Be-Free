@@ -186,7 +186,12 @@ public class Die : MonoBehaviour
 	private Vector3 Force()
 	{
 		float force = 1.5f;
-		return new Vector3(Random.Range(-0.2f, 0.2f) * force, Random.Range(-0.2f, 0.2f) * force, -force * 2);
+		int isPlusSign = Random.Range(0, 2);
+		if(isPlusSign == 0)
+		{
+			force *= -1;
+		}
+		return new Vector3(Random.Range(0.1f, 0.2f) * force, Random.Range(0.1f, 0.2f) * force, -2);
 	}
 
 	// validate a test value against a value within a specific margin.
