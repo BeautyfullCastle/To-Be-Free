@@ -701,6 +701,9 @@ namespace ToBeFree
 
 			uiEventManager.Reset();
 
+			commandPopupGrid.transform.DestroyChildren();
+			curCommandType = eCommand.NULL;
+
 			DiceTester.Instance.demo.SetEnableCameras(false);
 
 			//GC.Collect();
