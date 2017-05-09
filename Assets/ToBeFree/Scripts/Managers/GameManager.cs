@@ -704,7 +704,7 @@ namespace ToBeFree
 			commandPopupGrid.transform.DestroyChildren();
 			curCommandType = eCommand.NULL;
 
-			DiceTester.Instance.demo.SetEnableCameras(false);
+			DiceTester.Instance.demo.SetEnableCameras(true);
 
 			//GC.Collect();
 			//GC.WaitForPendingFinalizers();
