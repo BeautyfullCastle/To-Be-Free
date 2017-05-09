@@ -232,19 +232,9 @@ namespace ToBeFree
 					}
 					else if(verbType == eVerbType.ADD)
 					{
-						bool correct = false;
-						if(objectType.ToString() == character.CurCity.Type.ToString())
+						if(objectType.ToString() == character.CurCity.Type.ToString() || objectType == eObjectType.NULL)
 						{
-							correct = true;
-						}
-						else if(objectType == eObjectType.NULL)
-						{
-							correct = true;
-						}
-
-						if(correct == true)
-						{
-							DiceTester.Instance.AdditionalDie = amount;
+							character.Stat.Add(eObjectType.ALL, amount);
 						}
 					}
 					break;
@@ -387,7 +377,10 @@ namespace ToBeFree
 					}
 					else if (verbType == eVerbType.ADD)
 					{
-						DiceTester.Instance.AdditionalDie = 0;
+						if (objectType.ToString() == character.CurCity.Type.ToString() || objectType == eObjectType.NULL)
+						{
+							character.Stat.Restore(eObjectType.ALL, amount);
+						}
 					}
 					break;
 				case eSubjectType.STAT:
