@@ -357,21 +357,7 @@ namespace ToBeFree
 
 		private void Update()
 		{
-			//if(Input.GetKeyDown(KeyCode.KeypadPlus))
-			//{
-			//	if(Time.timeScale > 0f)
-			//		Time.timeScale -= 1f;
 
-			//	NGUIDebug.Log("Time Scale : " + Time.timeScale);
-			//}
-
-			//if (Input.GetKeyDown(KeyCode.KeypadMinus))
-			//{
-			//	if(Time.timeScale < 10f)
-			//		Time.timeScale += 1f;
-
-			//	NGUIDebug.Log("Time Scale : " + Time.timeScale);
-			//}
 
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
@@ -384,6 +370,22 @@ namespace ToBeFree
 			}
 
 #if UNITY_EDITOR
+			if (Input.GetKeyDown(KeyCode.KeypadPlus))
+			{
+				if (Time.timeScale > 0f)
+					Time.timeScale -= 1f;
+
+				NGUIDebug.Log("Time Scale : " + Time.timeScale);
+			}
+
+			if (Input.GetKeyDown(KeyCode.KeypadMinus))
+			{
+				if (Time.timeScale < 10f)
+					Time.timeScale += 1f;
+
+				NGUIDebug.Log("Time Scale : " + Time.timeScale);
+			}
+
 			if (Input.GetKeyDown(KeyCode.D))
 			{
 				character.Stat.Agility = 5;
