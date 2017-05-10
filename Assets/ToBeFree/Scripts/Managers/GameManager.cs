@@ -562,9 +562,10 @@ namespace ToBeFree
 			//character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
-			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(37));
+			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(32));
+			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(7));
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(36));
-			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[11], character);
+			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[71], character);
 #endif
 
 

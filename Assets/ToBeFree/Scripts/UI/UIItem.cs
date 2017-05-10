@@ -217,7 +217,7 @@ namespace ToBeFree
 				}
 			}
 
-			SetEnable(!(item.Buff.StartTime != eStartTime.NOW || item.Buff.Duration == eDuration.EQUIP));
+			SetEnable(item.Buff.StartTime == eStartTime.NOW);
 		}
 
 		public void SetEnable(bool isEnable)

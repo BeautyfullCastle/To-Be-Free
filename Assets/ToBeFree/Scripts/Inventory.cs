@@ -148,6 +148,11 @@ namespace ToBeFree
 			// 아이템 활/비활성화
 			foreach(Item item in list)
 			{
+				if(item.Buff.StartTime == eStartTime.NOW)
+				{
+					SetItemEnabled(item, true);
+					continue;
+				}
 				SetItemEnabled(item, item.Buff.StartTime == startTime && isActive);
 			}
 
