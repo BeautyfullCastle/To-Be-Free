@@ -208,8 +208,8 @@ namespace ToBeFree
 							int TestSuccesMoney = EventManager.Instance.TestSuccessNum;
 							yield return GameManager.Instance.uiEventManager.OnChanged(
 								//LanguageManager.Instance.Find(eLanguageKey.Event_WoringMoneyPerCity) + " " + randWorkingMoneyOfCity + "\n" + 
-								LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + " " + TestSuccesMoney + "\n" +
-								LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + " " + (TestSuccesMoney + basicMoney), false, true);
+								LanguageManager.Instance.Find(eLanguageKey.Event_SucceedDiceNumber) + ": " + TestSuccesMoney + "\n" +
+								LanguageManager.Instance.Find(eLanguageKey.Event_TotalMoney) + ": " + (TestSuccesMoney + basicMoney), false, true);
 
 							character.Stat.Money += TestSuccesMoney;
 							break;

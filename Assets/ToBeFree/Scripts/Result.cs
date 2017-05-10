@@ -167,7 +167,7 @@ namespace ToBeFree
 			{
 				return string.Empty;
 			}
-			return effect.ToString() + " : " + strAmount;
+			return effect.ToString() + " " + strAmount;
 		}
 
 		public int Amount

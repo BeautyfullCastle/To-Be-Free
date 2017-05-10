@@ -188,7 +188,7 @@ namespace ToBeFree
 				yield return buff.DeactivateEffect(character);
 				yield return this.Delete(buff, character);
 			}
-			script += LanguageManager.Instance.Find(eLanguageKey.UI_HP) + " + " + curedHP;
+			script += LanguageManager.Instance.Find(eLanguageKey.UI_HP) + ": + " + curedHP;
 			character.Stat.HP += curedHP;
 
 			yield return GameManager.Instance.uiEventManager.OnChanged(script, false, true);
