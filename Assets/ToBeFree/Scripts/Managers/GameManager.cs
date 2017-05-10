@@ -357,19 +357,18 @@ namespace ToBeFree
 
 		private void Update()
 		{
-
-
-			if (Input.GetKeyDown(KeyCode.Space))
-			{
-				uiEventManager.OnClickOK();
-			}
-
 			if(Input.GetKeyDown(KeyCode.Escape))
 			{
 				ExitSetting();
 			}
 
 #if UNITY_EDITOR
+
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				uiEventManager.OnClickOK();
+			}
+
 			if (Input.GetKeyDown(KeyCode.KeypadPlus))
 			{
 				if (Time.timeScale > 0f)
