@@ -375,7 +375,7 @@ namespace ToBeFree
 				if (Time.timeScale > 0f)
 					Time.timeScale -= 1f;
 
-				NGUIDebug.Log("Time Scale : " + Time.timeScale);
+				//NGUIDebug.Log("Time Scale : " + Time.timeScale);
 			}
 
 			if (Input.GetKeyDown(KeyCode.KeypadMinus))
@@ -383,7 +383,7 @@ namespace ToBeFree
 				if (Time.timeScale < 10f)
 					Time.timeScale += 1f;
 
-				NGUIDebug.Log("Time Scale : " + Time.timeScale);
+				//NGUIDebug.Log("Time Scale : " + Time.timeScale);
 			}
 
 			if (Input.GetKeyDown(KeyCode.D))

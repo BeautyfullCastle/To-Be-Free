@@ -30,14 +30,14 @@ namespace ToBeFree
 		{
 			if (list.Count >= maxSlot)
 			{
-				NGUIDebug.Log("There is no more space in the inventory.");
+				//NGUIDebug.Log("There is no more space in the inventory.");
 				return;
 			}
 
 			int price = Mathf.Max(item.Price - discountNum, 1, item.Price);
 			if (character.Stat.Money < price)
 			{
-				NGUIDebug.Log("Shop : Money is not enough to buy.");
+				//NGUIDebug.Log("Shop : Money is not enough to buy.");
 				return;
 			}
 
@@ -50,14 +50,14 @@ namespace ToBeFree
 		{
 			if (list.Count >= maxSlot)
 			{
-				NGUIDebug.Log("There is no more space in the inventory.");
+				//NGUIDebug.Log("There is no more space in the inventory.");
 			}
 			else
 			{
 				list.Add(new Item(item));
 				GameObject.FindObjectOfType<UIInventory>().AddItem(item);
 
-				NGUIDebug.Log(item.Name);
+				//NGUIDebug.Log(item.Name);
 			}
 		}
 

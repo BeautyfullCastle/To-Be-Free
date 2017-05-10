@@ -252,7 +252,7 @@ namespace ToBeFree
 					{
 						continue;
 					}
-					NGUIDebug.Log("CrackDown : Move Police from " + police.City.Name);
+					//NGUIDebug.Log("CrackDown : Move Police from " + police.City.Name);
 					yield return police.MoveToRandomCity();
 				}
 			}
