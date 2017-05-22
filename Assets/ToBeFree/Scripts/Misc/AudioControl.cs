@@ -52,6 +52,6 @@ public class AudioControl : MonoBehaviour {
 
 	private float ChangeSliderValueToDecibel(float volume)
 	{
-		return volume * 90.0f - 80.0f;
+		return volume * 90.0f - 90.0f;
 	}
 }
