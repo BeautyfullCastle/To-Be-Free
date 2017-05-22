@@ -437,7 +437,16 @@ public class Dice : MonoBehaviour {
 		{
 			if (rollingDie.value >= minSuccessNum)
 			{
-				rollingDie.die.GetComponentInChildren<Light>().enabled = true;
+				Light light = rollingDie.die.GetComponentInChildren<Light>();
+				if(rollingDie.value == 5)
+				{
+					light.transform.localPosition = new Vector3(0f, 0.2f, 0f);
+				}
+				else if(rollingDie.value == 6)
+				{
+					light.transform.localPosition = new Vector3(0f, 0f, -0.2f);
+				}
+				light.enabled = true;
 				AudioManager.Instance.Find("success").Play();
 				yield return new WaitForSeconds(1f);
 			}
@@ -453,10 +462,19 @@ public class Dice : MonoBehaviour {
 		}
 
 		List<Die> dieList1 = new List<Die>();
-		foreach (RollingDie rollingDie in allDice.Cast<RollingDie>())
+		foreach (RollingDie rollingDie in this.allDice.Cast<RollingDie>())
 		{
 			if (rollingDie.value >= minSuccessNum)
 			{
+				Light light = rollingDie.die.GetComponentInChildren<Light>();
+				if (rollingDie.value == 5)
+				{
+					light.transform.localPosition = new Vector3(0f, 0.2f, 0f);
+				}
+				else if (rollingDie.value == 6)
+				{
+					light.transform.localPosition = new Vector3(0f, 0f, -0.2f);
+				}
 				dieList1.Add(rollingDie.die);
 			}
 		}
@@ -464,8 +482,10 @@ public class Dice : MonoBehaviour {
 		List<Die> dieList2 = new List<Die>();
 		foreach (RollingDie rollingDie in dice.allDice.Cast<RollingDie>())
 		{
-			if (rollingDie.value >= minSuccessNum)
+			if (rollingDie.value >= 6)
 			{
+				Light light = rollingDie.die.GetComponentInChildren<Light>();
+				light.transform.localPosition = new Vector3(0f, 0f, -0.2f);
 				dieList2.Add(rollingDie.die);
 			}
 		}

@@ -70,8 +70,11 @@ namespace ToBeFree
 
 				yield return new WaitForSeconds(1f);
 
-				resultNums[i] = demo.dices[i].GetSuccessNum(MinSuccessNum);
+				
 			}
+
+			resultNums[0] = demo.dices[0].GetSuccessNum(MinSuccessNum);
+			resultNums[1] = demo.dices[1].GetSuccessNum(6);
 
 			yield return demo.dices[0].StartEffect(demo.dices[1], minSuccessNum);
 
@@ -97,7 +100,6 @@ namespace ToBeFree
 				{
 					throw new System.Exception("Input Dice success num is not 5 or 6.");
 				}
-				prevMinSuccessNum = value;
 				minSuccessNum = value;
 			}
 		}
@@ -107,6 +109,14 @@ namespace ToBeFree
 			get
 			{
 				return prevMinSuccessNum;
+			}
+			set
+			{
+				if (!(value == 5 || value == 6))
+				{
+					throw new System.Exception("Input Dice success num is not 5 or 6.");
+				}
+				prevMinSuccessNum = value;
 			}
 		}
 

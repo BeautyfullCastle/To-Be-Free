@@ -121,10 +121,17 @@ namespace ToBeFree
 					// DAY_TEST는 매일밤 주사위 하나 굴려서 4 이하면 사라짐.
 					if(buff.Duration == eDuration.DAY_TEST)
 					{
+						// 성공 주사위 눈 5로.
+						int prevMinSuceessNum = DiceTester.Instance.MinSuccessNum;
+						DiceTester.Instance.MinSuccessNum = 5;
 						int resultNum = 0;
 						yield return DiceTester.Instance.Test(eTestStat.NULL, 1, 0, (x, x1) => { resultNum = x; } );
 
-						if (resultNum <= 4)
+						// 성공 주사위 눈 롤백
+						DiceTester.Instance.MinSuccessNum = prevMinSuceessNum;
+
+						// 성공한 주사위 개수가 하나도 없으면 지워짐.
+						if (resultNum < 1)
 						{
 							buffsToDelete.Add(buff);
 						}

@@ -153,6 +153,11 @@ namespace ToBeFree
 					SetItemEnabled(item, true);
 					continue;
 				}
+				else if (item.Buff.Duration == eDuration.EQUIP)
+				{
+					SetItemEnabled(item, false);
+					continue;
+				}
 				SetItemEnabled(item, item.Buff.StartTime == startTime && isActive);
 			}
 

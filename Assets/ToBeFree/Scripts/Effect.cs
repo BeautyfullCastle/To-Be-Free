@@ -206,7 +206,7 @@ namespace ToBeFree
 						// can add more : RAND ?
 						else if (objectType == eObjectType.RAND_3)
 						{
-							int middleMoney = 3;
+							int middleMoney = 1;
 							System.Random r = new System.Random();
 							int money = r.Next(-middleMoney, middleMoney) + amount;
 							character.Stat.Money += money;
@@ -227,6 +227,7 @@ namespace ToBeFree
 					{
 						if (objectType == eObjectType.SUCCESSNUM)
 						{
+							DiceTester.Instance.PrevMinSuccessNum = DiceTester.Instance.MinSuccessNum;
 							DiceTester.Instance.MinSuccessNum = amount;
 						}
 					}
