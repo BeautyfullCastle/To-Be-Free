@@ -70,6 +70,7 @@ public class Dice : MonoBehaviour {
 	private float positionX;
 	private float positionY;
 
+
 	//------------------------------------------------------------------------------------------------------------------------------
 	// public methods
 	//------------------------------------------------------------------------------------------------------------------------------	
@@ -207,6 +208,9 @@ public class Dice : MonoBehaviour {
 		//die.SetActive(false);
 		// create RollingDie class that will hold things like spawnpoint and force, to be used when activating the die at a later stage
 		RollingDie rDie = new RollingDie(die, dieType, mat);
+		rDie.SetGravity(false);
+		rDie.force = Vector3.zero;
+
 		// add RollingDie to allDices
 		allDice.Add(rDie);
 		// add RollingDie to the rolling queue
@@ -236,9 +240,6 @@ public class Dice : MonoBehaviour {
 			positionX = this.spawnPoint.position.x;
 			positionY += spaceWithDies;
 		}
-
-		rDie.SetGravity(false);
-		rDie.force = Vector3.zero;
 
 		addingDie = false;
 	}
@@ -393,13 +394,22 @@ public class Dice : MonoBehaviour {
 	/// <summary>
 	/// Check if there all dice have stopped rolling
 	/// </summary>
-	public bool IsRolling()
+	public bool IsRolling(int minSuccessNum)
 	{
 		foreach(var dice in allDice)
 		{
 			RollingDie rollingDie = dice as RollingDie;
+
 			if (rollingDie.rolling || rollingDie.value == 0)
+			{
 				return true;
+			}
+			else if(rollingDie.value < minSuccessNum)
+			{
+				allDice.Remove(dice);
+				Destroy(rollingDie.gameObject, 1f);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -431,6 +441,7 @@ public class Dice : MonoBehaviour {
 		}
 	}
 
+	// 플레이어 전용
 	private IEnumerator StartEffect(int minSuccessNum)
 	{
 		foreach (RollingDie rollingDie in allDice.Cast<RollingDie>())
@@ -453,6 +464,7 @@ public class Dice : MonoBehaviour {
 		}
 	}
 
+	// 플레이어, 공안
 	public IEnumerator StartEffect(Dice dice, int minSuccessNum)
 	{
 		if(dice.gameObject.activeSelf == false)

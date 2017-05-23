@@ -52,7 +52,7 @@ public class Die : MonoBehaviour
 	{
 		get
 		{
-			return !(GetComponent<Rigidbody>().velocity.sqrMagnitude < .01F && GetComponent<Rigidbody>().angularVelocity.sqrMagnitude < .01F);
+			return !(GetComponent<Rigidbody>().velocity.sqrMagnitude < .005F && GetComponent<Rigidbody>().angularVelocity.sqrMagnitude < .005F);
 		}
 	}
 
@@ -137,6 +137,7 @@ public class Die : MonoBehaviour
 			if (this.value <= 0)
 			{
 				ReRoll();
+				return;
 			}
 		}
 	}
@@ -179,7 +180,7 @@ public class Die : MonoBehaviour
 			Vector3 v = this.transform.position - collision.transform.position;
 			v.Normalize();
 			Rigidbody rigid = this.rigid;
-			float force = 0.25f;
+			float force = 0.5f;
 			rigid.AddForce(v * Random.value * force, ForceMode.Impulse);
 		}
 	}

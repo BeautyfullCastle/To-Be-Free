@@ -91,9 +91,9 @@ public class AppDemo : MonoBehaviour
 		}
 	}
 
-	public void SetEnableRollButton()
+	public void SetEnableRollButton(bool isEnable)
 	{
-		button.SetEnable(true);
+		button.SetEnable(isEnable);
 	}
 	
 	public void OnButtonClick()
@@ -104,7 +104,6 @@ public class AppDemo : MonoBehaviour
 		}
 		isMouseDown = true;
 		Stat.OnValueChange -= Stat_OnValueChange;
-		
 	}
 
 	// check if a point is within a rectangle
@@ -137,7 +136,8 @@ public class AppDemo : MonoBehaviour
 
 	public IEnumerator AddDie()
 	{
-		while(true)
+		SetEnableRollButton(false);
+		while (true)
 		{
 			if (dices[0].AddingDie)
 			{
@@ -151,6 +151,7 @@ public class AppDemo : MonoBehaviour
 
 		dices[0].AddDieNum();
 		yield return dices[0].AddDie(LayerMask.NameToLayer("Dice1"));
+		SetEnableRollButton(true);
 	}
 
 	public bool IsMouseDown

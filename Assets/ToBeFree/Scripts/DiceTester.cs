@@ -44,7 +44,7 @@ namespace ToBeFree
 				yield return new WaitForSeconds(0.1f);
 			}
 
-			demo.SetEnableRollButton();
+			demo.SetEnableRollButton(true);
 
 			int[] resultNums = { 0, 0 };
 			
@@ -55,6 +55,8 @@ namespace ToBeFree
 
 			yield return new WaitForSeconds(1f);
 
+			int[] minSuccessNums = { MinSuccessNum, 6 };
+
 			for (int i = 0; i < demo.dices.Length; ++i)
 			{
 				if(demo.dices[i].gameObject.activeSelf == false)
@@ -62,15 +64,13 @@ namespace ToBeFree
 					continue;
 				}
 
-				while (demo.dices[i].IsRolling())
+				while (demo.dices[i].IsRolling(minSuccessNums[i]))
 				{
-					yield return new WaitForSeconds(1f);
+					yield return new WaitForSeconds(.1f);
 					continue;
 				}
 
-				yield return new WaitForSeconds(1f);
-
-				
+				yield return new WaitForSeconds(.5f);
 			}
 
 			resultNums[0] = demo.dices[0].GetSuccessNum(MinSuccessNum);
