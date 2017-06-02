@@ -43,7 +43,6 @@ public class RollButton : MonoBehaviour {
 		demo.OnButtonClick();
 		AudioManager.Instance.Find("dice_hand").Stop();
 		AudioManager.Instance.Find("dice_full").Play();
-		
 	}
 
 	public void SetEnable(bool isEnable)
@@ -51,6 +50,12 @@ public class RollButton : MonoBehaviour {
 		if (this.collider)
 		{
 			collider.enabled = isEnable;
+			UIButtonColor.State state = UIButtonColor.State.Disabled;
+			if (isEnable)
+			{
+				state = UIButtonColor.State.Normal;
+			}
+			this.GetComponent<UIButton>().SetState(state, true);
 		}
 	}
 

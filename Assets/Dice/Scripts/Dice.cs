@@ -219,7 +219,7 @@ public class Dice : MonoBehaviour {
 		TweenPosition tweenPosition = die.AddComponent<TweenPosition>();
 		tweenPosition.from = startPosition;
 		tweenPosition.to = destination;
-		tweenPosition.duration = 0.5f;
+		tweenPosition.duration = 0.2f;
 		tweenPosition.ignoreTimeScale = false;
 		tweenPosition.PlayForward();
 
@@ -407,7 +407,7 @@ public class Dice : MonoBehaviour {
 			else if(rollingDie.value < minSuccessNum)
 			{
 				allDice.Remove(dice);
-				Destroy(rollingDie.gameObject, 1f);
+				Destroy(rollingDie.gameObject, .2f);
 				return true;
 			}
 		}
@@ -459,7 +459,7 @@ public class Dice : MonoBehaviour {
 				}
 				light.enabled = true;
 				AudioManager.Instance.Find("success").Play();
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(.3f);
 			}
 		}
 	}
@@ -516,7 +516,7 @@ public class Dice : MonoBehaviour {
 				dieList2[i].GetComponentInChildren<Light>().enabled = true;
 
 			AudioManager.Instance.Find("success").Play();
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(.3f);
 		}
 	}
 

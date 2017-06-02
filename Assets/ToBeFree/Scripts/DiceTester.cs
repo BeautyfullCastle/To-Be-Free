@@ -14,7 +14,7 @@ namespace ToBeFree
 
 		public void Init()
 		{
-			minSuccessNum = 6;
+			minSuccessNum = 5;
 			diceObj = GameManager.Instance.diceObj;
 			diceObj.SetActive(false);
 
@@ -34,7 +34,9 @@ namespace ToBeFree
 			TipManager.Instance.Show(eTipTiming.Test);
 
 			diceObj.SetActive(true);
-			
+
+			demo.SetEnableRollButton(false);
+
 			yield return demo.Init(stat, characterDiceNum + additionalDie, policeDiceNum);
 
 			yield return BuffManager.Instance.ActivateEffectByStartTime(eStartTime.TEST, GameManager.Instance.Character);

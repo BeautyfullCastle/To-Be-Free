@@ -470,7 +470,6 @@ namespace ToBeFree
 			{
 				DiceTester.Instance.demo.SetEnableCameras(!isObjActive);
 			}
-			
 		}
 
 		private void DayIsGone()
@@ -557,12 +556,12 @@ namespace ToBeFree
 			// for test
 			character.Stat.Agility = 15;
 			//character.Stat.InfoNum = 4;
-			//character.Stat.HP = 1;
-			//character.Stat.Satiety = 1;
+			character.Stat.HP = 1;
+			character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(31));
-			character.Inven.AddItem(ItemManager.Instance.GetByIndex(13));
+			character.Inven.AddItem(ItemManager.Instance.GetByIndex(32));
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(36));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[71], character);
 #endif

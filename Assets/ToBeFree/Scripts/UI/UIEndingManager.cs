@@ -62,7 +62,7 @@ namespace ToBeFree
 		public UIEnding[] starvationEndingArr;
 		public UIEnding[] repatriateEndingArr;
 
-		void Awake()
+		void OnEnable()
 		{
 			foreach(UIEnding ending in happyEndingArr)
 			{
