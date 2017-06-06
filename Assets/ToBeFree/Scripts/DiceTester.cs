@@ -57,7 +57,7 @@ namespace ToBeFree
 
 			yield return new WaitForSeconds(1f);
 
-			int[] minSuccessNums = { MinSuccessNum, 6 };
+			int[] minSuccessNums = { MinSuccessNum, 5 };
 
 			for (int i = 0; i < demo.dices.Length; ++i)
 			{
@@ -71,14 +71,12 @@ namespace ToBeFree
 					yield return new WaitForSeconds(.1f);
 					continue;
 				}
-
-				yield return new WaitForSeconds(.5f);
 			}
 
 			resultNums[0] = demo.dices[0].GetSuccessNum(MinSuccessNum);
 			resultNums[1] = demo.dices[1].GetSuccessNum(6);
 
-			yield return demo.dices[0].StartEffect(demo.dices[1], minSuccessNum);
+			//yield return demo.dices[0].StartEffect(demo.dices[1], minSuccessNum);
 
 			yield return new WaitForSeconds(1f);
 

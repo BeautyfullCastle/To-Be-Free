@@ -37,14 +37,16 @@ public class Die : MonoBehaviour
 	// normalized (hit)vector from die center to upper side in local space is used to determine what side of a specific die is up/down = value
 	private Vector3 localHitNormalized;
 	// hitVector check margin
-	private float validMargin = 0.05F;
+	private readonly float validMargin = 0.02F;
+	private float maxSpeed = 2f;
 	private bool isOnGround = false;
-
+	
 	private Rigidbody rigid;
 
 	void Awake()
 	{
 		this.rigid = this.GetComponent<Rigidbody>();
+		this.localHitNormalized = Vector3.zero;
 	}
 
 	// true is die is still rolling
@@ -52,7 +54,10 @@ public class Die : MonoBehaviour
 	{
 		get
 		{
-			return !(GetComponent<Rigidbody>().velocity.sqrMagnitude < .005F && GetComponent<Rigidbody>().angularVelocity.sqrMagnitude < .005F);
+			if (this.rigid == null)
+				return false;
+
+			return !(this.rigid.velocity.sqrMagnitude < .005F && this.rigid.angularVelocity.sqrMagnitude < .005F);
 		}
 	}
 
@@ -61,15 +66,24 @@ public class Die : MonoBehaviour
 	{
 		get
 		{
+			if (rolling || isOnGround == false)
+				return false;
+
+			float rayDistance = 0.02f;// transform.lossyScale.z;
 			// create a Ray from straight above this Die , moving downwards
-			Ray ray = new Ray(transform.position + (new Vector3(0, 0, -1f) * transform.localScale.sqrMagnitude), Vector3.forward);
+			Ray ray = new Ray(transform.position + (new Vector3(0, 0, -rayDistance*2)/* * transform.localScale.sqrMagnitude */), Vector3.forward);
 			RaycastHit hit = new RaycastHit();
+			Debug.DrawRay(ray.origin, ray.direction * rayDistance);
 			// cast the ray and validate it against this die's collider
-			if (GetComponent<Collider>().Raycast(ray, out hit, 1.5f * transform.localScale.sqrMagnitude))
+			if (GetComponent<Collider>().Raycast(ray, out hit, rayDistance))
 			{
+				if (hit.transform.gameObject.name != this.gameObject.name)
+					return false;
+
 				// we got a hit so we determine the local normalized vector from the die center to the face that was hit.
 				// because we are using local space, each die side will have its own local hit vector coordinates that will always be the same.
 				localHitNormalized = transform.InverseTransformPoint(hit.point.x, hit.point.y, hit.point.z).normalized;
+				Debug.Log(this.gameObject.name + " : " + localHitNormalized);
 				return true;
 			}
 			// in theory we should not get at this position!
@@ -81,7 +95,9 @@ public class Die : MonoBehaviour
 	void GetValue()
 	{
 		// value = 0 -> undetermined or invalid
-		value = 0;
+		if (value > 0)
+			return;
+
 		float delta = 1;
 		// start with side 1 going up.
 		int side = 1;
@@ -99,23 +115,30 @@ public class Die : MonoBehaviour
 					valid(localHitNormalized.y, testHitVector.y) &&
 					valid(localHitNormalized.z, testHitVector.z))
 				{
-					// this side is valid within the margin, check the x,y, and z delta to see if we can set this side as this die's value
-					// if more than one side is within the margin (especially with d10, d12, d20 ) we have to use the closest as the right side
-					float nDelta = Mathf.Abs(localHitNormalized.x - testHitVector.x) + Mathf.Abs(localHitNormalized.y - testHitVector.y) + Mathf.Abs(localHitNormalized.z - testHitVector.z);
-					if (nDelta < delta)
+					float angle = Mathf.Abs(Vector3.Angle(localHitNormalized, testHitVector));
+
+					if (angle < 2f)
 					{
-						value = side;
-						delta = nDelta;
+						// this side is valid within the margin, check the x,y, and z delta to see if we can set this side as this die's value
+						// if more than one side is within the margin (especially with d10, d12, d20 ) we have to use the closest as the right side
+						//float nDelta = Mathf.Abs(localHitNormalized.x - testHitVector.x) + Mathf.Abs(localHitNormalized.y - testHitVector.y) + Mathf.Abs(localHitNormalized.z - testHitVector.z);
+						//if (nDelta < validMargin)
+						{
+							value = side;
+							Debug.LogWarning(this.gameObject.name + "'s side : " + side);// + " and dot : " + dot);
+							this.rigid.velocity = Vector3.zero;
+							break;
+						//delta = nDelta;
+						}
 					}
 				}
 			}
 			// increment side
 			side++;
 			// if we got a Vector.zero as the testHitVector we have checked all sides of this die
-		} while (testHitVector != Vector3.zero);
+		} while (side <= 6);
 	}
-
-	private float maxSpeed = 2f;
+	
 	void Update()
 	{
 		if (rolling)
@@ -125,7 +148,6 @@ public class Die : MonoBehaviour
 				this.rigid.velocity = this.rigid.velocity.normalized * maxSpeed;
 				Debug.Log("Die : Over the limit.");
 			}
-
 			return;
 		}
 
@@ -153,7 +175,7 @@ public class Die : MonoBehaviour
 
 		rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
 		rigid.AddForce(new Vector3(Random.value, Random.value, 2f), ForceMode.Impulse);
-		//NGUIDebug.Log("Reroll");
+		NGUIDebug.Log("Reroll");
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -174,28 +196,27 @@ public class Die : MonoBehaviour
 
 	void OnCollisionStay(Collision collision)
 	{
-		if (collision.gameObject.name == this.gameObject.name)
+		if (collision.transform.GetComponent<Die>() != null)
 		{
 			if (this.rolling == false)
 				return;
 
 			// 서로 반대 방향으로 튕겨낸다.
-			Vector3 v = this.transform.position - collision.transform.position;
+			Vector3 v = this.rigid.velocity.normalized - collision.rigidbody.velocity.normalized;
 			v.Normalize();
-			Rigidbody rigid = this.rigid;
 			float force = .7f;
-			rigid.AddForce(v * Random.value * force, ForceMode.Impulse);
+			rigid.AddForce(v * Random.Range(0f, 1f) * force, ForceMode.Impulse);
 		}
 	}
 	private Vector3 Force()
 	{
-		float force = 1.5f;
+		float force = 0.5f;
 		int isPlusSign = Random.Range(0, 2);
 		if(isPlusSign == 0)
 		{
 			force *= -1;
 		}
-		return new Vector3(Random.Range(0.1f, 0.2f) * force, Random.Range(0.1f, 0.2f) * force, -2);
+		return new Vector3(Random.Range(1f, 2f) * force, Random.Range(1f, 2f) * force, -2f);
 	}
 
 	// validate a test value against a value within a specific margin.

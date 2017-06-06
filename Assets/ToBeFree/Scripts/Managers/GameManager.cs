@@ -554,7 +554,7 @@ namespace ToBeFree
 
 #if UNITY_EDITOR
 			// for test
-			character.Stat.Agility = 15;
+			character.Stat.Agility = 25;
 			//character.Stat.InfoNum = 4;
 			character.Stat.HP = 1;
 			character.Stat.Satiety = 1;

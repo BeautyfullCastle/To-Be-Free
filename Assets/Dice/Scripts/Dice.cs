@@ -69,6 +69,8 @@ public class Dice : MonoBehaviour {
 
 	private float positionX;
 	private float positionY;
+	private float spaceWithDies;
+	private int succeededDieNum;
 
 
 	//------------------------------------------------------------------------------------------------------------------------------
@@ -84,13 +86,20 @@ public class Dice : MonoBehaviour {
 			rollingDie.SetGravity(!isFreeze);
 
 			if(isFreeze)
+			{
 				rollingDie.force = Vector3.zero;
+			}
 			else
 			{
 				rollingDie.gameObject.GetComponent<Collider>().enabled = true;
 				rollingDie.gameObject.GetComponent<Rigidbody>().AddForce(Force(), ForceMode.Impulse);
 				// apply a random torque
-				rollingDie.gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(-50 * Random.value, -50 * Random.value, -50 * Random.value), ForceMode.Impulse);
+				float torquePower = -100f;
+				float randValue = 1f;
+				rollingDie.gameObject.GetComponent<Rigidbody>().AddTorque(
+					new Vector3(torquePower * Random.Range(-randValue, randValue), 
+								torquePower * Random.Range(-randValue, randValue), 
+								torquePower * Random.Range(-randValue, randValue)), ForceMode.Impulse);
 				//rollingDie.gameObject.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
 			}
 		}
@@ -147,6 +156,7 @@ public class Dice : MonoBehaviour {
 
 		positionX = this.spawnPoint.position.x;
 		positionY = this.spawnPoint.position.y;
+		succeededDieNum = 0;
 		
 		if(this.nameLabel != null)
 		{
@@ -214,7 +224,8 @@ public class Dice : MonoBehaviour {
 		// add RollingDie to allDices
 		allDice.Add(rDie);
 		// add RollingDie to the rolling queue
-		//rollQueue.Add(rDie);
+		rollQueue.Add(rDie);
+		die.gameObject.name = allDice.Count.ToString();
 
 		TweenPosition tweenPosition = die.AddComponent<TweenPosition>();
 		tweenPosition.from = startPosition;
@@ -233,9 +244,9 @@ public class Dice : MonoBehaviour {
 
 		yield return new WaitForSeconds(tweenPosition.duration);
 
-		float spaceWithDies = (die.transform.lossyScale.sqrMagnitude * 0.5f);
+		spaceWithDies = (die.transform.lossyScale.sqrMagnitude * 0.5f);
 		positionX += spaceWithDies;
-		if (allDice.Count % 5 == 0)
+		if (allDice.Count % 10 == 0)
 		{
 			positionX = this.spawnPoint.position.x;
 			positionY += spaceWithDies;
@@ -396,29 +407,82 @@ public class Dice : MonoBehaviour {
 	/// </summary>
 	public bool IsRolling(int minSuccessNum)
 	{
-		foreach(var dice in allDice)
-		{
-			RollingDie rollingDie = dice as RollingDie;
+		if (rollQueue.Count <= 0)
+			return false;
 
+		foreach (var die in rollQueue)
+		{
+			RollingDie rollingDie = die as RollingDie;
+			
 			if (rollingDie.rolling || rollingDie.value == 0)
 			{
+				continue;
+			}
+			else if (rollingDie.value < minSuccessNum)
+			{
+				allDice.Remove(die);
+				rollQueue.Remove(die);
+				Destroy(rollingDie.gameObject);
 				return true;
 			}
-			else if(rollingDie.value < minSuccessNum)
+			else
 			{
-				allDice.Remove(dice);
-				Destroy(rollingDie.gameObject, .2f);
+				Die currDie = rollingDie.die;
+				AudioManager.Instance.Find("success").Play();
+				Light light = currDie.GetComponentInChildren<Light>();
+				light.transform.position = new Vector3(currDie.transform.position.x, currDie.transform.position.y, currDie.transform.position.z - 0.2f);
+				light.enabled = true;
+				currDie.GetComponent<Collider>().enabled = false;
+				Destroy(currDie.GetComponent<Rigidbody>());
+
+				TweenPosition tweenPosition = currDie.GetComponent<TweenPosition>();
+				tweenPosition.from = currDie.transform.position;
+				tweenPosition.to = new Vector3(spawnPoint.position.x + (spaceWithDies*(succeededDieNum%10)), 
+											spawnPoint.position.y + (spaceWithDies*(succeededDieNum/10)), 
+											spawnPoint.position.z);
+				tweenPosition.duration = 0.2f;
+				tweenPosition.ignoreTimeScale = false;
+				tweenPosition.ResetToBeginning();
+				tweenPosition.PlayForward();
+				
+				succeededDieNum++;
+
+				// twwen rotation
+				// 4 -> y axis to zero
+				// 5 -> x axis to zero
+				// 6 -> z axis to zero
+				TweenRotation tweenRot = currDie.GetOrAddComponent<TweenRotation>();
+				Vector3 angle = currDie.transform.rotation.eulerAngles;
+				tweenRot.from = currDie.transform.rotation.eulerAngles;
+				if (currDie.value == 4)
+				{
+					tweenRot.to = new Vector3(0f, 90f, 0f);
+				}
+				else if(currDie.value == 5)
+				{
+					tweenRot.to = new Vector3(90f, 180f, 0f);
+				}
+				else if(currDie.value == 6)
+				{
+					tweenRot.to = new Vector3(0f, 0f, 0f);
+				}
+				tweenRot.duration = 0.2f;
+				tweenRot.ignoreTimeScale = false;
+				tweenRot.ResetToBeginning();
+				tweenRot.PlayForward();
+
+				rollQueue.Remove(die);
 				return true;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	// dertermine random rolling force
 	private Vector3 Force()
 	{
-		float force = 1f;
-		float randValue = 0.5f;
+		float force = 2f;
+		float randValue = 1.5f;
 		return new Vector3(Random.Range(-randValue, randValue) * force, Random.Range(-randValue, randValue) * force, -force * 2);
 	}
 
@@ -438,85 +502,6 @@ public class Dice : MonoBehaviour {
 		{
 			Vector3 cameraPosition = diceCam.transform.localPosition;
 			diceCam.transform.localPosition = new Vector3(cameraX, cameraPosition.y, cameraPosition.z);
-		}
-	}
-
-	// 플레이어 전용
-	private IEnumerator StartEffect(int minSuccessNum)
-	{
-		foreach (RollingDie rollingDie in allDice.Cast<RollingDie>())
-		{
-			if (rollingDie.value >= minSuccessNum)
-			{
-				Light light = rollingDie.die.GetComponentInChildren<Light>();
-				if(rollingDie.value == 5)
-				{
-					light.transform.localPosition = new Vector3(0f, 0.2f, 0f);
-				}
-				else if(rollingDie.value == 6)
-				{
-					light.transform.localPosition = new Vector3(0f, 0f, -0.2f);
-				}
-				light.enabled = true;
-				AudioManager.Instance.Find("success").Play();
-				yield return new WaitForSeconds(.3f);
-			}
-		}
-	}
-
-	// 플레이어, 공안
-	public IEnumerator StartEffect(Dice dice, int minSuccessNum)
-	{
-		if(dice.gameObject.activeSelf == false)
-		{
-			yield return this.StartEffect(minSuccessNum);
-			yield break;
-		}
-
-		List<Die> dieList1 = new List<Die>();
-		foreach (RollingDie rollingDie in this.allDice.Cast<RollingDie>())
-		{
-			if (rollingDie.value >= minSuccessNum)
-			{
-				Light light = rollingDie.die.GetComponentInChildren<Light>();
-				if (rollingDie.value == 5)
-				{
-					light.transform.localPosition = new Vector3(0f, 0.2f, 0f);
-				}
-				else if (rollingDie.value == 6)
-				{
-					light.transform.localPosition = new Vector3(0f, 0f, -0.2f);
-				}
-				dieList1.Add(rollingDie.die);
-			}
-		}
-
-		List<Die> dieList2 = new List<Die>();
-		foreach (RollingDie rollingDie in dice.allDice.Cast<RollingDie>())
-		{
-			if (rollingDie.value >= 6)
-			{
-				Light light = rollingDie.die.GetComponentInChildren<Light>();
-				light.transform.localPosition = new Vector3(0f, 0f, -0.2f);
-				dieList2.Add(rollingDie.die);
-			}
-		}
-
-		int count = dieList1.Count;
-		if (count < dieList2.Count)
-		{
-			count = dieList2.Count;
-		}
-
-		for (int i = 0; i < count; ++i)
-		{
-			if(i < dieList1.Count)
-				dieList1[i].GetComponentInChildren<Light>().enabled = true;
-			if (i < dieList2.Count)
-				dieList2[i].GetComponentInChildren<Light>().enabled = true;
-
-			AudioManager.Instance.Find("success").Play();
-			yield return new WaitForSeconds(.3f);
 		}
 	}
 
