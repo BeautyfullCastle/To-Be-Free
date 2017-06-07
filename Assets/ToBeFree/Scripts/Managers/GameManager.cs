@@ -52,6 +52,11 @@ namespace ToBeFree
 		public GameObject menuObj;
 		public BlackFader blackFader;
 
+		[SerializeField]
+		private TweenAlpha tweenMainNew;
+		[SerializeField]
+		private TweenAlpha tweenMainContinue;
+
 		public GameObject[] scenes;
 
 		[HideInInspector]
@@ -590,6 +595,9 @@ namespace ToBeFree
 		{
 			AudioManager.Instance.ChangeBGM("MainMenu");
 
+			tweenMainNew.GetComponent<UILabel>().color = new Color(1f, 1f, 1f, 0f);
+			tweenMainContinue.GetComponent<UILabel>().color = new Color(1f, 1f, 1f, 0f);
+
 			// Enter
 			yield return this.ChangeScene(eSceneState.Main, true);
 
@@ -597,7 +605,10 @@ namespace ToBeFree
 
 			// Excute
 			SaveLoadManager.Instance.Init();
-			
+
+			tweenMainNew.PlayForward();
+			tweenMainContinue.PlayForward();
+
 			while (this.state == GameState.Main)
 			{
 				yield return new WaitForSecondsRealtime(0.1f);
@@ -689,7 +700,7 @@ namespace ToBeFree
 		public IEnumerator ChangeToMain()
 		{
 			worldObj.SetActive(false);
-
+			
 			this.state = GameState.Main;
 			yield return NextState();
 		}
