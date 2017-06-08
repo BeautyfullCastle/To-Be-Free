@@ -20,6 +20,7 @@ namespace ToBeFree
 				return;
 
 			this.sprite.spriteName = spriteData.name;
+			this.sprite.GetComponent<UIButton>().normalSprite = spriteData.name;
 		}
 	}
 }

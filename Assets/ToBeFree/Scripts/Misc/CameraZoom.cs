@@ -7,10 +7,7 @@ public class CameraZoom : MonoBehaviour {
 	public float maxSize = 3.0f;
 
 	private Camera cam;
-
-	[SerializeField]
 	private UIScrollView scrollview;
-	[SerializeField]
 	private UICenterOnChild centerOnChild;
 	
 	// Use this for initialization
@@ -24,7 +21,12 @@ public class CameraZoom : MonoBehaviour {
 	public void Init()
 	{
 		this.cam.orthographicSize = minSize;
-		this.centerOnChild.CenterOn(GameManager.Instance.Character.CurCity.IconCity.transform);
+		CenterOnCamera(GameManager.Instance.Character.CurCity.IconCity.transform);
+	}
+
+	public void CenterOnCamera(Transform target)
+	{
+		this.centerOnChild.CenterOn(target);
 		this.centerOnChild.enabled = false;
 	}
 	

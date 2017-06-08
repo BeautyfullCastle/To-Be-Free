@@ -112,6 +112,14 @@ namespace ToBeFree
 			}
 		}
 
+		public void OnClick()
+		{
+			if (this.piece == null)
+				return;
+
+			GameManager.Instance.worldCam.GetComponent<CameraZoom>().CenterOnCamera(this.piece.City.IconCity.transform);
+		}
+
 		public QuestPiece Piece
 		{
 			get
