@@ -211,6 +211,7 @@ public class Dice : MonoBehaviour {
 		// create the die prefab/gameObject
 		GameObject die = prefab(dieType, startPosition, new Vector3(0f, 90f, -90f), new Vector3(0.2f, 0.2f, 0.2f), mat);
 		die.layer = layer;
+		die.transform.SetChildLayer(layer);
 		
 		// give it a random rotation
 		//die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
@@ -422,7 +423,9 @@ public class Dice : MonoBehaviour {
 			{
 				allDice.Remove(die);
 				rollQueue.Remove(die);
-				Destroy(rollingDie.gameObject);
+				rollingDie.die.GetComponent<Renderer>().enabled = false;
+				rollingDie.die.dieParticle.Play();
+				Destroy(rollingDie.gameObject, 1f);// rollingDie.die.dieParticle.startLifetime);
 				return true;
 			}
 			else

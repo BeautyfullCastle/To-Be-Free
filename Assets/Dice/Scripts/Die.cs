@@ -29,6 +29,7 @@ public class Die : MonoBehaviour
 
 	// current value, 0 is undetermined (die is rolling) or invalid.
 	public int value = 0;
+	public ParticleSystem dieParticle;
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// private attributes
