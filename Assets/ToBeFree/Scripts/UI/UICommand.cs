@@ -133,6 +133,13 @@ public class UICommand : MonoBehaviour
 		}
 		nameLabel.text = LanguageManager.Instance.Find(nameKey);
 		tooltip = LanguageManager.Instance.Find(tooltipKey);
+		if(commandType == eCommand.ABILITY)
+		{
+			if(GameManager.Instance.Character != null)
+			{
+				tooltip += "\n" + GameManager.Instance.Character.SkillScript;
+			}
+		}
 	}
 
 	void OnTooltip(bool show)

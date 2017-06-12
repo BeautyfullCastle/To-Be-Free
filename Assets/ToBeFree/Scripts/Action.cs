@@ -117,7 +117,6 @@ namespace ToBeFree
 				yield return EventManager.Instance.TreatResult(selectedEvent.Result, character, true, false);
 
 				//int testSuccessNum = EventManager.Instance.TestSuccessNum + requiredTime - 1;
-
 				
 
 				yield return BuffManager.Instance.Rest_Cure_PatienceTest(character, EventManager.Instance.TestSuccessNum);
