@@ -553,23 +553,20 @@ namespace ToBeFree
 				if(firstMainQuest != null)
 				{
 					yield return new WaitForSeconds(3f);
-					yield return QuestManager.Instance.Load(firstMainQuest, character);
+					yield return QuestManager.Instance.Load(firstMainQuest);
 				}
 			}
 
 #if UNITY_EDITOR
 			// for test
 			character.Stat.Agility = 25;
-			//character.Stat.InfoNum = 4;
+			character.Stat.InfoNum = 4;
 			character.Stat.HP = 1;
 			character.Stat.Satiety = 1;
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(2), character);
+			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
+			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
+			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
+
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(31));
 			character.Inven.AddItem(ItemManager.Instance.GetByIndex(32));

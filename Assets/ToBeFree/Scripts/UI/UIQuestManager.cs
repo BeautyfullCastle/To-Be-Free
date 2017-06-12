@@ -27,12 +27,12 @@ namespace ToBeFree
 			for (int i = 0; i < uiQuestList.Count; ++i)
 			{
 				Quest quest = uiQuestList[i].Quest;
-				QuestPiece questPiece = uiQuestList[i].Piece;
+				Piece piece = uiQuestList[i].Piece;
 
 				int cityIndex = -1;
-				if(questPiece != null)
+				if(piece != null)
 				{
-					cityIndex = questPiece.City.Index;
+					cityIndex = piece.City.Index;
 				}
 				QuestSaveData data = new QuestSaveData(quest.Index, uiQuestList[i].PastDays, cityIndex);
 				questList.Add(data);
@@ -50,9 +50,8 @@ namespace ToBeFree
 			}
 		}
 
-		public void AddQuest(Quest quest)
+		public void AddQuest(Quest quest, Piece piece = null)
 		{
-			QuestPiece piece = null;
 			City city = null;
 			if (quest.Region != eRegion.NULL)
 			{
@@ -86,7 +85,7 @@ namespace ToBeFree
 			MakeUIQuest(quest, piece);
 		}
 
-		private void MakeUIQuest(Quest quest, QuestPiece piece)
+		private void MakeUIQuest(Quest quest, Piece piece)
 		{
 			GameObject questObj = NGUITools.AddChild(grid.gameObject, QuestPref);
 			UIQuest uiQuest = questObj.GetComponent<UIQuest>();

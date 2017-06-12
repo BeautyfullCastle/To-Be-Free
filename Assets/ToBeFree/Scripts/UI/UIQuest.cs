@@ -12,10 +12,10 @@ namespace ToBeFree
 		public UILabel cityLabel;
 
 		private Quest quest;
-		private QuestPiece piece;
+		private Piece piece;
 		private int pastDays;
 		
-		public void Init(Quest quest, QuestPiece piece)
+		public void Init(Quest quest, Piece piece)
 		{
 			this.quest = quest;
 			this.piece = piece;
@@ -120,7 +120,7 @@ namespace ToBeFree
 			GameManager.Instance.worldCam.GetComponent<CameraZoom>().CenterOnCamera(this.piece.City.IconCity.transform);
 		}
 
-		public QuestPiece Piece
+		public Piece Piece
 		{
 			get
 			{

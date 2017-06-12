@@ -291,7 +291,7 @@ namespace ToBeFree
 
 					if (verbType == eVerbType.LOAD)
 					{
-						yield return QuestManager.Instance.Load(quest, character);
+						yield return QuestManager.Instance.Load(quest);
 					}
 					else if(verbType == eVerbType.DEL)
 					{

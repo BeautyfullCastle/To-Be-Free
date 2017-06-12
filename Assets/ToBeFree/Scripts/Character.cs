@@ -152,7 +152,8 @@ namespace ToBeFree
 					if (Stat.InfoNum >= 5)
 					{
 						// Add broker.
-						Broker broker = new Broker(CityManager.Instance.FindRand(eSubjectType.BROKER), eSubjectType.BROKER);
+						City brokerCity = CityManager.Instance.FindRand(eSubjectType.BROKER);
+						Broker broker = new Broker(brokerCity, eSubjectType.BROKER);
 						PieceManager.Instance.Add(broker);
 						// Delete first main quest and Load main quest : "Go to the broker"
 						Quest firstMainQuest = QuestManager.Instance.GetByIndex(15);
@@ -164,7 +165,7 @@ namespace ToBeFree
 						Quest mainQuest = QuestManager.Instance.GetByIndex(16);
 						if(mainQuest != null)
 						{
-							yield return (QuestManager.Instance.Load(mainQuest, GameManager.Instance.Character));
+							yield return (QuestManager.Instance.Load(mainQuest, broker));
 						}
 						
 						Stat.InfoNum = 0;

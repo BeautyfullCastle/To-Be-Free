@@ -137,13 +137,11 @@ namespace ToBeFree
 			yield return EventManager.Instance.ActivateEvent(quest.Event_, character);
 		}
 
-		public IEnumerator Load(Quest selectedQuest, Character character)
+		public IEnumerator Load(Quest selectedQuest, Piece piece = null)
 		{
 			yield return GameManager.Instance.uiEventManager.OnChanged(selectedQuest.Script);
 
-			GameManager.Instance.uiQuestManager.AddQuest(selectedQuest);
-
-			
+			GameManager.Instance.uiQuestManager.AddQuest(selectedQuest, piece);
 		}
 	}
 }
