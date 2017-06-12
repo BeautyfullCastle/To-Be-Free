@@ -202,6 +202,10 @@ namespace ToBeFree
 					bool isHighway = busCityList.Contains(character.CurCity);
 					bool buttonEnabled = (isHighway) && (character.Stat.Money >= 4);
 					busPopup.moveButton.isEnabled = buttonEnabled;
+					foreach(UISprite sprite in busPopup.moveButton.GetComponentsInChildren<UISprite>())
+					{
+						sprite.color = busPopup.moveButton.GetComponent<TweenColor>().to;
+					}
 					break;
 
 				case eCommand.WORK:
