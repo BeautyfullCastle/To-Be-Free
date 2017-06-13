@@ -191,7 +191,7 @@ namespace ToBeFree
 
 			foreach(Buff buff in buffsToDelete)
 			{
-				script += buff.Name + "\n";
+				script += LanguageManager.Instance.Find(eLanguageKey.UI_RecoverAbnormal) + buff.Name + "\n";
 				yield return buff.DeactivateEffect(character);
 				yield return this.Delete(buff, character);
 			}
