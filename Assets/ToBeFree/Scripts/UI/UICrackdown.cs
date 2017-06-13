@@ -19,7 +19,13 @@ public class UICrackdown : MonoBehaviour
 	private UIGaugeMeter crackdownMeter;
 	[SerializeField]
 	private TweenRotation axisTween;
-	
+	[SerializeField]
+	private TweenAlpha backgroundTween;
+	[SerializeField]
+	private UILabel label;
+	[SerializeField]
+	private UILabel labelForEternal;
+
 	public void Init()
 	{
 		if (shortTermMeter == null)
@@ -31,6 +37,7 @@ public class UICrackdown : MonoBehaviour
 		{
 			Debug.LogError("longTerm Cell Num is wrong.");
 		}
+		shortTermMeter.gameObject.SetActive(true);
 		shortTermMeter.Init(shortTermCellNum, false);
 
 		if (longTermMeter == null)
@@ -42,6 +49,7 @@ public class UICrackdown : MonoBehaviour
 		{
 			Debug.LogError("shorTerm Cell Num is wrong.");
 		}
+		longTermMeter.gameObject.SetActive(true);
 		longTermMeter.Init(longTermCellNum, false);
 
 		if (crackdownMeter == null)
@@ -53,14 +61,24 @@ public class UICrackdown : MonoBehaviour
 		{
 			Debug.LogError("crackdown Cell Num is wrong.");
 		}
+		crackdownMeter.gameObject.SetActive(true);
 		crackdownMeter.Init(crackdownCellNum, true);
+
+		axisTween.gameObject.SetActive(true);
+		longTermMeter.gameObject.SetActive(true);
+		SetBackgroundTween(false);
+
+		label.enabled = true;
+		labelForEternal.enabled = false;
 	}
 
 	public bool TurnUpShortTermGauge()
 	{
 		bool isFull = shortTermMeter.TurnUpAndCheckIsFull();
 		if (isFull)
+		{
 			longTermMeter.TurnUpAndCheckIsFull();
+		}
 
 		return isFull;
 	}
@@ -84,6 +102,16 @@ public class UICrackdown : MonoBehaviour
 	public bool CheckLongTermGauge()
 	{
 		return longTermMeter.IsFull();
+	}
+	
+	public void SetToEternalCrackdown()
+	{
+		shortTermMeter.gameObject.SetActive(false);
+		crackdownMeter.gameObject.SetActive(false);
+		longTermMeter.gameObject.SetActive(false);
+		SetBackgroundTween(true);
+		label.enabled = false;
+		labelForEternal.enabled = true;
 	}
 
 	public IEnumerator SwitchGauge(bool isCrackdown)
@@ -110,7 +138,16 @@ public class UICrackdown : MonoBehaviour
 		{
 			axisTween.PlayReverse();
 		}
+
+		SetBackgroundTween(isCrackdown);
+
 		yield return new WaitForSeconds(axisTween.duration);
+	}
+
+	private void SetBackgroundTween(bool isCrackdown)
+	{
+		backgroundTween.ResetToBeginning();
+		backgroundTween.enabled = isCrackdown;
 	}
 
 	public UIGaugeMeter ShortTermMeter

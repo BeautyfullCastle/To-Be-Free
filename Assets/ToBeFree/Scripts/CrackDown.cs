@@ -186,8 +186,6 @@ namespace ToBeFree
 			}
 		}
 
-		
-
 		private IEnumerator StartCrackDown()
 		{
 			isCrackDown = true;
@@ -198,7 +196,7 @@ namespace ToBeFree
 			isEternalCrackdown = uiCrackdown.CheckLongTermGauge();
 			if (isEternalCrackdown)
 			{
-
+				uiCrackdown.SetToEternalCrackdown();
 			}
 			else
 			{

@@ -393,7 +393,7 @@
 		{
 			"index": 78,
 			"key": "UI_Continue",
-			"script": "계속하는 이야기"
+			"script": "계속하기"
 		},
 		{
 			"index": 79,
@@ -482,13 +482,48 @@
 		},
 		{
 			"index": 96,
-			"key": "UI_New",
+			"key": "Popup_New",
 			"script": "기존에 진행된 진행상황을 잃게 됩니다. 새로 시작 하시겠습니까?"
 		},
 		{
 			"index": 97,
-			"key": "UI_EXIT",
+			"key": "Popup_EXIT",
 			"script": "저장되지 않은 진행상황을 잃게 됩니다. 나가시겠습니까?"
+		},
+		{
+			"index": 98,
+			"key": "Popup_Tutorial",
+			"script": "게임을 배우기 위한 도움말창을 보시겠습니까?"
+		},
+		{
+			"index": 99,
+			"key": "UI_PermanentCrackDown",
+			"script": "영구 탈북자 집중단속"
+		},
+		{
+			"index": 100,
+			"key": "UI_Caution",
+			"script": "주의"
+		},
+		{
+			"index": 101,
+			"key": "Popup_SkipMessage",
+			"script": "연출을 그만 보시겠습니까?"
+		},
+		{
+			"index": 102,
+			"key": "UI_CharaterSelect",
+			"script": "캐릭터 선택"
+		},
+		{
+			"index": 103,
+			"key": "UI_Start",
+			"script": "시작"
+		},
+		{
+			"index": 104,
+			"key": "UI_RecoverAbnormal",
+			"script": "상태이상 회복:"
 		}
 	]
 }

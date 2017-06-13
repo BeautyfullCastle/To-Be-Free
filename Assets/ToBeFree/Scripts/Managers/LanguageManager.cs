@@ -28,7 +28,9 @@ namespace ToBeFree
 		Event_End_Move, Event_Start_Rest,
 		Over_Strength, Over_Agility, Over_Talent, Over_Focus, Over_HP, Over_Satiety, Over_Info, Over_Money,
 		Event_Police_Addgauge,
-		UI_Police, UI_Observation
+		UI_Police, UI_Observation,
+		UI_Yes, UI_No, Popup_New, Popup_EXIT, Popup_Tutorial, UI_PermanentCrackDown,
+		UI_Caution, Popup_SkipMessage, UI_CharaterSelect, UI_Start, UI_RecoverAbnormal
 	}
 
 	public class LanguageManager : Singleton<LanguageManager>
