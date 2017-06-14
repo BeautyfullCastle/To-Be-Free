@@ -165,6 +165,7 @@ namespace ToBeFree
 						Quest mainQuest = QuestManager.Instance.GetByIndex(16);
 						if(mainQuest != null)
 						{
+							TipManager.Instance.Show(eTipTiming.Quest);
 							yield return (QuestManager.Instance.Load(mainQuest, broker));
 						}
 						

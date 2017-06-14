@@ -7,7 +7,8 @@ namespace ToBeFree
 	public enum eTipTiming
 	{
 		NULL, Act, Work, Investigation, Rest, Move, PoliceMove, Inspect, Crackdown, Detention, Shop,
-		PoliceAppeared, PoliceTurn, Camp, Gathering, GrabItem, Street, BigCity, Mountain, Test, Event
+		PoliceInspect, PoliceTurn, Camp, Gathering, GrabItem, Street, BigCity, Mountain, Test, Event,
+		GameStart, Quest,
 	}
 
 	public class TipManager : Singleton<TipManager>
@@ -43,13 +44,16 @@ namespace ToBeFree
 			LanguageSelection.selectLanguage += ChangeLanguage;
 
 			ParseData();
+
+			GameManager.Instance.uiTipManager.Init();
 		}
 
 		private void ParseData()
 		{
 			foreach (TipData data in dataList)
 			{
-				Tip tip = new Tip(data.script, EnumConvert<eTipTiming>.ToEnum(data.timing));
+				Tip tip = new Tip(data.index, data.title, EnumConvert<eTipTiming>.ToEnum(data.timing), data.script,
+								data.sprite, data.nextIndex);
 
 				if (list[data.index] != null)
 				{
@@ -71,6 +75,7 @@ namespace ToBeFree
 						continue;
 					}
 
+					list[data.index].Title = data.title;
 					list[data.index].Script = data.script;
 				}
 				catch (Exception e)
@@ -78,7 +83,11 @@ namespace ToBeFree
 					Debug.LogError(data.index.ToString() + " : " + e);
 				}
 			}
-			GameManager.Instance.uiTipManager.Refresh();
+
+			if(GameManager.Instance.tipObj.activeSelf)
+			{
+				GameManager.Instance.uiTipManager.Refresh();
+			}
 		}
 
 		public void Show(eTipTiming timing)
@@ -89,7 +98,32 @@ namespace ToBeFree
 				return;
 
 			GameManager.Instance.uiTipManager.Show(tip);
-			
+			tip.Watched = true;
+		}
+
+		public Tip GetByIndex(int index)
+		{
+			if (index < 0 || index >= list.Length)
+				return null;
+
+			return list[index];
+		}
+		
+		public void Save(List<TipSaveData> tipList)
+		{
+			for (int i = 0; i < list.Length; ++i)
+			{
+				TipSaveData data = new TipSaveData(i, list[i].Watched);
+				tipList.Add(data);
+			}
+		}
+
+		public void Load(List<TipSaveData> tipList)
+		{
+			for (int i = 0; i < list.Length; ++i)
+			{
+				list[i].Watched = tipList[i].watched;
+			}
 		}
 	}
 }

@@ -291,6 +291,7 @@ namespace ToBeFree
 
 					if (verbType == eVerbType.LOAD)
 					{
+						TipManager.Instance.Show(eTipTiming.Quest);
 						yield return QuestManager.Instance.Load(quest);
 					}
 					else if(verbType == eVerbType.DEL)

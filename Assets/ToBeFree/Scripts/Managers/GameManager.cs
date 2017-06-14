@@ -45,6 +45,7 @@ namespace ToBeFree
 		public UIEndingManager endingManager;
 		public UICharacter uiCharacter;
 		public GameObject optionObj;
+		public GameObject tipObj;
 		public LanguageSelection languageSelection;
 		public UIGrid commandPopupGrid;
 		public GameObject IconPieceObj;
@@ -88,6 +89,7 @@ namespace ToBeFree
 
 		// don't use.
 		private Camera directingCam;
+		
 
 		// can't use the constructor
 		private GameManager()
@@ -466,19 +468,29 @@ namespace ToBeFree
 				obj = menuObj;
 			}
 			obj.SetActive(!obj.activeSelf);
-			bool isObjActive = menuObj.activeSelf || optionObj.activeSelf;
-			int mask = 32; // UI Layer Num : 2 ^ 5
-			if (menuObj.activeSelf || optionObj.activeSelf)
-			{
-				mask = 256; // Setting Layer Num : 2 ^ 8
-			}
-			uiCamera.eventReceiverMask = mask;
+
+			ChangeUICameraMask();
 
 			// 주사위 보이는 상태에서 설정 키면 주사위가 보이므로 주사위쪽 카메라 꺼줌.
 			if(diceObj.activeSelf)
 			{
-				DiceTester.Instance.demo.SetEnableCameras(!isObjActive);
+				DiceTester.Instance.demo.SetEnableCameras(!(menuObj.activeSelf || optionObj.activeSelf));
 			}
+		}
+
+		public void ChangeUICameraMask()
+		{
+			bool isObjActive = menuObj.activeSelf || optionObj.activeSelf;
+			int mask = 32; // UI Layer Num : 2 ^ 5
+			if (isObjActive)
+			{
+				mask = 256; // Setting Layer Num : 2 ^ 8
+			}
+			else if(tipObj.activeSelf)
+			{
+				mask = 2048; // Tip Layer Num : 2 ^ 11
+			}
+			uiCamera.eventReceiverMask = mask;
 		}
 
 		private void DayIsGone()
@@ -529,6 +541,7 @@ namespace ToBeFree
 				TimeTable.Instance.Load(SaveLoadManager.Instance.data.time);
 
 				CrackDown.Instance.Load(SaveLoadManager.Instance.data.crackdown);
+				TipManager.Instance.Load(SaveLoadManager.Instance.data.tipList);
 			}
 			else
 			{
@@ -563,17 +576,17 @@ namespace ToBeFree
 
 #if UNITY_EDITOR
 			// for test
-			character.Stat.Agility = 25;
-			character.Stat.InfoNum = 4;
-			character.Stat.HP = 1;
-			character.Stat.Satiety = 1;
+			//character.Stat.Agility = 25;
+			//character.Stat.InfoNum = 4;
+			//character.Stat.HP = 1;
+			//character.Stat.Satiety = 1;
 			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
+			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
+			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
 
 			//yield return AbnormalConditionManager.Instance.Find("Fatigue").Activate(character);
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(31));
-			character.Inven.AddItem(ItemManager.Instance.GetByIndex(32));
+			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(32));
 			//character.Inven.AddItem(ItemManager.Instance.GetByIndex(36));
 			//yield return EventManager.Instance.ActivateEvent(EventManager.Instance.List[71], character);
 #endif
@@ -692,6 +705,7 @@ namespace ToBeFree
 				}
 				else
 				{
+					tipObj.SetActive(false);
 					SwitchMenu(false);
 					StopAllCoroutines();
 

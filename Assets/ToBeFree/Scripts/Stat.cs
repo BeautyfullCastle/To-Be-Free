@@ -375,10 +375,6 @@ namespace ToBeFree
 				Police police = piece as Police;
 				bool isExist = cityList.Exists(x => x == police.City);
 				police.IconPiece.gameObject.SetActive(isExist);
-				if(isExist)
-				{
-					TipManager.Instance.Show(eTipTiming.PoliceAppeared);
-				}
 			}
 
 			// Set icon cities brighthen in view range.

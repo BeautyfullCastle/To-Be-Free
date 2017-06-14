@@ -182,6 +182,8 @@ namespace ToBeFree
 				yield break;
 			}
 
+			TipManager.Instance.Show(eTipTiming.PoliceInspect);
+
 			yield return GameManager.Instance.uiEventManager.OnChanged(selectedEvent.Script);
 
 			int characterSuccessNum = 0;

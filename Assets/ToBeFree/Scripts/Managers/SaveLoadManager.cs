@@ -27,6 +27,7 @@ namespace ToBeFree
 				cityList = new List<CitySaveData>();
 				time = new TimeSaveData();
 				crackdown = new CrackDownSaveData();
+				tipList = new List<TipSaveData>();
 			}
 
 			public CharacterSaveData character;
@@ -37,6 +38,7 @@ namespace ToBeFree
 			public List<CitySaveData> cityList;
 			public TimeSaveData time;
 			public CrackDownSaveData crackdown;
+			public List<TipSaveData> tipList;
 		}
 
 		public void Init()
@@ -63,6 +65,7 @@ namespace ToBeFree
 			CharacterManager.Instance.Save(data.character);
 			TimeTable.Instance.Save(data.time);
 			CrackDown.Instance.Save(data.crackdown);
+			TipManager.Instance.Save(data.tipList);
 
 			string s = JsonUtility.ToJson(data);
 			Debug.Log(s);

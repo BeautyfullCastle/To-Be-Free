@@ -27,7 +27,7 @@ namespace ToBeFree
 		private eDifficulty difficulty;
 		private string script;
 		private int resultIndex;
-		private int[] selectIndexList;        
+		private int[] selectIndexList;
 		
 
 		public Event(eEventAction actionType, eDifficulty difficulty, string script, int resultIndex, int[] selectIndexList)

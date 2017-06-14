@@ -4,6 +4,9 @@
 public class TipData : IData
 {
 	public int index;
-	public string script;
+	public string title;
 	public string timing;
+	public string script;
+	public string sprite;
+	public int nextIndex;
 }

@@ -6,6 +6,7 @@ namespace Language
 	public class TipData : IData
 	{
 		public int index;
+		public string title;
 		public string script;
 	}
 }
