@@ -29,7 +29,15 @@ namespace ToBeFree
 				this.GetComponent<UIPanel>().depth = 19;
 			}
 			this.transform.SetChildLayer(this.gameObject.layer);
-
+			
+			if(DiceTester.Instance.demo != null)
+			{
+				if(DiceTester.Instance.demo.gameObject.activeSelf)
+				{
+					DiceTester.Instance.demo.SetEnableCameras(false);
+				}
+			}
+			
 			scriptLabelChange.Refresh(key);
 			this.gameObject.SetActive(true);
 			while(bClicked == false)
@@ -37,6 +45,15 @@ namespace ToBeFree
 				yield return new WaitForSeconds(0.1f);
 			}
 			bClicked = false;
+
+			if (DiceTester.Instance.demo != null)
+			{
+				if (DiceTester.Instance.demo.gameObject.activeSelf)
+				{
+					DiceTester.Instance.demo.SetEnableCameras(true);
+				}
+			}
+			
 			this.gameObject.SetActive(false);
 		}
 

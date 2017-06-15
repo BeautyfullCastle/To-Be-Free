@@ -47,8 +47,7 @@ namespace ToBeFree
 
 			tweenTip.ResetToBeginning();
 			tweenTip.PlayForward();
-			blur.enabled = true;
-
+			
 			Refresh();
 		}
 
@@ -74,7 +73,15 @@ namespace ToBeFree
 
 			exclamationTitleLabel.text = this.firstTip.Title;
 
+			blur.enabled = true;
 			this.gameObject.SetActive(true);
+			if (DiceTester.Instance.demo != null)
+			{
+				if (DiceTester.Instance.demo.gameObject.activeSelf)
+				{
+					DiceTester.Instance.demo.SetEnableCameras(false);
+				}
+			}
 			GameManager.Instance.ChangeUICameraMask();
 		}
 
@@ -86,6 +93,13 @@ namespace ToBeFree
 				blur.enabled = false;
 				this.gameObject.SetActive(false);
 				GameManager.Instance.ChangeUICameraMask();
+				if (DiceTester.Instance.demo != null)
+				{
+					if (DiceTester.Instance.demo.gameObject.activeSelf)
+					{
+						DiceTester.Instance.demo.SetEnableCameras(true);
+					}
+				}
 				return;
 			}
 
@@ -99,7 +113,6 @@ namespace ToBeFree
 
 			tweenTip.ResetToBeginning();
 			tweenTip.PlayForward();
-			blur.enabled = true;
 
 			Refresh();
 		}
