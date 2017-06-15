@@ -46,6 +46,7 @@ namespace ToBeFree
 		public UICharacter uiCharacter;
 		public GameObject optionObj;
 		public GameObject tipObj;
+		public UICaution uiCaution;
 		public LanguageSelection languageSelection;
 		public UIGrid commandPopupGrid;
 		public GameObject IconPieceObj;
@@ -83,14 +84,13 @@ namespace ToBeFree
 		// for test
 		private bool activateAbnormal;
 		private bool moveTest;
-
-		[SerializeField]
-		private bool isNew;
+		
+		private bool isNew = false;
+		private bool bClickedStart = false;
 
 		// don't use.
 		private Camera directingCam;
 		
-
 		// can't use the constructor
 		private GameManager()
 		{
@@ -638,6 +638,16 @@ namespace ToBeFree
 
 			while (this.state == GameState.Main)
 			{
+				if (this.bClickedStart)
+				{
+					yield return uiCaution.Show(eLanguageKey.Popup_New);
+					if (uiCaution.BClickYes)
+					{
+						this.state = GameState.InGame;
+						AudioManager.Instance.Find("start_game").Play();
+					}
+				}
+				this.bClickedStart = false;
 				yield return new WaitForSecondsRealtime(0.1f);
 			}
 			
@@ -686,12 +696,12 @@ namespace ToBeFree
 			if(buttonName == "NEW")
 			{
 				this.isNew = true;
-				this.state = GameState.InGame;
-				AudioManager.Instance.Find("start_game").Play();
+				this.bClickedStart = true;
 			}
 			else if(buttonName == "CONTINUE")
 			{
 				this.isNew = false;
+				this.bClickedStart = true;
 				this.state = GameState.InGame;
 				AudioManager.Instance.Find("start_game").Play();
 			}

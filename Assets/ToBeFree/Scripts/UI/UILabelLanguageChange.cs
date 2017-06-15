@@ -10,6 +10,9 @@ namespace ToBeFree
 
 		void Awake()
 		{
+			if (label != null)
+				return;
+
 			label = this.GetComponent<UILabel>();
 			LanguageSelection.selectLanguage += LanguageSelection_selectLanguage;
 			LanguageSelection_selectLanguage(LanguageManager.Instance.CurrentLanguage);
@@ -17,6 +20,17 @@ namespace ToBeFree
 
 		private void LanguageSelection_selectLanguage(eLanguage language)
 		{
+			label.text = LanguageManager.Instance.Find(key);
+		}
+
+		public void Refresh(eLanguageKey key)
+		{
+			if (this.label == null)
+			{
+				Awake();
+			}
+
+			this.key = key;
 			label.text = LanguageManager.Instance.Find(key);
 		}
 	}
