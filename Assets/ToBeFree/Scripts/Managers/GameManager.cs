@@ -87,10 +87,12 @@ namespace ToBeFree
 		
 		private bool isNew = false;
 		private bool bClickedStart = false;
+		private bool bWantToSeeTutorial = true;
 
 		// don't use.
 		private Camera directingCam;
 		
+
 		// can't use the constructor
 		private GameManager()
 		{
@@ -541,11 +543,13 @@ namespace ToBeFree
 				TimeTable.Instance.Load(SaveLoadManager.Instance.data.time);
 
 				CrackDown.Instance.Load(SaveLoadManager.Instance.data.crackdown);
+
 				TipManager.Instance.Load(SaveLoadManager.Instance.data.tipList);
 			}
 			else
 			{
 				character = CharacterManager.Instance.GetByIndex(0);
+				TipManager.Instance.Set(!bWantToSeeTutorial);
 			}
 
 			yield return character.Init();
@@ -643,6 +647,9 @@ namespace ToBeFree
 					yield return uiCaution.Show(eLanguageKey.Popup_New);
 					if (uiCaution.BClickYes)
 					{
+						yield return this.uiCaution.Show(eLanguageKey.Popup_Tutorial);
+						this.bWantToSeeTutorial = this.uiCaution.BClickYes;
+
 						this.state = GameState.InGame;
 						AudioManager.Instance.Find("start_game").Play();
 					}

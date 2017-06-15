@@ -125,5 +125,13 @@ namespace ToBeFree
 				list[i].Watched = tipList[i].watched;
 			}
 		}
+
+		public void Set(bool watched)
+		{
+			for (int i = 0; i < list.Length; ++i)
+			{
+				list[i].Watched = watched;
+			}
+		}
 	}
 }

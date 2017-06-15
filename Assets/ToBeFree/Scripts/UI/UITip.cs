@@ -28,9 +28,10 @@ namespace ToBeFree
 		{
 			tweenTip.ResetToBeginning();
 			tweenExclamation.ResetToBeginning();
+			this.blur.enabled = false;
 			this.gameObject.SetActive(false);
 		}
-
+		
 		public void SetInfo(Tip tip)
 		{
 			if (tip == null)
@@ -98,6 +99,7 @@ namespace ToBeFree
 
 			tweenTip.ResetToBeginning();
 			tweenTip.PlayForward();
+			blur.enabled = true;
 
 			Refresh();
 		}
