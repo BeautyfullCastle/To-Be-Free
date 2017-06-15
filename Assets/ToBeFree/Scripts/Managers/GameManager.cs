@@ -562,8 +562,15 @@ namespace ToBeFree
 				List<City> bigCityList = CityManager.Instance.FindCitiesByType(eNodeType.BIGCITY);
 				foreach (City city in bigCityList)
 				{
-					PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
-					//NGUIDebug.Log("Add Big city : " + city.Name.ToString());
+					if(city == character.CurCity)
+					{
+						PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE, 1, 1));
+					}
+					else
+					{
+						PieceManager.Instance.Add(new Police(city, eSubjectType.POLICE));
+					}
+					Debug.Log("Add Big city : " + city.Name.ToString());
 				}
 				// load first main quest.
 				Quest firstMainQuest = QuestManager.Instance.GetByIndex(15);
