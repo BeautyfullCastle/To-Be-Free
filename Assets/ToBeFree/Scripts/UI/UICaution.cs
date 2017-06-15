@@ -18,7 +18,12 @@ namespace ToBeFree
 		
 		public IEnumerator Show(eLanguageKey key)
 		{
-			if(GameManager.Instance.menuObj.activeSelf)
+			if(GameManager.Instance.endingManager.gameObject.activeSelf)
+			{
+				this.GetComponent<UIPanel>().depth = 23;
+				this.gameObject.layer = LayerMask.NameToLayer("UI");
+			}
+			else if(GameManager.Instance.menuObj.activeSelf)
 			{
 				this.gameObject.layer = LayerMask.NameToLayer("Setting");
 				this.GetComponent<UIPanel>().depth = 22;

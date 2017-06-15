@@ -61,6 +61,9 @@ namespace ToBeFree
 		public UIEnding[] happyEndingArr;
 		public UIEnding[] starvationEndingArr;
 		public UIEnding[] repatriateEndingArr;
+		
+		private bool isSkip = false;
+		private float spendTime = 0f;
 
 		void OnEnable()
 		{
@@ -84,6 +87,30 @@ namespace ToBeFree
 			}
 		}
 
+		void Update()
+		{
+			if(Input.GetKeyDown(KeyCode.Escape))
+			{
+				if(GameManager.Instance.uiCaution.gameObject.activeSelf)
+				{
+					GameManager.Instance.uiCaution.OnClickNo();
+				}
+				else
+				{
+					StartCoroutine(ShowCaution());
+				}
+			}
+		}
+
+		private IEnumerator ShowCaution()
+		{
+			yield return GameManager.Instance.uiCaution.Show(eLanguageKey.Popup_SkipMessage);
+			if(GameManager.Instance.uiCaution.BClickYes)
+			{
+				isSkip = true;
+			}
+		}
+
 		public IEnumerator StartEnding(eEnding ending)
 		{
 			yield return GameManager.Instance.ChangeScene(GameManager.eSceneState.Ending);
@@ -101,10 +128,15 @@ namespace ToBeFree
 					break;
 			}
 
-			SaveLoadManager.Instance.Delete();
-			yield return (GameManager.Instance.ChangeToMain());
-		}
+			if (GameManager.Instance.uiCaution.gameObject.activeSelf)
+			{
+				GameManager.Instance.uiCaution.OnClickNo();
+			}
 
+			SaveLoadManager.Instance.Delete();
+			yield return GameManager.Instance.ChangeToMain();
+		}
+		
 		private IEnumerator Play(UIEnding[] endings)
 		{
 			if (endings.Length <= 0)
@@ -116,7 +148,20 @@ namespace ToBeFree
 			{
 				StartCoroutine(ending.Play());
 			}
-			yield return new WaitForSeconds(endings[endings.Length - 1].EndTime);
+
+			isSkip = false;
+			spendTime = 0f;
+			float endTime = endings[endings.Length - 1].EndTime;
+			while(spendTime < endTime)
+			{
+				if(isSkip)
+				{
+					yield break;
+				}
+				spendTime += Time.deltaTime;
+				yield return new WaitForSeconds(0.1f);
+			}
+			
 			Debug.LogWarning("ending end time : " + Time.time);
 		}
 	}

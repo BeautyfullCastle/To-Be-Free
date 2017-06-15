@@ -450,6 +450,10 @@ namespace ToBeFree
 
 		private void ExitSetting()
 		{
+			if(endingManager.gameObject.activeSelf)
+			{
+				return;
+			}
 			if(menuObj.activeSelf && this.uiCaution.gameObject.activeSelf)
 			{
 				this.uiCaution.OnClickNo();
@@ -595,9 +599,9 @@ namespace ToBeFree
 			// for test
 			//character.Stat.Agility = 25;
 			//character.Stat.InfoNum = 4;
-			//character.Stat.HP = 1;
-			//character.Stat.Satiety = 1;
-			yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
+			character.Stat.HP = 1;
+			character.Stat.Satiety = 1;
+			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
 
