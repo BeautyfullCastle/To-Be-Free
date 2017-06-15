@@ -118,7 +118,7 @@ namespace ToBeFree
 
 			if(isEternalCrackdown)
 			{
-
+				yield return GameManager.Instance.uiEventManager.OnChanged(LanguageManager.Instance.Find(eLanguageKey.Event_Police_CrackDown));
 			}
 			else
 			{
