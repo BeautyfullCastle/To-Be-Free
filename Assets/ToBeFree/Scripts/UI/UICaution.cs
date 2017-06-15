@@ -18,6 +18,18 @@ namespace ToBeFree
 		
 		public IEnumerator Show(eLanguageKey key)
 		{
+			if(GameManager.Instance.menuObj.activeSelf)
+			{
+				this.gameObject.layer = LayerMask.NameToLayer("Setting");
+				this.GetComponent<UIPanel>().depth = 22;
+			}
+			else
+			{
+				this.gameObject.layer = LayerMask.NameToLayer("UI");
+				this.GetComponent<UIPanel>().depth = 19;
+			}
+			this.transform.SetChildLayer(this.gameObject.layer);
+
 			scriptLabelChange.Refresh(key);
 			this.gameObject.SetActive(true);
 			while(bClicked == false)

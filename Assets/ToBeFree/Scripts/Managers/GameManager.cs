@@ -451,10 +451,17 @@ namespace ToBeFree
 
 		private void ExitSetting()
 		{
-			SwitchMenu(false);
-			if (optionObj.activeSelf)
+			if(menuObj.activeSelf && this.uiCaution.gameObject.activeSelf)
 			{
-				SwitchMenu(true);
+				this.uiCaution.OnClickNo();
+			}
+			else
+			{
+				SwitchMenu(false);
+				if (optionObj.activeSelf)
+				{
+					SwitchMenu(true);
+				}
 			}
 		}
 
@@ -729,16 +736,25 @@ namespace ToBeFree
 				}
 				else
 				{
-					tipObj.SetActive(false);
-					SwitchMenu(false);
-					StopAllCoroutines();
-
-					StartCoroutine(ChangeToMain());
+					StartCoroutine(ExitFromInGame());
 				}
 			}
 			else if(buttonName == "EXIT_SETTING")
 			{
 				ExitSetting();
+			}
+		}
+
+		private IEnumerator ExitFromInGame()
+		{
+			yield return this.uiCaution.Show(eLanguageKey.Popup_EXIT);
+			if(this.uiCaution.BClickYes)
+			{
+				tipObj.SetActive(false);
+				SwitchMenu(false);
+				StopAllCoroutines();
+
+				StartCoroutine(ChangeToMain());
 			}
 		}
 
