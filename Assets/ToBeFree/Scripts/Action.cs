@@ -506,6 +506,8 @@ namespace ToBeFree
 
 			yield return TimeTable.Instance.SpendTime(requiredTime, eSpendTime.END);
 
+			TipManager.Instance.Show(eTipTiming.Shop);
+
 			GameManager.Instance.shopUIObj.SetActive(true);
 
 			yield return EventManager.Instance.WaitUntilFinish();

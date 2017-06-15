@@ -258,7 +258,6 @@ namespace ToBeFree
 					break;
 				case eCommand.SHOP:
 					action = new EnterToShop();
-					TipManager.Instance.Show(eTipTiming.Shop);
 					character.CanAction[(int)commandType] = false;
 					action.RequiredTime = 1;
 					isActStart = true;
