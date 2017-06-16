@@ -7,6 +7,7 @@ public class CharacterData : IData
 	public string name;
 	public string script;
 	public int HP;
+	public int satiety;
 	public int strength;
 	public int agility;
 	public int concentration;

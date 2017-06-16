@@ -89,14 +89,15 @@ namespace ToBeFree
 		{
 			viewRange = 1;
 			tempDiceNum = 0;
-			totalSatiety = 5;
-			satiety = totalSatiety;
 		}
 
-		public Stat(int hp, int strength, int agility, int concentration, int talent, int startMoney) : this()
+		public Stat(int hp, int satiety, int strength, int agility, int concentration, int talent, int startMoney) : this()
 		{
 			this.hp         = hp;
 			this.totalHP    = hp;
+
+			this.satiety = satiety;
+			this.totalSatiety = satiety;
 
 			this.strength   = strength;
 			this.agility    = agility;

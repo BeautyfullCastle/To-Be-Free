@@ -26,6 +26,7 @@ namespace ToBeFree
 		private Stat stat;
 		private string name;
 		private string script;
+		private string startCityName;
 		private int eventIndex;
 		private string skillScript;
 		private int abnormalIndex;
@@ -59,11 +60,7 @@ namespace ToBeFree
 			this.name = name;
 			this.script = script;
 			this.stat = stat;
-			this.iconCharacter = GameObject.FindObjectOfType<IconCharacter>();
-			if(GameObject.Find(startCityName))
-			{
-				this.CurCity = GameObject.Find(startCityName).GetComponent<IconCity>().City;
-			}
+			this.startCityName = startCityName;
 				
 			this.inven = inven;
 			this.eventIndex = eventIndex;
@@ -82,6 +79,9 @@ namespace ToBeFree
 
 		public IEnumerator Init()
 		{
+			this.iconCharacter = GameObject.FindObjectOfType<IconCharacter>();
+			this.CurCity = CityManager.Instance.Find(startCityName);
+
 			GameManager.Instance.uiCharacter.Refresh();
 			this.Stat.InitUI();
 			this.Stat.SetViewRange();
@@ -618,7 +618,7 @@ namespace ToBeFree
 		{
 			get
 			{
-				Language.CharacterData characterData = CharacterManager.Instance.GetLanguageData(eLanguage.ENGLISH);
+				Language.CharacterData characterData = CharacterManager.Instance.GetLanguageData(eLanguage.ENGLISH, this);
 				if(characterData == null)
 				{
 					return string.Empty;
@@ -637,6 +637,14 @@ namespace ToBeFree
 			set
 			{
 				arrestedDate = value;
+			}
+		}
+
+		public string Script
+		{
+			get
+			{
+				return script;
 			}
 		}
 	}

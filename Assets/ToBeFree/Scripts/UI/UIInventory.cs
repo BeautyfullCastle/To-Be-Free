@@ -19,6 +19,8 @@ namespace ToBeFree
 
 		public void Init(Inventory inven)
 		{
+			OnDisable();
+
 			foreach(Item item in inven.list)
 			{
 				AddItem(item);

@@ -5,11 +5,12 @@
 			"name": "김영성",
 			"script": "가난한 집에서 태어난 그는 먹고 살기 위해 어떤 것이든 다했습니다. 하지만 고난의 행군이 시작 되면서 먹고 살기 위해 죽음을 무릎쓰고 두만강을 건넜습니다.",
 			"HP": 5,
+			"satiety": 5,
 			"strength": 3,
 			"agility": 3,
 			"concentration": 3,
 			"talent": 3,
-			"startMoney": 3,
+			"startMoney": 2,
 			"startInven": 9,
 			"startCity": "TUMEN",
 			"itemIndex": [
@@ -17,8 +18,29 @@
 				0
 			],
 			"eventIndex": 131,
-			"skillScript": "집중하기\\n집중해서 하루동안 무작위 능력치 2개를 2올립니다.",
+			"skillScript": "집중하기: 집중해서 하루동안 무작위 능력치 2개를 2올립니다.",
 			"abnormalIndex": -99
+		},
+		{
+			"index": 1,
+			"name": "김신",
+			"script": "온갖 험한일을 하면서 생활을 연명하던 그는 남한에서는 풍족하게 먹고 산다는 말에 탈북을 결심했습니다.",
+			"HP": 4,
+			"satiety": 5,
+			"strength": 3,
+			"agility": 2,
+			"concentration": 3,
+			"talent": 2,
+			"startMoney": 2,
+			"startInven": 9,
+			"startCity": "DANDONG",
+			"itemIndex": [
+				0,
+				0
+			],
+			"eventIndex": 131,
+			"skillScript": "테스트용: 테스트입니다.",
+			"abnormalIndex": 19
 		}
 	]
 }

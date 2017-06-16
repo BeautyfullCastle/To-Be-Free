@@ -14,7 +14,7 @@ namespace ToBeFree
 		private Language.CharacterData[] engList;
 		private Language.CharacterData[] korList;
 		private List<Language.CharacterData[]> languageList;
-				
+
 		public void Init()
 		{
 			DataList<CharacterData> cDataList = new DataList<CharacterData>(file);
@@ -39,7 +39,7 @@ namespace ToBeFree
 		{
 			foreach (CharacterData data in dataList)
 			{
-				Stat stat = new Stat(data.HP, data.strength, data.agility, data.concentration, data.talent, data.startMoney);
+				Stat stat = new Stat(data.HP, data.satiety, data.strength, data.agility, data.concentration, data.talent, data.startMoney);
 				Inventory inven = new Inventory(data.startInven);
 
 				Character character = new Character(data.index, data.name, data.script, stat, data.startCity, inven, data.eventIndex, data.skillScript, data.abnormalIndex);
@@ -131,7 +131,7 @@ namespace ToBeFree
 			return list[index];
 		}
 
-		public Language.CharacterData GetLanguageData(eLanguage language)
+		public Language.CharacterData GetLanguageData(eLanguage language, Character character)
 		{
 			Language.CharacterData[] languageList = null;
 			if(language == eLanguage.ENGLISH)
@@ -143,13 +143,21 @@ namespace ToBeFree
 				languageList = korList;
 			}
 
-			int index = GameManager.Instance.Character.Index;
+			int index = character.Index;
 			if(index < 0 || index >= languageList.Length)
 			{
 				return null;
 			}
 
 			return languageList[index];
+		}
+
+		public Character[] List
+		{
+			get
+			{
+				return list;
+			}
 		}
 	}
 }

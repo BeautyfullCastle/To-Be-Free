@@ -42,6 +42,7 @@ namespace ToBeFree
 		public UIBuffManager uiBuffManager;
 		public UIQuestManager uiQuestManager;
 		public UITipManager uiTipManager;
+		public UICharacterSelect uiCharacterSelect;
 		public UIEndingManager endingManager;
 		public UICharacter uiCharacter;
 		public GameObject optionObj;
@@ -101,10 +102,25 @@ namespace ToBeFree
 		private void Init()
 		{
 			ItemManager.Instance.Init();
+			EventManager.Instance.Init();
+			CharacterManager.Instance.Init();
+
 			TipManager.Instance.Init();
+			
+			SelectManager.Instance.Init();
+			ResultManager.Instance.Init();
+			QuestManager.Instance.Init();
+			AbnormalConditionManager.Instance.Init();
+		}
+
+		private void InitInGame()
+		{
 			DiceTester.Instance.Init();
 			CityManager.Instance.Init();
-			if(iconCities != null)
+
+			this.State = GameState.Init;
+
+			if (iconCities != null)
 			{
 				iconCities = GameObject.FindObjectsOfType<IconCity>();
 				foreach (IconCity iconCity in iconCities)
@@ -118,16 +134,9 @@ namespace ToBeFree
 					iconCity.InitNeighbors();
 				}
 			}
-			
-			EventManager.Instance.Init();
-			SelectManager.Instance.Init();
-			ResultManager.Instance.Init();
-			QuestManager.Instance.Init();
-			AbnormalConditionManager.Instance.Init();
-			
-			this.State = GameState.Init;
+
 			commands = commandUIObj.GetComponentsInChildren<UICommand>();
-			foreach(UICommand command in commands)
+			foreach (UICommand command in commands)
 			{
 				command.GetComponent<UIButton>().isEnabled = false;
 			}
@@ -142,7 +151,7 @@ namespace ToBeFree
 			optionObj.SetActive(false);
 
 			curves = GameObject.FindObjectOfType<BezierCurveList>();
-			if(lightSpriteTweenAlpha == null)
+			if (lightSpriteTweenAlpha == null)
 			{
 				lightSpriteTweenAlpha = GameObject.Find("Light Sprite").GetComponent<TweenAlpha>();
 			}
@@ -150,7 +159,7 @@ namespace ToBeFree
 			{
 				lightSpriteTweenAlpha.GetComponent<UISprite>().alpha = lightSpriteTweenAlpha.from;
 			}
-			
+
 
 			inspectAction = new Inspect();
 		}
@@ -531,10 +540,8 @@ namespace ToBeFree
 		IEnumerator InitState()
 		{
 			// Enter
-			Init();
+			InitInGame();
 
-			CharacterManager.Instance.Init();
-			
 			if (IsNew == false)
 			{
 				SaveLoadManager.Instance.Load();
@@ -558,7 +565,6 @@ namespace ToBeFree
 			}
 			else
 			{
-				character = CharacterManager.Instance.GetByIndex(0);
 				TipManager.Instance.Set(!bWantToSeeTutorial);
 			}
 
@@ -599,8 +605,8 @@ namespace ToBeFree
 			// for test
 			//character.Stat.Agility = 25;
 			//character.Stat.InfoNum = 4;
-			character.Stat.HP = 1;
-			character.Stat.Satiety = 1;
+			//character.Stat.HP = 1;
+			//character.Stat.Satiety = 1;
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
 			//yield return QuestManager.Instance.Load(QuestManager.Instance.GetByIndex(9));
@@ -647,6 +653,9 @@ namespace ToBeFree
 			// Excute
 			SaveLoadManager.Instance.Init();
 
+			Init();
+
+
 			tweenMainNew.PlayForward();
 			tweenMainContinue.PlayForward();
 
@@ -660,7 +669,7 @@ namespace ToBeFree
 						yield return this.uiCaution.Show(eLanguageKey.Popup_Tutorial);
 						this.bWantToSeeTutorial = this.uiCaution.BClickYes;
 
-						this.state = GameState.InGame;
+						this.state = GameState.CharacterSelect;
 						AudioManager.Instance.Find("start_game").Play();
 					}
 				}
@@ -676,16 +685,23 @@ namespace ToBeFree
 
 		IEnumerator CharacterSelectState()
 		{
+			uiCharacterSelect.Init();
+
 			// Enter
 			yield return this.ChangeScene(eSceneState.CharacterSelect);
-
-			this.state = GameState.CharacterSelect;
+			
 
 			// Excute
 			while (this.state == GameState.CharacterSelect)
 			{
 				yield return new WaitForSecondsRealtime(0.2f);
 			}
+
+			yield return new WaitForSeconds(5f);
+
+			character = CharacterManager.Instance.GetByIndex(1);
+
+			this.state = GameState.InGame;
 
 			// Exit
 			yield return NextState();
