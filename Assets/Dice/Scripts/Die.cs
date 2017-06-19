@@ -39,7 +39,7 @@ public class Die : MonoBehaviour
 	private Vector3 localHitNormalized;
 	// hitVector check margin
 	private readonly float validMargin = 0.02F;
-	private float maxSpeed = 2f;
+	private float maxSpeed = 1f;
 	private bool isOnGround = false;
 	
 	private Rigidbody rigid;
@@ -48,6 +48,7 @@ public class Die : MonoBehaviour
 	{
 		this.rigid = this.GetComponent<Rigidbody>();
 		this.localHitNormalized = Vector3.zero;
+		this.isOnGround = false;
 	}
 
 	// true is die is still rolling
@@ -84,7 +85,7 @@ public class Die : MonoBehaviour
 				// we got a hit so we determine the local normalized vector from the die center to the face that was hit.
 				// because we are using local space, each die side will have its own local hit vector coordinates that will always be the same.
 				localHitNormalized = transform.InverseTransformPoint(hit.point.x, hit.point.y, hit.point.z).normalized;
-				Debug.Log(this.gameObject.name + " : " + localHitNormalized);
+				//Debug.Log(this.gameObject.name + " : " + localHitNormalized);
 				return true;
 			}
 			// in theory we should not get at this position!
@@ -126,7 +127,7 @@ public class Die : MonoBehaviour
 						//if (nDelta < validMargin)
 						{
 							value = side;
-							Debug.LogWarning(this.gameObject.name + "'s side : " + side);// + " and dot : " + dot);
+							//Debug.LogWarning(this.gameObject.name + "'s side : " + side);// + " and dot : " + dot);
 							this.rigid.velocity = Vector3.zero;
 							break;
 						//delta = nDelta;
@@ -140,30 +141,32 @@ public class Die : MonoBehaviour
 		} while (side <= 6);
 	}
 	
-	void Update()
-	{
-		if (rolling)
-		{
-			if (this.rigid.velocity.magnitude > maxSpeed)
-			{
-				this.rigid.velocity = this.rigid.velocity.normalized * maxSpeed;
-				Debug.Log("Die : Over the limit.");
-			}
-			return;
-		}
+	//void FixedUpdate()
+	//{
+	//	if (rolling)
+	//	{
+	//		if (this.rigid.velocity.magnitude > maxSpeed)
+	//		{
+	//			this.rigid.velocity = this.rigid.velocity.normalized * maxSpeed;
+	//			Debug.Log("Die : Over the limit.");
+	//		}
+	//	}
+	//}
 
-		// determine the value is the die is not rolling
-		if (localHit && isOnGround && this.value <= 0)
-		{
-			GetValue();
+	//void Update()
+	//{
+	//	// determine the value is the die is not rolling
+	//	if (localHit && isOnGround && this.value <= 0)
+	//	{
+	//		GetValue();
 
-			if (this.value <= 0)
-			{
-				ReRoll();
-				return;
-			}
-		}
-	}
+	//		if (this.value <= 0)
+	//		{
+	//			ReRoll();
+	//			return;
+	//		}
+	//	}
+	//}
 
 	private void ReRoll()
 	{
@@ -174,17 +177,12 @@ public class Die : MonoBehaviour
 		if (rigid.useGravity == false)
 			return;
 
-		rigid.AddTorque(new Vector3(-5 * Random.value, -5 * Random.value, -5 * Random.value), ForceMode.Impulse);
-		rigid.AddForce(new Vector3(Random.value, Random.value, 2f), ForceMode.Impulse);
-		NGUIDebug.Log("Reroll");
-	}
+		float torqueForce = 5f;
+		rigid.AddTorque(new Vector3(Random.Range(-torqueForce, torqueForce), Random.Range(-torqueForce, torqueForce), Random.Range(-torqueForce, torqueForce)), ForceMode.Impulse);
 
-	void OnCollisionEnter(Collision collision)
-	{
-		if (collision.gameObject.name == "platform")
-		{
-			isOnGround = true;
-		}
+		float force = .1f;
+		rigid.AddForce(new Vector3(Random.Range(-force, force), Random.Range(-force, force), force), ForceMode.Impulse);
+		NGUIDebug.Log("Reroll");
 	}
 
 	void OnSollisionExit(Collision collision)
@@ -197,21 +195,69 @@ public class Die : MonoBehaviour
 
 	void OnCollisionStay(Collision collision)
 	{
-		if (collision.transform.GetComponent<Die>() != null)
+		if (isOnGround)
 		{
-			if (this.rolling == false)
-				return;
+			if (localHit && this.value <= 0)
+			{
+				GetValue();
+				if (this.value <= 0)
+				{
+					ReRoll();
+					isOnGround = false;
+				}
+			}
+			return;
+		}
+		
+		if (collision.gameObject.name == "platform")
+		{
+			isOnGround = true;
+			return;
+		}
 
+		if (this.rolling == false)
+			return;
+
+		if (collision.transform.parent == null)
+			return;
+
+		if (this.rigid.velocity.magnitude > (maxSpeed + .2f))
+		{
+			this.rigid.velocity = this.rigid.velocity.normalized * maxSpeed;
+			Debug.Log("Die : Over the limit.");
+		}
+		else
+		{
 			// 서로 반대 방향으로 튕겨낸다.
-			Vector3 v = this.rigid.velocity.normalized - collision.rigidbody.velocity.normalized;
-			v.Normalize();
-			float force = .7f;
-			rigid.AddForce(v * Random.Range(0f, 1f) * force, ForceMode.Impulse);
+			Vector3 direction = collision.transform.forward;
+			if (collision.gameObject.name.Contains("up"))
+			{
+				direction = -collision.transform.up;
+			}
+			else if(collision.gameObject.name.Contains("down"))
+			{
+				direction = collision.transform.up;
+			}
+			else if(collision.gameObject.name.Contains("left"))
+			{
+				direction = collision.transform.right;
+			}
+			else if(collision.gameObject.name.Contains("right"))
+			{
+				direction = -collision.transform.right;
+			}
+
+			Vector3 v = Vector3.Reflect(this.rigid.velocity.normalized, direction); // rigidbody.velocity.normalized;
+			float force = .1f;
+			rigid.AddForce(v * force, ForceMode.Impulse);
+			float torqueForce = 5f;
+			rigid.AddTorque(new Vector3(Random.Range(-torqueForce, torqueForce), Random.Range(-torqueForce, torqueForce), Random.Range(-torqueForce, torqueForce)), ForceMode.Impulse);
 		}
 	}
+
 	private Vector3 Force()
 	{
-		float force = 0.5f;
+		float force = 1f;
 		int isPlusSign = Random.Range(0, 2);
 		if(isPlusSign == 0)
 		{
