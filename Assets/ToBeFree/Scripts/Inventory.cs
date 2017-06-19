@@ -55,7 +55,7 @@ namespace ToBeFree
 			else
 			{
 				list.Add(new Item(item));
-				GameObject.FindObjectOfType<UIInventory>().AddItem(item);
+				GameObject.FindObjectOfType<UIInventory>().AddItem(item, UIItem.eBelong.INVEN);
 
 				//NGUIDebug.Log(item.Name);
 			}

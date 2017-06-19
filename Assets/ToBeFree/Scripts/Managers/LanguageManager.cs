@@ -30,7 +30,8 @@ namespace ToBeFree
 		Event_Police_Addgauge,
 		UI_Police, UI_Observation,
 		UI_Yes, UI_No, Popup_New, Popup_EXIT, Popup_Tutorial, UI_PermanentCrackDown,
-		UI_Caution, Popup_SkipMessage, UI_CharaterSelect, UI_Start, UI_RecoverAbnormal
+		UI_Caution, Popup_SkipMessage, UI_CharaterSelect, UI_Start, UI_RecoverAbnormal, UI_StartItem,
+		UI_PassiveAbilty, UI_ActiveAbilty, UI_NoAbility, UI_Stat
 	}
 
 	public class LanguageManager : Singleton<LanguageManager>

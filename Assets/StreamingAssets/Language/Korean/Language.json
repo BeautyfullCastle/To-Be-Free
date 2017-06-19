@@ -524,6 +524,31 @@
 			"index": 104,
 			"key": "UI_RecoverAbnormal",
 			"script": "상태이상 회복:"
+		},
+		{
+			"index": 105,
+			"key": "UI_StartItem",
+			"script": "시작 물건"
+		},
+		{
+			"index": 106,
+			"key": "UI_PassiveAbilty",
+			"script": "지속 능력"
+		},
+		{
+			"index": 107,
+			"key": "UI_ActiveAbilty",
+			"script": "사용 능력"
+		},
+		{
+			"index": 108,
+			"key": "UI_NoAbility",
+			"script": "이 캐릭터는 능력이 없습니다."
+		},
+		{
+			"index": 109,
+			"key": "UI_Stat",
+			"script": "능력치"
 		}
 	]
 }

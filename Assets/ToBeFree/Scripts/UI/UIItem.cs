@@ -5,7 +5,7 @@ namespace ToBeFree
 {
 	public class UIItem : MonoBehaviour
 	{
-		public enum eBelong { SHOP, INVEN }
+		public enum eBelong { SHOP, INVEN, CHARACTERSELECT }
 
 		public eBelong belong = eBelong.SHOP;
 
@@ -38,8 +38,13 @@ namespace ToBeFree
 
 			synchronizer = this.GetComponent<UIButtonEventSynchronizer>();
 
-			if (belong == eBelong.SHOP)
+			if (belong != eBelong.INVEN)
 			{
+				UIDragDropMyItem dragDrop = this.GetComponent<UIDragDropMyItem>();
+				if(dragDrop != null)
+				{
+					Destroy(dragDrop);
+				}
 				return;
 			}
 
@@ -78,7 +83,7 @@ namespace ToBeFree
 
 		void OnPress(bool pressed)
 		{
-			if (belong == eBelong.SHOP)
+			if (belong != eBelong.INVEN)
 			{
 				return;
 			}
@@ -92,13 +97,11 @@ namespace ToBeFree
 				if (this.enabled == false)
 					return;
 
-				if (belong == eBelong.INVEN)
-				{
-					GameObject effectObj = GameObject.Instantiate(itemEffectObj, this.transform.position, Quaternion.identity, GameManager.Instance.uiInventory.transform) as GameObject;
-					GameObject.Destroy(effectObj, effectObj.GetComponent<ParticleSystem>().duration);
+				GameObject effectObj = GameObject.Instantiate(itemEffectObj, this.transform.position, Quaternion.identity, GameManager.Instance.uiInventory.transform) as GameObject;
+				GameObject.Destroy(effectObj, effectObj.GetComponent<ParticleSystem>().duration);
 
-					StartCoroutine(GameManager.Instance.Character.Inven.UseItem(this.Item, GameManager.Instance.Character));
-				}
+				StartCoroutine(GameManager.Instance.Character.Inven.UseItem(this.Item, GameManager.Instance.Character));
+
 				return;
 			}
 
@@ -182,19 +185,17 @@ namespace ToBeFree
 			UITooltip.Show(description);
 		}
 
-		public void SetInfo(Item item, bool isInShop = true)
+		public void SetInfo(Item item, eBelong belongTo)
 		{
 			if (item == null)
 				return;
 
 			this.Item = item;
 			itemName.text = item.Name;
-			if (isInShop)
-				this.belong = eBelong.SHOP;
-			else
-				this.belong = eBelong.INVEN;
 
-			itemPrice.enabled = isInShop;
+			this.belong = belongTo;
+
+			itemPrice.enabled = (belongTo == eBelong.SHOP);
 			itemPrice.text = item.Price.ToString();
 
 			if (explanation)
@@ -217,7 +218,7 @@ namespace ToBeFree
 				}
 			}
 
-			SetEnable(item.Buff.StartTime == eStartTime.NOW);
+			SetEnable(belongTo == eBelong.CHARACTERSELECT || item.Buff.StartTime == eStartTime.NOW);
 		}
 
 		public void SetEnable(bool isEnable)

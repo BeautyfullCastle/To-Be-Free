@@ -43,11 +43,11 @@ namespace ToBeFree
 
 			for (int i = 0; i < basicItemList.Length; ++i)
 			{
-				basicItems[i].SetInfo(basicItemList[i]);
+				basicItems[i].SetInfo(basicItemList[i], UIItem.eBelong.SHOP);
 			}
 
 			// 도시 아이템 세팅
-			cityItems[0].SetInfo(GameManager.Instance.Character.CurCity.Item);
+			cityItems[0].SetInfo(GameManager.Instance.Character.CurCity.Item, UIItem.eBelong.SHOP);
 
 			// 랜덤 아이템 리스트 세팅
 			List<Item> randomItemList = ItemManager.Instance.CopyTo();
@@ -75,7 +75,7 @@ namespace ToBeFree
 				//}
 				randomItems[i].gameObject.SetActive(true);
 				int randIndex = r.Next(0, randomItemList.Count - 1);
-				randomItems[i].SetInfo(randomItemList[randIndex]);
+				randomItems[i].SetInfo(randomItemList[randIndex], UIItem.eBelong.SHOP);
 				randomItemList.Remove(randomItems[i].Item);
 			}
 

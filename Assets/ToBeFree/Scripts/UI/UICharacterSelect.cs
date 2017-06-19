@@ -38,6 +38,8 @@ namespace ToBeFree
 		[SerializeField]
 		private UIInventory uiInventory;
 
+		private Character character;
+
 		public void Init()
 		{
 			foreach(Character cha in CharacterManager.Instance.List)
@@ -47,17 +49,15 @@ namespace ToBeFree
 				icon.SetSprite(cha);
 				grid.Reposition();
 			}
-			
+
 			// TODO: 첫번째 아이콘 OnClick
-
-
-
-			Character character = CharacterManager.Instance.GetByIndex(0);
-			SetCharacterUI(character);
+			grid.GetChild(0).GetComponent<UICharacterIcon>().OnClick();
 		}
 
 		public void SetCharacterUI(Character character)
 		{
+			this.character = character;
+
 			UISpriteData spriteData = sprite.atlas.GetSprite("Character_" + character.EngName);
 			if (spriteData != null)
 			{
@@ -80,7 +80,7 @@ namespace ToBeFree
 			}
 			else
 			{
-				passiveSkillLabel.text = string.Empty;
+				passiveSkillLabel.text = LanguageManager.Instance.Find(eLanguageKey.UI_NoAbility);
 			}
 
 			Stat stat = character.Stat;
@@ -92,7 +92,13 @@ namespace ToBeFree
 			focusLabel.text = stat.Concentration.ToString();
 			moneyLabel.text = stat.Money.ToString();
 
-			uiInventory.Init(character.Inven);
+			uiInventory.Init(character.Inven, UIItem.eBelong.CHARACTERSELECT);
+		}
+
+		public void StartGame()
+		{
+			GameManager.Instance.Character = this.character;
+			GameManager.Instance.State = GameManager.GameState.InGame;
 		}
 	}
 }

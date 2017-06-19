@@ -697,12 +697,6 @@ namespace ToBeFree
 				yield return new WaitForSecondsRealtime(0.2f);
 			}
 
-			yield return new WaitForSeconds(5f);
-
-			character = CharacterManager.Instance.GetByIndex(1);
-
-			this.state = GameState.InGame;
-
 			// Exit
 			yield return NextState();
 		}
@@ -1200,6 +1194,10 @@ namespace ToBeFree
 			{
 				return character;
 			}
+			set
+			{
+				character = value;
+			}
 		}
 
 		public GameState State
@@ -1208,7 +1206,7 @@ namespace ToBeFree
 			{
 				return state;
 			}
-			private set
+			set
 			{
 				state = value;
 			}

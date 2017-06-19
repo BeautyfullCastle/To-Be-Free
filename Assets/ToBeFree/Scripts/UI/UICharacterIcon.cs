@@ -29,7 +29,7 @@ namespace ToBeFree
 
 		public void OnClick()
 		{
-			foreach(UICharacterIcon icon in this.transform.parent.parent.GetComponentsInChildren<UICharacterIcon>())
+			foreach(UICharacterIcon icon in this.transform.parent.GetComponentsInChildren<UICharacterIcon>())
 			{
 				icon.border.alpha = 0f;
 			}

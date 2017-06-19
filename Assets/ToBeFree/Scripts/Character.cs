@@ -86,7 +86,7 @@ namespace ToBeFree
 			this.Stat.InitUI();
 			this.Stat.SetViewRange();
 
-			GameManager.Instance.uiInventory.Init(this.Inven);
+			GameManager.Instance.uiInventory.Init(this.Inven, UIItem.eBelong.INVEN);
 
 			GameManager.Instance.worldCam.GetComponent<CameraZoom>().Init();
 

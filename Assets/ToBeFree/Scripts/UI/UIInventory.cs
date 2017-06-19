@@ -17,13 +17,13 @@ namespace ToBeFree
 			items = new List<UIItem>();
 		}
 
-		public void Init(Inventory inven)
+		public void Init(Inventory inven, UIItem.eBelong belongTo)
 		{
 			OnDisable();
 
 			foreach(Item item in inven.list)
 			{
-				AddItem(item);
+				AddItem(item, belongTo);
 			}
 			this.Refresh();
 		}
@@ -41,14 +41,13 @@ namespace ToBeFree
 			grid.Reposition();
 		}
 
-		public void AddItem(Item item)
+		public void AddItem(Item item, UIItem.eBelong belongTo)
 		{
 			GameObject gObjItem = NGUITools.AddChild(grid.gameObject, objSampleItem);
 			// 이제 이름과 아이콘을 세팅할께요.
 			// 그럴려면 먼저 아까 만든 ItemScript를 가져와야겠죠.
 			UIItem itemScript = gObjItem.GetComponent<UIItem>();
-			itemScript.SetInfo(item, false);
-			itemScript.belong = UIItem.eBelong.INVEN;
+			itemScript.SetInfo(item, belongTo);
 
 			// 이제 그리드와 스크롤뷰를 재정렬 시킵시다.
 			grid.Reposition();
